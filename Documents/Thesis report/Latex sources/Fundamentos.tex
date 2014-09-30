@@ -1,0 +1,1729 @@
+\chapter{Fundamentos}
+\label{ch:fundamentos}
+
+En el Capítulo que vamos a ver a continuación, se realizará un extenso análisis a nivel teórico de los fundamentos de los sensores inerciales (acelerómetro, giróscopo y  magnetómetro) utilizados en los sitemas GaitWatch  y ECnsole. La segunda parte del capítulo se centrará primero en  explicar el proceso de calibración, cuyo objetivo es transformar los datos originales en unidades con sentido físico. Después se describirán los algoritmos para el cálculo de la orientación. Primero el método de \textit{Integración de la Velocidad Angular} para el giróscopo. Posteriormente, el método de \textit{Descomposición de la Gravedad} donde el acelerómetro y el magnetómetro trabajan de manera conjunta. Después, el  \textit{Filtro de Kalman} que  fusiona  los datos   del acelerómetro, giróscopo y manetómetro obteniendo unos resultados más precisos. Y por último, el \textit{Filtro de Kalman Extendido} (una mejora del \textit{Filtro de Kalman} gracias al uso de un elemento nuevo, los cuaterniones, que minimizan el cálculo computacional).
+
+\section{Fundamentos de sensores}
+
+A continuaci\'on vamos a realizar una descripci\'on de los fundamentos b\'asicos de los sensores que forman parte de los dispositivos cuyos datos son representados por la aplicación desarrollada.
+
+\subsection{Aceler\'ometros}
+
+Los aceler\'ometros \cite{funda1} son los sensores utilizados para medir la aceleraci\'on tal y  como su propio nombre indica. Es un instrumento que va unido a un objeto que permite medir la aceleraci\'on del mismo. La medida de la aceleracíon se consigue midiendo respecto a su masa inercial interna.
+
+Este dispositivo nos permite saber en cada momento el valor de la segunda derivada del espacio y mide la fuerza de inercia que incide sobre una masa cuando es afectada por un cambio de velocidad.
+
+ 
+Existen distintos tipos de tecnolog\'ias para medir la aceleración: piezo-el\'etricos, piezo-resistivo, galgas extensom\'etricas, l\'aser, t\'ermico,etc. Además se presentan tambi\'en gran variedad de diseños en funci\'on de la aplicaci\'on a la que van a ser destinados o  las condiciones de trabajo del aceler\'ometro. 
+ 
+Los dos par\'ametros principales que determinan la elecci\'on del medidor adecuado son los rangos de funcionamiento de temperatura y frecuencia. Existen otros par\'ametros a tener en cuenta, como el tamaño, la resistencia a golpes, el precio, etc.
+
+
+
+Los aceler\'ometros han pasado de estar dedicados a un uso industrial (medir 
+vibraciones y oscilaciones) y de investigaci\'on, a estar presentes en muchos aparatos 
+cotidianos (Videoconsolas, smartphones, GPS, automóviles, relojes).
+
+
+
+
+Ahora vamos a describir algunos de los tipos de acelerómetros existentes. Esta información se ha extraido de \cite{funda2}, donde se hace un estudio en mayor profundidad.
+
+
+\subsubsection{Aceler\'ometro mec\'anico}
+
+
+Este tipo de aceler\'ometro es el m\'as simple. Est\'a formado por unas masas unidas a un dinam\'ometro que se encuentra en la misma direcci\'on en la que queremos medir.
+
+
+Haciendo uso de la segunda Ley de Newton, definida por la ecuación \ref{newton}:
+
+\begin{equation}
+\label{newton}
+		F = ma
+\end{equation}
+
+
+donde \textit{F} es la fuerza resultante que act\'ua sobre la masa, y \textit{a}  es la aceleraci\'on.
+
+A trav\'es de la f\'ormula se puede deducir el valor de la aceleraci\'on ya que el dinam\'ometro mide el m\'odulo de la fuerza.
+
+
+\begin{equation}
+		a = \frac{F}{m}
+\end{equation}
+
+La figura \ref{fig:Fundamentos14} nos muestra una acelerómetro de tipo mecánico.
+
+\vspace{5mm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.25\textwidth]{figuras/Fundamentos/Fundamentos14}
+\caption{Acelerómentro mecánico \cite{funda14}.}
+\label{fig:Fundamentos14}
+\end{figure}
+
+
+\subsubsection{Aceler\'ometro piezoel\'ectrico}
+ 
+ 
+ El aceler\'ometro piezoel\'etrico  est\'a basado en un ret\'iculo cristalino piezoel\'etrico y el cual se comprime produciendo una carga el\'ectrica proporcional a la fuerza aplicada.
+ 
+ El material utilizado para los elementos piezoel\'etricos suele ser el circonato de plomo. La estructura del aceler\'ometro es una caja met\'alica y en el interior se encuentran los elementos  piezoel\'etricos. Éstos están comprimidos por una masa sujeta a otro lado por un muelle. Al exponer el conjunto a una vibraci\'on, el disco piezoel\'ectrico se ve sometido a una fuerza variable que es proporcional a la aceleraci\'on de la masa. Gracias al efecto piezoel\'ectrico se genera una carga proporcional a la fuerza y por consiguiente a la aceleraci\'on. Haciendo uso de un volt\'imetro se puede medir el potencial.
+ 
+Uno de los usos m\'as comunes es el mantenimiento predictivo, detectando defectos en m\'aquinas rotativas y alternativas.
+
+La figura \ref{fig:Fundamentos16} muestra un acelerómetro de tipo piezoeléctico.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth]{figuras/Fundamentos/Fundamentos16}
+\caption{Acelerómentro piezoeléctrico \cite{funda15}.}
+\label{fig:Fundamentos16}
+\end{figure}
+
+
+\subsubsection{Otros tipos de aceler\'ometros}
+ 
+ 
+\paragraph{Aceler\'ometro de efecto Hall.}
+
+Est\'a fundamentado en la detecci\'on del campo magn\'etico a trav\'es de un sensor de efecto Hall. Para ello se utiliza una masa s\'ismica donde se coloca un im\'an y este tipo de sensor. En la figura \ref{fig:Fundamentos18}  se puede ver un acelerómetro de efecto Hall.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.2\textwidth]{figuras/Fundamentos/Fundamentos18}
+\caption{Sensor de efecto Hall con salida lineal de proporci\'on \cite{funda16}.}
+\label{fig:Fundamentos18}
+\end{figure}
+
+\paragraph{Aceler\'ometro de condensador.}
+
+Mide el cambio de la capacidad de las placas de un circuito debido al movimiento de una masa s\'ismica interna que al desplazarse hace que cambie el valor de la corriente que pasa a trav\'es de las placas. La figura \ref{fig:Fundamentos17} representa un acelerómetro de este tipo.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/Fundamentos/Fundamentos17}
+\caption{Acelerómetro de condensador \cite{funda17}.}
+\label{fig:Fundamentos17}
+\end{figure}
+
+\paragraph{Nuevas tecnolog\'ias.}
+
+En la actualidad existen aceler\'ometros de 3 ejes.  Son construidos en un chip de silicio sobre el que se incluye la parte electr\'onica encargada del procesamiento de señales.
+
+El fundamento f\'isico de estos sensores (tecnolog\'ia MEMS) est\'a basado en el traspaso t\'ermico por convecci\'on natural.
+
+Las siglas MEMS \cite{funda6}, son en conjunto un acrónimo para denotar a lo que actualmente se conoce como  Sistemas Micro Electro Mecánicos, los cuales integran elementos mecánicos, sensores, actuadores y dispositivos electrónicos agrupados en su conjunto en un substrato u ''oblea'' común de silicio, mediante el uso de tecnología aplicada en micro fabricación.
+
+Este tipo de acelerómetros son los utilizados en los sistemas GaitWatch y ECnsole.
+
+
+
+\subsection{Gir\'oscopo}
+
+ 
+
+El giróscopo \cite{funda3} es una rueda giratoria cuyo eje puede cambiar de dirección. Como vemos en la figura \ref{fig:Fundamentos19}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/Fundamentos/Fundamentos19}
+\caption{Fundamentos del giróscopo \cite{funda3}.}
+\label{fig:Fundamentos19}
+\end{figure}
+
+En general, el vector momento angular \textbf{L} no tiene la dirección del eje de rotación, es decir, el vector momento angular no coincide con su proyección $ L_{z} $ a lo largo del eje de rotación. Cuando coinciden se dice que el eje de rotación es un eje principal de inercia.
+Para estos ejes existe una relación sencilla entre el momento angular \textbf{L} y la velocidad angular $ \boldsymbol{\omega} $, dos vectores que tienen la misma dirección, la del eje de rotación
+ 
+\begin{equation}
+\mathbf{L}=I\boldsymbol{\omega}
+\end{equation}
+
+El término \textit{I} se denomina momento de inercia  y no es una cantidad característica como puede ser la masa o el volumen, sino que su valor depende de la posición del eje de rotación. 
+
+
+
+
+
+En ausencia de momento de fuerzas sobre el sólido M, el cuerpo seguirá rotando con respecto a dicho eje con velocidad angular constante.
+
+Si el momento aplicado sobre el sólido en rotación no es nulo, el momento angular experimenta un cambio en su dirección tal como se muestra en la figura.
+
+
+\begin{equation}
+		\mathbf{M}=\frac{\mathbf{dL}}{dt}
+\end{equation}
+
+
+
+Las fuerzas aplicadas sobre el sólido en rotación que se muestran en la figura \ref{fig:Fundamentos20} son:
+\begin{itemize}
+\item El peso \textit{mg} que actúa sobre el centro de masas, situado a una distancia \textit{b} del punto de apoyo O.
+\item La reacción \textit{N} en el punto de apoyo O.
+\end{itemize}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos20}
+\caption{Fuerzas aplicadas sobre el sólido de rotación \cite{funda3}.}
+\label{fig:Fundamentos20}
+\end{figure}
+
+
+El momento \textbf{M} de las fuerzas respecto del punto fijo O viene dado por la ecuación \ref{momento}:
+
+\begin{equation}
+\label{momento}
+ \mathbf{M}= mgb\cdot sin\varphi
+\end{equation}
+ 
+El cambio de momento angular \textbf{dL} tiene la dirección del momento \textbf{M} de las fuerzas aplicadas respecto del punto de apoyo O, ya que el momento \textbf{M} es perpendicular al momento angular \textbf{L}, el cambio de momento angular \textbf{dL} es también perpendicular a \textbf{L}, y el momento angular \textbf{L} cambia de dirección pero no de módulo.
+
+
+El extremo del vector momento angular \textbf{L} describe una circunferencia de radio $Lsin\varphi$, y en un intervalo de tiempo dt se desplaza un ángulo $d\theta$;. El cambio de momento angular es $dL=L\sin\varphi\cdot d\theta$, de modo que,
+
+		\begin{equation}
+		Iw\cdot\sin\varphi\frac{d\phi}{dt} = mgb\sin\varphi
+		\end{equation}
+		
+		
+Se denomina velocidad angular de precesión $\Omega$ a		
+
+		\begin{equation}	
+		\Omega=\frac{d\phi}{dt}=\frac{mgb}{Iw}
+	    \end{equation}
+
+
+Cuando el punto de apoyo O coincide con el centro de masas b=0, el momento \textbf{M} de las fuerzas es cero y la velocidad angular de precesión $\Omega$ es nula. El eje del giróscopo se mantiene fijo en el espacio.
+
+Esta descripción es aproximada, siempre que la velocidad angular $\omega$, sea grande en comparación con la velocidad angular de precesión $\Omega$.
+
+Un análisis más detallado del problema indica que el sólido tiene tres movimientos:
+
+
+\begin{itemize}
+\item  De rotación alrededor de su eje principal de inercia con velocidad angular $\omega$.
+\item De precesión alrededor del eje vertical Z, con velocidad angular $\Omega$.
+\item De nutación o de oscilación del eje vertical entre dos círculos.
+\end{itemize}
+
+No solamente el movimiento de rotación contribuye al momento angular L, como hemos supuesto, sino también y en menor medida, los movimientos de precesión y de nutación, esto es lo que hace difícil el análisis detallado de este sistema mecánico.
+
+Los fenómenos giroscópicos tienen muchas aplicaciones: la tendencia de un giróscopo a mantener el eje de rotación fijo en el espacio en ausencia de momento es utilizado en la estabilización de los barcos y en los pilotos automáticos de los aviones. En la figura \ref{fig:Fundamentos15} mostrámos la imagen de un giróscopo.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/Fundamentos/Fundamentos15}
+\caption{Giróscopo \cite{funda18}.}
+\label{fig:Fundamentos15}
+\end{figure}
+
+Otro ejemplo interesante es la precesión de los equinoccios. El plano del ecuador hace un ángulo de 23º 37' con el plano de la órbita terrestre o eclíptica. La intersección d elos dos planos es la línea de los equinoccios. La Tierra es un giróscopo gigante cuyo eje de rotación precesa alrededor del eje perpendicular al plano de la eclíptica con un periodo de 27725 años. La precesión de los equinoccios se debe al momento de las fuerzas ejercido por el Sol y la Luna sobre la Tierra.
+
+\subsubsection{Giróscopos MEMS}
+
+
+Los giróscopos MEMS \cite{funda7} (sistemas microelectromecánicos) son los sensores utilizados por GaitWatch y ECnsole.  Este tipo de sensores sirve para medir la velocidad angular y se caracterizan por ser pequeños y de bajo coste. Las unidades de velocidad angular se miden en grados por segundo (° / s) o revoluciones por segundo (RPS). La velocidad angular es simplemente una medida de la velocidad de rotación.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/Fundamentos/Fundamentos24}
+\caption{Giróscopo MEMS \cite{funda7}.}
+\label{fig:Fundamentos24}
+\end{figure}
+
+
+\textbf{¿Cómo funciona el giróscopo MEMS para detectar la velocidad angular?}
+
+\vspace{10mm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos25}
+\caption{Funcionamiento interno de un sensor giroscópico MEMS \cite{funda7}.}
+\label{fig:Fundamentos25}
+\end{figure}
+
+El sensor MEMS dentro de un giroscopio es muy pequeño (entre 1 a 100 micrómetros , el tamaño de un cabello humano). Cuando se hace girar el giroscopio, una pequeña masa de resonancia se desplaza con los cambios de velocidad angular. Este movimiento se convierte en señales eléctricas de muy bajas corrientes que se pueden amplificar para ser leídas por un microcontrolador.
+
+\subsection{Magnetómetro}	
+
+
+Un magnetómetro \cite{funda4} es un sofisticado sensor que proporciona a los observadores científicos una comprensión más clara de cómo funciona el magnetismo.
+
+La Tierra genera un campo magnético que crea disturbios magnéticos medibles en la atmósfera. Un magnetómetro es un instrumento científico que mide este fenómeno en términos de densidad de flujo magnético. La unidad científica para la lectura de la densidad del flujo magnético es el Tesla, el Gauss o As/m2. Las sustancias y materiales que perturban este flujo se denominan magnéticos. Cuando hay materiales magnéticos presentes, un magnetómetro detecta la cantidad de distorsión que estos materiales causan en el campo de la Tierra. Un magnetómetro no sólo nos dice cómo afectan el flujo magnético ciertos materiales magnéticos en particular, sino que también puede medir la fuerza de los campos magnéticos. Esta información puede utilizarse para discernir la dirección, la rotación y el ángulo de los campos magnéticos, así como la ubicación de objetos específicos dentro de ellos.
+
+
+
+
+
+\subsubsection{Magnetómetro de precesión de protones}
+
+Un magnetómetro barato y portátil es el magnetómetro de precesión de protones. Este instrumento se utiliza principalmente en muestras cercanas a la superficie en estudios de ingeniería y medioambientales. El magnetómetro de precesión de protones requiere el uso de un líquido rico en átomos de hidrógeno para producir la señal de la precesión. Para ello, el queroseno es una de las mejores opciones. Las corrientes directas y los campos magnéticos polarizan los átomos, y el instrumento lee su frecuencia de precesión. Existen limitaciones para este tipo de magnetómetro, como su bajo nivel de sensibilidad y su alto consumo de potencia. Sin embargo, es ideal para la exploración y el mapeo de tuberías subterráneas. La figura \ref{fig:Fundamentos21} muestra un magnetómetro de precesión de protones.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.15\textwidth]{figuras/Fundamentos/Fundamentos21}
+\caption{Magnetómetro de precesión de protones \cite{funda19}.}
+\label{fig:Fundamentos21}
+\end{figure}
+
+
+\subsubsection{Magnetómetro cuántico}
+
+Magnetómetros cuánticos son ampliamente utilizados en estudios ambientales, exploración geofísica, detección de armas y otras aplicaciones científicas. Estos instrumentos miden la magnitud específica de los campos magnéticos. Las partículas subatómicas son polarizadas por los magnetómetros cuánticos, lo que hace que se procesen alrededor de los campos magnéticos de la Tierra. Esta polarización produce un patrón reconocible que puede ser cuantificado y medido como un momento magnético. Estos momentos magnéticos, referenciados con el campo magnético de la Tierra proporcionan información sobre la densidad del flujo magnético. La figura \ref{fig:Fundamentos22} muestra un magnetómetro cuántico.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/Fundamentos/Fundamentos22}
+\caption{Magnetómetro cuántico \cite{funda20}.}
+\label{fig:Fundamentos22}
+\end{figure}
+
+\subsubsection{Magnetómetros vectoriales}
+
+Además de tener una magnitud, el flujo magnético también tiene una dirección o vector. Los magnetómetros vectoriales miden las propiedades del campo magnético que viajan en una determinada dirección. Estos instrumentos ofrecen una lectura más precisa de la densidad del flujo magnético al eliminar la sensibilidad cruzada y funcionar con un nivel de ruido muy bajo. Los magnetómetros vectoriales se han utilizado en naves espaciales desde 1988. Mediante los magnetómetros vectoriales, los satélites pueden incluso medir los campos magnéticos de otros planetas y lunas.
+
+
+
+Los magnetómetros pueden ser instrumentos útiles en muchas aplicaciones profesionales. Al ser ligeros y portátiles, los magnetómetros se transportan fácilmente a casi cualquier sitio. En arqueología, se pueden utilizar magnetómetros para localizar tumbas enterradas que contengan artefactos metálicos. En aplicaciones militares, los magnetómetros se utilizan para localizar los tanques, minas y los depósitos de combustible. La industria minera y otros numerosos campos científicos también miden anomalías magnéticas con magnetómetros. La figura \ref{fig:Fundamentos23} muestra un magnetómetro vectorial.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/Fundamentos/Fundamentos23}
+\caption{Magnetómetro vectorial \cite{funda21}.}
+\label{fig:Fundamentos23}
+\end{figure}
+ 
+
+\subsubsection{Magnetómetros MEMS}
+
+Los magnetómetros MEMS son los utilizados en los dispositivos ECnsole y GaitWatch, por esta razón, se analizará su funcionamiento (en la mayoría de estos sensores predomina el uso de la fuerza de Lorentz) posteriormente. La figura \ref{fig:Fundamentos26} muestra un ejemplo de magnetómetro MEMS. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{figuras/Fundamentos/Fundamentos26}
+\caption{Magnetómetro MEMS \cite{funda8}.}
+\label{fig:Fundamentos26}
+\end{figure}
+
+
+\textbf{¿Cómo funcionan los sensores MEMS basados en la fuerza de Lorentz?}
+
+ Este tipo de sensores magnéticos \cite{funda9} se basan en el movimiento mecánico de la estructura MEMS,  es provocado por la fuerza de Lorentz que actúa sobre un conductor portador de la corriente situado en el interior del campo magnético. El movimiento mecánico de la microestructura se detecta electrónicamente o de forma óptica.  Los métodos de transducción piezorresistivo y electroestático se pueden utilizar en la detección electrónica; y  por otro lado, la medición del desplazamiento con fuente láser o fuente LED  se pueden utilizar para la detección óptica. Cabe resaltar que la estructura mecánica es inducida a alcanzar su frecuencia de resonancia a menudo con el fin de obtener la señal de salida máxima.
+ 
+ 
+\section{Fundamentos de la monitorización}
+
+Una vez presentados los fundamentos de los sensores que contienen GaitWatch y ECnsole, vamos a proceder a explicar el procedimiento de calibración de los datos medidos por los mismos.
+
+\subsection{Calibración}
+
+El objetivo principal del proceso de calibración consiste en transformar los datos en bruto en unidades con sentido físico.
+
+
+En este apartado vamos a ver como se realiza el proceso de calibración de los sensores que forman parte de dispositivo GaitWatch. No es necesario especificar el modo de calibración para el sistema ECnsole ya que los sensores que componen el dispositivo reunen características similares y el procedimiento de calibración es el mismo. Sin embargo difieren en el número de sensores, como se puede ver en la tabla \ref{tab:sensores}:
+
+
+
+\begin{table}[h]
+	\caption{Lista de sensores que componen los sistemas GaitWatch y ECnsole}	
+	\centering
+		\begin{tabular}{|c|c|c|}\hline
+		\label{tab:sensores}
+		& \textbf{GaitWatch}				& \textbf{ECnsole} 	 	\\ \hline
+		\textbf{Acelerómetro triaxial} & Sí			& Sí  		\\ \hline
+		\textbf{Acelerómetro uniaxial}	& Sí			& No  		\\ \hline
+		\textbf{Giróscopo triaxial} & Sí			& Sí 				\\ \hline
+		\textbf{Giróscopo uniaxial} & Sí			& No 				\\ \hline
+		\textbf{Magnetómetro triaxial}	& Sí		& Sí  				\\ \hline
+		\end{tabular}
+		
+		
+\end{table}
+
+
+Las pautas para llevar a cabo el proceso de calibración vienen recogidas en \cite{funda5} donde se realiza una descripción más exhaustiva del procedimiento.
+
+
+\subsubsection{Calibración del acelerómetro}
+
+La calibración de los acelerómetros está dividida en dos partes de acuerdo con el número  de ejes del acelerómetro. En el caso  del acelerómetro triaxial (incluido en el módulo de GaitWatch que se coloca en el tronco del paciente y en las plantillas para el sistema ECnsole) utilizaremos el algoritmo de ajuste elipsoidal de Camps et al. \cite{funda10} los cuales  presentaron un método teórico y experimental para calcular ganancias, bias y factores de no ortogonalidad de los acelerómetros y los magnetómetros. Las maniobras de calibración  implican una serie de rotaciones arbitrarias de la MIMU, por lo que el conjunto de maniobras para recopilar los datos es muy simple.
+
+\begin{itemize}
+	\item \textbf{Modelado del sensor}: El modelo de salida del sensor viene dado por:
+	
+	\begin{equation}
+	\begin{bmatrix}
+	v_{x}(t) \\
+	v_{y}(t) \\
+	v_{z}(t)	
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	s_{x} & 0 & 0 \\
+	0 & s_{y} & 0 \\
+	0 & 0 & s_{z} 
+	\end{bmatrix}
+	\begin{bmatrix}
+	m_{x}(t)\\
+	m_{y}(t)\\
+	m_{z}(t)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	b_{x}\\
+	b_{y}\\
+	b_{z}
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	\epsilon_{x}\\
+	\epsilon_{y}\\
+	\epsilon_{z}
+	\end{bmatrix}
+	\end{equation}
+
+
+donde \textbf{b}=$(b_{x},\,b_{y},\,b_{z})^{T}$ representa el desplazamiento, $ s_{x} $,$ s_{y} $,$ s_{z} $ son las ganancias de los sensores, $ m_{x}(t) $, $ m_{y}(t) $, $ m_{z}(t) $ son los componentes de los actuales campos magnéticos y gravitatorios y $ \epsilon_{x} $, $ \epsilon_{y} $,$ \epsilon_{z} $ son los componentes  del ruido para cada eje.
+
+Si tomamos en consideración los efectos de la no ortogonalidad, entonces la salida del sensor viene dada por:
+
+\begin{equation}
+\begin{bmatrix}
+v_{x}(t) \\
+v_{y}(t) \\
+v_{z}(t) \\
+\end{bmatrix}
+=
+\begin{bmatrix}
+s_{xx} & s_{xy} & s_{xz} \\
+s_{xy} & s_{yy} & s_{yz} \\
+s_{xz} & s_{yz} & s_{zz}
+\end{bmatrix}
+\end{equation}
+
+donde $ s_{ij} $ para $ i\neq j $ representa los errores de ortogonalidad entre los ejes \textit{i} y \textit{j} del sensor. 
+
+
+\item \textbf{Procedimiento de calibración}: Usando el hecho de que la norma del vector de entrada $ \textbf{m}= [m_{x}(t) m_{y}(t) m_{z}(t)]^{T}$ es constante, la siguiente relación es derivada:
+
+\begin{equation}
+\|\textbf{m}\|^{2}=m_{x}(t)^{2}+m_{y}(t)^{2}+m_{z}^{2}
+\end{equation}
+
+\begin{equation}
+\label{eq:11}
+\|\mathbf{h}\|^{2}=(\frac{v_{x}(t)-b_{x}}{s_{x}})^{2}+(\frac{v_{y}(t)-b_{y}}{s_{y}})^{2}+(\frac{v_{z}(t)-b_{z}}{s_{z}})^{2}
+\end{equation}
+
+donde \textbf{m}=$(m_{x}(t),\,m_{y}(t),\,m_{z}(t))^{T}$ es el vector de campo gravitatorio $ m_{x}(t) $, $ m_{y}(t) $, $ m_{z}(t) $ son los componentes de los actuales campos gravitatorios, \textbf{h}=$(h_{x}(t),\,h_{y}(t),\,h_{z}(t))^{T}$ es el vector del campo gravitatorio sin tener en cuenta los componentes del ruido para cada eje, $ v_{x}(t) $,$ v_{y}(t) $,$ v_{z}(t) $ son las componentes de la salida del sensor, \textbf{b}=$(b_{x},\,b_{y},\,b_{z})^{T}$ representa el desplazamiento, y  $ s_{x} $,$ s_{y} $,$ s_{z} $ son las ganancias de los sensores.
+
+\vspace{1cm}
+
+La ecuación \ref{eq:11} es la ecuación paramétrica de una elipsoide con centro en \textbf{b} y semi-ejes $ s_{x} $,$ s_{y} $ y $ s_{z} $. Usando el sistema de ecuaciones formado por varias medidas de tiempo t, estimamos los parámetros a través de la minimización no lineal cuadrática del error de la función
+
+\begin{equation}
+e_{p}(t)=\|\mathbf{m}\|^{2}-(\mathbf{v}(t)- \mathbf{b})^{T}(S^{-1})^{2}(\mathbf{v}(t)-\mathbf{b})
+\end{equation}
+
+
+donde
+
+
+\begin{equation}
+S^{-1}=
+\begin{bmatrix}
+1/s_{xx} & 1/s_{xy} & 1/s_{xz} \\
+1/s_{xy} & 1/s_{yy} & 1/s_{yz} \\
+1/s_{xz} & 1/s_{yz} & 1/s_{zz} \\
+\end{bmatrix}
+\end{equation}
+
+
+El coste de la función $ e_{p} $(t) es cuadrático, y es minimizado iterativamente por el algoritmo de Levenberg-Marquardt \cite{funda11,funda12}.
+
+\end{itemize}
+
+En resumen, si el acelerómetro se sitúa en múltiples posiciones casi-estáticas y aleatorias, los datos recogidos deben describir idealmente una esfera de radio igual a la magnitud del vector gravedad.
+
+Por lo tanto, el primer paso de calibración es recoger los datos de la aceleración que serán usados para encontrar los parámetros de calibración óptimos. Como se dijo antes, necesitamos situar el módulo que contiene el acelerómetro en múltiples posiciones casi-estáticas y aleatorias intentando cubrir todas las orientaciones. Ya que la transición de una posición casi-estática es la causa de que el acelerómetro mida aceleraciones lineales que interrumpen la aceleración de la gravedad, no podemos tomar cada punto medido. Para evitar seleccionar valores de aceleración lineal tenemos que aplicar un algoritmo que se capaz de detectar los instantes casi-estáticos.
+La figura \ref{fig:Fundamentos4} muestra la aceleración triaxial medida en cada posición casi-estática, además de la aceleración lineal no deseada. Esta figuara también muestra la salida del algoritmo de detección de los instantes casi-estáticos.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos4EPS}
+\caption{Aceleración recogida en las posiciones casi-estáticas y salida del algoritmo de detección}
+\label{fig:Fundamentos4}
+\end{figure}
+
+Si trazamos las aceleraciones casi-estáticas detectadas en 3D, debemos cubrir el lugar de una esfera como se muestra en la figura \ref{fig:Fundamentos5}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos5EPS}
+\caption{Representación 3D de la aceleración recogida durante las posiciones casi-estáticas.}
+\label{fig:Fundamentos5}
+\end{figure}
+
+Entonces alimentamos el algoritmo de minimización con esos datos y encontramos los parámetros de calibración óptimos. La ecuación \ref{eq:14} muestra la estimación de los parámetros de calibración para el acelerómetro triaxial que se encuentra en el módulo de GaitWatch que se coloca en el tronco del paciente.
+
+\begin{equation}
+\label{eq:14}
+\begin{bmatrix}
+256.68 & -4.01 \cdot 10^{-5} & -2.41 \cdot 10^{-5} \\
+-4.01 \cdot 10^{-5} & 262.74 & -3.98 \cdot 10^{-7} \\
+-2.41 \cdot 10_{-5} & -3.98 \cdot 10^{-7} & 263.04
+\end{bmatrix}
+\end{equation}
+\begin{displaymath}
+\begin{bmatrix}
+\mathbf{b}=-23.69 & -6.95 & 22.85
+\end{bmatrix}
+\end{displaymath}
+
+La figura \ref{fig:Fundamentos6} muestra la aceleración casi-estática calibrada. Observe como los puntos definen ahora una esfera centrada en el origen con un radio de 1(g). Posteriormente veremos como se calcula.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos6EPS}
+\caption{Representación 3D de las posiciones casi-estáticas calibradas}
+\label{fig:Fundamentos6}
+\end{figure}
+
+
+ Los parámetros cálculados anteriormente son incluidos a la siguiente ecuación  que son utilizados para calibrar la aceleración en bruto y transformarla a unidades físicas (la figura \ref{fig:Fundamentos6} nos mostraba los resultados), además de paliar algunos de los errores no deseados presentes a la salida del sensor:
+ 
+ 
+ 
+
+\begin{equation}
+\mathbf{a}_{cal}=S^{-1}(\mathbf{a}_{raw}-\mathbf{b})
+\end{equation}
+
+donde $ \mathbf{a}_{cal}$ es un vector de tres dimensiones que contiene la aceleración calibrada, S es la matriz de ortogonalidad calculada, $ \mathbf{a}_{raw} $ es el vector de tres dimensiones que contiene la aceleración original y \textbf{b}  es el vector bias triaxial calculado.
+
+
+
+
+
+Para el acelerómetro biaxial podemos adaptar los ya mencionados métodos de dos dimensiones. Sin embargo, las maniobras de calibración serían mucho más complicadas porque necesitaríamos bloquear la unidad incluyendo el acelerómetro  en el plano XZ y después describir una rotación lenta y completa para recoger las posiciones casi-estáticas.
+
+Optamos por llevar a cabo un procedimiento de calibración de un solo eje que sólo requiere recoger datos de dos posiciones en cada eje. Este procedimiento es muy simple; primero ponemos el eje deseado paralelo al vector gravedad  y lo dejamos en esa posición un par de segundos. Seguidamente, le damos la vuelta y lo colocamos de forma anti-paralela al vector de la gravedad donde lo volvemos a dejar estático otros dos segundos. Procediendo de esta manera, conocemos los valores originales que corresponden a +1g y -1g respectivamente. Ya que los acelerómetros incluidos en las unidades del GaitWatch son lineales, podemos entonces encontrar la ecuación de calibración en una forma muy simple. La ecuación de calibración está definida como sigue,
+
+\begin{equation}
+a_{cal}=k \cdot a_{raw}+b
+\end{equation}
+
+donde $ a_{cal} $ es la aceleración calibrada, $ a_{raw} $ es la aceleración original, \textit{k} es el factor de escala y \textit{b} es el offset. Si sustituimos los dos valores recogidos tendríamos el siguiente sistema de ecuaciones de donde es sencillo encontrar los valores de \textit{k} y \textit{b},
+
+\begin{equation}
+1=k \cdot a_{raw,+} + b
+\end{equation}
+\begin{displaymath}
+-1=k \cdot a_{raw,-} + b
+\end{displaymath}
+
+donde $ a_{raw,+} $ y $ a_{raw,-} $ son las aceleraciones originales recogidas en las posiciones paralela y anti-paralela respectivamente.
+
+Las unidades de GaitWatch situdadas en las espinillas y los muslos contienen un acelerómetro biaxial(X,Z) por lo tanto ponemos la unidad en las cuatro posiciones requeridas (dos en cada eje) y entonces aplicamos el detector de posiciones casi-estáticas para extraer los valores en esas posiciones.
+
+La figura \ref{fig:Fundamentos7} muestra la aceleración original recogida en las cuatro posiciones y los valores casi-estáticos estraidos para el acelerómetro en la espinilla izquierda.
+
+Usando este procedimiento los parámetros de calibración son encontrados en todas las unidades. La tabla \ref{tab:param_acc_biax} los muestra.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos7EPS}
+\caption{Aceleración original recogida cuando ambos ejes X y Z son colocados paralelo y anti-paralelo al vector gravedad}
+\label{fig:Fundamentos7}
+\end{figure}
+
+\begin{table}[h]
+	\caption{Parámetros de calibración de los acelerómetros biaxiales}	
+	\centering
+		\begin{tabular}{|c|c|c|c|}\hline
+		\label{tab:param_acc_biax}
+		Unidad 				& Eje 	& Factor de escala 	& Sesgo 	\\ \hline
+		Espinilla izquierda & X			& 4.45e-04									& -5.59					\\
+		Espinilla izquierda	& Z			& 4.49e-04									& -5.36					\\
+		Muslo izquierdo & X			& 4.58e-04									& -5.76					\\
+		Muslo izquierdo	& Z			& 4.74e-04									& -5.70					\\
+		Espinilla derecha  & X			& 4.38e-04									& -5.50					\\
+		Espinilla derecha	& Z			& 4.77e-04									& -5.72					\\
+		Muslo derecho  & X			& 4.36e-04									& -5.44				\\
+		Muslo derecho	& Z			& 4.43e-04									& -5.34				\\ \hline
+		
+		\end{tabular}
+		
+		
+\end{table}
+
+
+\subsubsection{Calibración del magnetómetro}
+
+La calibración de un magnetómetro triaxial está también basada en el algoritmo de Camps et al. usado para la calibración del acelerómetro. En este caso, solo necesitamos cambiar los datos recogidos en las maniobras y el valor de la magnitud del vector de referencia (que en este caso es el vector de campo magnético de la Tierra).
+
+Las maniobras en este caso son más simples porque el magnetómetro no se ve afectado por la aceleración lineal. Por lo tanto, podemos mover libremente el magnetómetro 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.65\textwidth]{figuras/Fundamentos/Fundamentos8EPS}
+\caption{Campo magnético original recogido por el movimiento aleatorio del la unidad del tronco que contiene el magnetómetro}
+\label{fig:Fundamentos8}
+\end{figure}
+
+
+a cualquier velocidad intentando cubrir el mayor espacio posible. La figura \ref{fig:Fundamentos8} muestra la representación 3D del campo magnético original medido llevando a cabo esas maniobras.
+
+Idealmente, esos datos deben de describir una esfera centrada en el origen con un radio dado por la magnitud del campo magnético local de la Tierra. Al comprobar el campo magnético en la calculadora del American National Geophysical Data Center, obtenemos el valor para Munich (lugar donde fueron realizadas las maniobras de calibración), que es de 0.482352 Gauss. Entonces proporcionamos al algoritmo \cite{funda13} los datos mostrados en la figura \ref{fig:Fundamentos8} y los parámetros de calibración son calculados. Análogamente al acelerómetro, el campo magnético calibrado es encontrado aplicando la siguiente ecuación,
+
+
+\begin{equation}
+\mathbf{h}_{cal}=S^{-1}(\mathbf{h}_{raw}-\mathbf{b})
+\end{equation}
+
+donde otra vez $ \mathbf{h}_{cal} $ es un vector tridimensional que contiene el campo magnético calibrado, S es la matriz de ortogonalidad calculada, $ \mathbf{h}_{raw} $ es el vector de tres dimensiones que contiene el campo magnético original y \textbf{b} es el vector bias triaxial calculado. Si aplicamos esta ecuación a los valores originales usados para calcular los parámetros de calibración, podemos ver como ahora definen una esfera centrada en 0 y con un radio de 0.482352 Gauss (figura \ref{fig:Fundamentos9})
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos9EPS}
+\caption{Campo magnético calibrado recogido moviendo aleatoreamente la unidad del tronco que contiene el magnetómetro.}
+\label{fig:Fundamentos9}
+\end{figure}
+
+La figura \ref{fig:Fundamentos10} muestra las señales originales y calibradas para los tres ejes del magnetómetro incluidos en la unidad del tronco.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos10EPS}
+\caption{Campo magnético original (izquierda) vs. Campo magnético calibrado (derecha) recogidos con movimientos aleatorios de la unidad del tronco que contiene el magnetómetro}
+\label{fig:Fundamentos10}
+\end{figure}
+
+
+Los parámetros de calibración  del magnetómetro en la unidad del tronco se enumeran a continuación
+
+\begin{equation}
+S=
+\begin{bmatrix}
+1.75 \cdot 10^{3} & -3.46 \cdot 10^{-8} & -3.04 \cdot 10^{-6} \\
+ -3.46 \cdot 10^{-8} & 1.97 \cdot 10^{3} & 1.42 \cdot 10^{-5} \\
+ -3.04 \cdot 10^{-5} & 1.42 \cdot 10^{-6} & 1.83 \cdot 10^{3}
+\end{bmatrix}
+\end{equation}
+\begin{displaymath}
+\mathbf{b}=
+\begin{bmatrix}
+14.84 & 102.43 & -42.04
+\end{bmatrix}
+\end{displaymath}
+
+\subsubsection{Calibración del giróscopo}
+
+El giróscopo es el último tipo de sensor que queda por ser calibrado. La forma más precisa para calibrar un giróscopo es someterlo a diferentes rotaciones conocidas sus velocidades y luego asociarlos a los valores originales recogidos para obtener la ecuación de calibración. Si no tenemos mesa de rotación de velocidad variable, podemos usar un equipo más sencillo y sujetar el someter al giróscopo a rotaciones conocidas en lugar de velocidades angulares conocidas. Para calibrar cada uno de los ejes necesitamos construir un dispositivo parecido al que se muestra en la figura \ref{fig:Fundamentos11}. Este dispositivo debe permitir la rotación de la unidad que contiene el giróscopo alrededor de 180º (otras configuraciones del dispositivo que permiten diferentes rotaciones conocidas también son válidas).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos11}
+\caption{Dispositivo de calibración del giróscopo}
+\label{fig:Fundamentos11}
+\end{figure}
+
+Una vez que el dispositivo de calibración está listo, las maniobras de calibración no son complicadas. Cada una de las unidades debe estar adheridas a la superficie del dispositivo y entonces necesitamos llevar a cabo la rotación completa de 180º una serie de veces para posteriormente promediar los datos calculados. 
+
+Para calcular los parámetros de calibración vamos a utilizar el hecho de que la integración de la velocidad angular conduce a un desplazamiento angular. Por lo tanto, si sometemos al giróscopo a una rotación conocida (180º en este caso), podemos aplicar las siguientes ecuaciones para encontrar el factor de escala,
+
+\begin{equation}
+\mu_{raw}=k.\omega+b
+\end{equation}
+\begin{equation}
+\label{eq:21}
+\omega=\frac{\mu_{raw}-b}{k}
+\end{equation}
+\begin{equation}
+\mu_{raw,corr}=\mu_{raw}-b
+\end{equation}
+\begin{equation}
+\int \omega dt=\frac{\int \mu_{raw,corr}dt}{k}
+\end{equation}
+\begin{equation}
+\Omega=\int \omega dt
+\end{equation}
+\begin{equation}
+\theta=\int \mu_{raw,corr}dt
+\end{equation}
+\begin{equation}
+\Omega=\frac{\theta}{k}
+\end{equation}
+\begin{equation}
+k=\frac{\theta}{\Omega}
+\end{equation}
+
+donde $ u_{raw} $ es la velocidad angular original recogida, $ \omega $ es la velocidad angular real (en unidades físicas), \textit{k} es el factor de escala y \textit{b} es el offset. En este caso $ \Omega=180 º $ y $ \theta $ es la velocidad angular original integrada (corregida en offset) durante la rotación de 180º. Podemos ver que antes de la integración de la velocidad angular necesitamos sustraer el offset.
+
+El offset se encuentra fácilmente dejando las unidades en una posición estática antes de empezar la rotación. Para tener en cuenta los efectos del ruido, calculamos la moda de todas las muestras recogidas mientras los sensores estaban estáticos.
+
+Desde el punto de vista práctico, la rutina de calibración de Matlab muestra por primera vez la señal de la velocidad angular original recogida y pide al usuario seleccionar los puntos inicial y final del período estático como muestra la figura \ref{fig:Fundamentos12}.
+
+Una vez encontrado el offset, necesitamos indicarle a la rutina cada uno de los puntos de inicio y final de las rotaciones, así sabremos los instantes inicial y final de la integración. Para lograrlo utilizaremos la herramienta \textit{datacursor} de Matlab. Es importante seleccionar únicamente las rotaciones positivas (como se indica en la figura \ref{fig:Fundamentos13}), es decir, cuando la velocidad angular incrementa  y después decrementa. La rutina entonces integrará los segmentos seleccionados de la señal y promediará el factor de escala de cada uno de ellos.
+
+
+\vspace{1cm}
+La calibración de la velocidad angular es finalmente encontrada sustiyendo los parámetros de calibración calculados en la ecuación \ref{eq:21}.
+
+
+ \vspace{-28mm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{figuras/Fundamentos/Fundamentos12EPS}
+\caption{Rutina de calibración del giróscopo: selección del período para calcular el offset.}
+\label{fig:Fundamentos12}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{figuras/Fundamentos/Fundamentos13EPS}
+\caption{Rutina de calibración del giróscopo: selección de las rotaciones positivas para el cálculo del factor de escala}
+\label{fig:Fundamentos13}
+\end{figure}
+
+La Tabla \ref{tab:par_cali_giro} enumera los parámetros de calibración calculados para todos los giróscopos del GaitWatch. 
+
+
+\begin{table}[h]
+	\caption{Parámetros de calibración de los giróscopos}	
+	\centering
+		\begin{tabular}{|c|c|c|c|}\hline
+		\label{tab:par_cali_giro}
+		Unidad 				& Eje 	& Factor de escala 	& Sesgo 	\\ \hline
+		Espinilla izquierda & Y			& -5.84									& 11591					\\
+		Muslo izquierdo	& Y			& -6.36									& 11720					\\
+		Espinilla derecha & Y			& -5.95									& 11618					\\
+		Muslo derecho	& Y			& -6.40									& 11740					\\
+		Brazo izquierdo  & X			& -5.89									& 12087					\\
+		Brazo izquierdo	& Y			& 5.75									& 10937				\\
+		Brazo derecho  & X			& -6.02									& 11543			\\
+		Brazo derecho	& Y			& 5.64									& 11415		\\ 
+		Tronco  & X			& -16.15									& -10				\\
+		Tronco  & Y			& 16.02									& 62				\\
+		Tronco  & Z			& 16.23									& 31				\\ \hline
+		\end{tabular}
+		
+		
+\end{table}
+
+
+\subsubsection{Recapitulación}
+
+Como resumen final, una vez que todos los parámetros de calibración de todos los sensores están calculados, sólo necesitamos aplicar las siguientes ecuaciones,
+
+\begin{itemize}
+\item \textbf{Acelerómetro}:
+
+	\begin{itemize}
+	\item Acelerómetro triaxial:
+	\begin{equation}
+	\mathbf{a}_{cal}=S^{-1}(\mathbf{a}_{raw}-\mathbf{b})
+	\end{equation}
+	\item Acelerómetro biaxial:
+	\begin{equation}
+	a_{cal}=k \cdot a_{raw}+b
+	\end{equation}
+	\end{itemize}
+
+\item \textbf{Magnetómetro}:
+\begin{equation}
+\mathbf{h}_{cal}=S^{-1}(\mathbf{h}_{raw}-\mathbf{b})
+\end{equation}
+
+\item \textbf{Giróscopo}:
+\begin{equation}
+\omega_{cal}=\frac{u_{raw}-b}{k}
+\end{equation}
+\end{itemize}
+
+\subsection{Cálculo de orientación}
+
+
+Esta subsección comienza con una introducción a los conceptos que serán usados a lo largo del la misma, posteriormente se continuará  describiendo los algoritmos utilizados en el cálculo de orientación para el sistema GaitWatch. No es necesario explicar la parte acociada al dispositivo ECnsole ya que los algoritmos aplicados son idénticos (vuelve a ocurrrir lo mismo que en la parte de calibración).
+
+A continuacíon se enumeran a modo de resumen los algoritmos de cálculo de orientación común a los dos dispositivos:
+
+\begin{itemize}
+\item Integración de la velocidad angular.
+\item Descomposición de la gravedad.
+\item El Filtro de Kalman.
+\item El Filtro de Kalman Extendido.
+\end{itemize}
+
+De forma equivalente al proceso de calibración, las pautas para llevar a cabo el proceso de cálculo de los algoritmos de orientación vienen recogidas en \cite{funda5} donde se realiza una descripción más minuciosa del procedimiento.
+
+
+\subsubsection{Conceptos básicos}
+
+\paragraph{Sistemas de coordenadas \\ \\}
+
+
+ Un sistema de coordenadas no es más que un conjunto de vectores y números sin 
+sentido. Para que estos valores adquieran significado, es necesario relacionarlos 
+con una referencia conocida. A continuación definiremos los principales sistemas de coordenadas son recogidos en \cite{funda23}como sigue,
+
+
+
+\begin{itemize}
+\item \textbf{El sistema de coordenadas inercial (i-frame).} Este sistema de coordenadas tiene su origen en el centro de masas de la Tierra y se 
+supone que no rota respecto al espacio inercial, ya que se mueve con el planeta. 
+Sabemos que eso no es del todo cierto, porque la Tierra gira con respecto al Sol y 
+además de su propia rotación $ \Omega $ , pero se tomará este sistema como inercial.
+
+Los ejes del sistema ECI están fijados en las estrellas: El eje Z coincide con el eje 
+polar y el plano perpendicular al eje Z coincide con el Ecuador. El eje X e Y no 
+rotan con la tierra, apuntando X directamente al equinoccio Vernal.
+
+\item \textbf{El sistema de coordenadas de Navegación (n-frame).}Tiene su origen en la localización del sistema inercial (longitud latitud). Es un 
+sistema local con sus ejes X Y en el plano tangente al punto de la Tierra donde está 
+el origen. Típicamente el eje X apuntará al norte, ele eje Y al Este y el eje Z abajo, 
+aunque debe ser especificado.
+También se le conoce como NED (North, East, Down) ya que sus ejes apuntan a 
+estas direcciones. Otra posible configuración, sería con el eje X apuntando al este, el eje Y apuntando al norte y el 
+eje Z apuntando hacia arriba, también conocido como ENU (East, North, Up). La figura \ref{fig:Fundamentos28} representa el esquema de coordenas de navegación ENU. 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/Fundamentos/Fundamentos28}
+\caption{Esquema de coordenadas de navegación ENU \cite{funda22}.}
+\label{fig:Fundamentos28}
+\end{figure}
+\item \textbf{El sistema de coordenadas Body (b-frame).} Este sistema tiene su origen en el centro de masas del vehiculo. Típicamente usado 
+en plataformas Strapdown, es decir, cuando los sensores tienen también como 
+centro de masas el vehiculo y sus ejes se mueven con él. La figura \ref{fig:Fundamentos27} nos muestra este sistema de cooordenadas.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos27}
+\caption{Esquema de coordenadas de Body en un vehículo \cite{funda23}.}
+\label{fig:Fundamentos27}
+\end{figure}
+
+
+\end{itemize} 
+
+
+\paragraph{Representación de la posición}
+
+\subparagraph{Ángulos de Euler \\ \\}
+
+Otro método bastante popular para especificar la orientación angular de un sistema 
+de coordenadas respecto a otro es el uso de los tres ángulos de Euler. Tres ángulos, 
+que mediante una sucesión ordenada de giros, definen el cambio de un sistema de 
+coordenadas a otro. En este caso, utilizaríamos como referencia \textit{el sistema de coordenadas de navegación inercial}.
+
+Los tres ángulos de Euler son definidos en \cite{funda5} como sigue,
+
+\begin{itemize}
+\item El ángulo \textit{roll} ($ \Phi $) determina la rotación alrededor del eje X. Está normalmente acotado en el intervalo ($ -\pi $,$ \pi $].
+\item El ángulo \textit{pitch} ($ \theta $) determina la rotación alrededor del eje Y. Está normalmente acotado en el intervalo [$ \frac{-\pi}{2} $,$ \frac{\pi}{2} $].
+\item El ángulo \textit{yaw} ($ \psi $) determina la rotación alrededor del eje Z. Está normalmente acotado en el intervalo ($ -\pi $,$ \pi $].
+\end{itemize}
+
+La figura \ref{fig:Fundamentos29} representa los ángulos de Euler:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos29}
+\caption{Representación bidimensional de los giros en roll, pitch y yaw \cite{funda23}.}
+\label{fig:Fundamentos29}
+\end{figure}
+
+\paragraph{Matrices de rotación \\ \\}
+
+Las matrices de rotación \cite{funda5} son utilizadas para llevar a cabo rotaciones en el espacio Euclídeo. De esta manera se usarán las matrices para poder mapear las rotaciones de Euler en el interior de las matrices. Así, si multiplicamos un vector por la matriz de rotación obtendremos su versión rotada en el espacio.
+
+\begin{equation}
+\mathbf{v'}=R\mathbf{v}
+\end{equation}
+
+La obtención de las matrices implica una serie de operaciones trigonométricas. A continuación vamos a ir viendo cada uno de los giros por separado (asumiendo que estamos usando el sistema de coordenadas NED). Finalmente se obtendrá la matriz de rotación como resultado de la multiplicación de las tres  matrices de giro.
+
+\textbf{Giro en Yaw}
+
+Es el primero de los giros que se hará. Con esta matriz de cambio se puede pasar 
+del sistema de coordenadas (X, Y, Z) al nuevo sistema 
+\begin{math}
+(X', Y', Z')
+\end{math}.
+
+
+\begin{equation}
+C_{\psi}=
+\begin{bmatrix}
+\cos\psi & \sin\psi & 0 \\
+-\sin\psi & \cos\psi & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\end{equation}
+
+
+\textbf{Giro en Pitch}
+
+Giramos el sistema \begin{math}
+(X',Y',Z')
+\end{math} para conseguir 
+\begin{math}
+(X'',Y'',Z'')
+\end{math} 
+
+
+
+\begin{equation}
+C_{\theta}=
+\begin{bmatrix}
+\cos\theta & 0 & -\sin\theta \\
+0 & 1 & 0\\
+\sin\theta & 0 & \cos\theta
+\end{bmatrix}
+\end{equation}
+
+
+\textbf{Giro en Roll}
+
+El último de los giros: de \begin{math}
+(X'',Y'',Z'')
+\end{math} a
+\begin{math}
+(x,y,z)
+\end{math} 
+
+
+
+\begin{equation}
+C_{\Phi}=
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & \cos\Phi & \sin\Phi\\
+0 & -\sin\Phi & \cos\Phi
+\end{bmatrix}
+\end{equation}
+
+
+Entonces, definimos la matriz de cambio de coordenadas $ C_{n}^{b} $
+así:
+
+\begin{equation}
+C_{n}^{b}=C_{\psi}C_{\theta}C_{\Phi}
+\end{equation}
+
+\begin{equation}
+\label{ecuacion:37}
+C_{n}^{b}=
+\begin{bmatrix}
+\cos\theta\cos\psi & cos\theta\sin\psi & -\sin\theta \\
+\sin\phi\sin\theta\cos\phi-\cos\phi\sin\psi& \sin\phi\sin\theta\sin\psi+\cos\phi\cos\psi & \sin\phi\cos\theta\\
+\cos\phi\sin\theta\cos\psi+\sin\phi\sin\psi& \cos\phi\sin\theta\sin\psi-\sin\phi\cos\psi & \cos\phi\cos\theta
+\end{bmatrix}
+\end{equation}
+
+
+La ecuación \ref{ecuacion:37} corresponde a la matriz de cambio de coordenadas de navegación a \textit{body}. Si quisieramos la transformación inversa, es decir, cambio de \textit{body} a navegación se obtiene aplicando
+
+\begin{equation}
+C^{n}_{b}=(C^{b}_{n})^{-1}=(C^{b}_{n})^{T}
+\end{equation}
+
+que conduce a
+
+\begin{equation}
+C^{n}_{b}=
+\begin{bmatrix}
+\cos\theta\cos\psi&\sin\phi\sin\theta\cos\phi-\cos\phi\sin\psi&\cos\phi\sin\theta\cos\psi+\sin\phi\sin\psi \\
+cos\theta\sin\psi&\sin\phi\sin\theta\sin\psi+\cos\phi\cos\psi&\cos\phi\sin\theta\sin\psi-\sin\phi\cos\psi  \\
+-\sin\theta&\sin\phi\cos\theta&\cos\phi\cos\theta
+\end{bmatrix}
+\end{equation}
+
+\vspace{1cm}
+
+\paragraph{Cuaterniones \\ \\ \\}
+
+
+
+Los cuaterniones \cite{funda5} (también llamados cuaternios) son una extensión de los números reales, similar a la de los números complejos. Mientras que los números complejos son una extensión de los reales por la adición de la unidad imaginaria i, tal que $ i*i=-1 $, los cuaterniones son una extensión generada de manera análoga añadiendo las unidades imaginarias: i, j y k a los números reales y tal que $ i^{2}=j^{2}=k^{2}=ijk=-1 $.
+
+
+
+
+\textbf{¿Cómo está compuesto un cuaternión?}
+
+Un cuaternión es un número definido de la siguiente manera:
+
+\begin{equation}
+q=a+bi+cj+dk
+\end{equation}
+
+
+donde a,b,c y d son números reales arbitrarios. Normalmente, a es un escalar  y  $ bi+cj+dk $ es el vector del cuaternión. No podemos pensar que (a,b,c) como un vector típico en 3D, es un vector en 4D, aunque es muy poco intuitivo de ver.
+
+
+Existen otras representaciones para los cuaterniones y se van a mostrar a continuación:
+
+\begin{equation}
+\mathbf{q}=(a,b,c,d)=[a,(b,c,d)]=(q_{0},q_{1},q_{2},q_{3})
+\end{equation}
+
+Además, vamos a resaltar los elementos neutros o elemento identidad para las operaciones suma y resta:
+
+\begin{math}
+\mathbf{q}=[1,(0,0,0)] .
+\end{math}
+es el cuaternión identidad para la multiplicación
+
+\begin{math}
+\mathbf{q}=[0,(0,0,0)] 
+\end{math}
+es el cuaternión identidad para la suma.
+
+
+\vspace{1.5cm}
+
+\textbf{Cuaterniones y las rotaciones}
+
+Un cuaternión \cite{funda24} es una forma alternativa de representar rotaciones a través del cualquier eje. Comparados con los ángulos de Euler, son más simples de componer y evitan el problema del bloqueo del cardán (es la pérdida de un grado de libertad que ocurre cuando 2 de los 3 ejes necesarios para las rotaciones en 3D, son llevados a la misma dirección). Comparados con las matrices de rotación, son más eficientes y más estables numéricamente. El elemento utilizado son los cuaterniones unitarios y son aquellos que cumplen que
+
+\begin{equation}
+a^{2}+b^{2}+c^{2}+d^{2}=1
+\end{equation} 
+
+Los cuaterniones unitarios son especiales porque representan la orientación en el espacio 3D (permiten representar rotaciones en 3D de manera muy sencilla). Si \textbf{q} es un cuaternión unitario, éste puede pensarse como una esfera de radio 1 en el espacio 4D, aunque resulte poco intuitivo de ver. A través de la figura \ref{fig:Fundamentos30} nos podemos hacer una idea.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/Fundamentos/Fundamentos30}
+\caption{Representación en el espacio de un cuaternión unitario \cite{funda24}.}
+\label{fig:Fundamentos30}
+\end{figure}
+
+donde \begin{math}
+\mathbf{q}=[\cos\frac{\theta}{2} + \sin\frac{\theta}{2}\vec{\mathbf{v}}]
+\end{math}
+
+con
+
+\begin{math}
+\|\vec{\mathbf{v}}\|=1
+\end{math}
+
+
+\vspace{1cm}
+Así, una rotación se puede representar con el cuaternión
+\begin{math}
+\mathbf{q}=(a,(b,c,d))
+\end{math}
+, donde $ (b,c,d) $ es el eje de rotación y a es el valor del ángulo de rotación.
+
+\vspace{1cm}
+
+\textbf{Conversión desde cuaterniones}
+
+Para usar los cuaterniones en la orientación, es necesario convertirlos a otras representaciones (como matrices) y volverlos a cuaterniones.
+
+\begin{itemize}
+\item De cuaternión a matriz.
+
+\begin{math}
+\mathbf{q}=(q_{0},q_{1},q_{2},q_{3})
+\end{math}
+equivale a
+
+\begin{equation}
+M=
+\begin{bmatrix}
+q_{0}^{2}+q_{1}^{2}-q_{2}^{2}-q_{3}^{2} & 2q_{1}q_{2}-2q_{0}q_{3} & 2q_{1}q_{3}+2q_{0}q_{2} \\
+2q_{1}q_{2}+2q_{0}q_{3} & q_{0}^{2}-q_{1}^{2}+q_{2}^{2}-q_{3}^{2}& 2q_{2}q_{3}-2q_{0}q_{1} \\
+2q_{1}q_{3}-2q_{0}q_{2} & 2q_{2}q_{3}+2q_{0}q_{1} & q_{0}^{2}-q_{1}^{2}-q_{2}^{2}+q_{3}^{2}
+\end{bmatrix}
+\end{equation}
+
+\vspace{1cm}
+\item De cuaternión a ejes/ángulo.
+
+\begin{math}
+\mathbf{q}=(q_{0},q_{1},q_{2},q_{3})
+\end{math}
+equivale a
+
+\begin{equation}
+\Theta=2\cos (q_{0})/s
+\end{equation}
+\begin{equation}
+V=(q_{1},q_{2},q_{3})/s
+\end{equation}
+
+donde
+\begin{math}
+s=\sqrt{q_{1}^{2}+q_{2}^{2}+q_{3}^{2}}
+\end{math}
+
+\vspace{1cm}
+
+\item De cuaternión a ángulos de Euler.
+
+
+\begin{math}
+\mathbf{q}=(q_{0},q_{1},q_{2},q_{3})
+\end{math}
+equivale a
+
+
+\begin{equation}
+\label{ecuacion:46}
+\phi=\arctan\left(\dfrac{2(q_{0}q_{1}+q_{2}q_{3})}{1-2(q_{1}^{2}+q_{2}^{2})}\right)
+\end{equation}
+
+\begin{equation}
+\label{ecuacion:47}
+\theta=\arcsin\left(2(q_{0}q_{2}-q_{3}q_{1})\right)
+\end{equation}
+
+\begin{equation}
+\label{ecuacion:48}
+\psi=\arctan\left(\dfrac{2(q_{0}q_{3}+q_{1}q_{2})}{1-2(q_{2}^{2}+q_{3}^{2})}\right)
+\end{equation}
+
+
+Puesto que arctan y arcsin son funciones cuyo resultado se mueve en el intervalo $ [-\pi/2,\pi/2] $, no podemos definir todas las posibles orientaciones teniendo tres rotaciones con con dicho intervalo. Como antes mencionamos, para cubrir todas las posibles orientaciones, roll($ \phi $) y yaw($ \psi $) están generalmente definidos dentro de un rango $ (-\pi,\pi] $ mientras pitch$ (\theta) $ está delimitado entre $ [-\pi/2,\pi/2] $. Por lo tanto, para definir todas las posibles posiciones y rotaciones de un cuerpo en las tres dimensiones del espacio necesitamos sustituir la función arctan en \ref{ecuacion:46} y \ref{ecuacion:48} por la función atan2 que está definida en el intervalo $ (-\pi,\pi] $.
+
+\end{itemize}
+
+
+\textbf{Conversión a cuaterniones}
+
+\begin{itemize}
+\item De ejes/ángulo a cuaterniones.
+
+\begin{math}
+\Theta,V
+\end{math}
+equivale a
+
+\begin{equation}
+\mathbf{q}=(\cos(\Theta/2),u_{x}\sin(\Theta/2),u_{y}\sin(\Theta/2),u_{z}\sin(\Theta/2))
+\end{equation}
+
+donde $ \mathbf{u}=(u_{x},u_{y},u_{z}) $ es un vector en $ \mathbb{R}^{3} $ de magnitud igual a la unidad.
+
+\vspace{1cm}
+
+\item De ángulos de Euler a cuaternión.
+
+Sea $ (\phi,\theta,\psi) $ hay que obtener 3 cuaterniones independientes
+
+\begin{equation}
+q_{\phi}=[\cos(\phi/2),\sin(\phi/2),0,0]
+\end{equation}
+
+\begin{equation}
+q_{\theta}=[\cos(\theta/2),0,\sin(\theta/2),0]
+\end{equation}
+
+\begin{equation}
+q_{\psi}=[\cos(\psi/2),0,0,\sin(\psi/2)]
+\end{equation}
+
+\end{itemize}
+
+\vspace{1.5cm}
+
+\subsubsection{Cálculo de la orientación usando los ángulos de Euler}
+
+
+
+
+\paragraph{Integración de la velocidad angular} ~\\
+
+
+El giróscopo mide la velocidad angular alrededor de cada uno de los ejes Cartesianos relativa a su sistema corporal. Dicha velocidad angular puede ser integrada para estimar la rotación del ángulo entre los instantes $ t_0 $ a $ t_1 $. Por lo tanto, nosotros podemos calcular la posición del cuerpo relativa al marco de navegación si, y solo si, la orientación inicial del sistema corporal es conocida respecto al marco de navegación. Una sencilla solución es usar la aproximación basada en la proyección de la gravedad y los vectores del campo magnético de la tierra para calcular tal orientación inicial cuando el cuerpo está parado. 
+
+Existen muchos métodos numéricos que pueden ser usados para integrar la velocidad angular. En este caso nosotros usaremos la integración numérica basada en la regla trapezoidal que calcula el área debajo de la función realizando una aproximación trapezoidal como sigue:
+
+
+\begin{equation}
+\alpha(n)=\alpha_{0}+\dfrac{T}{2}\sum_{k=1}^{n}[\omega_{g}(k)+\omega_{g}(k-1)]
+\end{equation}
+
+
+Donde \textit{T} es el período de muestreo, \textit{n} es el número de muestras, \textit{$ w_{g} $} la medida del giróscopo en el instante \textit{n} y \textit{$ \alpha_{0} $} el ángulo cuando \textit{n}=0. El ángulo puede ser calculado también de forma recursiva usando
+
+\begin{equation}
+	\alpha(n)=\alpha(n-1)+\dfrac{T}{2}[\omega_{g}(n)+\omega_{g}(n-1)]
+\end{equation}
+
+
+donde $\alpha$(0)=$ \alpha_{0}$.
+
+La ventaja principal de este método es que una vez se conoce la orientación inicial,
+
+\begin{figure}[H]
+	  \centering
+	  \includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos1EPS}
+	  \caption{Efectos del offset dinámico en la salida integrada de la señal del giróscopo}
+	  \label{fig:Fundamentos1}
+\end{figure}
+
+
+puede ser usado para movimientos de baja intensidad o de alta intensidad mientras las medidas del giróscopo no estén afectadas por la aceleración lineal. Sin embargo, la integración del ruido y el offset dinámico conducen a un desplazamiento que crece rápidamente que tiene efectos críticos en el cálculo del ángulo de orientaición. Este efecto hace que la estimación se absulatamente errónea después de unos pocos segundos como se puede ver en la figura \ref{fig:Fundamentos1}. 
+
+Por tanto, el uso individual de la velocidad angular para el cálculo de la orientación es inviable si se usan giróscopos MEMS los cuales presentan gran cantidad de ruido en los datos medidos. 
+
+
+
+\paragraph{Descomposición de la gravedad}~\\
+
+
+Podemos usar la proyección del vector gravedad de la Tierra sobre los ejes del acelerómetro para estimar el ángulo de orientación de la estructura corporal respecto al marco de referencia. En el caso de GaitWatch, para las unidades del muslo y las espinillas sólo está disponible un acelerómetro biaxial. Por lo tanto, sólo podemos calcular uno de los dos ángulos de orientación (roll y pitch) que pueden ser estimados por medio de estas técnica. Ya que estamos principalmente interesados en el ángulo definido en el plano XZ, esto es, el ángulo alrededor del eje  es decir, el pitch. El cálculo de pitch sólo puede ser válido si el ángulo roll de las piernas tiende a 0. Debido a que las piernas se mueven principalmente en el plano sagital durante la marcha, consideraremos la siguiente expresión válida para el cálculo del ángulo pitch, 
+
+	\begin{equation}
+	\theta_{k}=atan2(a_{z,k},a_{x,k})
+	\end{equation}
+
+donde atan2 es la función arcotangente con corrección de cuadrante.
+
+
+
+\paragraph{Fusión de la velocidad angular con el ángulo de orientación calculado con el acelerómetro}~\\
+
+
+
+\subparagraph{El filtro de Kalman} ~\\
+
+El filtro de Kalman, es un conjunto de ecuaciones matemáticas que proporciona un medio para estimar el estado de un proceso minimizando el error cuadrático medio.
+
+
+Si se considera un modelo de tiempo lineal, invariante y continuo:
+
+\begin{equation}
+\mathbf{\dot{x}}(t)=F\mathbf{x}(t)+C\mathbf{u}(t)+I_{n}\mathbf{w}(t)
+\end{equation}
+\begin{displaymath}
+\mathbf{z}(t)=H\mathbf{x}(t)+I_{q}\mathbf{v}(t)
+\end{displaymath}
+
+donde,
+
+
+\begin{itemize}
+	\item el operador  $ \mathbf{\dot x} $ denota la primera derivada \textbf{x}. 
+	\item \textbf{x}(t) $ \epsilon $ $ \mathbb{R}^n $ es el estado (n$ \times 1 $) del vector incluyendo los n estados de las variables que describe el sistema.
+	\item \textbf{z}(t) $ \epsilon $ $ \mathbb{R}^q $ es la salida (q$ \times 1 $) del vector incluyendo las observaciones (medidas) reales de los estados de las variables del proceso.
+	\item \textbf{u}(t) $ \epsilon $ $ \mathbb{R}^p $ es el  (q$ \times 1 $) vector de control incluyendo las p entradas de las señales de control.
+	\item F es el (n$ \times n $) estado de la matriz de transición.
+	\item C es la (n$ \times p $) matriz de entrada.
+	\item H es la (q$ \times n $)  matriz de salida.
+	\item $ I_{n} $ es la (n$ \times n $) matriz identidad.
+	\item $ I_{q} $ es la (q$ \times q $) matriz identidad.
+	\item \textbf{w}(t) $ \epsilon $ $ \mathbb{R}^n $ es el (n$ \times 1 $) proceso del vector ruido.
+	\item \textbf{v}(t) $ \epsilon $ $ \mathbb{R}^q $ es la (q$ \times 1 $) observación del vector ruido.
+	
+	
+	
+\end{itemize}
+	
+	
+	En ausencia de una entrada de control tenemos:
+	
+	\begin{equation}
+	\mathbf{\dot{x}}(t)=F\mathbf{x}(t)+I_{n}\mathbf{w}(t)
+	\end{equation}
+	
+	\begin{displaymath}
+	\mathbf{z}(t)=H\mathbf{x}(t)+I_{q}\mathbf{v}(t)
+	\end{displaymath}
+	
+	\begin{displaymath}
+		\mathbf{z}(t)=H\mathbf{x}(t)+I_{q}\mathbf{v}(t)
+		\end{displaymath}
+		
+		
+	Si aplicamos la aproximación del método de Euler:
+	
+	
+	\begin{equation}
+	\mathbf{\dot{x}}(t)\simeq\frac{\mathbf{x}(t+dt)-\mathbf{x}(t)}{dt}
+	\end{equation}
+	
+	obtenemos:
+		
+	\begin{equation}
+		\frac{\mathbf{x}(t+dt)-\mathbf{x}(t)}{dt}\simeq F\mathbf{x}(t)+I_{n}\mathbf{w}(t)
+	\end{equation}
+	\begin{displaymath}
+	\mathbf{x}(t+dt)\simeq [F\mathbf{x}(t)+I_{n}\mathbf{w}(t)]dt+\mathbf{x}(t)
+	\end{displaymath}
+	\begin{displaymath}
+	\mathbf{x}(t+dt)\simeq F\mathbf{x}(t)dt+I_{n}\mathbf{w}(t)dt+\mathbf{x}(t)
+	\end{displaymath}
+	\begin{displaymath}
+	\mathbf{x}(t+dt)\simeq [Fdt+I_{n}]\mathbf{x}(t)+I_{n}\mathbf{w}(t)dt
+	\end{displaymath}
+	
+	
+
+	si ahora discretizamos el modelo:
+	
+	
+	\begin{equation}
+		\mathbf{x}_{k+1}= [Fdt+I_{n}]\mathbf{x}_{k}+I_{n}\mathbf{w}_{k}dt
+	\end{equation}
+	\begin{displaymath}
+		\mathbf{x}_{k+1}= \Phi\mathbf{x}_{k}+I_{n}dt\mathbf{w}_{k}
+	\end{displaymath}
+	\begin{displaymath}
+	 \mathbf{z}_{k}=H\mathbf{x}_{k}+I_{q}\mathbf{v}_{k}
+	\end{displaymath}
+	
+	
+	
+	o como es normalmente representado:
+	
+	\begin{equation}
+	\label{eq:40}
+	\mathbf{x}_{k}= \Phi\mathbf{x}_{k-1}+B\mathbf{w}_{k-1}dt
+	\end{equation}
+	\begin{equation}
+	\label{eq:41}
+	\mathbf{z}_{k}=H\mathbf{x}_{k}+I_{q}\mathbf{v}_{k}
+	\end{equation}
+	
+	donde,
+	
+	\begin{itemize}
+		\item \textbf{x}(t) $ \epsilon $ $ \mathbb{R}^n $ es de nuevo el (n$ \times 1 $) estado  del vector del sistema dinámico lineal.
+		\item  \textbf{z}(t) $ \epsilon $ $ \mathbb{R}^q $ es el (q$ \times 1 $) vector de observaciones.
+		\item $ \Phi $ es ahora el (n$ \times n $) estado de la matriz de transición del sistema discreto lineal dinámico.
+		
+		\item H es de nuevo (q$ \times n $)  la matriz de medición de la sensibilidad definiendo la relación entre el estado de un sistema dinámico y las medidas que pueden hacerse.
+		\item $B=I_{n}dt$, donde dt es el período de muestreo.
+		
+		
+		\item \textbf{w}(t) $ \epsilon $ $ \mathbb{R}^n $ es otra vez el (n$ \times 1 $) proceso del vector ruido.
+		\item \textbf{v}(t) $ \epsilon $ $ \mathbb{R}^q $ es otra vez la (q$ \times 1 $) observación del vector ruido.
+		
+
+
+\end{itemize}
+
+
+
+
+	Por lo tanto, cuando lo aplicamos a señales discretas, el filtro de Kalman pretende resolver el problema de intentar estimar el estado \textbf{x} $ \epsilon $ $ \mathbb{R}^n $ de un proceso de tiempo discreto que es definido por el modelo de las ecuaciones \ref{eq:40} y \ref{eq:41}. Además $\mathbf{ w_{k}} $ y  $\mathbf{ v_{k}} $ son procesos de ruido blanco considerados independientes entre sí y con una distribución normal de probabilidad
+	
+	\begin{equation}
+	p(\mathbf{w})\sim N(0,Q)
+	\end{equation}
+	\begin{equation}
+	p(\mathbf{v})\sim N(0,R)
+	\end{equation}
+	donde, a su vez, Q y R son las matrices de covarianza del ruido del proceso y del ruido de la medida respectivamente y pueden considerarse invariantes en el tiempo en la práctica.
+	Cuando derivamos las ecuaciones del filtro de Kalman, el objetivo es encontrar una equación que calcule un estado (actualizado y corregido con la medición) a posteriori estimado como una combinación lineal de una estimación (prevista) a priori $\mathbf{ \hat{x}_{k}^-} $ y una diferencia ponderada entre una medida actual $\mathbf{ z_{k}} $ y una medida de predicción H$\mathbf{ \hat{x}_{k}^-} $,
+	
+	
+	\begin{equation}
+	\label{eq:44}
+	\mathbf{\hat{x}}_{k}=\mathbf{\hat{x}}_{k}^{-}+K_{k}(\mathbf{z}_{k}-H\mathbf{\hat{x}_{k}^{-}})
+	\end{equation}
+	La diferencia en \ref{eq:44} es conocida como medida de innovación o el residuo. El residuo indica la discordancia entre la predicción de la medida  H$\mathbf{ \hat{x}_{k}^-} $ y la medida $\mathbf{ z_{k}} $.
+	
+	La matriz $ K_{k} $ en \ref{eq:44} es conocida como la ganancia de Kalman y es eligida para ser la ganancia que minimizará el error de covarianza a posteriori. Otra forma de ver la ponderación por $ K_{k} $ es que a medida que el error de covarianza tienda a cero, se confía más en la medida  $\mathbf{ z_{k}} $ y se confía menos en la predicción de la medida. H$\mathbf{ \hat{x}_{k}^-} $. Análogamente, cuando el error de covarianza estimado a priori tiende a cero se confía menos en la  medida y más en la predicción de la medida.
+	
+	El filtro de Kalman controla un proceso usando una forma de control de realimentación: el filtro estima el estado del proceso en un momento y luego obtiene de forma realimentada las medidas del ruido. Por lo tanto, las ecuaciones del fitro de Kalman se dividen en dos grupos: las ecuaciones de actualización de tiempo y las ecuaciones de actualización de la medición.
+	
+	Las ecuaciones de actualización de tiempo pueden ser consideradas también como ecuaciones de predicción, mientras las ecuaciones de actualización de la medición pueden también ser consideradas como ecuaciones de correción. Si nosotros suponemos que $ \Phi $, Q y R son constantes, la ecuaciones de actualización de tiempo son como siguen:
+	
+	\begin{equation}
+	\label{eq:45}
+	\mathbf{\hat{x}}_{k}^{-}=\Phi\mathbf{\hat{x}}_{k-1}^{-}
+	\end{equation}
+	\begin{equation}
+	\label{eq:46}
+	P_{k}^{-}=\Phi P_{k-1}^{-}\Phi^{T}+Q
+	\end{equation}
+	
+	mientras las ecuaciones de actualización de la medición son
+	
+	\begin{equation}
+	\label{eq:47}
+	K_{k}=P_{k}^{-}H^{T}(HP_{k}^{-}H^{T}+R)^{-1}	
+	\end{equation}	
+	\begin{equation}
+	\label{eq:48}
+	\mathbf{\hat{x}}_{k}=\mathbf{\hat{x}}_{k}^{-}+K_{k}(\mathbf{z}_{k}-H\mathbf{\hat{x}}_{k}^{-})
+	\end{equation}	
+	\begin{equation}
+	\label{eq:49}
+	P_{k}=(I-K_{k}H)P_{k}^{-}
+	\end{equation}
+	
+	
+	
+	donde  $P_{k}^- $  y $ P_{k} $ son la estimación del error de covarianza a priori y a posteriori y $ K_{k} $ es un factor conocido como la ganancia de Kalman.
+	
+	Así, para contruir un algoritmo usando el filtro de Kalman se deben implementar los siguientes pasos:
+	
+	\begin{itemize}
+		\item Parámetros conocidos:
+		\begin{enumerate}
+			\item $ \Phi $: Matriz de transición de estado.
+			\item H: Matriz de medición.
+			\item Q: Matriz de covarianza del ruido del proceso.
+			\item R: Matriz de covarianza del ruido de medición.
+		\end{enumerate}
+		\item Cálculos.
+		\begin{enumerate}
+		
+		\item Cálculo de $ \hat{P}_{k}^- $ en  sustituyendo $ P_{k-1} $, $ \Phi $ y Q en \ref{eq:46}.
+		\item Cálculo $ K_{k} $ sustituyendo $ \hat{P}_{k}^- $, H y R en \ref{eq:47}.
+		\item Cálculo de $ P_{k} $ sustituyendo $ K_{k} $ y $ \hat{P_{k}^-} $ en \ref{eq:49}.
+		\item Cálculo de los valores sucesivos de  $\mathbf{ \hat{x}_{k}^-} $ de forma recursiva usando \ref{eq:45} y \ref{eq:48} y el cálculo de $ K_{k} $. Se comienza con las estimaciones iniciales  $\mathbf{ \hat{x}_{0}} $ y $ P_{0} $.
+		
+		\end{enumerate} 
+	
+	\end{itemize}
+	
+	La figura \ref{fig:Fundamentos2} muestra el diagrama de flujo de un filtro de Kalman de propósito general
+	
+	
+	\begin{figure}[H]
+	  \centering
+	  \includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos31}
+	  \caption{Diagrama de flujo de un filtro de Kalman de propósito general}
+	  \label{fig:Fundamentos2}
+	  \end{figure}
+	  
+	  
+	\subparagraph{El filtro de Kalman aplicado a la estimación de la orientación}  ~\\
+	
+	
+	Después de esta breve introdución a los fundamentos básicos del filtro de Kalman, explicaremos cómo emplearlo en aplicaciones de fusión, y de manera más específica cómo aplicarlo para fusionar la información que viene de los distintos sensores utilizados.
+	
+	Sea el vector de estado que queremos estimar sea el siguiente
+	
+	\begin{equation}
+	\mathbf{x}(t)=
+	\begin{bmatrix}
+	\alpha(t)\\
+	bias(t)
+	\end{bmatrix}
+	\end{equation}
+	donde $ \alpha $(t) es alguno de los ángulos de orientación (pitch, roll o yaw) y bias(t) es la diferencia entre la velocidad angular medida y la velocidad angular real.
+	
+	\begin{equation}
+	bias(t)=\omega_{meas}(t)-\omega_{actual}(t)
+	\end{equation}
+	Sea además \textbf{w}(t) el vector compuesto del ruido de la estimación del ángulo y el ruido de la velocidad angular respectivamente. La observación del proceso, \textbf{z}(t) es la estimación del ángulo calculado usando la aproximación del acelerómetro-magnetómetro.
+	
+	\begin{equation}
+	\mathbf{z}(t)=z(t)=\alpha(t)
+	\end{equation}
+	Procedemos ahora a obtener la expresión de las derivadas de las variables de estado:
+	
+	\begin{equation}
+	\dfrac{d\alpha(t)}{dt}=\omega_{actual}(t)
+	\end{equation}
+	
+	conocida  $ w_{actual}=w_{meas}-bias(t)$ que es la velocidad angular medida que presenta un desplazamiento con respecto a su valor real:
+	
+	\begin{equation}
+	\frac{d\alpha(t)}{dt}=\omega_{medido}(t)-bias(t)
+	\end{equation}
+	
+	Si consideramos  $ w_{medido}$ como una parte del proceso del ruido, $ w_{medido}=w_{\alpha}$, obtenemos
+	
+	\begin{equation}
+	\frac{d\alpha(t)}{dt}=-bias(t)+\omega_{\alpha}(t)
+	\end{equation}
+	
+	Así, el primer componente de la potencia del ruido del proceso, $ w_{\alpha} $ debería ser la varianza de la señal del ángulo calculado con la aproximación del acelerómetro-magnetómetro.
+	
+	Por otro lado, aplicamos la derivada a la segunda variable de estado, bias(t), constituye la segunda componente del proceso del ruido y como resultado obtenemos:
+	
+	\begin{equation}
+	\frac{dbias(t)}{dt}=\omega_{bias}(t)
+	\end{equation}
+	
+	
+	Entonces, el modelo del sistema es como sigue:
+	
+	\begin{displaymath}
+	\mathbf{x}(t)=
+	\begin{bmatrix}
+	\alpha(t)\\
+	bias(t)
+	\end{bmatrix};
+	\end{displaymath}
+	\begin{displaymath}
+	\frac{\mathbf{x}(t)}{dt}=\frac{d}{dt}
+	\begin{bmatrix}
+	\alpha(t)\\
+	bias(t)
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	0 & -1 \\
+	0 & 0
+	\end{bmatrix}	
+	\begin{bmatrix}
+	\alpha(t)\\
+	bias(t)
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	1 & 0 \\
+	0 & 1
+	\end{bmatrix}	
+	\begin{bmatrix}
+	\omega_{\alpha}(t)\\
+	\omega_{bias}(t)
+	\end{bmatrix};
+	\end{displaymath}
+	\begin{equation}
+	z(t)=
+	\begin{bmatrix}
+	1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+	\alpha(t) \\
+	bias(t)
+	\end{bmatrix}
+	+ v(t)
+	\end{equation}
+	
+	Si ahora aplicamos la aproximación para discretizar el sistema obtemos:
+	
+	\begin{displaymath}
+		\mathbf{x}_{k+1}=
+		\begin{bmatrix}
+		\alpha_{k+1}\\
+		bias_{k+1}
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\begin{bmatrix}
+			1 & 0 \\
+			0 & 1
+			\end{bmatrix}
+			+
+			\begin{bmatrix}
+			0 & -dt \\
+			0 & 0
+			\end{bmatrix}
+		\end{bmatrix}
+		\begin{bmatrix}
+		\alpha_{k} \\
+		bias_{k}
+		\end{bmatrix}
+		+	
+		\begin{bmatrix}
+		dt & 0 \\
+		0  & dt
+		\end{bmatrix}
+		\begin{bmatrix}
+		\omega_{\alpha,k} \\
+		\omega_{bias,k}
+		\end{bmatrix};	
+		\end{displaymath}
+		\begin{equation}
+		\mathbf{z}_{k+1}=
+		\begin{bmatrix}
+		1 & 0
+		\end{bmatrix}
+		\begin{bmatrix}
+		\alpha_{k+1} \\
+		bias_{k+1}
+		\end{bmatrix}
+		+
+		v_{k+1}
+		\end{equation}
+	
+	o equivalentemente:
+	
+	\begin{displaymath}
+	\mathbf{x}_{k}=
+	\begin{bmatrix}
+	\alpha_{k} \\
+	bias_{k}
+	\end{bmatrix}
+	=
+	\begin{bmatrix}
+	1 & -dt \\
+	0 & 1
+	\end{bmatrix}
+	\begin{bmatrix}
+	\alpha_{k-1} \\
+	bias_{k-1}
+	\end{bmatrix}
+	+
+	\begin{bmatrix}
+	dt & 0 \\
+	0  & dt
+	\end{bmatrix}
+	\begin{bmatrix}
+	\omega_{\alpha,k-1} \\
+	\omega_{bias,k-1}
+	\end{bmatrix};
+	\end{displaymath};
+	\begin{equation}
+	\mathbf{z}_{k}=
+	\begin{bmatrix}
+	1 & 0
+	\end{bmatrix}
+	\begin{bmatrix}
+	\alpha_{k} \\
+	bias_{k}
+	\end{bmatrix}
+	+
+	v_{k}
+	\end{equation}
+	Entonces, identificando términos tenemos:
+	
+	\begin{equation}
+	\label{eq:60}
+		\Phi=
+		\begin{bmatrix}
+		1 & -dt \\
+		0 & 1
+		\end{bmatrix}; \hspace{5mm} B=
+		\begin{bmatrix}
+		dt & 0 \\
+		0  & dt
+		\end{bmatrix}, \hspace{5mm} H=
+		\begin{bmatrix}
+		1 & 0
+		\end{bmatrix}
+	\end{equation}
+	
+	
+	Una vez que tenemos definidas las ecuaciones de estado del sistema discreto, repetimos las ecuaciones del filtro de Kalman y su orden de aplicación para más claridad:
+	
+	
+	\begin{center}
+		\underline{ECUACIONES DE PREDICCIÓN}
+		\begin{equation}
+		\label{eq:61}
+		\mathbf{\hat{x}}_{k}^{-}=\Phi \mathbf{\hat{x}}_{k-1}
+		\end{equation}
+		\begin{equation}
+		\label{eq:62}
+		P_{k}^{-}=\Phi P_{k-1}\Phi^{T}+Q
+		\end{equation}
+	\end{center}
+	
+	\begin{center}
+			\underline{ECUACIONES DE ACTUALIZACIÓN}
+			\begin{equation}
+			\label{eq:63}
+			K_{k}=\frac{P_{k}^{-}H^{T}}{HP_{k}^{-}H^{T}+R}
+			\end{equation}
+			\begin{equation}
+			\label{eq:64}
+			\mathbf{\hat{x}}_{k}=\mathbf{\hat{x}}_{k}^{-}+K_{k}(z_{k}-H\mathbf{\hat{x}}_{k}^{-})
+			\end{equation}
+			\begin{equation}
+			\label{eq:65}
+			P_{k}=(I-K_{k}H)P_{k}^{-}
+			\end{equation}
+	\end{center}
+	
+	
+	donde
+	
+	\begin{itemize}
+		\item $\mathbf{ \hat{x}_{k}^-}$ es el estado estimado a priori.
+		\item $ P_{k}^- $ es la matriz de covarianza a priori del sistema.
+		\item Q es la matriz de covarianza del ruido del proceso y está definida como
+		
+		\begin{equation}
+		\label{eq:66}
+		Q=
+		\begin{bmatrix}
+		\sigma_{\alpha} & 0 \\
+		0 & \sigma_{\omega}
+		\end{bmatrix}
+		\end{equation}
+		
+		donde $ \sigma_{\alpha} $ es la varianza del ángulo calculado con la aproximación del acelerómetro-magnetómetro y $ \sigma_{\omega} $ es la varianza de la velocidad angular medida por el giróscopo.
+		\item R, que en este caso es un escalar, es la potencia del ruido observado y está definida como la varianza del ángulo estimado por el acelerómetro-magnetómetro.  
+		\item $ K_{k} $ es la ganancia del filtro de Kalman.
+		
+		\item $\mathbf{ \hat{x}_{k}^-} $ es el estado estimado a posteriori.
+		\item $ P_{k} $ matriz de covarianza a posteriori del sistema.
+		
+	\end{itemize}
+	
+	
+	El lector, se estará preguntando dónde exactamente en las ecuaciones se ha utilizado la medida de la velocidad angular. Lo cierto es que las ecuaciones \ref{eq:61} y \ref{eq:65} no implementan todavía un sistema de fusión de sensores porque sólo estamos usando los datos que vienen del acelerómetro y el magnetómetro. La clave para incluir la fusión de sensores en el sistema definido es sustituir el cálculo de la predición de los estados $\mathbf{ \hat{x}_{k}^-} $ como sigue:
+	
+	\begin{equation}
+	\label{eq:67}
+	\mathbf{\hat{x}}_{k}^{-}=
+	\begin{bmatrix}
+	\alpha_{k}^{-} \\
+	bias_{k}^{-}
+	\end{bmatrix}=
+	\begin{bmatrix}
+	\alpha_{k-1}+ (\omega_{meas,k} - bias_{k-1})dt \\
+	bias_{k-1}
+	\end{bmatrix}
+	\end{equation}
+	
+	De esta forma, el estado estimado a priori está siendo calculado utilizado la información de ambas aproximaciones, el cálculo del ángulo usando el acelerómetro y el magnetómetro y la integración de la velocidad angular.
+	
+	Para finalizar la explicación del enfoque clásico del filtro de Kalman aplicado a fusionar la información del acelerómetro-magnetómetro y el giróscopo, incluimos debajo paso a paso las operaciones que se necesitan para llevar a cabo el algoritmos completo:
+	
+	\begin{enumerate}
+	
+		\item Inicializar la matriz de covarianza como una matriz identidad de dimensiones $2\times2 $, $ P=I_{2\times2} $.
+		\item Definir la matriz de covarianza usando la ecuación \ref{eq:66}. Esta matriz permanece constante durante la ejecución del algoritmo.
+		\item Definir la varianza del ruido medido, R, que en este caso es la varianza del ángulo de estimación del acelerómetro-magnetómetro, $R=\sigma_{\alpha}  $. Este valor permanece constante durante la ejecución del algoritmo.
+		\item Definir el estado de las matrices de transición y de medida, $ \Phi $ y H usando la ecuación (\ref{eq:60}).
+		\item Leer los datos del acelerómetro($\mathbf{ a_{k} }$), giróscopo ($ \omega_{k} $) y magnetómetro($\mathbf{ h_{k} }$).
+		\item Usando ($\mathbf{ a_{k} }$) y ($\mathbf{ h_{k} }$), cálcular el ángulo de estimación del acelerómetro-magnetómetro, $ \alpha_{k} $ mediante cualquiera de los métodos de estimación de la orientación de no fusión explicado en las subsecciones anteriores.
+		\item Calcular la estimación a priori del vector de estados usando la ecuación \ref{eq:67}
+		\item Calcular la matriz de covarianza a priori del sistema usando la ecuación \ref{eq:62}.
+		\item Calcular la ganancia de Kalman usando la ecuación \ref{eq:63}, donde $ z_{k}=\alpha_{k} $.
+		\item Actualizar el vector de estados usando la ecuación \ref{eq:64}.
+		\item Actualizar la matriz de covarianza del sistema usando la ecuación \ref{eq:65}.
+		\item Volver al paso 5.
+		
+		
+		
+	\end{enumerate}
+	
+	\vspace{5mm}
+	
+	La figura \ref{fig:Fundamentos3} muestra el diagrama de flujo del enfoque estándar del filtro de Kalman con fusión de sensores.
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos32}
+	\caption{Diagrama de flujo del enfoque estándar del filtro de Kalman con fusión de sensores}
+	\label{fig:Fundamentos3}
+	\end{figure}
+	
+	
+
+	
