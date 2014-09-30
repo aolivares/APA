@@ -5,12 +5,21 @@
 
 clear
 [bb,aa]=butter(3,0.3);
+% Maybe other simplier form to do : [data_file,data_path] = uigetfile('*.txt', 'Select *.txt - file');
 data_path='C:\A-DATA\';
+
+% Data file selection with a dialog box (only the text file)
 [data_file,data_path] = uigetfile([data_path,'*.txt'], 'Select *.txt - file');
 
 
-
+%Reading of data_file
 [header,first_line,abta,count,col_first_block] = read_laufband_header([data_path,'\',data_file]);
+ % header: file name, application, data labels, calibration and creation
+ % date.
+ % first_line:Beginning of the data block in the text file.
+ % abta: sampling time (ms).
+ % count:Number of measurements/ data .
+ % col_first_block: no of col first block.
 
 
 % ********** Read first block of data ********************************************
@@ -22,15 +31,23 @@ data_path='C:\A-DATA\';
 %     'Li Rückfuß,N'
 %     'Re Vorfuß,N'
 %     'Re Rückfuß,N'
+
+% Read formatted data from text file or string
+% "fid" is a file identifier that we obtain with "fopen".
     
 fid=fopen([data_path,'\',data_file]);
+
+% Specification of the format of the data fields (double, %n) an cycles. It
+% skips the firsts lines of the data, and then reads the remaining data.
 data = textscan(fid,'%n',col_first_block*count,'headerlines',first_line-1);
 
+% Reshape the data.
 data=reshape(data{1},col_first_block,count)';
 
 an_en=any(data(:,2:5),2);                                  % see if there are data available 
 an_en=find(diff(an_en) ~= 0)+1;                            % where do the data begin and end ??
 
+% Show the data
 figure(1)
 plot(data(an_en(1):an_en(2),1),data(an_en(1):an_en(2),2:5))
 legend(header{3}(2:5))
