@@ -29,7 +29,7 @@
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Introduccion/intro1}
-\caption{Estructura del proyecto del movimiento de la UGR.}
+\caption{Estructura del proyecto del movimiento de la UGR}
 \label{fig:intro1}
 \end{figure}
 
@@ -38,10 +38,10 @@
 
 
 
-Como ya habíamos hablado anteriormente, a la hora de desarrollar nuestra aplicación partíamos de un sistema capaz de determinar la posición humana utilizando los datos inerciales. La búsqueda de un resultado óptimo, requiere el procesamiento y transformación de los datos iniciales. Aquí es cuando entran en juego los algoritmos de monitorización de la marcha. 
+Como ya habíamos hablado anteriormente, a la hora de desarrollar nuestra aplicación partíamos de un sistema capaz de determinar la posición humana utilizando los datos inerciales. Pero si queremos un resultado óptimo, los datos iniciales se procesan y experimentan  una serie de transformaciones. Aquí es cuando entran en juego los algoritmos de monitorización de la marcha. 
 
 
- En los estudios aplicados en su tesis \cite{funda5} por el Dr. Alberto Olivares Vicente se analizan de forma detallada los algoritmos de calibración existentes en la actualidad y se observa que existen dos grandes grupos de métodos, aquellos basados en la minimización del error o coste para estimar los parámetros de calibración, y aquellos que calculan los parámetros de forma directa aplicando una serie de trasformaciones algebraicas.
+ En los estudios aplicados en su tesis \cite{funda5} por el Dr. Alberto Olivares Vicente se aplica un anális de forma detallada de los algoritmos de calibración existentes en la actualidad y se observa que existen dos grandes grupos de métodos, aquellos basados en la minimización del error o coste para estimar los parámetros de calibración, y aquellos que calculan los parámetros de forma directa aplicando una serie de trasformaciones algebraicas.
  
   
  
@@ -53,7 +53,7 @@ Como ya habíamos hablado anteriormente, a la hora de desarrollar nuestra aplicac
 
 
  
-Ahora que ya podemos decir que estamos mejor situados, cabe destacar que la motivación principal de nuestro proyecto  surge de la idea de integrar en una aplicación visual los distintos algoritmos de monitorización desarrollados hasta la  fecha para el sistema sobre el que partíamos inicialmente. De hecho, lo que se pretende es facilitar el uso de los algoritmos por parte de personal no especializado. 
+Ahora que ya podemos decir que estamos mejor situados, cabe destacar que la motivación principal de nuestro proyecto  surge de la idea de integrar en una aplicación visual los distintos algoritmos de monitorización desarrollados hasta la  fecha para el sistema sobre el que partíamos inicialmente.
 
 
 
@@ -61,7 +61,7 @@ Ahora que ya podemos decir que estamos mejor situados, cabe destacar que la moti
 \section{Objetivos}
 
  
-El \textbf{objetivo principal} del proyecto es desarrollar una aplicación gráfica en Matlab que permita la configuración y visualización de los datos recogidos por los sistemas de medida de parámetros de la marcha GaitWatch y ECnsole. Los sistemas están compuestos por una serie de módulos que contienen sensores magnéticos e inerciales del tipo MEMS que son colocados en diferentes segmentos corporales. Este sistema permite la monitorización del movimiento del cuerpo humano y está orientado al cálculo de parámetros de la marcha (longitud de zancada, cadencia, etc.). Además, este sistema está siendo utilizado en la actualidad en la unidad de análisis del movimiento dentro del Departamento de Neurología del Hospital Clínico Großhadern de Múnich.
+El \textbf{objetivo principal} del proyecto es desarrollar una aplicación gráfica en Matlab que permita la configuración y visualización de los datos recogidos por los sistemas de medida de parámetros de la marcha GaitWatch Manager y ECnsole. Los sistemas están compuestos por una serie de módulos que contienen sensores magnéticos e inerciales del tipo MEMS que son colocados en diferentes segmentos corporales. Este sistema permite la monitorización del movimiento del cuerpo humano y está orientado al cálculo de parámetros de la marcha (longitud de zancada, cadencia, etc.). Además, este sistema está siendo utilizado en la actualidad en la unidad de análisis del movimiento dentro del Departamento de Neurología del Hospital Clínico Großhadern de Múnich.
 
 
 A continuación procedemos a detallar el objetivo principal de una forma más específica:
@@ -101,7 +101,7 @@ En esta fase se incluyen los algoritmos ya desarrollados para la monitorización 
 Además del objetivo principal, el proyecto intentará cumplir otra serie de objetivos:
 
 \begin{itemize}
-\item \textbf{Revisión del estado del arte}: Esta parte consiste en hacer un recorrido por todos los sistemas  desarrollos recientemente relacionados con nuestro dispositivo, que han sido probados en la industria y han sido acogidos y aceptados por diferentes fabricantes.
+\item \textbf{Revisión del estado del arte}: Esta parte consiste en hacer un recorrido por todos aquellos desarrollos de última tecnología relacionados con nuestro dispositivo, que han sido probados en la industria y han sido acogidos y aceptados por diferentes fabricantes.
 
 
 \item \textbf{Estudio teórico de la materia}. Este objetivo tiene como finalidad comprender todos los conceptos teóricos relacionados con los sistemas de monitorización de la marcha.
@@ -129,16 +129,16 @@ Además del objetivo principal, el proyecto intentará cumplir otra serie de objet
 Este proyecto comienza con el Capítulo \ref{ch:introduccion}, el cual es una introducción, y cuyo fin por un lado es poner el contexto en que se enmarca el proyecto  y por otro lado guiar al lector en la motivación y objetivos de la presente obra.
 
 
- El Capítulo \ref{ch:monitorizacion} está estructurado en dos bloques principalmente, el  primero  define el concepto de \textit{análisis de la marcha} y  hace un repaso breve de su historia. Posteriormente se describen todos los factores y parámetros que se necesitan tener en cuenta para el análisis de la marcha. Después, se ven las aplicaciones que podemos encontrar de los sistemas de captura del movimiento  humano (es necesario aclarar que este tipo de sistemas engloban a los sitemas orientados al análisis de la marcha). Finalmente, se establece una clasificación de los sistemas de captura del movimiento humano. Una vez que pasamos al segundo bloque, se pretende establecer una visión general de los dispositivos disponibles en el mercado con características similares, los cuales han servido de referencia y motivación. Para ello se hace una revisión del estado del arte.
-
-En el Capítulo \ref{ch:Hardware} se realiza una descripción general de los sistemas GaitWatch  y ECnsole. Además, se especifican las características técnicas de cada uno de los dispostivos. En el caso del GaitWatch, se le añade adicionalmente una explicación exhaustiva de como se identifican los ejes de los sensores inerciales que contiene.
-
-En el Capítulo \ref{ch:fundamentos} se realizará un extenso análisis a nivel teórico de los fundamentos de los sensores inerciales (acelerómetro, giróscopo y  magnetómetro) utilizados en los sitemas GaitWatch y ECnsole. La segunda parte del capítulo se centrará primero en  explicar el proceso de calibración, cuyo objetivo es transformar los datos originales en unidades con sentido físico. Después se describirán los algoritmos para el cálculo de la orientación. Primero el método de \textit{Integración de la Velocidad Angular} para el giróscopo. Posteriormente, el método de \textit{Descomposición de la Gravedad} donde el acelerómetro y el magnetómetro trabajan de manera conjunta. Después, el  \textit{Filtro de Kalman} que  fusiona  los datos   del acelerómetro, giróscopo y manetómetro obteniendo unos resultados más precisos. Y por último, el \textit{Filtro de Kalman Extendido} (una mejora del \textit{Filtro de Kalman} gracias al uso de un elemento nuevo, los cuaterniones, que minimizan el cálculo computacional). 
+ El Capítulo \ref{ch:monitorizacion} está estructurado en dos bloques principalmente, el  primero  define el concepto de \textit{análisis de la marcha} y  hace un repaso breve de su historia. Posteriormente se describen todos los factores y parámetros que se necesitan tener en cuenta para el análisis de la marcha. Después, se ven las aplicaciones que podemos encontrar de los sistemas de captura del movimiento  humano (es necesario aclarar que este tipo de sistemas engloban a los sitemas orientados al análisis de la marcha). Finalmente, se establece una clasificación de los sistemas de captura del movimiento humano. Una vez que pasamos al segundo bloque, se pretende establecer una visión general de dispositivos disponibles en el mercado con características similares, los cuales han servido de referencia y motivación. Para ello se hace una revisión del estado del arte.
 
 
 
+En el Capítulo \ref{ch:fundamentos} se realizará un extenso análisis a nivel teórico de los fundamentos de los sensores inerciales (acelerómetro, giróscopo y  magnetómetro) utilizados en los sitemas GaitWatch Manager y ECnsole. La segunda parte del capítulo se centrará primero en  explicar el proceso de calibración, cuyo objetivo es transformar los datos originales en unidades con sentido físico. Después se describirán los algoritmos para el cálculo de la orientación. Primero el método de \textit{Integración de la Velocidad Angular} para el giróscopo. Posteriormente, el método de \textit{Descomposición de la Gravedad} donde el acelerómetro y el magnetómetro trabajan de manera conjunta. Después, el  \textit{Filtro de Kalman} que  fusiona  los datos   del acelerómetro, giróscopo y manetómetro obteniendo unos resultados más precisos. Y por último, el \textit{Filtro de Kalman Extendido} (una mejora del \textit{Filtro de Kalman} gracias al uso de un elemento nuevo, los cuaterniones, que minimizan el cálculo computacional). 
 
-El Capítulo \ref{ch:software} comienza con una introducción teórica acerca de Matlab GUI para que el lector se pueda familiarizar con la creación de interfaces gráficas a través de Matlab. Inicialmente se ofrece la posibilidad de uso del entorno de desarrollo GUIDE para el diseño de aplicaciones relativamente sencillas, GUIDE es  una herramienta que permite facilitar el diseño de mismas. Posteriormente se dan las pautas a seguir si decidimos prescindir de dicha herramienta, es decir, si se opta por la creación de las GUIs de forma programática (el proyecto ha sido desarrollado de esta manera). Una vez finalizado este bloque, se continúa con la despcripción de la aplicación (la interfaz gráfica desarrollada que constituye el proyecto). Aquí se van metiendo en distintas secciones cada una de las partes de la aplicación con sus capturas y explicaciones correspondientes. 
+
+En el Capítulo \ref{ch:Hardware} se realiza una descripción general de los sistemas GaitWatch Manager y ECnsole. Además, se especifican las características técnicas de cada uno de los dispostivos. En el caso del GaitWatch, se le añade adicionalmente una explicación exhaustiva de como se identifican los ejes de los sensores inerciales que contiene.
+
+El Capítulo \ref{ch:software} comienza con una introducción teórica acerca de Matlab GUI para que el lector se pueda familiarizar con la creación de interfaces gráficas a través de Matlab. Inicialmente se ofrece la posibilidad de uso del entorno de desarrollo GUIDE para el diseño de aplicaciones relativamente sencillas, GUIDE es  una herramienta que permite facilitar el diseño de mismas. Posteriormente se dan las pautas a seguir si decidimos prescindir de dicha herramienta (tal y como se hecho en el proyecto), es decir, se opta por la creación de las GUIs de forma programática. Una vez finalizado este bloque, se continúa con la despcripción de la aplicación (la interfaz gráfica desarrollada que constituye el proyecto). Aquí se van metiendo en distintas secciones cada una de las partes de la aplicación con sus capturas y explicaciones correspondientes. 
 
 
 Para terminar, en el Capítulo \ref{ch:conclusiones} se extraen las conclusiones finales del proyecto y se

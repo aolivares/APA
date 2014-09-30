@@ -1,0 +1,1612 @@
+\chapter{Software de monitorización}
+\label{ch:software}
+
+\section{GUI en Matlab}
+
+	Existen dos posibilidades a la hora de crear una interfaz gráfica de usuario en Matlab y las vamos a describir a continución.
+	
+	 
+	En la primera se hace uso de GUIDE. GUIDE es un entorno gráfico que nos va a permir  distribuir en el espacio los  elementos de la interfaz sin necesidad de aplicar un código asociado a la creación del objeto. Se elige el elemento deseado y se sitúa en el lugar correspondiente de la interfaz arrastrando con el ratón. El código del elemento se genera automáticamente cuando compilamos y tan sólo tenemos que limitarnos a darle funcionalidad.
+	
+	La otra forma sería escribir el script a mano, sin ninguna ayuda externa. Implica ciertas desventajas en cuestiones como dedicarle más tiempo para situar los objetos (se sitúan a través de coordenadas) o el tiempo para crear las funciones correspondientes a los componentes gráficos. En el proyecto se optó por esta opción, la razón mas importante que justifica su elección es la complejidad del programa. GUIDE está pensado para la creación de pequeñas interfaces gráficas, en el momento que fue necesario añadir nuevos elementos como las \textit{pestañas}, ir creando nuevos objetos dinámicamente  o hacer aparecer y desaparecer un número indefinido de objetos, la herramienta resultó bastante limitada.
+	
+	Inicialmente se partió de la idea utilizar GUIDE y se usó hasta que comenzaron las difucultades. Vamos a explicar detalladamente las dos formas de creacíon de interfaces gráficas para matlab en los siguientes apartados.
+
+\subsection{GUI en Matlab utilizando GUIDE}
+ 
+ Una interfaz de usuario (GUI)  es una pantalla gráfica de una o más ventanas con controles  (denominados componentes) que permite al usuario realizar tareas interactivas. El usuario de la interfaz gráfica  no tiene que crear un script o escribir sentencias en la línea de comandos para realizar las tareas. A diferencia de los programas de codificación, que sí necesitan entender los detalles de cómo se realizan las tareas.
+  
+  
+  Los componentes GUI pueden incluir:  menús, toolbars, push buttons, radio buttons, list boxes, sliders, etc (sólo por nombrar unos pocos). Por otro lado, las GUIs fueron creadas haciendo uso de las herramientas de MATLAB y pueden realizar tareas como:  cálculo, leer, escribir achivos de datos, comunicarse con otras interfaces gráficas de usuario, mostrar datos como tablas, etc.
+  
+ A modo de ejemplo les vamos a mostrar como crear una interfaz gráfica simple describiendo el proceso y los distintos componentes:
+ 
+ 
+ Inicialmente ejecutamos desde la ventana de comandos de MATLAB el comando \textit{guide}. Como muestra la figura \ref{fig:GUI1}:
+ 
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI1}
+ \caption{Ventana de comandos en \textit{MATLAB}}
+ \label{fig:GUI1}
+ \end{figure}
+ La respuesta que nos ofrece el programa es la que se muestra en la figura \ref{fig:GUI2}:
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI2}
+ \caption{Plantillas para MATLAB GUI}
+ \label{fig:GUI2}
+ \end{figure}  
+ 
+ 
+  Vemos que nos muestra 4 tipo de plantillas diferentes que vamos a describir detalladamente a continuación:
+  
+  \begin{itemize}
+   	\item \textbf{Blank GUI}. Es la opción que viene por defecto. Genera una intefaz de usuario en blanco y es conveniente elegirla siempre que las otras plantillas no sean un punto de partida adecuado para la interfaz que se quiere crear. O que más bien se busque empezar desde cero.
+   	\item \textbf{GUI with Uicontrols}. Esta plantilla incluye: push buttons, sliders, radio buttons, check boxes, editables, static texts, list boxes y toggle buttons. Es básicamente un ejemplo de programa.
+   	\item \textbf{GUI with Axes and Menu}. Este tipo de plantilla ya viene predefinida con un axes, un popup menu y un button. Viene dado como otro ejemplo.
+   	\item \textbf{Question Dialog}. Como su nombre propiamente indica, la plantilla genera directamente un cuadro de diálogo. Está compuesta por una imagen, un static text y dos botones (\textit{Yes} y \textit{No}).
+   \end{itemize}
+  
+  
+  
+  La opción que nos va a interesar es la primera (\textit{Blank GUI}). Por lo tanto,  la elegimos y se nos genera una ventana de desarrollo para GUI  como la de la figura \ref{fig:GUI3}:
+ 
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{figuras/GUI/GUI3}
+  \caption{Ventana de desarrollo de GUI}
+  \label{fig:GUI3}
+  \end{figure}
+  Lo primero que nos llama la atención es la paleta donde están contenidos los componentes gráficos. Nos sirven de gran utilidad, con tan sólo pichar y soltar en la plantilla podemos empezar a contruir nuestra interfaz. En las tabla  \ref{tab:comp_GUIDE} se describe uno a uno los distintos componentes gráficos:
+       
+ 
+ 
+ 
+ \begin{table}[H] \footnotesize
+ 	\caption{Tabla de componentes en GUIDE}	
+ 	\label{tab:comp_GUIDE}
+ 	\centering
+ 		\begin{tabular}{|>{\centering\arraybackslash}m{3cm} |>{\centering\arraybackslash}m{3cm}|>{\arraybackslash}m{9cm} |}\hline
+ 		\label{tab:acc_channels}
+ 		Componente 		& Icono 	& Descripción 	    	        	\\  \hline 
+ 		&& \\
+ 		
+ 		Push Button  	&  \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI4}		& Con este componente, el usuario puede hacer click y disparar una acción específica. \\ \hline									  
+ 		&& \\
+ 		
+ 		Slider		 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI5}		& Son objetos gráficos  que permiten al usuario seleccionar valores dentro de un rango continuo. Además de poder moverse  entre un valor mínimo y máximo especificado a través de una barra de menú.\\ \hline
+ 		 		            	
+ 		&& \\
+ 		
+ 		Radio Button 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI6}		    & Al igual que pasa con el \textit{check box}, este tipo de botón posee dos estados diferentes: activo e inactivo. Presenta una características parecidas al Toggle Button diferenciándose en la forma.\\ \hline
+ 		&&  \\
+ 		
+ 		Check Box 	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI7}			& La funcionalidad de este tipo de botón es identica a la del \textit{toggle  button} exceptuando que	tiene una forma distinta. Es decir, se puede elegir estre dos estados: activo e inactivo.\\ \hline
+				
+ 		&& \\
+ 		
+ 		Edit Text	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI8}			& Un \textit{edit text} es un objeto gráfico que permite al usuario insertar una cadena de texto.	\\ \hline
+ 	
+ 		&& \\
+ 		
+ 		Static Text  	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI9}			& Un \textit{static text} es un objeto gráfico que representa una cadena de texo. El texto no puede ser modificado por el usuario. \\ \hline
+ 		 								
+ 		&& \\
+ 		
+ 		Pop-Up Menu	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI10}			& Los \textit{popup menus} son objetos gráficos que permite al usuario seleccionar los elementos pertenecientes a la lista que representa.\\ \hline
+ 		
+ 		&& \\  
+ 		
+ 		List Box	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI11}			& Son objetos gráficos que contienen una lista de elementos y posibilitan la elección de cualquiera de ellos. \\ \hline
+ 										
+ 		&& \\
+ 		   		 		
+ 		Toggle Button	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI12}			& Es un tipo de botón que presenta dos estados: activo e inactivo. \\ \hline
+ 		
+ 		&& \\
+ 		
+ 		   		 			
+ 		Table			& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI13}			& Permite generar una tabla.							\\ 
+ 		&& \\ \hline
+ 		
+ 		&& \\
+ 		   		 		
+ 		Axes			& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI14}			& Crea un nuevo conjunto de ejes para mostrar los datos activos.\\ \hline
+ 		
+ 		&& \\
+ 		   		 		
+ 		Panel			& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI15}			& Crean un marco que representa una caja rectangular sin ninguna figura dentro. Los marcos son usados para agrupar otros componentes.\\  \hline
+ 		   		 								 
+ 		&& \\
+ 		   		 		
+ 		Button Group	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI16}			& Supervisa el estado de un grupo de botones y garantiza que tan sólo un botón este activo en cada momento.\\ \hline
+ 		
+ 		&& \\
+ 		   		 		
+ 		ActiveX$ \textregistered $ Component	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI17}			& Permite mostrar controles ActiveX en la GUI.	    \\ \hline
+ 		
+ 		\end{tabular}
+ 		
+ 		
+ \end{table}
+ 
+ 
+  
+ 
+ Cuando creamos un GUIDE se generan dos tipos de archivos. Por un lado el .fig que contiene el diseño gráfico y por otro el archivo.m, en este caso es el script asociado al .fig.
+ 
+ El archivo de extensión .m está compuesto por una cabecera y por una serie de subrutinas. El nombre que se le atribuye es exactamente el mismo que al archivo.fig. 
+ 
+ A la hora de ejecutar el programa tan sólo es necesario escribir el nombre en la consola de comandos.
+ 
+ 
+ Para finalizar, si queremos familiarizarnos con  el desarrollo de interfaces gráficas a través de GUI deberíamos leernos algún manual de iniciación como el que tenemos en \cite{soft3}. Puede resultar demasiado extenso pero toca en mayor profundidad todos los puntos analizados anteriormente.
+ 
+ 
+ 
+ \subsubsection{Sumador}
+ 
+ 
+ 
+ A modo de ejemplo vamos a crear un programa simple. El programa va a ser un sumador \cite{soft1}. Consta de tres componentes: un \textit{pushbutton} (figura \ref{fig:GUI18}), un \textit{statict text} y un \textit{edit text}. Se podría complicar más pero no es el objetivo que se persigue en este apartado. Lo único que se pretende es dar una breve explicación del funcionamiento de la herramienta.
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.5\textwidth]{figuras/GUI/GUI18}
+ \caption{Elemento Push Button. Sumador.}
+ \label{fig:GUI18}
+ \end{figure}
+                  
+                  
+                  
+ Cada vez que pulsamos sobre el botón derecho del ratón encima de un componente gráfico, en este caso \textit{un pushbutton}, se nos despliega un menú con las distintas opciones (figura \ref{fig:GUI19}).       
+                  
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.4\textwidth]{figuras/GUI/GUI19}
+ \caption{Opciones para un componente gráfico}
+ \label{fig:GUI19}
+ \end{figure}
+                   
+   Si elegimos la opción \textit{Property Inspector}, nos aparece un cuadro como el de la figura \ref{fig:GUI20} que nos da la posibilidad de modificar las propiedades del componente gráfico.                           
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.4\textwidth]{figuras/GUI/GUI20}
+ \caption{\textit{Property Inspector}}
+ \label{fig:GUI20}
+ \end{figure}
+                    
+  Una vez que nos dispongamos a editar las propiedades de un componente gráfico será porque se nos ha desplegado una consola (variará en función del elemento que estemos editando) como la de la figura \ref{fig:GUI21}. Si el usuario lo desea,  podrá modificar las propiedades. Cada objeto es diferente al igual que sus propiedades. En este caso, tenemos un \textit{pushbutton} y le podríamos cambiar propiedades tales como el color, la posición,el string,el nombre,etc.                  
+ 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI21}
+ \caption{Propiedades. \textit{PushButton}.}
+ \label{fig:GUI21}
+ \end{figure}
+ 
+   Conviene destacar alguna propiedad importante:
+                     
+  
+   
+    \textit{Tag} nos permite modificar el nombre que va a presentar la subrutina ligada al componente gráfico que estamos configurando. 
+   
+   \vspace{10mm}
+   Dejando de un lado el diseño gráfico y la configuracíon de las propiedades el objeto nos situamos sobre el script. Un recurso bastante bueno, que se encuentra en la barra de menu es la opción \textit{show functions} (figura \ref{fig:GUI22}). Facilita en gran medida situarse en la subrutina asociada al objeto deseado con tan solo un click.              
+  
+  \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI22}
+  \caption{Opción. \textit{Show functions}.}
+  \label{fig:GUI22}
+  \end{figure}
+                      
+  Por otra parte, no paramos de hablar de las funciones \textit{callbacks} asociadas a los objetos que se generan automáticamente cuando  compilamos el archivo .fig del diseño gráfico correspondiente. Sin embargo, no hemos mostrado ningún ejemplo del código todavía. A continuación se muestra la función callback para el \textit{pushbutton}:    
+        
+   \vspace{5mm} 
+   
+   \begin{lstlisting} 
+   % --- Executes on button press in pushbutton1.
+   function pushbutton_Callback (hObject, eventdata, handles)
+   % hObject	handle to pushbutton1 (see GCBO)
+   % eventdata	reserved - to be defined in a future version of MATLAB
+   % handles 	structure with handles and user data (see GUIDATA)
+   \end{lstlisting} 
+  
+  
+        
+        
+   Volvemos a repetir todo el proceso anterior, en este caso para un \textit{edit text} (Figura \ref{fig:GUI24}):               
+                       
+    \begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI24}
+  \caption{Primer \textit{Edit Text}. Sumador}
+  \label{fig:GUI24}
+  \end{figure}
+                        
+  y el código para para la función callback perteneciente al \textit{edit text} vendría dado como:  
+  
+  \begin{lstlisting}
+  function edit1_Callback (hObject, eventdata, handles)
+  % hObject		handle to edit1 (see GCBO)
+  % eventdata	reserved - to be defined in a future version of MATLAB
+  % handles		structure with handles and user data (see GUIDATA)
+  \end{lstlisting}      
+ 
+ 
+ 
+ 
+ Pasamos a la parte más tediosa, la implementación de la función. Vamos a explicar todas las sentencias y por separado. El fragmento de código se muestra a continuación:
+ 
+ 
+  \begin{lstlisting}
+   function edit1_Callback (hObject, eventdata, handles)
+   Val=get(hObject, 'String'); % Almacenar valor ingresado
+   NewVal = str2double(Val); % Transformar a formato double
+   handles.edit1=NewVal; % Almacenar en identificador
+   guidata(hObject,handles); % Salvar datos de la aplicación
+   \end{lstlisting}             
+ 
+ 
+                  
+  En la primera sentencia  extraemos el valor que el usuario introduzca en el \textit{edit text} y lo almacenamos en la variable \textit{Val}. Para una mejor compresión, es interesante saber como funciona el comando \textit{get}:
+  
+  \begin{itemize}
+  	\item En el campo hObjet se especifica el handles correspondiente al objeto donde estamos trabajando.
+  	\item String es la propiedad elegida. En este caso pedimos que nos devuelva el campo String del \textit{Edit Text}
+  \end{itemize}
+  
+  
+  La setencia \textit{str2double} hace una conversión del valor de string a double, o lo que es lo mismo, de cadena de texto a número.
+  
+  
+  Posteriormente se guarda en el identificador correspondiente al objeto para poder guardar los datos de la aplicación gracias al comando \textit{guidata}.
+                   
+                  
+ Procedemos a realizar el mismo proceso para el segundo \textit{edit text} (figura \ref{fig:GUI27}).
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI27}
+ \caption{Segundo \textit{Edit Text}. Sumador.}
+ \label{fig:GUI27}
+ \end{figure}
+                   
+                   
+  Lo único que hay que tener cuenta es cambiar el identificador correpondiente al nuevo objeto. El código para \textit{edit2} es el siguiente:
+  
+  
+  \begin{lstlisting}
+  function edit2_Callback (hObject, eventdata, handles)
+  Val=get (hObject, 'String'); % Almacenar valor ingresado
+  NewVal = str2double (Val); % Transformar a formato double
+  handles.edit2=NewVal; % Almacenar en identificador
+  guidata(hObject, handles); % Salvar datos de la aplicación
+  \end{lstlisting}                 
+ 
+ 
+ Finalmente, estamos acercándonos a nuestro objtetivo. Para conseguirlo, es necesario crear un \textit{static text} como el de lafigura  \ref{fig:GUI29}, que nos muestre el resultado de la suma. 
+ \begin{figure}[H]
+ \centering
+ \includegraphics[width=0.7\textwidth]{figuras/GUI/GUI29}
+ \caption{Static Text. Sumador.}
+ \label{fig:GUI29}
+ \end{figure}
+                   
+ Hasta ahora, tenemos almacenados los dos sumandos en los identificadores \textit{handles.edit1} y \textit{handles.edit2}. Queremos que cuando el usuario pulse el botón aparezca el resultado a través del \textit{static text}. La solución se consigue dándole funcionalidad al \textit{pushbutton}.
+ 
+ \begin{lstlisting}
+  function pushbutton1_Callback(hObject, eventdata, handles)
+  A=handles.edit1;
+  B=handles.edit2;
+  suma=A+B;
+  set(handles.text1, 'String',suma);
+  \end{lstlisting}
+ 
+  En primer lugar, se extrae el valor de los dos sumandos. Después se procede a sumarlo. Finalmente hacemos uso del comando \textit{set}. Este comando nos permite modificar las propiedades de un objeto. 
+ 
+ 
+ El funcionamiento de comando \textit{set} sigue las siguientes pautas:
+ 
+ \begin{itemize}
+	\item Se especifica el objeto usando la referencia asociada al \textit{static text}, \textit{handles.text1}.
+	\item En el segundo campo  fija la propiedad a modificar, en este caso el String por donde se mostrará el resultado de la suma.
+	\item Finalmente le pasamos el valor de la suma.
+	
+		
+	
+ \end{itemize}
+ 
+
+ 
+ 
+ 
+ 
+                      
+Una vez que tenemos implementado el programa queda ejecutarlo (figura \ref{fig:GUI31}) y ver si funciona correctamente(figura \ref{fig:GUI32}).
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/GUI/GUI31}
+\caption{Componentes GUI. Sumador.}
+\label{fig:GUI31}
+\end{figure}
+                       
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/GUI/GUI32}
+\caption{Ventana gráfica para el programa \textit{Sumador}}
+\label{fig:GUI32}
+\end{figure}
+                        
+                        
+  \subsection{GUI en Matlab sin hacer uso de GUIDE. Programando}                      
+
+
+La manera de construir una interfaz gráfica de usuario sin hacer uso del entorno de desarrollo integrado (GUIDE) es servirnos del comando \textit{uicontrol}. Este comando nos crea los elementos necesarios para diseñar las interfaces y nos permite caracterizar un elemento inicializando las propiedades en el momento que es utilizado.
+
+
+A modo orientativo vamos a ver el código de un programa simple \cite{soft2}, sería demasiado engorroso poner un fragmento de código del proyecto, además en la siguiente sección se hará un estudio detallado del mismo. El programa es el siguiente:
+
+\vspace{5mm}
+\begin{lstlisting}
+function Simple_ProgGUI
+f=figure('Visible', 'on', 'MenuBar', 'none', 'resize', 'off',...
+	'NumberTitle', 'off', 'Name', 'Ejemplo 1',...
+	 'position', [300,400,150,150]);
+entrada=uicontrol('style','edit','string','','position', [30,120,90,20]);
+salida=uicontrol('style','text','string','','position', [30,70,90,20]);
+Ver=uicontrol('style','pushbutton','string','Ver','Callback',@ver,...
+	'position', [30,20,90,20]);
+
+	function ver(hObject, evendata)
+		texto=get(entrada,'string');
+		set(salida,'string',texto);
+	end
+end
+\end{lstlisting}
+
+
+
+
+
+
+La estructura que presenta posee una función principal \textit{Simple\_ProgGUI}  donde se define la ventana con todos sus elementos. Para darle  funcionalidad a los componentes gráficos que se han ido creando es necesario establecer las subrutinas asociadas a cada uno dentro de la función principal (la función \textit{ver} perteneciente al botón ha sido implementada en el interior de la función principal del programa ejemplo). La verdad que se puede considerar una elección del programador, los scripts implementados en el proyecto se caracterizan por dejar fuera de la función principal los \textit{callbacks} de los componentes gráficos. Veamos más detenidamente cada una de las sentencias.
+
+ Inicialmente se crea un \textit{figure} con las siguientes propiedades:
+
+\begin{itemize}
+	\item 'Visible'$ \rightarrow $ 'on'. Mantiene la ventana visible al usuario. Es posible  ocultarla sin necesidad de cerrarla.
+	\item 'MenuBar'$ \rightarrow $ 'none'. Inhabilita la barra de menú de la ventana.
+	\item 'Resize'$ \rightarrow $ 'off'. Desactiva la posibilidad de restaurar la ventana.
+	
+	\item 'NumberTitle'$ \rightarrow $ 'off'. Desactiva el título de la ventana. El número determina la posición que ocupa la figura entre todas las que han sido creadas.
+	\item 'Name'$ \rightarrow $ 'Ejemplo 1'. Se estable un nombre concreto a la figura.
+	\item 'Position'$ \rightarrow $ [300,400,150,150]. Se fija la posición de la ventana en la pantalla, además de la anchura y altura de la misma.
+	
+	\end{itemize}
+	
+	\vspace{20mm}
+	
+	Al igual que con el comando \textit{figure}, para crear cualquier elemento se fijan las propiedades de la misma forma (se hace uso del comando \textit{uicontrol}). Para poder difenciar entre elementos se utiliza la propiedad 'style'. Cuando se quiere especificar el objeto al que pertenecen se recurre a la propiedad 'parent'.
+	
+	En la figura vienen definidos tres tipos de elementos: un \textit{edit text}, un \textit{static text} y \textit{un pushbutton}. 
+	
+	El callback del \textit{pushbutton} llamado \textit{ver} simplemente lo que hace es recoger  la cadena de texto que el usuario introduce en el \textit{edit text} y mostrarla a través del \textit{static text}. Se ejecuta cada vez que el usuario hace un click con el ratón en el botón de la figura.
+
+ La imagen resultante de la interfaz gráfica la tenemos en la figura \ref{fig:GUI34}:
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI34}
+\caption{GUI sin hacer uso de GUIDE. Programa ejemplo.}
+\label{fig:GUI34}
+\end{figure}
+
+\section{Descripción de la aplicación}
+
+ El propósito inicial que se marcó fue la realización de una aplicación Matlab que  permitiera la visualización y configuración de los datos recogidos por los sistemas de monitorización del movimiento del cuerpo humano \textit{GaitWatch Manager} y \textit{ECnsole}. La implementación del software de los dispositivos difiere en cierta medida  por el ajuste a las características propias de cada uno de los sistemas. Se va a comenzar con la descripción detallada del GaitWatch, esta decisión viene determinada al tener en cuenta la mayor complejidad respecto al dispositivo ECnsole. Sin embargo, no es especialmente relevante ya que las aplicaciones de los dos dispositivos presentan características muy similares. 
+ 
+ En un primer instante se pensó que iba tener  acceso al sistema de monitorizacón de la marcha \textit{GaitWactch} y extraer los datos necesarios para poder calcular los parámetros de calibración de manera correcta, pero finalmente no fue así. Cabe destacar que la aplicación está preparada para obtener los resultados óptimos en el momento que poseamos los datos. Sin embargo, para el dispositivo ECnsole no surgió ningún problema en ese sentido. Por razones obvias se va a hacer más hincapié en cuestiones referentes a los resultados (no así en cuanto a la funciónalidad que ofrece la aplicación) cuando se llegue al apartado correspondiente a ECnsole.
+
+
+
+\subsection{Pantalla principal (GaitWatch Manager)}
+
+
+La presentación de las imágenes se produce de manera secuencial de la misma forma que se ha configurado el programa.
+La pantalla inicial (figura \ref{fig:GUI35}) está constituida por un menú principal con las opciones \textit{File}, \textit{Calibration} y \textit{Preferences}. Se pretende que cuando el usuario haya configurado adecuadamente el dispositivo y elegido las señales que desea mostrar, los resultados sean mostrados en la pantalla de inicio.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/GUI/GUI35}
+\caption{Apariencia de la pantalla principal de la aplicación del GaitWatch.}
+\label{fig:GUI35}
+\end{figure}
+
+\subsection{File (GaitWatch Manager)}
+
+Una vez que tenemos elegido \textit{File} (figura \ref{fig:GUI36}) nos aparece la opción \textit{Load Data} con la que podemos cargar todos los  datos recogidos de cada uno de los segmentos corporales.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI36}
+\caption{Apariencia de la pantalla principal de la aplicación del GaitWatch. Opción: \textit{File}}
+\label{fig:GUI36}
+\end{figure}
+
+
+
+Da paso a otra ventana y nos da la posibilidad de elegir si queremos que los datos sean cargados directamente del GaitWatch por medio de \textit{Load data from GaitWatch} o por el contrario, si ya tenemos almacenados los datos en el disco duro no tener que acceder al dispositivo físicamente. Viene indicado como \textit{Load data from hard drive} (figura \ref{fig:GUI42}).
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI42}
+\caption{Selección del origen de los datos}
+\label{fig:GUI42}
+\end{figure}
+Al pinchar en \textit{Load data} ha de aparecer una ventana de selección de archivo como la que se ve en la figura \ref{fig:GUI43}. Esto se consigue usando la función \textit{uigetfile}. Seguidamente, los archivos se extraerían de la carpeta \textit{data} asociada al GaitWatch. Cabe destacar que los datos recogidos fueron tomados en distintas condiciones: andando rápido, andando normal, saltando,etc. Por otro lado, sabemos que el interior de los archivos está compuesto por todos los canales tomados con los tres tipos de sensores inerciales: Acelerómetro,Giroscopo y Magnetómetro.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI43}
+\caption{Selección del archivo de datos}
+\label{fig:GUI43}
+\end{figure}
+
+Entre todos los segmentos corporales, el magnetómetro solo es usado para captar los movimientos del tronco. Las características que posee el magnetómetro propician tener la información referente a los tres ejes: X, Y y Z. La figura \ref{fig:GUI44} esta formada por 3 ventanas para que el usuario pueda determinar los errores del magnetómetro y el programa proceda a su corrección inmediata.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI44} \hspace{10mm}
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI45}\vspace{10mm}
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI46}
+\caption{Selección de los errores del magnetómetro para su eliminación. Ejes: X,Y y Z}
+\label{fig:GUI44}
+\end{figure}
+
+\subsubsection{Select the unit}
+
+En un principio se creó una ventana que mostrase el listado de los segmentos corporales donde se habían colocado los sensores con la posibilidad de elección de las partes que el usuario considerase convenientes. Sin embargo, queda más intuitivo colocar una imagen que represente el cuerpo de una persona consiguiendo el mismo resultado como se puede ver en la figura \ref{fig:GUI47}.  
+
+Los 7 segmentos corporales monotorizados por el GaitWatch son: 
+
+\begin{itemize}
+	\item Espinilla derecha 
+	\item Espinilla izquierda
+	\item Muslo derecho
+	\item Muslo izquierdo
+	\item Brazo derecho
+	\item Brazo izquierdo
+	\item Tronco
+\end{itemize}
+
+En el \textit{listbox} de la derecha de la figura \ref{fig:GUI47} quedan acumulados cada uno de los segmentos eligidos por el usuario. Se consigue pinchando en los distintos \textit{checkboxs} que hace que se vayan añadiendo y quitando los segmentos. De esta forma se puede crear una lista personalizada. 
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI47}
+\caption{Pantalla de selección de los  componentes corporales}
+\label{fig:GUI47}
+\end{figure}
+
+Existe la opción de seleccionar todas las unidades a la vez. Si pinchamos, automáticamente el botón \textit{Select all} adquiere una nueva funcionalidad que permite deseleccionar todos los segmentos de un plumazo a través del nuevo botón \textit{Unselect all}. En la figura \ref{fig:GUI48} se puede visualizar. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI48}
+\caption{Pantalla de selección de los  componentes corporales. Select all/Unselect all}
+\label{fig:GUI48}
+\end{figure}
+
+En el caso de que ninguno de los elementos del cuerpo esté seleccionado y el usuario desee pasar a \textit{la pantalla de selección de señales}, está programado para que nos aparezca el mensaje de error "\textit{You haven't selected any body part}"(figura \ref{fig:GUI49}). Se impediría el acceso a la siguiente ventana, obviamente no tendría sentido que se nos dé la posibilidad de elegir las señales si no existe ninguna.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI49} \hspace{5mm}
+\includegraphics[width=0.1\textwidth]{figuras/GUI/GUI145} \hspace{5mm}
+ \includegraphics[width=0.4\textwidth]{figuras/GUI/GUI51}
+\caption{Pantalla de selección de los  componentes corporales. Error}
+\label{fig:GUI49}
+
+\end{figure}
+Otro de los cuadro de diálogo que pueden aparecer por pantalla es un mensaje aplicando la pregunta "\textit{Do you want to return to the previous window}" (figura \ref{fig:GUI126}) marcando de primeras la opción \textit{No}.  En ocasiones el usuario puede que quiera cancelar y volver la la pantalla anterior. Pero no siempre se genera el mensaje, si es la primera vez que accedemos a la ventana \textit{Select de unit} directamente se posiciona sobre la pantalla inicial, si por el contrario se  viene desde la ventana de \textit{selección de señales}  para no perder la configuración establecida se efectuará la pregunta correspondiente. 
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI126}
+\caption{Pantalla de selección de los  componentes corporales. Aviso}
+\label{fig:GUI126}
+\end{figure}
+
+
+
+\subsubsection{Select the data you wish to be displayed}
+
+A priori esta ventana parece solamente la pantalla de \textit{selección de señales} previa a la ventana de configuración de las figuras. De manera no transparente al usuario cuando éste último hace click en el botón \textit{Next} se realizará el proceso de calibración y se le aplicarán los algoritmos de orientación a las señales resultantes. Los procesos pueden permanecer con los valores de los parámetros fijados por defecto o por el contrario, el usuario puede modificarlos en las opciones de Calibración y Orientación. Si atendemos a la imagen de la figura \ref{fig:GUI152} vemos que la pantalla \textit{Select the data you wish to be displayed} está formada por tres listas principalmente denominadas:
+\begin{itemize}
+	\item \textbf{Raw data} \textrightarrow  Son los datos originales extraidos directamente del sistema de sensores magnéticos e inerciales GaitWatch Manager.
+	\item \textbf{Calibrated} \textrightarrow Una vez que ya tenemos los datos se le aplica el procedimiento de calibración por medio de los algoritmos correspondientes. Son necesarios los parámetros de calibración calculados en la opción de \textit{Calibration} de la pantalla inicial o no necesariamente si ya se tenían. Los datos vendrán expresados en unidades de calibración.
+	\item \textbf{Orientation} \textrightarrow De manera equivalente al proceso de calibración se aplican los algoritmos de Orientación. Las señales resultantes son las que ibamos buscando desde un principio y las que se ajustan más a la realidad.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI52}
+\caption{Pantalla de selección de señales}
+\label{fig:GUI152}
+\end{figure}
+
+
+
+
+
+A continuación vamos a mostrar la tabla \ref{tab:senalesGW} con el conjunto de señales existente para cada una de las listas si se hubiesen escogido todos los segmentos corporales:
+
+
+
+
+\begin{table}[H] \footnotesize \hspace{10mm}
+	\caption{Señales del sistema GaitWatch Manager}	
+	\label{tab:senalesGW}
+		
+		\begin{center}
+		
+		\begin{tabular}{|l|l|l|}\hline
+		\label{tab:acc_channels}
+		\textbf{Raw data} 				& \textbf{Calibrated} 	& \textbf{Orientation} 		\\ \hline
+		Acceleration(X axis)-Right Shank & Acceleration(X axis)-Right Shank-C			& Pitch-Acc-Right Shank														\\
+		Acceleration(Z axis)-Right Shank	& Acceleration(Z axis)-Right Shank-C			& Pitch-KF-Right Shank														\\
+		Ang.Rate(Y axis)-Right Shank & Ang.Rate(Y axis)-Right Shank-C			&   Pitch-Gyro-Right Shank														\\
+		Acceleration(X axis)-Right Thigh	& Acceleration(X axis)-Right Thigh-C			& Pitch-Acc-Right Thigh														\\
+		Acceleration(Z axis)-Right Thigh  & Acceleration(Z axis)-Right Thigh-C			&   Pitch-KF-Right Thigh														\\
+		Ang.Rate(Y axis)-Right Thigh	& Ang.Rate(Y axis)-Right Thigh-C			&   Pitch-Gyro-Right Thigh														\\
+		Acceleration(X axis)-Left Shank  & Acceleration(X axis)-Left Shank-C			&   Pitch-Acc-Left Shank													\\
+		Acceleration(Z axis)-Left Shank	& Acceleration(Z axis)-Left Shank-C			&   Pitch-KF-Left Shank													\\
+		Ang.Rate(Y axis)-Left Shank				& Ang.Rate(Y axis)-Left Shank-C			& Pitch-Gyro-Left Shank													\\
+		Acceleration(X axis)-Left Thigh				& Acceleration(X axis)-Left Thigh-C			& Pitch-Acc-Left Thigh													\\	
+		Acceleration(Z axis)-Left Thigh				& Acceleration(Z axis)-Left Thigh-C			& Pitch-KF-Left Thigh \\
+		
+		Ang.Rate(Y axis)-Left Thigh				& Ang.Rate(Y axis)-Left Thigh-C			& Pitch-Gyro-Left Thigh \\
+		
+		Ang.Rate(X axis)-Left Arm				& Ang.Rate(X axis)-Left Arm-C			& Pitch-A.Int-Left Arm \\
+		
+		Ang.Rate(Y axis)-Left Arm				& Ang.Rate(Y axis)-Left Arm-C			& Roll-A.Int-Left Arm \\
+		
+		Ang.Rate(X axis)-Right Arm				& Ang.Rate(X axis)-Right Arm-C			& Pitch-HPF-Left Arm \\
+		
+		Ang.Rate(Y axis)-Right Arm				& Ang.Rate(Y axis)-Right Arm-C			& Roll-HPF-Left Arm \\
+		
+		Acceleration(X axis)-Center Trunk				& Acceleration(X axis)-Center Trunk-C			& Pitch-A.Int-Left Arm \\
+		
+		Acceleration(Y axis)-Center Trunk				& Acceleration(Y axis)-Center Trunk-C			& Roll-A.Int-Left Arm \\
+		
+		Acceleration(Z axis)-Center Trunk				& Acceleration(Z axis)-Center Trunk-C			& Pitch-HPF-Left Arm \\
+		
+		Ang.Rate(X axis)-Center Trunk				& Ang.Rate(X axis)-Center Trunk-C			& Roll-HPF-Left Arm \\
+		
+		Ang.Rate(Y axis)-Center Trunk				& Ang.Rate(Y axis)-Center Trunk-C			& Pitch-A.Int-Right Arm \\
+		
+		Ang.Rate(Z axis)-Center Trunk				& Ang.Rate(Z axis)-Center Trunk-C			& Roll-A.Int-Right Arm \\
+		
+		Mag.Field(X axis)-Center Trunk				& Mag.Field(X axis)-Center Trunk-C			& Pitch-HPF-Right Arm \\
+		
+		Mag.Field(Y axis)-Center Trunk				& Mag.Field(Y axis)-Center Trunk-C			& Roll-HPF-Right Arm \\
+		
+		Mag.Field(Z axis)-Center Trunk				& Mag.Field(Z axis)-Center Trunk-C			& Pitch-Acc-Center Trunk \\ 
+		
+		& & Roll-Acc-Center Trunk \\ 
+		& & Yaw-Mag-Center \\
+		& & Pitch-KF-Center Trunk \\
+		& & Roll-KF-Center Trunk \\
+		& & Pitch-Gyro-Center Trunk \\
+		& & Roll-Gyro-Center Trunk \\
+		& & Yaw-Gyro-Center Trunk \\
+		& & Pitch-EKF-Center Trunk \\
+		& & Roll-EKF-Center Trunk \\
+		& & Yaw-EKF-Center Trunk \\ \hline												
+		\end{tabular}
+		\end{center}
+		
+\end{table}
+
+ 
+
+		
+Del mismo modo que en la ventana \textit{Select the unit} las tres listas poseen un botón con doble funcionalidad (\textit{Select All}/\textit{Unselect All}) para poder seleccionar todos los elementos  y una vez que lo aplicamos podemos conseguir el efecto totalmente contrario eliminando la selección todas las señales. En la figura \ref{fig:GUI53} tenemos un ejemplo.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI53}
+\caption{Pantalla de selección de señales. Todas las señales seleccionadas}
+\label{fig:GUI53}
+\end{figure}
+
+
+
+Al seleccionar las opciones de calibración nos aparece una nueva ventana dividida a su vez en tres por un nuevo elemento, la pestaña. Cabe destacar que las pestañas inicialmente nos ayudaron a resolver el problema de aglutinar toda la información que no cabía en una sóla página. Cada pestaña está asociada a los sensores inerciales utilizados, es decir, la primera pestaña a los acelerómetros de un eje y tres ejes, la segunda pestaña al giróscopo de un eje y la tercera pestaña al magnetómetro de tres ejes. La figura \ref{fig:GUI56} nos muestra la ventana \textit{Select calibration parameters}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI54} \hspace{10mm}
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI55} \vspace{10mm}
+
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI56}
+\caption{Selección de parámetros: Acelerómetro, Giróscopo y Magnetómetro.}
+\label{fig:GUI56}
+\end{figure}
+
+
+Si pinchamos en el botón \textit{Browse} de cualquiera de las parte del cuerpo ha de parecer una ventana de selección de archivo como las de las figura \ref{fig:GUI59}, independientemente del sensor al que pretendamos configurar sus parámetros de calibración. Cada segmento corporal tiene asociado los ejes que han sido medidos con ese sensor. Además la ventana se abre directamente por donde están guardados los archivos de los parámetros de calibración del sensor correspondiente facilitando la búsqueda.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI57} \hspace{10mm}
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI58} \vspace{10mm}
+
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI59}
+\caption{Selección de parámetros: Acelerómetro, Giróscopo y Magnetómetro.}
+\label{fig:GUI59}
+\end{figure}
+
+El resultado de cambiar los archivos que contienen los parámetros de calibración por otros distintos sería el que se muestra en la figura \ref{fig:GUI62}. Estos cambios se harán efectivos en el momento que se proceda a pulsar en botón \textit{Next} de la pantalla de selección de señales.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI60} \hspace{5mm}
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI61} \hspace{5mm}
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI62}
+\caption{Modificación de archivos de parámetros de calibración: Acelerómetro, Giróscopo y Magnetómetro.}
+\label{fig:GUI62}
+\end{figure}
+
+
+
+Por otro lado, al pinchar en el botón \textit{options}, debajo de la lista \textit{Orientation}, aparecerá una ventana (figura \ref{fig:GUI63}) en la que podremos configurar algunas opciones del proceso de cálculo de la orientación. De tal manera que se podrá seleccionar cualquier método peteneciente a uno de los segmentos corporales (cuyos parámetros se permitan cambiar) para proceder a modificar sus valores.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{figuras/GUI/GUI63}
+\caption{Configuración de los algoritmos de estimación de la orientación}
+\label{fig:GUI63}
+\end{figure}
+
+
+Seguidamente se enumera una lista de los segmemtos corporales pertenecientes a las piernas incluyendo los algoritmos del cáculo de la orientación que pueden ser modificados y sus repectivos parámetros. La figura \ref{fig:GUI64} nos vale de ejemplo.
+
+\begin{itemize}
+	\item Right Shank \textrightarrow Kalman Filter\textrightarrow Alpha y Beta
+	\item Left Shank \textrightarrow Kalman Filter\textrightarrow Alpha y Beta
+	\item Right Thigh \textrightarrow Kalman Filter\textrightarrow Alpha y Beta  
+	\item Left Thigh \textrightarrow Kalman Filter\textrightarrow Alpha y Beta 
+	
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{figuras/GUI/GUI64} 
+
+\caption{Configuración de los algoritmos de estimación de la orientación. Piernas.}
+\label{fig:GUI64}
+\end{figure}
+
+Del mismo modo se enumera una lista de los segmemtos corporales pertenecientes a las brazos incluyendo los algoritmos del cáculo de la orientación que pueden ser modificados y sus repectivos parámetros. La figura \ref{fig:GUI65} nos vale de ejemplo.
+
+\begin{itemize}
+	\item Right Arm \textrightarrow High Pass Filter options\textrightarrow Lower Freq. Limit
+	\item Left Arm \textrightarrow High Pass Filter options\textrightarrow Lower Freq. Limit
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{figuras/GUI/GUI65} 
+
+\caption{Configuración de los algoritmos de estimación de la orientación. Brazos.}
+\label{fig:GUI65}
+\end{figure}
+
+
+Por último, se cita al tronco  incluyendo los algoritmos del cáculo de la orientación que pueden ser modificados y sus repectivos parámetros. La figura \ref{fig:GUI68} nos vale de ejemplo.
+
+\begin{itemize}
+	\item Center Trunk 
+	\begin{itemize}
+		\item Kalman Filter
+		\begin{itemize}
+			\item Alpha
+			\item Beta
+		
+		\end{itemize}
+		\item Kalman Filter Extended
+		\begin{itemize}
+			\item GyroVarX 
+			\item GyroVarY
+			\item GyroVarZ
+			\item Mu. Gain
+			\item Alpha
+				\end{itemize}
+	\end{itemize}
+	
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{figuras/GUI/GUI66} \hspace{10mm} 
+\includegraphics[width=0.45\textwidth]{figuras/GUI/GUI68}
+\caption{Configuración de los algoritmos de estimación de la orientación. Tronco.}
+\label{fig:GUI68}
+\end{figure}
+
+A diferencia del dispositivo ECnsole se le ha introducido una barra de progreso (figura \ref{fig:GUI69}) mientras se ejecutan los procesos de calibración y de cálculo de los algoritmos de orientación. El retardo de procesammiento es aproximadamente de unos 10 segundos. La barra de progreso facilita al usuario tener una referencia de tiempo en el paso de la ventana \textit{Select the data you wish to be displayed} a la ventana \textit{Set structure of figures}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/GUI/GUI69} \hspace{2mm}
+
+\caption{Barra de progreso}
+\label{fig:GUI69}
+
+\end{figure}
+
+
+
+
+
+
+\subsubsection{Set structure of figures}
+
+A partir del nombre de la ventana, \textit{Set structure of figures}, se pueden intuir sus  características. Esta ventana permite al usuario configurar las figuras a su antojo, es decir, podrá establecer el número de gráficas con sus respectivas señales. Las señales seleccionadas en la pantalla anterior se aglutinan de manera secuencial (manteniendo el siguiente orden: Raw data, Calibrated y Orientation) en el listbox de la parte superior-izquierda de la figura \ref{fig:GUI71}.
+
+
+
+
+Las figuras se van organizando en pestañas, las pestañas se pueden generar de forma ilimitada en función de lo que el usuario vaya requeriendo. Cada figura o pestaña se puede configurar con una de 9 combinaciones posibles (después se verá con más detalle) y la de 3x3 es la que permitiría aglutinar un mayor número de gráficas (9).
+
+
+ 
+
+Una de las cuestiones que nos dió más problemas fue la creación de las pestañas. Se generan a través de las funciones \textit{uitab} (pestaña) y \textit{uitabgroup} (contendor de pestañas). Las funciones están semi-documentadas, lo que significa que no tienen apoyo o documento de página, pero  si tienen secciones de ayuda legibles dentro de sus archivos -m. 
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI71} 
+
+\caption{Componentes \textit{Set structure figures}}
+\label{fig:GUI71}
+
+\end{figure}
+
+La tabla \ref{tab: compSetStructure} recoge los componentes gráficos de la ventana \textit{Set structure of figures}. Se muestra a continuación:
+
+ 
+
+
+\begin{table}[H] \footnotesize
+  \caption{Componentes \textit{Set structure of figures}}	
+  \label{tab: compSetStructure}
+  \centering
+  \begin{tabular} {|>{\centering\arraybackslash}m{3cm} |>{\centering\arraybackslash}m{3cm}|>{\arraybackslash}m{9cm} |} \hline
+   	\label{tab:acc_channels}
+   	Componente 		& Icono 	& Descripción 	    	        	\\  \hline 
+   		 	    		&& \\ 		
+   	
+   	
+   	Pestaña			& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI81}			& El elemento gráfico permite cambiar entre figuras de forma rápida. Se referencia como \textit{Figure} e inmediatamente se le añade el número con la posición que ocupa. La forma de las pestañas es rectángular y se ubican unas al lado de la otras distribuidas en fila. Cuando un usuario  accede a una de las pestañas (con un  clic) se activan todos los elementos asociados a misma.\\ \hline
+   	
+   	&& \\
+   	  		
+   Añadir figura			& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI82}			& Crea una una pestaña o figura nueva. \\  \hline
+   	  						   && \\		 
+   	  	 		
+  Borrar figura	& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI83}			& Elimina la figura deseada. Posteriormente se mostrará un ejemplo. \\ \hline
+   
+  && \\	
+      		
+  Opciones de figura& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI84}			& Despliega una nueva ventana de opciones. El usuario podrá determinar las dimensiones de cada una de los \textit{figures}.	Luego veremos el diseño de la ventana.\\ \hline
+   	  
+  && \\
+   	  
+  Reiniciar			& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI85}			& El botón permite eliminar todas las configuraciones de las  figuras realizadas y partir nuevamente de la fase inicial.   \\ \hline 
+   	    
+  
+  && \\
+   	    
+  Añadir señales		& \includegraphics[width=0.07\textwidth]{figuras/GUI/GUI86}			& El botón incorpora a las gráficas (listboxs)  seleccionadas en ese momento las señales que haya elegido. \\  \hline
+   	
+  && \\ 	
+   		
+  Quitar señales			& \includegraphics[width=0.07\textwidth]{figuras/GUI/GUI87}			& El botón elimina de las gráficas (listboxs) que estén seleccionadas en ese momento las señales que haya elegido de cada una. \\ \hline
+   		
+  && \\
+   		   		   		
+  Selección de gráfica			& \includegraphics[width=0.05\textwidth]{figuras/GUI/GUI88}			& El elemento sirve para referenciar la gráfica que va a ser modificada en ese momento. \\ \hline
+   	
+  && \\	   		   		   		
+  
+  Volver			& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI89}			&  Nos da la opción de volver a la ventana anterior (Select the data you wish to be displayed). \\ \hline
+   	
+  && \\ 
+  		
+  Siguiente			& \includegraphics[width=0.15\textwidth]{figuras/GUI/GUI90}			& El botón \textit{Siguiente} nos lleva a la pantalla principal mostrándonos los resultados de las gráficas.  \\ \hline
+   	
+   		  	   		   		   	
+   		    
+ 	\end{tabular}
+ 	 		
+ 	 		
+ 	\end{table}
+
+
+En la parte inferior de la ventana aparecen los listboxs donde se irán incluyendo las señales deseadas. Inicialmente sólo se puede visualizar uno, el correposdiente a la configuración de 1x1.  Las nueve configuraciones posibles serían de: \textbf{1x1} (1 gráfica), \textbf{1x2} (2 gráficas) ,\textbf{1x3} (3 gráficas), \textbf{2x1} (2 gráficas),\textbf{2x2} (4 gráficas),\textbf{2x3} (6 gráficas),\textbf{3x1} (3 gráficas),\textbf{3x2} (6 gráficas) y \textbf{3x3} (9 gráficas). Veremos en las imágenes siguientes como la configuración establecida de los listboxs se corresponde con una estructura gráfica matricial de filas y columnas. 
+
+
+
+Al pulsar sobre el botón \textit{Figure Options} se despliega una ventana  con el mismo nombre (figura \ref{fig:GUI117}). Aquí el usuario puede determinar las dimensiones de las figuras.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI117} 
+
+\caption{Figure Options}
+\label{fig:GUI117}
+
+\end{figure}
+
+
+ Los listboxs y checkboxs activados de la figura irán acorde a la dimensiones establecidas en este momento, es decir, mantendrán la estructura matricial indicada.
+ \vspace{5mm}
+
+Además, existen dos posibilidades de error (figura \ref{fig:GUI121}):
+
+\begin{itemize}
+
+	\item La primera se da cuando las dimensiones introducidas no se corresponden con ninguna de las combinaciones citadas anteriormente. Aparecería el mensaje de error:  \textit{Figure's dimensions are invalid}.
+	\item La segunda cuando el usuario olvida introducir al menos una de las dimensiones. El mensaje de error que se generaríak es el siguiente: \textit{You must enter for all required fields}.
+\end{itemize}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI120} \hspace{10mm}
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI121}
+\caption{Mensajes de error: Figure Options.}
+\label{fig:GUI121}
+
+\end{figure}
+
+
+Por otro lado, la representación gráfica de los resultados va a tener también el mismo tipo de estructura matricial. A través de un ejemplo vamos a corroborar que cada gráfica se corresponderá con su listbox asociado según la posición que ocupa. Para ello,  \textit{Set structure of figures} se configura de la siguiente forma:
+
+\begin{itemize}
+
+	\item 9 pestañas
+	\item Todas las configuraciones de gráficas posibles en una figura por medio de las 9 pestañas (1x1, 1x2, 1x3, 2x1, 2x2, 2x3, 3x1, 3x2 y 3x3).
+	\item Las señales se introducirán de la siguiente forma. Tomamos como ejemplo la combinación 2x3.
+	\begin{itemize}
+		\item Gráfica(1,1)\textrightarrow 1 señal
+		\item Gráfica(1,2) \textrightarrow 2 señales
+		\item Gráfica(1,3) \textrightarrow 3 señales 
+		\item Gráfica(2,1) \textrightarrow 4 señales
+		\item Gráfica(2,2) \textrightarrow 5 señales
+		\item Gráfica(2,3) \textrightarrow 6 señales
+	\end{itemize}
+\end{itemize}
+
+Así con cada una de las combinaciones. Observamos las figuras \ref{fig:GUI74}, \ref{fig:GUI77} y \ref{fig:GUI80}.
+
+\vspace{10 mm}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI72} 
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI73}
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI74}
+\caption{Set structure of figures: 1x1,1x2 y 1x3}
+\label{fig:GUI74}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI75} 
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI76}
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI77}
+\caption{Set structure of figures: 2x1,2x2 y 2x3}
+\label{fig:GUI77}
+
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI78} 
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI79}
+\includegraphics[width=0.3\textwidth]{figuras/GUI/GUI80}
+\caption{Set structure of figures: 3x1,3x2 y 3x3}
+\label{fig:GUI80}
+
+\end{figure}
+
+
+Posteriormente, al pulsar el  botón \textit{Next} damos paso de nuevo a la pantalla principal, pero mostrando como resultado las gráficas configuradas anteriormente (figuras \ref{fig:GUI91}, \ref{fig:GUI92}, \ref{fig:GUI93}, \ref{fig:GUI94}, \ref{fig:GUI95}, \ref{fig:GUI96}, \ref{fig:GUI97}, \ref{fig:GUI98} y \ref{fig:GUI99} ).
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI91} 
+
+\caption{GaitWatch Manager: 1x1}
+\label{fig:GUI91}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI92} 
+
+\caption{GaitWatch Manager: 1x2}
+\label{fig:GUI92}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI93} 
+
+\caption{GaitWatch Manager: 1x3}
+\label{fig:GUI93}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI94} 
+
+\caption{GaitWatch Manager: 2x1}
+\label{fig:GUI94}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI95} 
+
+\caption{GaitWatch Manager: 2x2}
+\label{fig:GUI95}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI96} 
+
+\caption{GaitWatch Manager: 2x3}
+\label{fig:GUI96}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI97} 
+
+\caption{GaitWatch Manager: 3x1}
+\label{fig:GUI97}
+
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI98} 
+
+\caption{GaitWatch Manager: 3x2}
+\label{fig:GUI98}
+
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI99} 
+
+\caption{GaitWatch Manager: 3x3}
+\label{fig:GUI99}
+
+\end{figure}
+
+Siempre que el usuario lo considere necesario existe la posibilidad de eliminar una figura por medio del botón \textit{Delete} de la ventana \textit{Set structure of figures}. La pestaña se queda anulada automáticamente cuando está marcada y pulsamos el botón.
+
+En el ejemplo de la imagen de abajo (figura \ref{fig:GUI137}) se ve que la forma de contabilizar las figuras se sigue manteniendo, es decir, las figuras 1 y 3 siguen activas mientras la figura 2 queda desactivada.
+Se había mencionado anteriormente pero no lo habíamos mostrado:
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI137} 
+
+\caption{Figura eliminada}
+\label{fig:GUI137}
+\end{figure}
+
+\vspace{30 mm}
+
+Por lo tanto, la representación gráfica solo aparece con las figuras 1 y 3 tal y como se puede ver en la figura \ref{fig:GUI138}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI138} 
+
+\caption{Figura eliminada: Representación gráfica}
+\label{fig:GUI138}
+\end{figure}
+
+
+
+Además, a las gráficas ya representadas se le han añadido las funcionalidades propias de la barra de herramientas  de un \textit{figure} en Matlab. Seguidamente se describen algunos de los elementos más destacados en la tabla \ref{tab: barraHerr}:
+
+
+\begin{table}[H] \footnotesize
+ 	\caption{Barra de herramientas \textit{Matlab}}	
+ 	\label{tab: barraHerr}
+ 	\centering
+ 		\begin{tabular}{|>{\centering\arraybackslash}m{3cm} |>{\centering\arraybackslash}m{3cm}|>{\arraybackslash}m{9cm} |}\hline
+ 		\label{tab:acc_channels}
+ 		Componente 		& Icono 	& Descripción 	    	        	\\  \hline 
+ 		&& \\
+
+		Figura nueva  	&  \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI100}		& Su funcionalidad es crear una nueva figura. \\  \hline
+		 		&& \\
+		 		
+		Abrir archivo	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI101}		& Nos permite abrir cualquier figura almacenada. \\ \hline
+		&& \\
+		 		
+		Guardar Figura	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI102}		    & Guarda todas las figuras actuales. No es aconsejable guardar las figuras con esta opción, la calidad es mala y no se realiza de manera individual.\\
+		
+		 		  
+		&&\\ \hline 		
+		 		
+		&&\\
+		
+		Imprimir Figura 	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI146}			& Imprime las figuras que estamos viendo. \\ \hline
+		 		&& \\
+		 		
+		Editar gráfica	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI103}			& Permite editar la figura. No posee un funcionamiento óptimo. \\ \hline
+		 		
+		 		&& \\
+		 		
+		Aumentar zoom  	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI104}			& Amplia la imagen sobre la zona que le especifiquemos.\\ \hline
+		 		&& \\
+		 		
+		Disminuir zoom	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI105}			& Produce el efecto contrario, dismuye la imagen todo lo que se quiera hasta quedarse en su estado inicial. 	 \\ \hline
+		  
+		 		
+		&& \\
+		 		
+		Panorámica de la imagen	 	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI106}			& Realiza un recorrido de la imagen en función de las necesidades del usuario. \\ \hline
+		 		&& \\
+		 		   		 		
+		Rotación 3D	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI107}			& Produce la rotación de la figura en 3 dimensiones.\\ \hline
+		 		
+		 		
+		&& \\
+		 		
+		Cursor de datos	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI108}			& Permite seleccionar el punto que indiquemos en la imagen. Nos dá sus coordenadas. \\ \hline
+		 		
+		&& \\ 
+		 		
+		Pintar/Dato seleccionado	& \includegraphics[width=0.04\textwidth]{figuras/GUI/GUI109}			& Cubre con una capa de color el punto indicado. 		   		 		
+		\\ \hline
+		 		
+		\end{tabular}
+		 		
+		 		
+		\end{table}
+
+
+
+ 
+ Cabe destacar la falta de eficacia de la opción para guardar figuras.  Se ha optado por añadir a \textit{File} una nueva funcionalidad denominada \textit{guardar como}(figura \ref{fig:GUI115}) que resuelva los problemas enumerados a continuación:  
+ 
+ 	\begin{itemize}
+ 		\item Las figuras nos se pueden guardar individualmente.
+ 		\item La calidad de las figuras es bastante deficiente. El efecto de guardado crea un momento de inestabilidad sobre la imagen y las pestañas se desajustan de su sitio coincidiendo que la captura de pantalla se toma en ese mismo instante.
+ 		\item Una vez que la figura ha quedado guardada ya no se puede volver hacer uso de la opción \textit{Guardar como}. Se vuelve a guardar en el lugar especificado anteriormente sobreescribiendo el archivo.
+ 	\end{itemize}
+ 	
+ 	
+ 	\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI115} 
+ 	
+ 	\caption{Save figure as}
+ 	\label{fig:GUI115}
+ 	\end{figure}
+ 	
+ 	
+ 	Además se puede guardar en una gran variedad de formatos. Los formatos vienen especificados ahora pero tambíen los tenemos en la figura \ref{fig:GUI116}. 
+ 	
+ 		\begin{itemize}
+	 		\item MATLAB Figure (*.fig)
+	 		\item Bitmap file  (*.bmp)
+	 		\item EPS file (*.eps)
+	 		\item Enhanced metafile  (*.emf)
+	 		\item JPEG image (*.jpg)
+	 		\item PaintBrush 24-bit file (*.pcx)
+	 		\item Portable Bitmap file (*.pbm)
+	 		\item Portable Document Format (*.pdf)
+	 		\item Portable Graymap file (*.pgm)
+	 		\item Portable Network Graphics file (*.png)
+	 		\item Portable Pixmap file  (*.ppm)
+	 		\item TIFF image (*.tif)
+ 		\end{itemize}
+ 	
+ 	
+ 	\begin{figure}[H]
+ 	 	\centering
+ 	 	\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI116} 
+ 	 	
+ 	 	\caption{Formatos de guardado}
+ 	 	\label{fig:GUI116}
+ 	 	\end{figure}
+ 	
+
+\subsection{Calibration (GaitWatch Manager)}
+
+\label{'calibration GW'}
+
+En esta parte no se va a mostrar ninguna gráfica adecuada  al proceso de cálculo de los parámetros de calibración. Los resultados obtenidos son erróneos debido a que el sistema de monitorización del movimiento GaitWatch está en Alemania y por motivos obvios tuvimos grandes dificultades para extraer los datos necesarios. Sin embargo, no quita que los algoritmos utilizados no cumplan con su objetivo con unos datos óptimos. Cuando lleguemos a la parte de ECnsole visualizaremos algunas de las gráficas pero tampoco profundizaremos demasiado ya que el proyecto se centra en el desarrollo del software que permita mostrar los resultados.
+
+
+Volviéndonos a centrar en el dispositivo GaitWatch tenemos que para acceder al cálculo de los parámetros de calibración es necesario recurrir al menú, más en concreto, a la opción  \textit{Calibration} (figura \ref{fig:GUI144}), en donde se puede elegir entre los distintos sensores: \textit{Calibrate accelorometer}, \textit{Calibrate gyroscope} y \textit{Calibrate magnetometer}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI144}
+\caption{Apariencia de la pantalla principal de la aplicación del GaitWatch. Opción: \textit{Calibration}.}
+\label{fig:GUI144}
+\end{figure}
+
+
+Teniendo en cuenta que existen dos tipos de acelerómetro (figura \ref{fig:GUI38}) vamos a pasar a describirlos por separado.
+
+Cuando el usuario se decanta por la opción del acelerómetro de un eje implica el cálculo de los parámetros de calibración con los datos recogidos por los acelerómetros uniaxiales que están localizados en las espinillas y los muslos. La calibración utilizada es bastante simple. El acelerómetro necesita colocar su eje de forma paralela y antiparalela al vector gravedad de la Tierra. Por esta razón,  tendrémos 2 valores diferenciados (1g y -1g) para cada acelerómetro determinando así el factor de escala y la bias.
+
+
+En el caso que el usuario elija el acelerómetro triaxial implica el cálculo de los parámetros de calibración que estarían incluidos dentro  del tronco haciendo uso del GaitWatch. Se usa el algoritmo de ajuste de elipsoide propuesto por Camps et al.( F. Camps, S. Harasse, and A. Monin. 
+ Numerical calibration for 3-axis accelerometers and magnetometers. En la IEEE Conferencia Internacional  \textit{Electro/Information Technology}, 2009. 
+ EIT 09, páginas de 217 a 221. IEEE, June 2009). Aquí se presentan los pasos teóricos y experimentales del método de cálculo de ganancias, bias y factores de no ortogonalidad del los magnetómetros y los acelerómetros. La calibración llevada a cabo implica poner los acelerómetros en múltiples posiciones cuasi estáticas. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI38}
+\caption{Calibración de parámetros del acelerómetro}
+\label{fig:GUI38}
+\end{figure}
+
+
+
+
+
+En la figura \ref{fig:GUI39} se opta por el cálculo de los parámetros de calibración del giróscopo. Se basa en la rotación de un ángulo conocido del giróscopo en vez de someterlo a una velocidad angular que también sería conocida.
+Es necesario que el usuario intervenga. Más concretamente, al usuario se le mostrará la señal de velocidad angular que contiene los giros positivos y negativos de 180 º. El debe seleccionar los puntos inicial y final del periodo estático al comienzo de la señal. La selección se realiza con el \textit{datacursor} que se activa en cuanto se genera la figura. Para seleccionar varios puntos el usuario ha de pulsar la letra \textit{Alt} mientras hace click con el ratón sobre los puntos. Una vez que el usuario ha elegido los puntos inicial y final se pulsa el botón \textit{continue execution} y se calculará la bias estática para los valores recogidos en la selección del período estático.
+Después al usuario se le muestra la señal de velocidad angular obtenida del GaitWatch con la bias corregida. En esta ocasión el debe seleccionar el punto inicial y final de las rotaciones positivas. Para determinar esos puntos el usuario debe usar la herramienta \textit{Zoom} contenida en \textit{View}\textrightarrow \textit{Figure toolbar} junto con el cursor de datos para los valores 0 que son más próximos al comienzo y finalización de las vueltas. A veces, debido al ruido estos valores no son 0, el usuario  debe seleccionar entonces valores cercanos a 0 (-2, -1, 1 o 2).
+
+Para incrementar la precisión de la rotación, el usuario debe seleccionar los puntos inicial y final al menos 4 o 5 en rotaciones positivas. Antes de seleccionar hay que asegurarse que el número de puntos es par. Cuando se esté listo se hace click en \textit{continue execution} y el script calculará el factor de escala. Usando este valor y el valor bias calculado al comienzo del script, la señal original que contiene los giros de 180 º es calibrada y posteriormente integrada. Si el cálculo de los parámetros es exitoso entonces el cálculo de la rotación debe de ser próximo a los 180 º(o -180 º en el caso de que la rotación del giróscopo fuese invertida). Al final del script los parámetros de la bias y el factor de escala son guardados y se almacenan en una carpeta que será usada en la calibración de los datos. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI39}
+\caption{Calibración de parámetros del giróscopo}
+\label{fig:GUI39}
+\end{figure}
+
+La figura \ref{fig:GUI40} nos muestra la elección del cálculo de los parámetros de calibración del magnetómetro que al igual que el acelerómetros de de 3 ejes está situado en el tronco. También está basado en el algoritmo de ajuste de elipsoide propuesto por Camps et al. Como ya comentamos antes, se presentan los pasos teóricos y experimentales del método de cálculo de ganancias, bias y factores de no ortogonalidad del los magnetómetros y los acelerómetros. La calibración implica rotaciones arbitrarias de la IMU con las que se consiguen los datos necesarios, el proceso es bastante simple. 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI40}
+\caption{Calibración de parámetros del magnetómetro}
+\label{fig:GUI40}
+\end{figure}
+
+
+\subsection{Preferences (GaitWatch Manager)}
+
+
+Como tercera opción se le ofrece la posiblilidad al usuario de poder elegir el sistema de monitorización del movimiento deseado. Al pinchar en \textit{Preferences} nos aparece un submenu con la opción \textit{Select Device}(figura \ref{fig:GUI41}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI41}
+\caption{Selección de dispositivo}
+\label{fig:GUI41}
+\end{figure}
+
+La siguiente ventana (figura \ref{fig:GUI37}) nos muestra la lista de dispositivos disponibles. En nuestro caso: \textit{GaitWatch Manager} y \textit{ECnsole}. La selección es posible gracias al elemento gráfico \textit{checkbox} que acompaña al nombre del dispositivo.
+
+\vspace{10mm}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI37}
+\caption{Selección de dispositivo}
+\label{fig:GUI37}
+\end{figure}
+
+La ventana no permite la selección de más de un dispositivo. Cuando el usuario se decanta por uno automáticamente  desaparece la selección anterior. Una vez pulsado el botón \textit{Accept} se pasa a la pantalla principal del dispositivo que corresponda. Los datos y gráficas que tuviesemos representados se perderán.
+
+
+
+
+\subsection{Pantalla principal (ECnsole)}
+
+	En los apartados anteriores se ha explicado en profundidad la composición de la interfaz gráfica desarrollada para el dispositivo \textit{GaitWatch Manager}. Ahora nos centraremos en el otro sistema de monitorización de la marcha que tenemos, denominado ECnsole. La interfaz gráfica diseñada (figura \ref{fig:GUI122}) comparte en gran medida las características del sistema anterior. Por lo tanto, destacaremos exclusivamente las cuestiones que los diferencian o más bien las peculiaridades propias del dispositivo \textit{ECnsole}. 
+	
+	Para empezar, la pantalla principal en su estado inicial es similar exceptuando  el nombre de la cabecera que hace referencia al dispostivo actual \textit{ECnsole}.
+	
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI122}
+	\caption{Pantalla principal: ECnsole}
+	\label{fig:GUI122}
+	
+	
+	
+	\end{figure}
+
+\subsection{File (ECnsole)}
+
+	En primer lugar, la opción \textit{File} nos facilita la carga de los archivos que el usurio solicite. El comportamiento es similar al dispostivo GaitWatch. Nos aparece la ventana de selección de archivos (figura \ref{fig:GUI124}) y debemos de pinchar sobre la carpeta \textit{data\_ECnsole}  si queremos encontrar los datos correspondientes al dispositivo. 
+	
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI124}
+	\caption{Pantalla: Select the data file}
+	\label{fig:GUI124}
+	\end{figure}
+		
+	ECnsole también hace uso de los tres tipos de sensores inerciales: un acelerómetro, un giróscopo y un magnetómetro. 
+	
+	En el sistema anterior, una vez que finalizaba la carga nos aparecían tres ventanitas para corregir los errores del magnetómetro antes de pasar a la siguiente sección. En este caso concreto no ocurre así.
+	
+	El hecho más significativo es la abolición de la ventana Select the Unit. En el GaitWatch teníamos hasta 7 segmentos corporales, recordemos: espinilla izquierda, espinilla derecha,muslo izquierdo, muslo derecho,brazo izquierdo, brazo derecho y tronco.  Para ECnsole el número de segmentos se reduce considerablemente  a 2 (pie izquierdo y pie derecho), no siendo necesaria la implementación de la pantalla. Todas las señales existentes apareceran directamente en la pantalla de selección de señales.
+	
+	
+	\subsubsection{Select the data you wish to be displayed}
+	 
+	Otra vez nos aparecen las 3 listas que contienen las señales recogidas por los distintos sensores inerciales (Raw data, Calibrated y Orientation). 
+	
+	Nuevamente, los procesos de calibración y del cáculo de los algoritmos de orientación para las señales calibradas pasarán inadvertidos para el usuario en la trasición a la ventana \textit{Set structures of figures}.
+	
+	A continuación se nos muestra la ventana en la figura \ref{fig:GUI125}:
+	
+	
+	
+	
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.6\textwidth]{figuras/GUI/GUI125}
+		\caption{Pantalla: Select the data you wish to be displayed}
+		\label{fig:GUI125}
+		\end{figure}
+	
+	Conserva todas las funcionalidades que poseía su homóloga.
+	
+	En la tabla \ref{tab:senalesEC} se aglutinan todas las señales asociadas a los 2 segmentos corporales medidos (pie izquierdo y pie derecho):
+	
+	
+	\begin{table}[H]  \hspace{10mm}
+		\caption{Señales del sistema ECnsole}	
+		\label{tab:senalesEC}
+			
+			\begin{center}
+			
+			\begin{tabular}{|l|l|l|}\hline
+			\label{tab:acc_channels}
+			\textbf{Raw data} 				& \textbf{Calibrated} 	& \textbf{Orientation} 		\\ \hline
+			Acceleration(X axis)-Left Foot & Acceleration(X axis)-Left Foot-C			& Pitch-Acc-Left Foot														\\
+			Acceleration(Y axis)-Left Foot	& Acceleration(Y axis)-Left Foot-C			& Roll-Acc-Left Foot														\\
+			Acceleration(Z axis)-Left Foot & Acceleration(Z axis)-Left Foot-C			&   Yaw-Acc-Left Foot														\\
+			Ang.Rate(X axis)-Left Foot	& Ang.Rate(X axis)-Left Foot-C			& Pitch-Gyro-Left Foot														\\
+			Ang.Rate(Y axis)-Left Foot  & Ang.Rate(Y axis)-Left Foot-C			&   Roll-Gyro-Left Foot														\\
+			Ang.Rate(Z axis)-Left Foot	& Ang.Rate(Z axis)-Left Foot-C			&   Yaw-Gyro-Left Foot														\\
+			Mag.Field(X axis)-Left Foot  & Mag.Field(X axis)-Left Foot-C			&   Pitch-KF-Left Foot													\\
+			Mag.Field(Y axis)-Left Foot	& Mag.Field(Y axis)-Left Foot-C			&   Roll-KF-Left Foot													\\
+			Mag.Field(Z axis)-Left Foot				& Mag.Field(Z axis)-Left Foot-C			& Yaw-KF-Left Foot													\\
+			Acceleration(X axis)-Right Foot				& Acceleration(X axis)-Right Foot-C			& Pitch-EKF-Left Foot													\\	
+			Acceleration(Y axis)-Right Foot				& Acceleration(Y axis)-Right Foot-C			& Roll-EKF-Left Foot \\
+			
+			Acceleration(Z axis)-Right Foot				& Acceleration(Z axis)-Right Foot-C			& Yaw-EKF-Left Foot \\
+			
+			Ang.Rate(X axis)-Right Foot				& Ang.Rate(X axis)-Right Foot-C			& Pitch-Acc-Right Foot \\
+			
+			Ang.Rate(Y axis)-Right Foot				& Ang.Rate(Y axis)-Right Foot-C			& Roll-Acc-Right Foot \\
+			
+			Ang.Rate(Z axis)-Right Foot				& Ang.Rate(Z axis)-Right Foot-C			& Yaw-Acc-Right Foot \\
+			
+			Mag.Field(X axis)-Right Foot				& Mag.Field(X axis)-Right Foot-C			& Pitch-Gyro-Right Foot \\
+			
+			Mag.Field(Y axis)-Right Foot				& Mag.Field(Y axis)-Right Foot-C			& Roll-Gyro-Right Foot \\
+			
+			Mag.Field(Z axis)-Right Foot				& Mag.Field(Z axis)-Right Foot-C			& Yaw-Gyro-Right Foot \\
+			
+			&& Pitch-KF-Right Foot \\
+			
+			&& Roll-KF-Right Foot \\
+			
+			&& Yaw-KF-Right Foot \\
+			
+			&& Pitch-EKF-Right Foot \\
+			
+			&& Roll-EKF-Right Foot \\
+			
+			&& Yaw-EKF-Right Foot \\
+			
+			&& Pitch-Acc-Center Trunk  \\ \hline												
+			\end{tabular}
+			\end{center}
+			
+	\end{table}
+	
+	
+	
+	De nuevo volvemos a tener la capacidad de cambiar la configuración establecida de la calibración. Al pusar sobre el botón \textit{Options} se nos despliega una ventana (figura \ref{fig:GUI127} ) que engloba a los tres tipos de sensores: el acelerómetro, el giróscopo y el magnetómetro.
+	
+	
+	\begin{figure}[H]
+			\centering
+			\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI127}
+			\caption{Pantalla: Select calibration parameters}
+			\label{fig:GUI127}
+			\end{figure}
+			
+	
+	
+	La distribución de la figura cambia respecto a su homólogo. No ha sido necesario dividir la información en pestañas, se aglutina toda en la misma. 
+	
+	Cuando se decide cambiar la configuración en las opciones de calibración nos aparece de nuevo una ventana de selección de archivos (figura \ref{fig:GUI129}) con la ruta especificada según el sensor que corresponda. 		
+			
+			
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI128} \hspace{10mm}
+	\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI129} \vspace{10mm}
+	
+	\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI130}
+	\caption{Selección de parámetros: Acelerómetro,Giroscopio y Magnetómetro}
+	\label{fig:GUI129}
+	\end{figure}
+	
+	
+	
+	Ahora bien, si el usuario decide cambiar la configuración para las estimación de la orientación, conviene puntualizar que tan sólo algunos de los algoritmos utilizados permiten modificaciones de sus parámetros. La lista de señales contiene otras señales calculadas con algoritmos alternativos que no requieren modificaciones. 
+		
+	La recogida de datos de los dos segmentos corporales (pie izquierdo y pie derecho) posee características similares, por lo tanto, los algoritmos de orientación utilizados son equivalentes.
+	
+	\begin{itemize}
+			\item Pie izquierdo/derecho
+			\begin{itemize}
+				\item Kalman Filter
+				\item Extended Kalman Filter
+			\end{itemize}
+			
+	\end{itemize}
+	
+	
+	En la figura \ref{fig:GUI132} se muestra las opciones para la estimación de la orientación del pie izquierdo:
+	
+	
+	
+	
+	\vspace{15 mm}
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI131} \hspace{10mm}
+		\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI132} 
+		\caption{Ventana \textit{Select orientation estimation algorithm} para el pie izquierdo.}
+		\label{fig:GUI132}
+		\end{figure}
+	
+	
+	En la figura \ref{fig:GUI134} se muestra las opciones para la estimación de la orientación del pie derecho:
+	
+	
+	\vspace{15 mm}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI133} \hspace{10mm}
+	\includegraphics[width=0.4\textwidth]{figuras/GUI/GUI134} 
+	\caption{Ventana \textit{Select orientation estimation algorithm} para el pie derecho.}
+	\label{fig:GUI134}
+	\end{figure}
+	
+	
+	Una vez finalizada la configuración de los procesos de calibración y orientación, el usuario puede dar paso a la ventana siguiente denominada \textit{Set structure of figures}. En este caso, no existe la necesidad de creación de una barra de progreso. El tiempo de procesamiento de dichos procesos es ínfimo e inperceptible para el usuario. 	
+	
+	Sin embargo, si se decide volver a la pantalla principal y anteriormente ya nos habíamos situado sobre la ventana \textit{Set structure of figures}, nos aparecerá un mensaje de aviso (figura \ref{fig:GUI126_R}). Nos advierte de que toda la configuración establecida hasta el momento se puede perder. Difiere de la ubicación del mensaje en el dispositivo GaitWatch  que se encontraba en la ventana \textit{Select the unit}. Era la ventana siguiente a la pantalla principal en ese caso.
+	
+	\vspace{10mm}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI126} 
+	\caption{Aviso: Pérdida de datos}
+	\label{fig:GUI126_R}
+	\end{figure}
+	
+	
+	\subsubsection{Set structure of figures}
+	
+	La pantalla de configuración de las figuras posee exactamente las mismas características que la del sistema GaitWatch. No vale la pena volver a realizar una descripción exhaustiva de la misma. Pero sí vamos a poner un ejemplo gráfico que:
+	
+	\begin{itemize}
+		\item Aparezcan varias figuras.
+		\item Se aprecie la eliminación de una ellas.
+		\item Se pueda visualizar una de las configuraciones existentes.
+	\end{itemize}
+	
+	Para ello, la configuración se muestra a través de la figura \ref{fig:GUI135}:
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI135} 
+	\caption{Pantalla principal: Set structure of figures}
+	\label{fig:GUI135}
+	\end{figure}
+		
+		
+	La representación gráfica de la configuración establecida se muestra en la figura \ref{fig:GUI136}:
+	
+	\vspace{10mm}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{figuras/GUI/GUI136} 
+	\caption{Aviso: Pantalla principal: Representación gráfica}
+	\label{fig:GUI136}
+	\end{figure}
+	
+	
+	Además, la representación gráfica de las señales presenta exactamente las mismas funcionalidades que ya se explicaron en su momento.
+	
+	
+	
+	
+	
+	
+\subsection{Calibration (ECnsole)}
+El fundamento teórico de la calibración de los sensores se detalló anteriormente (ver sección ~\ref{'calibration GW'}). Tan sólo tener presente que el sistema de monitorizacíon del movimiento ECnsole carece de acelerómetros uniaxiales para el acelerómetro (figura \ref{fig:GUI123}).
+
+
+\vspace{10mm}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI123} 
+	\caption{Pantalla principal: Representación gráfica}
+	\label{fig:GUI123}
+	\end{figure}
+	
+	La calibración correcta de los parámetros a través del GaitWatch no se pudo realizar  como consecuencia de no tener el dispositivo. Sin embargo los datos recogidos con el sistema ECnsole si nos permiten un cálculo eficiente de los parámetros de calibración y mostrar algunas de las gráficas resultantes más representativas a modo de ejemplo. La representación de los resultados se lleva a cabo en la pantalla principal, tal y como hicimos con las señales recogidas por el dispositivo.
+	
+	
+	
+	
+	
+	
+	La figura \ref{fig:GUI147} muestra la aceleración original de periodos cuasi-estáticos. Los datos son representados en 3D y en los 3 posibles planos de proyección (XY, XZ, YZ).
+	\vspace{10mm}
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI147} 
+	\caption{Acelerómetro: Cálculo de los parámetros de calibración. Aceleración original.}
+	\label{fig:GUI147}
+	\end{figure}
+		
+	La figura  \ref{fig:GUI143} muestra la aceleración calibrada de periodos cuasi-estáticos. Los datos son representados en 3D y en los 3 posibles planos de proyección (XY, XZ, YZ).
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI143} 
+	\caption{Acelerómetro: Cálculo de los parámetros de calibración. Aceleración calibrada.}
+	\label{fig:GUI143}
+	\end{figure}
+	
+	El cálculo de parámetros para el acelerómetro está basado en el algoritmo de ajuste elipsoidal propuesto por Camps et al.
+	
+	\vspace{10mm}
+	
+	La figura \ref{fig:GUI148} representa las rotaciones calculadas del giróscopo.  Si el cálculo de los parámetros (bias y factor de escala) es exitoso entonces el cálculo de las rotaciones tiene que ser próximo a 180º (o -180º si la rotación del giróscopo fuese invertida).
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI148} 
+	\caption{Giroscopio: Cálculo de los parámetros de calibración. Aceleración calibrada.}
+	\label{fig:GUI148}
+	\end{figure}
+	
+	El valor de rotación de la figura es de 180.3º, por lo tanto, el cálculo de parámetros se puede considerar óptimo.  Cabe destacar que los puntos elegidos son los correspondientes al tramo de rotación positiva del giróscopo.
+	
+	\vspace{10 mm}
+	
+	La figura \ref{fig:GUI149} muestra  los datos originales del magnetómetro desde 4 puntos de vista (3D y los tres planos de proyección):
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI149} 
+	\caption{Magnetómetro: Cálculo de los parámetros de calibración. Campo magnético original.}
+	\label{fig:GUI149}
+	\end{figure}
+	
+	
+	La figura \ref{fig:GUI150} muestra los datos calibrados del magnetómetro desde 4 puntos de vista (3D y los tres planos de proyección):
+	
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI150} 
+	\caption{Magnetómetro: Cálculo de los parámetros de calibración. Campo magnético calibrado.}
+	\label{fig:GUI150}
+	\end{figure}
+	
+	
+	El cálculo de parámetros para el magnetómetro está basado en el algoritmo de ajuste elipsoidal propuesto por Camps et al.
+	
+	\vspace{10mm}
+	Por último destacamos que la organización de la representación gráfica de los resultados nuevamente se lleva a cabo mediante pestañas. Cada pestaña recoge una de las gráficas del proceso de cálculo de parámetros.
+		
+		Se escogió este modo de implentación por sus múltiples ventajas. Las alternativas que se barajaban se citan a continuación:
+		\begin{itemize}
+			\item Representar todas las gráficas juntas en la misma pantalla. Sería difícil discernir los resultados.
+			\item Resfrescar la pantalla cada vez que el usuario solicitase una gráfica nueva.
+		
+		\end{itemize}
+		
+		Ninguna de las opciones resultaba tan eficiente, ni permitía ver los datos con tanta claridad.
+
+
+\subsection{Preferences (ECnsole)}
+
+
+	La ventana \textit{Preferences} (figura \ref{fig:GUI37EC}) es común a los sistemas \textit{GaitWatch Manager} y \textit{ECnsole}. Su utilidad es la de dar paso de un dispositivo a otro. La apariencia gráfica ya se mostró en la misma sección correspondiente al GaitWatch.  
+	
+	\vspace{10mm}
+	   
+	   
+	\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\textwidth]{figuras/GUI/GUI37} 
+	\caption{Select device}
+	\label{fig:GUI37EC}
+	\end{figure}
+	
+	
+	

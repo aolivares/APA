@@ -1,8 +1,6 @@
 \chapter{Fundamentos}
 \label{ch:fundamentos}
 
-En el Capítulo que vamos a ver a continuación, se realizará un extenso análisis a nivel teórico de los fundamentos de los sensores inerciales (acelerómetro, giróscopo y  magnetómetro) utilizados en los sitemas GaitWatch  y ECnsole. La segunda parte del capítulo se centrará primero en  explicar el proceso de calibración, cuyo objetivo es transformar los datos originales en unidades con sentido físico. Después se describirán los algoritmos para el cálculo de la orientación. Primero el método de \textit{Integración de la Velocidad Angular} para el giróscopo. Posteriormente, el método de \textit{Descomposición de la Gravedad} donde el acelerómetro y el magnetómetro trabajan de manera conjunta. Después, el  \textit{Filtro de Kalman} que  fusiona  los datos   del acelerómetro, giróscopo y manetómetro obteniendo unos resultados más precisos. Y por último, el \textit{Filtro de Kalman Extendido} (una mejora del \textit{Filtro de Kalman} gracias al uso de un elemento nuevo, los cuaterniones, que minimizan el cálculo computacional).
-
 \section{Fundamentos de sensores}
 
 A continuaci\'on vamos a realizar una descripci\'on de los fundamentos b\'asicos de los sensores que forman parte de los dispositivos cuyos datos son representados por la aplicación desarrollada.
@@ -295,7 +293,7 @@ Además de tener una magnitud, el flujo magnético también tiene una dirección o v
 
 
 
-Los magnetómetros pueden ser instrumentos útiles en muchas aplicaciones profesionales. Al ser ligeros y portátiles, los magnetómetros se transportan fácilmente a casi cualquier sitio. En arqueología, se pueden utilizar magnetómetros para localizar tumbas enterradas que contengan artefactos metálicos. En aplicaciones militares, los magnetómetros se utilizan para localizar los tanques, minas y los depósitos de combustible. La industria minera y otros numerosos campos científicos también miden anomalías magnéticas con magnetómetros. La figura \ref{fig:Fundamentos23} muestra un magnetómetro vectorial.
+Los magnetómetros pueden ser instrumentos útiles en muchas aplicaciones profesionales. Al ser ligeros y portátiles, los magnetómetros se transportan fácilmente a cuasi cualquier sitio. En arqueología, se pueden utilizar magnetómetros para localizar tumbas enterradas que contengan artefactos metálicos. En aplicaciones militares, los magnetómetros se utilizan para localizar los tanques, minas y los depósitos de combustible. La industria minera y otros numerosos campos científicos también miden anomalías magnéticas con magnetómetros. La figura \ref{fig:Fundamentos23} muestra un magnetómetro vectorial.
 
 
 \begin{figure}[H]
@@ -342,7 +340,7 @@ En este apartado vamos a ver como se realiza el proceso de calibración de los se
 	\centering
 		\begin{tabular}{|c|c|c|}\hline
 		\label{tab:sensores}
-		& \textbf{GaitWatch}				& \textbf{ECnsole} 	 	\\ \hline
+		& \textbf{GaitWatch Manager}				& \textbf{ECnsole} 	 	\\ \hline
 		\textbf{Acelerómetro triaxial} & Sí			& Sí  		\\ \hline
 		\textbf{Acelerómetro uniaxial}	& Sí			& No  		\\ \hline
 		\textbf{Giróscopo triaxial} & Sí			& Sí 				\\ \hline
@@ -456,25 +454,25 @@ El coste de la función $ e_{p} $(t) es cuadrático, y es minimizado iterativament
 
 \end{itemize}
 
-En resumen, si el acelerómetro se sitúa en múltiples posiciones casi-estáticas y aleatorias, los datos recogidos deben describir idealmente una esfera de radio igual a la magnitud del vector gravedad.
+En resumen, si el acelerómetro se sitúa en múltiples posiciones cuasi-estáticas y aleatorias, los datos recogidos deben describir idealmente una esfera de radio igual a la magnitud del vector gravedad.
 
-Por lo tanto, el primer paso de calibración es recoger los datos de la aceleración que serán usados para encontrar los parámetros de calibración óptimos. Como se dijo antes, necesitamos situar el módulo que contiene el acelerómetro en múltiples posiciones casi-estáticas y aleatorias intentando cubrir todas las orientaciones. Ya que la transición de una posición casi-estática es la causa de que el acelerómetro mida aceleraciones lineales que interrumpen la aceleración de la gravedad, no podemos tomar cada punto medido. Para evitar seleccionar valores de aceleración lineal tenemos que aplicar un algoritmo que se capaz de detectar los instantes casi-estáticos.
-La figura \ref{fig:Fundamentos4} muestra la aceleración triaxial medida en cada posición casi-estática, además de la aceleración lineal no deseada. Esta figuara también muestra la salida del algoritmo de detección de los instantes casi-estáticos.
+Por lo tanto, el primer paso de calibración es recoger los datos de la aceleración que serán usados para encontrar los parámetros de calibración óptimos. Como se dijo antes, necesitamos situar el módulo que contiene el acelerómetro en múltiples posiciones cuasi-estáticas y aleatorias intentando cubrir todas las orientaciones. Ya que la transición de una posición cuasi-estática es la causa de que el acelerómetro mida aceleraciones lineales que interrumpen la aceleración de la gravedad, no podemos tomar cada punto medido. Para evitar seleccionar valores de aceleración lineal tenemos que aplicar un algoritmo que se capaz de detectar los instantes cuasi-estáticos.
+La figura \ref{fig:Fundamentos4} muestra la aceleración triaxial medida en cada posición cuasi-estática, además de la aceleración lineal no deseada. Esta figuara también muestra la salida del algoritmo de detección de los instantes cuasi-estáticos.
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos4EPS}
-\caption{Aceleración recogida en las posiciones casi-estáticas y salida del algoritmo de detección}
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos4EPS}
+\caption{Aceleración recogida en las posiciones cuasi-estáticas y salida del algoritmo de detección}
 \label{fig:Fundamentos4}
 \end{figure}
 
-Si trazamos las aceleraciones casi-estáticas detectadas en 3D, debemos cubrir el lugar de una esfera como se muestra en la figura \ref{fig:Fundamentos5}
+Si trazamos las aceleraciones cuasi-estáticas detectadas en 3D, debemos cubrir el lugar de una esfera como se muestra en la figura \ref{fig:Fundamentos5}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos5EPS}
-\caption{Representación 3D de la aceleración recogida durante las posiciones casi-estáticas.}
+\caption{Representación 3D de la aceleración recogida durante las posiciones cuasi-estáticas.}
 \label{fig:Fundamentos5}
 \end{figure}
 
@@ -494,12 +492,12 @@ Entonces alimentamos el algoritmo de minimización con esos datos y encontramos l
 \end{bmatrix}
 \end{displaymath}
 
-La figura \ref{fig:Fundamentos6} muestra la aceleración casi-estática calibrada. Observe como los puntos definen ahora una esfera centrada en el origen con un radio de 1(g). Posteriormente veremos como se calcula.
+La figura \ref{fig:Fundamentos6} muestra la aceleración cuasi-estática calibrada. Observe como los puntos definen ahora una esfera centrada en el origen con un radio de 1(g). Posteriormente veremos como se calcula.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos6EPS}
-\caption{Representación 3D de las posiciones casi-estáticas calibradas}
+\caption{Representación 3D de las posiciones cuasi-estáticas calibradas}
 \label{fig:Fundamentos6}
 \end{figure}
 
@@ -519,7 +517,7 @@ donde $ \mathbf{a}_{cal}$ es un vector de tres dimensiones que contiene la acele
 
 
 
-Para el acelerómetro biaxial podemos adaptar los ya mencionados métodos de dos dimensiones. Sin embargo, las maniobras de calibración serían mucho más complicadas porque necesitaríamos bloquear la unidad incluyendo el acelerómetro  en el plano XZ y después describir una rotación lenta y completa para recoger las posiciones casi-estáticas.
+Para el acelerómetro biaxial podemos adaptar los ya mencionados métodos de dos dimensiones. Sin embargo, las maniobras de calibración serían mucho más complicadas porque necesitaríamos bloquear la unidad incluyendo el acelerómetro  en el plano XZ y después describir una rotación lenta y completa para recoger las posiciones cuasi-estáticas.
 
 Optamos por llevar a cabo un procedimiento de calibración de un solo eje que sólo requiere recoger datos de dos posiciones en cada eje. Este procedimiento es muy simple; primero ponemos el eje deseado paralelo al vector gravedad  y lo dejamos en esa posición un par de segundos. Seguidamente, le damos la vuelta y lo colocamos de forma anti-paralela al vector de la gravedad donde lo volvemos a dejar estático otros dos segundos. Procediendo de esta manera, conocemos los valores originales que corresponden a +1g y -1g respectivamente. Ya que los acelerómetros incluidos en las unidades del GaitWatch son lineales, podemos entonces encontrar la ecuación de calibración en una forma muy simple. La ecuación de calibración está definida como sigue,
 
@@ -538,15 +536,15 @@ donde $ a_{cal} $ es la aceleración calibrada, $ a_{raw} $ es la aceleración ori
 
 donde $ a_{raw,+} $ y $ a_{raw,-} $ son las aceleraciones originales recogidas en las posiciones paralela y anti-paralela respectivamente.
 
-Las unidades de GaitWatch situdadas en las espinillas y los muslos contienen un acelerómetro biaxial(X,Z) por lo tanto ponemos la unidad en las cuatro posiciones requeridas (dos en cada eje) y entonces aplicamos el detector de posiciones casi-estáticas para extraer los valores en esas posiciones.
+Las unidades de GaitWatch situdadas en las espinillas y los muslos contienen un acelerómetro biaxial(X,Z) por lo tanto ponemos la unidad en las cuatro posiciones requeridas (dos en cada eje) y entonces aplicamos el detector de posiciones cuasi-estáticas para extraer los valores en esas posiciones.
 
-La figura \ref{fig:Fundamentos7} muestra la aceleración original recogida en las cuatro posiciones y los valores casi-estáticos estraidos para el acelerómetro en la espinilla izquierda.
+La figura \ref{fig:Fundamentos7} muestra la aceleración original recogida en las cuatro posiciones y los valores cuasi-estáticos estraidos para el acelerómetro en la espinilla izquierda.
 
 Usando este procedimiento los parámetros de calibración son encontrados en todas las unidades. La tabla \ref{tab:param_acc_biax} los muestra.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.6\textwidth]{figuras/Fundamentos/Fundamentos7EPS}
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos7EPS}
 \caption{Aceleración original recogida cuando ambos ejes X y Z son colocados paralelo y anti-paralelo al vector gravedad}
 \label{fig:Fundamentos7}
 \end{figure}
@@ -581,7 +579,7 @@ Las maniobras en este caso son más simples porque el magnetómetro no se ve afect
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{figuras/Fundamentos/Fundamentos8EPS}
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos8EPS}
 \caption{Campo magnético original recogido por el movimiento aleatorio del la unidad del tronco que contiene el magnetómetro}
 \label{fig:Fundamentos8}
 \end{figure}
@@ -635,7 +633,7 @@ S=
 
 \subsubsection{Calibración del giróscopo}
 
-El giróscopo es el último tipo de sensor que queda por ser calibrado. La forma más precisa para calibrar un giróscopo es someterlo a diferentes rotaciones conocidas sus velocidades y luego asociarlos a los valores originales recogidos para obtener la ecuación de calibración. Si no tenemos mesa de rotación de velocidad variable, podemos usar un equipo más sencillo y sujetar el someter al giróscopo a rotaciones conocidas en lugar de velocidades angulares conocidas. Para calibrar cada uno de los ejes necesitamos construir un dispositivo parecido al que se muestra en la figura \ref{fig:Fundamentos11}. Este dispositivo debe permitir la rotación de la unidad que contiene el giróscopo alrededor de 180º (otras configuraciones del dispositivo que permiten diferentes rotaciones conocidas también son válidas).
+El giróscopo es el último tipo de sensor que queda por ser calibrado. La forma más precisa para calibrar un giróscopo es someterlo a diferentes rotaciones conocidas sus velocidades y luego asociarlos a los valores originales recogidos para obtener la ecuación de calibración. Si no tenemos mesa de rotación de velocidad variable, podemos usar un equipo más sencillo y sujetar el someter al giróscopo a rotaciones conocidas en lugar de velocidades angulares conocidas. Para calibrar cada uno de los ejes necesitamos construir un dispositivo parecido al que se muestra en la figura \ref{fig:Fundamentos11}. Este dispositivo debe permitir la rotación de la unidad que contiene el giróscopo alrededor de 180º(otras configuraciones del dispositivo que permiten diferentes rotaciones conocidas también son válidas).
 
 \begin{figure}[H]
 \centering
@@ -644,9 +642,9 @@ El giróscopo es el último tipo de sensor que queda por ser calibrado. La forma m
 \label{fig:Fundamentos11}
 \end{figure}
 
-Una vez que el dispositivo de calibración está listo, las maniobras de calibración no son complicadas. Cada una de las unidades debe estar adheridas a la superficie del dispositivo y entonces necesitamos llevar a cabo la rotación completa de 180º una serie de veces para posteriormente promediar los datos calculados. 
+Una vez que el dispositivo de calibración está listo, las maniobras de calibración no son complicadas. Cada una de las unidades debe estar apegadas a la superficie del dispositivo y entonces necesitamos llevar a cabo la rotación completa de 180º (al menos 5 veces). 
 
-Para calcular los parámetros de calibración vamos a utilizar el hecho de que la integración de la velocidad angular conduce a un desplazamiento angular. Por lo tanto, si sometemos al giróscopo a una rotación conocida (180º en este caso), podemos aplicar las siguientes ecuaciones para encontrar el factor de escala,
+Para calcular los parámetros de calibración vamos a utilizar el hecho de que la integración angular conduce a un desplazamiento angular. Por lo tanto, sometemos al giróscopo a una rotación conocida (180º en este caso), podemos aplicar las siguientes ecuaciones para encontrar el factor de escala,
 
 \begin{equation}
 \mu_{raw}=k.\omega+b
@@ -674,31 +672,28 @@ Para calcular los parámetros de calibración vamos a utilizar el hecho de que la 
 k=\frac{\theta}{\Omega}
 \end{equation}
 
-donde $ u_{raw} $ es la velocidad angular original recogida, $ \omega $ es la velocidad angular real (en unidades físicas), \textit{k} es el factor de escala y \textit{b} es el offset. En este caso $ \Omega=180 º $ y $ \theta $ es la velocidad angular original integrada (corregida en offset) durante la rotación de 180º. Podemos ver que antes de la integración de la velocidad angular necesitamos sustraer el offset.
+donde $ u_{raw} $ es la velocidad angular original recogida, $ \omega $ es la velocidad angular real(en unidades físicas), \textit{k} es el factor de escala y \textit{b} es el offset. En este caso $ \Omega=180 º $ y $ \theta $ es la velocidad angular original integrada (corregida en offset) durante la rotación de 180º. Podemos ver que antes de la integración de la velocidad angular necesitamos sustraer el offset.
 
-El offset se encuentra fácilmente dejando las unidades en una posición estática antes de empezar la rotación. Para tener en cuenta los efectos del ruido, calculamos la moda de todas las muestras recogidas mientras los sensores estaban estáticos.
+El offset se encuentra fácil dejando las unidades en una posición estática antes de empezar la rotación y luego se visualiza inspeccionando la señal recogida. Para tener en cuenta los efectos del ruido, calculamos la moda de todas las muestras recogidas mientras los sensores estaban estáticos.
 
 Desde el punto de vista práctico, la rutina de calibración de Matlab muestra por primera vez la señal de la velocidad angular original recogida y pide al usuario seleccionar los puntos inicial y final del período estático como muestra la figura \ref{fig:Fundamentos12}.
 
-Una vez encontrado el offset, necesitamos indicarle a la rutina cada uno de los puntos de inicio y final de las rotaciones, así sabremos los instantes inicial y final de la integración. Para lograrlo utilizaremos la herramienta \textit{datacursor} de Matlab. Es importante seleccionar únicamente las rotaciones positivas (como se indica en la figura \ref{fig:Fundamentos13}), es decir, cuando la velocidad angular incrementa  y después decrementa. La rutina entonces integrará los segmentos seleccionados de la señal y promediará el factor de escala de cada uno de ellos.
+Una vez encontrado el offset, necesitamos indicarle a la rutina cada uno de los puntos de inicio y final de las rotaciones, así, sabremos los instantes inicial y final de la integración. Para lograrlo utilizaremos el \textit{datacursor}. Es importante sólo seleccionar las rotaciones positivas (como se indica en la figura \ref{fig:Fundamentos13}), es decir, cuando la velocidad angular primero se incrementa  y después decrementa. La rutina entonces integrará los segmentos seleccionados de la señal y la promediará el factor de escala de cada uno de ellos.
 
-
-\vspace{1cm}
 La calibración de la velocidad angular es finalmente encontrada sustiyendo los parámetros de calibración calculados en la ecuación \ref{eq:21}.
 
 
- \vspace{-28mm}
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.0\textwidth]{figuras/Fundamentos/Fundamentos12EPS}
-\caption{Rutina de calibración del giróscopo: selección del período para calcular el offset.}
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos12EPS}
+\caption{Rutina de calibración del giróscopo: selección del período para calcular el offset}
 \label{fig:Fundamentos12}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=1.0\textwidth]{figuras/Fundamentos/Fundamentos13EPS}
+\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos13EPS}
 \caption{Rutina de calibración del giróscopo: selección de las rotaciones positivas para el cálculo del factor de escala}
 \label{fig:Fundamentos13}
 \end{figure}
@@ -761,7 +756,7 @@ Como resumen final, una vez que todos los parámetros de calibración de todos los
 \subsection{Cálculo de orientación}
 
 
-Esta subsección comienza con una introducción a los conceptos que serán usados a lo largo del la misma, posteriormente se continuará  describiendo los algoritmos utilizados en el cálculo de orientación para el sistema GaitWatch. No es necesario explicar la parte acociada al dispositivo ECnsole ya que los algoritmos aplicados son idénticos (vuelve a ocurrrir lo mismo que en la parte de calibración).
+Esta subsección comienza con una introducción a los conceptos que serán usados a lo largo del la misma, posteriormente se continuará  describiendo los algoritmos utilizados en el cálculo de orientación para es sistema GaitWatch. No es necesario explicar la parte acociada al dispositivo ECnsole ya que los algoritmos aplicados son idénticos (vuelve a ocurrrir lo mismo que en la parte de calibración).
 
 A continuacíon se enumeran a modo de resumen los algoritmos de cálculo de orientación común a los dos dispositivos:
 
@@ -1155,7 +1150,7 @@ q_{\psi}=[\cos(\psi/2),0,0,\sin(\psi/2)]
 
 
 \paragraph{Integración de la velocidad angular} ~\\
-
+\vspace{10mm}
 
 El giróscopo mide la velocidad angular alrededor de cada uno de los ejes Cartesianos relativa a su sistema corporal. Dicha velocidad angular puede ser integrada para estimar la rotación del ángulo entre los instantes $ t_0 $ a $ t_1 $. Por lo tanto, nosotros podemos calcular la posición del cuerpo relativa al marco de navegación si, y solo si, la orientación inicial del sistema corporal es conocida respecto al marco de navegación. Una sencilla solución es usar la aproximación basada en la proyección de la gravedad y los vectores del campo magnético de la tierra para calcular tal orientación inicial cuando el cuerpo está parado. 
 
@@ -1176,7 +1171,7 @@ Donde \textit{T} es el período de muestreo, \textit{n} es el número de muestras,
 
 donde $\alpha$(0)=$ \alpha_{0}$.
 
-La ventaja principal de este método es que una vez se conoce la orientación inicial,
+La ventaja principal de este método es esa, una vez se conoce la orientación inicial,
 
 \begin{figure}[H]
 	  \centering
@@ -1186,22 +1181,24 @@ La ventaja principal de este método es que una vez se conoce la orientación inic
 \end{figure}
 
 
-puede ser usado para movimientos de baja intensidad o de alta intensidad mientras las medidas del giróscopo no estén afectadas por la aceleración lineal. Sin embargo, la integración del ruido y el offset dinámico conducen a un desplazamiento que crece rápidamente que tiene efectos críticos en el cálculo del ángulo de orientaición. Este efecto hace que la estimación se absulatamente errónea después de unos pocos segundos como se puede ver en la figura \ref{fig:Fundamentos1}. 
+puede ser usado para movimientos de baja intensidad o de alta intensidad mientras las medidas del giróscopo no estén afectadas por la aceleración linear. Sin embargo, la integración del ruido y el offset dinámico conducen a un desplazamiento que crece rápidamente que tiene efectos devastadores y la estimación es absolutamente errónea después de unos pocos segundos como se puede ver en la figura \ref{fig:Fundamentos1}. 
 
-Por tanto, el uso individual de la velocidad angular para el cálculo de la orientación es inviable si se usan giróscopos MEMS los cuales presentan gran cantidad de ruido en los datos medidos. 
+Este método en sí, es inviable si no lo fusionamos con el acelerómetro y el magnetómetro.
 
 
 
 \paragraph{Descomposición de la gravedad}~\\
 
+\vspace{10mm}
 
-Podemos usar la proyección del vector gravedad de la Tierra sobre los ejes del acelerómetro para estimar el ángulo de orientación de la estructura corporal respecto al marco de referencia. En el caso de GaitWatch, para las unidades del muslo y las espinillas sólo está disponible un acelerómetro biaxial. Por lo tanto, sólo podemos calcular uno de los dos ángulos de orientación (roll y pitch) que pueden ser estimados por medio de estas técnica. Ya que estamos principalmente interesados en el ángulo definido en el plano XZ, esto es, el ángulo alrededor del eje  es decir, el pitch. El cálculo de pitch sólo puede ser válido si el ángulo roll de las piernas tiende a 0. Debido a que las piernas se mueven principalmente en el plano sagital durante la marcha, consideraremos la siguiente expresión válida para el cálculo del ángulo pitch, 
+
+Podemos usar la proyección de los vector gravedad de la Tierra sobre los ejes del acelerómetro para estimar el ángulo de orientación de la estructura corporal respecto al marco de referencia. En nuestro caso, la aproximación utilizada calcula el ángulo de orientación de los muslos y los brazos. Sólo un acelerómetro biaxial está disponible en las IMU's colocadas en los segmentos, por lo tanto, sólo podemos calcular uno de los dos ángulos de orientación (roll y pitch) que pueden ser estimados por medio de estas técnica. Nosotros estamos interesados en el ángulo definido en el plano XZ, esto es, el ángulo alrededor del eje Y, que es definido como el ángulo pitch. El cálculo de pitch sólo puede ser válido si el ángulo roll de las piernas tiende a 0. Porque las piernas se mueven en el plano sagital durante la marcha, consideraremos la siguiente expresión válida para el cálculo del ángulo pitch, 
 
 	\begin{equation}
 	\theta_{k}=atan2(a_{z,k},a_{x,k})
 	\end{equation}
 
-donde atan2 es la función arcotangente con corrección de cuadrante.
+donde atan2 es el cuadrante corregido de la función arcotangente.
 
 
 
@@ -1227,10 +1224,10 @@ donde,
 
 
 \begin{itemize}
-	\item el operador  $ \mathbf{\dot x} $ denota la primera derivada \textbf{x}. 
+	\item el operador  $ \mathbf{\dot x} $ denota la primera derivada \textbf{x} 
 	\item \textbf{x}(t) $ \epsilon $ $ \mathbb{R}^n $ es el estado (n$ \times 1 $) del vector incluyendo los n estados de las variables que describe el sistema.
 	\item \textbf{z}(t) $ \epsilon $ $ \mathbb{R}^q $ es la salida (q$ \times 1 $) del vector incluyendo las observaciones (medidas) reales de los estados de las variables del proceso.
-	\item \textbf{u}(t) $ \epsilon $ $ \mathbb{R}^p $ es el  (q$ \times 1 $) vector de control incluyendo las p entradas de las señales de control.
+	\item \textbf{u}(t) $ \epsilon $ $ \mathbb{R}^p $ es el  (q$ \times 1 $) control de vector incluyendo las p entradas de las señales de control.
 	\item F es el (n$ \times n $) estado de la matriz de transición.
 	\item C es la (n$ \times p $) matriz de entrada.
 	\item H es la (q$ \times n $)  matriz de salida.
@@ -1244,7 +1241,7 @@ donde,
 \end{itemize}
 	
 	
-	En ausencia de una entrada de control tenemos:
+	En ausencia de una entrada de control nosotros tenemos:
 	
 	\begin{equation}
 	\mathbf{\dot{x}}(t)=F\mathbf{x}(t)+I_{n}\mathbf{w}(t)
@@ -1259,14 +1256,14 @@ donde,
 		\end{displaymath}
 		
 		
-	Si aplicamos la aproximación del método de Euler:
+	Si nosotros aplicamos la aproximación del método de Euler:
 	
 	
 	\begin{equation}
 	\mathbf{\dot{x}}(t)\simeq\frac{\mathbf{x}(t+dt)-\mathbf{x}(t)}{dt}
 	\end{equation}
 	
-	obtenemos:
+	nosotros obtenemos:
 		
 	\begin{equation}
 		\frac{\mathbf{x}(t+dt)-\mathbf{x}(t)}{dt}\simeq F\mathbf{x}(t)+I_{n}\mathbf{w}(t)
@@ -1283,7 +1280,7 @@ donde,
 	
 	
 
-	si ahora discretizamos el modelo:
+	si nosotros ahora discretizamos el modelo:
 	
 	
 	\begin{equation}
@@ -1312,11 +1309,11 @@ donde,
 	donde,
 	
 	\begin{itemize}
-		\item \textbf{x}(t) $ \epsilon $ $ \mathbb{R}^n $ es de nuevo el (n$ \times 1 $) estado  del vector del sistema dinámico lineal.
+		\item \textbf{x}(t) $ \epsilon $ $ \mathbb{R}^n $ es otra vez el (n$ \times 1 $) estado  del vector del sistema dinámico lineal.
 		\item  \textbf{z}(t) $ \epsilon $ $ \mathbb{R}^q $ es el (q$ \times 1 $) vector de observaciones.
 		\item $ \Phi $ es ahora el (n$ \times n $) estado de la matriz de transición del sistema discreto lineal dinámico.
 		
-		\item H es de nuevo (q$ \times n $)  la matriz de medición de la sensibilidad definiendo la relación entre el estado de un sistema dinámico y las medidas que pueden hacerse.
+		\item H es otra vez (q$ \times n $)  la matriz de medición de la sensibilidad definiendo la relación entre el estado de un sistema dinámico y las medidas que pueden hacerse.
 		\item $B=I_{n}dt$, donde dt es el período de muestreo.
 		
 		
@@ -1330,7 +1327,7 @@ donde,
 
 
 
-	Por lo tanto, cuando lo aplicamos a señales discretas, el filtro de Kalman pretende resolver el problema de intentar estimar el estado \textbf{x} $ \epsilon $ $ \mathbb{R}^n $ de un proceso de tiempo discreto que es definido por el modelo de las ecuaciones \ref{eq:40} y \ref{eq:41}. Además $\mathbf{ w_{k}} $ y  $\mathbf{ v_{k}} $ son procesos de ruido blanco considerados independientes entre sí y con una distribución normal de probabilidad
+	Por lo tanto, cuando aplicamos a las señales discretas, el filtro de Kalman pretende resolver el problema de intentar estimar el estado \textbf{x} $ \epsilon $ $ \mathbb{R}^n $ de un proceso de tiempo discreto que es definido por el modelo de las ecuaciones \ref{eq:40} y \ref{eq:41}. Además $\mathbf{ w_{k}} $ y  $\mathbf{ v_{k}} $ se suponen que son independientes entre sí, blanco y con una distribución normal de probabilidad
 	
 	\begin{equation}
 	p(\mathbf{w})\sim N(0,Q)
@@ -1338,21 +1335,21 @@ donde,
 	\begin{equation}
 	p(\mathbf{v})\sim N(0,R)
 	\end{equation}
-	donde, a su vez, Q y R son las matrices de covarianza del ruido del proceso y del ruido de la medida respectivamente y pueden considerarse invariantes en el tiempo en la práctica.
-	Cuando derivamos las ecuaciones del filtro de Kalman, el objetivo es encontrar una equación que calcule un estado (actualizado y corregido con la medición) a posteriori estimado como una combinación lineal de una estimación (prevista) a priori $\mathbf{ \hat{x}_{k}^-} $ y una diferencia ponderada entre una medida actual $\mathbf{ z_{k}} $ y una medida de predicción H$\mathbf{ \hat{x}_{k}^-} $,
+	donde, a su vez, Q y R son las matrices de covarianza del proceso del ruido y de medida del ruido respectivamente y pueden considerarse invariantes en el tiempo en la práctica.
+	Cuando derivamos las ecuaciones del filtro de Kalman, el objetivo es encontrar una equación calcule un estado (actualizado y corregido con la medición) a posteriori estimado como una combinación lineal de una estimación (prevista) a priori $\mathbf{ \hat{x}_{k}^-} $ y una ponderada diferencia entre una medida actual $\mathbf{ z_{k}} $ y una medida de predicción H$\mathbf{ \hat{x}_{k}^-} $,
 	
 	
 	\begin{equation}
 	\label{eq:44}
 	\mathbf{\hat{x}}_{k}=\mathbf{\hat{x}}_{k}^{-}+K_{k}(\mathbf{z}_{k}-H\mathbf{\hat{x}_{k}^{-}})
 	\end{equation}
-	La diferencia en \ref{eq:44} es conocida como medida de innovación o el residuo. El residuo indica la discordancia entre la predicción de la medida  H$\mathbf{ \hat{x}_{k}^-} $ y la medida $\mathbf{ z_{k}} $.
+	La diferencia entre en \ref{eq:44} es conocida como medida de innovación o el residuo. El residuo indica la discordancia entre la medida de predicción H$\mathbf{ \hat{x}_{k}^-} $ y la actual medida $\mathbf{ z_{k}} $.
 	
-	La matriz $ K_{k} $ en \ref{eq:44} es conocida como la ganancia de Kalman y es eligida para ser la ganancia que minimizará el error de covarianza a posteriori. Otra forma de ver la ponderación por $ K_{k} $ es que a medida que el error de covarianza tienda a cero, se confía más en la medida  $\mathbf{ z_{k}} $ y se confía menos en la predicción de la medida. H$\mathbf{ \hat{x}_{k}^-} $. Análogamente, cuando el error de covarianza estimado a priori tiende a cero se confía menos en la  medida y más en la predicción de la medida.
+	La matriz $ K_{k} $ en \ref{eq:44} es conocida como la ganancia de Kalman y es eligida para ser la ganancia que minimizará a posteriori el error de covarianza. Otra forma de ver la ponderación por $ K_{k} $ es que la medida de error de covarianza tienda a cero, se confía más en la actual medida  $\mathbf{ z_{k}} $ y se confía menos en la medida de predicción H$\mathbf{ \hat{x}_{k}^-} $. Análogamente, cuando el error de covarianza estimado a priori tiende a cero se confía menos en la actual medida, mientras se confía más en la medida de predicción.
 	
-	El filtro de Kalman controla un proceso usando una forma de control de realimentación: el filtro estima el estado del proceso en un momento y luego obtiene de forma realimentada las medidas del ruido. Por lo tanto, las ecuaciones del fitro de Kalman se dividen en dos grupos: las ecuaciones de actualización de tiempo y las ecuaciones de actualización de la medición.
+	El filtro de Kalman controla un proceso usando una forma de control de realimentado: el filtro estima el estado del proceso en un momento y luego obtiene de forma realimentada las medidas del ruido. Por lo tanto, las ecuaciones del fitro de Kalman se dividen en dos grupos: las ecuaciones de actualización de tiempo y las ecuaciones de actualización de la medición.
 	
-	Las ecuaciones de actualización de tiempo pueden ser consideradas también como ecuaciones de predicción, mientras las ecuaciones de actualización de la medición pueden también ser consideradas como ecuaciones de correción. Si nosotros suponemos que $ \Phi $, Q y R son constantes, la ecuaciones de actualización de tiempo son como siguen:
+	Las ecuaciones de actualización de tiempo pueden ser pensadas también como ecuaciones de predicción, mientras las ecuaciones de actualización de la medición pueden también ser pensadas como ecuaciones de correción. Si nosotros suponemos que $ \Phi $ Q y R son constantes, la ecuaciones de actualización de tiempo son como siguen:
 	
 	\begin{equation}
 	\label{eq:45}
@@ -1382,15 +1379,15 @@ donde,
 	
 	donde  $P_{k}^- $  y $ P_{k} $ son la estimación del error de covarianza a priori y a posteriori y $ K_{k} $ es un factor conocido como la ganancia de Kalman.
 	
-	Así, para contruir un algoritmo usando el filtro de Kalman se deben implementar los siguientes pasos:
+	Así para contruir un algoritmo de cálculo los siguientes pasos se deben ser implementados:
 	
 	\begin{itemize}
-		\item Parámetros conocidos:
+		\item Parámetros conocidos
 		\begin{enumerate}
 			\item $ \Phi $: Matriz de transición de estado.
 			\item H: Matriz de medición.
-			\item Q: Matriz de covarianza del ruido del proceso.
-			\item R: Matriz de covarianza del ruido de medición.
+			\item Q: Matriz de covarianza del proceso del ruido.
+			\item R: Matriz de covarianza de medición del ruido.
 		\end{enumerate}
 		\item Cálculos.
 		\begin{enumerate}
@@ -1398,19 +1395,18 @@ donde,
 		\item Cálculo de $ \hat{P}_{k}^- $ en  sustituyendo $ P_{k-1} $, $ \Phi $ y Q en \ref{eq:46}.
 		\item Cálculo $ K_{k} $ sustituyendo $ \hat{P}_{k}^- $, H y R en \ref{eq:47}.
 		\item Cálculo de $ P_{k} $ sustituyendo $ K_{k} $ y $ \hat{P_{k}^-} $ en \ref{eq:49}.
-		\item Cálculo de los valores sucesivos de  $\mathbf{ \hat{x}_{k}^-} $ de forma recursiva usando \ref{eq:45} y \ref{eq:48} y el cálculo de $ K_{k} $. Se comienza con las estimaciones iniciales  $\mathbf{ \hat{x}_{0}} $ y $ P_{0} $.
+		\item Cálculo de los valores sucesivos de  $\mathbf{ \hat{x}_{k}^-} $ de forma recursiva usando \ref{eq:45} y \ref{eq:48} y el cálculo de $ K_{k} $. Se comienza con las estimaciones iniciales dadas de $\mathbf{ \hat{x}_{0}} $ y $ P_{0} $.
 		
 		\end{enumerate} 
 	
 	\end{itemize}
 	
-	La figura \ref{fig:Fundamentos2} muestra el diagrama de flujo de un filtro de Kalman de propósito general
-	
+	La figura \ref{fig:Fundamentos2} muestra el diagrama de flujo del  estándar de aproximación del filtro de Kalman sin el sensor fusión
 	
 	\begin{figure}[H]
 	  \centering
-	  \includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos31}
-	  \caption{Diagrama de flujo de un filtro de Kalman de propósito general}
+	  \includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos2EPS}
+	  \caption{Diagrama general del estándar de aproximación del filtro de Kalman sin el sensor fusión}
 	  \label{fig:Fundamentos2}
 	  \end{figure}
 	  
@@ -1418,9 +1414,9 @@ donde,
 	\subparagraph{El filtro de Kalman aplicado a la estimación de la orientación}  ~\\
 	
 	
-	Después de esta breve introdución a los fundamentos básicos del filtro de Kalman, explicaremos cómo emplearlo en aplicaciones de fusión, y de manera más específica cómo aplicarlo para fusionar la información que viene de los distintos sensores utilizados.
+	Después de esta breve introdución a los fundamentos básicos del filtro de Kalman, explicaremos como emplearlo en un enfoque del filtro de fusión y de manera más específica como aplicar para fusionar la información que viene de las dos enfoques de la estimación de la orientación explicados en su momento.
 	
-	Sea el vector de estado que queremos estimar sea el siguiente
+	Permitamos que el vector de estado que queramos estimar sea el siguiente
 	
 	\begin{equation}
 	\mathbf{x}(t)=
@@ -1429,12 +1425,12 @@ donde,
 	bias(t)
 	\end{bmatrix}
 	\end{equation}
-	donde $ \alpha $(t) es alguno de los ángulos de orientación (pitch, roll o yaw) y bias(t) es la diferencia entre la velocidad angular medida y la velocidad angular real.
+	donde $ \alpha $(t) es alguno de los ángulos de orientación (pitch, roll o yaw) y bias(t) es la diferencia entre la velocidad angular medida y la velocidad angular real debido a $ \alpha $.
 	
 	\begin{equation}
 	bias(t)=\omega_{meas}(t)-\omega_{actual}(t)
 	\end{equation}
-	Sea además \textbf{w}(t) el vector compuesto del ruido de la estimación del ángulo y el ruido de la velocidad angular respectivamente. La observación del proceso, \textbf{z}(t) es la estimación del ángulo calculado usando la aproximación del acelerómetro-magnetómetro.
+	Además dejamos que \textbf{w}(t) sea el vector compuesto del ángulo de estimación del ruido y la velocidad angular de ruido bias respectivamente. La observación del proceso, \textbf{z}(t) es la estimación del ángulo calculado usando el enfoque del acelerómetro-magnetómetro.
 	
 	\begin{equation}
 	\mathbf{z}(t)=z(t)=\alpha(t)
@@ -1442,24 +1438,24 @@ donde,
 	Procedemos ahora a obtener la expresión de las derivadas de las variables de estado:
 	
 	\begin{equation}
-	\dfrac{d\alpha(t)}{dt}=\omega_{actual}(t)
+	\dfrac{\alpha(t)}{dt}=\omega_{actual}(t)
 	\end{equation}
 	
-	conocida  $ w_{actual}=w_{meas}-bias(t)$ que es la velocidad angular medida que presenta un desplazamiento con respecto a su valor real:
+	conocida la $ w_{real}=w_{meas}-bias(t)$ que es la velocidad angular medida que presenta un desplazamiento con respecto a su valor real:
 	
 	\begin{equation}
-	\frac{d\alpha(t)}{dt}=\omega_{medido}(t)-bias(t)
+	\frac{d\alpha(t)}{dt}=\omega_{meas}(t)-bias(t)
 	\end{equation}
 	
-	Si consideramos  $ w_{medido}$ como una parte del proceso del ruido, $ w_{medido}=w_{\alpha}$, obtenemos
+	Si consideramos  $ w_{medido}$ como una parte del proceso del ruido, $ w_{medido}=w_{\alpha}$, nosotros obtenemos
 	
 	\begin{equation}
 	\frac{d\alpha(t)}{dt}=-bias(t)+\omega_{\alpha}(t)
 	\end{equation}
 	
-	Así, el primer componente de la potencia del ruido del proceso, $ w_{\alpha} $ debería ser la varianza de la señal del ángulo calculado con la aproximación del acelerómetro-magnetómetro.
+	Así, el primer componente del proceso de potencia del ruido, $ w_{\alpha} $ debería ser la varianza de la señal del ángulo calculado con el enfoque del acelerómetro-magnetómetro.
 	
-	Por otro lado, aplicamos la derivada a la segunda variable de estado, bias(t), constituye la segunda componente del proceso del ruido y como resultado obtenemos:
+	Por otro lado, dejemos que la derivada de la segunda variable de estado, bias(t), sea la segunda componente del proceso del ruido:
 	
 	\begin{equation}
 	\frac{dbias(t)}{dt}=\omega_{bias}(t)
@@ -1512,7 +1508,7 @@ donde,
 	+ v(t)
 	\end{equation}
 	
-	Si ahora aplicamos la aproximación para discretizar el sistema obtemos:
+	Si nosotros ahora aplicamos la aproximación para discretizar el sistema obtemos:
 	
 	\begin{displaymath}
 		\mathbf{x}_{k+1}=
@@ -1617,7 +1613,7 @@ donde,
 	\end{equation}
 	
 	
-	Una vez que tenemos definidas las ecuaciones de estado del sistema discreto, repetimos las ecuaciones del filtro de Kalman y su orden de aplicación para más claridad:
+	Una vez que tenemos definido las ecuaciones de estado del sistema discreto, nosotros repetimos las ecuaciones del filtro de Kalman y su orden de aplicación por la falta de claridad:
 	
 	
 	\begin{center}
@@ -1652,9 +1648,9 @@ donde,
 	donde
 	
 	\begin{itemize}
-		\item $\mathbf{ \hat{x}_{k}^-}$ es el estado estimado a priori.
-		\item $ P_{k}^- $ es la matriz de covarianza a priori del sistema.
-		\item Q es la matriz de covarianza del ruido del proceso y está definida como
+		\item $\mathbf{ \hat{x}_{k}^-}$ es el a priori estado estimado.
+		\item $ P_{k}^- $ el la a priori matriz de covarianza del sistema.
+		\item Q es la matriz de covarianza del proceso del ruido y esta definida como
 		
 		\begin{equation}
 		\label{eq:66}
@@ -1665,17 +1661,17 @@ donde,
 		\end{bmatrix}
 		\end{equation}
 		
-		donde $ \sigma_{\alpha} $ es la varianza del ángulo calculado con la aproximación del acelerómetro-magnetómetro y $ \sigma_{\omega} $ es la varianza de la velocidad angular medida por el giróscopo.
-		\item R, que en este caso es un escalar, es la potencia del ruido observado y está definida como la varianza del ángulo estimado por el acelerómetro-magnetómetro.  
+		donde $ \sigma_{\alpha} $ es la varianza del ángulo calculado con el enfoque del acelerómetro-magnetómetro y $ \sigma_{\omega} $ es la varianza de la velocidad angular medida por el giróscopo.
+		\item R, que este caso es un escalar, es la potencia del ruido observado y está definido como la varianza del ángulo estimado por el acelerómetro-magnetómetro.  
 		\item $ K_{k} $ es la ganancia del filtro de Kalman.
 		
 		\item $\mathbf{ \hat{x}_{k}^-} $ es el estado estimado a posteriori.
-		\item $ P_{k} $ matriz de covarianza a posteriori del sistema.
+		\item $ P_{k} $ matriz de covarianza del sistema a posteriori.
 		
 	\end{itemize}
 	
 	
-	El lector, se estará preguntando dónde exactamente en las ecuaciones se ha utilizado la medida de la velocidad angular. Lo cierto es que las ecuaciones \ref{eq:61} y \ref{eq:65} no implementan todavía un sistema de fusión de sensores porque sólo estamos usando los datos que vienen del acelerómetro y el magnetómetro. La clave para incluir la fusión de sensores en el sistema definido es sustituir el cálculo de la predición de los estados $\mathbf{ \hat{x}_{k}^-} $ como sigue:
+	El lector, se estará preguntando donde exactamente en las ecuaciones se ha utilizado la medida de la velocidad angular. La verdad es que las ecuaciones \ref{eq:61} y \ref{eq:65} no implementan todavía el enfoque de un sensor fusión porque nosotros sólo estamos usando los datos que vienen del acelerómetro y el magnetómetro. La clave para insertar el sensor fusión al sistema definido por esas ecuaciones es cambiar el cálculo de la predición a priori de los estados $\mathbf{ \hat{x}_{k}^-} $ como sigue:
 	
 	\begin{equation}
 	\label{eq:67}
@@ -1690,24 +1686,24 @@ donde,
 	\end{bmatrix}
 	\end{equation}
 	
-	De esta forma, el estado estimado a priori está siendo calculado utilizado la información de ambas aproximaciones, el cálculo del ángulo usando el acelerómetro y el magnetómetro y la integración de la velocidad angular.
+	En esta forma, el estado estimado a priori es siendo calculado utilizado la información de ambos enfoques, el acelerómetro-magnetómetro y la velocidad angular.
 	
 	Para finalizar la explicación del enfoque clásico del filtro de Kalman aplicado a fusionar la información del acelerómetro-magnetómetro y el giróscopo, incluimos debajo paso a paso las operaciones que se necesitan para llevar a cabo el algoritmos completo:
 	
 	\begin{enumerate}
 	
-		\item Inicializar la matriz de covarianza como una matriz identidad de dimensiones $2\times2 $, $ P=I_{2\times2} $.
-		\item Definir la matriz de covarianza usando la ecuación \ref{eq:66}. Esta matriz permanece constante durante la ejecución del algoritmo.
-		\item Definir la varianza del ruido medido, R, que en este caso es la varianza del ángulo de estimación del acelerómetro-magnetómetro, $R=\sigma_{\alpha}  $. Este valor permanece constante durante la ejecución del algoritmo.
-		\item Definir el estado de las matrices de transición y de medida, $ \Phi $ y H usando la ecuación (\ref{eq:60}).
-		\item Leer los datos del acelerómetro($\mathbf{ a_{k} }$), giróscopo ($ \omega_{k} $) y magnetómetro($\mathbf{ h_{k} }$).
-		\item Usando ($\mathbf{ a_{k} }$) y ($\mathbf{ h_{k} }$), cálcular el ángulo de estimación del acelerómetro-magnetómetro, $ \alpha_{k} $ mediante cualquiera de los métodos de estimación de la orientación de no fusión explicado en las subsecciones anteriores.
-		\item Calcular la estimación a priori del vector de estados usando la ecuación \ref{eq:67}
-		\item Calcular la matriz de covarianza a priori del sistema usando la ecuación \ref{eq:62}.
-		\item Calcular la ganancia de Kalman usando la ecuación \ref{eq:63}, donde $ z_{k}=\alpha_{k} $.
-		\item Actualizar el vector de estados usando la ecuación \ref{eq:64}.
-		\item Actualizar la matriz de covarianza del sistema usando la ecuación \ref{eq:65}.
-		\item Volver al paso 5.
+		\item Inicializa la matriz de covarianza como una matriz identidad de dimensiones $2\times2 $, $ P=I_{2\times2} $.
+		\item Define la matriz de covarianza usando la ecuación \ref{eq:66}. Esta matriz permanece constante durante la ejecución del algoritmo.
+		\item Define la varianza del ruido medido, R, que en este caso es la varianza del ángulo de estimación del acelerómetro-magnetómetro, $R=\sigma_{\alpha}  $. Este valor permanece constante durante la ejecución del algoritmo.
+		\item Define el estado de las matrices de transición y de medida, $ \Phi $ y H usando la ecuación (\ref{eq:60}).
+		\item Lee los datos del acelerómetro($\mathbf{ a_{k} }$), giróscopo ($ \omega_{k} $) y magnetómetro($\mathbf{ h_{k} }$).
+		\item Usando ($\mathbf{ a_{k} }$) y ($\mathbf{ h_{k} }$), cálcula el ángulo de estimación del acelerómetro-magnetómetro, $ \alpha_{k} $ mediante cualquiera de los métodos de estimación de la orientación de no fusión explicado en las subsecciones anteriores.
+		\item Calcula la estimación a priori del vector estado usando la ecuación \ref{eq:67}
+		\item Calcula la matriz de covarianza del sistema a priori usando la ecuación \ref{eq:62}.
+		\item Calcula la ganancia de Kalman usando la ecuación \ref{eq:63}, donde $ z_{k}=\alpha_{k} $.
+		\item Actualiza el vector estado usando la ecuación \ref{eq:64}.
+		\item Actualiza la matriz de covarianza del sistema usando la ecuación \ref{eq:65}.
+		\item Vuelve al paso 5.
 		
 		
 		
@@ -1715,15 +1711,465 @@ donde,
 	
 	\vspace{5mm}
 	
-	La figura \ref{fig:Fundamentos3} muestra el diagrama de flujo del enfoque estándar del filtro de Kalman con fusión de sensores.
+	La figura \ref{fig:Fundamentos3} muestra el diagrama de flujo del enfoque estándar del filtro de Kalman con sensor fusión.
 	
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\textwidth]{figuras/Fundamentos/Fundamentos32}
-	\caption{Diagrama de flujo del enfoque estándar del filtro de Kalman con fusión de sensores}
+	\includegraphics[width=0.7\textwidth]{figuras/Fundamentos/Fundamentos3}
+	\caption{Diagrama de flujo del enfoque estándar del filtro de Kalman con sensor fusión}
 	\label{fig:Fundamentos3}
 	\end{figure}
 	
 	
+	\subsubsection{Determinación de la orientación basada en cuaterniones}
+	
+	\paragraph{Usando la velocidad angular para calcular la orientación} ~\\
+	
+	Una forma para calcular la velocidad de cambio de la orientación del marco de la Tierra respecto al marco del sensor es calcular  las derivada de los cuaternión $_{E} ^{S} \mathbf{\dot{q}}$,  que está definida como sigue,
+	
+	\begin{equation}
+	\label{eq:68}
+	^{S}_{E}\mathbf{\dot{q}}=  \frac{1}{2} \,   _{E}^{S}\mathbf{q}\otimes ^{S}\omega
+	\end{equation}
+	donde $_{E} ^{S} \mathbf{q}$ es el cuaternión que determina la orientación del marco de la Tierra respecto al marco del sensor, $ ^{S}\omega=$ [0  $ \omega_{x} $ $ \omega_{y} $  $ \omega_{z}  $ ] es la medida de la velocidad angular en el marco del sensor en forma de cuaternión, y $ \otimes $ (o Hamiltoniano) producto.
+	
+	Por lo tanto, podemos calcular la orientación del marco de la Tierra respecto al marco del sensor (cálculo de la velocidad angular) en el instante t$_{E} ^{S} \mathbf{q}_{\omega,t}$ por simplicidad integrando la derivada del cuaternión en la ecuación \ref{eq:68}.
+	\begin{equation}
+	\label{eq:69}
+	^{S}_{E}\mathbf{q}_{\omega,t}=
+	^{S}_{E}\mathbf{\hat{q}}_{t-1}+^{S}_{E}\mathbf{\dot{q}}_{\omega,t}\triangle t
+	\end{equation}
+	donde  $_{E} ^{S} \mathbf{\hat{q}}_{t-1}$ es el cuaternión de orientación estimado en t-1 para aplicarlo al algoritmo de un sensor fusión()(esto se explicará más tarde) y $ \bigtriangleup t$ es la frecuencia de muestreo. Por lo tanto, si conectamos la ecuación \ref{eq:68} a \ref{eq:69}, obtenemos 
+	
+	\begin{equation}
+	\label{eq:70}
+	\begin{aligned}
+	^{S}_{E}\mathbf{q}_{\omega,t}=[\hat{q}_{1,t-1} \, \hat{q}_{2,t-1} \, \hat{q}_{3,t-1} \, \hat{q}_{4,t-1}]+\frac{1}{2}\triangle t [\hat{q}_{1,t-1} \, \hat{q}_{2,t-1} \, \hat{q}_{3,t-1} \, \hat{q}_{4,t-1}] \otimes [0 \,\omega_{x} \, \omega_{y} \, \omega_{z}]=\\
+	[\hat{q}_{1,t-1} \, \hat{q}_{2,t-1} \, \hat{q}_{3,t-1} \, \hat{q}_{4,t-1}]+\frac{1}{2}[\underbrace{-\hat{q}_{2,t-1}\omega_{x} \, -\hat{q}_{3,t-1}\omega_{y} \, -\hat{q}_{4,t-1}\omega_{z}}_{y_{1'}} \\
+	 \underbrace{\hat{q}_{1,t-1}\omega_{x} \, +\hat{q}_{3,t-1}\omega_{z} \, -\hat{q}_{4,t-1}\omega_{y}}_{y_{2'}} \:
+	 \underbrace{\hat{q}_{1,t-1}\omega_{y} \, -\hat{q}_{2,t-1}\omega_{z} \, +\hat{q}_{4,t-1}\omega_{x}}_{y_{3'}} \\
+	 \underbrace{\hat{q}_{1,t-1}\omega_{z} \, +\hat{q}_{2,t-1}\omega_{y} \, -\hat{q}_{3,t-1}\omega_{x}}_{y_{4'}}]			
+	\end{aligned}
+	\end{equation}
+	
+	
+	\paragraph{Usando la aceleración y el campo magnético para calcular la orientación} ~\\
+	
+	
+	Otra posible forma de calcular la orientación es usando las medidas del acelerómetro  y el magnetómetro. El acelerómetro mide la magnitud y dirección del campo gravitacional de la Tierra además de la aceleración lineal. Las medidas del magnetómetro serían la magnitud y dirección del campo magnético de la Tierra junto con el flujo magnético local y las perturbaciones de campo.
+	
+	Si el cuerpo se está moviendo  con movimiento cuasi-estático y el entorno es magnéticamente estable, nosotros podemos asumir que el acelerómetro medirá sólo la gravedad y el magnetómetro medirá el campo magnético de la Tierra. Supondremos esto en lo que sigue.
+	
+	Para obtener una estimación de la orientación completa de 9-DOF  necesitamos combinar el acelerómetro y el magnetómetro, como el acelerómetro no es capaz de medir la orientación alrededor del eje debido a que está paralelo al campo gravitacional. En algunas aplicaciones sólo es necesario medir pitch y/o roll, por lo tanto ahí no necesitamos el magnetómetro. Sin embargo, para una solución basada en el cuaternión necesitamos ambos sensores ya que es una estimación de 9-DOF.
+	
+	Por lo tanto, para estimar la orientación completa podemos formular una optimización del problema donde una orientación del sensor $_{E} ^{S} \mathbf{\dot{q}}$, es aquella que alinea una dirección de referencia predefinida del campo en el marco de la Tierra, $ ^{E} \mathbf{\hat{d}} $, con la medida de la dirección del campo magnético en el marco del sensor, $ ^{S} \mathbf{\hat{s}} $, usando la operación de rotación del cuaternión
+	
+	\begin{equation}
+	\label{eq:71}
+	^{E}\mathbf{v}=_{S}^{E}\mathbf{\hat{q}}\otimes^{S}\mathbf{v}\otimes _{S}^{E}\mathbf{\hat{q}}  
+	\end{equation}
+	donde $ ^{E} \mathbf{v} $ y $ ^{S} \mathbf{v} $ representan el vector \textbf{v} medido en el marco de la Tierra y el marco del sensor respectivamente, y $_{E} ^{S} \mathbf{\hat{q}}$ es el cuaternión representando la orientación  del marco del sensor respecto al marco de la Tierra.
+	
+	Por lo tanto,  $_{E} ^{S} \mathbf{\hat{q}}$ puede ser encontrado como solución de
 
+	
+	\begin{equation}
+	\label{eq:72}
+	\underset{_{S}^{E}\mathbf{\hat{q}}\epsilon\mathbb{R}^{4}}{min} f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}})
+	\end{equation}
+	
+	donde
+	
+	\begin{equation}
+	\label{eq:73}
+	f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}})=_{S}^{E}\mathbf{\hat{q}}^{*}\otimes ^{E}\mathbf{\hat{d}}\otimes _{S}^{E}\mathbf{\hat{q}}-^{S}\mathbf{\hat{s}}
+	\end{equation}
+	
+	
+	
+	
+	
+	En este caso, usaremos el algoritmo del gradiente descendente para optimizar la función. La orientación del cuaternión en el instante k+1 es calculada aplicando
+	
+	\begin{equation}
+	\label{eq:74}
+	_{S}^{E}\mathbf{\hat{q}}_{k+1}=_{S}^{E}\mathbf{\hat{q}}_{k}-\mu\frac{f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}})}{\Arrowvert f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}})\Arrowvert}
+	\end{equation}
+	
+	donde
+	
+	\begin{equation}
+	\label{eq:75}
+	\nabla f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}})=J^{T}(_{S}^{E}\mathbf{\hat{q}}_{k},^{E}\mathbf{\hat{d}})f(_{S}^{E}\mathbf{\hat{q}},^{E}\mathbf{\hat{d}},^{S}\mathbf{\hat{s}}))
+	\end{equation}
+	
+	Cuando a su vez
+	
+	\begin{equation}
+	\label{eq:76}
+	_{S}^{E}\mathbf{\hat{q}}^{*}\otimes^{E}\mathbf{\hat{d}}\otimes _{S}^{E}\mathbf{\hat{q}}-^{S}\mathbf{\hat{s}}=
+	\begin{bmatrix}
+	2d_{x}(\frac{1}{2}-q_{3}^{2}-q_{4}^{2})+2d_{x}+2d_{y}(q_{1}q_{4}+q_{2}q_{3})+2d_{z}(q_{2}q_{4}-q_{1}q_{3})-s_{x} \\
+	2d_{x}(q_{2}q_{3}-q_{1}q_{4})+2d_{y}(\frac{1}{2}-q_{2}^{2}-q_{4}^{2})+2d_{z}(q_{1}q_{2}+q_{3}q_{4})-s_{y} \\
+	2d_{x}(q_{1}q_{3}+q_{2}q_{4})+2d_{y}(q_{3}q_{4}-q_{1}q_{2})+2d_{z}(\frac{1}{2}-q_{2}^{2}-q_{3}^{2})-s_{z}
+	\end{bmatrix}
+	\end{equation}
+	
+	
+	
+	
+	Como antes mencionemos,
+	
+	\begin{itemize}
+		\item $_{S} ^{E} \mathbf{\hat{q}}=$ [$ q_{1} $ $ q_{2} $ $ q_{3} $ $ q_{4} $ ] $ \longrightarrow $ Orientación del cuaterníon estimada.
+		\item $ ^{E} \mathbf{\hat{d}}=$ [$ 0 $ $ d_{x} $ $ d_{y} $ $ d_{z} $ ] $ \longrightarrow $ Dirección de referencia predefinida del campo magnético en la Tierra.
+		\item $ ^{S} \mathbf{\hat{s}}=$ [$ 0 $ $ s_{x} $ $ s_{y} $ $ s_{z} $ ] $ \longrightarrow $ Dirección medida del campo magnético en el marco del sensor.
+		
+		
+		
+	\end{itemize}
+	
+	
+	
+	En nuestro caso, tenemos dos vectores de referencia, el vector gravitacional de la Tierra y el vector de campo magnético. Por lo tanto, usaremos ambos para tener una estimación de la orientación completa 9DOF. Empecemos por derivar las ecuaciones para el campo gravitacional de la Tierra y el acelerómetro. Para este caso, $ ^{E} \mathbf{\hat{d}}= ^{E} \mathbf{\hat{g}}=$[0 0 0 1] y $ ^{S} \mathbf{\hat{s}}= ^{S} \mathbf{\hat{a}}=$[$ 0 $  $ a_{x} $  $ a_{y} $  $ a_{z} $]. 
+	
+	
+	Entonces, la ecuación \ref{eq:76} es reducida a,
+	
+	\begin{equation}
+	\label{eq:77}
+		f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{\hat{g}},^{S}\mathbf{\hat{a}})=^{E}_{S}\mathbf{\hat{q}}^{*}\otimes ^{E}\mathbf{\hat{g}} \otimes ^{E}_{S}\mathbf{\hat{q}}- ^{S}\mathbf{\hat{a}}=
+		\begin{bmatrix}
+		\underbrace{2(q_{2}q_{4}-q_{1}q_{3})-a_{x}}_{F_{1}} \\
+		\underbrace{2(q_{1}q_{2}+q_{3}q_{4})-a_{y}}_{F_{2}} \\
+		\underbrace{2(\frac{1}{2}-q^{2}_{2}-q_{3}^{2})-a_{z}}_{F_{3}}
+		\end{bmatrix}
+	\end{equation}
+	
+	
+	
+	
+	Como mostramos en la ecuación \ref{eq:75},
+	
+	\begin{equation}
+	\label{eq:78}
+	\nabla f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{\hat{g}},^{S}\mathbf{\hat{a}})=J^{T}(^{E}_{S}\mathbf{\hat{q}}_{k},^{E}\mathbf{\hat{g}})f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{\hat{g}},^{S}\mathbf{\hat{a}})
+	\end{equation}
+	Por lo tanto, nosotros sólo perdemos el cálculo del Jacobiano( $_{S} ^{E} \mathbf{\hat{q}}_{k}$, $ ^{E} \mathbf{\hat{g}}$ ) que es llevado a cabo aplicando la siguiente ecuación,
+	
+	\begin{equation}
+	\label{eq:79}
+		J(^{E}_{S}\mathbf{\hat{q}}_{k},^{E}\mathbf{\hat{g}})=
+		\begin{bmatrix}
+		\dfrac{\partial F_{1}}{\partial q_{1}} & \dfrac{\partial F_{1}}{\partial q_{2}} & \dfrac{\partial F_{1}}{\partial q_{3}} & \dfrac{\partial F_{1}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{2}}{\partial q_{1}} & \dfrac{\partial F_{2}}{\partial q_{2}} & \dfrac{\partial F_{2}}{\partial q_{3}} & \dfrac{\partial F_{2}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{3}}{\partial q_{1}} & \dfrac{\partial F_{3}}{\partial q_{2}} & \dfrac{\partial F_{3}}{\partial q_{3}} & \dfrac{\partial F_{3}}{\partial q_{4}} 
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+		-2q_{3} & 2q_{4} & -2q_{1} & 2q_{2} \\
+		2q_{2} & 2q_{1} & 2q_{4} & 2q_{3} \\
+		0 & -4q_{2} & -4q_{3} & 0
+		\end{bmatrix}
+	\end{equation}
+	
+	Hemos terminado con la parte del acelerómetro, continuamos con el magnetómetro que nos va a proporcionar el ángulo Yaw que no puede ser calculado con el acelerómetro. Para el magnetómetro, $ ^{E} \mathbf{\hat{d}}= ^{E} \mathbf{\hat{b}=}$ [0 $b_{x}  $ 0 $ b_{z} $] y $ ^{S} \mathbf{\hat{s}}= ^{S} \mathbf{\hat{h}=}$ [0 $h_{x}  $ $h_{y}  $ $ h_{z} $] 
+	
+	\begin{equation}
+	\label{eq:80}
+	f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{\hat{b}},^{S}\mathbf{\hat{h}})=
+	^{E}_{S}\mathbf{\hat{q}}^{*}\otimes ^{E}\mathbf{\hat{b}}\otimes ^{E}_{S}\mathbf{\hat{q}}-^{S}\mathbf{\hat{h}}=
+	\begin{bmatrix}
+	\underbrace{2b_{x}(\frac{1}{2}-q_{3}^{2}-q_{4}^{2})+2b_{z}(q_{2}q_{4}-q_{1}q_{3})- h_{x}}_{F_{4}} \\
+	\underbrace{2b_{x}(q_{2}q_{3}-q_{1}q_{4})+2b_{z}(q_{1}q_{2}+q_{3}q_{4})- h_{y}}_{F_{5}} \\
+	\underbrace{2b_{x}(q_{1}q_{3}+q_{2}q_{4})+2b_{z}(\frac{1}{2}-q_{2}^{2}-q_{3}^{2})- h_{z}}_{F_{6}}
+	\end{bmatrix}
+	\end{equation}
+		
+	
+	
+	Análogamente como en la ecuación \ref{eq:79},
+	
+	\begin{equation}
+	\label{eq:81}
+	\begin{aligned}
+	J(^{E}_{S}\mathbf{\hat{q}}_{k},^{E}\mathbf{\hat{b}})=
+	\begin{bmatrix}
+	\dfrac{\partial F_{4}}{\partial q_{1}} & \dfrac{\partial F_{4}}{\partial q_{2}} & \dfrac{\partial F_{4}}{\partial q_{3}} & \dfrac{\partial F_{4}}{\partial q_{4}} \\ \\
+	\dfrac{\partial F_{5}}{\partial q_{1}} & \dfrac{\partial F_{5}}{\partial q_{2}} & \dfrac{\partial F_{5}}{\partial q_{3}} & \dfrac{\partial F_{5}}{\partial q_{4}} \\ \\
+	\dfrac{\partial F_{6}}{\partial q_{1}} & \dfrac{\partial F_{6}}{\partial q_{2}} & \dfrac{\partial F_{6}}{\partial q_{3}} & \dfrac{\partial F_{6}}{\partial q_{4}} 
+	\end{bmatrix}
+	=\\
+	\begin{bmatrix}
+	-2b_{z}q_{3} & 2b_{z}q_{4} & -2b_{z}q_{1} & 2b_{z}q_{2} \\
+	-2b_{z}q_{4}+2b_{z}q_{2} & 2b_{x}q_{3}+2b_{z}q_{1} & 2b_{x}q_{2}+2b_{z}q_{4} & -2b_{x}q_{1}+2b_{z}q_{3} \\
+	2b_{x}q_{3} & 2b_{x}q_{4}-4b_{z}q_{2} & 2b_{x}q_{1}-4b_{z}q_{3} & 2b_{x}q_{2}
+	\end{bmatrix}
+	\end{aligned}
+	\end{equation}
+	
+	Así que, finalmente, si ponemos todo junto, estas son las ecuaciones que necesitamos para implementar el cálculo del cuaternión de orientación usando los datos del acelerómetro y el magnetómetro, 
+	
+	\begin{equation}
+	\label{eq:82}
+	^{E}_{S}\mathbf{\hat{q}}_{k+1}=^{E}_{S}\mathbf{\hat{q}}_{k}-\mu\frac{\nabla f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{g\hat{b}},^{S}\mathbf{a\hat{h}})}{\Arrowvert \nabla f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{g\hat{b}},^{S}\mathbf{a\hat{h}})\Arrowvert}
+	\end{equation}
+	\begin{equation}
+	\label{eq:83}
+	\nabla f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{g\hat{b}},^{S}\mathbf{a\hat{h}})=J^{T}(^{E}_{S}\mathbf{\hat{q}}_{k},^{E}\mathbf{g\hat{b}})f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{a\hat{h}},^{S}\mathbf{\hat{s}})
+	\end{equation}
+	\begin{equation}
+	\label{eq:84}
+	f(^{E}_{S}\mathbf{\hat{q}},^{E}\mathbf{a\hat{h}},^{S}\mathbf{\hat{s}})=
+		\begin{bmatrix}
+		2(q_{2}q_{4}-q_{1}q_{3})-a_{x}\\
+		2(q_{1}q_{2}+q_{3}q_{4})-a_{y}\\
+		2(\frac{1}{2}-q_{2}^{2}-q_{3}^{2})-a_{z}\\
+		2b_{x}(\frac{1}{2}-q_{3}^{2}-q_{4}^{2})+2b_{z}(q_{2}q_{4}-q_{1}q_{3})-h_{x}\\
+		2b_{x}(q_{2}q_{3}-q_{1}q_{4})+2b_{z}(q_{1}q_{2}+q_{3}q_{4})-h_{y}\\
+		2b_{x}(q_{1}q_{3}+q_{2}q_{4})+2b_{z}(\frac{1}{2}-q_{2}^{2}-q_{3}^{2})-h_{z}
+		\end{bmatrix}
+	\end{equation}
+	
+	\begin{equation}
+	\label{eq:85}
+	\begin{aligned}	
+	J(^{E}_{S}\mathbf{\hat{q}}_{k},^{E}\mathbf{g\hat{b}})=
+	\begin{bmatrix}
+		\dfrac{\partial F_{1}}{\partial q_{1}} & \dfrac{\partial F_{1}}{\partial q_{2}} & \dfrac{\partial F_{1}}{\partial q_{3}} & \dfrac{\partial F_{1}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{2}}{\partial q_{1}} & \dfrac{\partial F_{2}}{\partial q_{2}} & \dfrac{\partial F_{2}}{\partial q_{3}} & \dfrac{\partial F_{2}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{3}}{\partial q_{1}} & \dfrac{\partial F_{3}}{\partial q_{2}} & \dfrac{\partial F_{3}}{\partial q_{3}} & \dfrac{\partial F_{3}}{\partial q_{4}}\\ \\
+		\dfrac{\partial F_{4}}{\partial q_{1}} & \dfrac{\partial F_{4}}{\partial q_{2}} & \dfrac{\partial F_{4}}{\partial q_{3}} & \dfrac{\partial F_{4}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{5}}{\partial q_{1}} & \dfrac{\partial F_{5}}{\partial q_{2}} & \dfrac{\partial F_{5}}{\partial q_{3}} & \dfrac{\partial F_{5}}{\partial q_{4}} \\ \\
+		\dfrac{\partial F_{6}}{\partial q_{1}} & \dfrac{\partial F_{6}}{\partial q_{2}} & \dfrac{\partial F_{6}}{\partial q_{3}} & \dfrac{\partial F_{6}}{\partial q_{4}} 
+	\end{bmatrix}
+		= \\
+	\begin{bmatrix}
+	-2q_{3} & 2q_{4} & -2q_{1} & 2q_{2} \\
+	2q_{2} & 2q_{1} & 2q_{4} & 2q_{3}\\
+	0 & -4q_{2} & -4q_{3} & 0 \\
+	-2b_{z}q_{3} & 2b_{z}q_{4} & -2b_{z}q_{1} & 2b_{z}q_{2} \\
+	-2b_{x}q_{4}+2b_{z}q_{2} & 2b_{x}q_{3}+2b_{z}q_{1} & 2b_{x}q_{2}+2b_{z}q_{4} & -2b_{x}q_{1}+2b_{z}q_{3}\\
+	2b_{x}q_{3} & 2b_{x}q_{4}-4b_{z}q_{2} & 2b_{x}q_{1}-4b_{z}q_{3} & 2b_{x}q_{2}
+	\end{bmatrix}
+	\end{aligned}
+	\end{equation}
+	
+	La rutina de la implementación del proceso anterior debe estar estructurada como sigue para cada instante k,
+	
+	
+	\begin{enumerate}
+		\renewcommand{\labelenumi}{\roman{enumi}.}
+	
+		\item Lea el cuaternión de orientación para el instante \textit{k}-1, $ _{S}^{E} \mathbf{\hat{q}}_{k-1}$
+		\item Lea los datos del acelerómetro y el magnetómetro para el instante \textit{k}. Entonces tenemos  $ a_{x,k} $ $ a_{y,k} $ $ a_{z,k} $ $ h_{x,k} $ $ h_{y,k} $  y $ h_{z,k} $.
+		\item Calcule el Jacobiano en la ecuación \ref{eq:85} conociendo eso,
+		
+		\begin{equation}
+		\label{eq:86}
+		\mathbf{m}=_{S}^{E}\mathbf{\hat{q}}_{k-1}\otimes [0 \, h_{x,k} \,h_{y,k} \,h_{z,k}]\otimes _{S}^{E}\mathbf{\hat{q}}_{k-1}^{*}
+		\end{equation}
+		\begin{equation}
+		\label{eq:87}
+		b_{x}=\sqrt{m_{2}^{2}+m_{3}^{2}}
+		\end{equation}
+		\begin{equation}
+		\label{eq:88}
+		b_{z}=m_{4}
+		\end{equation}
+		
+		
+		\item Calcule la expresión de \textit{f}($ _{S}^{E} \mathbf{\hat{q}}$,$ ^{E} \mathbf{a\hat{h}}$,$ ^{S} \mathbf{\hat{s}}$) en \ref{eq:84}.
+		\item Sustituya el valor de las expresiones calculadas en los dos pasos previos en la ecuación \ref{eq:82} para calcular el cuaternión de orientación para el instante \textit{k}, $ _{S}^{E} \mathbf{\hat{q}}_{k}$.
+		
+	\end{enumerate}
+	
+
+	\paragraph{Fusionando los cuaterniones de orientación calculados de la velocidad angular, la aceleración y el campo magnético} ~\\
+	
+	
+	En las dos secciones previas hemos explicado como calcular el cuaternión de orientación usando dos enfoques diferentes. El primero está basado en la integración numérica de la velocidad angular. Este enfoque sería perfecto en una situación ideal en la que no habría ruido a la salida del giróscopo y no habría deriva bias de tiempo. El segundo enfoque está basado en el cálculo de la orientación de las mediciones de los  vectores de la gravedad y el campo magnético de la Tierra en el marco del sensor respecto a sus valores de referencias conocidos en el marco de la Tierra. Este enfoque, como fue antes mencionado es sólo válido si el cuerpo es medido  con una aceleración lineal insignificante (es decir, movimiento de baja intensidad) y/o no habrá distorsiones magnéticas cercanas a los sensores. 
+	
+	Está claro entonces, que ninguno de los enfoques se pueden utilizar únicamente para calcular una estimación de la orientación precisa. Por lo tanto, podemos aplicar un esquema de fusión  para fusionar ambos enfoques. El filtro de Kalman Extendido es una buena solución para llevar a cabo el sensor fusión.
+	
+	\subparagraph{El Filtro de Kalman Extendido} ~\\
+	
+	El filtro Extendido de Kalman es utilizado  cuando el proceso sea estimado y (o) la relación de medida del proceso no es lineal. Una solución para la no linealidad  es linealizar sobre la media real y la covarianza. Supongamos que nuestro proceso tiene de nuevo un vector estado $ \mathbb{R}^n $ , pero el procedimiento se rige ahora por la ecuación estocástica en diferencias
+	
+	\begin{equation}
+	\label{eq:89}
+	x_{k}=f(x_{k-1}\,u_{k-1},\omega_{k-1})
+	\end{equation}
+	
+	con una medida z $ \epsilon$ $ \mathbb{R}^m  $
+	
+	\begin{equation}
+	\label{eq:90}
+	z_{k}=h(x_{k},v_{k})
+	\end{equation}
+	
+	donde las variables aleatorias $ \omega_{k} $ y $ v_{k} $ otra vez representan el proceso y la medida del ruido. En este caso, la función no lineal \textit{f} en la ecuación en diferencias \ref{eq:89}  relaciona al estado previo al intervalo de tiempo k-1 y el estado del intervalo de tiempo actual k. Incluye como parámetros y alguna función conductiva $ u_{k-1} $ y el proceso del ruido de media cero $ z_{k} $.
+	
+	En las práctica no se sabe los valores individuales del ruido $ \omega_{k} $ y $ v_{k} $ en cada intervalo de tiempo. Sin embargo, no se puede aproximar el vector de estado y medida sin ellos como,
+		
+		\begin{equation}
+		\label{eq:91}
+		\bar{x}_{k}=f(\hat{x}_{k-1},u_{k-1},0)
+		\end{equation}
+	y
+	
+		\begin{equation}
+		\label{eq:92}
+		\bar{z}_{k}=h(\bar{x}_{k},0)
+		\end{equation}
+	donde $ \hat{x}_{k} $ es una estimación a posteriori del estado del estado previo al intervalo de tiempo k.
+	
+	
+	Para estimar un proceso con una ecuación en diferencias no lineales y medidas relacionadas, comenzaremos por escribir nuevas ecuaciones que linealicen una estimación sobre \ref{eq:91} y \ref{eq:92},
+	
+		\begin{equation}
+		\label{eq:93}
+		x_{k}\approx \bar{x}_{k}+A(x_{k-1}-\hat{x}_{k-1})+W\omega_{k_{1}}
+		\end{equation}
+		\begin{equation}
+		\label{eq:94}
+		z_{k}\approx \bar{z}_{k}+H(x_{k}-\hat{x}_{k})+Vv_{k}
+		\end{equation}
+	donde,
+	
+	\begin{itemize}
+	
+		\item $ x_{k} $ y $ z_{k} $ son los vectores de estado actual y mediciones.
+		\item $ \bar{x}_{k} $ y $ \bar{z}_{k} $ son la aproximación de los vectores de estado actual y mediciones en \ref{eq:91} y \ref{eq:92}.
+		\item Las variables aleatorias $ \omega_{k} $ y $ v_{k} $ el proceso y medida del ruido como en \ref{eq:89} y \ref{eq:92}.
+		\item \textit{A} es la matriz Jacobiana de derivadas parciales de \textit{f} respecto a x, es decir,	
+		
+		\begin{equation}
+		\label{eq:95}
+		A_{[i,j]}=\frac{\partial f_{[i]}}{\partial x_{[j]}}(\hat{x}_{k-1},u_{k-1},0)
+		\end{equation}
+				 
+		\item \textit{W} es la matriz Jacobiana de derivadas parciales de \textit{f} respecto a $ \omega $,
+		
+		\begin{equation}
+		\label{eq:96}
+			W_{[i,j]}=\frac{\partial f_{[i]}}{\partial \omega_{[j]}}(\hat{x}_{k-1},u_{k-1},0)
+		\end{equation}
+		
+		\item \textit{H} es la matriz Jacobiana de derivadas parciales de h respecto a \textit{x},
+		
+		\begin{equation}
+		\label{eq:97}
+			H_{[i,j]}=\frac{\partial h_{[i]}}{\partial x_{[j]}}(\bar{x}_{k},0)
+		\end{equation}
+				
+		\item \textit{V} es la matriz Jacobiana de derivadas parciales de h respecto a \textit{v}
+		
+		\begin{equation}
+		\label{eq:98}
+			V_{[i,j]}=\frac{\partial h_{[i]}}{\partial v_{[j]}}(\bar{x}_{k},0)
+		\end{equation}
+	
+	\end{itemize}
+	
+	podemos definir una nueva rotación para la predicción del error,
+	
+	\begin{equation}
+	\label{eq:99}
+	\bar{e}_{x_{k}}\equiv x_{k}-\bar{x}_{k}
+	\end{equation}
+	
+	y la medida residual,
+	
+	\begin{equation}
+	\label{eq:100}
+		\bar{e}_{z_{k}}\equiv z_{k}-\bar{z}_{k}
+	\end{equation}
+	
+	Podemos redefinir esas ecuaciones como, 
+	
+	\begin{equation}
+	\label{eq:101}
+		\bar{e}_{x_{k}}\equiv A(x_{k-1}-\bar{x}_{k-1})+\epsilon_{k}
+	\end{equation}
+	
+	\begin{equation}
+	\label{eq:102}
+		\bar{e}_{z_{k}}\equiv H\bar{e}_{x_{k}}+\eta_{k}
+	\end{equation}
+	
+	donde $ \epsilon_{k} $ y $ \eta_{k} $ representan nuevas variables aleatorias independientes teniendo de media cero y matrices de covarianza QW$ W^{T} $ VR$ V^{T} $, con Q y R igual a los utilizados en el filtro de Kalman.
+	
+	
+	Al final, podemos calcular la estimación del estado aplicando la siguiente ecuación,
+	
+	\begin{equation}
+	\label{eq:103}
+	\hat{x}_{k}=\bar{x}_{k}+K_{k}(z_{k}-\bar{z}_{k})
+	\end{equation}
+
+	
+	A continuación, se muestra el conjunto de ecuaciones completo EKF. Tenga en cuenta que $ \bar{x}_{k} $ ha sido sustituido por $\hat{x}_{k}^{-} $ para seguir siendo consistenten en la notación utilizada en la definición estándar del Filtro de Kalman, y que los Jacobianos \textit{A},\textit{W},\textit{H} y \textit{V} tienen el subíndice k para reforzar la noción de que son diferentes en cada intervalo de tiempo.
+	
+	
+	\begin{itemize}
+		\item Ecuaciones de actualización de tiempo.
+		
+		\begin{equation}
+		\label{eq:104}
+		\hat{x}_{k}^{-}=f(\hat{x}_{k-1},u_{k-1},0)
+		\end{equation}
+		\begin{equation}
+		\label{eq:105}
+		\hat{P}_{k}^{-}=A_{k}P_{k-1}A^{T}_{k}+W_{k}Q_{k-1}W_{k}^{T}
+		\end{equation}
+		
+		\item Ecuaciones de actualización de medidas.
+		
+		\begin{equation}
+		\label{eq:106}
+		K_{k}=P_{k}^{-}H^{T}_{k}(H_{k}P_{k}^{-}H_{k}^{T}+V_{k}R_{k}V_{k}^{T})^{-1}
+		\end{equation}
+		\begin{equation}
+		\label{eq:107}
+		\hat{x}_{k}=\hat{x}_{k}^{-}+K_{k}(z_{k}-h(\hat{x}_{k}^{-},0))
+		\end{equation}
+		\begin{equation}
+		\label{eq:108}
+		P_{k}=(I-K_{k}H_{k})P_{k}^{-}
+		\end{equation}
+	\end{itemize} 
+
+
+\subparagraph{El Filtro de Kalman Extendido aplicado a la extimación de la orientación} ~\\
+
+El cuaternión fusión está hecho para definir primero las ecuaciones que gobiernan el proceso que queremos estimar. En nuestro caso, el estado del vector será $ ^{S}_{E}\mathbf{q}_{t} =$ [$ q_{1} $ $ q_{2} $ $ q_{3} $ $q_{4}  $] y la función \textit{f} se define por la ecuación \ref{eq:109}.
+
+\begin{equation}
+\label{eq:109}
+\begin{aligned}
+^{S}_{E}\mathbf{q}_{\omega,k}=[\hat{q}_{1,k-1}\,\hat{q}_{2,k-1}\,\hat{q}_{3,k-1}\,\hat{q}_{4,k-1}]+\frac{1}{2}\triangle t[\hat{q}_{1,k-1}\,\hat{q}_{2,k-1}\,\hat{q}_{3,k-1}\,\hat{q}_{4,k-1}]\otimes[0\,\omega_{x}\,\omega_{y}\,\omega_{z}]= \\ [\hat{q}_{1,k-1}\,\hat{q}_{2,k-1}\,\hat{q}_{3,k-1}\,\hat{q}_{4,k-1}]+\frac{1}{2}\triangle t[\underbrace{-\hat{q}_{2,k-1}\omega_{x}\,-\hat{q}_{3,k-1}\omega_{y}\,-\hat{q}_{4,k-1}\omega_{z}}_{y_{1'}} \\ \underbrace{\hat{q}_{1,k-1}\omega_{x}\,+\hat{q}_{3,k-1}\omega_{z}\,-\hat{q}_{4,k-1}\omega_{y}}_{y_{2'}}\,\underbrace{\hat{q}_{1,k-1}\omega_{y}\,-\hat{q}_{2,k-1}\omega_{z}\,+\hat{q}_{4,k-1}\omega_{x}}_{y_{3'}} \\ \underbrace{\hat{q}_{1,k-1}\omega_{z}\,+\hat{q}_{2,k-1}\omega_{y}\,-\hat{q}_{3,k-1}\omega_{x}}_{y_{4'}}]
+\end{aligned}
+\end{equation}
+
+
+\begin{equation}
+\label{eq:110}
+\begin{aligned}
+y_{1}=\hat{q}_{1,k-1}+y_{1'}=\hat{q}_{1,k-1}-\hat{q}_{2,k-1}\omega_{x}\,-\hat{q}_{3,k-1}\omega_{y}\,-\hat{q}_{4,k-1}\omega_{z} \\
+y_{2}=\hat{q}_{2,k-1}+y_{2'}=\hat{q}_{2,k-1}+\hat{q}_{1,k-1}\omega_{x}\,+\hat{q}_{3,k-1}\omega_{z}\,-\hat{q}_{4,k-1}\omega_{y} \\
+y_{3}=\hat{q}_{3,k-1}+y_{3'}=\hat{q}_{3,k-1}+\hat{q}_{1,k-1}\omega_{y}\,-\hat{q}_{2,k-1}\omega_{z}\,+\hat{q}_{4,k-1}\omega_{x} \\
+y_{4}=\hat{q}_{4,k-1}+y_{4'}=\hat{q}_{4,k-1}+\hat{q}_{1,k-1}\omega_{z}\,+\hat{q}_{2,k-1}\omega_{y}\,-\hat{q}_{3,k-1}\omega_{x} \\
+\end{aligned}
+\end{equation}
+
+
+La medida viene dada por el cuaternión de orientación calculado usando el acelerómetro y el campo magnético. Por lo tanto, puesto que el vector de estado está compuesto también por el cuaternión de orientación, la relación entre el estado y la medición es lineal y la matriz H es una matriz identidad simple de 4 $ \times $ 4.
+
+La matriz $ A_{k}$ se calcula aplicando la ecuación \ref{eq:95} que da,
+
+\begin{equation}
+\label{eq:111}
+A_{k}=[\frac{\partial y_{1,k}}{\partial}\,\frac{\partial y_{1,k}}{\partial}\,\frac{\partial y_{1,k}}{\partial}\,\frac{\partial y_{1,k}}{\partial}]
+\end{equation}
 	

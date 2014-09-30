@@ -3,18 +3,18 @@
 
 \section{Conclusiones}
 
-La aplicación desarrollada cumple con los requisitos exigidos inicialmente. El software permite la configuración y visualización de los datos recogidos por los sistemas de medida de parámetros GaitWatch y ECnsole.
+La aplicación desarrollada cumple con los requisitos exigidos inicialmente. El software permite la configuración y visualización de los datos recogidos por los sistemas de medida de parámetros GaitWatch Manager y ECnsole.
 
-Inicialmente, se llevó a cabo una revisión del estado del arte de los dispositivos existentes en la actualidad en el mercado.  Se ha dejado constancia de la existencia de dos clases de dispositivos de monitorización de la marcha principalmente,  los sitemas basados en cámaras y los sistemas basados en sensores inerciales. Algunos de estos dispositivos como el Kinect de la Xbox nos resultan cotidianos, ya que en la actualidad los videojuegos forman parte de nuestras vidas. Sin embargo, se enumeran otros para los cuales se requirió una búsqueda más exhaustiva dirigidos a personas más específicas. 
-
-
-Posteriormente se ha procedido a estudiar los fundamentos teóricos de los sistemas de monitorización de la marcha utilizados. De hecho, se describen los principios básicos por los que se rigen los diferentes tipos de sensores inerciales. Además se dedican varios apartados para dar a conocer los detalles del hardware de los sistemas GaitWatch y ECnsole;  formando parte del análisis de los sistemas de monitorización de la marcha. En este apartado se establecen los requisitos necesarios del software a implementar en función del hardware empleado. En nuestro caso particular, los dispositivos se caracterizan por una unidad de procesamiento central y un conjunto de unidades periferícas. Los dos sistemas difieren respecto a la zona de colocación de las unidades de medición en las diferentes pruebas efectuadas. Para el sistema GaitWatch, se han colocado  en los muslos, espinillas, brazos y tronco; sin embargo para ECnsole se han situado en el pie derecho y en el pie izquierdo. Como consecuencia, el número de señales generadas en el sistema GaitWatch es superior respecto al sistema ECnsole y los algoritmos de estimación de la orientación aplicados varían en concordancia a la zona del cuerpo donde se coloca la unidad de medición.
+Antes que nada, se ha aplicado una revisión del estado del arte de los dispositivos exitentes en la actualidad en el mercado.  Se ha dejado constancia de la existencia de dos clases de dispositivos de monitorización de la marcha principalmente,  los sitemas basados en cámaras y los sistemas basados en sensores inerciales. Algunos de estos dispositivos como el Kinect de la Xbox nos resultan cotidianos, en la actualidad los videojuegos llegan a formar parte de nuestras vidas. Sin embargo, se enumeran otros para los cuales se requirió una búsqueda más exhaustiva dirigidos a personas más especializadas. 
 
 
-En el siguiente punto se ha continuado con el desarrollo del software, del software, el cual es el bloque que compone el grueso del trabajo de este proyecto. Consiste en la creación del programa que se ajuste a los objetivos fijados inicialmente. La aplicación está constituida por una serie de ventanas que adoptan una funcionalidad específica. A continuación se enumeran las más destacables: carga de archivos de datos, selección de señales, opciones de calibración y orientación, configuración de la estructura de las figuras, muestra de los resultados, cálculo de parámetros de calibración y cambio de dispositivo.
+Posteriormente se ha procedido a estudiar los fundamentos teóricos de los sistemas de monitorización de la marcha utilizados. De hecho, se describen los principios básicos por los que se rigen los diferentes tipos de sensores inerciales. Además se dedican varios apartados para dar a conocer los detalles del hardware de los sistemas GaitWatch y ECnsole;  formando parte del análisis de los sistemas de monitorización de la marcha. En este apartado se establecen los requisitos necesarios del software a implementar en función del hardware empleado. En nuestro caso particular, los dispositivos se caracterizan por una unidad de procesamiento central y un conjunto de unidades que se conectan a la misma medición. Los dos sitemas difieren respecto a la zona de colocación de las unidades de medición en las diferentes pruebas efectuadas. El sistema GaitWatch, se han colocado  en los muslos, espinillas, brazos y tronco; sin embargo para ECnsole se han situado en el pie derecho y en el pie izquierdo. Como consecuencia, el número de señales generadas en el sistema GaitWatch es superior respecto al sistema ECnsole y los algoritmos de estimación de la orientación aplicados varían en concordancia a la zona del cuerpo donde se coloca la unidad de medición.
 
 
-Para finalizar,  se han integrado en nuestro programa los algoritmos, ya desarrollados, de calibración y cálculo de la orientación. Es importante resaltar que la aplicación desarrollada puede ser operada por personal no especializado y sin conocimiento de los algoritmos que se ejecutan de manera transparente. 
+En el siguiente punto se ha continuado con el desarrollo del software, es el bloque que requiere más tiempo. Consiste en la creación del programa que se ajuste a los objetivos fijados inicialmente. La aplicación está constituida por una serie de ventanas que adoptan una funcionalidad específica. A continuación se enumeran las más destacables: carga de archivos de datos, selección de señales, opciones de calibración y orientación, configuración de la estructura de las figuras, muestra de los resultados, cálculo de parámetros de calibración y cambio de dispositivo.
+
+
+Para finalizar,  se han integrado en nuestro programa los algoritmos, ya desarrollados, de calibración y cálculo de la orientación. Es importante resaltar que cuando procedemos a su ejecución resultan imperceptibles para el usuario. De hecho, la labor del usuario se limita a ejecutar cualquiera de las acciones citadas en el párrafo anterior y cuyo objetivo final es poder mostrar visualmente los resultados.
 
 
 
@@ -35,23 +35,17 @@ Para finalizar,  se han integrado en nuestro programa los algoritmos, ya desarro
 
 
 
-La aplicación desarrollada puede ser ampliada para añadirle un mayor número de funcionalidades. De hecho, podríamos
-crear una aplicación equivalente aumentando el número de dispositivos o incluso capaz de
-adaptarse a las peculiaridades de cualquier sistema. 
+La aplicación desarrollada se podría mejorar considerablemente. De hecho, podríamos crear una aplicación equivalente aumentando el número de dispositivos o incluso capaz de adaptarse a las peculiaridades  de cualquier sistema (el software se ajustaría por sí mismo a las especificaciones propias del dispositivo). 
 
-Ante una nueva IMU (unidad de medición inercial) el programa facilitaría carecterizar el formato de trama, el número y tipo de sensores, etc. Una posible solución es crear una pequeña interfaz gráfica para poner en marcha el proceso de transmisión de información entre distintos sistemas (la IMU y el ordenador donde se ejecuta el programa). Entonces, ¿cómo lograr que los sistemas, siendo diferentes uno del otro, puedan transmitirse datos con la información requerida acerca de los sensores? Sencillo, gracias a los formatos de representación de información. Es aquí donde entran estándares como XML, JSON y YAML. Estos formatos se caracterizan por ser robustos,   transmitir y compartir información bastante compleja entre sistemas diferentes, con estructuras jerárquicas y atributos variables pero a su vez fáciles de leer por un ser humano.
+Ante una nueva IMU (unidad de medición inercial) el programa facilitaría carecterizar el formato de trama, el número y tipo de sensores,etc. Una posible solución, crear una pequeña interfaz gráfica para poner en marcha el proceso de transmisión de información entre distintos sistemas (la IMU y el ordenador donde se ejecuta el programa). Entonces, ¿cómo lograr que los sistemas, siendo diferentes uno del otro, puedan transmitirse datos con la información requerida acerca de los sensores? Sencillo, gracias a los formatos de representación de información. Es aquí donde entran estándares como XML, JSON y YAML. Estos formatos se caracterizan por ser robustos,   transmitir y compartir información bastante compleja entre sistemas diferentes, con estructuras jerárquicas y atributos variables pero a su vez fáciles de leer por un ser humano.
 
 
-Adicionalmente, se podría incluir la posibilidad de añadir nuevos algoritmos de calibración y cálculo de la orientación en forma de plugins. Los algoritmos vendría recogidos en un archivo.m (archivo de texto donde se introducen comandos y o instrucciones de Matlab). Para conseguir una mayor adaptación respecto al dispositivo, se crearía una pantalla donde fuese posible introducir código y seleccionar las entradas del algoritmo.
-
-
-
-Otra posibilidad, referente a la caracterización del \textit{análisis de la marcha} estudiado en el capítulo \ref{ch:monitorizacion}; sería  integrar algoritmos de cálculo de parámetros de la marcha, tales como longitud de zancada, cadencia, distancia recorrida, etc. Así, de esta manera servirnos de las distintas señales obtenidas y transformarlas en  datos que nos permitan caracterizar más exhaustivamente la marcha humana. 
+Seguidamente se añadirían nuevos algoritmos en forma de plugins, es decir, pasarían a formar parte de la aplicación principal. Los algoritmos vendría recogidos en un archivo.m (archivo de texto donde se introducen comandos y o instrucciones de Matlab). Para conseguir una mayor adaptación respecto al dispositivo, se crearía una pantalla donde sea posible introducir código y seleccionar las entradas del algoritmo.
 
 
 Además, como se ha visto en otros trabajos, pueden diseñarse otros tipos de algoritmos
 diferentes a los estudiados, profundizando sobre los basados en cuaterniones o los clasificadores. No
-suponen un gran salto de calidad aunque su desarrollo puede ser complejo. Asimismo, no se corresponde con una mejora de la aplicación visual pero sí del sistema en conjunto.
+suponen un gran salto de calidad aunque su desarrollo puede ser complejo. No se corresponde con una mejora de la aplicación visual pero sí del sistema en conjunto.
 
 
 

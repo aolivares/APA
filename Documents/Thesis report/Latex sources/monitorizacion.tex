@@ -1,0 +1,680 @@
+\chapter{Monitorizaci\'on del cuerpo humano}
+\label{ch:monitorizacion}
+
+\section{Definición y ámbito de uso}
+
+
+GaitWatch  y ECnsole son sistemas para la monitorización y análisis de los parámetros de la marcha. Inicialmente vamos a definir el concepto, la historia y los parámetros que caracterizan la marcha humana. Para situarnos mejor y poner en contexto los sistemas utilizados, debemos incluir estos dispositivos dentro de los  sistemas de captura del movimiento. El concepto es más amplio y engloba un mayor número de aplicaciones. La captura de movimiento es el proceso de registrar el movimiento de objetos o personas, es decir, no sólo bajo condiciones de desplazamiento. En los apartados siguiente se describirán varias de las aplicaciones y la forma de clasificar los sitemas de captura del movimiento presentes en la actualidad.
+
+\subsection{Definición: Análisis de la marcha}
+
+
+La marcha humana \cite{moni1} es un proceso de locomoción en el que el cuerpo humano, en posición erguida, se mueve hacia delante, siendo su peso soportado alternativamente por ambas piernas. Mientras el cuerpo se desplaza sobre la pierna de soporte, la otra pierna se balancea hacia delante como preparción para el siguiente apoyo.
+
+
+La ciencia encargada del análisis de la marcha es la biomecánica \cite{moni2}. En la actualidad continúa en desarrollo debido a la dificultad para conseguir 
+establecer una normalización. Una misma persona puede realizar el mismo movimiento de 
+formas muy distintas, ya que influyen múltiples factores como la carga exterior añadida, la 
+velocidad y, en el caso del caminar, también el calzado. Además, cada movimiento 
+humano, realizado por las extremidades superiores o inferiores, depende en gran medida de 
+las dimensiones de las mismas y de la distribución de la masa, con lo que el mismo 
+movimiento puede diferir mucho de una persona a otra. El hecho de que no exista el 
+\textit{hombre medio} complica este tipo de estudios. Las dimensiones del cuerpo humano varían 
+según edad, sexo, raza, e incluso grupo laboral. 
+
+
+\subsection{Historia}
+
+Los pioneros de la investigación científica sobre el análisis de la marcha fueron Aristóteles en De Motu Animalium (En la marcha de los Animales) y más tarde en 1680, Giovanni Alfonso Borelli, también llamado De Motu Animalium (I et II). En la década de 1890, el anatomista alemán Christian Wilhelm Braune y Otto Fischer publicó una serie de documentos sobre la biomecánica de la marcha humana en condiciones de carga y descarga.
+
+Con el desarrollo de la fotografía, se hizo posible la captura de secuencias de imágenes que revelan detalles de la locomoción humana y animal que pueden ser percibidos con el ojo humano. Eadweard Muybridge y Marey Étienne-Jules fueron los pioneros de esta práctica a principios de 1900. Por ejemplo, fue la fotografía la que reveló por primera vez la secuencia detallada de la marcha del caballo ''a galope" , que solía estar mal representada en las pinturas realizadas con anterioridad a este descubrimiento.
+
+Aunque las investigaciones anteriores fueron hechas en el campo de las cámaras de película, la aplicación generalizada de análisis de la marcha se realiza en seres humanos que presentan patologías como parálisis cerebral, enfermedad de Parkinson y trastornos neuromusculares, que se inició en la década de los 70 con la ayuda de sistemas de cámara de vídeo que pueden realizar los estudios detallados de cada uno de los pacientes dentro de los límites realistas de costes y tiempo. El desarrollo de regímenes de tratamiento, a menudo en cirugía ortopédica, basados en los resultados de análisis de la marcha han avanzó significativamente en la década de los 80. Muchos de los principales hospitales ortopédicos en todo el mundo tienen ahora los laboratorios para realizar estos estudios de la marcha que se utilizan habitualmente en un gran número de casos médicos, tanto para el diseño de planes de tratamiento como para el control de seguimiento.
+
+
+
+La implementación de ordenadores modernos con la tecnología para realizar estos estudios se produjo de forma independiente a finales de la década de de los 70 y principios de los 80 en laboratorios de investigación de varios hospitales, algunos a través de colaboraciones con la industria aeroespacial. Pronto siguió con el desarrollo comercial, con la aparición de sistemas de movimiento Vicon y BTS, y con el marketing de sistemas de análisis de la marcha a mediados de la década de 1980.
+
+Para más información sobre la historia del estudio de la marcha consulte  \cite{moni3}.
+
+\subsection{Fáctores y parámetros}
+
+
+El proceso de deambulación está modulado o modificado por muchos factores \cite{moni3}, y los cambios que imprimen en el patrón de marcha habitual pueden ser transitorios o permanentes. Los factores pueden ser de diversos tipos:
+
+\begin{itemize}
+\item \textbf{Extrínsecos}: Hay varios factores extrínsecos, como por ejemplo el terreno, el calzado, la vestimenta, transporte de carga.
+
+\item \textbf{Intrínsecos}: Los factores intrínsecos son sexo (hombre y mujer), peso, altura, edad,etc.
+
+\item \textbf{Físicos}: Los factores físicos incluyen el peso, la talla y la constitución física.
+
+\item \textbf{Psicológicos}: Los factores psicológicos incluyen la personalidad y las emociones.
+
+\item \textbf{Fisiológicos}: Cuando se habla de factores fisiológicos se trata de características antropométricas.
+
+\item \textbf{Patológicos}: Los factores patológicos pueden ser por ejemplo traumatismos, patologías neurológicas, músculo esquelética y trastornos psiquiátricos.
+
+\end{itemize}
+
+
+
+
+Los parámetros \cite{moni1} que se tiene en cuenta para el análisis de la marcha son:
+
+\begin{itemize}
+\item \textbf{Longitud del paso completo}: Es la distancia lineal entre los sucesivos puntos de contacto del talón de mismo pie. Aproximadamente 156 cm por paso completo.
+
+\item \textbf{Longitud del paso}: Es la distancia lineal en el plano de progresión entre los puntos de contacto de un pie y el otro pie. La mitad en cm de la longitud de paso completo. Estos 2 parámetros se pueden ver en la figura \ref{fig:moni1}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/monitorizacion/moni1}
+
+\caption{Longitud de paso y de zancada \cite{moni1}.}
+\label{fig:moni1}
+\end{figure}
+
+\item \textbf{Cadencia}: El número de pasos por unidad de tiempo (pasos por minuto). Aproximadamente entre 60 y 117 pasos por minuto.
+\item \textbf{Anchura del paso}: La distancia entre la línea media de un pie y línea media del otro pie. De 5 a 10 cm. Se muestra en la figura \ref{fig:moni2}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/monitorizacion/moni2}
+
+\caption{Anchura del paso \cite{moni1}.}
+\label{fig:moni2}
+\end{figure}
+
+
+\item \textbf{Angulo del pie}: El ángulo en el cual normalmente se desvía la punta del pie hacia fuera de la línea de progresión. De 6.7 a 6.8 grados. Se muestra en la figura \ref{fig:moni3}:
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figuras/monitorizacion/moni3}
+
+\caption{Ángulo del pie \cite{moni1}.}
+\label{fig:moni3}
+\end{figure}
+
+
+
+\end{itemize}
+
+
+\subsection{Aplicaciones de los sistemas de captura del movimiento humano}
+
+Los sistemas HMC (cáptura del movimiento humano) tienen un gran número de aplicaciones \cite{moni4}, que se han visto significativamente incrementado en los últimos años. Entre estas aplicaciones se pueden destacar las siguientes:
+
+
+\begin{itemize}
+
+\item \textbf{Animación de personajes virtuales en el cine:} En el cine se emplean cada vez más personajes generados por ordenador. Para conseguir que dichos personajes actúen y se muevan de forma natural, se capturan los movimientos de un actor real y luego dichos movimientos se trasladan al cuerpo del actor virtual. En la figura \ref{fig:moni4} tenemos un ejemplo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/monitorizacion/moni4}
+
+\caption{Imágenes de la producción \textit{El origen del planeta de los simios} \cite{moni4}.}
+\label{fig:moni4}
+\end{figure}
+
+\item \textbf{Animación de personajes virtuales en videojuegos}: Los videojuegos (de ordenador y de consola) son hoy día la principal industria del ocio. Su complejidad y grado de realismo ha aumentado enormemente en los últimos años. Al igual que ocurre en el cine, para conseguir personajes que se mueven de forma fluida y natural, se capturan los movimientos de un actor real y luego se trasladan al actor virtual. La figura \ref{fig:moni5} muestra el proceso.
+
+ Los sistemas HMC empleados para capturar movimientos para el cine o para un videojuego son esencialmente los mismos y, aunque tradicionalmente en los videojuegos se permitían animaciones de calidad algo inferior, la brecha entre ambas aplicaciones se va cerrando conforme los videojuegos crecen en complejidad, detalle y rentabilidad.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/monitorizacion/moni5}
+
+\caption{Animación de personajes virtuales en videojuegos \cite{moni4}.}
+\label{fig:moni5}
+\end{figure}
+
+\item \textbf{Aplicaciones médicas}: Los sistemas HMC como el mostrado en la figura \ref{fig:moni7} se utilizan con fines médicos, para detectar lesiones, malformaciones o problemas a partir del análisis de los movimientos de una persona, para recopilar datos sobre la evaluación del paciente en terapias de rehabilitación, o para realizar estudios de ergonomía (por ejemplo, comprobar si un determinado mobiliario de oficina fuerza posturas perjudiciales o no).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni6}
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni7}
+
+\caption{Aplicaciones médicas \cite{moni4}.}
+\label{fig:moni7}
+\end{figure}
+
+
+
+\item \textbf{Interfaces humano-máquina avanzados}: El control de un ordenador mediante gestos puede realizarse si se utiliza un sistema HMC que capture los movimientos de una persona, sobre todo los de las manos, y en la cara los ojos para saber dónde está mirando. Como el de la figura \ref{fig:moni9}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni8}
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni9}
+
+\caption{Interfaces humano-máquina avanzados \cite{moni4}.}
+\label{fig:moni9}
+\end{figure}
+
+\item \textbf{Sistemas de vigilancia}: Un sistema de seguridad que vigile una determinada zona (por ejemplo, una cámara de vigilancia en un parking) puede ver su eficacia multiplicada si se le añaden funcionalidades de captura y análisis de movimiento automáticos. La figura \ref{fig:moni10} muestra este tipo de sistema. Observando el patrón de movimientos de una persona, por ejemplo, se pueden detectar conductas sospechosas (por ejemplo, una persona en un parking que en lugar de entrar o salir de un coche da vueltas en torno a ellos, examinándolos) o situaciones potencialmente peligrosas (por ejemplo, una persona que deja una mochila en un rincón y se marcha).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni10}
+\caption{Sistema de vigilancia \cite{moni4}.}
+\label{fig:moni10}
+\end{figure}
+
+\item \textbf{Sistemas de interacción y aprendizaje para robots sociales}: Un robot social debe cooperar con personas en tareas cotidianas. Eso implica ser capaz de percibir a la persona y analizar sus movimientos, con un sistema HMC, para coordinar la acción del robot con esos movimientos. La figura \ref{fig:moni11} nos muestra un ejemplo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.35\textwidth]{figuras/monitorizacion/moni11}
+\caption{Sistema de interacción y aprendizaje para para un robot \cite{moni4}.}
+\label{fig:moni11}
+\end{figure}
+
+\end{itemize}
+
+
+\subsection{Clasificación de los sistemas de captura del movimiento humano}
+
+
+Hay muchas formas distintas de capturar los movimientos de una persona. Los sistemas de captura varían en su precio, precisión, complejidad, tiempo de respuesta, robustez, versatilidad, etc.  
+
+
+
+En la figura \ref{fig:moni12} se pueden distinguir dos bloques principales en función del tipo de tecnología utilizada: los sistemas fundamentados en cámaras  y los que no. Cuando lleguemos al apartado del \textit{Estado del Arte} nos centraremos exclusivamente en los sistemas que funcionan con sensores inerciales (los dispositivo GaitWatch y ECnsole pertenecen a este grupo) y de manera más genérica se tratarán los distintos tipos de dispositivos de captura del movimiento con cámaras.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figuras/monitorizacion/moni12}
+\caption{Clasificación de sistemas de captura del movimiento}
+\label{fig:moni12}
+\end{figure}
+
+Toda la información acerca de la clasificación de los sistemas HMC ha sido extraida en \cite{moni5} donde se hace una clasificación minuciosa de este tipo de sistemas.
+\subsubsection{Sistemas de captura del movimiento no ópticos}
+
+
+Los sistemas HMC no ópticos se dividen en las siguientes categorías:
+
+\vspace{1cm}
+
+\textbf{Sistemas mecánicos}:
+
+Consisten en una serie de brazos mecánicos como los que se muestran en la figura \ref{fig:moni13}, adheridos mediante algún sistema de agarre o anclaje a diversas partes del cuerpo del usuario (por ejemplo, un cierre sobre la muñeca del mismo), de forma que dichos brazos sigan los movimientos de las extremidades, torso, cabeza, etc., del usuario. Los ángulos de giro de estos brazos mecánicos (que conforman lo que se conoce como exoesqueleto) se corresponden con los ángulos de giro de las articulaciones.
+
+
+\begin{itemize}
+\item Ventajas
+	\begin{itemize}
+	\item Se obtiene información muy precisa.
+	\item Son muy rápidos.
+	\item Son muy robustos frente a distorsiones producidas, por ejemplo, por el temblor de la mano.
+	\item Son inmunes a interferencias y oclusiones.
+	\end{itemize}
+\end{itemize}
+
+
+\begin{itemize}
+\item Inconvenientes
+	\begin{itemize}
+	\item Es necesario otro sistema de seguimiento para efectuar medidas de posición.
+	\item El montaje de estos sistemas es muy aparatoso.
+	\item Las propias limitaciones del movimiento mecánico y la necesidad de mantener fijos los puntos de unión al cuerpo del usuario disminuyen considerablemente los grados de libertad que el sistema de seguimiento es capaz de registrar, además de afectar a la movilidad del propio usuario.
+	\item Debido a que sólo registran ángulos de giro, tienden a generar movimientos poco naturales, en los que el modelo de persona parece una marioneta que cuelga de hilos.
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/monitorizacion/moni13}
+\caption{Exoesqueleto con monitorización de movimientos \textit{Lokomat} \cite{moni5}.}
+\label{fig:moni13}
+\end{figure}
+
+\textbf{Sistemas inerciales}:
+
+Estos sistemas se basan en el empleo de sensores inerciales en miniatura, usualmente giróscopos que miden la rotación de cada articulación (una tecnología similar a la usada en el mando de la Wii). Mediante estos dispositivos, por el principio de conservación del momento angular, se pueden calcular los giros en los ejes longitudinal, transversal y vertical partiendo de la resistencia inercial presentada por el giroscopio a un cambio en su orientación. Los valores de estos ángulos se envían usualmente a través de un enlace wireless a un ordenador donde los datos se filtran y procesan para conformar la pose percibida.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{figuras/monitorizacion/moni26}
+
+\caption{Sistema inercial. Ángulos de orientación \cite{moni13}.}
+\label{fig:moni26}
+\end{figure}
+
+\begin{itemize}
+	\item Ventajas
+	\begin{itemize}
+	\item Tienen un alcance muy amplio, por lo que su rango de acción es considerablemente elevado.
+	\item No necesitan de un entorno controlado para ser utilizados.
+	
+	\end{itemize}
+	\item Incovenientes
+	\begin{itemize}
+		\item Es necesario otro sistema de seguimiento para efectuar medidas de posición.
+		\item Mucha sensibilidad a las vibraciones.
+		\item Tendencia a presentar derivas provocadas por acumulación de errores.
+		
+	\end{itemize}
+\end{itemize}
+
+
+
+\textbf{Sistemas magnéticos}:
+
+Estos sistemas (vease figura \ref{fig:moni15}) utilizan un dispositivo transmisor de pulsos y una serie de receptores. Su principio de funcionamiento consiste en generar en el transmisor tres campos electromagnéticos perpendiculares, y cada receptor calcula la atenuación producida en cada campo. Con esta información, se calcula la posición y la orientación del receptor mediante una triangulación de los datos recibidos en relación a los tres ejes correspondientes a los campos electromagnéticos generados inicialmente.
+
+\begin{itemize}
+	\item Ventajas
+	\begin{itemize}
+	\item Proporcionan información sobre los 6 grados de libertad de las articulaciones usando menos sensores que otros sistemas (por ejemplo, sólo dos tercios de la cantidad que requeriría un sistema HMC óptico que proporcionase la misma información).
+	\item No se ven afectados por oclusiones de objetos no metálicos.
+	
+	\end{itemize}
+	\item Incovenientes
+	\begin{itemize}
+		\item El cableado de los sensores hace a estos sistemas aparatosos y molestos a la hora de realizar movimientos amplios y/o rápidos.
+		\item Tienen un alcance limitado.
+		\item Presentan latencia a la hora de presentar los datos (esto es, no son rápidos).
+		\item Son muy sensibles a interferencias magnéticas producidas por elementos metálicos del entorno, o por dispositivos que emiten radiación electromagnética (como monitores o computadoras).
+		\item La respuesta de estos sensores es no lineal, especialmente en los bordes del área de captura. 
+		
+	\end{itemize}
+\end{itemize}
+
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.22\textwidth]{figuras/monitorizacion/moni14}
+\includegraphics[width=0.274\textwidth]{figuras/monitorizacion/moni15}
+\caption{Sistema magnético \cite{moni5}.}
+\label{fig:moni15}
+\end{figure}
+
+\textbf{Sistemas acústicos}:
+
+Este sistema consiste en un emisor de ondas sonoras de alta frecuencia y su sistema receptor correspondiente. El sistema receptor está formado por tres micrófonos en posición fija, y, a su vez, el sistema transmisor está formado por tres transmisores también en posición fija. Las medidas pueden efectuarse atendiendo a la coherencia de fase o a medidas de tiempos. En el primer caso, las medidas de posición y orientación se obtienen calculando el desfase entre la señal transmitida y la recibida; por tanto, siempre que el objeto al que se le hace el seguimiento no se desplace una distancia superior a la longitud de onda de la señal utilizada en el intervalo de tiempo entre una medición y otra, el resultado obtenido será correcto. En el segundo caso, se mide el tiempo que tarda el sonido emitido por el transmisor en un instante predeterminado en llegar al receptor; las medidas de posición sólo requieren un transmisor, pero para medir orientaciones sí es necesario el uso del sistema emisor formado por tres transmisores de alta frecuencia. Un ejemplo de este tipo de sistemas se muestra en la figura \ref{fig:moni27}.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.42\textwidth]{figuras/monitorizacion/moni27}
+
+\caption{Sistema acústico. Tecnología usada por rockstar.}
+\label{fig:moni27}
+\end{figure}
+
+\begin{itemize}
+	\item Ventajas
+	\begin{itemize}
+	\item Muy preciso.
+	
+	\end{itemize}
+	\item Incovenientes
+	\begin{itemize}
+		\item El cableado de los sensores hace a estos sistemas aparatosos y molestos a la hora de realizar movimientos amplios y/o rápidos.
+		\item Tienen un alcance limitado.
+		\item El número de sensores de este tipo que se pueden usar simultáneamente es limitado.
+		\item Muy sensible a las condiciones ambientales de presión, humedad y temperatura.
+		\item Muy sensible a las interferencias acústicas provocadas por los objetos del entorno, lo que implica en la práctica que sólo pueden ser usados en entornos muy controlados.
+		
+	\end{itemize}
+\end{itemize}
+
+
+
+\subsubsection{Sistemas de captura del movimiento ópticos}
+
+\textbf{Sistemas ópticos basados en marcadores activos}
+
+En estos sistemas, los marcadores son diodos LED (usualmente infrarrojos). Las cámaras no captan el reflejo de luz en los marcadores, sino que captan, directamente, la luz emitida por los marcadores.
+
+
+
+Como quiera que estos marcadores han de emitir luz, necesitan disponer de una fuente de energía, a la que se conectan a través de cables. Por ello, los sistemas HMC basados en marcadores activos son más aparatosos que los basados en marcadores pasivos, ya que la persona debe llevar puestos no sólo los marcadores, sino también los codificadores, las baterías y los cables que lo conectan todo. En la figura \ref{fig:moni25} se muestra un sistema de estas características.
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.52\textwidth]{figuras/monitorizacion/moni25}
+\caption{Sistema CODAMotion \cite{moni5}.}
+\label{fig:moni25}
+\end{figure}
+
+
+\begin{itemize}
+	\item Ventajas
+	\begin{itemize}
+	\item Son muy precisos.
+	\item Pueden capturar movimientos muy rápidos (igual que los basados en marcadores pasivos).
+	\item Son menos sensibles a interferencias producidas por fuentes de luz externas. Recientemente, por ejemplo, se ha empezado a comercializar un sistema de este tipo que funciona en exteriores.
+	
+	\end{itemize}
+	\item Incovenientes
+	\begin{itemize}
+		\item Son caros.
+		\item Requieren un entorno controlado amplio (volumen de captura).
+		\item Los marcadores han de colocarse cuidadosamente sobre el usuario para evitar derivas entre pruebas.
+		\item Hay que recalibrarlos frecuentemente.
+		
+		\item Son sensibles a oclusiones. De hecho, utilizar muchas cámaras es una forma, sobre todo, de intentar evitar las oclusiones de los marcadores.
+		\item No hay forma de distinguir unos marcadores de otros. Es necesario un postprocesado, a veces tedioso, para inferir qué marcador se corresponde con cada marca detectada.
+		
+	\end{itemize}
+\end{itemize}
+
+
+\textbf{Sistemas ópticos basados en marcadores pasivos}
+
+En este caso, se emplean pequeños marcadores (usualmente esféricos) cubiertos de un material retrorreflector (un material que devuelve la luz que incide sobre él hacia la fuente de luz, prácticamente sin dispersión espacial).
+
+
+
+En estos sistemas, se colocan una serie de cámaras alrededor de los marcadores que se quieren capturar. Cada cámara está a su vez emparejada con un dispositivo emisor de luz, usualmente infrarroja. De hecho, la configuración típica para estas cámaras es rodearlas de un anillo de LEDs infrarrojos, como se muestra en la figura \ref{fig:moni23} (donde los LEDs se ven rojos porque la emisión es en una banda de frecuencias centrada en el infrarrojo, pero que se extiende un poco al espectro visible).
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{figuras/monitorizacion/moni23}
+\caption{Cámara rodeada de un anillo de LEDs infrarrojos \cite{moni5}.}
+\label{fig:moni23}
+\end{figure}
+
+Cuando la luz emitida incide sobre el marcador retrorreflector, ésta se refleja directamente hacia la cámara como en la figura \ref{fig:moni24}, con lo que el marcador aparece en la imagen como un punto brillante, que destaca respecto al resto. Utilizando un umbral de intensidad, es posible detectar en qué píxeles 2D de la imagen se han reflejado todos los marcadores presentes.
+
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{figuras/monitorizacion/moni24}
+\caption{Sistema de marcadores pasivos \cite{moni5}.}
+\label{fig:moni24}
+\end{figure}
+
+\begin{itemize}
+	\item Ventajas
+	\begin{itemize}
+	\item Son muy precisos.
+	\item Pueden capturar movimientos muy rápidos (la tasa de captura suele ser de 120 a 160 imágenes por segundo, aunque algunos sistemas pueden conseguir tasas de hasta 10000 imágenes por segundo en volúmenes reducidos).
+	\item El usuario no tiene que portar cables, baterías ni codificadores.
+	
+	\end{itemize}
+	\item Incovenientes
+	\begin{itemize}
+	\item Son caros.
+	\item Requieren un entorno controlado amplio (volumen de captura).
+	\item Los marcadores han de colocarse cuidadosamente sobre el usuario para evitar derivas entre pruebas.
+	\item Hay que recalibrarlos frecuentemente.
+	\item Son sensibles a oclusiones. De hecho, utilizar muchas cámaras es una forma, sobre todo, de intentar evitar las oclusiones de los marcadores.
+	\item No hay forma de distinguir unos marcadores de otros. Es necesario un postprocesado, a veces tedioso, para inferir qué marcador se corresponde con cada marca detectada.
+		
+	\end{itemize}
+\end{itemize}
+
+
+\textbf{Sistemas ópticos sin marcadores}
+
+
+Los sistemas HMC anteriores son adecuados para grabar movimientos para una película o un videojuego, o para monitorizar la evolución de un paciente en procesos de rehabilitación. Sin embargo, si se quiere crear un interfaz para el ordenador basado en gestos, o controlar la televisión con movimientos de la mano, no se puede exigir al usuario que se coloque marcadores por el cuerpo, y que calibre un anillo de cámaras. Por otro lado, ¿quién demostraría nuevas tareas a un robot social, si para ello ha de acudir a una sala específica, colocarse un traje de marcadores, calibrar cámaras y postprocesar los datos?
+
+El problema de los sistemas HMC ópticos que no usan marcadores es, precisamente, que tienen que arreglárselas para extraer la pose sin marcas. Para conseguirlo, han de ejecutar complejos algoritmos de filtrado, reconocimiento, clasificación, aprendizaje o emparejamiento. Estos algoritmos consumen recursos, y tienden a requerir bastante tiempo para completarse. Así, uno de los mayores inconvenientes de los sistemas HMC ópticos sin marcadores es el de su limitada velocidad. El otro gran inconveniente de estos sistemas es su imprecisión: por mucho que se refinen los algoritmos de extracción de pose, sus resultados no mejorarán la precisión que da un marcador óptico.
+
+\section{Estado del arte}
+
+Tal y como adelantamos en el apartado anterior,  vamos a hacer un barrido de algunos de los dispositivos asociados a la monitorización del cuerpo humano presentes en la actualidad. Nos centraremos en dos tipos principalmente: los  de dispositivos   fundamentados en sensores inerciales (IMUs y MIMUs) y los dispositivos basados en cámaras.
+
+
+
+
+
+\subsection{Sistemas basados en sensores inerciales}
+
+Para situarnos mejor definiremos lo que es una IMU:
+ 
+Una unidad de medición inercial o IMU (del inglés inertial measurement unit) \cite{moni6}, es un dispositivo electrónico que mide e informa acerca de la velocidad, orientación y fuerzas gravitacionales de un cuerpo que se mueve en el espacio, usando una combinación de acelerómetros y giróscopos. Además existe la posibilidad de combinarlos con magnetómetros, en ese caso el dispositivo pasa a llamarse MIMU. Las unidades de medición inercial son normalmente usadas para maniobrar aviones, incluyendo vehículos aéreos no tripulados, entre muchos otros usos, y además naves espaciales, incluyendo transbordadores, satélites y aterrizadores. 
+
+La IMU es el componente principal de los sistemas de navegación inercial usados en aviones, naves espaciales, buques y misiles guiados entre otros. En este uso, los datos recolectados por los sensores de una IMU permiten a un computador seguir la posición del aparato, usando un método conocido como navegación por estima.
+
+A continuación se enumeran algunas de las MIMUs que pueden ser encontradas en el mercado:
+
+
+\subsubsection{3DN-GX4-45   (\textit{Microstrain})}
+
+El 3DM-GX4-45 \cite{moni7} es una miniatura de un tipo de Sistema de Navegación Inercial(GPS/INS), que utiliza la tecnología más avanzada de sensores MEMS. Combina un acelerómetro triaxial, un giróscopo triaxial, un magnetómetro triaxial, sensores de temperatura, un altímetro barométrico, un procesador de doble núcleo que ejecutan el \textit{Filtro de Kalman Extendido} (EKF) para proporcionar la posición, velocidad y la estimación de la orientación de forma precisa. Su factor de forma, rango de temperatura, supervivencia a choques, bias estable, rendimiento ante las vibraciones, bajo consumo y rendimiento se combinan para ser uno de los mejores GPS/INS en su clase. La figura \ref{fig:moni16} muestra el dispositivo.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.32\textwidth]{figuras/monitorizacion/moni16}
+\caption{3DN-GX4-45 \cite{moni7}.}
+\label{fig:moni16}
+\end{figure}
+
+\subsubsection{Xsens MVN}
+
+Xsens MVN \cite{moni8} es una solución para todo el cuerpo, se basa en la captura del movimiento sin cámara (MoCap). Consta de sensores inerciales adheridos al cuerpo por un traje de lycra (también disponible en tiras). Xsens MVN da libertad de movimiento porque no utiliza cámaras. Se trata de un sistema de captura portátil que se puede utilizar en interiores y al aire libre. Se caracteriza por su facilidad de uso y un tiempo de calibración corto que permite configurar el sistema en menos de 15 minutos. En la figura \ref{fig:moni17} se puede ver Xsens MVN.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.20\textwidth]{figuras/monitorizacion/moni17}
+\caption{Xsens MVN \cite{moni8}.}
+\label{fig:moni17}
+\end{figure}
+
+Los datos resultantes de la captura del movimiento pueden ser utilizados para animar personajes digitales en películas, juegos, cuentos animados, anuncios,etc. También pueden ser utilizados en aplicaciones médicas y de entretenimiento para analizar el movimiento.
+
+
+El traje MVN  de captura del movimiento que se muestra en la figura \ref{fig:moni18} presenta las siguientes características:
+
+\begin{itemize}
+	\item Seguimiento 6DOF (Degrees of Freedom) del cuerpo.
+	\item 17  rastreadores inerciales MTx.
+	\item Funcionamiento inalámbrico de plena libertad de circulación.
+	\item Traje de lycra cómodo con cableado integrado.
+	
+\end{itemize}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.20\textwidth]{figuras/monitorizacion/moni18}
+\caption{Traje Xsens MVN \cite{moni8}.}
+\label{fig:moni18}
+\end{figure}
+
+
+\subsubsection{9 DOF-Sensor Stick (\textit{SparkFun})}
+
+Los giroscopos y los acelerómetros son bastante prácticos, pero por sí solos no dan la suficiente información para poder calcular cómodamente variables como la orientación, la posición o la velocidad. Para medir esas y otras variables se suelen combinar los dos sensores, para crear una unidad de medición inercial (IMU) que proporciona seis grados de libertad (DOF). También cabe la posibilidad de añadir un magnetómetro pasando a tener nueve grados de libertad obteniendo una información más completa. Las IMUs son ampliamente utilizados en dispositivos que requieren el conocimiento de su posición exacta, por ejemplo, los brazos róbóticos, misiles guiados y para el estudio del movimiento del cuerpo humano. 
+
+
+ 9 DOF-Sensor Stick \cite{moni9} es una placa de sensores muy pequeña, con 9 grados de libertad.En la figura \ref{fig:moni19} se puede ver el dispositivo. Incluye acelerómetro ADXL345, el magnetómetro HMC5883L y el giróscopo MEMS ITG-3200. El "Stick" tiene una interfaz I2C simple y un agujero de montaje para instalarla en tu proyecto. Además, el tablero es un mero 0.036" de espesor, lo que le permite ser montado fácilmente en casi cualquier aplicación.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.20\textwidth]{figuras/monitorizacion/moni19}
+\caption{T9 DOF-Sensor Stick \cite{moni9}.}
+\label{fig:moni19}
+\end{figure}
+
+
+
+
+
+
+
+
+\subsection{Sistemas basados en cámaras}
+
+
+Según la clasificación que establecimos en el apartado anterior, los sistemas basados en cámaras forman parte de los dispostivos ópticos de captura del movimiento humano. Vamos a describir a continuación algunos de ellos:
+
+\subsubsection {VICON 621}
+
+Vicon 621 \cite{moni10} es un sistema óptico de captura de tridimensional de movimiento que utiliza marcadores esféricos reflectantes y cámaras con antorchas de luz infrarroja  que recogen la reflexión infrarroja de los marcadores. Para el estudio cinemático es necesario colocar los marcadores sobre el sujeto, cuyo movimiento es captado por 6 cámaras, y analizado por triangulación para obtener sus posiciones 3D reales fotograma a fotograma, generando así un conjunto de datos de movimiento. El sistema es capaz de realizar simultáneamente el análisis electromiográfico de la actividad muscular. El sistema se muestra en la figura \ref{fig:moni20}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/monitorizacion/moni20}
+\caption{VICON 621 \cite{moni10}.}
+\label{fig:moni20}
+\end{figure}
+
+
+
+VICON 621 está compuesto por:
+ 
+ 
+\begin{itemize}
+\item 6  cámaras de captura de la imagen de 50 Hz.
+\item 6  canales activos de vídeo.
+\item Electromiógrafo de 12 canales con conexión mediante fibra óptica.
+\item Software BODYBUILDER, para creación, visualización y análisis de modelos cinemáticos y cinéticos. 
+\item Software POLYGON para generación de informes.
+\item Estación de trabajo basada en PC de última generación e impresora.
+\item Sistema de captura de vídeo sincronizado. 
+\end{itemize}
+ 
+ 
+A contiuación se puede ver la figura  \ref{fig:moni21} que muestra los marcadores del sistema VICON 621 colocados sobre una persona.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/monitorizacion/moni21}
+\caption{VICON 621: Marcadores \cite{moni10}.}
+\label{fig:moni21}
+\end{figure}
+
+
+\subsubsection{Oqus Camera series (Qualisys)}
+
+La plataforma Oqus \cite{moni11} ofrece cámaras de captura de movimiento adecuadas para todas las aplicaciones posibles, tanto en interiores como al aire libre, como la que se puede ver en la figura \ref{fig:moni22}. Las cámaras Oqus están diseñadas para capturar datos \textit{mocap} precisos con una latencia muy baja y trabaja con marcadores pasivos y activos.
+
+La característica principal de las cámaras Oqus es la capacidad de calcular posiciones de marcador con impresionante precisión y velocidad. Cientos de marcadores se pueden medir en miles de imágenes por segundo con diez, cincuenta o incluso más cámaras - descargadas en un portátil común. No es necesario el uso de estaciones de trabajo. No se necesita ningún centro externo. El sistema aporta movilidad y es muy fácil de configurar.
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.3\textwidth]{figuras/monitorizacion/moni22}
+\caption{Oqus Camera series \cite{moni11}.}
+\label{fig:moni22}
+\end{figure}
+
+
+
+Características principales:
+
+\begin{itemize}
+\item Captura de movimiento de alta velocidad.
+\item Vídeo de alta velocidad.
+\item Resoluciones del sensor: 0.3, 1.3, 4 y 12 megapíxeles.
+\item Filtro activo para mediciones en exteriores.
+\item Lentes motorizadas.
+\item Soporte para marcadores activos.
+\item Arquitectura de tiempo real para una baja lantencia.
+\item Comunicación inalámbrica.
+\item Número de cámaras/marcadores ilimitado.
+\item Silencioso, sin ventilador.
+
+
+\end{itemize}
+
+
+
+
+\subsubsection {Kinect}
+
+
+El Kinect \cite{moni12} es un dispositivo de la consola de juegos Xbox de Microsoft que permite interactuar con la consola sin necesidad de tener un contacto físico con un controlador de video-juegos tradicional. Este dispositivo permite interactuar con el videojuego mediante la captura del moviento del cuerpo, fue desarrollado por microsoft y sus librerias son de fácil acceso para implentar este dispositivo en otras aplicaciones. La figura \ref{fig:moni28} muestra la imagen del dispositivo Kinect.
+
+\vspace{25 mm}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{figuras/monitorizacion/moni28}
+\caption{Kinect Xbox 360 \cite{moni14}.}
+\label{fig:moni28}
+\end{figure}
+
+\vspace{10mm}
+
+A continuación se enumeran las características principales del Kinect Xbox 360:
+
+\vspace{10mm}
+
+\textbf{Sensores}
+
+\begin{itemize}
+\item Lentes de color y sensación de profundidad.
+\item Micrófono multi-arreglo.
+\item Ajuste de sensor con su motor de inclinación.
+\item Totalmente compatible con las consolas existentes de Xbox 360.
+\end{itemize}
+
+\textbf{Campo de visión}
+
+\begin{itemize}
+\item Campo de visión horizontal: 57 grados.
+\item Campo de visión vertical: 43 grados.
+\item Rango de inclinación física: $\pm $ 27 grados.
+\item Rango de profundidad  del sensor: 1,2 - 3,5 metros.
+\end{itemize}
+
+\textbf{Streams (Flujo de datos)}
+
+\begin{itemize}
+\item 320 $\times$ 240 a 16 bits de profundidad @ 30fps.
+\item 640 $\times$ 480 32-bit de color @30fps.
+\item Audio de 16-bit @ 16 kHz.
+
+\end{itemize}
+
+\textbf{Sistema de Seguimiento}
+
+\begin{itemize}
+\item Rastrea hasta 6 personas, incluyendo 2 jugadores activos.
+ 
+\item Rastrea 20 articulaciones por jugador activo.
+
+\item Capacidad para mapear jugadores activos en Live Avatars.
+
+\end{itemize}
+
+\textbf{Sistema de audio}
+
+\begin{itemize}
+
+\item Chat en vivo y voz dentro del juego (requiere Xbox Live Gold).
+\item Sistema de cancelación de eco que aumenta la entrada de voz.
+\item Reconocimiento de voz múltiple.
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+

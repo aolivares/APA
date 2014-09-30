@@ -1,9 +1,7 @@
 \chapter{Hardware de monitorización}
 \label{ch:Hardware}
 
-En el Capítulo se realiza una descripción general de los sistemas GaitWatch Manager y ECnsole. Además, se especifican las características técnicas de cada uno de los dispostivos. En el caso del GaitWatch, se le añade adicionalmente una explicación exhaustiva de como se identifican los ejes de los sensores inerciales que contiene.
-
-\section{GaitWatch}
+\section{GaitWatch Manager}
 
 \subsection{Descripción general}
 
@@ -11,7 +9,7 @@ En el Capítulo se realiza una descripción general de los sistemas GaitWatch Mana
 GaitWatch es una unidad de medición inercial (IMU), diseñado con fines de supervisión de la marcha.
 Fue desarrollado por el Prof.Dr.med.Kai Bötzel en el Departamento de Neurología de la Universidad Ludwig-Maximilians de Munich, en conjuto con el Dr.Alberto Olivares Vicente del Departamento del departamento de Teoría de la Señal, Telemática y Comunicaciones de la Universidad de Granada.
 
-GaitWatch está orientado para ser utilizado en aplicaciones en las que es necesario controlar el movimiento de los pacientes. El sistema se compone de una caja que contiene la unidad de procesamiento central y un conjunto de unidades que se conectan a la misma medición. Las unidades de medición se irán colocando en los pacientes en los muslos, espinillas, brazos y tronco.
+GaitWatch se piensa para ser utilizado en aplicaciones en las que es necesario controlar el movimiento de los pacientes. El sistema se compone de una caja que contiene la unidad de procesamiento central y un conjunto de unidades que se conectan a la misma medición. Las unidades de medición se cree que deben ser colocadas en los pacientes en los muslos, espinillas, brazos y tronco.
 
 \subsection{Descripción del Hardware}
 
@@ -24,7 +22,7 @@ La primera (de tipo A IMU) está colocada en ambos muslos y piernas. La segunda u
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard5}
-\caption{Diagrama general del GaitWatch siendo usado por un sujeto.}
+\caption{Diagrama general del GaitWatch siendo usado por un sujeto}
 \label{fig:hard5}
 \end{figure}
 
@@ -53,7 +51,7 @@ Los 3 tipos de diferentes IMUs que tienen los siguientes componentes:
 		\begin{itemize}
 				
 			\item ADXL345 acelerómetro triaxial con un rango programable ($\pm$16g/ $\pm$8g/ $\pm$4g/ $\pm$2g)
-			\item IMU3000 giróscopo triaxial con un rango programable ($\pm$250/ $\pm$500/ $\pm$1000/ $\pm$3000(deg/s))
+			\item IMU3000 giroscopi triaxial con un rango programable ($\pm$250/ $\pm$500/ $\pm$1000/ $\pm$3000(deg/s))
 			\item Micromag3 magnetómetro triaxial ($\pm$11Gauss)
 			
 			
@@ -64,14 +62,14 @@ Los 3 tipos de diferentes IMUs que tienen los siguientes componentes:
 
 \end{itemize}
 
-Además, la caja del tronco contiene un soporte AL-XAVRB en cuyo interior existe un procesador AVR ATxmega que a su vez contiene el firmware embebido necesario para reunir los datos de todas las unidades de medida y almacenarlos en una tarjeta microSD.
+Además, la caja del tronco contiene un soporte AL-XAVRB que contiene un procesador AVR ATxmega que contiene el firmware embebido necesario para reunir los datos de todas las unidades de medida y almacenarlos en una tarjeta microSD.
 
 
 \subsection{Configuración inicial}
 
 \subsubsection{Indentificación de los ejes del sensor}
 
-En primer lugar se debe determinar la orientación del cuerpo de ejes que deseamos utilizar, así como la orientación de la rotación en torno a los ejes. Una de las configuraciones más populares es fijar el eje X apuntando hacia adelante, el eje Y a la derecha y el eje Z apuntando hacia abajo. Esta configuración sigue la regla de la mano derecha para la orientación de los ejes y la regla del sacacorchos para la rotación. Ambos se muestran en la figura \ref{fig:hard6}. Estas dos estructuras de navegación estándar se emplean por lo general cuando se representa la orientación de un cuerpo en el espacio. Además, la dirección de sus ejes viene determinada de la siguiente forma:  Norte-Este-Abajo (NED) y Este-Norte-Subida (ENU).
+El primer paso que necesita ser llevado a cabo es para determinar la orientación del cuerpo de ejes que deseamos utilizar, así como la orientación de la rotación en torno a los ejes. Una de las configuraciones más populares es fijar el eje X apuntando hacia adelante, el eje Y a la derecha y el eje Z apuntando hacia abajo. Esta configuración sigue la regla de la mano derecha para la orientación de los ejes y la regla del sacacorchos para la rotación. Ambos se muestran en la figura \ref{fig:hard6}. Estas dos estructuras estándar de navegación se emplean por lo general cuando se representa la orientación de un cuerpo en el espacio y se conocen como estructura  Norte-Este-Abajo (NED) y Este-Norte-Subida (ENU).
 
 \begin{figure}[H]
 \centering
@@ -80,12 +78,12 @@ En primer lugar se debe determinar la orientación del cuerpo de ejes que deseamo
 \label{fig:hard6}
 \end{figure}
 
-Dado que vamos a utilizar el dispositivo GaitWatch para monitorizar la marcha, necesitamos que su eje X apunte a la parte delantera del paciente y el eje Z a la planta de los píes del mismo. Vamos a empezar por la configuración de la orientación de los sensores que están dentro de la unidad de recogida de datos y que se colocará en la parte posterior del paciente. La figura \ref{fig:hard7} muestra la orientación deseada por la caja del GaitWatch.
+Dado que vamos a utilizar el dispositivo GaitWatch para monitorizar la marcha, entonces necesitamos su eje X para que apunte a la parte delantera del paciente y el eje Z a la planta. Vamos a empezar por la configuración de la orientación de los sensores que están dentro de la unidad de recogida de datos y que se colocará en la parte posterior del paciente. La figura \ref{fig:hard7} muestra la orientación deseada por la caja del GaitWatch.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard7}
-\caption{Orientación y ejes de coordenadas del GaitWatch.}
+\caption{Orientación y ejes de coordenadas del GaitWatch}
 \label{fig:hard7}
 \end{figure}
 
@@ -99,42 +97,42 @@ Una vez que conocemos  la orientación deseada, el siguiente paso es adaptar los 
 
 El objetivo aquí es determinar la orientación de los ejes y adaptarla a la conveción antes mencionada. En primer lugar, se establece el cuadro con el eje Z deseado apuntando hacia abajo y hacia arriba, respectivamente, mientras se recogen los datos, como se muestra en la figura \ref{fig:hard8}.
 
-Ahora trazamos la aceleración recogida a lo largo de los tres ejes. Tenemos que identificar el canal que muestra un gran cambio en la aceleración obtenida.
+Ahora trazamos la aceleración recogida a lo largo de los tres ejes. Tenemos que identificar el canal que muestra un gran cambio en la aceleración medida.
 
 \vspace{15mm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard8}
-\caption{Identificación del eje Z del acelerómetro en la unidad de caja.}
+\caption{Identificación del eje Z del acelerómetro en la unidad de caja}
 \label{fig:hard8}
 \end{figure}
 
-El canal debe ser etiquetado como Z independientemente de la etiqueta que pueda tener la placa del acelerómetro. Es decir, la placa del sensor puede indicar que el canal seleccionado es 'X' en el marco del sensor, pero vamos a etiquetarlo como 'Z' en nuestra configuración deseada.
-Si el eje Z de los sensores tiene la misma orientación que la de la configuración deseada, entonces, cuando apuntemos el eje Z de la caja hacia abajo, el acelerómetro medirá 1g porque su eje es paralelo al vetor gravedad de la Tierra. Si se tiene la orientación opuesta, a continuación, el acelerómetro medirá -1g. Puesto que no hemos calibrado el acelerómetro hasta ahora y, por lo tanto, los datos están en unidades primitivas, la manera de identificar la orientación correcta es saber que la salida medida al establecer el eje del acelerómetro paralelo a la gravedad es más grande que su salida cuando se establece antiparalela al vector de la gravedad. La figura \ref{fig:hard9} muestra la aceleración triaxial recogida y el eje que debe ser etiquetado como "Z".
+Ese canal que debe ser etiquetado como Z independientemente de qué etiqueta pueda tener la placa del acelerómetro. Es decir, la placa del sensor puede indicar que el canal seleccionado es 'X' en el marco del sensor, pero vamos a etiquetarlo como 'Z' en nuestra estructura deseada.
+Si el eje Z de los sensores tiene la misma orientación que la de la estructura deseada, entonces, cuando apuntemos el eje Z de la caja hacia abajo, el acelerómetro medirá 1g porque su eje es paralelo al vetor gravedad de la Tierra. Si se tiene la orientación opuesta, a continuación, el acelerómetro medirá -1g. Puesto que no hemos calibrado el acelerómetro hasta ahora y, por lo tanto, los datos están en unidades puras, la manera de identificar la orientación correcta es saber que la salida medida al establecer el eje del acelerómetro paralelo a la gravedad es más grande que su salida cuando se establece antiparalela al vector de la gravedad. La figura \ref{fig:hard9} muestra la aceleración triaxial recogida y el eje que debe ser etiquetado como "Z".
 
 
 \vspace{15mm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard9EPS}
-\caption{Identificación de la señal de aceleracíon recogida en el eje Z.}
+\caption{Identificación de la señal de aceleracíon recogida en el eje Z}
 \label{fig:hard9}
 \end{figure}
 
 
-Para el caso del GaitWatch, la señal que muestra los valores de aceleración paralelos y anti-paralelos es el canal 20. La orientación del eje es correcta, ya que primero pone el eje Z deseado apuntando hacia abajo y el acelerómetro mostró el mayor valor de la aceleración en esa posición. Por lo tanto, ponemos el canal 20 como la aceleración en el eje Z. Los dos ejes restantes (X e Y) se identifica siguiendo el mismo procedimiento. La figura \ref{fig:hard10} muestra el cuadro que está orientado negativamente y positivamente a los largo de los ejes X e Y. Ambos ejes X e Y son orientados adecuadamente y no necesitan corrección de la orientación. Despues de inspeccionar la señales recogidas, se observa que la medida de X e Y están contenidas en los canales 22 y 21, respectivamente.
+Para el caso del GaitWatch, la señal que muestra los valores de aceleración paralelos y anti-paralelos es el canal 20. La orientación del eje es correcta, ya que primero pone el eje Z deseado apuntando hacia abajo y el acelerómetro mostró el mayor valor de la aceleración en esa posición. Nosotros, por lo tanto, ponemos el canal 20 como la aceleración en el eje Z. Los dos ejes restantes (X e Y) se identifica siguiendo el mismo procedimiento. La figura \ref{fig:hard10} muestra el cuadro que está orientado negativamente y positivamente a los largo de los ejes X e Y. Ambos ejes X e Y son orientados adecuadamente y no necesitan corrección de la orientación. Despues de inspeccionar la señales recogidas, se observa que la medida de X e Y están contenidas en los canales 22 y 21, respectivamente.
 
 
 \vspace{15mm}
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard10}
-\caption{Identificación de los ejes X(arriba) e Y(abajo) de la aceleración de la caja.}
+\caption{Identificación de los ejes X(arriba) e Y(abajo) de la aceleración de la caja}
 \label{fig:hard10}
 \end{figure}
 
 
-Una vez identificado los ejes del acelerómetro en el interior de la caja que colocaremos en la espalda del paciente, tenemos que aplicar el mismo procedimiento ya mencionado para identificar uno por uno los ejes de los acelerómetros biaxiales que debe ser colocados en los muslos y las espinillas. La figura \ref{fig:hard11} muestra el módulo de la espinilla derecha que está siendo colocado paralelo y anti-paralelo a la gravedad en los dos ejes X y Z.
+Una vez que hemos identificado los ejes del acelerómetro en el interior de la caja, que colocaremos en la espalda del paciente, tenemos que aplicar el mismo procedimiento ya mencionado para identificar, uno por uno los ejes de los acelerómetros biaxiales que debe ser colocaremos en los muslos y las espinillas. La figura \ref{fig:hard11} muestra el módulo de la espinilla derecha que está siendo colocado paralelo y anti-paralelo a la gravedad en los dos ejes X y Z.
 
 
 
@@ -142,7 +140,7 @@ Una vez identificado los ejes del acelerómetro en el interior de la caja que col
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figuras/Hardware/hard11}
-\caption{Identificación delos eje Z (izquierda) y X (derecha) del acelerómetro en la unidad de la espinilla derecha.}
+\caption{Identificación delos eje Z (izquierda) y X (derecha) del acelerómetro en la unidad de la espinilla derecha}
 \label{fig:hard11}
 \end{figure}
 
@@ -173,7 +171,7 @@ Una vez identificado los ejes del acelerómetro en el interior de la caja que col
 
 Table \ref{tab:list_acc_channels}:  muestra los ejes de todos los acelerómetros del Gaitwatch, sus canales asociados y la compesación de la orientación (si se necesita).
 
-\subsubsection{Identificación de los ejes del giróscopo}
+\subsubsection{Identificación de los ejes del giroscopo}
 
 
 Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a identificar los ejes de los giróscopos y su orientación. Por convención, como se representa en la figura \ref{fig:hard6}, el sentido de la rotación alrededor de un eje dado es positivo cuando el eje está apuntando hacia adelante (desde la perspectiva del usuario) y se gira hacia la derecha. Análogamente, la rotación es negativa cuando se gira a la izquierda. Sabiendo esto, para identificar el sentido de la rotación del giróscopo y adaptarlo (si es necesario) para la estructura de los ejes necesitamos proceder de la siguiente manera:
@@ -195,8 +193,8 @@ Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a
 	
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{figuras/Hardware/hard12}
-	\caption{Identificación del sentido de la rotación del eje Y del giróscopo en la unidad de la mano izquierda.}
+	\includegraphics[width=0.7\textwidth]{figuras/Hardware/hard12}
+	\caption{Identificación del sentido de la rotación del eje Y del giróscopo en la unidad de la mano izquierda}
 	\label{fig:hard12}
 	\end{figure}
 	
@@ -205,7 +203,7 @@ Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figuras/Hardware/hard13EPS}
-	\caption{Señal de la tasa angular recogida recogida durante las maniobras de identificación de la rotación.}
+	\caption{Señal de la tasa angular recogida recogida durante las maniobras de identificación de la rotación}
 	\label{fig:hard13}
 	\end{figure}
 	
@@ -240,7 +238,7 @@ Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a
 	\subsubsection{Identificación de los ejes del magnetómetro}
 	
 	
-	Los datos del magnetómetro triaxial embebidos en la unidad del tronco están todos contenidos en el mismo canal (canal 23). Cada eje dispone de un desplazamiento diferente por lo que es fácil separarlos. Los desplazamientos de los ejes son 32.794,20.000 y 0. Una vez que tenemos separados los datos, tenemos que identificar qué eje corresponde a cada desplazamiento, al hacerlo, ponemos el eje deseado hacia arriba o hacia abajo y giramos la caja más de 360 grados. Luego, la señal correspondiente al eje seleccionado debe ser la que muestra la menor variación (como se muestra en la figura \ref{fig:hard14}). Esta operación debe repetirse dos veces más para identificar los dos ejes restantes. 
+	Los datos del magnetómetro triaxial embebidos en la unidad del tronco están todos contenidos en el mismo canal(canal 23). Cada eje dispone de un desplazamiento diferente por lo que es fácil separarlos. Los desplazamientos de los ejes son 32.794,20.000 y 0. Una vez que tenemos separados los datos, tenemos que identificar qué eje corresponde a cada desplazamiento, al hacerlo, ponemos el eje deseado hacia arriba o hacia abajo y giramos la caja más de 360 grados. Luego, la señal correspondiente al eje seleccionado debe ser la que muestra la menor variación (como se muestra en la figura \ref{fig:hard14}). Esta operación debe repetirse dos veces más para identificar los dos ejes restantes. 
 	
 	\begin{table}[H]
 	\caption{Desplazamiento del magnetómetro y ejes}
@@ -258,7 +256,7 @@ Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a
 	\begin{figure}[H]
 		\centering
 		\includegraphics[width=0.7\textwidth]{figuras/Hardware/hard14EPS}
-		\caption{Señal de campo magnético registrada durante las maniobras de identificación del eje Y.}
+		\caption{Señal de campo magnético registrada durante las maniobras de identificación del eje Y}
 		\label{fig:hard14}
 	\end{figure}
 	
@@ -270,10 +268,10 @@ Una vez que hemos identificado los ejes de los acelerómetros, ahora procedemos a
 
 \subsection{Descrición general}
 
-ECnsole es otra unidad de medición inercial (IMU). Desarrollada para  aplicaciones de captura del movimiento humano dentro del departamento de Electrónica y Tecnología de Computadores de la Universidad de Granada.
+ECnsole es otra unidad de medición inercial (IMU). Desarrollada para  aplicaciones de captura del movimiento humano dentro del departamento de Teoría de la Señal, Telemática y Comunicaciones de la Universidad de Granada.
 
 
-Este sistema también puede usarse en aplicaciones médicas para la monitozación de los movimientos de los pacientes, aunque su uso puede ser bastante más amplio. El sistema está compuesto por una unidad de procesamiento central y las unidades externas de medición.
+Este sistema también puede aplicarse para aplicaciones médicas  monitorizando los movimientos de los pacientes, aunque su uso puede ser bastante más amplio. El sistema está compuesto por una unidad de procesamiento central y las unidades externas de medición.
 Las unidades de medición se deben colocar en el pie izquierdo y en el pie derecho.
 
 La figura \ref{fig:hard4} nos muestra un diagrama del dispositivo ECnsole colocado sobre una persona.
@@ -281,7 +279,7 @@ La figura \ref{fig:hard4} nos muestra un diagrama del dispositivo ECnsole coloca
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{figuras/Hardware/hard4}
-	\caption{Diagrama general de ECnsole usado por un sujeto.}
+	\caption{Diagrama general de ECnsole usado por un sujeto}
 	\label{fig:hard4}
 \end{figure}
 
@@ -292,12 +290,12 @@ La figura \ref{fig:hard4} nos muestra un diagrama del dispositivo ECnsole coloca
 
 \subsection{Descripción del Hardware}
  
-ECnsole posee una caja principal donde están contenidos el procesador y la tarjeta de memoria. El procesador se encarga de la recopilación y escritura de datos en la tarjeta de memoria donde se quedan almacenados. Los datos recopilados son extraidos de las unidades inerciales externas que están compuestas a su vez por los 3 tipos de sensores ya utilizados para el sistema GaitWatch (un magnetómetro, un giróscopo y un acelerómetro). Se sobreentiende que existen dos unidades inerciales, una para cada pie. La imagen de la figura \ref{fig:hard1} nos muestra el sistema ECnsole.
+ECnsole posee una caja principal donde están contenidos el procesador y la tarjeta de memoria. El procesador se encarga de la recopilación y escritura de datos en la tarjeta de memoria donde se quedan almacenados. Los datos recopilados son extraidos de las unidades inerciales externas que están compuestas a su vez por los 3 tipos de sensores ya utilizados para el sistema GaitWatch (un magnetómetro, un giroscopio y un acelerómetro). Se sobreentiende que existen dos unidades inerciales, una para cada pie. La imagen de la figura \ref{fig:hard1} nos muestra el sistema ECnsole.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.5\textwidth]{figuras/Hardware/hard1}
-	\caption{Sistema ECnsole.}
+	\caption{Sistema ECnsole}
 	\label{fig:hard1}
 \end{figure}
 
@@ -337,8 +335,6 @@ A continuación se enumeran las características principales del sistema  \textit{
 		\item Acelerómetro y magnetómetro: LSM303DLHC.
 		\item Giróscopo: L3GD20.
 		\end{itemize}
-	\item Una unidad central donde se almacenan los datos en una memoria microSD.
-	
 	\end{itemize}
 
 
@@ -349,7 +345,7 @@ A continuación se enumeran las características principales del sistema  \textit{
 		\centering
 		\includegraphics[width=0.3\textwidth]{figuras/Hardware/hard2}
 		\includegraphics[width=0.3\textwidth]{figuras/Hardware/hard3}
-		\caption{Plantillas instrumentadas.}
+		\caption{Plantillas instrumentadas}
 		\label{fig:hard3}
 	\end{figure}
 	
