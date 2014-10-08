@@ -1,16 +1,52 @@
-% APA_2014.m
-% basiert auf: gehen_laufband.m
-% program reads textfiles made by Zebris pressure-sensitive footplate
-% For evaluation of APA data obtained in Munich 2014
+% |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+% ------------------- ZEBRIS FORCE PLATE DATA ANALYSIS --------------------
+% |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-clear
-[bb,aa]=butter(3,0.3);
-% Maybe other simplier form to do : [data_file,data_path] = uigetfile('*.txt', 'Select *.txt - file');
-data_path='C:\A-DATA\';
+% -------------------------------------------------------------------------
+% * Project name: Comparison of Posturographic Body-sway Measurements with 
+%                 Accelerometric Data.
+%
+% * Authors:      - Prof. Dr. Med. Kai Bötzel (1): 
+%                   |_ kai.boetzel@med.uni-muenchen.de 
+%                 - Verónica Torres (2): 
+%                   |_ vts24@correo.ugr.es 
+%                 - Dr. Eng. Alberto Olivares (3): 
+%                   |_ aolivares@ugr.es
+%                 - Robin Weiss (4): 
+%                   |_ mail@robinweiss.de
+%
+% * Affiliation: (1) Laboratory of Motion Analysis and Deep Brain 
+%                    Stimulation, Department of Neurology, Klinikum 
+%                    Grosshadern, Munich, Germany.
+%                (2) Master in Telecommunication Engineering, University of 
+%                    Granada, Granada, Spain, (student).
+%                (3) Signal Processing and Biomedical Applications group,
+%                    Department of Signal Theory, Telematics and
+%                    Communications, University of Granada, Granada, Spain.
+%                (4) Bachelor in Electrical Engineering, University of 
+%                    Applied Sciences of Munster, Munster, Germany, 
+%                    (student).
+%
+% * Last modification: 08/10/2014
+% -------------------------------------------------------------------------
+% INFORMATION: This file contains the routine to read and plot the data
+% coming from a Zebris FDM-S Multifunction Force-measuring Plate used to
+% measure gait initiation and balance of Parkinson patients. This is a
+% modified version of the 'gehen_laufband.m' file implemented by (?? ask 
+% this).
+% -------------------------------------------------------------------------
+
+% Delete workspace.
+clear all
+
+% Build Butterworth filter.
+[bb, aa] = butter(3, 0.3);
 
 % Data file selection with a dialog box (only the text file)
-[data_file,data_path] = uigetfile([data_path,'*.txt'], 'Select *.txt - file');
+[filename, filepath] = uigetfile('*.txt', ...
+    'Select Force Plate data file (.txt)', 'data/ForcePlate');
 
+% REVISED AND MODIFIED UNTIL THIS POINT (ALBERTO)
 
 %Reading of data_file
 [header,first_line,abta,count,col_first_block] = read_laufband_header([data_path,'\',data_file]);
