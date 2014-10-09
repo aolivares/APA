@@ -2,6 +2,7 @@
 %-------------------------------------------PFC---------------------------------------------%
 %__________________________________________________________________________________________ %
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PREAMBULO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % ----------------------Especificaciones de diseño---------------------------- %
 
@@ -11,8 +12,13 @@
 \usepackage{a4}
 \usepackage[Lenny]{fncychap}    % Estilos para capitulos
 \usepackage{fancyhdr}           % Estilos para cabeceras
+%\usepackage[spanish]{babel}
+%usepackage[latin1]{inputenc}
+
+% Para no tener problemas con las tildes
+\usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
-\usepackage[latin1]{inputenc}
+
 \usepackage{epsfig}
 \usepackage{subfig}
 \usepackage{epstopdf}
@@ -25,6 +31,8 @@
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage{exceltex}
+
+
 
 \definecolor{listinggray}{gray}{0.98}
 \definecolor{lbcolor}{rgb}{0.98,0.98,0.98}
@@ -141,14 +149,12 @@
 
 
 \begin{document}
-	verlo en \cite{Mancini2009}. 
-
-	\renewcommand{\bibname}{Bibliografía}
 
 	\pagenumbering{roman}    % Numeración de páginas con num romanos
 	\setcounter{page}{1}      % Establece la siguiente página como la 1
 	\include{portada}						% Incluímos la portada en español
 	\clearemptydoublepage
+	\include{Introduccion}
 
 	
 	\clearemptydoublepage
