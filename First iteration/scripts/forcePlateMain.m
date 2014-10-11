@@ -164,11 +164,13 @@ data3 = zeros(n,3,3);
 data2 = zeros(lines, columns);
 figure(1);
 clf;
+% Initialize (Pseudocolor plot).
 axes('pos', [ 0.1300    0.1100    0.7750    0.8150]);
 ph = pcolor(data2);
 axis equal;
 axis([1 columns 1 lines]);
 drawnow;
+% Set the positon and inicialization of the number frame. 
 th = text(60,45,num2str(b));
 
 % Draw central line
@@ -199,16 +201,20 @@ end
 
 
 for b = data_start:data_end
-    % index for data3
+    % Index for data3
     c = b - data_start + 1; 
-    % read 8 lines which contain some irrelevant information
+    % Read 8 lines which contain some irrelevant information
     CX = textscan(fid, '%s', 8, 'Delimiter', '\n', 'whitespace', '');   
     C3 = textscan(fid, format, lines);
     for cc = 1:columns
        data2(:, cc) = C3{cc + 1};
     end
+    % Set the values on the objects: force (Pseudocolor plot) and frame.
     set(ph, 'cdata', data2)
     set(th, 'string', num2str(b))
+    
+    % Obtain the position of the markers (graph_handles) for each case.
+    
     % Side 1 right, side 2 left, side 3 both.
     for side = 1:3                                                              
         switch side
@@ -222,25 +228,27 @@ for b = data_start:data_end
                 an = 1; 
                 en = columns;
         end
-        % Colum vektor! Berechnung der x-Koordinate des Schwerpunktes
+        % Column vector. Calculate COG X to represent the markers.
         m = sum(data2(:, an:en));   
         
-        % pr¸fen, ob ¸berhaupt in diesem Feld Daten>0 sind 
+        % Check whether any data is >0.
         if any(m)    
-            % Ergebnisarray belegen x-Koordinate des Schwerpunktes
+            % Put the COG X in the rigth position.
             data3(c,1,side) = sum(m .* (an:en)) ./ sum(m); 
 
-            % Berechnung der y-Koordinate des Schwerpunktes
+            % Calculate COG Y.
             m = sum(data2(:, an:en), 2);                                          
             data3(c, 2, side) = sum(m .* (1:lines)') ./ sum(m);
 
-            % hintersten Fuﬂdruckpunkt (Fersenposition) berechnen (nur y)
-            data3(c, 3, side) = sum(m);                                                  
+            % Calculate rearmost foot pressure point (heel position) (y only)
+            data3(c, 3, side) = sum(m);
+            
+            % Set the COG markers (X,Y).
             set(graph_handles(side), 'xdata', [data3(c, 1, side) - 2 ...
                data3(c, 1, side) + 2], 'ydata', [data3(c, 2, side) ...
                data3(c, 2, side)], 'vis', 'on');
         else
-            % auf dieser Seite kein Fuﬂ auf dem Boden
+            % There isn`t any foot in the floor.
             set(graph_handles(side),'vis','off');                         
         end
             
