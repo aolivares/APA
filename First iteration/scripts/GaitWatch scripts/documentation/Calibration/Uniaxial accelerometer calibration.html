@@ -1,0 +1,393 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>1D ACCELEROMETER CALIBRATION</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-12-04"><meta name="DC.source" content="calibrate_acc1D_print.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>1D ACCELEROMETER CALIBRATION</h1><!--introduction--><p>The following script carries out the computation of the calibration parameters of the biaxial accelerometers which are located in the shank and thigh units. The calibration maneuvers are quite simple. The accelerometer needs to be placed with each of its axes parallel and antiparallel to the Earth's gravity vector. Therefore, we will have 2 reference values (1g and -1g) for each of the accelerometers which are used to find the scale factor and bias.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">0) General and initial configuration.</a></li><li><a href="#7">2) Select the the sensor unit.</a></li><li><a href="#24">2) Load raw calibration data and extract header information.</a></li><li><a href="#33">3) Extract corresponding channels.</a></li><li><a href="#38">4) Select the +1g and -1g values of the raw acceleration signal.</a></li><li><a href="#39">5) Compute the calibration parameters.</a></li><li><a href="#40">6) Calibrate the acceleration signal.</a></li><li><a href="#41">7) Save the calibration parameters.</a></li><li><a href="#42">8) Plot raw and calibrated acceleration signals from both axes.</a></li></ul></div><div><ul><li><i>Authors</i> :   Alberto Olivares and Kai B&ouml;tzel.</li><li><i>Entities</i> : Universidad de Granada &amp; Ludwig-Maximilians Universit&auml;t M&uuml;nchen.</li><li><i>Version</i> :  1.0.</li><li><i>Last modification</i> : 5/11/2013.</li></ul></div><h2>0) General and initial configuration.<a name="2"></a></h2><p>Load GaitWatch's functions library.</p><pre class="codeinput">gw = gwLibrary;
+</pre><p>Define the magnitude measure by the sensor (acceleration in this case).</p><pre class="codeinput">magnitude = <span class="string">'a'</span>;
+</pre><p>Load GaitWatch's data structure.</p><pre class="codeinput">load <span class="string">data/gWDataStruct.mat</span>
+size_data_struct=size(data_struct);
+</pre><p>Define the flag which controls if the figures are to be shown and stored or just stored.</p><pre class="codeinput">showPlot = <span class="string">'yes'</span>;
+</pre><h2>2) Select the the sensor unit.<a name="7"></a></h2><p>Now, the user is shown a list in which he should select the segment containing the gyroscope whch is going to be calibrated.</p><pre class="codeinput">S = cell(1,size_data_struct(1));
+</pre><p>We select only the rows in which the magnitude is the acceleration ('a') and the calibration is uniaxial (1).</p><pre class="codeinput"><span class="keyword">for</span> i = 1:size_data_struct(1)
+    <span class="keyword">if</span> strcmpi(data_struct{i,2},<span class="string">'a'</span>) &amp;&amp; data_struct{i,6} == 1
+        S{i} = [data_struct{i,4},<span class="string">' '</span>,data_struct{i,5}];
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><p>We remove the empty cells and the repeated values.</p><pre class="codeinput">S = S(~cellfun(<span class="string">'isempty'</span>,S));
+S = unique(S,<span class="string">'stable'</span>);
+</pre><p>Finally, the list is shown to the user.</p><pre class="codeinput">Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+    <span class="string">'Select the unit you wish to calibrate'</span>,<span class="string">'ListSize'</span>,[160 100],<span class="keyword">...</span>
+    <span class="string">'SelectionMode'</span>,<span class="string">'single'</span>);
+</pre><p><img vspace="5" hspace="5" src="menu2.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Right shank.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        segment_name = <span class="string">'shank'</span>;
+        position = <span class="string">'right'</span>;
+</pre><p>Right thigh.</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">        segment_name = <span class="string">'thigh'</span>;
+        position = <span class="string">'right'</span>;
+</pre><p>Left shank.</p><pre class="codeinput">    <span class="keyword">case</span> 3
+</pre><pre class="codeinput">        segment_name = <span class="string">'shank'</span>;
+        position = <span class="string">'left'</span>;
+</pre><p>Left thigh.</p><pre class="codeinput">    <span class="keyword">case</span> 4
+</pre><pre class="codeinput">        segment_name = <span class="string">'thigh'</span>;
+        position = <span class="string">'left'</span>;
+<span class="keyword">end</span>
+</pre><h2>2) Load raw calibration data and extract header information.<a name="24"></a></h2><p>The first step is to load the raw accelerometer data which was gathered during the calibration maneuvers. The user can select between loading the data directly from GaitWatch or loading it from the hard drive.</p><pre class="codeinput">S = {<span class="string">'Load data from GaitWatch'</span>,<span class="string">'Load data from hard drive'</span>};
+Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+    <span class="string">'Select the origin of the data'</span>,<span class="string">'ListSize'</span>,[250 100],<span class="string">'SelectionMode'</span>,<span class="keyword">...</span>
+    <span class="string">'single'</span>);
+</pre><p><img vspace="5" hspace="5" src="DATA_ORIGIN_MENU.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Load data from GaitWatch.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        GW_comm;
+        data_path = strcat(<span class="string">'data/calibration/accelerometer/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+            segment_name,<span class="string">'_rawCalAccData.mat'</span>);
+        save(data_path,<span class="string">'data'</span>,<span class="string">'FileHeader'</span>);
+</pre><p>Load data from the hard drive.</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">        [data, FileHeader] = gw.openGWfile();
+<span class="keyword">end</span>
+</pre><p>And then, we extract some of the information contained in the header.</p><pre class="codeinput">[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+</pre><h2>3) Extract corresponding channels.<a name="33"></a></h2><p>Once we have selected the corresponding segment and associated channels, we load the data matrix and extract them.</p><p>Define the axes of the biaxial accelerometer.</p><pre class="codeinput">sensor_axis1 = <span class="string">'X'</span>;
+sensor_axis2 = <span class="string">'Z'</span>;
+</pre><p>Get the channel numbers for the selected segment.</p><pre class="codeinput">channel1 = gw.getDataChannel(data_struct, magnitude, sensor_axis1,<span class="keyword">...</span>
+    position, segment_name);
+channel2 = gw.getDataChannel(data_struct, magnitude, sensor_axis2,<span class="keyword">...</span>
+    position, segment_name);
+</pre><p>Extract acceleration data from selected segment.</p><pre class="codeinput">ax = double(data(:,channel1));
+az = double(data(:,channel2));
+</pre><p>Build time signal.</p><pre class="codeinput">time=zeros(1,length(ax));
+<span class="keyword">for</span> i=1:length(ax)-1
+ time(i+1)=time(i)+1/f;
+<span class="keyword">end</span>
+</pre><h2>4) Select the +1g and -1g values of the raw acceleration signal.<a name="38"></a></h2><p>The next step is to select the two raw acceleration values when the axis is set parallel and antiparallel to the gravity vector. To do so, the user is shown the raw acceleration in X axis gathered during the calibration maneuvers. He then has to select the initial and final points of the two static positions. After that, the mode of both periods is computed. We do this for both axes.</p><pre class="codeinput">[ax_parallel, ax_antiparallel] = gw.get_acc_parallel_values(ax);
+[az_parallel, az_antiparallel] = gw.get_acc_parallel_values(az);
+</pre><img vspace="5" hspace="5" src="calibrate_acc1D_print_01.png" alt=""> <img vspace="5" hspace="5" src="calibrate_acc1D_print_02.png" alt=""> <h2>5) Compute the calibration parameters.<a name="39"></a></h2><p>Once the parallel and antiparallel raw acceleration values have been extracted for both axes we can compute the biases and the scale factors.</p><pre class="codeinput">b_x = (ax_antiparallel/ax_parallel + 1)/(ax_antiparallel/ax_parallel - 1);
+k_x = (1 - b_x)/ax_parallel;
+b_z = (az_antiparallel/az_parallel + 1)/(az_antiparallel/az_parallel - 1);
+k_z = (1 - b_z)/az_parallel;
+</pre><h2>6) Calibrate the acceleration signal.<a name="40"></a></h2><p>After the computation of the calibration parameters, we apply them to calibrate the raw acceleration signals.</p><pre class="codeinput">axC = (ax * k_x) + b_x;
+azC = (az * k_z) + b_z;
+</pre><h2>7) Save the calibration parameters.<a name="41"></a></h2><p>Once the calibration parameters are computed we store them together with the date and time in which the calibration data were gathered.</p><pre class="codeinput">data_path_1 = strcat(<span class="string">'data/calibration/accelerometer/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+    segment_name,<span class="string">'_'</span>,sensor_axis1,<span class="string">'_accCalParams.mat'</span>);
+data_path_2 = strcat(<span class="string">'data/calibration/accelerometer/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+    segment_name,<span class="string">'_'</span>,sensor_axis2,<span class="string">'_accCalParams.mat'</span>);
+save(data_path_1,<span class="string">'k_x'</span>,<span class="string">'b_x'</span>,<span class="string">'cal_date'</span>,<span class="string">'cal_start_time'</span>,<span class="keyword">...</span>
+    <span class="string">'cal_end_time'</span>);
+save(data_path_2,<span class="string">'k_z'</span>,<span class="string">'b_z'</span>,<span class="string">'cal_date'</span>,<span class="string">'cal_start_time'</span>,<span class="keyword">...</span>
+    <span class="string">'cal_end_time'</span>);
+</pre><h2>8) Plot raw and calibrated acceleration signals from both axes.<a name="42"></a></h2><p>The final step is to plot raw data vs. calibrate data.</p><pre class="codeinput">close <span class="string">all</span>
+</pre><p>Plot raw vs. calibrated data.</p><pre class="codeinput">figure
+subplot(2,2,1)
+plot(time,ax);
+legend(<span class="string">'X axis'</span>)
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Acceleration (raw)'</span>);
+
+subplot(2,2,2)
+plot(time,axC);
+legend(<span class="string">'X axis'</span>)
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Acceleration (g)'</span>);
+
+subplot(2,2,3)
+plot(time,az);
+legend(<span class="string">'Z axis'</span>)
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Acceleration (raw)'</span>);
+
+subplot(2,2,4)
+plot(time,azC);
+legend(<span class="string">'Z axis'</span>)
+xlabel(<span class="string">'Time (s)'</span>);
+ylabel(<span class="string">'Acceleration (g)'</span>);
+
+figure_path = strcat(<span class="string">'figures/calibration/accelerometer/'</span>,position,<span class="keyword">...</span>
+    <span class="string">'_'</span>,segment_name,<span class="string">'_rawVsCalAcc.fig'</span>);
+saveas(gcf,figure_path);
+</pre><img vspace="5" hspace="5" src="calibrate_acc1D_print_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% 1D ACCELEROMETER CALIBRATION 
+% The following script carries out the computation of the calibration
+% parameters of the biaxial accelerometers which are located in the shank
+% and thigh units. The calibration maneuvers are quite simple. The
+% accelerometer needs to be placed with each of its axes parallel and
+% antiparallel to the Earth's gravity vector. Therefore, we will have 2
+% reference values (1g and -1g) for each of the accelerometers which are
+% used to find the scale factor and bias. 
+
+%%
+% * _Authors_ :   Alberto Olivares and Kai Bötzel.
+% * _Entities_ : Universidad de Granada & Ludwig-Maximilians Universität München.
+% * _Version_ :  1.0.
+% * _Last modification_ : 5/11/2013.
+
+%% 0) General and initial configuration.
+%%
+% Load GaitWatch's functions library.
+gw = gwLibrary;
+%%
+% Define the magnitude measure by the sensor (acceleration in this case).
+magnitude = 'a';
+%%
+% Load GaitWatch's data structure.
+load data/gWDataStruct.mat
+size_data_struct=size(data_struct);    
+%%
+% Define the flag which controls if the figures are to be shown and stored
+% or just stored.
+showPlot = 'yes';
+
+%% 2) Select the the sensor unit.
+% Now, the user is shown a list in which he should select the segment
+% containing the gyroscope whch is going to be calibrated. 
+
+S = cell(1,size_data_struct(1));
+%%
+% We select only the rows in which the magnitude is the acceleration ('a') 
+% and the calibration is uniaxial (1).
+for i = 1:size_data_struct(1)   
+    if strcmpi(data_struct{i,2},'a') && data_struct{i,6} == 1
+        S{i} = [data_struct{i,4},' ',data_struct{i,5}];
+    end
+end
+%%
+% We remove the empty cells and the repeated values.
+S = S(~cellfun('isempty',S));
+S = unique(S,'stable');
+%%
+% Finally, the list is shown to the user. 
+Selection = listdlg('ListString',S,'Name',...
+    'Select the unit you wish to calibrate','ListSize',[160 100],...
+    'SelectionMode','single');
+%%
+% 
+% <<menu2.PNG>>
+% 
+%%
+switch Selection
+    %%
+    % Right shank.
+    case 1 
+        segment_name = 'shank';
+        position = 'right';
+    %%
+    % Right thigh.    
+    case 2 
+        segment_name = 'thigh';
+        position = 'right';
+    %%
+    % Left shank.    
+    case 3 
+        segment_name = 'shank';
+        position = 'left';
+    %%
+    % Left thigh.    
+    case 4
+        segment_name = 'thigh';
+        position = 'left';
+end
+
+%% 2) Load raw calibration data and extract header information.
+% The first step is to load the raw accelerometer data which was gathered
+% during the calibration maneuvers. The user can select between loading the
+% data directly from GaitWatch or loading it from the hard drive. 
+
+S = {'Load data from GaitWatch','Load data from hard drive'};
+Selection = listdlg('ListString',S,'Name',...
+    'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
+    'single');
+%%
+% 
+% <<DATA_ORIGIN_MENU.PNG>>
+% 
+%%
+switch Selection
+    %%
+    % Load data from GaitWatch. 
+    case 1
+    
+        GW_comm;
+        data_path = strcat('data/calibration/accelerometer/',position,'_',...
+            segment_name,'_rawCalAccData.mat');
+        save(data_path,'data','FileHeader');
+    
+    %%
+    % Load data from the hard drive.
+    case 2
+        [data, FileHeader] = gw.openGWfile();   
+end
+%%
+% And then, we extract some of the information contained in the header.
+[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+
+
+%% 3) Extract corresponding channels. 
+% Once we have selected the corresponding segment and associated channels,
+% we load the data matrix and extract them. 
+%%
+% Define the axes of the biaxial accelerometer.
+sensor_axis1 = 'X';
+sensor_axis2 = 'Z';
+%%
+% Get the channel numbers for the selected segment.
+channel1 = gw.getDataChannel(data_struct, magnitude, sensor_axis1,...
+    position, segment_name);
+channel2 = gw.getDataChannel(data_struct, magnitude, sensor_axis2,...
+    position, segment_name);
+%%
+% Extract acceleration data from selected segment. 
+ax = double(data(:,channel1));
+az = double(data(:,channel2));
+%%
+% Build time signal.
+time=zeros(1,length(ax));
+for i=1:length(ax)-1
+ time(i+1)=time(i)+1/f;
+end
+
+
+%% 4) Select the +1g and -1g values of the raw acceleration signal.
+% The next step is to select the two raw acceleration values when the axis 
+% is set parallel and antiparallel to the gravity vector. To do so, the 
+% user is shown the raw acceleration in X axis gathered during the 
+% calibration maneuvers. He then has to select the initial and final points
+% of the two static positions. After that, the mode of both periods is 
+% computed.
+% We do this for both axes. 
+
+[ax_parallel, ax_antiparallel] = gw.get_acc_parallel_values(ax);
+[az_parallel, az_antiparallel] = gw.get_acc_parallel_values(az);
+
+
+%% 5) Compute the calibration parameters.
+% Once the parallel and antiparallel raw acceleration values have been
+% extracted for both axes we can compute the biases and the scale factors. 
+
+b_x = (ax_antiparallel/ax_parallel + 1)/(ax_antiparallel/ax_parallel - 1);
+k_x = (1 - b_x)/ax_parallel; 
+b_z = (az_antiparallel/az_parallel + 1)/(az_antiparallel/az_parallel - 1);
+k_z = (1 - b_z)/az_parallel; 
+
+
+%% 6) Calibrate the acceleration signal.
+% After the computation of the calibration parameters, we apply them to
+% calibrate the raw acceleration signals. 
+
+axC = (ax * k_x) + b_x;
+azC = (az * k_z) + b_z;
+
+
+%% 7) Save the calibration parameters.
+% Once the calibration parameters are computed we store them together with
+% the date and time in which the calibration data were gathered. 
+data_path_1 = strcat('data/calibration/accelerometer/',position,'_',...
+    segment_name,'_',sensor_axis1,'_accCalParams.mat');
+data_path_2 = strcat('data/calibration/accelerometer/',position,'_',...
+    segment_name,'_',sensor_axis2,'_accCalParams.mat');
+save(data_path_1,'k_x','b_x','cal_date','cal_start_time',...
+    'cal_end_time');
+save(data_path_2,'k_z','b_z','cal_date','cal_start_time',...
+    'cal_end_time');
+
+
+
+%% 8) Plot raw and calibrated acceleration signals from both axes.
+% The final step is to plot raw data vs. calibrate data.
+
+close all
+%%
+% Plot raw vs. calibrated data. 
+figure
+subplot(2,2,1)
+plot(time,ax);
+legend('X axis')
+xlabel('Time (s)');
+ylabel('Acceleration (raw)');
+
+subplot(2,2,2)
+plot(time,axC);
+legend('X axis')
+xlabel('Time (s)');
+ylabel('Acceleration (g)');
+
+subplot(2,2,3)
+plot(time,az);
+legend('Z axis')
+xlabel('Time (s)');
+ylabel('Acceleration (raw)');
+
+subplot(2,2,4)
+plot(time,azC);
+legend('Z axis')
+xlabel('Time (s)');
+ylabel('Acceleration (g)');
+
+figure_path = strcat('figures/calibration/accelerometer/',position,...
+    '_',segment_name,'_rawVsCalAcc.fig');
+saveas(gcf,figure_path);
+
+
+##### SOURCE END #####
+--></body></html>

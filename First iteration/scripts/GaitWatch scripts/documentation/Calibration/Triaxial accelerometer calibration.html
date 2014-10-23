@@ -1,0 +1,578 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>ACCELEROMETER CALIBRATION</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-12-04"><meta name="DC.source" content="calibrate_acc3D_print.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>ACCELEROMETER CALIBRATION</h1><!--introduction--><p>The following script carries out the computation of the calibration parameters of the triaxial accelerometer which is included inside the Gaitwatch's trunk unit. We will use an ellipsoid fitting algorithm based the one proposed by Camps et al. (F. Camps, S. Harasse, and A. Monin. Numerical calibration for 3-axis accelerometers and magnetometers. In IEEE International Conference on Electro/Information Technology, 2009. EIT &#8217;09, pages 217&#8211;221. IEEE, June 2009.). They present a theoretical and experimental steps of a method to compute gains, bias and non orthogonality factors of magnetometer and accelerometer sensors. The calibration procedure involves setting the accelerometer in multiple quasi-static positions. For more information about this algorithm check Gaitwatch's user manual.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">0) General and initial configuration.</a></li><li><a href="#9">1) Load raw calibration data and extract header information.</a></li><li><a href="#19">2) Extract and plot raw data.</a></li><li><a href="#22">3) Compute the average value for each one of the static positions.</a></li><li><a href="#28">4) Compute and store the calibration parameters.</a></li><li><a href="#32">5) Calibrate raw data.</a></li><li><a href="#35">6) Plot raw vs calibrated data.</a></li></ul></div><div><ul><li><i>Authors</i> :  Alberto Olivares and Kai B&ouml;tzel.</li><li><i>Entities</i> : Universidad de Granada &amp; Ludwig-Maximilians Universit&auml;t M&uuml;nchen.</li><li><i>Version</i> :  1.1.</li><li><i>Last modification</i> : 26/11/2013.</li></ul></div><h2>0) General and initial configuration.<a name="2"></a></h2><p>Load GaitWatch's functions library.</p><pre class="codeinput">gw = gwLibrary;
+</pre><p>Define the magnitude measure by the sensor (acceleration in this case).</p><pre class="codeinput">magnitude = <span class="string">'a'</span>;
+</pre><p>Define the position of the sensor.</p><pre class="codeinput">position = <span class="string">'center'</span>;
+</pre><p>Define the body sement in which the sensor is placed.</p><pre class="codeinput">segment = <span class="string">'trunk'</span>;
+</pre><p>Load GaitWatch's data structure.</p><pre class="codeinput">load <span class="string">data/gWDataStruct.mat</span>
+</pre><p>Define the flag which controls if the figures are to be shown and stored or just stored</p><pre class="codeinput">showPlot = <span class="string">'yes'</span>;
+</pre><h2>1) Load raw calibration data and extract header information.<a name="9"></a></h2><p>The first step is to load the raw accelerometer data which was gathered during the calibration maneuvers. The user can select between loading the data directly from GaitWatch or loading it from the hard drive.</p><pre class="codeinput">S = {<span class="string">'Load data from GaitWatch'</span>,<span class="string">'Load data from hard drive'</span>};
+Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+    <span class="string">'Select the origin of the data'</span>,<span class="string">'ListSize'</span>,[250 100],<span class="string">'SelectionMode'</span>,<span class="keyword">...</span>
+    <span class="string">'single'</span>);
+</pre><p><img vspace="5" hspace="5" src="DATA_ORIGIN_MENU.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Load data from GaitWatch.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        GW_comm;
+        data_path = <span class="string">'data/calibration/accelerometer/trunk_rawCalAccData.mat'</span>;
+        save(data_path,<span class="string">'data'</span>,<span class="string">'FileHeader'</span>);
+</pre><p>Load data from the hard drive.</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">        load <span class="string">data/calibration/accelerometer/trunk_rawCalAccData</span>
+<span class="keyword">end</span>
+</pre><p>And then, we extract some of the information contained in the header.</p><pre class="codeinput">[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+</pre><h2>2) Extract and plot raw data.<a name="19"></a></h2><p>We now extract the data for each one of the axes.</p><pre class="codeinput">sensor_axis = <span class="string">'X'</span>;
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,<span class="keyword">...</span>
+    position, segment);
+ax = double(data(:,channel));
+
+sensor_axis = <span class="string">'Y'</span>;
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,<span class="keyword">...</span>
+    position, segment);
+ay = double(data(:,channel));
+
+sensor_axis = <span class="string">'Z'</span>;
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,<span class="keyword">...</span>
+    position, segment);
+az = double(data(:,channel));
+</pre><p>Computation of the time signal based on the sampling frequency.</p><pre class="codeinput">time=zeros(1,length(ax));
+<span class="keyword">for</span> i=1:length(ax)-1
+ time(i+1)=time(i)+1/f;
+<span class="keyword">end</span>
+</pre><p>To finish this section we plot the 3D representation of the gathered raw acceleration.</p><pre class="codeinput"><span class="keyword">if</span> strcmpi(showPlot,<span class="string">'yes'</span>)
+    figure
+    plot3(ax,ay,az,<span class="string">'.'</span>)
+    xlabel(<span class="string">'Acceleration X (raw)'</span>)
+    ylabel(<span class="string">'Acceleration Y (raw)'</span>)
+    zlabel(<span class="string">'Acceleration Z (raw)'</span>)
+    axis([-500 500 -500 500 -500 500])
+    saveas(gcf,<span class="string">'figures/calibration/accelerometer/trunk_rawAcc3D.fig'</span>)
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="calibrate_acc3D_print_01.png" alt=""> <h2>3) Compute the average value for each one of the static positions.<a name="22"></a></h2><p>As it is explained in GaitWatch's user manual, the maneuvers to gather raw acceleration calibration data require placing the accelerometer in multiple random quasi-static positions. Since the transitions from one quasi-static position to another include linear acceleration, we need to apply an algorithm which extracts only the data from the quasi-static periods and discards data from transitions. Therefore, we need to specify the minimum duration of a quasi-static period, the maximum permited deviation of the data during such a period, and the minimum distance between consecutive quasi-static positions so they are considered to be different.</p><p>Set minimum length of quasi-static periods (in samples).</p><pre class="codeinput">min_len_period = 200;
+</pre><p>Set maximum permited deviation of the data during a quasi-static period.</p><pre class="codeinput">max_sta_dev = 30;
+</pre><p>Set minimum distance between consecutive periods so they are considered to be different.</p><pre class="codeinput">min_interval_dev = 30;
+</pre><p>Call the routine to detect all the quasi-static periods given the control parameters above.</p><pre class="codeinput">[detectados, xo, yo, zo] = gw.selectStaticPositions3D(ax, ay, az,min_len_period, max_sta_dev, min_interval_dev, showPlot);
+</pre><img vspace="5" hspace="5" src="calibrate_acc3D_print_02.png" alt=""> <p>Plot the acceleration value for each one of the detected periods (in 3D).</p><pre class="codeinput"><span class="keyword">if</span> strcmpi(showPlot,<span class="string">'yes'</span>)
+    figure
+    plot3(xo,yo,zo,<span class="string">'.'</span>)
+    axis([-400 400 -400 400 -400 400])
+    xlabel(<span class="string">'Acceleration X (raw)'</span>)
+    ylabel(<span class="string">'Acceleration Y (raw)'</span>)
+    zlabel(<span class="string">'Acceleration Z (raw)'</span>)
+    title(<span class="string">'RAW ACCELERATION IN DETECTED QUASI-STATIC PERIODS'</span>)
+    saveas(gcf,<span class="string">'figures/calibration/accelerometer/trunk_rawStat_Acc3D.fig'</span>)
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="calibrate_acc3D_print_03.png" alt=""> <h2>4) Compute and store the calibration parameters.<a name="28"></a></h2><p>Now the calibration parameters will be computed.</p><p>We first need to define the sensor which will be calibrated and define the reference value. For the accelerometer, the reference value is the magnitude of the Earth's gravitational field (1g).</p><pre class="codeinput">ref_val = 1;
+sensor = <span class="string">'acc'</span>;
+</pre><p>We then call the routine which returns 'alpha' and 'beta' which are the scale factor and non-orghotonality matrix and the bias vector respectively .</p><pre class="codeinput">[alpha, beta] = gw.comp_acc_mag_cal_params(sensor, ax, ay, az, ref_val);
+</pre><pre class="codeoutput">Warning: Length of lower bounds is &lt; length(x); filling in missing lower bounds
+with -Inf. 
+Warning: Length of upper bounds is &lt; length(x); filling in missing upper bounds
+with +Inf. 
+
+Local minimum possible.
+
+lsqnonlin stopped because the final change in the sum of squares relative to 
+its initial value is less than the selected value of the function tolerance.
+
+
+
+</pre><p>Once computed, we store them together with the date and time in which the data were gathered.</p><pre class="codeinput">save(<span class="string">'data/calibration/accelerometer/trunk_accCalPArams.mat'</span>, <span class="string">'alpha'</span>,<span class="string">'beta'</span>, <span class="string">'cal_date'</span>, <span class="string">'cal_start_time'</span>, <span class="string">'cal_end_time'</span>);
+</pre><h2>5) Calibrate raw data.<a name="32"></a></h2><p>After finding the calibration parameters, we will apply them to the raw data which was gathered during the calibration maneuvers. This way we will see the effects of the calibration.</p><p>Calibration of data gathered from quasi-static periods.</p><pre class="codeinput">xoC = zeros(1,length(xo));
+yoC = zeros(1,length(yo));
+zoC = zeros(1,length(zo));
+<span class="keyword">for</span> i = 1 : length(xo)
+    A = inv(alpha) * ([xo(i); yo(i); zo(i)] - beta');
+    xoC(i) = A(1);
+    yoC(i) = A(2);
+    zoC(i) = A(3);
+<span class="keyword">end</span>
+</pre><p>Calibration of data gathered during complete maneuvers.</p><pre class="codeinput">axC = zeros(1,length(ax));
+ayC = zeros(1,length(ay));
+azC = zeros(1,length(az));
+<span class="keyword">for</span> i = 1 : length(ax)
+    A = inv(alpha) * ([ax(i); ay(i); az(i)] - beta');
+    axC(i) = A(1);
+    ayC(i) = A(2);
+    azC(i) = A(3);
+<span class="keyword">end</span>
+</pre><h2>6) Plot raw vs calibrated data.<a name="35"></a></h2><p>The final step is to plot raw and calibrate data to see the transformations produced by the calibration procedure.</p><p>Plot calibrated acceleration which was gathered during the complete maneuvers.</p><pre class="codeinput">figure
+subplot(3,1,1)
+plot(time,axC)
+xlabel(<span class="string">'Time (s)'</span>)
+ylabel(<span class="string">'Acceleration (g)'</span>)
+legend(<span class="string">'X axis'</span>)
+xlim([0 time(end)])
+subplot(3,1,2)
+plot(time,ayC)
+xlabel(<span class="string">'Time (s)'</span>)
+ylabel(<span class="string">'Acceleration (g)'</span>)
+legend(<span class="string">'Y axis'</span>)
+xlim([0 time(end)])
+subplot(3,1,3)
+plot(time,azC)
+xlabel(<span class="string">'Time (s)'</span>)
+ylabel(<span class="string">'Acceleration (g)'</span>)
+legend(<span class="string">'Z axis'</span>)
+xlim([0 time(end)])
+
+set(gcf,<span class="string">'NextPlot'</span>,<span class="string">'add'</span>);
+axes;
+h = title(<span class="string">'CALIBRATED ACCELERATION GATHERED DURING CALIBRATION MANEUVERS'</span>);
+set(gca,<span class="string">'Visible'</span>,<span class="string">'off'</span>);
+set(h,<span class="string">'Visible'</span>,<span class="string">'on'</span>);
+
+saveas(gcf,<span class="string">'figures/calibration/accelerometer/trunk_accCalValues.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_acc3D_print_04.png" alt=""> <p>Plot raw and calibrated acceleration from quasi-static periods. The data are represented in 3D and also from the 3 plane projections (XY, XZ, YZ).</p><pre class="codeinput">figure
+subplot(2,2,1)
+plot3(xo,yo,zo,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+subplot(2,2,2)
+plot3(xo,yo,zo,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(180,0)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+subplot(2,2,3)
+plot3(xo,yo,zo,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(90,0)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+subplot(2,2,4)
+plot3(xo,yo,zo,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(0,90)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+
+set(gcf,<span class="string">'NextPlot'</span>,<span class="string">'add'</span>);
+axes;
+h = title(<span class="string">'RAW ACCELERATION IN QUASI-STATIC PERIODS (4POV)'</span>);
+set(gca,<span class="string">'Visible'</span>,<span class="string">'off'</span>);
+set(h,<span class="string">'Visible'</span>,<span class="string">'on'</span>);
+saveas(gcf,<span class="string">'figures/calibration/accelerometer/trunk_rawAcc3D_4POV.fig'</span>)
+
+figure
+title(<span class="string">'CALIBRATED ACCELERATION IN QUASI-STATIC PERIODS (4POV)'</span>)
+subplot(2,2,1)
+plot3(xoC,yoC,zoC,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+
+subplot(2,2,2)
+plot3(xoC,yoC,zoC,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(180,0)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+subplot(2,2,3)
+plot3(xoC,yoC,zoC,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(90,0)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+
+subplot(2,2,4)
+plot3(xoC,yoC,zoC,<span class="string">'.'</span>)
+xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+view(0,90)
+set(gca,<span class="string">'FontSize'</span>,10,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+
+set(gcf,<span class="string">'NextPlot'</span>,<span class="string">'add'</span>);
+axes;
+h = title(<span class="string">'CALIBRATED ACCELERATION IN QUASI-STATIC PERIODS (4POV)'</span>);
+set(gca,<span class="string">'Visible'</span>,<span class="string">'off'</span>);
+set(h,<span class="string">'Visible'</span>,<span class="string">'on'</span>);
+saveas(gcf,<span class="string">'figures/calibration/accelerometer/trunk_calAcc3D_4POV.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_acc3D_print_05.png" alt=""> <img vspace="5" hspace="5" src="calibrate_acc3D_print_06.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% ACCELEROMETER CALIBRATION
+% The following script carries out the computation of the calibration
+% parameters of the triaxial accelerometer which is included inside the
+% Gaitwatch's trunk unit. We will use an ellipsoid fitting algorithm based 
+% the one proposed by Camps et al. (F. Camps, S. Harasse, and A. Monin. 
+% Numerical calibration for 3-axis accelerometers and magnetometers. In 
+% IEEE International Conference on Electro/Information Technology, 2009. 
+% EIT ’09, pages 217–221. IEEE, June 2009.). They present a theoretical and 
+% experimental steps of a method to compute gains, bias and non 
+% orthogonality factors of magnetometer and accelerometer sensors. The 
+% calibration procedure involves setting the accelerometer in multiple
+% quasi-static positions. 
+% For more information about this algorithm check Gaitwatch's user manual. 
+
+%%
+% 
+% * _Authors_ :  Alberto Olivares and Kai Bötzel.
+% * _Entities_ : Universidad de Granada & Ludwig-Maximilians Universität München.
+% * _Version_ :  1.1.
+% * _Last modification_ : 26/11/2013.
+
+%% 0) General and initial configuration.
+
+%%
+% Load GaitWatch's functions library.
+gw = gwLibrary;
+%%
+% Define the magnitude measure by the sensor (acceleration in this case).
+magnitude = 'a';
+%%
+% Define the position of the sensor.
+position = 'center';
+%%
+% Define the body sement in which the sensor is placed.
+segment = 'trunk';
+%%
+% Load GaitWatch's data structure.
+load data/gWDataStruct.mat
+%%
+% Define the flag which controls if the figures are to be shown and stored
+% or just stored
+showPlot = 'yes';
+
+
+%% 1) Load raw calibration data and extract header information.
+% The first step is to load the raw accelerometer data which was gathered
+% during the calibration maneuvers. The user can select between loading the
+% data directly from GaitWatch or loading it from the hard drive. 
+
+S = {'Load data from GaitWatch','Load data from hard drive'};
+Selection = listdlg('ListString',S,'Name',...
+    'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
+    'single');
+%%
+% 
+% <<DATA_ORIGIN_MENU.PNG>>
+% 
+%%
+switch Selection
+    
+    %%
+    % Load data from GaitWatch. 
+    case 1
+        GW_comm;
+        data_path = 'data/calibration/accelerometer/trunk_rawCalAccData.mat';
+        save(data_path,'data','FileHeader');
+    %%
+    % Load data from the hard drive.
+    case 2
+        load data/calibration/accelerometer/trunk_rawCalAccData
+end
+
+
+%%
+% And then, we extract some of the information contained in the header.
+[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+
+%% 2) Extract and plot raw data.
+% We now extract the data for each one of the axes. 
+sensor_axis = 'X';
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,...
+    position, segment);
+ax = double(data(:,channel));
+
+sensor_axis = 'Y';
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,...
+    position, segment);
+ay = double(data(:,channel));
+
+sensor_axis = 'Z';
+channel = gw.getDataChannel(data_struct,magnitude, sensor_axis,...
+    position, segment);
+az = double(data(:,channel));
+%%
+% Computation of the time signal based on the sampling frequency.
+time=zeros(1,length(ax));
+for i=1:length(ax)-1
+ time(i+1)=time(i)+1/f;
+end
+%%
+% To finish this section we plot the 3D representation of the gathered
+% raw acceleration. 
+if strcmpi(showPlot,'yes')
+    figure
+    plot3(ax,ay,az,'.')
+    xlabel('Acceleration X (raw)')
+    ylabel('Acceleration Y (raw)')
+    zlabel('Acceleration Z (raw)')
+    axis([-500 500 -500 500 -500 500])
+    saveas(gcf,'figures/calibration/accelerometer/trunk_rawAcc3D.fig')
+end
+
+%% 3) Compute the average value for each one of the static positions. 
+% As it is explained in GaitWatch's user manual, the maneuvers to gather
+% raw acceleration calibration data require placing the accelerometer in
+% multiple random quasi-static positions. Since the transitions from one
+% quasi-static position to another include linear acceleration, we need to
+% apply an algorithm which extracts only the data from the quasi-static
+% periods and discards data from transitions. Therefore, we need to specify
+% the minimum duration of a quasi-static period, the maximum permited
+% deviation of the data during such a period, and the minimum distance
+% between consecutive quasi-static positions so they are considered to be
+% different.
+%%
+% Set minimum length of quasi-static periods (in samples).
+min_len_period = 200;
+%%
+% Set maximum permited deviation of the data during a quasi-static period.
+max_sta_dev = 30;
+%%
+% Set minimum distance between consecutive periods so they are considered
+% to be different.
+min_interval_dev = 30;
+%%
+% Call the routine to detect all the quasi-static periods given the control
+% parameters above. 
+[detectados, xo, yo, zo] = gw.selectStaticPositions3D(ax, ay, az,min_len_period, max_sta_dev, min_interval_dev, showPlot);
+%%
+% Plot the acceleration value for each one of the detected periods (in 3D).
+if strcmpi(showPlot,'yes')
+    figure
+    plot3(xo,yo,zo,'.')
+    axis([-400 400 -400 400 -400 400])
+    xlabel('Acceleration X (raw)')
+    ylabel('Acceleration Y (raw)')
+    zlabel('Acceleration Z (raw)')
+    title('RAW ACCELERATION IN DETECTED QUASI-STATIC PERIODS')
+    saveas(gcf,'figures/calibration/accelerometer/trunk_rawStat_Acc3D.fig')
+end
+
+
+%% 4) Compute and store the calibration parameters.
+% Now the calibration parameters will be computed. 
+%%
+% We first need to define the sensor which will be calibrated and define
+% the reference value. For the accelerometer, the reference value is the
+% magnitude of the Earth's gravitational field (1g). 
+ref_val = 1;
+sensor = 'acc';
+%%
+% We then call the routine which returns 'alpha' and 'beta' which are the 
+% scale factor and non-orghotonality matrix and the bias vector 
+% respectively .
+[alpha, beta] = gw.comp_acc_mag_cal_params(sensor, ax, ay, az, ref_val);
+%%
+% Once computed, we store them together with the date and time in which the
+% data were gathered. 
+save('data/calibration/accelerometer/trunk_accCalPArams.mat', 'alpha','beta', 'cal_date', 'cal_start_time', 'cal_end_time');
+
+
+%% 5) Calibrate raw data.
+% After finding the calibration parameters, we will apply them to the raw
+% data which was gathered during the calibration maneuvers. This way we
+% will see the effects of the calibration. 
+%%
+% Calibration of data gathered from quasi-static periods.
+xoC = zeros(1,length(xo));
+yoC = zeros(1,length(yo));
+zoC = zeros(1,length(zo));
+for i = 1 : length(xo)
+    A = inv(alpha) * ([xo(i); yo(i); zo(i)] - beta');
+    xoC(i) = A(1);
+    yoC(i) = A(2);
+    zoC(i) = A(3);
+end
+%%
+% Calibration of data gathered during complete maneuvers.
+axC = zeros(1,length(ax));
+ayC = zeros(1,length(ay));
+azC = zeros(1,length(az));
+for i = 1 : length(ax)
+    A = inv(alpha) * ([ax(i); ay(i); az(i)] - beta');
+    axC(i) = A(1);
+    ayC(i) = A(2);
+    azC(i) = A(3);
+end
+
+%% 6) Plot raw vs calibrated data.
+% The final step is to plot raw and calibrate data to see the
+% transformations produced by the calibration procedure. 
+%%
+% Plot calibrated acceleration which was gathered during the complete
+% maneuvers. 
+figure
+subplot(3,1,1)
+plot(time,axC)
+xlabel('Time (s)')
+ylabel('Acceleration (g)')
+legend('X axis')
+xlim([0 time(end)])
+subplot(3,1,2)
+plot(time,ayC)
+xlabel('Time (s)')
+ylabel('Acceleration (g)')
+legend('Y axis')
+xlim([0 time(end)])
+subplot(3,1,3)
+plot(time,azC)
+xlabel('Time (s)')
+ylabel('Acceleration (g)')
+legend('Z axis')
+xlim([0 time(end)])
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('CALIBRATED ACCELERATION GATHERED DURING CALIBRATION MANEUVERS');
+set(gca,'Visible','off');
+set(h,'Visible','on'); 
+
+saveas(gcf,'figures/calibration/accelerometer/trunk_accCalValues.fig')
+
+%%
+% Plot raw and calibrated acceleration from quasi-static periods. The data
+% are represented in 3D and also from the 3 plane projections (XY, XZ, YZ).
+figure
+subplot(2,2,1)
+plot3(xo,yo,zo,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+subplot(2,2,2)
+plot3(xo,yo,zo,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(180,0)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+subplot(2,2,3)
+plot3(xo,yo,zo,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(90,0)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+subplot(2,2,4)
+plot3(xo,yo,zo,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(0,90)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('RAW ACCELERATION IN QUASI-STATIC PERIODS (4POV)');
+set(gca,'Visible','off');
+set(h,'Visible','on'); 
+saveas(gcf,'figures/calibration/accelerometer/trunk_rawAcc3D_4POV.fig')
+
+figure
+title('CALIBRATED ACCELERATION IN QUASI-STATIC PERIODS (4POV)')
+subplot(2,2,1)
+plot3(xoC,yoC,zoC,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+
+subplot(2,2,2)
+plot3(xoC,yoC,zoC,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(180,0)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+subplot(2,2,3)
+plot3(xoC,yoC,zoC,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(90,0)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+
+subplot(2,2,4)
+plot3(xoC,yoC,zoC,'.')
+xlabel('X axis','FontSize',14,'FontName','Arial')
+ylabel('Y axis','FontSize',14,'FontName','Arial')
+zlabel('Z axis','FontSize',14,'FontName','Arial')
+view(0,90)
+set(gca,'FontSize',10,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+
+set(gcf,'NextPlot','add');
+axes;
+h = title('CALIBRATED ACCELERATION IN QUASI-STATIC PERIODS (4POV)');
+set(gca,'Visible','off');
+set(h,'Visible','on'); 
+saveas(gcf,'figures/calibration/accelerometer/trunk_calAcc3D_4POV.fig')
+
+
+##### SOURCE END #####
+--></body></html>

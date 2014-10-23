@@ -1,0 +1,652 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>MAGNETOMETER CALIBRATION</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-12-04"><meta name="DC.source" content="calibrate_mag_print.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>MAGNETOMETER CALIBRATION</h1><!--introduction--><p>The following script carries out the computation of the calibration parameters of the triaxial magnetometer which is included inside the Gaitwatch's trunk unit. We will use an ellipsoid fitting algorithm based the one proposed by Camps et al. (F. Camps, S. Harasse, and A. Monin. Numerical calibration for 3-axis accelerometers and magnetometers. In IEEE International Conference on Electro/Information Technology, 2009. EIT &#8217;09, pages 217&#8211;221. IEEE, June 2009.). They present a theoretical and experimental steps of a method to compute gains, bias and non orthogonality factors of magnetometer and accelerometer sensors. The calibration procedure involves arbitrary rotations of the MIMU, so the set of maneuvers to gather the necessary data is very simple. For more information about this algorithm check Gaitwatch's user manual.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">0) General and initial configuration.</a></li><li><a href="#10">1) Load raw calibration data and extract header information.</a></li><li><a href="#24">2) Remove erroneous values interactively.</a></li><li><a href="#26">3) Plot raw corrected magnetometer values.</a></li><li><a href="#27">4) Compute and store the calibration parameters.</a></li><li><a href="#31">5) Calibrate raw data.</a></li><li><a href="#32">6) Plot the calibrated data.</a></li><li><a href="#39">7) Computation of deviation from mean.</a></li></ul></div><div><ul><li><i>Authors</i> :   Alberto Olivares and Kai B&ouml;tzel.</li><li><i>Entities</i> : Universidad de Granada &amp; Ludwig-Maximilians Universit&auml;t M&uuml;nchen.</li><li><i>Version</i> :  1.1.</li><li><i>Last modification</i> : 26/11/2013.</li></ul></div><h2>0) General and initial configuration.<a name="2"></a></h2><p>Load GaitWatch's functions library.</p><pre class="codeinput">gw = gwLibrary;
+</pre><p>Define the magnitude measure by the sensor (magnetic field in this case).</p><pre class="codeinput">magnitude = <span class="string">'h'</span>;
+</pre><p>Define the axes of the sensor.</p><pre class="codeinput">sensor_axis = <span class="string">'XYZ'</span>;
+</pre><p>Define the position of the sensor.</p><pre class="codeinput">position = <span class="string">'center'</span>;
+</pre><p>Define the body sement in which the sensor is placed.</p><pre class="codeinput">segment = <span class="string">'trunk'</span>;
+</pre><p>Load GaitWatch's data structure.</p><pre class="codeinput">load <span class="string">data/gWDataStruct.mat</span>
+</pre><p>Define the flag which controls if the figures are to be shown and stored or just stored</p><pre class="codeinput">showPlot = <span class="string">'yes'</span>;
+</pre><h2>1) Load raw calibration data and extract header information.<a name="10"></a></h2><p>The first step is to load the raw magnetometer data which was gathered during the calibration maneuvers. The user can select between loading the data directly from GaitWatch or loading it from the hard drive.</p><pre class="codeinput">S = {<span class="string">'Load data from GaitWatch'</span>,<span class="string">'Load data from hard drive'</span>};
+Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+    <span class="string">'Select the origin of the data'</span>,<span class="string">'ListSize'</span>,[250 100],<span class="string">'SelectionMode'</span>,<span class="keyword">...</span>
+    <span class="string">'single'</span>);
+</pre><p><img vspace="5" hspace="5" src="DATA_ORIGIN_MENU.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Load data from GaitWatch.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        GW_comm;
+        data_path = strcat(<span class="string">'data/calibration/magnetometer/trunk_magRawData.mat'</span>);
+        save(data_path,<span class="string">'data'</span>,<span class="string">'FileHeader'</span>);
+</pre><p>Load data from the hard drive.</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">       load <span class="string">data/calibration/magnetometer/trunk_magRawData.mat</span>
+<span class="keyword">end</span>
+</pre><p>And then, we extract some of the information contained in the header.</p><pre class="codeinput">[f, cal_date, cal_start_time, cal_end_time, file_id, FileName] = gw.getFHinfo(FileHeader);
+</pre><p>Build time signal.</p><pre class="codeinput">len_data = length(data);
+time = (0:len_data-1) / f;
+</pre><p>Reshape data (split channel 23 into 3 channels and append them to the data matrix)</p><pre class="codeinput">[hx, hy, hz] = gw.getMagData(double(data(:,23)));
+</pre><p>Compute the sampling frequency of the magnetometer.</p><pre class="codeinput">f_mag = f/(length(data)/length(hx));
+</pre><p>We now build a time signal using the newly computed frequency. This signal will only be used in figures (to plot magnetic field vs. time).</p><pre class="codeinput">time_mag=zeros(1,length(hx));
+<span class="keyword">for</span> i=1:length(hx)-1
+ time_mag(i+1)=time_mag(i)+1/f_mag;
+<span class="keyword">end</span>
+</pre><h2>2) Remove erroneous values interactively.<a name="24"></a></h2><p>The magnetometer signals can contain large erroneous values. The following routine ('correct_mag_data') plots all 3 signals and asks the user to click on the erroneous values so they are removed.</p><pre class="codeinput">hx = gw.correct_mag_data(hx);
+hy = gw.correct_mag_data(hy);
+hz = gw.correct_mag_data(hz);
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_01.png" alt=""> <img vspace="5" hspace="5" src="calibrate_mag_print_02.png" alt=""> <img vspace="5" hspace="5" src="calibrate_mag_print_03.png" alt=""> <p>Interpolate the magnetometer signals</p><pre class="codeinput">hx = interp1(time_mag,hx,time,<span class="string">'spline'</span>);
+hy = interp1(time_mag,hy,time,<span class="string">'spline'</span>);
+hz = interp1(time_mag,hz,time,<span class="string">'spline'</span>);
+
+close <span class="string">all</span>
+</pre><h2>3) Plot raw corrected magnetometer values.<a name="26"></a></h2><p>Two figures are now created, one showing the corrected magnetometer signals and another one showing their 3D representation. These figures are only shown to the user if the 'showPlot' flag is set to 'yes' (see initial configuration). The figures are stored in the 'figures/calibration/magnetometer' folder.</p><pre class="codeinput"><span class="keyword">if</span> strcmpi(showPlot,<span class="string">'yes'</span>)
+    figure
+    subplot(3,1,1)
+    plot(time,hx)
+    title(<span class="string">'CORRECTED MAGNETOMETER VALUES'</span>)
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (raw)'</span>)
+    legend(<span class="string">'X axis'</span>)
+    subplot(3,1,2)
+    plot(time,hy)
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (raw)'</span>)
+    legend(<span class="string">'Y axis'</span>)
+    subplot(3,1,3)
+    plot(time,hz)
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (raw)'</span>)
+    legend(<span class="string">'Z axis'</span>)
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_rawMagCorrValues.fig'</span>)
+
+    figure
+    plot3(hx,hy,hz,<span class="string">'.'</span>)
+    title(<span class="string">'RAW MAGNETIC FIELD ELLIPSOID'</span>)
+    xlabel(<span class="string">'X axis'</span>)
+    ylabel(<span class="string">'Y axis'</span>)
+    zlabel(<span class="string">'Z axis'</span>)
+    axis([-1500 1500 -1500 1500 -1500 1500]);
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_rawMagCorrValues3D.fig'</span>)
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_04.png" alt=""> <img vspace="5" hspace="5" src="calibrate_mag_print_05.png" alt=""> <h2>4) Compute and store the calibration parameters.<a name="27"></a></h2><p>Now the calibration parameters will be computed.</p><p>We first need to define the sensor which will be calibrated and define the reference value. For the magnetometer, the reference value is the local value of the magnitude of Earth's magnetic field in Munich (in Gauss).</p><pre class="codeinput">ref_val = 0.482352;
+sensor = <span class="string">'mag'</span>;
+</pre><p>We then call the routine which returns 'alpha' and 'beta' which are the scale factor and non-orghotonality matrix and the bias vector respectively .</p><pre class="codeinput">[alpha, beta] = gw.comp_acc_mag_cal_params(sensor, hx, hy, hz, ref_val);
+</pre><pre class="codeoutput">Warning: Length of lower bounds is &lt; length(x); filling in missing lower bounds
+with -Inf. 
+Warning: Length of upper bounds is &lt; length(x); filling in missing upper bounds
+with +Inf. 
+
+Local minimum possible.
+
+lsqnonlin stopped because the final change in the sum of squares relative to 
+its initial value is less than the selected value of the function tolerance.
+
+
+
+</pre><p>Once computed, we store them together with the date and time in which the data were gathered.</p><pre class="codeinput">save(<span class="string">'data/calibration/magnetometer/trunk_magCalPArams.mat'</span>, <span class="string">'alpha'</span>,<span class="keyword">...</span>
+    <span class="string">'beta'</span>, <span class="string">'cal_date'</span>, <span class="string">'cal_start_time'</span>, <span class="string">'cal_end_time'</span>);
+</pre><h2>5) Calibrate raw data.<a name="31"></a></h2><p>After finding the calibration parameters, we will apply them to the raw data which was gathered during the calibration maneuvers. This way we will see the effects of the calibration.</p><pre class="codeinput">hxC = zeros(1,length(hx));
+hyC = zeros(1,length(hy));
+hzC = zeros(1,length(hz));
+<span class="keyword">for</span> i = 1 : length(hx)
+    H = inv(alpha) * ([hx(i);hy(i);hz(i)] - beta');
+    hxC(i) = H(1);
+    hyC(i) = H(2);
+    hzC(i) = H(3);
+<span class="keyword">end</span>
+</pre><h2>6) Plot the calibrated data.<a name="32"></a></h2><pre class="codeinput"><span class="keyword">if</span> strcmpi(showPlot,<span class="string">'yes'</span>)
+</pre><p>Plot the 3D representation of the calibrated data.</p><pre class="codeinput">    figure;
+    plot3(hxC,hyC,hzC,<span class="string">'o'</span>);
+    xlabel(<span class="string">'hx'</span>);
+    ylabel(<span class="string">'hy'</span>);
+    zlabel(<span class="string">'hz'</span>);
+    axis([-1 1 -1 1 -1 1])
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_calMagCorrValues3D.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_06.png" alt=""> <p>Plot raw vs. calibrated data.</p><pre class="codeinput">    figure
+    subplot(3,2,1)
+    plot(time,hx)
+    axis([0 time(end) -2000 2000])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Raw)'</span>)
+    title(<span class="string">'X axis (raw)'</span>)
+    subplot(3,2,2)
+    plot(time,hxC)
+    axis([0 time(end) -1 1])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Gauss)'</span>)
+    title(<span class="string">'X axis (calibrated)'</span>)
+    subplot(3,2,3)
+    plot(time,hy)
+    axis([0 time(end) -2000 2000])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Raw)'</span>)
+    title(<span class="string">'Y axis (raw)'</span>)
+    subplot(3,2,4)
+    plot(time,hyC)
+    axis([0 time(end) -1 1])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Gauss)'</span>)
+    title(<span class="string">'Y axis (calibrated)'</span>)
+    subplot(3,2,5)
+    plot(time,hz)
+    axis([0 time(end) -2000 2000])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Raw)'</span>)
+    title(<span class="string">'Z axis (raw)'</span>)
+    subplot(3,2,6)
+    plot(time,hzC)
+    axis([0 time(end) -1 1])
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Gauss)'</span>)
+    title(<span class="string">'Z axis (calibrated)'</span>)
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_rawVsCal.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_07.png" alt=""> <p>Plot raw data from 4 different points of view (3D and the three plane projections).</p><pre class="codeinput">    figure
+    subplot(2,2,1)
+    plot3(hx,hy,hz,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,2)
+    plot3(hx,hy,hz,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    view(180,0)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,3)
+    plot3(hx,hy,hz,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    view(90,0)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,4)
+    plot3(hx,hy,hz,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    view(0,90)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_rawMag3D_4POV.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_08.png" alt=""> <p>Plot calibrated data from 4 different points of view (3D and the three plane projections).</p><pre class="codeinput">    figure
+    subplot(2,2,1)
+    plot3(hxC,hyC,hzC,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,2)
+    plot3(hxC,hyC,hzC,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(180,0)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,3)
+    plot3(hxC,hyC,hzC,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(90,0)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    subplot(2,2,4)
+    plot3(hxC,hyC,hzC,<span class="string">'.'</span>)
+    xlabel(<span class="string">'X axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    ylabel(<span class="string">'Y axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    zlabel(<span class="string">'Z axis'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>)
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(0,90)
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>,<span class="string">'DataAspectRatio'</span>,[1 1 1],<span class="string">'PlotBoxAspectRatio'</span>,[1 1 1])
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_calMag3D_4POV.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_09.png" alt=""> <p>Plot the magnitude of the calibrated magnetic field, its mean and the local reference value.</p><pre class="codeinput">    mag_magnitude=sqrt(hxC.^2+hyC.^2+hzC.^2);
+    mag_mean=mean(mag_magnitude);
+    line_fit=ones(1,length(mag_magnitude))*mag_mean;
+    figure;
+    plot(time,mag_magnitude);
+    hold <span class="string">on</span>;
+    plot(time,line_fit,<span class="string">'r'</span>);
+    plot(time,ref_val*ones(1,length(time)),<span class="string">'black'</span>,<span class="string">'linewidth'</span>,2)
+    axis([0 time(end) .95*min(mag_magnitude) 1.05*max(mag_magnitude)])
+    legend(<span class="string">'Calibrated magnetic field magnitude'</span>,<span class="string">'Mean'</span>,<span class="string">'Theoretical value'</span>);
+    xlabel(<span class="string">'Time(s)'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>);
+    ylabel(<span class="string">'Magnetic field (Gauss)'</span>,<span class="string">'FontSize'</span>,14,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>);
+    set(gca,<span class="string">'FontSize'</span>,12,<span class="string">'FontName'</span>,<span class="string">'Arial'</span>);
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_calMagModuleVsMean.fig'</span>)
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_10.png" alt=""> <pre class="codeinput"><span class="keyword">end</span>
+</pre><h2>7) Computation of deviation from mean.<a name="39"></a></h2><p>The last step is to compute the deviation of the mean of the computed magnitude with respect to the local reference value.</p><pre class="codeinput">theor_mag_mod = ref_val*ones(1,length(time));
+mag_error_mean=sqrt(mean((mag_magnitude-theor_mag_mod).^2));
+mag_error=sqrt((mag_magnitude-theor_mag_mod).^2);
+
+<span class="keyword">if</span> strcmpi(showPlot,<span class="string">'yes'</span>)
+    figure;
+    plot(time,mag_error);
+    hold <span class="string">on</span>;
+    plot(time,mag_error_mean*ones(1,length(mag_magnitude)),<span class="string">'r'</span>);
+    xlabel(<span class="string">'Time (s)'</span>)
+    ylabel(<span class="string">'Mag. field (Gauss)'</span>)
+    legend(<span class="string">'Magnitude Error'</span>,<span class="string">'RMSE'</span>)
+    saveas(gcf,<span class="string">'figures/calibration/magnetometer/trunk_calMagError.fig'</span>)
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="calibrate_mag_print_11.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% MAGNETOMETER CALIBRATION 
+% The following script carries out the computation of the calibration
+% parameters of the triaxial magnetometer which is included inside the
+% Gaitwatch's trunk unit. We will use an ellipsoid fitting algorithm based 
+% the one proposed by Camps et al. (F. Camps, S. Harasse, and A. Monin. 
+% Numerical calibration for 3-axis accelerometers and magnetometers. In 
+% IEEE International Conference on Electro/Information Technology, 2009. 
+% EIT ’09, pages 217–221. IEEE, June 2009.). They present a theoretical and 
+% experimental steps of a method to compute gains, bias and non 
+% orthogonality factors of magnetometer and accelerometer sensors. The 
+% calibration procedure involves arbitrary rotations of the MIMU, so the 
+% set of maneuvers to gather the necessary data is very simple. 
+% For more information about this algorithm check Gaitwatch's user manual. 
+
+%%
+% 
+% * _Authors_ :   Alberto Olivares and Kai Bötzel.
+% * _Entities_ : Universidad de Granada & Ludwig-Maximilians Universität München.
+% * _Version_ :  1.1.
+% * _Last modification_ : 26/11/2013.
+
+
+%% 0) General and initial configuration.
+
+
+%%
+% Load GaitWatch's functions library.
+gw = gwLibrary;
+
+%%
+% Define the magnitude measure by the sensor (magnetic field in this case).
+magnitude = 'h';
+
+%%
+% Define the axes of the sensor.
+sensor_axis = 'XYZ';
+
+%%
+% Define the position of the sensor.
+position = 'center';
+
+%%
+% Define the body sement in which the sensor is placed.
+segment = 'trunk';
+
+%%
+% Load GaitWatch's data structure.
+load data/gWDataStruct.mat
+
+%%
+% Define the flag which controls if the figures are to be shown and stored
+% or just stored
+showPlot = 'yes';
+
+%%  1) Load raw calibration data and extract header information.
+% The first step is to load the raw magnetometer data which was gathered
+% during the calibration maneuvers. The user can select between loading the
+% data directly from GaitWatch or loading it from the hard drive. 
+
+S = {'Load data from GaitWatch','Load data from hard drive'};
+Selection = listdlg('ListString',S,'Name',...
+    'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
+    'single');
+%%
+% 
+% <<DATA_ORIGIN_MENU.PNG>>
+% 
+%%
+switch Selection
+    
+    
+    %%
+    % Load data from GaitWatch. 
+    case 1
+        GW_comm;
+        data_path = strcat('data/calibration/magnetometer/trunk_magRawData.mat');
+        save(data_path,'data','FileHeader');
+    %%
+    % Load data from the hard drive.
+    case 2
+       load data/calibration/magnetometer/trunk_magRawData.mat
+end
+%%
+% And then, we extract some of the information contained in the header.
+[f, cal_date, cal_start_time, cal_end_time, file_id, FileName] = gw.getFHinfo(FileHeader);
+%%
+% Build time signal. 
+len_data = length(data);
+time = (0:len_data-1) / f;
+%%
+% Reshape data (split channel 23 into 3 channels and append them to the
+% data matrix)
+[hx, hy, hz] = gw.getMagData(double(data(:,23)));
+%%
+% Compute the sampling frequency of the magnetometer.
+f_mag = f/(length(data)/length(hx));
+%%
+% We now build a time signal using the newly computed frequency. This
+% signal will only be used in figures (to plot magnetic field vs. time). 
+time_mag=zeros(1,length(hx));
+for i=1:length(hx)-1
+ time_mag(i+1)=time_mag(i)+1/f_mag;
+end
+%% 2) Remove erroneous values interactively.
+% The magnetometer signals can contain large erroneous values. The
+% following routine ('correct_mag_data') plots all 3 signals and asks the
+% user to click on the erroneous values so they are removed. 
+hx = gw.correct_mag_data(hx);
+hy = gw.correct_mag_data(hy);
+hz = gw.correct_mag_data(hz);
+%%
+% Interpolate the magnetometer signals
+hx = interp1(time_mag,hx,time,'spline');
+hy = interp1(time_mag,hy,time,'spline');
+hz = interp1(time_mag,hz,time,'spline');
+
+close all
+
+%% 3) Plot raw corrected magnetometer values.
+% Two figures are now created, one showing the corrected magnetometer
+% signals and another one showing their 3D representation. These figures
+% are only shown to the user if the 'showPlot' flag is set to 'yes' (see
+% initial configuration). The figures are stored in the 
+% 'figures/calibration/magnetometer' folder. 
+if strcmpi(showPlot,'yes')
+    figure
+    subplot(3,1,1)
+    plot(time,hx)
+    title('CORRECTED MAGNETOMETER VALUES')
+    xlabel('Time (s)')
+    ylabel('Mag. field (raw)')
+    legend('X axis')
+    subplot(3,1,2)
+    plot(time,hy)
+    xlabel('Time (s)')
+    ylabel('Mag. field (raw)')
+    legend('Y axis')
+    subplot(3,1,3)
+    plot(time,hz)
+    xlabel('Time (s)')
+    ylabel('Mag. field (raw)')
+    legend('Z axis')
+    saveas(gcf,'figures/calibration/magnetometer/trunk_rawMagCorrValues.fig')
+
+    figure
+    plot3(hx,hy,hz,'.')
+    title('RAW MAGNETIC FIELD ELLIPSOID')
+    xlabel('X axis')
+    ylabel('Y axis')
+    zlabel('Z axis')
+    axis([-1500 1500 -1500 1500 -1500 1500]);
+    saveas(gcf,'figures/calibration/magnetometer/trunk_rawMagCorrValues3D.fig')
+end
+
+%% 4) Compute and store the calibration parameters.
+% Now the calibration parameters will be computed. 
+
+%%
+% We first need to define the sensor which will be calibrated and define
+% the reference value. For the magnetometer, the reference value is the
+% local value of the magnitude of Earth's magnetic field in Munich (in 
+% Gauss).
+ref_val = 0.482352;
+sensor = 'mag';
+
+%%
+% We then call the routine which returns 'alpha' and 'beta' which are the 
+% scale factor and non-orghotonality matrix and the bias vector 
+% respectively .
+[alpha, beta] = gw.comp_acc_mag_cal_params(sensor, hx, hy, hz, ref_val);
+
+%%
+% Once computed, we store them together with the date and time in which the
+% data were gathered. 
+save('data/calibration/magnetometer/trunk_magCalPArams.mat', 'alpha',...
+    'beta', 'cal_date', 'cal_start_time', 'cal_end_time');
+
+
+%% 5) Calibrate raw data.
+% After finding the calibration parameters, we will apply them to the raw
+% data which was gathered during the calibration maneuvers. This way we
+% will see the effects of the calibration. 
+
+hxC = zeros(1,length(hx));
+hyC = zeros(1,length(hy));
+hzC = zeros(1,length(hz));
+for i = 1 : length(hx)
+    H = inv(alpha) * ([hx(i);hy(i);hz(i)] - beta');
+    hxC(i) = H(1);
+    hyC(i) = H(2);
+    hzC(i) = H(3);
+end
+
+%% 6) Plot the calibrated data.
+
+if strcmpi(showPlot,'yes')
+    %%
+    % Plot the 3D representation of the calibrated data.
+    figure; 
+    plot3(hxC,hyC,hzC,'o'); 
+    xlabel('hx'); 
+    ylabel('hy'); 
+    zlabel('hz');
+    axis([-1 1 -1 1 -1 1])
+    saveas(gcf,'figures/calibration/magnetometer/trunk_calMagCorrValues3D.fig')
+    %%
+    % Plot raw vs. calibrated data.
+    figure
+    subplot(3,2,1)
+    plot(time,hx)
+    axis([0 time(end) -2000 2000])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Raw)')
+    title('X axis (raw)')
+    subplot(3,2,2)
+    plot(time,hxC)
+    axis([0 time(end) -1 1])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Gauss)')
+    title('X axis (calibrated)')
+    subplot(3,2,3)
+    plot(time,hy)
+    axis([0 time(end) -2000 2000])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Raw)')
+    title('Y axis (raw)')
+    subplot(3,2,4)
+    plot(time,hyC)
+    axis([0 time(end) -1 1])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Gauss)')
+    title('Y axis (calibrated)')
+    subplot(3,2,5)
+    plot(time,hz)
+    axis([0 time(end) -2000 2000])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Raw)')
+    title('Z axis (raw)')
+    subplot(3,2,6)
+    plot(time,hzC)
+    axis([0 time(end) -1 1])
+    xlabel('Time (s)')
+    ylabel('Mag. field (Gauss)')
+    title('Z axis (calibrated)')
+    saveas(gcf,'figures/calibration/magnetometer/trunk_rawVsCal.fig')
+    %%
+    % Plot raw data from 4 different points of view (3D and the three plane
+    % projections).
+    figure
+    subplot(2,2,1)
+    plot3(hx,hy,hz,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,2)
+    plot3(hx,hy,hz,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    view(180,0)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,3)
+    plot3(hx,hy,hz,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    view(90,0)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,4)
+    plot3(hx,hy,hz,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    view(0,90)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    saveas(gcf,'figures/calibration/magnetometer/trunk_rawMag3D_4POV.fig')
+    %%
+    % Plot calibrated data from 4 different points of view (3D and the 
+    % three plane projections).
+    figure
+    subplot(2,2,1)
+    plot3(hxC,hyC,hzC,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,2)
+    plot3(hxC,hyC,hzC,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(180,0)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,3)
+    plot3(hxC,hyC,hzC,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(90,0)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    subplot(2,2,4)
+    plot3(hxC,hyC,hzC,'.')
+    xlabel('X axis','FontSize',14,'FontName','Arial')
+    ylabel('Y axis','FontSize',14,'FontName','Arial')
+    zlabel('Z axis','FontSize',14,'FontName','Arial')
+    axis([1.1*min(hxC) 1.1*max(hxC) 1.1*min(hyC) 1.1*max(hyC) 1.1*min(hzC) 1.1*max(hzC)])
+    view(0,90)
+    set(gca,'FontSize',12,'FontName','Arial','DataAspectRatio',[1 1 1],'PlotBoxAspectRatio',[1 1 1])
+    saveas(gcf,'figures/calibration/magnetometer/trunk_calMag3D_4POV.fig')
+    %%
+    % Plot the magnitude of the calibrated magnetic field, its mean and the
+    % local reference value.
+    mag_magnitude=sqrt(hxC.^2+hyC.^2+hzC.^2);
+    mag_mean=mean(mag_magnitude);
+    line_fit=ones(1,length(mag_magnitude))*mag_mean;
+    figure; 
+    plot(time,mag_magnitude); 
+    hold on; 
+    plot(time,line_fit,'r');
+    plot(time,ref_val*ones(1,length(time)),'black','linewidth',2)
+    axis([0 time(end) .95*min(mag_magnitude) 1.05*max(mag_magnitude)])
+    legend('Calibrated magnetic field magnitude','Mean','Theoretical value'); 
+    xlabel('Time(s)','FontSize',14,'FontName','Arial'); 
+    ylabel('Magnetic field (Gauss)','FontSize',14,'FontName','Arial');
+    set(gca,'FontSize',12,'FontName','Arial');
+    saveas(gcf,'figures/calibration/magnetometer/trunk_calMagModuleVsMean.fig')
+    
+end
+
+
+%% 7) Computation of deviation from mean.
+% The last step is to compute the deviation of the mean of the computed
+% magnitude with respect to the local reference value. 
+
+theor_mag_mod = ref_val*ones(1,length(time));
+mag_error_mean=sqrt(mean((mag_magnitude-theor_mag_mod).^2));
+mag_error=sqrt((mag_magnitude-theor_mag_mod).^2);
+
+if strcmpi(showPlot,'yes')
+    figure;
+    plot(time,mag_error); 
+    hold on; 
+    plot(time,mag_error_mean*ones(1,length(mag_magnitude)),'r');
+    xlabel('Time (s)')
+    ylabel('Mag. field (Gauss)')
+    legend('Magnitude Error','RMSE')
+    saveas(gcf,'figures/calibration/magnetometer/trunk_calMagError.fig')
+end
+
+##### SOURCE END #####
+--></body></html>

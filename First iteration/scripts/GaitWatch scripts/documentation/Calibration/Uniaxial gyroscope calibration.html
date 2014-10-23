@@ -1,0 +1,708 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>GYROSCOPE CALIBRATION</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2013-12-04"><meta name="DC.source" content="calibrate_gyro1D_print.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>GYROSCOPE CALIBRATION</h1><!--introduction--><p>The following script carries out the computation of the gyroscope's calibration parameters. It is based on rotating the gyroscope a known angle instead of subjecting it to a known angular rate.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#6">0) Initial configuration.</a></li><li><a href="#10">1) Select the the sensor unit.</a></li><li><a href="#15">2) Extract data channels from data matrix according to selected unit.</a></li><li><a href="#37">3) Load file containing the raw calibration data.</a></li><li><a href="#47">4) Get data info from Header.</a></li><li><a href="#48">5) Plot gyroscope signal so the user can select the bias.</a></li><li><a href="#55">6) Plot gyroscope signal so the user can select the rotations.</a></li><li><a href="#64">7) Compute the scale factor for each signal segment.</a></li><li><a href="#74">8) Calibrate the signal segments and integrate them to check rotation.</a></li><li><a href="#79">9) Save calibration parameters.</a></li></ul></div><div><ul><li><i>Authors</i> :   Alberto Olivares and Kai B&ouml;tzel.</li><li><i>Entities</i> : Universidad de Granada &amp; Ludwig-Maximilians Universit&auml;t M&uuml;nchen.</li><li><i>Version</i> :  1.0.</li><li><i>Last modification</i> : 5/11/2013.</li></ul></div><p>This script requires user interaction. More specifically, the user will firstly be shown the raw angular rate signal containing the positive and negative 180 turns. He should, then select the initial and final point of the static period at the beginning of the signal. The selection is done using the 'datacursor' which is already activated when the figure pops up. In order to select more than one point, the user should press the 'Alt' key while clicking the points. Once the initial and final points are selected, the user should click 'continue execution' and the script will compute the static bias by selecting the mode of the raw values gathered during the satic period.</p><p>Next, the user is shown the bias corrected raw angular rate signal. This time, he should select the initial and ending points of the positive rotations. In order to determine these points, the user should use the 'zoom' tool which can be activated under 'View' -&gt; 'Figure toolbar' together with the data cursor in order to select the 0 values which are closest to the beginning and end of the turns. Sometimes, due to the noise, there are no 0 values. The user should then try to select the closest value to 0 (-2, -1, 1, or 2).</p><p>In order to increase the precission of the computation, the user should select the initial and final points of at least 4 or 5 positive rotations. Before clicking on 'continue execution' be sure that the number of selected points is even. When ready, click 'continue execution' and the script will compute the average scale factor. Using this value and the bias value computed at the beginning of the script, the segments of the raw signal contanining the 180 turns are calibrated and then integrated. If the computation of the parameters is successful, then the computed rotation should be close to 180 degrees (or -180 degrees in the case of the gyroscopes which rotation axis is inverted).</p><p>At the end of the script, the computed calibration parameters (scale factor and bias) are stored in the 'data/calibration/gyroscopes' folder under the 'segment_gyroCalParams' name.</p><pre class="codeinput">close <span class="string">all</span>; clear <span class="string">all</span>; clc;
+</pre><h2>0) Initial configuration.<a name="6"></a></h2><p>Load library containing necessary functions.</p><pre class="codeinput">gw = gwLibrary;
+</pre><p>Specify the rotation angle (in degrees) used during the maneuvers to gather de raw calibration data.</p><pre class="codeinput">rotation_angle = 180;
+</pre><p>Load GaitWatch's data structure.</p><pre class="codeinput">load <span class="string">data/gWDataStruct.mat</span>
+size_data_struct=size(data_struct);
+</pre><p>Set the abbreviation of the sensor which is being addressed here (gyroscope).</p><pre class="codeinput">magnitude = <span class="string">'g'</span>;
+</pre><h2>1) Select the the sensor unit.<a name="10"></a></h2><p>Now, the user is shown a list in which he should select the segment containing the gyroscope which is going to be calibrated. Build the list which is shown to the user and which containing the different body segments.</p><pre class="codeinput">select_ok_flag = 0;
+<span class="keyword">while</span> select_ok_flag == 0
+</pre><p>Define the list of segments which are shown to the user.</p><pre class="codeinput">    S = cell(1,size_data_struct(1));
+    <span class="keyword">for</span> i = 1:size_data_struct(1)
+        S{i} = [data_struct{i,4},<span class="string">' '</span>,data_struct{i,5}];
+    <span class="keyword">end</span>
+    S = unique(S,<span class="string">'stable'</span>);
+</pre><p>Show the selection dialog to the user.</p><pre class="codeinput">    Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+        <span class="string">'Select the unit you wish to calibrate'</span>,<span class="string">'ListSize'</span>,[160 120],<span class="keyword">...</span>
+        <span class="string">'SelectionMode'</span>,<span class="string">'multiple'</span>);
+    <span class="keyword">if</span> ~isempty(Selection)
+        select_ok_flag = 1;
+    <span class="keyword">else</span>
+        msg = msgbox(<span class="string">'Please select at least one segment'</span>);
+        uiwait(msg);
+    <span class="keyword">end</span>
+</pre><p><img vspace="5" hspace="5" src="menu.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">end</span>
+</pre><h2>2) Extract data channels from data matrix according to selected unit.<a name="15"></a></h2><p>Given the selection of the segment, the data are loaded from the local hard drive and the corresponding channel is extracted. Also the sign of the rotation of the axis is defined (see the Gaitwatch's channel information excel file).</p><p>Definition of the segment name, channel number and rotation sign according to the segment selected by the user in step 1.</p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Left shank.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        segment_name = <span class="string">'shank'</span>;
+        position = <span class="string">'right'</span>;
+        sensor_axis = <span class="string">'Y'</span>;
+        rotation_sign = -1;
+</pre><p>Left thigh</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">        segment_name = <span class="string">'thigh'</span>;
+        position = <span class="string">'right'</span>;
+        sensor_axis = <span class="string">'Y'</span>;
+        rotation_sign = -1;
+</pre><p>Right shank.</p><pre class="codeinput">    <span class="keyword">case</span> 3
+</pre><pre class="codeinput">        segment_name = <span class="string">'shank'</span>;
+        position = <span class="string">'left'</span>;
+        sensor_axis = <span class="string">'Y'</span>;
+        rotation_sign = -1;
+</pre><p>Right thigh.</p><pre class="codeinput">    <span class="keyword">case</span> 4
+</pre><pre class="codeinput">        segment_name = <span class="string">'thigh'</span>;
+        position = <span class="string">'left'</span>;
+        sensor_axis = <span class="string">'Y'</span>;
+        rotation_sign = -1;
+</pre><p>Left arm.</p><pre class="codeinput">    <span class="keyword">case</span> 5
+</pre><pre class="codeinput">        segment_name = <span class="string">'arm'</span>;
+        position = <span class="string">'left'</span>;
+        <span class="comment">% Show the axis selection menu.</span>
+        S = {<span class="string">'X axis'</span>, <span class="string">'Y axis'</span>};
+        [Selection,ok] = listdlg(<span class="string">'ListString'</span>, S, <span class="string">'Name'</span>,<span class="keyword">...</span>
+        <span class="string">'Select the axis of left arm'</span>, <span class="string">'ListSize'</span>, [160 100]);
+
+        <span class="keyword">if</span> Selection == 1
+            sensor_axis = <span class="string">'X'</span>;
+            rotation_sign = -1;
+
+        <span class="keyword">elseif</span> Selection == 2
+            sensor_axis = <span class="string">'Y'</span>;
+            rotation_sign = +1;
+        <span class="keyword">end</span>
+</pre><p>Right arm.</p><pre class="codeinput">    <span class="keyword">case</span> 6
+</pre><pre class="codeinput">        segment_name = <span class="string">'arm'</span>;
+        position = <span class="string">'right'</span>;
+        <span class="comment">% Show the axis selection menu.</span>
+        S = {<span class="string">'X axis'</span>,<span class="string">'Y axis'</span>};
+        [Selection,ok] = listdlg(<span class="string">'ListString'</span>, S, <span class="string">'Name'</span>,<span class="keyword">...</span>
+        <span class="string">'Select the axis of right arm'</span>, <span class="string">'ListSize'</span>, [160 100]);
+
+        <span class="keyword">if</span> Selection == 1
+            sensor_axis = <span class="string">'X'</span>;
+            rotation_sign = -1;
+
+        <span class="keyword">elseif</span> Selection == 2
+            sensor_axis = <span class="string">'Y'</span>;
+            rotation_sign = +1;
+        <span class="keyword">end</span>
+</pre><p>Trunk.</p><pre class="codeinput">    <span class="keyword">case</span> 7
+</pre><pre class="codeinput">        segment_name = <span class="string">'trunk'</span>;
+        position = <span class="string">'center'</span>;
+        <span class="comment">% Show the axis selection menu.</span>
+        S = {<span class="string">'X axis'</span>, <span class="string">'Y axis'</span>, <span class="string">'Z axis'</span>};
+        [Selection,ok] = listdlg(<span class="string">'ListString'</span>, S, <span class="string">'Name'</span>,<span class="keyword">...</span>
+        <span class="string">'Select the axis of trunk'</span>, <span class="string">'ListSize'</span>, [160 100]);
+
+        <span class="keyword">if</span> Selection == 1
+            sensor_axis = <span class="string">'X'</span>;
+            rotation_sign = -1;
+
+        <span class="keyword">elseif</span> Selection == 2
+            sensor_axis = <span class="string">'Y'</span>;
+            rotation_sign = +1;
+
+        <span class="keyword">elseif</span> Selection == 3
+            sensor_axis = <span class="string">'Z'</span>;
+            rotation_sign = +1;
+        <span class="keyword">end</span>
+
+<span class="keyword">end</span> <span class="comment">% End of segment selection switch.</span>
+</pre><h2>3) Load file containing the raw calibration data.<a name="37"></a></h2><p>The user can select between loading the data directly from GaitWatch or loading it from the hard drive.</p><pre class="codeinput">S = {<span class="string">'Load data from GaitWatch'</span>,<span class="string">'Load data from hard drive'</span>};
+Selection = listdlg(<span class="string">'ListString'</span>,S,<span class="string">'Name'</span>,<span class="keyword">...</span>
+    <span class="string">'Select the origin of the data'</span>,<span class="string">'ListSize'</span>,[250 100],<span class="string">'SelectionMode'</span>,<span class="keyword">...</span>
+    <span class="string">'single'</span>);
+</pre><p><img vspace="5" hspace="5" src="DATA_ORIGIN_MENU.PNG" alt=""> </p><pre class="codeinput"><span class="keyword">switch</span> Selection
+</pre><p>Load data from GaitWatch.</p><pre class="codeinput">    <span class="keyword">case</span> 1
+</pre><pre class="codeinput">        GW_comm;
+        data_path = strcat(<span class="string">'data/calibration/gyroscope/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+            segment_name,<span class="string">'_'</span>,sensor_axis,<span class="string">'_rawGyroData_'</span>,<span class="keyword">...</span>
+            num2str(rotation_angle),<span class="string">'turns.mat'</span>);
+        save(data_path,<span class="string">'data'</span>,<span class="string">'FileHeader'</span>);
+</pre><p>Load data from the hard drive.</p><pre class="codeinput">    <span class="keyword">case</span> 2
+</pre><pre class="codeinput">        [data, FileHeader] = gw.openGWfile();
+<span class="keyword">end</span>
+</pre><p>Extract data channel containing the raw angular rate of the selected segment and convert the format of the data (from int16 to double).</p><pre class="codeinput">channel = gw.getDataChannel(data_struct, magnitude, sensor_axis, <span class="keyword">...</span>
+    position, segment_name);
+g_raw = double(data(:,channel));
+</pre><h2>4) Get data info from Header.<a name="47"></a></h2><p>We now extract some data from the header of the data file. To do this, the getFHinfo function contained in gwLibrary is called.</p><pre class="codeinput">[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+</pre><h2>5) Plot gyroscope signal so the user can select the bias.<a name="48"></a></h2><p>Now the user has to select the initial and final points of the initial static period so the bias is computed.</p><pre class="codeinput">bias_flag = 0;
+<span class="keyword">while</span> bias_flag == 0
+</pre><p>First, set the title of the figure which will be shown to the user. Then the index extraction function "getDCindexes" (included in gwLibrary) is called to extract the indexes of the points selected by the user.</p><pre class="codeinput">    fig_title = [<span class="string">'Select the initial and final point of a long enough'</span>,<span class="keyword">...</span>
+    <span class="string">' segment of the first static period (BIAS COMPUTATION)'</span>];
+    indexes = gw.getDCindexes(g_raw,fig_title);
+</pre><img vspace="5" hspace="5" src="calibrate_gyro1D_print_01.png" alt=""> <p>Check if the user has selected two points. If not, a message box informs the user and the figure is shown again to repeat the procedure.</p><pre class="codeinput">    <span class="keyword">if</span> length(indexes) == 2
+        bias_flag = 1;
+    <span class="keyword">else</span>
+        err_msg = msgbox(sprintf(<span class="string">'Select 2 points. You selected %d points.'</span>,length(indexes)));
+        uiwait(err_msg);
+    <span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="keyword">end</span> <span class="comment">% End of bias figure while.</span>
+
+close <span class="string">all</span>
+</pre><p>Sort indexes in increasing order.</p><pre class="codeinput">indexes = sort(indexes);
+</pre><p>Extract initial and final points.</p><pre class="codeinput">starting_point = indexes(1);
+ending_point = indexes(2);
+</pre><p>The bias is computed by finding the mode of the the selected signal segment.</p><pre class="codeinput">bias = mode(g_raw(starting_point : ending_point));
+</pre><h2>6) Plot gyroscope signal so the user can select the rotations.<a name="55"></a></h2><p>After the computation of the bias, we need to compute the scale factor. This is done as explained in the file preface.</p><p>The user is shown the raw angular rate corrected in bias to select the intial and final points of the positive rotations.</p><pre class="codeinput">sf_flag = 0;
+<span class="keyword">while</span> sf_flag == 0
+</pre><p>Again, set the title of the figure which will be shown to the user. Then the index extraction function "getDCindexes" (included in gwLibrary) is called to extract the indexes of the points selected by the user.</p><pre class="codeinput">    fig_title = sprintf([<span class="string">'Hold the "Alt" key and click the points with the'</span>,<span class="keyword">...</span>
+        <span class="string">' DataCursor to select the starting and ending point of positive'</span>,<span class="keyword">...</span>
+        <span class="string">' turns.\n Use the zoom tool under "View -&gt; Figure toolbar" to '</span>,<span class="keyword">...</span>
+        <span class="string">' inspect the signal.'</span>]);
+    indexes = gw.getDCindexes(g_raw - bias, fig_title);
+</pre><img vspace="5" hspace="5" src="calibrate_gyro1D_print_02.png" alt=""> <p>Check if the number of selected points is even, i.e. all the points are in pairs of (initial_point, final_point). If not, a message is shown to the user and the figure will be shown again.</p><pre class="codeinput">    <span class="keyword">if</span> mod(length(indexes),2) == 0
+        sf_flag = 1;
+    <span class="keyword">else</span>
+        err_msg = msgbox(sprintf([<span class="string">'The number of points has to be even.'</span>,<span class="keyword">...</span>
+            <span class="string">' You selected %d points.'</span>], length(indexes)));
+        uiwait(err_msg);
+    <span class="keyword">end</span>
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p>Sort indexes in increasing order.</p><pre class="codeinput">indexes = sort(indexes);
+</pre><p>Inform the user that the extraction has been successful.</p><pre class="codeinput">index_message = msgbox(sprintf(<span class="string">'The following indexes were extracted: \n %s'</span>,<span class="keyword">...</span>
+    num2str(indexes)),<span class="string">'Done'</span>);
+uiwait(index_message);
+
+close <span class="string">all</span>
+</pre><p><img vspace="5" hspace="5" src="indexOK.PNG" alt=""> </p><h2>7) Compute the scale factor for each signal segment.<a name="64"></a></h2><p>Once we have all the initial and final points of the segments of the signal including the rotations, we extract each segment, build the time associated time signal and integrate them to find the scale factor.</p><p>Initialize the scale factors vector.</p><pre class="codeinput">k = zeros(1, length(indexes) / 2);
+
+<span class="keyword">for</span> i = 1 : 2 : length(indexes) - 1
+</pre><p>Extract rotation segment.</p><pre class="codeinput">    wg = g_raw(indexes(i) : indexes(i + 1));
+</pre><p>Compensate bias.</p><pre class="codeinput">    wgcorr = wg - bias;
+</pre><p>Build associated time signal.</p><pre class="codeinput">    time = zeros(1,length(wgcorr));
+    <span class="keyword">for</span> j = 2 : length(wgcorr)
+        time(j) = time(j - 1) + 1 / f;
+    <span class="keyword">end</span>
+</pre><p>Multiply the rotation by the associated rotation sign of the segment.</p><pre class="codeinput">    rotation = rotation_sign * rotation_angle;
+</pre><p>Compute scale factor and add it to the scale factors vector. The computation of the scale factor is done by calling the "gyro1DscaleF" function which is included in "gwLibrary".</p><pre class="codeinput">    k(round(i/2)) = gw.gyro1DscaleF(time, wgcorr, rotation);
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><p>Compute the average scale factor and the standard deviation.</p><pre class="codeinput">k_av = mean(k);
+k_std = std(k);
+</pre><h2>8) Calibrate the signal segments and integrate them to check rotation.<a name="74"></a></h2><p>Now we will check the goodness of the computed scale factor. To do so we use the estimated bias and scale factor to calibrate each one of the rotation segments. We then integrate them and compare them to the known rotation angle. If the computed rotation angle is close to the known angle, then the estimation has been successful.</p><pre class="codeinput"><span class="keyword">for</span> i = 1 : 2 : length(indexes) - 1
+</pre><pre class="codeinput">   wg = g_raw(indexes(i) : indexes(i+1));
+   wgC = (wg - bias) / k_av;
+   int_wgC = zeros(1,length(wgC));
+   time = zeros(1,length(wgC));
+   <span class="keyword">for</span> j = 2 : length(wgC)
+       time(j) = time(j-1) + 1 / f;
+   <span class="keyword">end</span>
+</pre><p>Integrate segment.</p><pre class="codeinput">   <span class="keyword">for</span> j = 2 : length(wgC)
+       int_wgC(j) = int_wgC(j-1) + 0.5 * (time(j) - time(j-1)) * (wgC(j) + wgC(j-1));
+   <span class="keyword">end</span>
+   range = abs(min(int_wgC) - max(int_wgC)) * rotation_sign;
+</pre><p>Plot integrated segment and save figure.</p><pre class="codeinput">   figure
+   plot(time,int_wgC)
+   title(sprintf(<span class="string">'Rotation #%d. Computed: %0.1f&deg;, Real: %d&deg;.'</span>, round(i/2), range, rotation));
+   xlabel(<span class="string">'Time (s)'</span>);
+   ylabel(<span class="string">'Degrees (&deg;)'</span>)
+   figure_path = strcat(<span class="string">'figures/calibration/gyroscope/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+       segment_name,<span class="string">'_'</span>,sensor_axis,<span class="string">'_gyroCalParamCheck'</span>,<span class="keyword">...</span>
+       num2str(round(i/2)),<span class="string">'.fig'</span>);
+   saveas(gcf,figure_path);
+</pre><img vspace="5" hspace="5" src="calibrate_gyro1D_print_03.png" alt=""> <img vspace="5" hspace="5" src="calibrate_gyro1D_print_04.png" alt=""> <img vspace="5" hspace="5" src="calibrate_gyro1D_print_05.png" alt=""> <pre class="codeinput"><span class="keyword">end</span>
+
+close <span class="string">all</span>
+</pre><h2>9) Save calibration parameters.<a name="79"></a></h2><p>Finally, the calibration parameters are stored together with the date and time of calibration.</p><pre class="codeinput">data_path = strcat(<span class="string">'data/calibration/gyroscope/'</span>,position,<span class="string">'_'</span>,<span class="keyword">...</span>
+            segment_name,<span class="string">'_'</span>,sensor_axis,<span class="string">'_gyroCalParams.mat'</span>);
+save(data_path,<span class="string">'k_av'</span>,<span class="string">'bias'</span>,<span class="string">'cal_date'</span>,<span class="string">'cal_start_time'</span>,<span class="string">'cal_end_time'</span>);
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% GYROSCOPE CALIBRATION 
+% The following script carries out the computation of the gyroscope's
+% calibration parameters. It is based on rotating the gyroscope a known
+% angle instead of subjecting it to a known angular rate. 
+%%
+% 
+% * _Authors_ :   Alberto Olivares and Kai Bötzel.
+% * _Entities_ : Universidad de Granada & Ludwig-Maximilians Universität München.
+% * _Version_ :  1.0.
+% * _Last modification_ : 5/11/2013.
+
+%%
+% This script requires user interaction. More specifically, the user will
+% firstly be shown the raw angular rate signal containing the positive and
+% negative 180 turns. He should, then select the initial and final point of
+% the static period at the beginning of the signal. The selection is done
+% using the 'datacursor' which is already activated when the figure pops
+% up. In order to select more than one point, the user should press the
+% 'Alt' key while clicking the points. Once the initial and final points
+% are selected, the user should click 'continue execution' and the script
+% will compute the static bias by selecting the mode of the raw values
+% gathered during the satic period. 
+%%
+% Next, the user is shown the bias corrected raw angular rate signal. This
+% time, he should select the initial and ending points of the positive
+% rotations. In order to determine these points, the user should use the
+% 'zoom' tool which can be activated under 'View' -> 'Figure toolbar'
+% together with the data cursor in order to select the 0 values which are
+% closest to the beginning and end of the turns. Sometimes, due to the
+% noise, there are no 0 values. The user should then try to select the
+% closest value to 0 (-2, -1, 1, or 2). 
+%%
+% In order to increase the precission of the computation, the user should
+% select the initial and final points of at least 4 or 5 positive
+% rotations. Before clicking on 'continue execution' be sure that the
+% number of selected points is even. When ready, click 'continue execution'
+% and the script will compute the average scale factor. Using this value
+% and the bias value computed at the beginning of the script, the segments
+% of the raw signal contanining the 180 turns are calibrated and then
+% integrated. If the computation of the parameters is successful, then the
+% computed rotation should be close to 180 degrees (or -180 degrees in the
+% case of the gyroscopes which rotation axis is inverted). 
+%%
+% At the end of the script, the computed calibration parameters (scale
+% factor and bias) are stored in the 'data/calibration/gyroscopes' folder
+% under the 'segment_gyroCalParams' name. 
+
+close all; clear all; clc;
+%% 0) Initial configuration.
+% Load library containing necessary functions.
+gw = gwLibrary;
+
+%% 
+% Specify the rotation angle (in degrees) used during the maneuvers to 
+% gather de raw calibration data.
+rotation_angle = 180;
+
+%%
+% Load GaitWatch's data structure.
+load data/gWDataStruct.mat
+size_data_struct=size(data_struct);    
+%%
+% Set the abbreviation of the sensor which is being addressed here
+% (gyroscope).
+magnitude = 'g';
+
+%% 1) Select the the sensor unit.
+%
+% Now, the user is shown a list in which he should select the segment
+% containing the gyroscope which is going to be calibrated. 
+% Build the list which is shown to the user and which containing the 
+% different body segments.
+select_ok_flag = 0;
+while select_ok_flag == 0
+    %%
+    % Define the list of segments which are shown to the user. 
+    S = cell(1,size_data_struct(1));
+    for i = 1:size_data_struct(1)
+        S{i} = [data_struct{i,4},' ',data_struct{i,5}];
+    end
+    S = unique(S,'stable');
+    %%
+    % Show the selection dialog to the user.
+    Selection = listdlg('ListString',S,'Name',...
+        'Select the unit you wish to calibrate','ListSize',[160 120],...
+        'SelectionMode','multiple');
+    if ~isempty(Selection) 
+        select_ok_flag = 1;
+    else
+        msg = msgbox('Please select at least one segment');
+        uiwait(msg);
+    end
+    %%
+    % 
+    % <<menu.PNG>>
+    % 
+    % 
+end
+
+%% 2) Extract data channels from data matrix according to selected unit.
+%
+% Given the selection of the segment, the data are loaded from the local 
+% hard drive and the corresponding channel is extracted. Also the sign of 
+% the rotation of the axis is defined (see the Gaitwatch's channel 
+% information excel file). 
+%%
+% Definition of the segment name, channel number and rotation sign
+% according to the segment selected by the user in step 1. 
+switch Selection
+    %%
+    % Left shank.
+    case 1 
+        segment_name = 'shank';
+        position = 'right';
+        sensor_axis = 'Y';
+        rotation_sign = -1;
+
+    %% 
+    % Left thigh
+    case 2
+        segment_name = 'thigh';
+        position = 'right';
+        sensor_axis = 'Y';
+        rotation_sign = -1;
+
+    %%
+    % Right shank.
+    case 3 
+        segment_name = 'shank';
+        position = 'left';
+        sensor_axis = 'Y';
+        rotation_sign = -1;
+
+    %%
+    % Right thigh.    
+    case 4 
+        segment_name = 'thigh';
+        position = 'left';
+        sensor_axis = 'Y';
+        rotation_sign = -1;
+
+    %%
+    % Left arm.    
+    case 5
+        
+        segment_name = 'arm';
+        position = 'left';
+        % Show the axis selection menu.
+        S = {'X axis', 'Y axis'};
+        [Selection,ok] = listdlg('ListString', S, 'Name',...
+        'Select the axis of left arm', 'ListSize', [160 100]);
+        
+        if Selection == 1
+            sensor_axis = 'X';
+            rotation_sign = -1;
+     
+        elseif Selection == 2
+            sensor_axis = 'Y';
+            rotation_sign = +1;
+        end
+        
+    %%    
+    % Right arm.
+    case 6 
+        
+        segment_name = 'arm';
+        position = 'right';
+        % Show the axis selection menu.
+        S = {'X axis','Y axis'};
+        [Selection,ok] = listdlg('ListString', S, 'Name',...
+        'Select the axis of right arm', 'ListSize', [160 100]);
+        
+        if Selection == 1
+            sensor_axis = 'X';
+            rotation_sign = -1;
+        
+        elseif Selection == 2
+            sensor_axis = 'Y';
+            rotation_sign = +1;
+        end
+        
+    %%
+    % Trunk.    
+    case 7 
+        
+        segment_name = 'trunk';
+        position = 'center';
+        % Show the axis selection menu.
+        S = {'X axis', 'Y axis', 'Z axis'};
+        [Selection,ok] = listdlg('ListString', S, 'Name',...
+        'Select the axis of trunk', 'ListSize', [160 100]);
+        
+        if Selection == 1
+            sensor_axis = 'X';
+            rotation_sign = -1;
+       
+        elseif Selection == 2
+            sensor_axis = 'Y';
+            rotation_sign = +1;
+        
+        elseif Selection == 3
+            sensor_axis = 'Z';
+            rotation_sign = +1;
+        end
+        
+end % End of segment selection switch.
+
+
+%% 3) Load file containing the raw calibration data.
+% The user can select between loading the data directly from GaitWatch or
+% loading it from the hard drive. 
+
+S = {'Load data from GaitWatch','Load data from hard drive'};
+Selection = listdlg('ListString',S,'Name',...
+    'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
+    'single');
+%%
+% 
+% <<DATA_ORIGIN_MENU.PNG>>
+% 
+%%
+switch Selection
+    
+    %%
+    % Load data from GaitWatch. 
+    case 1
+        GW_comm;
+        data_path = strcat('data/calibration/gyroscope/',position,'_',...
+            segment_name,'_',sensor_axis,'_rawGyroData_',...
+            num2str(rotation_angle),'turns.mat');
+        save(data_path,'data','FileHeader');
+    %%
+    % Load data from the hard drive.
+    case 2
+        [data, FileHeader] = gw.openGWfile();   
+end
+%%
+% Extract data channel containing the raw angular rate of the selected 
+% segment and convert the format of the data (from int16 to double). 
+channel = gw.getDataChannel(data_struct, magnitude, sensor_axis, ...
+    position, segment_name);
+g_raw = double(data(:,channel));
+
+
+%% 4) Get data info from Header.
+% 
+% We now extract some data from the header of the data file. To do this,
+% the getFHinfo function contained in gwLibrary is called. 
+
+[f, cal_date, cal_start_time, cal_end_time] = gw.getFHinfo(FileHeader);
+
+%% 5) Plot gyroscope signal so the user can select the bias.
+%
+% Now the user has to select the initial and final points of the initial 
+% static period so the bias is computed.
+
+bias_flag = 0;
+while bias_flag == 0
+    %%
+    % First, set the title of the figure which will be shown to the user.
+    % Then the index extraction function "getDCindexes" (included in
+    % gwLibrary) is called to extract the indexes of the points selected by
+    % the user. 
+    fig_title = ['Select the initial and final point of a long enough',...
+    ' segment of the first static period (BIAS COMPUTATION)'];
+    indexes = gw.getDCindexes(g_raw,fig_title);
+    
+    %%
+    % Check if the user has selected two points. If not, a message box 
+    % informs the user and the figure is shown again to repeat the
+    % procedure.
+    if length(indexes) == 2
+        bias_flag = 1;
+    else
+        err_msg = msgbox(sprintf('Select 2 points. You selected %d points.',length(indexes)));
+        uiwait(err_msg);
+    end
+end % End of bias figure while. 
+
+close all
+
+%%
+% Sort indexes in increasing order.
+indexes = sort(indexes);
+
+%%
+% Extract initial and final points.
+starting_point = indexes(1);
+ending_point = indexes(2);
+
+%%
+% The bias is computed by finding the mode of the the selected signal
+% segment.
+bias = mode(g_raw(starting_point : ending_point));
+
+%%  6) Plot gyroscope signal so the user can select the rotations.
+% 
+% After the computation of the bias, we need to compute the scale factor.
+% This is done as explained in the file preface. 
+
+%%
+% The user is shown the raw angular rate corrected in bias to select the 
+% intial and final points of the positive rotations. 
+sf_flag = 0;
+while sf_flag == 0
+    
+    %%
+    % Again, set the title of the figure which will be shown to the user.
+    % Then the index extraction function "getDCindexes" (included in
+    % gwLibrary) is called to extract the indexes of the points selected by
+    % the user. 
+    fig_title = sprintf(['Hold the "Alt" key and click the points with the',...
+        ' DataCursor to select the starting and ending point of positive',...
+        ' turns.\n Use the zoom tool under "View -> Figure toolbar" to ',...
+        ' inspect the signal.']);
+    indexes = gw.getDCindexes(g_raw - bias, fig_title);
+    
+    %%
+    % Check if the number of selected points is even, i.e. all the points
+    % are in pairs of (initial_point, final_point). If not, a message is
+    % shown to the user and the figure will be shown again. 
+    if mod(length(indexes),2) == 0
+        sf_flag = 1;
+    else
+        err_msg = msgbox(sprintf(['The number of points has to be even.',...
+            ' You selected %d points.'], length(indexes)));
+        uiwait(err_msg);
+    end
+end 
+
+%%
+% Sort indexes in increasing order.
+indexes = sort(indexes);
+
+%%
+% Inform the user that the extraction has been successful.
+index_message = msgbox(sprintf('The following indexes were extracted: \n %s',...
+    num2str(indexes)),'Done');
+uiwait(index_message);
+
+close all
+
+%%
+% 
+% <<indexOK.PNG>>
+% 
+
+%%  7) Compute the scale factor for each signal segment.
+%
+% Once we have all the initial and final points of the segments of the
+% signal including the rotations, we extract each segment, build the time
+% associated time signal and integrate them to find the scale factor. 
+
+%%
+% Initialize the scale factors vector. 
+k = zeros(1, length(indexes) / 2);
+
+for i = 1 : 2 : length(indexes) - 1
+    
+    %%
+    % Extract rotation segment.
+    wg = g_raw(indexes(i) : indexes(i + 1));
+    
+    %%
+    % Compensate bias.
+    wgcorr = wg - bias;
+    
+    %%
+    % Build associated time signal.
+    time = zeros(1,length(wgcorr)); 
+    for j = 2 : length(wgcorr)
+        time(j) = time(j - 1) + 1 / f;
+    end
+    
+    %%
+    % Multiply the rotation by the associated rotation sign of the
+    % segment. 
+    rotation = rotation_sign * rotation_angle;
+    
+    %%
+    % Compute scale factor and add it to the scale factors vector. The
+    % computation of the scale factor is done by calling the "gyro1DscaleF"
+    % function which is included in "gwLibrary".
+    k(round(i/2)) = gw.gyro1DscaleF(time, wgcorr, rotation);
+    
+end
+
+%%
+% Compute the average scale factor and the standard deviation.
+k_av = mean(k);
+k_std = std(k);
+
+%%  8) Calibrate the signal segments and integrate them to check rotation.
+% 
+% Now we will check the goodness of the computed scale factor. To do so we use
+% the estimated bias and scale factor to calibrate each one of the rotation
+% segments. We then integrate them and compare them to the known rotation
+% angle. If the computed rotation angle is close to the known angle, then
+% the estimation has been successful. 
+
+for i = 1 : 2 : length(indexes) - 1
+   wg = g_raw(indexes(i) : indexes(i+1)); 
+   wgC = (wg - bias) / k_av;
+   int_wgC = zeros(1,length(wgC));
+   time = zeros(1,length(wgC)); 
+   for j = 2 : length(wgC)
+       time(j) = time(j-1) + 1 / f;
+   end
+   
+   %%
+   % Integrate segment.
+   for j = 2 : length(wgC)
+       int_wgC(j) = int_wgC(j-1) + 0.5 * (time(j) - time(j-1)) * (wgC(j) + wgC(j-1));
+   end
+   range = abs(min(int_wgC) - max(int_wgC)) * rotation_sign;
+   
+   %%
+   % Plot integrated segment and save figure. 
+   figure
+   plot(time,int_wgC)
+   title(sprintf('Rotation #%d. Computed: %0.1f°, Real: %d°.', round(i/2), range, rotation));
+   xlabel('Time (s)');
+   ylabel('Degrees (°)')
+   figure_path = strcat('figures/calibration/gyroscope/',position,'_',...
+       segment_name,'_',sensor_axis,'_gyroCalParamCheck',...
+       num2str(round(i/2)),'.fig');
+   saveas(gcf,figure_path);
+end
+
+close all
+
+%% 9) Save calibration parameters.
+%
+% Finally, the calibration parameters are stored together with the date and
+% time of calibration.
+
+data_path = strcat('data/calibration/gyroscope/',position,'_',...
+            segment_name,'_',sensor_axis,'_gyroCalParams.mat');
+save(data_path,'k_av','bias','cal_date','cal_start_time','cal_end_time');
+
+
+##### SOURCE END #####
+--></body></html>
