@@ -1,0 +1,52 @@
+\select@language {english}
+\sloppy 
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1.1}{\ignorespaces General diagram of the GaitWatch being worn by a subject.\relax }}{10}{figure.caption.6}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Definition of the desired body axes (a). Convention for the orientation of the axis rotation (b).\relax }}{13}{figure.caption.7}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Orientation and axes of the GaitWatch box.\relax }}{14}{figure.caption.8}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Identification of Z axis of the accelerometer in the box unit.\relax }}{15}{figure.caption.9}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Identification of the acceleration signal gathered in the Z axis.\relax }}{15}{figure.caption.10}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Identification of the box's acceleration Y (top) and X (bottom) axes.\relax }}{16}{figure.caption.11}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Identification of the Z (left) and X (right) axes of the accelerometer in right shank's unit.\relax }}{16}{figure.caption.12}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces Identification of the sense of rotation of the Y axis of the gyroscope in the left hand unit.\relax }}{18}{figure.caption.14}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces Angular rate signal gathered during maneuvers of identification of rotation.\relax }}{18}{figure.caption.15}
+\contentsline {figure}{\numberline {2.9}{\ignorespaces Magnetic field signal gathered during maneuvers of Z axis identification.\relax }}{20}{figure.caption.18}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Acceleration gathered during quasi-static positions and output of the detection algorithm\relax }}{23}{figure.caption.19}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces 3D representation of acceleration gathered during quasi-static positions.\relax }}{23}{figure.caption.20}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces 3D representation of calibrated quasi-static positions.\relax }}{24}{figure.caption.21}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Raw acceleration gathered when both axes X and Z are placed parallel and anti-parallel to the gravity vector.\relax }}{26}{figure.caption.22}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Raw magnetic field gathered by randomly moving the trunk unit containing the magnetometer.\relax }}{27}{figure.caption.24}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Calibrated magnetic field gathered by randomly moving the trunk unit containing the magnetometer.\relax }}{28}{figure.caption.25}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Calibrated magnetic field vs. raw magnetic field gathered by randomly moving the trunk unit containing the magnetometer.\relax }}{28}{figure.caption.26}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Gyroscope calibration device.\relax }}{29}{figure.caption.27}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Gyroscope calibration routine: selection of static period to compute bias.\relax }}{31}{figure.caption.28}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Gyroscope calibration routine: selection of positive rotations to compute scale factor.\relax }}{31}{figure.caption.29}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Effects of dynamic bias on the integrated gyroscope output signal.\relax }}{34}{figure.caption.31}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces General diagram of the standard approach of the Kalman filter without sensor fusion.\relax }}{38}{figure.caption.32}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces General diagram of the standard approach of the Kalman filter with sensor fusion.\relax }}{42}{figure.caption.33}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces An Oqus camera part of the Qualisys system.\relax }}{53}{figure.caption.34}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagram of the pitch computation using the Qualisys system.\relax }}{54}{figure.caption.35}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Pitch angle of left shank measured while walking fast (GaitWatch vs. Qualisys).\relax }}{57}{figure.caption.36}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Pitch angle of left thigh measured while walking fast (GaitWatch vs. Qualisys).\relax }}{57}{figure.caption.37}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Pitch angle of right shank measured while walking fast (GaitWatch vs. Qualisys).\relax }}{58}{figure.caption.38}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Pitch angle of right thigh measured while walking fast (GaitWatch vs. Qualisys).\relax }}{58}{figure.caption.39}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Pitch angle of left shank measured while jumping (GaitWatch vs. Qualisys).\relax }}{59}{figure.caption.40}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Pitch angle of left thigh measured while jumping (GaitWatch vs. Qualisys).\relax }}{59}{figure.caption.41}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Pitch angle of right shank measured while jumping (GaitWatch vs. Qualisys).\relax }}{60}{figure.caption.42}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Pitch angle of right thigh measured while jumping (GaitWatch vs. Qualisys).\relax }}{60}{figure.caption.43}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Pitch angle while swinging left shank. (GaitWatch vs. Qualisys).\relax }}{61}{figure.caption.44}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Pitch angle while swinging left thigh. (GaitWatch vs. Qualisys).\relax }}{61}{figure.caption.45}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Pitch angle while swinging right shank. (GaitWatch vs. Qualisys).\relax }}{62}{figure.caption.46}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Pitch angle while swinging right thigh. (GaitWatch vs. Qualisys).\relax }}{62}{figure.caption.47}
+\contentsline {figure}{\numberline {5.15}{\ignorespaces Left shank's pitch angle during freezing gait. (GaitWatch vs. Qualisys).\relax }}{63}{figure.caption.48}
+\contentsline {figure}{\numberline {5.16}{\ignorespaces Left thigh's pitch angle during freezing gait. (GaitWatch vs. Qualisys).\relax }}{63}{figure.caption.49}
+\contentsline {figure}{\numberline {5.17}{\ignorespaces Right shank's pitch angle during freezing gait. (GaitWatch vs. Qualisys).\relax }}{64}{figure.caption.50}
+\contentsline {figure}{\numberline {5.18}{\ignorespaces Right thigh's pitch angle during freezing gait. (GaitWatch vs. Qualisys).\relax }}{64}{figure.caption.51}
+\contentsline {figure}{\numberline {5.19}{\ignorespaces Left shank's pitch angle during normal gait. (GaitWatch vs. Qualisys).\relax }}{65}{figure.caption.52}
+\contentsline {figure}{\numberline {5.20}{\ignorespaces Left thigh's pitch angle during normal gait. (GaitWatch vs. Qualisys).\relax }}{65}{figure.caption.53}
+\contentsline {figure}{\numberline {5.21}{\ignorespaces Right shank's pitch angle during normal gait. (GaitWatch vs. Qualisys).\relax }}{66}{figure.caption.54}
+\contentsline {figure}{\numberline {5.22}{\ignorespaces Right thigh's pitch angle during normal gait. (GaitWatch vs. Qualisys).\relax }}{66}{figure.caption.55}

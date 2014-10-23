@@ -1,0 +1,23 @@
+\chapter{Computation of Orientation}
+\label{ch:orientationcomp}
+
+A way to compute the rate of change of the orientation of the Earth frame relative to the sensor frame is to compute the quaternion derivative $^{S}_{E}\dot{\textbf{q}}$, which is defined as follows,
+\begin{equation}
+\label{eq:quat_deriv}
+^{S}_{E}\dot{\mathbf{q}} = \frac{1}{2}{^{S}_{E}\textbf{q}}\otimes{^{S}\boldsymbol{\omega}}
+\end{equation}
+where $^{S}_{E}\textbf{q}$ is the quaternion determining the orientation of the Earth frame relative to the sensor frame, $^{S}\boldsymbol{\omega} = \left[0\;\omega_{x}\;\omega_{y}\;\omega_{z}\right]$ is the measured angular rate vector in the sensor frame in quaternion form, and $\otimes$ is the quaternion (or Hamiltonian) product. \\
+\indent Therefore, we can compute the orientation of the Earth frame relative to the sensor frame (computed from the angular rate) at time t  $^{S}_{E}\textbf{q}_{\omega,t}$ by simply numerically integrating the quaternion derivative in equation (\ref{eq:quat_deriv}).
+
+\begin{equation}
+\label{eq:quat_integration}
+^{S}_{E}\mathbf{q}_{\omega,t} = ^{S}_{E}\mathbf{\hat{q}}_{t-1} + ^{S}_{E}\dot{\mathbf{q}}_{w,t}\Delta t
+\end{equation}
+
+where $^{S}_{E}\mathbf{\hat{q}}_{t-1}$ is the orientation quaternion estimated in $t-1$ by applying a sensor fusion algorithm (this will be later explained), and $\Delta t$ is the sampling frequency. So, if we plug equation (\ref{eq:quat_deriv}) into (\ref{eq:quat_integration}), we get
+
+\begin{gather}
+\label{eq:state_equations}
+^{S}_{E}\mathbf{q}_{\omega,t} = \left[\hat{q}_{1,t-1}\;\hat{q}_{2,t-1}\;\hat{q}_{3,t-1}\;\hat{q}_{4,t-1}\right] + \frac{1}{2}\Delta t\left[\hat{q}_{1,t-1}\;\hat{q}_{2,t-1}\;\hat{q}_{3,t-1}\;\hat{q}_{4,t-1} \right]\otimes \\ \nonumber
+\end{gather}
+

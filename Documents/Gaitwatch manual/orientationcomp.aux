@@ -1,0 +1,145 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Computation of Orientation}{33}{chapter.4}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\newlabel{ch:orientationcomp}{{4}{33}{Computation of Orientation}{chapter.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Computing the orientation using Euler Angles}{33}{section.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Integration of angular rate}{33}{subsection.4.1.1}}
+\newlabel{eq:trapInt}{{4.1}{33}{Integration of angular rate}{equation.4.1.1}{}}
+\newlabel{eq:trapIntRec}{{4.2}{33}{Integration of angular rate}{equation.4.1.2}{}}
+\citation{Kalman60}
+\citation{Welch2001}
+\citation{grewal_kalman_2008}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Effects of dynamic bias on the integrated gyroscope output signal.\relax }}{34}{figure.caption.31}}
+\newlabel{fig:dynBiasEff}{{4.1}{34}{Effects of dynamic bias on the integrated gyroscope output signal.\relax }{figure.caption.31}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Decomposition of gravity}{34}{subsection.4.1.2}}
+\newlabel{eq:pitch_legs}{{4.3}{34}{Decomposition of gravity}{equation.4.1.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.3}Fusing the angular rate with the orientation angle observation computed with the accelerometer}{35}{subsection.4.1.3}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3.1}The Kalman filter}{35}{subsubsection.4.1.3.1}}
+\newlabel{subsubsec:kalman_filter}{{4.1.3.1}{35}{The Kalman filter}{subsubsection.4.1.3.1}{}}
+\newlabel{eq:contSystem}{{4.1.3.1}{35}{The Kalman filter}{equation.4.1.4}{}}
+\newlabel{eq:contSystem2}{{4.1.3.1}{35}{The Kalman filter}{equation.4.1.5}{}}
+\newlabel{eq:DiscreteSystem}{{4.9}{36}{The Kalman filter}{equation.4.1.9}{}}
+\newlabel{eq:DiscreteSystem2}{{4.10}{36}{The Kalman filter}{equation.4.1.10}{}}
+\newlabel{eq:ProbDistW}{{4.11}{36}{The Kalman filter}{equation.4.1.11}{}}
+\newlabel{eq:ProbDistV}{{4.12}{37}{The Kalman filter}{equation.4.1.12}{}}
+\newlabel{eq:KalProcEst}{{4.13}{37}{The Kalman filter}{equation.4.1.13}{}}
+\newlabel{eq:prioriProcEst}{{4.14}{37}{The Kalman filter}{equation.4.1.14}{}}
+\newlabel{eq:prioriCov}{{4.15}{37}{The Kalman filter}{equation.4.1.15}{}}
+\newlabel{eq:KalGain}{{4.16}{37}{The Kalman filter}{equation.4.1.16}{}}
+\newlabel{eq:postProcEst}{{4.17}{37}{The Kalman filter}{equation.4.1.17}{}}
+\newlabel{eq:postCov}{{4.18}{37}{The Kalman filter}{equation.4.1.18}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces General diagram of the standard approach of the Kalman filter without sensor fusion.\relax }}{38}{figure.caption.32}}
+\newlabel{fig:StandardKalmanDiagram}{{4.2}{38}{General diagram of the standard approach of the Kalman filter without sensor fusion.\relax }{figure.caption.32}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.1.3.2}The Kalman filter applied to orientation estimation}{38}{subsubsection.4.1.3.2}}
+\newlabel{eq:kal_state}{{4.19}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.19}{}}
+\newlabel{eq:kal_bias}{{4.20}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.20}{}}
+\newlabel{eq:Kal_fus_obs}{{4.21}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.21}{}}
+\newlabel{eq:Kal_fus_assum}{{4.22}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.22}{}}
+\newlabel{eq:Kal_fus_assum2}{{4.23}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.23}{}}
+\newlabel{eq:KalAngleDeriv}{{4.24}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.24}{}}
+\newlabel{eq:Kal_fus_System}{{4.26}{39}{The Kalman filter applied to orientation estimation}{equation.4.1.26}{}}
+\newlabel{eq:Kal_fus_disc_system}{{4.27}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.27}{}}
+\newlabel{eq:Kal_fus_disc_system2}{{4.28}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.28}{}}
+\newlabel{eq:identified_filter_matrices}{{4.29}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.29}{}}
+\newlabel{eq:Kal_fus_pred1}{{4.30}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.30}{}}
+\newlabel{eq:Kal_fus_pred2}{{4.31}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.31}{}}
+\newlabel{eq:Kalman_gain_update_phase}{{4.32}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.32}{}}
+\newlabel{eq:state_vector_update_phase}{{4.33}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.33}{}}
+\newlabel{eq:covariance_matrix_update_phase}{{4.34}{40}{The Kalman filter applied to orientation estimation}{equation.4.1.34}{}}
+\newlabel{eq:Kal_fus_proc_noise_cov_matrix}{{4.35}{41}{The Kalman filter applied to orientation estimation}{equation.4.1.35}{}}
+\newlabel{eq:Kal_fus_real_system}{{4.36}{41}{The Kalman filter applied to orientation estimation}{equation.4.1.36}{}}
+\newlabel{en:read_data}{{5}{42}{The Kalman filter applied to orientation estimation}{Item.16}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces General diagram of the standard approach of the Kalman filter with sensor fusion.\relax }}{42}{figure.caption.33}}
+\newlabel{fig:KalmanDiagramFusion}{{4.3}{42}{General diagram of the standard approach of the Kalman filter with sensor fusion.\relax }{figure.caption.33}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Quaternion-based orientation determination}{43}{section.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Using angular rate to compute orientation}{43}{subsection.4.2.1}}
+\newlabel{eq:quat_deriv}{{4.37}{43}{Using angular rate to compute orientation}{equation.4.2.37}{}}
+\newlabel{eq:quat_integration}{{4.38}{43}{Using angular rate to compute orientation}{equation.4.2.38}{}}
+\newlabel{eq:state_equations}{{4.39}{43}{Using angular rate to compute orientation}{equation.4.2.39}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Using acceleration and magnetic field to compute orientation}{44}{subsection.4.2.2}}
+\newlabel{eq:quat_rot}{{4.40}{44}{Using acceleration and magnetic field to compute orientation}{equation.4.2.40}{}}
+\newlabel{eq:quat_opt_problem}{{4.41}{44}{Using acceleration and magnetic field to compute orientation}{equation.4.2.41}{}}
+\newlabel{eq:quat_opt_func}{{4.42}{44}{Using acceleration and magnetic field to compute orientation}{equation.4.2.42}{}}
+\newlabel{eq:quat_gradient}{{4.43}{45}{Using acceleration and magnetic field to compute orientation}{equation.4.2.43}{}}
+\newlabel{eq:quat_nabla}{{4.44}{45}{Using acceleration and magnetic field to compute orientation}{equation.4.2.44}{}}
+\newlabel{eq:quat_opt_func_extended}{{4.45}{45}{Using acceleration and magnetic field to compute orientation}{equation.4.2.45}{}}
+\newlabel{eq:quat_opt_func_reduced}{{4.46}{45}{Using acceleration and magnetic field to compute orientation}{equation.4.2.46}{}}
+\newlabel{eq:quat_nabla2}{{4.47}{46}{Using acceleration and magnetic field to compute orientation}{equation.4.2.47}{}}
+\newlabel{eq:quat_jacobian}{{4.48}{46}{Using acceleration and magnetic field to compute orientation}{equation.4.2.48}{}}
+\newlabel{eq:quat_opt_func_reduced_mag}{{4.49}{46}{Using acceleration and magnetic field to compute orientation}{equation.4.2.49}{}}
+\newlabel{eq:quat_jacobian_mag}{{4.50}{46}{Using acceleration and magnetic field to compute orientation}{equation.4.2.50}{}}
+\newlabel{eq:quat_gradient_final}{{4.51}{47}{Using acceleration and magnetic field to compute orientation}{equation.4.2.51}{}}
+\newlabel{eq:quat_function_final}{{4.53}{47}{Using acceleration and magnetic field to compute orientation}{equation.4.2.53}{}}
+\newlabel{eq:final_Jacobian}{{4.54}{47}{Using acceleration and magnetic field to compute orientation}{equation.4.2.54}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.3}Fusing the orientation quaternions computed with the angular rate and the acceleration and magnetic field}{48}{subsection.4.2.3}}
+\newlabel{subsec:sensor_fusion}{{4.2.3}{48}{Fusing the orientation quaternions computed with the angular rate and the acceleration and magnetic field}{subsection.4.2.3}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3.1}The Extended Kalman Filter}{48}{subsubsection.4.2.3.1}}
+\newlabel{subsubsec:extended_kalman_filter}{{4.2.3.1}{48}{The Extended Kalman Filter}{subsubsection.4.2.3.1}{}}
+\newlabel{eq:ekf_definition_1}{{4.58}{48}{The Extended Kalman Filter}{equation.4.2.58}{}}
+\newlabel{eq:ekf_definition_2}{{4.59}{49}{The Extended Kalman Filter}{equation.4.2.59}{}}
+\newlabel{eq:ekf_definition_3}{{4.60}{49}{The Extended Kalman Filter}{equation.4.2.60}{}}
+\newlabel{eq:ekf_definition_4}{{4.61}{49}{The Extended Kalman Filter}{equation.4.2.61}{}}
+\newlabel{eq:ekf_definition_5}{{4.62}{49}{The Extended Kalman Filter}{equation.4.2.62}{}}
+\newlabel{eq:ekf_definition_6}{{4.63}{49}{The Extended Kalman Filter}{equation.4.2.63}{}}
+\newlabel{eq:jacobian_matrix_A}{{4.64}{50}{The Extended Kalman Filter}{equation.4.2.64}{}}
+\newlabel{eq:jacobian_matrix_W}{{4.65}{50}{The Extended Kalman Filter}{equation.4.2.65}{}}
+\newlabel{eq:jacobian_matrix_H}{{4.66}{50}{The Extended Kalman Filter}{equation.4.2.66}{}}
+\newlabel{eq:jacobian_matrix_V}{{4.67}{50}{The Extended Kalman Filter}{equation.4.2.67}{}}
+\newlabel{eq:ekf_state_error}{{4.68}{50}{The Extended Kalman Filter}{equation.4.2.68}{}}
+\newlabel{eq:ekf_meas_error}{{4.69}{50}{The Extended Kalman Filter}{equation.4.2.69}{}}
+\newlabel{eq:ekf_state_error_2}{{4.70}{50}{The Extended Kalman Filter}{equation.4.2.70}{}}
+\newlabel{eq:ekf_meas_error_2}{{4.71}{50}{The Extended Kalman Filter}{equation.4.2.71}{}}
+\newlabel{eq:ekf_state_correction}{{4.72}{51}{The Extended Kalman Filter}{equation.4.2.72}{}}
+\newlabel{eq:ekf_final_eq_1}{{4.73}{51}{The Extended Kalman Filter}{equation.4.2.73}{}}
+\newlabel{eq:ekf_final_eq_2}{{4.74}{51}{The Extended Kalman Filter}{equation.4.2.74}{}}
+\newlabel{eq:ekf_final_eq_3}{{4.75}{51}{The Extended Kalman Filter}{equation.4.2.75}{}}
+\newlabel{eq:ekf_final_eq_4}{{4.76}{51}{The Extended Kalman Filter}{equation.4.2.76}{}}
+\newlabel{eq:ekf_final_eq_5}{{4.77}{51}{The Extended Kalman Filter}{equation.4.2.77}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {4.2.3.2}The Extended Kalman Filter applied to orientation estimation}{51}{subsubsection.4.2.3.2}}
+\newlabel{subsubsec:ekf_orientation}{{4.2.3.2}{51}{The Extended Kalman Filter applied to orientation estimation}{subsubsection.4.2.3.2}{}}
+\newlabel{eq:state_equations}{{4.78}{51}{The Extended Kalman Filter applied to orientation estimation}{equation.4.2.78}{}}
+\newlabel{eq:A_final}{{4.80}{52}{The Extended Kalman Filter applied to orientation estimation}{equation.4.2.80}{}}
+\@setckpt{orientationcomp}{
+\setcounter{page}{53}
+\setcounter{equation}{80}
+\setcounter{enumi}{5}
+\setcounter{enumii}{0}
+\setcounter{enumiii}{0}
+\setcounter{enumiv}{0}
+\setcounter{footnote}{0}
+\setcounter{mpfootnote}{0}
+\setcounter{part}{0}
+\setcounter{chapter}{4}
+\setcounter{section}{2}
+\setcounter{subsection}{3}
+\setcounter{subsubsection}{2}
+\setcounter{paragraph}{0}
+\setcounter{subparagraph}{0}
+\setcounter{figure}{3}
+\setcounter{table}{0}
+\setcounter{ContinuedFloat}{0}
+\setcounter{KVtest}{0}
+\setcounter{subfigure}{0}
+\setcounter{subfigure@save}{0}
+\setcounter{lofdepth}{1}
+\setcounter{subtable}{0}
+\setcounter{subtable@save}{0}
+\setcounter{lotdepth}{1}
+\setcounter{float@type}{8}
+\setcounter{DefaultLines}{2}
+\setcounter{L@lines}{0}
+\setcounter{NAT@ctr}{0}
+\setcounter{subequation}{0}
+\setcounter{LT@tables}{0}
+\setcounter{LT@chunks}{0}
+\setcounter{parentequation}{0}
+\setcounter{Item}{28}
+\setcounter{Hfootnote}{0}
+\setcounter{bookmark@seq@number}{26}
+\setcounter{lstnumber}{1}
+\setcounter{FancyVerbLine}{0}
+\setcounter{section@level}{3}
+\setcounter{lstlisting}{0}
+}

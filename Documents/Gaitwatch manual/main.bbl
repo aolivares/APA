@@ -1,0 +1,78 @@
+\begin{thebibliography}{10}
+
+\bibitem{imu5}
+{IMU} analog combo board - 5 degrees of freedom idg500/adxl335.
+\newblock http://goo.gl/0A3Zp9.
+\newblock [Accessed December 9th, 2013].
+
+\bibitem{idg500}
+{IDG-500} integrated dual-axis gyroscope.
+\newblock http://goo.gl/w1trOl.
+\newblock [Accessed December 9th, 2013].
+
+\bibitem{adxl335}
+{ADXL335}: Small, low power, 3-axis 3g accelerometer.
+\newblock http://goo.gl/y1QfrL.
+\newblock [Accessed December 9th, 2013].
+
+\bibitem{adxl345}
+{ADXL345}: 3-axis, $\pm2g/\pm4g/\pm8g/\pm16g$ digital accelerometer.
+\newblock http://goo.gl/38chVM.
+\newblock [Accessed December 10th, 2013].
+
+\bibitem{imu3000}
+Imu-3000 triple axis motionprocessor gyroscope.
+\newblock http://goo.gl/rNCpWn.
+\newblock [Accessed December 10th, 2013].
+
+\bibitem{micromag3}
+Micromag 3-axis magnetometer.
+\newblock http://goo.gl/f4pCgc.
+\newblock [Accessed December 10th, 2013].
+
+\bibitem{avratx}
+{AVR AT}xmega - development module.
+\newblock http://goo.gl/HxjWGa.
+\newblock [Accessed December 10th, 2013].
+
+\bibitem{camps_numerical_2009}
+F.~Camps, S.~Harasse, and A.~Monin.
+\newblock Numerical calibration for 3-axis accelerometers and magnetometers.
+\newblock In {\em {IEEE} International Conference on {Electro/Information}
+  Technology, 2009. eit '09}, pages 217--221. {IEEE}, June 2009.
+
+\bibitem{Levenberg}
+K.~Levenberg.
+\newblock A method for the solution of certain non-linear problems in least
+  squares.
+\newblock {\em Quarterly of Applied Mathematics}, 2:164--168, 1944.
+
+\bibitem{Marquardt}
+D.W. Marquardt.
+\newblock An algorithm for least-squares estimation of nonlinear parameters.
+\newblock {\em Journal of the Society for Industrial and Applied Mathematics},
+  11(2):431--441, 1963.
+
+\bibitem{center_ngdc}
+National Geophysical~Data Center.
+\newblock {NGDC} geomagnetic calculators - magnetic field.
+\newblock http://www.ngdc.noaa.gov/geomag-web/\#igrfwmm.
+\newblock [Accessed January 14th, 2013].
+
+\bibitem{Kalman60}
+R.~E. Kalman.
+\newblock A new approach to linear filtering and prediction problems.
+\newblock {\em Transaction of the ASME Journal of Basic Engineering}, pages
+  35--45, 1960.
+
+\bibitem{Welch2001}
+G.~Welch and G.~Bishop.
+\newblock An introduction to the kalman filter.
+\newblock {\em Notes of ACM SIGGRAPH tutorial on the Kalman filter}, 2001.
+
+\bibitem{grewal_kalman_2008}
+Mohinder~S. Grewal and Angus~P. Andrews.
+\newblock {\em Kalman Filtering: Theory and Practice Using {MATLAB}}.
+\newblock Wiley, December 2008.
+
+\end{thebibliography}

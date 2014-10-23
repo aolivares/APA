@@ -1,0 +1,449 @@
+\chapter{Initial configuration}
+\label{ch:initial_conf}
+\section{Identification of sensor's axes}
+\indent The first step that needs to be carried out is to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes. One of the most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation. Both are shown in Figure \ref{fig:bodyAxes}. These two standard navigation frames are usually employed when representing the orientation of a body in space and are known as the North-East-Down (NED) and the East-North-Up (ENU) frames.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/bodyAxes}
+\caption{Definition of the desired body axes (a). Convention for the orientation of the axis rotation (b).}
+\label{fig:bodyAxes}
+\end{figure}
+Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right of the patient, and the Z axis to the floor. We will start by configuring the orientation of the sensors which are inside the data gathering unit and which will be placed on the back of the patient. Figure \ref{fig:gwBox} shows the desired orientation for Gaitwatch's box.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/bodyAxesGW}
+\caption{Orientation and axes of the GaitWatch box.}
+\label{fig:gwBox}
+\end{figure}
+
+Once we know the desired orientation, the next step is to adapt the axes of the sensors' boards to it. We will start by adjusting the accelerometer. 
+
+
+\subsection{Identification of Accelerometer's axes}
+\label{subsec:acc_ID}
+
+\indent The goal here is to determine the orientation of the axes and adapt it to the convention aforementioned. First, we set the box with the desired Z axis pointing downwards and upwards respectively while gathering data, as shown in figure \ref{fig:AccZaxis}.
+
+Now we plot the acceleration gathered along the three axes. We have to identify the channel showing a large change in the measured acceleration.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/AccZaxis.jpg}
+\caption{Identification of Z axis of the accelerometer in the box unit.}
+\label{fig:AccZaxis}
+\end{figure}
+ 
+That channel will then be labeled as Z irrespective to which label it may have in the accelerometer board. That is, the sensor board may indicate that the selected channel is 'X' in the sensor frame, but we will label it as 'Z' in our desired frame which is the body frame. 
+
+If the Z axis of the sensors has the same orientation of the desired frame, then, when pointing the Z axis of the box downwards, the accelerometer will measure 1g since its axis is parallel to the Earth's gravity vector. If it has the opposite orientation, then the accelerometer will measure -1g. Since we have not calibrated the accelerometer so far and, therefore, the data are in raw units, the way to identify the correct orientation is by knowing that the measured output when setting the accelerometer axis parallel to gravity is larger than its output when it is set anti-parallel to the gravity vector. Figure \ref{fig:ZaxisAccSignals} shows the triaxial gathered acceleration and the axis which should be labeled as 'Z'.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/ZaxisAccTrunkID}
+\caption{Identification of the acceleration signal gathered in the Z axis.}
+\label{fig:ZaxisAccSignals}
+\end{figure}
+
+For the case of the GaitWatch, the signal showing both parallel and anti-parallel acceleration values is in channel 20. The orientation of the axis is correct, since we first put the desired Z axis pointing downwards and the accelerometer showed the largest acceleration value in that position. We, thus, set channel 20 to be the acceleration in Z axis. The remaining two axes (X and Y) are identified following the same procedure. Figure \ref{fig:XandYAccPositions} shows the box being oriented negatively and positively along X and Y axes. Both X and Y axes are properly oriented and need no orientation correction. After inspecting the gathered signals, we observe that X and Y measurements are contained in channels 22 and 21, respectively. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/XandYAccPositions.jpg}
+\caption{Identification of the box's acceleration Y (top) and X (bottom) axes.}
+\label{fig:XandYAccPositions}
+\end{figure}
+
+Once we have identified the axes of the accelerometer inside the box which will be placed in the back of the patient, we need to apply the same aforementioned procedure to identify, on by one, the axes of the biaxial accelerometers which will be placed in the thighs and the shanks. Figure \ref{fig:thighShankAccs} shows the right shank module being placed parallel and anti-parallel to the gravity in both X and Z axes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/thighShankAccs.jpg}
+\caption{Identification of the Z (left) and X (right) axes of the accelerometer in right shank's unit.}
+\label{fig:thighShankAccs}
+\end{figure}
+
+Table \ref{tab:acc_channels} shows the axes of all Gaitwatch's accelerometers, their associated channel and the orientation compensation (if needed).
+\begin{table}
+\caption{List of Gaitwatch's accelerometers and their associated channels.}
+	\centering
+		\begin{tabular}{|c|c|c|c|}\hline
+		\label{tab:acc_channels}
+		Unit 				& Axis 	& Orientation compensation 	& Channel 	\\ \hline
+		Left Shank  & Z			& No  (+1)									& 2					\\
+		Left Shank	& X			& No  (+1)									& 3					\\
+		Left Thigh  & Z			& No  (+1)									& 5					\\
+		Left Thigh	& X			& No  (+1)									& 6					\\
+		Right Shank & Z			& No  (+1)									& 8					\\
+		Right Shank	& X			& No  (+1)									& 9					\\
+		Right Thigh & Z			& No  (+1)									& 11				\\
+		Right Thigh	& X			& No  (+1)									& 12				\\
+		Trunk				& Z			& No	(+1)									& 20				\\
+		Trunk				& Y			& No	(+1)									& 21				\\	
+		Trunk				& X			& No	(+1)									& 22				\\ \hline
+		\end{tabular}
+\end{table}
+
+\subsection{Identification of Gyroscope's axes}
+\label{subsec:gyro_ID}
+
+\indent Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in figure \ref{fig:bodyAxes}, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. Analogously, the rotation is negative when it is turned to the left. Knowing this, in order to identify the sense of rotation of the gyroscope and adapt it (if needed) to the body frame we need to proceed as follows:
+\begin{enumerate}
+\item Place the axis that we want to analyze so it is pointing forwards.
+\item Rotate it to the right and then to the left. Repeat this three of four times. 
+\item Identify the channel containing the data and plot them. If the measured angular rate first increases and then decreases, the sense of rotation of the sensor axis is correct. On the other hand, if the angular has the opposite behavior, that is, it first decreases and then increases, we need to change the sense of the rotation. 
+\end{enumerate}
+Figure \ref{fig:rotation_axis_sense1} shows the maneuvers to identify the rotation sense of the Y axis gyroscope located in the left hand unit. Figure \ref{fig:rotation_axis_sense2} shows the measured angular rate for such maneuvers. Notice how the first rotation is positive (the signal increases and then decreases), so, for the case of the left hand unit, the Y axis has the correct sense of rotation.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/gyro_axis_ID.png}
+\caption{Identification of the sense of rotation of the Y axis of the gyroscope in the left hand unit.}
+\label{fig:rotation_axis_sense1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/gyro_axis_ID_signal.eps}
+\caption{Angular rate signal gathered during maneuvers of identification of rotation.}
+\label{fig:rotation_axis_sense2}
+\end{figure}
+
+This procedure needs to be repeated for each one of the axis of the gyroscopes located in all the units. \\
+\indent Table \ref{tab:gyro_channels} shows the channels of all GaitWatch's gyroscopes.
+
+\begin{table}[H]
+\caption{List of Gaitwatch's gyroscopes and their associated channels.}
+	\centering
+		\begin{tabular}{|c|c|c|c|}\hline
+		\label{tab:gyro_channels}
+		Unit 				& Axis 	& Sense compensation 	& Channel 	\\ \hline
+		Left shank  & Y			& Yes (-1)						& 1					\\
+		Left thigh  & Y			& Yes (-1)						& 4					\\
+		Right shank & Y			& Yes (-1)						& 7					\\
+		Right thigh & Y			& Yes (-1)						& 10				\\
+		Left arm		& Y			& No  (+1)						& 13				\\
+		Left arm		& X			& Yes (-1)						& 14				\\
+		Right arm		& Y			& No  (+1)						& 15				\\
+		Right arm		& X			& Yes (-1)						& 16				\\
+		Trunk				& Z			& No	(+1)						& 17				\\
+		Trunk				& Y			& No	(+1)						& 18				\\	
+		Trunk				& X			& Yes	(-1)						& 19				\\ \hline
+		\end{tabular}
+\end{table}
+
+\subsection{Identification of Magnetometer's axes}
+\label{subsec:mag_ID}
+
+\indent \indent The data of the triaxial magnetometer embedded in the trunk unit are all contained in the same channel (channel 23). Each axis data has a different offset so it is easy to separate them. The axes offsets are +20000, 0 and -20000. Once we have separated the data, we need to identify which axis corresponds to each offset. To do so, we place the desired axis pointing upwards or downwards, turn the box more than 360 degrees and then we rotate it back. This maneuver should be repeated three of four times. Then, the corresponding signal should show a quasi-sinusoidal behavior and a point of vertical symmetry (the instant in which the sense of rotation is changed) as it is depicted in figure \ref{fig:mag_axis_ID}.\\\\
+\indent Table \ref{tab:mag_offsets} shows the offset corresponding to each axis.
+
+\begin{table}[H]
+\caption{Magnetometer's offsets and axes.}
+	\centering
+		\begin{tabular}{|c|c|c|}\hline
+		\label{tab:mag_offsets}
+		Unit		& Axis 	& Offset 	\\ \hline
+		Trunk		& X			& 0				\\ 
+		Trunk		& Y			& +20000	\\ 
+		Trunk		& Z			& -20000	\\ \hline
+		\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/mag_axis_ID.eps}
+\caption{Magnetic field signal gathered during maneuvers of Z axis identification.}
+\label{fig:mag_axis_ID}
+\end{figure}
+
+\section{Calibration of sensors}
+\label{sec:calibration}
+
+\indent \indent The next step in the initial configuration of the GaitWatch is to calibrate all its sensors. The main goal of the calibration process is to transform the raw data into meaningful physical units. 
+
+\subsection{Accelerometer calibration}
+\label{subsec:acc_calibration}
+
+\indent \indent The calibration of the accelerometers is divided in two parts according to the number of axes of the accelerometer. For the triaxial accelerometer included in the trunk unit (the box) we will use the ellipsoid fitting algorithm by Camps et al. \cite{camps_numerical_2009}. They present a theoretical and experimental steps of a method to compute gains, bias and non orthogonality factors of magnetometer and acce\-le\-ro\-me\-ter sensors. The calibration procedure involves arbitrary rotations of the MIMU, so the set of maneuvers to gather the necessary data is very simple.
+\begin{itemize}
+\item \textbf{Sensor Modeling}: The model of the sensor output is given by:
+    \begin{equation}
+    \left[
+      \begin{array}{c}
+        \mbox{v}_{\scriptsize \mbox{x}}(t) \\
+        \mbox{v}_{\scriptsize \mbox{y}}(t) \\
+        \mbox{v}_{\scriptsize \mbox{z}}(t) \\
+      \end{array}
+    \right]=\left[
+              \begin{array}{ccc}
+                \mbox{s}_{\scriptsize \mbox{x}} & 0 & 0 \\
+                0 & \mbox{s}_{\scriptsize \mbox{y}} & 0 \\
+                0 & 0 & \mbox{s}_{\scriptsize \mbox{z}} \\
+              \end{array}
+            \right]\left[
+                     \begin{array}{c}
+                       \mbox{m}_{\scriptsize \mbox{x}}(t) \\
+                       \mbox{m}_{\scriptsize \mbox{y}}(t) \\
+                       \mbox{m}_{\scriptsize \mbox{z}}(t) \\
+                     \end{array}
+                   \right]+\left[
+                             \begin{array}{c}
+                               \mbox{b}_{\scriptsize \mbox{x}} \\
+                               \mbox{b}_{\scriptsize \mbox{y}} \\
+                               \mbox{b}_{\scriptsize \mbox{z}} \\
+                             \end{array}
+                           \right]+\left[
+                                     \begin{array}{c}
+                                       \varepsilon_{\scriptsize \mbox{x}} \\
+                                       \varepsilon_{\scriptsize \mbox{y}} \\
+                                       \varepsilon_{\scriptsize \mbox{z}} \\
+                                     \end{array}
+                                   \right]
+    \label{eq:CampsModel}
+    \end{equation}
+    where $\mathbf{b}=(\mbox{b}_{\scriptsize \mbox{x}}, \mbox{b}_{\scriptsize \mbox{y}}, \mbox{b}_{\scriptsize \mbox{z}})^{T}$ represents the offset, $\mbox{s}_{\scriptsize \mbox{x}}$, $\mbox{s}_{\scriptsize \mbox{y}}$, $\mbox{s}_{\scriptsize \mbox{z}}$ are the sensor gains, $\mbox{m}_{\scriptsize \mbox{x}}(t)$, $\mbox{m}_{\scriptsize \mbox{y}}(t)$, $\mbox{m}_{\scriptsize \mbox{z}}(t)$ are the components of the actual magnetic field or gravity and $\varepsilon_{x}$, $\varepsilon_{y}$, $\varepsilon_{z}$ are the components of the noise for each axis. \\
+    \indent If we take into consideration the effects of non-orthogonality, then the sensor output is given by:
+    \begin{equation}
+    \left[
+      \begin{array}{c}
+        \mbox{v}_{\scriptsize \mbox{x}}(t) \\
+        \mbox{v}_{\scriptsize \mbox{y}}(t) \\
+        \mbox{v}_{\scriptsize \mbox{z}}(t) \\
+      \end{array}
+    \right]=\left[
+              \begin{array}{ccc}
+                \mbox{s}_{\scriptsize \mbox{xx}} & s_{\scriptsize \mbox{xy}} & s_{\scriptsize \mbox{xz}} \\
+                \mbox{s}_{\scriptsize \mbox{xy}} & s_{\scriptsize \mbox{yy}} & s_{\scriptsize \mbox{yz}} \\
+                \mbox{s}_{\scriptsize \mbox{xz}} & s_{\scriptsize \mbox{yz}} & s_{\scriptsize \mbox{zz}} \\
+              \end{array}
+            \right]\left[
+                     \begin{array}{c}
+                       \mbox{m}_{\scriptsize \mbox{x}}(t) \\
+                       \mbox{m}_{\scriptsize \mbox{y}}(t) \\
+                       \mbox{m}_{\scriptsize \mbox{z}}(t) \\
+                     \end{array}
+                   \right]+\left[
+                             \begin{array}{c}
+                               \mbox{b}_{\scriptsize \mbox{x}} \\
+                               \mbox{b}_{\scriptsize \mbox{y}} \\
+                               \mbox{b}_{\scriptsize \mbox{z}} \\
+                             \end{array}
+                           \right]+\left[
+                                     \begin{array}{c}
+                                       \varepsilon_{\scriptsize \mbox{x}} \\
+                                       \varepsilon_{\scriptsize \mbox{y}} \\
+                                       \varepsilon_{\scriptsize \mbox{z}} \\
+                                     \end{array}
+                                   \right]
+    \label{eq:CampsModel2}
+    \end{equation}
+    where $\mbox{s}_{ij}$ for $i\neq j$ represent the orthogonality errors between sensor axes $i$ and $j$.
+
+\item \textbf{Calibration Procedure}: Using the fact that the norm of the input vector $\mathbf{m}=[\mbox{m}_{\scriptsize \mbox{x}}(t)\quad \mbox{m}_{\scriptsize \mbox{y}}(t) \quad \mbox{m}_{\scriptsize \mbox{z}}(t)]^{T}$ is constant, the following relation is derived:
+    \begin{equation}
+    \|\mathbf{m}\|^{2}=\mbox{m}_{\scriptsize \mbox{x}}(t)^{2}+\mbox{m}_{\scriptsize \mbox{y}}(t)^{2}+\mbox{m}_{\scriptsize \mbox{z}}(t)^{2}
+    \label{eq:CampsGeneral}
+    \end{equation}
+    \begin{equation}
+    \|\mathbf{h}\|^{2}=\left(\frac{\mbox{v}_{\scriptsize \mbox{x}}(t)-\mbox{b}_{\scriptsize \mbox{x}}}{\mbox{s}_{\scriptsize \mbox{x}}}\right)^{2}+\left(\frac{\mbox{v}_{\scriptsize \mbox{y}}(t)-\mbox{b}_{\scriptsize \mbox{y}}}{\mbox{s}_{\scriptsize \mbox{y}}}\right)^{2}+\left(\frac{\mbox{v}_{\scriptsize \mbox{z}}(t)-\mbox{b}_{\scriptsize \mbox{z}}}{\mbox{s}_{\scriptsize \mbox{z}}}\right)^{2}
+    \label{eq:CampsEllip}
+    \end{equation}
+    Equation (\ref{eq:CampsEllip}) is the parametric equation of an ellipsoid with center $\mathbf{b}$ and semi-axes $\mbox{s}_{\scriptsize \mbox{x}}, \mbox{s}_{\scriptsize \mbox{y}}$ and $\mbox{s}_{\scriptsize \mbox{z}}$. Using the system of equations formed by the various measurements at times t, we estimate the parameters through non-linear least squares minimization of the error function
+    \begin{equation}
+    e_{\scriptsize \mbox{p}}(t)=\|\mathbf{m}\|^{2}-\left(\mathbf{v}(t)-\mathbf{b}\right)^{T}\left(\mbox{S}^{-1}\right)^{2}\left(\mathbf{v}(t)-\mathbf{b}\right)
+    \label{eq:CampsError}
+    \end{equation}
+    where
+    \begin{equation}
+    \mbox{S}^{-1}=\left[
+              \begin{array}{ccc}
+                1/\mbox{s}_{\scriptsize \mbox{xx}} & 1/\mbox{s}_{\scriptsize \mbox{xy}} & 1/\mbox{s}_{\scriptsize \mbox{xz}} \\
+                1/\mbox{s}_{\scriptsize \mbox{xy}} & 1/\mbox{s}_{\scriptsize \mbox{yy}} & 1/\mbox{s}_{\scriptsize \mbox{yz}} \\
+                1/\mbox{s}_{\scriptsize \mbox{xz}} & 1/\mbox{s}_{\scriptsize \mbox{yz}} & 1/\mbox{s}_{\scriptsize \mbox{zz}} \\
+              \end{array}
+            \right]
+    \label{eq:CampsS}
+    \end{equation}
+    The cost function $e_{\scriptsize \mbox{p}}(t)$ is quadratic, and is minimized iteratively by the \emph{Le\-ven\-berg\--Mar\-quardt} algorithm (LMA) \cite{Levenberg,Marquardt}.
+\end{itemize}
+
+Long story short, if the accelerometer is placed in multiple random quasi-static positions, the gathered data should ideally describe an sphere of radius equal to the magnitude of the gravity vector. \\
+\indent Therefore, the first calibration step is to gather the acceleration data which will be used to find the optimal calibration parameters. As it is said before, we need to place the unit containing the accelerometer in multiple random quasi-static positions. To do so, we put the box in a set of random positions trying to cover all the orientations. Since the transitions from one quasi-static position to other cause the accelerometer to measure linear acceleration which disrupt the gravity acceleration we can not just take every measured point but we need to apply an algorithm which is able to detect the quasi-static instants. \\
+Figure \ref{fig:acc_multiposition_signals} show the triaxial acceleration measured in each quasi-static position in addition to the undesired linear acceleration. This figure also shows the output of the quasi-static instant detection algorithm. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/acc_multiposition_signals.eps}
+\caption{Acceleration gathered during quasi-static positions and output of the detection algorithm}
+\label{fig:acc_multiposition_signals}
+\end{figure}
+
+If we plot the detected quasi-static accelerations in 3D, they should cover the locus of a sphere as it is shown in figure \ref{fig:acc_multiposition_3D}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/acc_multiposition_3D.eps}
+\caption{3D representation of acceleration gathered during quasi-static positions.}
+\label{fig:acc_multiposition_3D}
+\end{figure}
+
+We then feed the algorithm with these data and the calibration parameters are found. Equation \ref{eq:trunk_acc_params} shows the estimated calibration parameters for the trunk triaxial accelerometer.
+
+\begin{gather}
+\label{eq:trunk_acc_params}
+S = \left[\begin{array}{ccc}
+		255.77 						& -1.47\cdot10^{-5} & -8.71\cdot10^{-6} \\
+		-1.47\cdot10^{-5}	&	266,07						&	-4,02\cdot10^{-7} \\
+		-8,71\cdot10^{-6}	& -4,02\cdot10^{-7}	& 259,54 \\
+		\end{array}\right] \\ \nonumber
+\mathbf{b} = \left[-10.36\quad 3.01\quad 15.91\right]
+\end{gather}
+
+These parameters are then plugged in the following equation to obtain the calibrated triaxial acceleration:
+
+\begin{equation}
+\label{eq:cal_acceleration}
+\mathbf{a}_{cal}=S^{-1}(\mathbf{a}_{raw}-\mathbf{b})
+\end{equation}
+
+where $\mathbf{a}_{cal}$ is a three dimensional vector containing the calibrated acceleration, S is the computed orthogonality matrix, $\mathbf{a}_{raw}$ is the three dimensional vector containing the raw acceleration and $\mathbf{b}$ is the computed triaxial bias vector.
+
+Figure \ref{fig:acc_multiposition_cal_3D_4POV} shows the calibrated quasi-static accelerations. Notice how the points define now a sphere centered in the origin with a radius of 1(g).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/acc_multiposition_cal_3D_4POV.eps}
+\caption{3D representation of calibrated quasi-static positions.}
+\label{fig:acc_multiposition_cal_3D_4POV}
+\end{figure}
+
+For the biaxial accelerometer we could adapt the method aforementioned to two dimensions. However, the calibration maneuvers would be much more complicated since we would need to lock the unit including the accelerometer in the XZ plane and then describe a complete slow rotation to gather the quasi-static positions. \\
+
+\indent We opted to carry out a single-axis calibration procedure which only requires to gather data from two positions for each axis. This procedure is very simple; we first set the desired axis parallel to the gravity vector and leave it in that position for a couple of seconds and we then turn it so it is anti-parallel to the gravity vector and leave it static again for another two seconds. Proceeding this way, we know the raw values corresponding to +1g and -1g respectively. Since the accelerometers included in GaitWatch's units are linear, we can then find the calibration equation in a very simple way. The calibration equation is defined as follows,
+
+\begin{equation}
+\label{eq:acc_1D_cal_equation}
+a_{cal} = k\cdot a_{raw} + b
+\end{equation}
+
+where $a_{cal}$ is the calibrated acceleration, $a_{raw}$ is the raw acceleration, $k$ is the scale factor and $b$ is the bias. If we substitute the two gathered values we would have the following system of equations from which it is straight forward to find the values of $k$ and $b$,
+
+\begin{gather}
+\label{eq:acc_1D_cal_system}
+1 = k\cdot a_{raw,+} + b \\ \nonumber
+-1 = k\cdot a_{raw,-} + b
+\end{gather}
+
+where $a_{raw,+}$ and $a_{raw,-}$ are the gathered raw accelerations in the parallel and anti-parallel positions respectively. \\
+
+\indent The units placed on the shanks and the thighs contain a biaxial accelerometer (X,Z) so we can put the unit in the four required positions (two for each axis) and then apply the quasi-static positions detector to extract the values in these positions. \\
+
+\indent Figure \ref{fig:acc_raw_4_positions} shows the gathered raw acceleration in such four positions and the extracted quasi-static values for the accelerometer in the left shank unit. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/acc_raw_4_positions.eps}
+\caption{Raw acceleration gathered when both axes X and Z are placed parallel and anti-parallel to the gravity vector.}
+\label{fig:acc_raw_4_positions}
+\end{figure}
+
+Using this procedure the calibration parameters are found for all the units. Table \ref{tab:acc2D_cal_params} shows them. 
+
+\begin{table}[H]\footnotesize
+\caption{Calibration parameters of biaxial accelerometers.}
+	\centering
+		\begin{tabular}{|c|c|c|c|}\hline
+		\label{tab:acc2D_cal_params}
+		Unit				& Axis 	& Scale factor 	& Bias 	\\ \hline
+		Left shank 	& X			& 4.40e-04			& -5.48 \\
+		Left shank 	& Z			& 4.50e-04			& -5.39 \\
+		Left thigh	& X			& 4.69e-04			& -5.80 \\
+		Left thigh	& Z			& 4.73e-04			& -5.66 \\
+		Right shank & X			& 4.42e-04			& -5.55 \\
+		Right shank & Z			& 4.79e-04			& -5.69 \\
+		Right thigh & X			& 4.40e-04			& -5.53 \\
+		Right thigh & Z			& 4.44e-04			& -5.35 \\ \hline
+		\end{tabular}
+\end{table}
+
+\subsection{Magnetometer calibration}
+\label{subsec:mag_calibration}
+
+\indent \indent The calibration of the triaxial magnetometer is also based on the algorithm by Camps et al. used for the accelerometer calibration. In this case, the only things we need to change are the data gathering maneuvers and the value of the magnitude of the reference vector (which in this case is the Earth's magnetic field vector).\\
+
+\indent The maneuvers are much simpler in this case since the magnetometer is not affected by the linear acceleration. Therefore, we can freely move the magnetometer at any speed trying to cover the most possible space. Figure \ref{fig:mag_raw_3D} shows the 3D representation of the raw magnetic field measured carrying these maneuvers. 
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/trunk_rawMag3D_4POV.eps}
+\caption{Raw magnetic field gathered by randomly moving the trunk unit containing the magnetometer.}
+\label{fig:mag_raw_3D}
+\end{figure}
+
+Ideally, these data should describe an sphere centered in the origin with a radius given by the magnitude of the local Earth's magnetic field. By checking the Magnetic field calculator from the American National Geophysical Data Center \cite{center_ngdc}, we can obtain the value for Munich, which is 0.482352 Gauss. We then feed the algorithm with the data shown in figure \ref{fig:mag_raw_3D} and the calibration parameters are computed. Analogously to the accelerometer, the calibrated magnetic field is found applying the following equation,
+
+\begin{equation}
+\label{eq:cal_mag}
+\mathbf{h}_{cal}=S^{-1}(\mathbf{h}_{raw}-\mathbf{b})
+\end{equation}
+
+where again $\mathbf{h}_{cal}$ is a three dimensional vector containing the calibrated magnetic field, S is the computed orthogonality matrix, $\mathbf{h}_{raw}$ is the three dimensional vector containing the raw magnetic field and $\mathbf{b}$ is the computed triaxial bias vector. If we apply this equation to the raw values used to compute we can see how now they define a sphere centered in 0 and with radius 0.482352 Gauss (figure \ref{fig:mag_cal_3D}).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.55\textwidth]{figures/trunk_calMag3D_4POV.eps}
+\caption{Calibrated magnetic field gathered by randomly moving the trunk unit containing the magnetometer.}
+\label{fig:mag_cal_3D}
+\end{figure}
+
+Figure \ref{fig:trunk_rawVsCal} shows the raw and calibrated signals for all the three axes of the magnetometer included in the trunk's unit.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\textwidth]{figures/trunk_rawVsCal.eps}
+\caption{Calibrated magnetic field vs. raw magnetic field gathered by randomly moving the trunk unit containing the magnetometer.}
+\label{fig:trunk_rawVsCal}
+\end{figure}
+
+The calibration parameters of the magnetometer in the trunk unit are listed below.
+
+\begin{gather}
+\label{eq:mag_cal_params}
+S = \left[\begin{array}{ccc}
+		1.86\cdot10^{3} 	& 1.04\cdot10^{-5} & 5.17\cdot10^{-6} \\
+		1.04\cdot10^{-5}	&	1.73\cdot10^{3}	 & 5.95\cdot10^{-6} \\
+		5.17\cdot10^{-6}	& 5.95\cdot10^{-6} & 1.66\cdot10^{3}  \\
+		\end{array}\right] \\ \nonumber
+\mathbf{b} = \left[-196.66\quad 205.59\quad 129.34\right]
+\end{gather}
+
+\subsection{Gyroscope calibration}
+\label{subsec:gyro_calibration}
+
+\indent \indent The gyroscope is the last remaining kind of sensor to be calibrated. The most accurate way to calibrate a gyroscope is to subject it to different known rotation speeds and then associating them to the raw gathered values to obtain a calibration equation. If a variable rate table is not available, we can use simpler equipment and subject the gyroscope to known rotations instead of known angular rates. To calibrate each one of the axis we need to build a device like the one shown in figure \ref{fig:gyro_turn_device}. This device should allow the rotation of the unit containing the gyroscope around 180° (other configurations of the device allowing different known rotations are also valid). 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/gyro_turn_device}
+\caption{Gyroscope calibration device.}
+\label{fig:gyro_turn_device}
+\end{figure}
+
+Once the calibration device is ready, the calibration maneuvers are not complicated. Each of the units should be attached to the surface of the device and then we need to carry out a set of 180° rotations (at least 5). \\
+
+\indent To compute the calibration parameters we are going to use the fact that the integration of the angular speed leads to an angle displacement. Therefore, if we subject the gyroscope to a known rotation (180° degrees in this case), we can apply the following equations to find the scale factor,
+
+\begin{gather}
+\label{eq:gyro_cal}
+u_{raw} = k\cdot \omega + b \\
+\omega = \frac{u_{raw}-b}{k} \\
+u_{raw,corr} = u_{raw}-b \\
+\int{\omega dt} = \frac{\int{u_{raw,corr} dt}}{k} 
+\Omega = \int{\omega dt} \\
+\end{gather}
+
+where $u_{raw}$ is the raw gathered angular rate, $\omega$ is the actual angular rate (in physical units), $k$ is the scale factor and $b$ is the bias. In this case $\Omega = 180^{\circ}$ and $\theta$ is the integrated raw gathered angular rate (corrected in bias) during the rotation of 180°. We can see that prior to the integration of the raw angular rate we need to subtract the bias. The bias is easily found by leaving the units in a static position before starting the rotation and then visually inspecting the gathered signal. To take into account the effects of noise, we compute the mode of all the samples gathered while the sensors are static. \\
+
+From a practical point of view

@@ -1,0 +1,10 @@
+\chapter{Computation of Orientation}
+A way to compute the rate of change of the orientation of the Earth frame relative to the sensor frame is to compute the quaternion derivative $^{S}_{E}\dot{\textbf{q}}$, which is defined as follows,
+\begin{equation}
+\label{eq:quat_deriv}
+^{S}_{E}\dot{\textbf{q}} = \frac{1}{2}^{S}_{E}\textbf{q}\otimes
+\end{equation}
+where $^{S}_{E}\textbf{q}$ is the quaternion determining the orientation of the Earth frame relative to the sensor frame, $^{S}\textbf{\omega} = \left[0\quad\omega_{x}\quad\omega_{y}\quad\omega_{z}\right]$ is the measured angular rate vector in the sensor frame in quaternion form, and $\otimes$ is the quaternion (or Hamiltonian) product. \\
+\indent Therefore, we can
+\label{ch:orientationcomp}
+

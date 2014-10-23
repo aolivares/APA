@@ -1,0 +1,162 @@
+%------------------------------------------------------------------------------%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DISEÑO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------------------------------------------%
+
+\NeedsTeXFormat{LaTeX2e}
+\documentclass[12pt]{book}
+
+\usepackage{a4}
+\usepackage[Lenny]{fncychap}    % Estilos para capitulos
+\usepackage{fancyhdr}           % Estilos para cabeceras
+\usepackage[english]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{epsfig}
+\usepackage{subfig}
+\usepackage[font={small,it}]{caption}
+\usepackage{keyval}
+\usepackage{graphicx}
+\usepackage{float}              % Para poner las imags en cualquier sitio
+\usepackage{lettrine}						% Para poner la primera letra de cada capítulo y/o párrafo en grande.
+\usepackage{color}
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+
+\usepackage[numbers,sort&compress,comma]{natbib}	% Modo de poner la bibliografía
+\usepackage{verbatim}      %  \begin{comment}...\end{comment}
+\usepackage{subeqnarray}   % equationarray with numbers 1a, 1b, ...
+\usepackage{bbm}           % Para símbolo tipo números reales. Ej: \bbm{R}
+\usepackage{longtable}     % Para tablas largas de más de una página
+\usepackage{psfrag}        % Para cambiar fragmentos de text en .eps por otro en latex
+\usepackage{pifont}        % Para otros símbolos
+\usepackage{fancybox}      % Para encuadrar texto en recuadros
+\usepackage{amsmath}       % Mejora la calidad de las formulas
+%\usepackage{amsfonts}
+\usepackage{kpfonts}
+\usepackage[hyphens]{url}
+\usepackage[linktocpage]{hyperref}      % Para enlaces de hipertexto
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{fancyvrb}
+\usepackage{enumerate}
+\usepackage{wrapfig}
+\usepackage{eurosym}
+\usepackage{multicol}
+\usepackage{pifont}
+\usepackage{epstopdf}
+\usepackage{mathtools}
+
+
+\setcounter{tocdepth}{3}             % toc = table of contents. Para definir niveles del índice
+\setcounter{secnumdepth}{3}          % Hasta cuándo se enumeran los caps, seccs, etc
+\setlength{\topmargin}{-1.1cm}        % margen por arriba
+\setlength{\parskip}{0.3cm}          % Espacio entre parrafos
+\setlength{\textwidth}{15.5cm}       % Ancho del área imprimible	
+\setlength{\evensidemargin}{-0.1cm}  % Margen izdo en páginas pares
+\setlength{\oddsidemargin}{0.6cm}    % Margen izdo en páginas impares
+                                     % evensidemargin = -oddsidemargin !!!
+
+\setlength{\headsep}{1.0cm}
+\setlength{\headheight}{3ex}
+\setlength{\footnotesep}{5mm}
+
+\renewcommand{\LettrineFontHook}{\color[gray]{0.5}} % Pone la letrina en gris.
+
+
+
+%\setlength{\mathindent}{1.0cm}       % Controla el espacio entre margen y ec si no está centrada
+
+%%% Definitionen für Fancy Headings
+%\renewcommand{\baselinestretch}{3mm}
+%\renewcommand{\labelenumi}{\roman{enumi}.}
+%\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}{}}
+
+
+%\renewcommand{\listtablename}{Índice de tablas}
+%\renewcommand{\tablename}{Tabla}
+
+
+\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl\nouppercase\rightmark}}
+\rhead[\fancyplain{}{\sl\nouppercase\leftmark}]{\fancyplain{}{\thepage}}
+\cfoot{}
+\pagestyle{fancyplain}  		% normale Kopfzeile; ohne Seitenzahl: empty
+
+% Formato de capitulos
+\ChTitleVar{\sf\Huge} % Tamaño de la letra del nombre del cap
+\ChTitleAsIs
+
+
+%%% Comando para quitar encabezado y pie de las pag en blanco
+\newcommand{\clearemptydoublepage}
+  {\newpage{\pagestyle{empty}\cleardoublepage}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\x}{\mathbf{x}}
+
+%%% Abstract
+\newenvironment{abstract}
+  {\begin{center}
+   \begin{minipage}{0.8\textwidth}
+   \slshape}
+  {\end{minipage}
+   \end{center}}
+
+
+\typeout{ }
+\typeout{----------------------------------------------------------------------}
+\typeout{ }
+
+
+%------------------------------------------------------------------------------%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  DOCUMENTO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%------------------------------------------------------------------------------%
+
+\begin{document}
+
+  \include{cover}						% Incluímos la portada en español
+  \clearemptydoublepage	
+	
+  \pagenumbering{arabic}     % Numeración de páginas con num romanos
+  %\setcounter{page}{1}      % Establece la siguiente página como la 1
+  \addtocontents{toc}{\protect\sloppy}
+  %\clearemptydoublepage
+  \tableofcontents          % Pone índice
+  %\pagenumbering{arabic}    % Numeración de páginas con num normales (árabes)
+  %\setcounter{page}{1}      % Establece la siguiente página como la 1
+  \addtocontents{lof}{\protect\sloppy}
+  \clearpage
+  \listoffigures						% Crea la lista de figuras
+	\addtocontents{lot}{\protect\sloppy}
+  \clearemptydoublepage
+	\listoftables							% Crea la lista de tablas
+  \clearemptydoublepage
+  %%% Capitulos
+	\clearemptydoublepage
+  \include{gaitwatch}
+  \clearemptydoublepage
+  \include{initialconf}
+	\clearemptydoublepage
+  \include{orientationcomp}
+  %\include{introduction}
+
+  %\appendix
+  %\include{HWappendix}
+  %\include{FWappendix}
+  %\include{phoneGatherAppendix}
+
+  % Bibliografia
+  %\renewcommand{\bibname}{Bibliografía}		% Nombre de la bibliografía
+  %\clearemptydoublepage
+  %\phantomsection
+  \addcontentsline{toc}{chapter}{\numberline{}\bibname}% La añade al índice
+  \bibliographystyle{unsrt}
+  \sloppy
+  \bibliography{references}
+  
+	\clearemptydoublepage
+
+	
+
+\end{document}

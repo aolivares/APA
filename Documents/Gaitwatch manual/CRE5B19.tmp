@@ -1,0 +1,14 @@
+\chapter{Initial configuration}
+\label{ch:initial_conf}
+\section{Identification of sensor's axes}
+\indent The first step that needs to be carried out is to determine the orientation of the axes of the body frame that we wish to use. One of the most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand and it is shown in figure \ref{fig:bodyAxes}. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{figures/bodyAxes}
+\caption{Definition of the desired body axes (a). Convention for the orientation of the axis rotation (b).}
+\label{fig:bodyAxes}
+\end{figure}
+
+
+identify the local orientation of the axes of the sensor boards. We need to do this in order to be able to transform the sensor frame into one of the standard navigation frames. Two standard navigation frames are usually employed when representing the orientation of a body in space, the North-East-Down (NED) and the East-North-Up (ENU) frames.

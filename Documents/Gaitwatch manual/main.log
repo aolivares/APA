@@ -1,0 +1,2821 @@
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9) (preloaded format=pdflatex 2013.10.8)  13 DEC 2013 16:27
+entering extended mode
+**main.tex
+
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2012-05-30, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2012-05-30, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\book.cls"
+Document Class: book 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\bk12.clo"
+File: bk12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@chapter=\count80
+\c@section=\count81
+\c@subsection=\count82
+\c@subsubsection=\count83
+\c@paragraph=\count84
+\c@subparagraph=\count85
+\c@figure=\count86
+\c@table=\count87
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ntgclass\a4.sty"
+Package: a4 2004/04/15 v1.2g A4 based page layout
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fncychap\fncychap.sty"
+Package: fncychap 2007/07/30 v1.34 LaTeX package (Revised chapters)
+\RW=\skip43
+\mylen=\skip44
+\myhi=\skip45
+\px=\skip46
+\py=\skip47
+\pyy=\skip48
+\pxx=\skip49
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
+\fancy@headwidth=\skip50
+\f@ncyO@elh=\skip51
+\f@ncyO@erh=\skip52
+\f@ncyO@olh=\skip53
+\f@ncyO@orh=\skip54
+\f@ncyO@elf=\skip55
+\f@ncyO@erf=\skip56
+\f@ncyO@olf=\skip57
+\f@ncyO@orf=\skip58
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2008/07/08 v3.8m The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\english.ldf"
+Language: english 2005/03/30 v3.3o English support from the babel system
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2008/07/08 v3.8m Babel common definitions
+\babel@savecnt=\count88
+\U@D=\dimen103
+)
+\l@canadian = a dialect from \language\l@american 
+\l@australian = a dialect from \language\l@british 
+\l@newzealand = a dialect from \language\l@british 
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\inputenc.sty"
+Package: inputenc 2008/03/30 v1.1d Input encoding file
+\inpenc@prehook=\toks14
+\inpenc@posthook=\toks15
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\latin1.def"
+File: latin1.def 2008/03/30 v1.1d Input encoding file
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\epsfig.sty"
+Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count89
+))
+\Gin@req@height=\dimen104
+\Gin@req@width=\dimen105
+)
+\epsfxsize=\dimen106
+\epsfysize=\dimen107
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subfig\subfig.sty"
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption.sty"
+Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\caption3.sty"
+Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 57.
+\captionmargin=\dimen108
+\captionmargin@=\dimen109
+\captionwidth=\dimen110
+\caption@tempdima=\dimen111
+\caption@indent=\dimen112
+\caption@parindent=\dimen113
+\caption@hangindent=\dimen114
+)
+\c@ContinuedFloat=\count90
+)
+\c@KVtest=\count91
+\sf@farskip=\skip59
+\sf@captopadj=\dimen115
+\sf@capskip=\skip60
+\sf@nearskip=\skip61
+\c@subfigure=\count92
+\c@subfigure@save=\count93
+\c@lofdepth=\count94
+\c@subtable=\count95
+\c@subtable@save=\count96
+\c@lotdepth=\count97
+\sf@top=\skip62
+\sf@bottom=\skip63
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count98
+\float@exts=\toks17
+\float@box=\box26
+\@float@everytoks=\toks18
+\@floatcapt=\box27
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lettrine\lettrine.sty"
+File: lettrine.sty 2013/03/14 v1.64 (Daniel Flipo)
+\c@DefaultLines=\count99
+\DefaultFindent=\dimen116
+\DefaultNindent=\dimen117
+\DefaultSlope=\dimen118
+\L@lbox=\box28
+\L@tbox=\box29
+\c@L@lines=\count100
+\L@Pindent=\dimen119
+\L@Findent=\dimen120
+\L@Nindent=\dimen121
+\L@lraise=\dimen122
+\L@first=\dimen123
+\L@next=\dimen124
+\L@slope=\dimen125
+\L@height=\dimen126
+\LettrineWidth=\dimen127
+
+Loading lettrine.cfg
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\lettrine\lettrine.cfg"))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\color.sty"
+Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package color Info: Driver file: pdftex.def on input line 130.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Package option `usenames' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\colortbl\colortbl.sty"
+Package: colortbl 2012/02/13 v1.0a Color table columns (DPC)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen128
+\extrarowheight=\dimen129
+\NC@list=\toks19
+\extratabsurround=\skip64
+\backup@length=\skip65
+)
+\everycr=\toks20
+\minrowclearance=\skip66
+)
+LaTeX Info: Redefining \color on input line 702.
+\rownum=\count101
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\dvipsnam.def"
+File: dvipsnam.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\xcolor\svgnam.def"
+File: svgnam.def 2007/01/21 v2.11 Predefined colors according to SVG 1.1 (UK)
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
+Package: natbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip67
+\bibsep=\skip68
+LaTeX Info: Redefining \cite on input line 694.
+\c@NAT@ctr=\count102
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\verbatim.sty"
+Package: verbatim 2003/08/22 v1.5q LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks21
+\verbatim@line=\toks22
+\verbatim@in@stream=\read1
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\subeqnarray\subeqnarray.sty"
+Package: subeqnarray 2004/04/15 v2.1c subeqnarray package
+\c@subequation=\count103
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\bbm\bbm.sty"
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\longtable.sty"
+Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
+\LTleft=\skip69
+\LTright=\skip70
+\LTpre=\skip71
+\LTpost=\skip72
+\LTchunksize=\count104
+\LTcapwidth=\dimen130
+\LT@head=\box30
+\LT@firsthead=\box31
+\LT@foot=\box32
+\LT@lastfoot=\box33
+\LT@cols=\count105
+\LT@rows=\count106
+\c@LT@tables=\count107
+\c@LT@chunks=\count108
+\LT@p@ftn=\toks23
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psfrag\psfrag.sty"
+Package: psfrag 1998/04/11 v3.04 PSfrag (MCG)
+\pfg@pcount=\count109
+\pfg@scount=\count110
+\pfg@temp=\write3
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\pifont.sty"
+Package: pifont 2005/04/12 PSNFSS-v9.2a Pi font support (SPQR) 
+LaTeX Font Info:    Try loading font information for U+pzd on input line 63.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\upzd.fd"
+File: upzd.fd 2001/06/04 font definitions for U/pzd.
+)
+LaTeX Font Info:    Try loading font information for U+psy on input line 64.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\upsy.fd"
+File: upsy.fd 2001/06/04 font definitions for U/psy.
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancybox\fancybox.sty"
+Package: fancybox 2010/05/15 1.4
+
+Style option: `fancybox' v1.4 <2010/05/15> (tvz)
+\@fancybox=\box34
+\shadowsize=\dimen131
+\@Sbox=\box35
+\do@VerbBox=\toks24
+\the@fancyput=\toks25
+\this@fancyput=\toks26
+\EndVerbatimTokens=\toks27
+\Verbatim@Outfile=\write4
+\Verbatim@Infile=\read2
+) ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsmath.sty"
+Package: amsmath 2013/01/14 v2.14 AMS math features
+\@mathmargin=\skip73
+
+For additional information on amsmath, use the `?' option.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amstext.sty"
+Package: amstext 2000/06/29 v2.01
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsgen.sty"
+File: amsgen.sty 1999/11/30 v2.0
+\@emptytoks=\toks28
+\ex@=\dimen132
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsbsy.sty"
+Package: amsbsy 1999/11/29 v1.2d
+\pmbraise@=\dimen133
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsmath\amsopn.sty"
+Package: amsopn 1999/12/14 v2.01 operator names
+)
+\inf@bad=\count111
+LaTeX Info: Redefining \frac on input line 210.
+\uproot@=\count112
+\leftroot@=\count113
+LaTeX Info: Redefining \overline on input line 306.
+\classnum@=\count114
+\DOTSCASE@=\count115
+LaTeX Info: Redefining \ldots on input line 378.
+LaTeX Info: Redefining \dots on input line 381.
+LaTeX Info: Redefining \cdots on input line 466.
+\Mathstrutbox@=\box36
+\strutbox@=\box37
+\big@size=\dimen134
+LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+\macc@depth=\count116
+\c@MaxMatrixCols=\count117
+\dotsspace@=\muskip10
+\c@parentequation=\count118
+\dspbrk@lvl=\count119
+\tag@help=\toks29
+\row@=\count120
+\column@=\count121
+\maxfields@=\count122
+\andhelp@=\toks30
+\eqnshift@=\dimen135
+\alignsep@=\dimen136
+\tagshift@=\dimen137
+\tagwidth@=\dimen138
+\totwidth@=\dimen139
+\lineht@=\dimen140
+\@envbody=\toks31
+\multlinegap=\skip74
+\multlinetaggap=\skip75
+\mathdisplay@stack=\toks32
+LaTeX Info: Redefining \[ on input line 2665.
+LaTeX Info: Redefining \] on input line 2666.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\kpfonts.sty"
+Package: kpfonts  2010/08/20 v3.31
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\textcomp.sty"
+Package: textcomp 2005/09/27 v1.99g Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
+Package textcomp Info: Changing ? sub-encoding to TS1/0 on input line 72.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1enc.def"
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 266.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 281.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 282.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 283.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 284.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 285.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 286.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 287.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 288.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 289.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 290.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 291.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 292.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 293.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 294.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 295.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 296.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 297.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 298.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 299.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 300.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 301.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 302.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 303.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 304.
+
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 305.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 306.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 307.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 308.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 309.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 310.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 311.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 312.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 313.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 314.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 315.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 316.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 317.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 318.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 319.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 320.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 321.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 322.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 323.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 324.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 325.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 326.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 327.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 328.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 329.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 330.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 331.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 332.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 333.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 334.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 335.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 336.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 337.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 338.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
+)
+\c@mv@rm=\count123
+\c@mv@boldrm=\count124
+\c@mv@sf=\count125
+\c@mv@boldsf=\count126
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `rm'
+(Font)                  OT1/cmr/m/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `boldrm'
+(Font)                  OT1/cmr/m/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `sf'
+(Font)                  OT1/cmr/m/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `boldsf'
+(Font)                  OT1/cmr/m/n --> OT1/jkp/m/n on input line 354.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/b/n on input line 355.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `rm'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/m/n on input line 357.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `boldrm'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/b/n on input line 358.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `sf'
+(Font)                  OT1/jkp/m/n --> OT1/jkpss/m/n on input line 359.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `boldsf'
+(Font)                  OT1/jkp/m/n --> OT1/jkpss/b/n on input line 360.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 364.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/b/n on input line 365.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `rm'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/m/n on input line 366.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `boldrm'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/b/n on input line 367.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `sf'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/m/n on input line 368.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `boldsf'
+(Font)                  OT1/jkp/m/n --> OT1/jkp/b/n on input line 369.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `rm'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `boldrm'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `sf'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `boldsf'
+(Font)                  OT1/cmr/bx/n --> OT1/jkp/b/n on input line 378.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/jkp/b/n --> OT1/jkp/b/n on input line 379.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `rm'
+(Font)                  OT1/jkp/b/n --> OT1/jkp/b/n on input line 381.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `boldrm'
+(Font)                  OT1/jkp/b/n --> OT1/jkp/b/n on input line 382.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `sf'
+(Font)                  OT1/jkp/b/n --> OT1/jkpss/b/n on input line 383.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `boldsf'
+(Font)                  OT1/jkp/b/n --> OT1/jkpss/b/n on input line 384.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `rm'
+(Font)                  OT1/cmr/m/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `boldrm'
+(Font)                  OT1/cmr/m/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `sf'
+(Font)                  OT1/cmr/m/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `boldsf'
+(Font)                  OT1/cmr/m/it --> OT1/jkp/m/it on input line 390.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/jkp/m/it --> OT1/jkp/b/it on input line 391.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `rm'
+(Font)                  OT1/jkp/m/it --> OT1/jkp/m/it on input line 393.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `boldrm'
+(Font)                  OT1/jkp/m/it --> OT1/jkp/b/it on input line 394.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `sf'
+(Font)                  OT1/jkp/m/it --> OT1/jkpss/m/it on input line 395.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `boldsf'
+(Font)                  OT1/jkp/m/it --> OT1/jkpss/b/it on input line 396.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `rm'
+(Font)                  OT1/cmss/m/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `boldrm'
+(Font)                  OT1/cmss/m/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `sf'
+(Font)                  OT1/cmss/m/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `boldsf'
+(Font)                  OT1/cmss/m/n --> OT1/jkpss/m/n on input line 401.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/jkpss/m/n --> OT1/jkpss/b/n on input line 402.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `rm'
+(Font)                  OT1/jkpss/m/n --> OT1/jkpss/m/n on input line 403.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `boldrm'
+(Font)                  OT1/jkpss/m/n --> OT1/jkpss/b/n on input line 404.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `sf'
+(Font)                  OT1/jkpss/m/n --> OT1/jkpss/m/n on input line 405.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `boldsf'
+(Font)                  OT1/jkpss/m/n --> OT1/jkpss/b/n on input line 406.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `rm'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `boldrm'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `sf'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `boldsf'
+(Font)                  OT1/cmtt/m/n --> OT1/jkptt/m/n on input line 410.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/jkptt/m/n --> OT1/jkptt/b/n on input line 411.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `rm'
+(Font)                  OT1/jkptt/m/n --> OT1/jkptt/m/n on input line 412.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `boldrm'
+(Font)                  OT1/jkptt/m/n --> OT1/jkptt/b/n on input line 413.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `sf'
+(Font)                  OT1/jkptt/m/n --> OT1/jkptt/m/n on input line 414.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `boldsf'
+(Font)                  OT1/jkptt/m/n --> OT1/jkptt/b/n on input line 415.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `rm'
+(Font)                  OML/cmm/m/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `boldrm'
+(Font)                  OML/cmm/m/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `sf'
+(Font)                  OML/cmm/m/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `boldsf'
+(Font)                  OML/cmm/m/it --> OML/jkp/m/it on input line 423.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/jkp/m/it --> OML/jkp/bx/it on input line 424.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `rm'
+(Font)                  OML/jkp/m/it --> OML/jkp/m/it on input line 426.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `boldrm'
+(Font)                  OML/jkp/m/it --> OML/jkp/bx/it on input line 427.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `sf'
+(Font)                  OML/jkp/m/it --> OML/jkpss/m/it on input line 428.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `boldsf'
+(Font)                  OML/jkp/m/it --> OML/jkpss/bx/it on input line 429.
+\symlettersA=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `bold'
+(Font)                  U/jkpmia/m/it --> U/jkpmia/bx/it on input line 439.
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `rm'
+(Font)                  U/jkpmia/m/it --> U/jkpmia/m/it on input line 441.
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `boldrm'
+(Font)                  U/jkpmia/m/it --> U/jkpmia/bx/it on input line 442.
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `sf'
+(Font)                  U/jkpmia/m/it --> U/jkpssmia/m/it on input line 443.
+LaTeX Font Info:    Overwriting symbol font `lettersA' in version `boldsf'
+(Font)                  U/jkpmia/m/it --> U/jkpssmia/bx/it on input line 444.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `rm'
+(Font)                  OMS/cmsy/m/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `boldrm'
+(Font)                  OMS/cmsy/m/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `sf'
+(Font)                  OMS/cmsy/m/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `boldsf'
+(Font)                  OMS/cmsy/m/n --> OMS/jkp/m/n on input line 456.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/jkp/m/n --> OMS/jkp/bx/n on input line 457.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `rm'
+(Font)                  OMS/jkp/m/n --> OMS/jkp/m/n on input line 459.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `boldrm'
+(Font)                  OMS/jkp/m/n --> OMS/jkp/bx/n on input line 460.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `sf'
+(Font)                  OMS/jkp/m/n --> OMS/jkp/m/n on input line 461.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `boldsf'
+(Font)                  OMS/jkp/m/n --> OMS/jkp/bx/n on input line 462.
+\symAMSa=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
+(Font)                  U/jkpsya/m/n --> U/jkpsya/bx/n on input line 476.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `rm'
+(Font)                  U/jkpsya/m/n --> U/jkpsya/m/n on input line 477.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `boldrm'
+(Font)                  U/jkpsya/m/n --> U/jkpsya/bx/n on input line 478.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `sf'
+(Font)                  U/jkpsya/m/n --> U/jkpsya/m/n on input line 479.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `boldsf'
+(Font)                  U/jkpsya/m/n --> U/jkpsya/bx/n on input line 480.
+\symAMSb=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
+(Font)                  U/jkpsyb/m/n --> U/jkpsyb/bx/n on input line 529.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `rm'
+(Font)                  U/jkpsyb/m/n --> U/jkpsyb/m/n on input line 530.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `boldrm'
+(Font)                  U/jkpsyb/m/n --> U/jkpsyb/bx/n on input line 531.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `sf'
+(Font)                  U/jkpsyb/m/n --> U/jkpsssyb/m/n on input line 532.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `boldsf'
+(Font)                  U/jkpsyb/m/n --> U/jkpsssyb/bx/n on input line 533.
+\symsymbolsC=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `bold'
+(Font)                  U/jkpsyc/m/n --> U/jkpsyc/bx/n on input line 549.
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `rm'
+(Font)                  U/jkpsyc/m/n --> U/jkpsyc/m/n on input line 551.
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `boldrm'
+(Font)                  U/jkpsyc/m/n --> U/jkpsyc/bx/n on input line 552.
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `sf'
+(Font)                  U/jkpsyc/m/n --> U/jkpsyc/m/n on input line 553.
+LaTeX Font Info:    Overwriting symbol font `symbolsC' in version `boldsf'
+(Font)                  U/jkpsyc/m/n --> U/jkpsyc/bx/n on input line 554.
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `bold'
+(Font)                  U/jkpsyd/m/n --> U/jkpsyd/bx/n on input line 583.
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `rm'
+(Font)                  U/jkpsyd/m/n --> U/jkpsyd/m/n on input line 585.
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `boldrm'
+(Font)                  U/jkpsyd/m/n --> U/jkpsyd/bx/n on input line 586.
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `sf'
+(Font)                  U/jkpsyd/m/n --> U/jkpsyd/m/n on input line 587.
+LaTeX Font Info:    Overwriting math alphabet `\mathscr' in version `boldsf'
+(Font)                  U/jkpsyd/m/n --> U/jkpsyd/bx/n on input line 588.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `rm'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `boldrm'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `sf'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `boldsf'
+(Font)                  OMX/cmex/m/n --> OMX/jkp/m/n on input line 598.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/jkp/m/n --> OMX/jkp/bx/n on input line 599.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `rm'
+(Font)                  OMX/jkp/m/n --> OMX/jkp/m/n on input line 601.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `boldrm'
+(Font)                  OMX/jkp/m/n --> OMX/jkp/bx/n on input line 602.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `sf'
+(Font)                  OMX/jkp/m/n --> OMX/jkpss/m/n on input line 603.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `boldsf'
+(Font)                  OMX/jkp/m/n --> OMX/jkpss/bx/n on input line 604.
+\symlargesymbolsA=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `bold'
+(Font)                  U/jkpexa/m/n --> U/jkpexa/bx/n on input line 615.
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `rm'
+(Font)                  U/jkpexa/m/n --> U/jkpexa/m/n on input line 617.
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldrm'
+
+(Font)                  U/jkpexa/m/n --> U/jkpexa/bx/n on input line 618.
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `sf'
+(Font)                  U/jkpexa/m/n --> U/jkpexa/m/n on input line 619.
+LaTeX Font Info:    Overwriting symbol font `largesymbolsA' in version `boldsf'
+
+(Font)                  U/jkpexa/m/n --> U/jkpexa/bx/n on input line 620.
+LaTeX Info: Redefining \not on input line 1580.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip11
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2012/04/25 v1.12 Bundle oberdiek, subset hyperref (HO)
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2012/04/25 v1.12 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2012/04/25 v1.12 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable calculations with integers (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Define keys (HO)
+Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
+)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/11/25 v1.13 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2012/04/08 v1.3 Expandable calculations on big integers (HO
+)
+Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/06/24 v1.1 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
+Package atveryend Info: \enddocument detected (standard20110627).
+Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
+Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\auxhook.sty"
+Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
+)
+\@linkdim=\dimen141
+\Hy@linkcounter=\count127
+\Hy@pagecounter=\count128
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count129
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `linktocpage' set `true' on input line 4319.
+Package hyperref Info: Hyper figures OFF on input line 4443.
+Package hyperref Info: Link nesting OFF on input line 4448.
+Package hyperref Info: Hyper index ON on input line 4451.
+Package hyperref Info: Plain pages OFF on input line 4458.
+Package hyperref Info: Backreferencing OFF on input line 4463.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4688.
+\c@Hy@tempcnt=\count130
+LaTeX Info: Redefining \url on input line 5041.
+\XeTeXLinkMargin=\dimen142
+\Fld@menulength=\count131
+\Field@Width=\dimen143
+\Fld@charsize=\dimen144
+Package hyperref Info: Hyper figures OFF on input line 6295.
+Package hyperref Info: Link nesting OFF on input line 6300.
+Package hyperref Info: Hyper index ON on input line 6303.
+Package hyperref Info: backreferencing OFF on input line 6310.
+Package hyperref Info: Link coloring OFF on input line 6315.
+Package hyperref Info: Link coloring with OCG OFF on input line 6320.
+Package hyperref Info: PDF/A mode OFF on input line 6325.
+LaTeX Info: Redefining \ref on input line 6365.
+LaTeX Info: Redefining \pageref on input line 6369.
+\Hy@abspage=\count132
+\c@Item=\count133
+\c@Hfootnote=\count134
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
+\Fld@listcount=\count135
+\c@bookmark@seq@number=\count136
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip76
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amssymb.sty"
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `normal'
+(Font)                  U/jkpsya/m/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
+(Font)                  U/jkpsya/bx/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `rm'
+(Font)                  U/jkpsya/m/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `boldrm'
+(Font)                  U/jkpsya/bx/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `sf'
+(Font)                  U/jkpsya/m/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Overwriting symbol font `AMSa' in version `boldsf'
+(Font)                  U/jkpsya/bx/n --> U/msa/m/n on input line 59.
+LaTeX Font Info:    Redeclaring symbol font `AMSb' on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `normal'
+(Font)                  U/jkpsyb/m/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `bold'
+(Font)                  U/jkpsyb/bx/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `rm'
+(Font)                  U/jkpsyb/m/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `boldrm'
+(Font)                  U/jkpsyb/bx/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `sf'
+(Font)                  U/jkpsssyb/m/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Overwriting symbol font `AMSb' in version `boldsf'
+(Font)                  U/jkpsssyb/bx/n --> U/msb/m/n on input line 60.
+LaTeX Font Info:    Redeclaring math delimiter \ulcorner on input line 74.
+LaTeX Font Info:    Redeclaring math delimiter \urcorner on input line 75.
+LaTeX Font Info:    Redeclaring math delimiter \llcorner on input line 76.
+LaTeX Font Info:    Redeclaring math delimiter \lrcorner on input line 77.
+LaTeX Font Info:    Redeclaring math symbol \square on input line 141.
+LaTeX Font Info:    Redeclaring math symbol \lozenge on input line 142.
+)
+LaTeX Font Info:    Redeclaring math symbol \boxdot on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \boxplus on input line 45.
+LaTeX Font Info:    Redeclaring math symbol \boxtimes on input line 46.
+LaTeX Font Info:    Redeclaring math symbol \blacksquare on input line 48.
+LaTeX Font Info:    Redeclaring math symbol \centerdot on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \blacklozenge on input line 51.
+LaTeX Font Info:    Redeclaring math symbol \circlearrowright on input line 52.
+
+LaTeX Font Info:    Redeclaring math symbol \circlearrowleft on input line 53.
+LaTeX Font Info:    Redeclaring math symbol \leftrightharpoons on input line 56
+.
+LaTeX Font Info:    Redeclaring math symbol \boxminus on input line 57.
+LaTeX Font Info:    Redeclaring math symbol \Vdash on input line 58.
+LaTeX Font Info:    Redeclaring math symbol \Vvdash on input line 59.
+LaTeX Font Info:    Redeclaring math symbol \vDash on input line 60.
+LaTeX Font Info:    Redeclaring math symbol \twoheadrightarrow on input line 61
+.
+LaTeX Font Info:    Redeclaring math symbol \twoheadleftarrow on input line 62.
+
+LaTeX Font Info:    Redeclaring math symbol \leftleftarrows on input line 63.
+LaTeX Font Info:    Redeclaring math symbol \rightrightarrows on input line 64.
+
+LaTeX Font Info:    Redeclaring math symbol \upuparrows on input line 65.
+LaTeX Font Info:    Redeclaring math symbol \downdownarrows on input line 66.
+LaTeX Font Info:    Redeclaring math symbol \upharpoonright on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \downharpoonright on input line 69.
+
+LaTeX Font Info:    Redeclaring math symbol \upharpoonleft on input line 70.
+LaTeX Font Info:    Redeclaring math symbol \downharpoonleft on input line 71.
+LaTeX Font Info:    Redeclaring math symbol \rightarrowtail on input line 72.
+LaTeX Font Info:    Redeclaring math symbol \leftarrowtail on input line 73.
+LaTeX Font Info:    Redeclaring math symbol \leftrightarrows on input line 74.
+LaTeX Font Info:    Redeclaring math symbol \rightleftarrows on input line 75.
+LaTeX Font Info:    Redeclaring math symbol \Lsh on input line 76.
+LaTeX Font Info:    Redeclaring math symbol \Rsh on input line 77.
+LaTeX Font Info:    Redeclaring math symbol \leftrightsquigarrow on input line 
+79.
+LaTeX Font Info:    Redeclaring math symbol \looparrowleft on input line 80.
+LaTeX Font Info:    Redeclaring math symbol \looparrowright on input line 81.
+LaTeX Font Info:    Redeclaring math symbol \circeq on input line 82.
+LaTeX Font Info:    Redeclaring math symbol \succsim on input line 83.
+LaTeX Font Info:    Redeclaring math symbol \gtrsim on input line 84.
+LaTeX Font Info:    Redeclaring math symbol \gtrapprox on input line 85.
+LaTeX Font Info:    Redeclaring math symbol \multimap on input line 86.
+LaTeX Font Info:    Redeclaring math symbol \therefore on input line 87.
+LaTeX Font Info:    Redeclaring math symbol \because on input line 88.
+LaTeX Font Info:    Redeclaring math symbol \doteqdot on input line 89.
+LaTeX Font Info:    Redeclaring math symbol \triangleq on input line 91.
+LaTeX Font Info:    Redeclaring math symbol \precsim on input line 92.
+LaTeX Font Info:    Redeclaring math symbol \lesssim on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \lessapprox on input line 94.
+LaTeX Font Info:    Redeclaring math symbol \eqslantless on input line 95.
+LaTeX Font Info:    Redeclaring math symbol \eqslantgtr on input line 96.
+LaTeX Font Info:    Redeclaring math symbol \curlyeqprec on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \curlyeqsucc on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \preccurlyeq on input line 99.
+LaTeX Font Info:    Redeclaring math symbol \leqq on input line 100.
+LaTeX Font Info:    Redeclaring math symbol \leqslant on input line 101.
+LaTeX Font Info:    Redeclaring math symbol \lessgtr on input line 102.
+LaTeX Font Info:    Redeclaring math symbol \backprime on input line 103.
+LaTeX Font Info:    Redeclaring math symbol \risingdotseq on input line 104.
+LaTeX Font Info:    Redeclaring math symbol \fallingdotseq on input line 105.
+LaTeX Font Info:    Redeclaring math symbol \succcurlyeq on input line 106.
+LaTeX Font Info:    Redeclaring math symbol \geqq on input line 107.
+LaTeX Font Info:    Redeclaring math symbol \geqslant on input line 108.
+LaTeX Font Info:    Redeclaring math symbol \gtrless on input line 109.
+LaTeX Font Info:    Redeclaring math symbol \bigstar on input line 117.
+LaTeX Font Info:    Redeclaring math symbol \between on input line 118.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangledown on input line 11
+9.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleright on input line 1
+20.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleleft on input line 12
+1.
+LaTeX Font Info:    Redeclaring math symbol \vartriangle on input line 122.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangle on input line 123.
+LaTeX Font Info:    Redeclaring math symbol \triangledown on input line 124.
+LaTeX Font Info:    Redeclaring math symbol \eqcirc on input line 125.
+LaTeX Font Info:    Redeclaring math symbol \lesseqgtr on input line 126.
+LaTeX Font Info:    Redeclaring math symbol \gtreqless on input line 127.
+LaTeX Font Info:    Redeclaring math symbol \lesseqqgtr on input line 128.
+LaTeX Font Info:    Redeclaring math symbol \gtreqqless on input line 129.
+LaTeX Font Info:    Redeclaring math symbol \Rrightarrow on input line 130.
+LaTeX Font Info:    Redeclaring math symbol \Lleftarrow on input line 131.
+LaTeX Font Info:    Redeclaring math symbol \veebar on input line 132.
+LaTeX Font Info:    Redeclaring math symbol \barwedge on input line 133.
+LaTeX Font Info:    Redeclaring math symbol \doublebarwedge on input line 134.
+LaTeX Font Info:    Redeclaring math symbol \measuredangle on input line 137.
+LaTeX Font Info:    Redeclaring math symbol \sphericalangle on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \varpropto on input line 139.
+LaTeX Font Info:    Redeclaring math symbol \smallsmile on input line 140.
+LaTeX Font Info:    Redeclaring math symbol \smallfrown on input line 141.
+LaTeX Font Info:    Redeclaring math symbol \Subset on input line 142.
+LaTeX Font Info:    Redeclaring math symbol \Supset on input line 143.
+LaTeX Font Info:    Redeclaring math symbol \Cup on input line 144.
+LaTeX Font Info:    Redeclaring math symbol \Cap on input line 146.
+LaTeX Font Info:    Redeclaring math symbol \curlywedge on input line 148.
+LaTeX Font Info:    Redeclaring math symbol \curlyvee on input line 149.
+LaTeX Font Info:    Redeclaring math symbol \leftthreetimes on input line 150.
+LaTeX Font Info:    Redeclaring math symbol \rightthreetimes on input line 151.
+
+LaTeX Font Info:    Redeclaring math symbol \subseteqq on input line 152.
+LaTeX Font Info:    Redeclaring math symbol \supseteqq on input line 153.
+LaTeX Font Info:    Redeclaring math symbol \bumpeq on input line 154.
+LaTeX Font Info:    Redeclaring math symbol \Bumpeq on input line 155.
+LaTeX Font Info:    Redeclaring math symbol \lll on input line 156.
+LaTeX Font Info:    Redeclaring math symbol \ggg on input line 158.
+LaTeX Font Info:    Redeclaring math symbol \circledS on input line 160.
+LaTeX Font Info:    Redeclaring math symbol \pitchfork on input line 161.
+LaTeX Font Info:    Redeclaring math symbol \dotplus on input line 162.
+LaTeX Font Info:    Redeclaring math symbol \backsim on input line 163.
+LaTeX Font Info:    Redeclaring math symbol \backsimeq on input line 164.
+LaTeX Font Info:    Redeclaring math symbol \complement on input line 165.
+LaTeX Font Info:    Redeclaring math symbol \intercal on input line 166.
+LaTeX Font Info:    Redeclaring math symbol \circledcirc on input line 167.
+LaTeX Font Info:    Redeclaring math symbol \circledast on input line 168.
+LaTeX Font Info:    Redeclaring math symbol \circleddash on input line 169.
+LaTeX Font Info:    Redeclaring math symbol \lvertneqq on input line 171.
+LaTeX Font Info:    Redeclaring math symbol \gvertneqq on input line 172.
+LaTeX Font Info:    Redeclaring math symbol \nleq on input line 173.
+LaTeX Font Info:    Redeclaring math symbol \ngeq on input line 174.
+LaTeX Font Info:    Redeclaring math symbol \nless on input line 175.
+LaTeX Font Info:    Redeclaring math symbol \ngtr on input line 176.
+LaTeX Font Info:    Redeclaring math symbol \nprec on input line 177.
+LaTeX Font Info:    Redeclaring math symbol \nsucc on input line 178.
+LaTeX Font Info:    Redeclaring math symbol \lneqq on input line 179.
+LaTeX Font Info:    Redeclaring math symbol \gneqq on input line 180.
+LaTeX Font Info:    Redeclaring math symbol \nleqslant on input line 181.
+LaTeX Font Info:    Redeclaring math symbol \ngeqslant on input line 182.
+LaTeX Font Info:    Redeclaring math symbol \lneq on input line 183.
+LaTeX Font Info:    Redeclaring math symbol \gneq on input line 184.
+LaTeX Font Info:    Redeclaring math symbol \npreceq on input line 185.
+LaTeX Font Info:    Redeclaring math symbol \nsucceq on input line 186.
+LaTeX Font Info:    Redeclaring math symbol \precnsim on input line 187.
+LaTeX Font Info:    Redeclaring math symbol \succnsim on input line 188.
+LaTeX Font Info:    Redeclaring math symbol \lnsim on input line 189.
+LaTeX Font Info:    Redeclaring math symbol \gnsim on input line 190.
+LaTeX Font Info:    Redeclaring math symbol \nleqq on input line 191.
+LaTeX Font Info:    Redeclaring math symbol \ngeqq on input line 192.
+LaTeX Font Info:    Redeclaring math symbol \precneqq on input line 193.
+LaTeX Font Info:    Redeclaring math symbol \succneqq on input line 194.
+LaTeX Font Info:    Redeclaring math symbol \precnapprox on input line 195.
+LaTeX Font Info:    Redeclaring math symbol \succnapprox on input line 196.
+LaTeX Font Info:    Redeclaring math symbol \lnapprox on input line 197.
+LaTeX Font Info:    Redeclaring math symbol \gnapprox on input line 198.
+LaTeX Font Info:    Redeclaring math symbol \nsim on input line 199.
+LaTeX Font Info:    Redeclaring math symbol \ncong on input line 200.
+LaTeX Font Info:    Redeclaring math symbol \diagup on input line 201.
+LaTeX Font Info:    Redeclaring math symbol \diagdown on input line 202.
+LaTeX Font Info:    Redeclaring math symbol \varsubsetneq on input line 203.
+LaTeX Font Info:    Redeclaring math symbol \varsupsetneq on input line 204.
+LaTeX Font Info:    Redeclaring math symbol \nsubseteqq on input line 205.
+LaTeX Font Info:    Redeclaring math symbol \nsupseteqq on input line 206.
+LaTeX Font Info:    Redeclaring math symbol \subsetneqq on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \supsetneqq on input line 208.
+LaTeX Font Info:    Redeclaring math symbol \varsubsetneqq on input line 209.
+LaTeX Font Info:    Redeclaring math symbol \varsupsetneqq on input line 210.
+LaTeX Font Info:    Redeclaring math symbol \subsetneq on input line 211.
+LaTeX Font Info:    Redeclaring math symbol \supsetneq on input line 212.
+LaTeX Font Info:    Redeclaring math symbol \nsubseteq on input line 213.
+LaTeX Font Info:    Redeclaring math symbol \nsupseteq on input line 214.
+LaTeX Font Info:    Redeclaring math symbol \nparallel on input line 215.
+LaTeX Font Info:    Redeclaring math symbol \nmid on input line 216.
+LaTeX Font Info:    Redeclaring math symbol \nshortmid on input line 217.
+LaTeX Font Info:    Redeclaring math symbol \nshortparallel on input line 218.
+LaTeX Font Info:    Redeclaring math symbol \nvdash on input line 219.
+LaTeX Font Info:    Redeclaring math symbol \nVdash on input line 220.
+LaTeX Font Info:    Redeclaring math symbol \nvDash on input line 221.
+LaTeX Font Info:    Redeclaring math symbol \nVDash on input line 222.
+LaTeX Font Info:    Redeclaring math symbol \ntrianglerighteq on input line 223
+.
+LaTeX Font Info:    Redeclaring math symbol \ntrianglelefteq on input line 224.
+
+LaTeX Font Info:    Redeclaring math symbol \ntriangleleft on input line 225.
+LaTeX Font Info:    Redeclaring math symbol \ntriangleright on input line 226.
+LaTeX Font Info:    Redeclaring math symbol \nleftarrow on input line 227.
+LaTeX Font Info:    Redeclaring math symbol \nrightarrow on input line 228.
+LaTeX Font Info:    Redeclaring math symbol \nLeftarrow on input line 229.
+LaTeX Font Info:    Redeclaring math symbol \nRightarrow on input line 230.
+LaTeX Font Info:    Redeclaring math symbol \nLeftrightarrow on input line 231.
+
+LaTeX Font Info:    Redeclaring math symbol \nleftrightarrow on input line 232.
+
+LaTeX Font Info:    Redeclaring math symbol \divideontimes on input line 233.
+LaTeX Font Info:    Redeclaring math symbol \varnothing on input line 234.
+LaTeX Font Info:    Redeclaring math symbol \nexists on input line 235.
+LaTeX Font Info:    Redeclaring math symbol \Finv on input line 236.
+LaTeX Font Info:    Redeclaring math symbol \Game on input line 237.
+LaTeX Font Info:    Redeclaring math symbol \eth on input line 240.
+LaTeX Font Info:    Redeclaring math symbol \eqsim on input line 241.
+LaTeX Font Info:    Redeclaring math symbol \beth on input line 242.
+LaTeX Font Info:    Redeclaring math symbol \gimel on input line 243.
+LaTeX Font Info:    Redeclaring math symbol \daleth on input line 244.
+LaTeX Font Info:    Redeclaring math symbol \lessdot on input line 245.
+LaTeX Font Info:    Redeclaring math symbol \gtrdot on input line 246.
+LaTeX Font Info:    Redeclaring math symbol \ltimes on input line 247.
+LaTeX Font Info:    Redeclaring math symbol \rtimes on input line 248.
+LaTeX Font Info:    Redeclaring math symbol \shortmid on input line 249.
+LaTeX Font Info:    Redeclaring math symbol \shortparallel on input line 250.
+LaTeX Font Info:    Redeclaring math symbol \smallsetminus on input line 251.
+LaTeX Font Info:    Redeclaring math symbol \thicksim on input line 252.
+LaTeX Font Info:    Redeclaring math symbol \thickapprox on input line 253.
+LaTeX Font Info:    Redeclaring math symbol \approxeq on input line 254.
+LaTeX Font Info:    Redeclaring math symbol \succapprox on input line 255.
+LaTeX Font Info:    Redeclaring math symbol \precapprox on input line 256.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowleft on input line 257.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowright on input line 258.
+
+LaTeX Font Info:    Redeclaring math symbol \digamma on input line 259.
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 260.
+LaTeX Font Info:    Redeclaring math symbol \Bbbk on input line 261.
+LaTeX Font Info:    Redeclaring math symbol \hslash on input line 262.
+LaTeX Font Info:    Redeclaring math symbol \backepsilon on input line 265.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+\bigstrutjot=\dimen145
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\booktabs\booktabs.sty"
+Package: booktabs 2005/04/14 v1.61803 publication quality tables
+\heavyrulewidth=\dimen146
+\lightrulewidth=\dimen147
+\cmidrulewidth=\dimen148
+\belowrulesep=\dimen149
+\belowbottomsep=\dimen150
+\aboverulesep=\dimen151
+\abovetopsep=\dimen152
+\cmidrulesep=\dimen153
+\cmidrulekern=\dimen154
+\defaultaddspace=\dimen155
+\@cmidla=\count137
+\@cmidlb=\count138
+\@aboverulesep=\dimen156
+\@belowrulesep=\dimen157
+\@thisruleclass=\count139
+\@lastruleclass=\count140
+\@thisrulewidth=\dimen158
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count141
+\lst@gtempboxa=\box38
+\lst@token=\toks33
+\lst@length=\count142
+\lst@currlwidth=\dimen159
+\lst@column=\count143
+\lst@pos=\count144
+\lst@lostspace=\dimen160
+\lst@width=\dimen161
+\lst@newlines=\count145
+\lst@lineno=\count146
+\lst@maxwidth=\dimen162
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count147
+\lst@skipnumbers=\count148
+\lst@framebox=\box39
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\fancyvrb\fancyvrb.sty"
+Package: fancyvrb 2008/02/07
+
+Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
+<2008/02/07> (tvz)
+\FV@CodeLineNo=\count149
+\FV@InFile=\read3
+\FV@TabBox=\box40
+\c@FancyVerbLine=\count150
+\FV@StepNumber=\count151
+\FV@OutFile=\write5
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\enumerate.sty"
+Package: enumerate 1999/03/05 v3.00 enumerate extensions (DPC)
+\@enLab=\toks34
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\wrapfig\wrapfig.sty"
+\wrapoverhang=\dimen163
+\WF@size=\dimen164
+\c@WF@wrappedlines=\count152
+\WF@box=\box41
+\WF@everypar=\toks35
+Package: wrapfig 2003/01/31  v 3.6
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\eurosym\eurosym.sty"
+Package: eurosym 1998/08/06 v1.1 European currency symbol ``Euro''
+\@eurobox=\box42
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\multicol.sty"
+Package: multicol 2011/06/27 v1.7a multicolumn formatting (FMi)
+\c@tracingmulticols=\count153
+\mult@box=\box43
+\multicol@leftmargin=\dimen165
+\c@unbalance=\count154
+\c@collectmore=\count155
+\doublecol@number=\count156
+\multicoltolerance=\count157
+\multicolpretolerance=\count158
+\full@width=\dimen166
+\page@free=\dimen167
+\premulticols=\dimen168
+\postmulticols=\dimen169
+\multicolsep=\skip77
+\multicolbaselineskip=\skip78
+\partial@page=\box44
+\last@line=\box45
+\mult@rightbox=\box46
+\mult@grightbox=\box47
+\mult@gfirstbox=\box48
+\mult@firstbox=\box49
+\@tempa=\box50
+\@tempa=\box51
+\@tempa=\box52
+\@tempa=\box53
+\@tempa=\box54
+\@tempa=\box55
+\@tempa=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\c@columnbadness=\count159
+\c@finalcolumnbadness=\count160
+\last@try=\dimen170
+\multicolovershoot=\dimen171
+\multicolundershoot=\dimen172
+\mult@nat@firstbox=\box67
+\colbreak@box=\box68
+\multicol@sort@counter=\count161
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf.sty"
+Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
+Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\oberdiek\grfext.sty"
+Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
+)
+Package grfext Info: Graphics extension search list:
+(grfext)             [.png,.pdf,.jpg,.mps,.jpeg,.jbig2,.jb2,.PNG,.PDF,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 452.
+))
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mh\mathtools.sty"
+Package: mathtools 2013/02/12 v1.13 mathematical typesetting tools
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count162
+\calc@Bcount=\count163
+\calc@Adimen=\dimen173
+\calc@Bdimen=\dimen174
+\calc@Askip=\skip79
+\calc@Bskip=\skip80
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count164
+\calc@Cskip=\skip81
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\mh\mhsetup.sty"
+Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
+)
+LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
+LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
+\g_MT_multlinerow_int=\count165
+\l_MT_multwidth_dim=\dimen175
+\origjot=\skip82
+\l_MT_shortvdotswithinadjustabove_dim=\dimen176
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen177
+\l_MT_above_intertext_sep=\dimen178
+\l_MT_below_intertext_sep=\dimen179
+\l_MT_above_shortintertext_sep=\dimen180
+\l_MT_below_shortintertext_sep=\dimen181
+)
+ 
+----------------------------------------------------------------------
+ 
+
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.aux
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\cover.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\gaitwatch.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\initialconf.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\calibration.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\orientationcomp.aux
+
+LaTeX Warning: Label `eq:state_equations' multiply defined.
+
+)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\experiments.aux))
+LaTeX Font Info:    Checking defaults for OML/jkp/m/it on input line 116.
+LaTeX Font Info:    Try loading font information for OML+jkp on input line 116.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\omljkp.fd"
+File: omljkp.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMS/jkp/m/n on input line 116.
+LaTeX Font Info:    Try loading font information for OMS+jkp on input line 116.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\omsjkp.fd"
+File: omsjkp.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for OMX/jkp/m/n on input line 116.
+LaTeX Font Info:    Try loading font information for OMX+jkp on input line 116.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\omxjkp.fd"
+File: omxjkp.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for U/jkpexa/m/n on input line 116.
+LaTeX Font Info:    Try loading font information for U+jkpexa on input line 116
+.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ujkpexa.fd"
+File: ujkpexa.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 116.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 116.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 116.
+LaTeX Font Info:    ... okay on input line 116.
+LaTeX Font Info:    Try loading font information for OT1+jkp on input line 116.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ot1jkp.fd"
+File: ot1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for OT1/jkp.
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count166
+\scratchdimen=\dimen182
+\scratchbox=\box69
+\nofMPsegments=\count167
+\nofMParguments=\count168
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count169
+\MPscratchDim=\dimen183
+\MPnumerator=\count170
+\makeMPintoPDFobject=\count171
+\everyMPtoPDFconversion=\toks37
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
+Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
+)
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\AtBeginShipoutBox=\box70
+Package hyperref Info: Link coloring OFF on input line 116.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count172
+)
+LaTeX Info: Redefining \ref on input line 116.
+LaTeX Info: Redefining \pageref on input line 116.
+LaTeX Info: Redefining \nameref on input line 116.
+
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.out)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.out)
+\@outlinefile=\write6
+\c@lstlisting=\count173
+
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\cover.tex <figures/GW_cover.jpg, id=151, 363.60844pt x 486.31688pt>
+File: figures/GW_cover.jpg Graphic file (type jpg)
+
+<use figures/GW_cover.jpg>
+Package pdftex.def Info: figures/GW_cover.jpg used on input line 20.
+(pdftex.def)             Requested size: 220.50885pt x 294.93129pt.
+LaTeX Font Info:    Try loading font information for U+jkpmia on input line 28.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ujkpmia.fd"
+File: ujkpmia.fd 2006/08/15 v1.0
+)
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+LaTeX Font Info:    Try loading font information for U+jkpsyc on input line 28.
+
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ujkpsyc.fd"
+File: ujkpsyc.fd 2006/08/15 v1.0
+)
+<figures/lmu_logo.png, id=152, 250.9375pt x 85.31876pt>
+File: figures/lmu_logo.png Graphic file (type png)
+
+<use figures/lmu_logo.png>
+Package pdftex.def Info: figures/lmu_logo.png used on input line 37.
+(pdftex.def)             Requested size: 132.30666pt x 44.98567pt.
+
+<figures/ugr_logo.jpg, id=154, 359.6637pt x 113.9457pt>
+File: figures/ugr_logo.jpg Graphic file (type jpg)
+
+<use figures/ugr_logo.jpg>
+Package pdftex.def Info: figures/ugr_logo.jpg used on input line 38.
+(pdftex.def)             Requested size: 132.30666pt x 41.91582pt.
+ [1
+Non-PDF special ignored!
+
+
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map} <C:/Users/AlbertoOlivares/
+Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/GW_cover.jpg
+> <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents
+/manual/figures/lmu_logo.png> <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/In
+ternship/GaitWatch/documents/manual/figures/ugr_logo.jpg>]) [2
+
+
+]
+LaTeX Font Info:    Try loading font information for OT1+jkpss on input line 12
+5.
+ ("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ot1jkpss.fd"
+File: ot1jkpss.fd 2007/07/16 Fontinst v1.928 font definitions for OT1/jkpss.
+)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.tocpdfTeX warning (ext4): destination with the same identifier (name
+{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.21 ... Kalman filter}{35}{subsubsection.4.1.3.1}
+                                                   [1
+
+])
+\tf@toc=\write7
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.129   \clearpage
+                   [2]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.lof
+Underfull \vbox (badness 4859) has occurred while \output is active []
+
+ [3
+
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [4])
+\tf@lof=\write8
+
+[5] [6
+
+]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.lot)
+\tf@lot=\write9
+ [7
+
+] [8
+
+]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\gaitwatch.tex
+Chapter 1.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 1.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1phv.fd"
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+[9
+
+
+
+] <figures/GWdiagram.pdf, id=351, 227.6505pt x 199.22429pt>
+File: figures/GWdiagram.pdf Graphic file (type pdf)
+
+<use figures/GWdiagram.pdf>
+Package pdftex.def Info: figures/GWdiagram.pdf used on input line 16.
+(pdftex.def)             Requested size: 352.8155pt x 308.79141pt.
+LaTeX Font Info:    Try loading font information for TS1+jkp on input line 24.
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\kpfonts\ts1jkp.fd"
+File: ts1jkp.fd 2007/08/30 Fontinst v1.928 font definitions for TS1/jkp.
+) [10 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docum
+ents/manual/figures/GWdiagram.pdf>]) [11] [12
+
+
+]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\initialconf.tex
+Chapter 2.
+<figures/bodyAxes.pdf, id=389, 369.90193pt x 227.6505pt>
+File: figures/bodyAxes.pdf Graphic file (type pdf)
+
+<use figures/bodyAxes.pdf>
+Package pdftex.def Info: figures/bodyAxes.pdf used on input line 8.
+(pdftex.def)             Requested size: 264.61331pt x 162.86266pt.
+ [13
+
+
+ <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/
+manual/figures/bodyAxes.pdf>]
+<figures/bodyAxesGW.pdf, id=409, 284.62335pt x 313.04956pt>
+File: figures/bodyAxesGW.pdf Graphic file (type pdf)
+
+<use figures/bodyAxesGW.pdf>
+Package pdftex.def Info: figures/bodyAxesGW.pdf used on input line 16.
+(pdftex.def)             Requested size: 264.61331pt x 291.0662pt.
+
+<figures/AccZaxis.jpg, id=411, 1035.87pt x 655.44875pt>
+File: figures/AccZaxis.jpg Graphic file (type jpg)
+
+<use figures/AccZaxis.jpg>
+Package pdftex.def Info: figures/AccZaxis.jpg used on input line 32.
+(pdftex.def)             Requested size: 264.61331pt x 167.43225pt.
+ [14 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/bodyAxesGW.pdf>]
+Package epstopdf Info: Source file: <figures/ZaxisAccTrunkID.eps>
+(epstopdf)                    date: 2013-12-10 12:39:49
+(epstopdf)                    size: 86265 bytes
+(epstopdf)             Output file: <figures/ZaxisAccTrunkID-eps-converted-to.p
+df>
+(epstopdf)                    date: 2013-12-10 12:40:15
+(epstopdf)                    size: 55983 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/ZaxisAccTrunkID-eps
+-converted-to.pdf figures/ZaxisAccTrunkID.eps>
+(epstopdf)             \includegraphics on input line 43.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/ZaxisAccTrunkID-eps-converted-to.pdf, id=426, 1300.86pt x 621.32124pt>
+File: figures/ZaxisAccTrunkID-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/ZaxisAccTrunkID-eps-converted-to.pdf>
+Package pdftex.def Info: figures/ZaxisAccTrunkID-eps-converted-to.pdf used on i
+nput line 43.
+(pdftex.def)             Requested size: 374.86774pt x 179.04088pt.
+ [15 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/AccZaxis.jpg> <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina
+/Internship/GaitWatch/documents/manual/figures/ZaxisAccTrunkID-eps-converted-to
+.pdf>]
+<figures/XandYAccPositions.jpg, id=436, 1357.07pt x 704.6325pt>
+File: figures/XandYAccPositions.jpg Graphic file (type jpg)
+
+<use figures/XandYAccPositions.jpg>
+Package pdftex.def Info: figures/XandYAccPositions.jpg used on input line 52.
+(pdftex.def)             Requested size: 308.71104pt x 160.28801pt.
+
+<figures/thighShankAccs.jpg, id=438, 1045.9075pt x 512.91624pt>
+File: figures/thighShankAccs.jpg Graphic file (type jpg)
+
+<use figures/thighShankAccs.jpg>
+Package pdftex.def Info: figures/thighShankAccs.jpg used on input line 61.
+(pdftex.def)             Requested size: 308.71104pt x 151.39507pt.
+ [16 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/XandYAccPositions.jpg> <C:/Users/AlbertoOlivares/Dropbox/Cas
+a-Oficina/Internship/GaitWatch/documents/manual/figures/thighShankAccs.jpg>]
+<figures/gyro_axis_ID.png, id=447, 606.01407pt x 481.04718pt>
+File: figures/gyro_axis_ID.png Graphic file (type png)
+
+<use figures/gyro_axis_ID.png>
+Package pdftex.def Info: figures/gyro_axis_ID.png used on input line 100.
+(pdftex.def)             Requested size: 308.71104pt x 245.05188pt.
+ [17]
+Package epstopdf Info: Source file: <figures/gyro_axis_ID_signal.eps>
+(epstopdf)                    date: 2013-10-22 13:37:50
+(epstopdf)                    size: 43995 bytes
+(epstopdf)             Output file: <figures/gyro_axis_ID_signal-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-10-22 13:38:55
+(epstopdf)                    size: 28218 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/gyro_axis_ID_signal
+-eps-converted-to.pdf figures/gyro_axis_ID_signal.eps>
+(epstopdf)             \includegraphics on input line 107.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/gyro_axis_ID_signal-eps-converted-to.pdf, id=456, 421.575pt x 317.185p
+t>
+File: figures/gyro_axis_ID_signal-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/gyro_axis_ID_signal-eps-converted-to.pdf>
+Package pdftex.def Info: figures/gyro_axis_ID_signal-eps-converted-to.pdf used 
+on input line 107.
+(pdftex.def)             Requested size: 308.71104pt x 232.27393pt.
+ [18 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/gyro_axis_ID.png> <C:/Users/AlbertoOlivares/Dropbox/Casa-Ofi
+cina/Internship/GaitWatch/documents/manual/figures/gyro_axis_ID_signal-eps-conv
+erted-to.pdf>]
+Package epstopdf Info: Source file: <figures/mag_axis_ID.eps>
+(epstopdf)                    date: 2013-12-10 12:35:23
+(epstopdf)                    size: 23278 bytes
+(epstopdf)             Output file: <figures/mag_axis_ID-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-12-10 12:35:36
+(epstopdf)                    size: 11521 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/mag_axis_ID-eps-con
+verted-to.pdf figures/mag_axis_ID.eps>
+(epstopdf)             \includegraphics on input line 153.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/mag_axis_ID-eps-converted-to.pdf, id=466, 1300.86pt x 621.32124pt>
+File: figures/mag_axis_ID-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/mag_axis_ID-eps-converted-to.pdf>
+Package pdftex.def Info: figures/mag_axis_ID-eps-converted-to.pdf used on input
+ line 153.
+(pdftex.def)             Requested size: 441.01772pt x 210.63966pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [19])
+[20 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documen
+ts/manual/figures/mag_axis_ID-eps-converted-to.pdf>]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\calibration.tex
+Chapter 3.
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 6.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 15.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 16.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 17.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 21.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 22.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 23.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 27.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 28.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 29.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 33.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 34.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 35.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 39.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 40.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 41.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 46.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 51.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 52.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 53.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 57.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 57.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 57.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 58.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 58.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 58.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 59.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 59.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 59.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 63.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 64.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 65.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 69.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 70.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 71.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 75.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 76.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 77.
+
+
+Underfull \vbox (badness 1112) has occurred while \output is active []
+
+ [21
+
+
+
+
+]
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 84.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 84.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 84.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 86.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 86.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 86.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 90.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 93.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 93.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 93.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 95.
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 102.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 102.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 102.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 103.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 103.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 103.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 104.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 104.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 104.
+
+
+
+LaTeX Font Warning: Command \scriptsize invalid in math mode on input line 109.
+
+
+Package epstopdf Info: Source file: <figures/acc_multiposition_signals.eps>
+(epstopdf)                    date: 2013-12-10 13:04:02
+(epstopdf)                    size: 1225027 bytes
+(epstopdf)             Output file: <figures/acc_multiposition_signals-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2013-12-10 13:04:11
+(epstopdf)                    size: 1285635 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/acc_multiposition_s
+ignals-eps-converted-to.pdf figures/acc_multiposition_signals.eps>
+(epstopdf)             \includegraphics on input line 118.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/acc_multiposition_signals-eps-converted-to.pdf, id=492, 1300.86pt x 63
+1.35875pt>
+File: figures/acc_multiposition_signals-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/acc_multiposition_signals-eps-converted-to.pdf>
+Package pdftex.def Info: figures/acc_multiposition_signals-eps-converted-to.pdf
+ used on input line 118.
+(pdftex.def)             Requested size: 441.01772pt x 214.04257pt.
+
+[22]
+Package epstopdf Info: Source file: <figures/acc_multiposition_3D.eps>
+(epstopdf)                    date: 2013-10-22 15:43:01
+(epstopdf)                    size: 17334 bytes
+(epstopdf)             Output file: <figures/acc_multiposition_3D-eps-converted
+-to.pdf>
+(epstopdf)                    date: 2013-10-22 15:43:44
+(epstopdf)                    size: 11869 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/acc_multiposition_3
+D-eps-converted-to.pdf figures/acc_multiposition_3D.eps>
+(epstopdf)             \includegraphics on input line 127.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/acc_multiposition_3D-eps-converted-to.pdf, id=506, 454.69875pt x 327.2
+225pt>
+File: figures/acc_multiposition_3D-eps-converted-to.pdf Graphic file (type pdf)
+
+ <use figures/acc_multiposition_3D-eps-converted-to.pdf>
+Package pdftex.def Info: figures/acc_multiposition_3D-eps-converted-to.pdf used
+ on input line 127.
+(pdftex.def)             Requested size: 264.61331pt x 190.42828pt.
+ [23 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/acc_multiposition_signals-eps-converted-to.pdf> <C:/Users/Al
+bertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figure
+s/acc_multiposition_3D-eps-converted-to.pdf>]
+Overfull \hbox (57.9026pt too wide) in paragraph at lines 145--149
+[]\OT1/jkp/m/n/12 256,689789868850 -4,01238483601604e-05 -2,41541345424999e-05 
+-4,01238483601604e-
+ []
+
+
+Overfull \hbox (55.68578pt too wide) in paragraph at lines 145--149
+\OT1/jkp/m/n/12 05 262,746531495908 -3,98690478210809e-07 -2,41541345424999e-05
+ -3,98690478210809e-
+ []
+
+Package epstopdf Info: Source file: <figures/acc_multiposition_cal_3D_4POV.eps>
+
+(epstopdf)                    date: 2013-10-23 10:33:03
+(epstopdf)                    size: 41658 bytes
+(epstopdf)             Output file: <figures/acc_multiposition_cal_3D_4POV-eps-
+converted-to.pdf>
+(epstopdf)                    date: 2013-10-23 10:35:52
+(epstopdf)                    size: 33741 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/acc_multiposition_c
+al_3D_4POV-eps-converted-to.pdf figures/acc_multiposition_cal_3D_4POV.eps>
+(epstopdf)             \includegraphics on input line 161.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/acc_multiposition_cal_3D_4POV-eps-converted-to.pdf, id=523, 421.575pt 
+x 317.185pt>
+File: figures/acc_multiposition_cal_3D_4POV-eps-converted-to.pdf Graphic file (
+type pdf)
+ <use figures/acc_multiposition_cal_3D_4POV-eps-converted-to.pdf>
+Package pdftex.def Info: figures/acc_multiposition_cal_3D_4POV-eps-converted-to
+.pdf used on input line 161.
+(pdftex.def)             Requested size: 352.8155pt x 265.45592pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
+
+ []
+
+[24 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documen
+ts/manual/figures/acc_multiposition_cal_3D_4POV-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 183--184
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+Package epstopdf Info: Source file: <figures/acc_raw_4_positions.eps>
+(epstopdf)                    date: 2013-10-23 10:56:07
+(epstopdf)                    size: 112520 bytes
+(epstopdf)             Output file: <figures/acc_raw_4_positions-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-10-23 10:57:49
+(epstopdf)                    size: 100097 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/acc_raw_4_positions
+-eps-converted-to.pdf figures/acc_raw_4_positions.eps>
+(epstopdf)             \includegraphics on input line 191.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/acc_raw_4_positions-eps-converted-to.pdf, id=534, 421.575pt x 312.1662
+4pt>
+File: figures/acc_raw_4_positions-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/acc_raw_4_positions-eps-converted-to.pdf>
+Package pdftex.def Info: figures/acc_raw_4_positions-eps-converted-to.pdf used 
+on input line 191.
+(pdftex.def)             Requested size: 352.8155pt x 261.25568pt.
+
+Underfull \vbox (badness 4120) has occurred while \output is active []
+
+ [25]
+Underfull \hbox (badness 10000) in paragraph at lines 218--219
+
+ []
+
+[26 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documen
+ts/manual/figures/acc_raw_4_positions-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/trunk_rawMag3D_4POV.eps>
+(epstopdf)                    date: 2013-10-23 12:19:04
+(epstopdf)                    size: 479440 bytes
+(epstopdf)             Output file: <figures/trunk_rawMag3D_4POV-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-10-23 12:19:14
+(epstopdf)                    size: 426295 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/trunk_rawMag3D_4POV
+-eps-converted-to.pdf figures/trunk_rawMag3D_4POV.eps>
+(epstopdf)             \includegraphics on input line 224.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/trunk_rawMag3D_4POV-eps-converted-to.pdf, id=551, 633.36626pt x 522.95
+375pt>
+File: figures/trunk_rawMag3D_4POV-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/trunk_rawMag3D_4POV-eps-converted-to.pdf>
+Package pdftex.def Info: figures/trunk_rawMag3D_4POV-eps-converted-to.pdf used 
+on input line 224.
+(pdftex.def)             Requested size: 352.8155pt x 291.32pt.
+Package epstopdf Info: Source file: <figures/trunk_calMag3D_4POV.eps>
+(epstopdf)                    date: 2013-10-23 13:33:52
+(epstopdf)                    size: 478216 bytes
+(epstopdf)             Output file: <figures/trunk_calMag3D_4POV-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-10-23 13:33:58
+(epstopdf)                    size: 423057 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/trunk_calMag3D_4POV
+-eps-converted-to.pdf figures/trunk_calMag3D_4POV.eps>
+(epstopdf)             \includegraphics on input line 240.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/trunk_calMag3D_4POV-eps-converted-to.pdf, id=555, 467.7475pt x 402.503
+75pt>
+File: figures/trunk_calMag3D_4POV-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/trunk_calMag3D_4POV-eps-converted-to.pdf>
+Package pdftex.def Info: figures/trunk_calMag3D_4POV-eps-converted-to.pdf used 
+on input line 240.
+(pdftex.def)             Requested size: 220.50885pt x 189.7541pt.
+ [27 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/trunk_rawMag3D_4POV-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/trunk_rawVsCal.eps>
+(epstopdf)                    date: 2013-10-23 13:32:43
+(epstopdf)                    size: 87633 bytes
+(epstopdf)             Output file: <figures/trunk_rawVsCal-eps-converted-to.pd
+f>
+(epstopdf)                    date: 2013-10-23 13:33:59
+(epstopdf)                    size: 64592 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/trunk_rawVsCal-eps-
+converted-to.pdf figures/trunk_rawVsCal.eps>
+(epstopdf)             \includegraphics on input line 249.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/trunk_rawVsCal-eps-converted-to.pdf, id=567, 597.23125pt x 507.8975pt>
+File: figures/trunk_rawVsCal-eps-converted-to.pdf Graphic file (type pdf)
+<use figures/trunk_rawVsCal-eps-converted-to.pdf>
+Package pdftex.def Info: figures/trunk_rawVsCal-eps-converted-to.pdf used on in
+put line 249.
+(pdftex.def)             Requested size: 308.71104pt x 262.535pt.
+ [28 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/trunk_calMag3D_4POV-eps-converted-to.pdf> <C:/Users/AlbertoO
+livares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/trun
+k_rawVsCal-eps-converted-to.pdf>] <figures/gyro_turn_device.pdf, id=581, 523.59
+616pt x 172.12305pt>
+File: figures/gyro_turn_device.pdf Graphic file (type pdf)
+
+<use figures/gyro_turn_device.pdf>
+Package pdftex.def Info: figures/gyro_turn_device.pdf used on input line 273.
+(pdftex.def)             Requested size: 352.8155pt x 115.98105pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 278--279
+
+ []
+
+[29 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documen
+ts/manual/figures/gyro_turn_device.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 293--294
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 295--296
+
+ []
+
+Package epstopdf Info: Source file: <figures/gyro_cal_routine_bias.eps>
+(epstopdf)                    date: 2013-10-23 14:52:36
+(epstopdf)                    size: 72822 bytes
+(epstopdf)             Output file: <figures/gyro_cal_routine_bias-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2013-10-23 14:52:44
+(epstopdf)                    size: 41072 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/gyro_cal_routine_bi
+as-eps-converted-to.pdf figures/gyro_cal_routine_bias.eps>
+(epstopdf)             \includegraphics on input line 305.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/gyro_cal_routine_bias-eps-converted-to.pdf, id=597, 1205.50375pt x 678
+.535pt>
+File: figures/gyro_cal_routine_bias-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/gyro_cal_routine_bias-eps-converted-to.pdf>
+Package pdftex.def Info: figures/gyro_cal_routine_bias-eps-converted-to.pdf use
+d on input line 305.
+(pdftex.def)             Requested size: 441.01772pt x 248.22748pt.
+ [30]
+Package epstopdf Info: Source file: <figures/gyro_cal_routine_sf.eps>
+(epstopdf)                    date: 2013-10-23 15:00:45
+(epstopdf)                    size: 72838 bytes
+(epstopdf)             Output file: <figures/gyro_cal_routine_sf-eps-converted-
+to.pdf>
+(epstopdf)                    date: 2013-10-23 15:01:04
+(epstopdf)                    size: 41145 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/gyro_cal_routine_sf
+-eps-converted-to.pdf figures/gyro_cal_routine_sf.eps>
+(epstopdf)             \includegraphics on input line 312.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/gyro_cal_routine_sf-eps-converted-to.pdf, id=612, 1205.50375pt x 678.5
+35pt>
+File: figures/gyro_cal_routine_sf-eps-converted-to.pdf Graphic file (type pdf)
+ <use figures/gyro_cal_routine_sf-eps-converted-to.pdf>
+Package pdftex.def Info: figures/gyro_cal_routine_sf-eps-converted-to.pdf used 
+on input line 312.
+(pdftex.def)             Requested size: 441.01772pt x 248.22748pt.
+ [31 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/gyro_cal_routine_bias-eps-converted-to.pdf> <C:/Users/Albert
+oOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/gy
+ro_cal_routine_sf-eps-converted-to.pdf>]) [32]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\orientationcomp.tex
+Chapter 4.
+Package epstopdf Info: Source file: <figures/dynBiasEff.eps>
+(epstopdf)                    date: 2010-03-22 12:48:43
+(epstopdf)                    size: 12230 bytes
+(epstopdf)             Output file: <figures/dynBiasEff-eps-converted-to.pdf>
+(epstopdf)                    date: 2013-12-04 16:33:57
+(epstopdf)                    size: 6202 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/dynBiasEff-eps-conv
+erted-to.pdf figures/dynBiasEff.eps>
+(epstopdf)             \includegraphics on input line 22.
+Package epstopdf Info: Output file is already uptodate.
+<figures/dynBiasEff-eps-converted-to.pdf, id=636, 1084.05pt x 569.12625pt>
+File: figures/dynBiasEff-eps-converted-to.pdf Graphic file (type pdf)
+
+<use figures/dynBiasEff-eps-converted-to.pdf>
+Package pdftex.def Info: figures/dynBiasEff-eps-converted-to.pdf used on input 
+line 22.
+(pdftex.def)             Requested size: 308.71104pt x 162.0724pt.
+ [33
+
+
+
+
+] [34 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docum
+ents/manual/figures/dynBiasEff-eps-converted-to.pdf>] [35]
+
+LaTeX Font Warning: Command \footnotesize invalid in math mode on input line 10
+0.
+
+[36] [37]
+Package epstopdf Info: Source file: <figures/StandardKalmanDiagram.eps>
+(epstopdf)                    date: 2013-01-22 11:44:31
+(epstopdf)                    size: 186219 bytes
+(epstopdf)             Output file: <figures/StandardKalmanDiagram-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2013-11-25 14:47:13
+(epstopdf)                    size: 15449 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/StandardKalmanDiagr
+am-eps-converted-to.pdf figures/StandardKalmanDiagram.eps>
+(epstopdf)             \includegraphics on input line 166.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/StandardKalmanDiagram-eps-converted-to.pdf, id=697, 355.3275pt x 343.2
+825pt>
+File: figures/StandardKalmanDiagram-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/StandardKalmanDiagram-eps-converted-to.pdf>
+Package pdftex.def Info: figures/StandardKalmanDiagram-eps-converted-to.pdf use
+d on input line 166.
+(pdftex.def)             Requested size: 264.61331pt x 255.64886pt.
+ [38 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/StandardKalmanDiagram-eps-converted-to.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 207--210
+
+ []
+
+[39] [40] [41]
+<figures/kalman_orientation_diag.pdf, id=763, 512.1534pt x 455.30101pt>
+File: figures/kalman_orientation_diag.pdf Graphic file (type pdf)
+
+<use figures/kalman_orientation_diag.pdf>
+Package pdftex.def Info: figures/kalman_orientation_diag.pdf used on input line
+ 432.
+(pdftex.def)             Requested size: 352.8155pt x 313.66478pt.
+ [42 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/kalman_orientation_diag.pdf>]
+Underfull \vbox (badness 6995) has occurred while \output is active []
+
+ [43]
+[44] [45]
+Overfull \hbox (16.86101pt too wide) in paragraph at lines 560--561
+\OT1/jkp/m/n/12 the ac-celerom-e-ter. For the mag-ne-tome-ter, $[][] =[] [] = [
+]$ and $[][] =[] [] = []$. 
+ []
+
+[46] [47] [48]
+
+LaTeX Warning: Reference `eq:ekf_dfinition_2' on page 49 undefined on input lin
+e 668.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 668--669
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 684--685
+
+ []
+
+[49]
+Underfull \hbox (badness 10000) in paragraph at lines 751--752
+
+ []
+
+[50] [51]) [52]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\experiments.tex
+Chapter 5.
+<figures/qs_cameras.pdf, id=911, 682.95152pt x 227.6505pt>
+File: figures/qs_cameras.pdf Graphic file (type pdf)
+
+<use figures/qs_cameras.pdf>
+Package pdftex.def Info: figures/qs_cameras.pdf used on input line 9.
+(pdftex.def)             Requested size: 308.71104pt x 102.90376pt.
+ [53
+
+
+
+
+ <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/
+manual/figures/qs_cameras.pdf>]
+<figures/qualisys_pitch.pdf, id=924, 398.32814pt x 341.47577pt>
+File: figures/qualisys_pitch.pdf Graphic file (type pdf)
+
+<use figures/qualisys_pitch.pdf>
+Package pdftex.def Info: figures/qualisys_pitch.pdf used on input line 19.
+(pdftex.def)             Requested size: 308.71104pt x 264.65662pt.
+ [54 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/qualisys_pitch.pdf>]
+[55]
+Overfull \hbox (5.34695pt too wide) in paragraph at lines 56--57
+[]\OT1/jkp/m/n/12 Once all the mark-ers are iden-ti-fied, save the file and go 
+to "file$\OMS/jkp/m/n/12 !$\OT1/jkp/m/n/12 export$\OMS/jkp/m/n/12 !$\OT1/jkp/m/
+n/12 MAT",
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 59--60
+
+ []
+
+Package epstopdf Info: Source file: <figures/fast_walking_01_left_shank.eps>
+(epstopdf)                    date: 2013-12-12 17:30:51
+(epstopdf)                    size: 70754 bytes
+(epstopdf)             Output file: <figures/fast_walking_01_left_shank-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:30:59
+(epstopdf)                    size: 54227 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/fast_walking_01_lef
+t_shank-eps-converted-to.pdf figures/fast_walking_01_left_shank.eps>
+(epstopdf)             \includegraphics on input line 67.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/fast_walking_01_left_shank-eps-converted-to.pdf, id=1034, 1238.6275pt 
+x 639.38875pt>
+File: figures/fast_walking_01_left_shank-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use figures/fast_walking_01_left_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fast_walking_01_left_shank-eps-converted-to.pd
+f used on input line 67.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [56]
+Package epstopdf Info: Source file: <figures/fast_walking_01_left_thigh.eps>
+(epstopdf)                    date: 2013-12-12 17:33:15
+(epstopdf)                    size: 72201 bytes
+(epstopdf)             Output file: <figures/fast_walking_01_left_thigh-eps-con
+verted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:33:47
+(epstopdf)                    size: 56943 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/fast_walking_01_lef
+t_thigh-eps-converted-to.pdf figures/fast_walking_01_left_thigh.eps>
+(epstopdf)             \includegraphics on input line 74.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/fast_walking_01_left_thigh-eps-converted-to.pdf, id=1039, 1238.6275pt 
+x 639.38875pt>
+File: figures/fast_walking_01_left_thigh-eps-converted-to.pdf Graphic file (typ
+e pdf)
+ <use figures/fast_walking_01_left_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fast_walking_01_left_thigh-eps-converted-to.pd
+f used on input line 74.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/fast_walking_01_right_shank.eps>
+(epstopdf)                    date: 2013-12-12 17:35:41
+(epstopdf)                    size: 71922 bytes
+(epstopdf)             Output file: <figures/fast_walking_01_right_shank-eps-co
+nverted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:37:47
+(epstopdf)                    size: 54976 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/fast_walking_01_rig
+ht_shank-eps-converted-to.pdf figures/fast_walking_01_right_shank.eps>
+(epstopdf)             \includegraphics on input line 81.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/fast_walking_01_right_shank-eps-converted-to.pdf, id=1040, 1238.6275pt
+ x 639.38875pt>
+File: figures/fast_walking_01_right_shank-eps-converted-to.pdf Graphic file (ty
+pe pdf)
+ <use figures/fast_walking_01_right_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fast_walking_01_right_shank-eps-converted-to.p
+df used on input line 81.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 4266) has occurred while \output is active []
+
+ [57 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/fast_walking_01_left_shank-eps-converted-to.pdf> <C:/Users/A
+lbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figur
+es/fast_walking_01_left_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/fast_walking_01_right_thigh.eps>
+(epstopdf)                    date: 2013-12-12 17:38:23
+(epstopdf)                    size: 72299 bytes
+(epstopdf)             Output file: <figures/fast_walking_01_right_thigh-eps-co
+nverted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:42:57
+(epstopdf)                    size: 55475 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/fast_walking_01_rig
+ht_thigh-eps-converted-to.pdf figures/fast_walking_01_right_thigh.eps>
+(epstopdf)             \includegraphics on input line 88.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/fast_walking_01_right_thigh-eps-converted-to.pdf, id=1053, 1238.6275pt
+ x 639.38875pt>
+File: figures/fast_walking_01_right_thigh-eps-converted-to.pdf Graphic file (ty
+pe pdf)
+ <use figures/fast_walking_01_right_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/fast_walking_01_right_thigh-eps-converted-to.p
+df used on input line 88.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/jumping_01_left_shank_with_acc.eps
+>
+(epstopdf)                    date: 2013-12-12 17:40:20
+(epstopdf)                    size: 101440 bytes
+(epstopdf)             Output file: <figures/jumping_01_left_shank_with_acc-eps
+-converted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:42:58
+(epstopdf)                    size: 78334 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/jumping_01_left_sha
+nk_with_acc-eps-converted-to.pdf figures/jumping_01_left_shank_with_acc.eps>
+(epstopdf)             \includegraphics on input line 97.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/jumping_01_left_shank_with_acc-eps-converted-to.pdf, id=1054, 1238.627
+5pt x 639.38875pt>
+File: figures/jumping_01_left_shank_with_acc-eps-converted-to.pdf Graphic file 
+(type pdf)
+
+<use figures/jumping_01_left_shank_with_acc-eps-converted-to.pdf>
+Package pdftex.def Info: figures/jumping_01_left_shank_with_acc-eps-converted-t
+o.pdf used on input line 97.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [58 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/fast_walking_01_right_shank-eps-converted-to.pdf> <C:/Users/
+AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figu
+res/fast_walking_01_right_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/jumping_01_left_thigh.eps>
+(epstopdf)                    date: 2013-12-12 17:42:08
+(epstopdf)                    size: 74647 bytes
+(epstopdf)             Output file: <figures/jumping_01_left_thigh-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:42:58
+(epstopdf)                    size: 62249 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/jumping_01_left_thi
+gh-eps-converted-to.pdf figures/jumping_01_left_thigh.eps>
+(epstopdf)             \includegraphics on input line 104.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/jumping_01_left_thigh-eps-converted-to.pdf, id=1067, 1238.6275pt x 639
+.38875pt>
+File: figures/jumping_01_left_thigh-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/jumping_01_left_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/jumping_01_left_thigh-eps-converted-to.pdf use
+d on input line 104.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/jumping_01_right_shank.eps>
+(epstopdf)                    date: 2013-12-12 17:45:19
+(epstopdf)                    size: 72535 bytes
+(epstopdf)             Output file: <figures/jumping_01_right_shank-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:47:34
+(epstopdf)                    size: 58332 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/jumping_01_right_sh
+ank-eps-converted-to.pdf figures/jumping_01_right_shank.eps>
+(epstopdf)             \includegraphics on input line 111.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/jumping_01_right_shank-eps-converted-to.pdf, id=1068, 1238.6275pt x 63
+9.38875pt>
+File: figures/jumping_01_right_shank-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/jumping_01_right_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/jumping_01_right_shank-eps-converted-to.pdf us
+ed on input line 111.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 4341) has occurred while \output is active []
+
+ [59 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/jumping_01_left_shank_with_acc-eps-converted-to.pdf> <C:/Use
+rs/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/f
+igures/jumping_01_left_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/jumping_01_right_thigh.eps>
+(epstopdf)                    date: 2013-12-12 17:46:22
+(epstopdf)                    size: 73585 bytes
+(epstopdf)             Output file: <figures/jumping_01_right_thigh-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:47:34
+(epstopdf)                    size: 60788 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/jumping_01_right_th
+igh-eps-converted-to.pdf figures/jumping_01_right_thigh.eps>
+(epstopdf)             \includegraphics on input line 118.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/jumping_01_right_thigh-eps-converted-to.pdf, id=1082, 1238.6275pt x 63
+9.38875pt>
+File: figures/jumping_01_right_thigh-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/jumping_01_right_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/jumping_01_right_thigh-eps-converted-to.pdf us
+ed on input line 118.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/Left_leg_motion_01_shank.eps>
+(epstopdf)                    date: 2013-12-12 17:51:49
+(epstopdf)                    size: 54462 bytes
+(epstopdf)             Output file: <figures/Left_leg_motion_01_shank-eps-conve
+rted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:58:28
+(epstopdf)                    size: 45609 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Left_leg_motion_01_
+shank-eps-converted-to.pdf figures/Left_leg_motion_01_shank.eps>
+(epstopdf)             \includegraphics on input line 127.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Left_leg_motion_01_shank-eps-converted-to.pdf, id=1083, 1238.6275pt x 
+639.38875pt>
+File: figures/Left_leg_motion_01_shank-eps-converted-to.pdf Graphic file (type 
+pdf)
+ <use figures/Left_leg_motion_01_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Left_leg_motion_01_shank-eps-converted-to.pdf 
+used on input line 127.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [60 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/jumping_01_right_shank-eps-converted-to.pdf> <C:/Users/Alber
+toOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/j
+umping_01_right_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/Left_leg_motion_02_thigh.eps>
+(epstopdf)                    date: 2013-12-12 17:58:07
+(epstopdf)                    size: 54778 bytes
+(epstopdf)             Output file: <figures/Left_leg_motion_02_thigh-eps-conve
+rted-to.pdf>
+(epstopdf)                    date: 2013-12-12 17:58:28
+(epstopdf)                    size: 45184 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Left_leg_motion_02_
+thigh-eps-converted-to.pdf figures/Left_leg_motion_02_thigh.eps>
+(epstopdf)             \includegraphics on input line 134.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Left_leg_motion_02_thigh-eps-converted-to.pdf, id=1096, 1238.6275pt x 
+639.38875pt>
+File: figures/Left_leg_motion_02_thigh-eps-converted-to.pdf Graphic file (type 
+pdf)
+ <use figures/Left_leg_motion_02_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Left_leg_motion_02_thigh-eps-converted-to.pdf 
+used on input line 134.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/Right_leg_motion_01_shank.eps>
+(epstopdf)                    date: 2013-12-12 18:18:42
+(epstopdf)                    size: 54987 bytes
+(epstopdf)             Output file: <figures/Right_leg_motion_01_shank-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:18:50
+(epstopdf)                    size: 46022 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Right_leg_motion_01
+_shank-eps-converted-to.pdf figures/Right_leg_motion_01_shank.eps>
+(epstopdf)             \includegraphics on input line 141.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Right_leg_motion_01_shank-eps-converted-to.pdf, id=1097, 1238.6275pt x
+ 639.38875pt>
+File: figures/Right_leg_motion_01_shank-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/Right_leg_motion_01_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Right_leg_motion_01_shank-eps-converted-to.pdf
+ used on input line 141.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 4341) has occurred while \output is active []
+
+ [61 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/Left_leg_motion_01_shank-eps-converted-to.pdf> <C:/Users/Alb
+ertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures
+/Left_leg_motion_02_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/Right_leg_motion_02_thigh.eps>
+(epstopdf)                    date: 2013-12-12 18:02:16
+(epstopdf)                    size: 55023 bytes
+(epstopdf)             Output file: <figures/Right_leg_motion_02_thigh-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:18:50
+(epstopdf)                    size: 44970 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Right_leg_motion_02
+_thigh-eps-converted-to.pdf figures/Right_leg_motion_02_thigh.eps>
+(epstopdf)             \includegraphics on input line 148.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Right_leg_motion_02_thigh-eps-converted-to.pdf, id=1110, 1238.6275pt x
+ 639.38875pt>
+File: figures/Right_leg_motion_02_thigh-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/Right_leg_motion_02_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Right_leg_motion_02_thigh-eps-converted-to.pdf
+ used on input line 148.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/freezing_gait_left_shank.eps>
+(epstopdf)                    date: 2013-12-12 18:08:58
+(epstopdf)                    size: 71620 bytes
+(epstopdf)             Output file: <figures/freezing_gait_left_shank-eps-conve
+rted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:18:50
+(epstopdf)                    size: 56868 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/freezing_gait_left_
+shank-eps-converted-to.pdf figures/freezing_gait_left_shank.eps>
+(epstopdf)             \includegraphics on input line 157.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/freezing_gait_left_shank-eps-converted-to.pdf, id=1111, 1238.6275pt x 
+639.38875pt>
+File: figures/freezing_gait_left_shank-eps-converted-to.pdf Graphic file (type 
+pdf)
+ <use figures/freezing_gait_left_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/freezing_gait_left_shank-eps-converted-to.pdf 
+used on input line 157.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [62 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/Right_leg_motion_01_shank-eps-converted-to.pdf> <C:/Users/Al
+bertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figure
+s/Right_leg_motion_02_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/freezing_gait_left_thigh.eps>
+(epstopdf)                    date: 2013-12-12 18:13:00
+(epstopdf)                    size: 72605 bytes
+(epstopdf)             Output file: <figures/freezing_gait_left_thigh-eps-conve
+rted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:18:51
+(epstopdf)                    size: 58424 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/freezing_gait_left_
+thigh-eps-converted-to.pdf figures/freezing_gait_left_thigh.eps>
+(epstopdf)             \includegraphics on input line 164.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/freezing_gait_left_thigh-eps-converted-to.pdf, id=1124, 1238.6275pt x 
+639.38875pt>
+File: figures/freezing_gait_left_thigh-eps-converted-to.pdf Graphic file (type 
+pdf)
+ <use figures/freezing_gait_left_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/freezing_gait_left_thigh-eps-converted-to.pdf 
+used on input line 164.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/freezing_gait_right_shank.eps>
+(epstopdf)                    date: 2013-12-12 18:20:34
+(epstopdf)                    size: 72008 bytes
+(epstopdf)             Output file: <figures/freezing_gait_right_shank-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:22:43
+(epstopdf)                    size: 56891 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/freezing_gait_right
+_shank-eps-converted-to.pdf figures/freezing_gait_right_shank.eps>
+(epstopdf)             \includegraphics on input line 171.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/freezing_gait_right_shank-eps-converted-to.pdf, id=1125, 1238.6275pt x
+ 639.38875pt>
+File: figures/freezing_gait_right_shank-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/freezing_gait_right_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/freezing_gait_right_shank-eps-converted-to.pdf
+ used on input line 171.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 4341) has occurred while \output is active []
+
+ [63 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/freezing_gait_left_shank-eps-converted-to.pdf> <C:/Users/Alb
+ertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures
+/freezing_gait_left_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/freezing_gait_right_thigh.eps>
+(epstopdf)                    date: 2013-12-12 18:22:08
+(epstopdf)                    size: 73970 bytes
+(epstopdf)             Output file: <figures/freezing_gait_right_thigh-eps-conv
+erted-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:22:44
+(epstopdf)                    size: 60292 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/freezing_gait_right
+_thigh-eps-converted-to.pdf figures/freezing_gait_right_thigh.eps>
+(epstopdf)             \includegraphics on input line 178.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/freezing_gait_right_thigh-eps-converted-to.pdf, id=1138, 1238.6275pt x
+ 639.38875pt>
+File: figures/freezing_gait_right_thigh-eps-converted-to.pdf Graphic file (type
+ pdf)
+ <use figures/freezing_gait_right_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/freezing_gait_right_thigh-eps-converted-to.pdf
+ used on input line 178.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/Walking_04_left_shank.eps>
+(epstopdf)                    date: 2013-12-12 18:27:04
+(epstopdf)                    size: 74315 bytes
+(epstopdf)             Output file: <figures/Walking_04_left_shank-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:29:52
+(epstopdf)                    size: 62841 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Walking_04_left_sha
+nk-eps-converted-to.pdf figures/Walking_04_left_shank.eps>
+(epstopdf)             \includegraphics on input line 187.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Walking_04_left_shank-eps-converted-to.pdf, id=1139, 1238.6275pt x 639
+.38875pt>
+File: figures/Walking_04_left_shank-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/Walking_04_left_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Walking_04_left_shank-eps-converted-to.pdf use
+d on input line 187.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [64 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/freezing_gait_right_shank-eps-converted-to.pdf> <C:/Users/Al
+bertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figure
+s/freezing_gait_right_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/Walking_04_left_thigh.eps>
+(epstopdf)                    date: 2013-12-12 18:23:47
+(epstopdf)                    size: 73652 bytes
+(epstopdf)             Output file: <figures/Walking_04_left_thigh-eps-converte
+d-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:29:52
+(epstopdf)                    size: 62985 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Walking_04_left_thi
+gh-eps-converted-to.pdf figures/Walking_04_left_thigh.eps>
+(epstopdf)             \includegraphics on input line 194.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Walking_04_left_thigh-eps-converted-to.pdf, id=1152, 1238.6275pt x 639
+.38875pt>
+File: figures/Walking_04_left_thigh-eps-converted-to.pdf Graphic file (type pdf
+)
+ <use figures/Walking_04_left_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Walking_04_left_thigh-eps-converted-to.pdf use
+d on input line 194.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+Package epstopdf Info: Source file: <figures/Walking_04_right_shank.eps>
+(epstopdf)                    date: 2013-12-12 18:25:12
+(epstopdf)                    size: 72815 bytes
+(epstopdf)             Output file: <figures/Walking_04_right_shank-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:29:53
+(epstopdf)                    size: 60970 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Walking_04_right_sh
+ank-eps-converted-to.pdf figures/Walking_04_right_shank.eps>
+(epstopdf)             \includegraphics on input line 201.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Walking_04_right_shank-eps-converted-to.pdf, id=1153, 1238.6275pt x 63
+9.38875pt>
+File: figures/Walking_04_right_shank-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/Walking_04_right_shank-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Walking_04_right_shank-eps-converted-to.pdf us
+ed on input line 201.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+
+Underfull \vbox (badness 4266) has occurred while \output is active []
+
+ [65 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docume
+nts/manual/figures/Walking_04_left_shank-eps-converted-to.pdf> <C:/Users/Albert
+oOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/Wa
+lking_04_left_thigh-eps-converted-to.pdf>]
+Package epstopdf Info: Source file: <figures/Walking_04_right_thigh.eps>
+(epstopdf)                    date: 2013-12-12 18:29:19
+(epstopdf)                    size: 74678 bytes
+(epstopdf)             Output file: <figures/Walking_04_right_thigh-eps-convert
+ed-to.pdf>
+(epstopdf)                    date: 2013-12-12 18:29:53
+(epstopdf)                    size: 63366 bytes
+(epstopdf)             Command: <epstopdf --outfile=figures/Walking_04_right_th
+igh-eps-converted-to.pdf figures/Walking_04_right_thigh.eps>
+(epstopdf)             \includegraphics on input line 208.
+Package epstopdf Info: Output file is already uptodate.
+
+<figures/Walking_04_right_thigh-eps-converted-to.pdf, id=1167, 1238.6275pt x 63
+9.38875pt>
+File: figures/Walking_04_right_thigh-eps-converted-to.pdf Graphic file (type pd
+f)
+ <use figures/Walking_04_right_thigh-eps-converted-to.pdf>
+Package pdftex.def Info: figures/Walking_04_right_thigh-eps-converted-to.pdf us
+ed on input line 208.
+(pdftex.def)             Requested size: 441.01772pt x 227.6529pt.
+) [66 <C:/Users/AlbertoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/docum
+ents/manual/figures/Walking_04_right_shank-eps-converted-to.pdf> <C:/Users/Albe
+rtoOlivares/Dropbox/Casa-Oficina/Internship/GaitWatch/documents/manual/figures/
+Walking_04_right_thigh-eps-converted-to.pdf>]
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.bbl
+Underfull \hbox (badness 6396) in paragraph at lines 4--7
+[]\OT1/jkp/m/n/12 IMU ana-log combo board - 5 de-grees of free-dom idg500/adxl3
+35.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--22
+[]\OT1/jkp/m/n/12 ADXL345: 3-axis, $\OMS/jkp/m/n/12 \OT1/jkp/m/n/12 2\OML/jkp/
+m/it/12 g= \OMS/jkp/m/n/12  \OT1/jkp/m/n/12 4\OML/jkp/m/it/12 g= \OMS/jkp/m/n/
+12  \OT1/jkp/m/n/12 8\OML/jkp/m/it/12 g= \OMS/jkp/m/n/12  \OT1/jkp/m/n/12 16\
+OML/jkp/m/it/12 g$ \OT1/jkp/m/n/12 dig-i-tal ac-celerom-e-ter.
+ []
+
+[67
+
+
+]) [68]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 166.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 166.
+
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\main.aux
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\cover.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\gaitwatch.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\initialconf.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\calibration.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\orientationcomp.aux)
+(C:\Users\AlbertoOlivares\Dropbox\Casa-Oficina\Internship\GaitWatch\documents\m
+anual\experiments.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 166.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 166.
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 0727E134AB9BEC42F23A17BADEC1BB27;3034.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 166.
+ ) 
+Here is how much of TeX's memory you used:
+ 14010 strings out of 493921
+ 215345 string characters out of 3144846
+ 315866 words of memory out of 3000000
+ 16581 multiletter control sequences out of 15000+200000
+ 65256 words of font info for 141 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 44i,27n,43p,903b,484s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/kpfonts/kpfonts-expert.enc
+}{C:/Program Files (x86)/MiKTeX 2.9/fonts/enc/dvips/fontname/8r.enc}<C:/Program
+ Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpbmi.pfb><C:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpbn8a.pfb><C:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpex.pfb><C:/Program Files (x86)/MiKTe
+X 2.9/fonts/type1/public/kpfonts/jkpexa.pfb><C:/Program Files (x86)/MiKTeX 2.9/
+fonts/type1/public/kpfonts/jkpmi.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/kpfonts/jkpmia.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/p
+ublic/kpfonts/jkpmit8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/publi
+c/kpfonts/jkpmite.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpf
+onts/jkpmn8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/
+jkpmn8a.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpmn
+e.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpssmn8a.p
+fb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpsy.pfb><C:/
+Program Files (x86)/MiKTeX 2.9/fonts/type1/public/kpfonts/jkpsyc.pfb><C:/Progra
+m Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Pro
+gram Files (x86)/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on main.pdf (70 pages, 6548977 bytes).
+PDF statistics:
+ 1312 PDF objects out of 1440 (max. 8388607)
+ 311 named destinations out of 1000 (max. 500000)
+ 537 words of extra memory for PDF output out of 10000 (max. 10000000)
+

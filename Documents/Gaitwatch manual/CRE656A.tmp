@@ -1,0 +1,186 @@
+\chapter{Computation of Orientation}
+\label{ch:orientationcomp}
+\section{Quaternion-based orientation determination}
+\subsection{Using angular rate to compute orientation}
+A way to compute the rate of change of the orientation of the Earth frame relative to the sensor frame is to compute the quaternion derivative $^{S}_{E}\dot{\textbf{q}}$, which is defined as follows,
+\begin{equation}
+\label{eq:quat_deriv}
+^{S}_{E}\dot{\mathbf{q}} = \frac{1}{2}{^{S}_{E}\textbf{q}}\otimes{^{S}\boldsymbol{\omega}}
+\end{equation}
+where $^{S}_{E}\textbf{q}$ is the quaternion determining the orientation of the Earth frame relative to the sensor frame, $^{S}\boldsymbol{\omega} = \left[0\;\omega_{x}\;\omega_{y}\;\omega_{z}\right]$ is the measured angular rate vector in the sensor frame in quaternion form, and $\otimes$ is the quaternion (or Hamiltonian) product. \\
+\indent Therefore, we can compute the orientation of the Earth frame relative to the sensor frame (computed from the angular rate) at time t  $^{S}_{E}\textbf{q}_{\omega,t}$ by simply numerically integrating the quaternion derivative in equation (\ref{eq:quat_deriv}).
+
+\begin{equation}
+\label{eq:quat_integration}
+^{S}_{E}\mathbf{q}_{\omega,t} = ^{S}_{E}\mathbf{\hat{q}}_{t-1} + ^{S}_{E}\dot{\mathbf{q}}_{w,t}\Delta t
+\end{equation}
+
+where $^{S}_{E}\mathbf{\hat{q}}_{t-1}$ is the orientation quaternion estimated in $t-1$ by applying a sensor fusion algorithm (this will be later explained), and $\Delta t$ is the sampling frequency. So, if we plug equation (\ref{eq:quat_deriv}) into (\ref{eq:quat_integration}), we get
+
+\begin{equation}
+\label{eq:state_equations}
+\begin{gathered}
+\begin{multlined}
+^{S}_{E}\mathbf{q}_{\omega,t} = \left[\hat{q}_{1,t-1}\;\hat{q}_{2,t-1}\;\hat{q}_{3,t-1}\;\hat{q}_{4,t-1}\right] + \frac{1}{2}\Delta t\left[\hat{q}_{1,t-1}\;\hat{q}_{2,t-1}\;\hat{q}_{3,t-1}\;\hat{q}_{4,t-1} \right]\otimes\left[0\;\omega_{x}\;\omega_{y}\;\omega_{z}\right] =\\ \noindent
+= \left[\hat{q}_{1,t-1}\;\hat{q}_{2,t-1}\;\hat{q}_{3,t-1}\;\hat{q}_{4,t-1}\right] + \frac{1}{2}\Delta t\biggl[\underbrace{-\hat{q}_{2,t-1}\omega_{x}-\hat{q}_{3,t-1}\omega_{y}-\hat{q}_{4,t-1}\omega_{z}}_{y_{1'}}\\
+\underbrace{\hat{q}_{1,t-1}\omega_{x}+\hat{q}_{3,t-1}\omega_{z}-\hat{q}_{4,t-1}\omega_{y}}_{y_{2'}}\;\underbrace{\hat{q}_{1,t-1}\omega_{y}-\hat{q}_{2,t-1}\omega_{z}+\hat{q}_{4,t-1}\omega_{x}}_{y_{3'}}\;\\
+\underbrace{\hat{q}_{1,t-1}\omega_{z}+\hat{q}_{2,t-1}\omega_{y}-\hat{q}_{3,t-1}\omega_{x}}_{y_{4'}}\biggr]
+\end{multlined}
+\end{gathered}
+\end{equation}
+
+\subsection{Using acceleration and magnetic field to compute orientation}
+Another possible way to compute the orientation is by using the accelerometer and the magnetometer measurements. The accelerometer measures the magnitude and direction of the Earth's gravitational field in addition to linear acceleration. The magnetometer measures as well the magnitude and direction of the Earth's magnetic field together with local magnetic flux and field perturbations. \\
+\indent If the body is moving with quasi-static motion and the environment is magnetically stable, we can assume that the accelerometer will only measure the gravity and the magnetometer will only measure Earth's magnetic field. We will assume this in the following.\\
+\indent In order to obtain a complete 9-DOF orientation estimate we need to combine both the accelerometer and the magnetometer as the accelerometer is not able to measure the orientation around the Z axis as it is parallel to the gravitational field. In some applications it is only necessary to measure pitch and/or roll, so there is no need for a magnetometer. However, for a quaternion-based solution we need both sensors as it is a 9-DOF estimation.\\
+\indent Therefore, to estimate the complete orientation we can formulate an optimization problem where an orientation of the sensor $^{S}_{E}\dot{\mathbf{q}}$, is that which aligns a predefined reference direction of the field in the Earth frame, $^{E}\mathbf{\hat{d}}$, with the measured direction of the field in the sensor frame, $^{S}\mathbf{\hat{s}}$, using the quaternion rotation operation 
+
+\begin{equation}
+\label{eq:quat_rot}
+^{E}\mathbf{v} = ^{E}_{S}\hat{\mathbf{q}}\otimes^{S}\mathbf{v}\otimes^{E}_{S}\hat{\mathbf{q}}
+\end{equation}
+
+where $^{E}\mathbf{v}$ and $^{S}\mathbf{v}$ represent the vector $\mathbf{v}$ measured in the Earth frame and the sensor frame respectively, and $^{E}_{S}\hat{\mathbf{q}}$ is the quaternion representing the orientation of the sensor frame with respect to the Earth frame. \\
+\indent Hence, $^{E}_{S}\hat{\mathbf{q}}$ can be found as the solution of 
+
+\begin{equation}
+\label{eq:quat_opt_problem}
+\min_{^{E}_{S}\hat{\mathbf{q}}\in\mathbb{R}^{4}}f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right)
+\end{equation}
+
+where 
+
+\begin{equation}
+\label{eq:quat_opt_func}
+f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right) = ^{E}_{S}\hat{\mathbf{q}}^{*}\otimes^{E}\hat{\mathbf{d}}\otimes^{E}_{S}\hat{\mathbf{q}}-^{S}\hat{\mathbf{s}}
+\end{equation}
+
+In this case, we will use the gradient descent algorithm to optimize the function. The orientation quaternion at instant k+1 is computed applying
+
+\begin{equation}
+\label{eq:quat_gradient}
+^{E}_{S}\hat{\mathbf{q}}_{k+1} = ^{E}_{S}\hat{\mathbf{q}}_{k}-\mu\frac{\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right)}{\left\Vert\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right)\right\Vert}
+\end{equation}
+
+where 
+
+\begin{equation}
+\label{eq:quat_nabla}
+\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right) = J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{d}}\right)f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{d}},^{S}\hat{\mathbf{s}}\right)
+\end{equation}
+
+Where, in turn,
+
+\begin{equation}
+\label{eq:quat_opt_func_extended}
+^{E}_{S}\hat{\mathbf{q}}^{*}\otimes^{E}\hat{\mathbf{d}}\otimes^{E}_{S}\hat{\mathbf{q}}-^{S}\hat{\mathbf{s}} = 
+\left[\begin{array}{c}
+	2d_{x}\left(\frac{1}{2} - q_{3}^{2} - q_{4}^{2}\right) + 2d_{x} + 2d_{y}\left(q_{1}q_{4}+q_{2}q_{3}\right) +2d_{z}\left(q_{2}q_{4}-q_{1}q_{3}\right) - s_{x} \\
+	2d_{x}\left(q_{2}q_{3} - q_{1}q_{4}\right) + 2d_{y}\left(\frac{1}{2} - q_{2}^2 - q_{4}^2\right) + 2d_{z}\left(q_{1}q_{2} + q_{3}q_{4}\right) - s_{y} \\
+	2d_{x}\left(q_{1}q_{3} + q_{2}q_{4}\right) + 2d_{y}\left(q_{3}q_{4} - q_{1}q_{2}\right) + 2d_{z}\left(\frac{1}{2} - q_{2}^2 - q_{3}^2\right) - s_{z}
+\end{array}\right]
+\end{equation}
+
+As we aforementioned,
+
+\begin{itemize}
+\item $^{E}_{S}\hat{\mathbf{q}} = \left[q_{1}\: q_{2}\: q_{3}\: q_{4}\right]\rightarrow$ Estimated orientation quaternion.
+\item $^{E}\hat{\mathbf{d}} = \left[0\: d_{x}\: d_{y}\: d_{z}\right]\rightarrow$ Predefined reference direction of the field in the Earth frame.
+\item $^{S}\hat{\mathbf{s}} = \left[0\: s_{x}\: s_{y}\: s_{z}\right]\rightarrow$ Measured direction of the field in the sensor frame.
+\end{itemize}
+
+In our case, we have two reference vectors, the Earth's gravitational and magnetic field vectors. Therefore, we will use both to have a complete 9DOF orientation estimation. We will start by deriving the equations for the Earth's gravitational field and the accelerometer. For this case, $^{E}\hat{\mathbf{d}} = ^{E}\hat{\mathbf{g}} = \left[0\: 0\: 0\: 1\right]$ and $^{S}\hat{\mathbf{s}} = ^{S}\hat{\mathbf{a}} = \left[0\: a_{x}\: a_{y}\: a_{z}\right]$. Then, equation (\ref{eq:quat_opt_func_extended}) is reduced to,
+
+\begin{equation}
+\label{eq:quat_opt_func_reduced}
+f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{g}},^{S}\hat{\mathbf{a}}\right) = ^{E}_{S}\hat{\mathbf{q}}^{*}\otimes^{E}\hat{\mathbf{g}}\otimes^{E}_{S}\hat{\mathbf{q}}-^{S}\hat{\mathbf{a}} = \left[\begin{array}{c}
+														 \underbrace{2\left(q_{2}q_{4} - q_{1}q_{3}\right) - a_{x}}_{F_{1}} \\
+														 \underbrace{2\left(q_{1}q_{2} + q_{3}q_{4}\right) - a_{y}}_{F_{2}} \\
+														 \underbrace{2\left(\frac{1}{2}-q_{2}^2-q_{3}^2\right) - a_{z}}_{F_{3}}
+														\end{array}\right]
+\end{equation}
+
+As it was shown in equation (\ref{eq:quat_nabla}),
+
+\begin{equation}
+\label{eq:quat_nabla2}
+\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{g}},^{S}\hat{\mathbf{a}}\right) = J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{g}}\right)f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{g}},^{S}\hat{\mathbf{a}}\right)
+\end{equation}
+
+Hence, we are only missing the computation of the Jacobian $J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{g}}\right)$, which is carried out by applying the following equation,
+
+\begin{equation}
+\label{eq:quat_jacobian}
+J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{g}}\right) = \left[\begin{array}{cccc}
+																																				\frac{\partial F_{1}}{\partial q_{1}} & \frac{\partial F_{1}}{\partial q_{2}} & \frac{\partial F_{1}}{\partial q_{3}} & \frac{\partial F_{1}}{\partial q_{4}} \\
+																																				\frac{\partial F_{2}}{\partial q_{1}} & \frac{\partial F_{2}}{\partial q_{2}} & \frac{\partial F_{2}}{\partial q_{3}} & \frac{\partial F_{2}}{\partial q_{4}} \\
+																																				\frac{\partial F_{3}}{\partial q_{1}} & \frac{\partial F_{3}}{\partial q_{2}} & \frac{\partial F_{3}}{\partial q_3{}} & \frac{\partial F_{3}}{\partial q_{4}}
+																																			\end{array}\right] =
+																																			\left[\begin{array}{cccc}
+																																			-2q_{3} &  2q_{4} & -2q_{1} &  2q_{2} \\
+																																			 2q_{2} &  2q_{1} &  2q_{4} &  2q_{3} \\
+																																			      0 & -4q_{2} & -4q_{3} &       0
+																																			\end{array}\right]
+\end{equation}
+
+We are now done with the accelerometer part, let's continue with the magnetometer which is going to provide the Yaw angle which can not be computed with the accelerometer. For the magnetometer, $^{E}\hat{\mathbf{d}} = ^{E}\hat{\mathbf{b}} = \left[0\: b_{x}\: 0\: b_{z}\right]$ and $^{S}\hat{\mathbf{s}} = ^{S}\hat{\mathbf{h}} = \left[0\: h_{x}\: h_{y}\: h_{z}\right]$.
+
+\begin{equation}
+\label{eq:quat_opt_func_reduced_mag}
+f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{b}},^{S}\hat{\mathbf{h}}\right) = ^{E}_{S}\hat{\mathbf{q}}^{*}\otimes^{E}\hat{\mathbf{b}}\otimes^{E}_{S}\hat{\mathbf{q}}-^{S}\hat{\mathbf{h}} = \left[\begin{array}{c}
+														 \underbrace{2b_{x}\left(\frac{1}{2} - q_{3}^2-q_{4}^2\right) + 2b_{z}\left(q_{2}q_{4} - q_{1}q_{3}\right)- h_{x}}_{F_{4}} \\
+														 \underbrace{2b_{x}\left(q_{2}q_{3} - q_{1}q_{4}\right) + 2b_{z}\left(q_{1}q_{2} + q_{3}q_{4}\right) - h_{y}}_{F_{5}} \\
+														 \underbrace{2b_{x}\left(q_{1}q_{3} + q_{2}q_{4}\right) + 2b_{z}\left(\frac{1}{2} - q_{2}^2 - q_{3}^2\right)- h_{z}}_{F_{6}}
+														\end{array}\right]
+\end{equation}
+
+Analogously as in equation (\ref{eq:quat_jacobian}),
+
+\begin{equation}
+\label{eq:quat_jacobian_mag}
+\begin{gathered}
+\begin{multlined}
+J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{b}}\right) = \left[\begin{array}{cccc}
+																																				\frac{\partial F_{4}}{\partial q_{1}} & \frac{\partial F_{4}}{\partial q_{2}} & \frac{\partial F_{4}}{\partial q_{3}} & \frac{\partial F_{4}}{\partial q_{4}} \\
+																																				\frac{\partial F_{5}}{\partial q_{1}} & \frac{\partial F_{5}}{\partial q_{2}} & \frac{\partial F_{5}}{\partial q_{3}} & \frac{\partial F_{5}}{\partial q_{4}} \\
+																																				\frac{\partial F_{6}}{\partial q_{1}} & \frac{\partial F_{6}}{\partial q_{2}} & \frac{\partial F_{6}}{\partial q_3{}} & \frac{\partial F_{6}}{\partial q_{4}}
+																																			\end{array}\right] = \\
+																																			= \left[\begin{array}{cccc}
+																																			-2b_{z}q_{3} &  2b_{z}q_{4} & -2b_{z}q_{1} &  2b_{z}q_{2} \\
+																																			-2b_{x}q_{4} + 2b_{z}q_{2} &  2b_{x}q_{3} + 2b_{z}q_{1} &  2b_{x}q_{2} + 2b_{z}q_{4} & -2b_{x}q_{1} + 2b_{z}q_{3} \\
+																																			 2b_{x}q_{3} & 2b_{x}q_{4} - 4b_{z}q_{2} & 2b_{x}q_{1} - 4b_{z}q_{3} &  2b_{x}q_{2}
+																																			\end{array}\right]
+\end{multlined}
+\end{gathered}
+\end{equation}
+
+So, finally, if we put everything together, these are the equations that need to be implemented to compute the orientation quaternion using accelerometer and magnetometer data,
+
+\begin{gather}
+\label{eq:quat_gradient_final}
+^{E}_{S}\hat{\mathbf{q}}_{k+1} = ^{E}_{S}\hat{\mathbf{q}}_{k}-\mu\frac{\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{gb}},^{S}\hat{\mathbf{ah}}\right)}{\left\Vert\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{gb}},^{S}\hat{\mathbf{ah}}\right)\right\Vert} \\
+\nabla f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{gb}},^{S}\hat{\mathbf{ah}}\right) = J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{gb}}\right)f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{ah}},^{S}\hat{\mathbf{s}}\right) \\
+f\left(^{E}_{S}\hat{\mathbf{q}},^{E}\hat{\mathbf{ah}},^{S}\hat{\mathbf{s}}\right) = \left[\begin{array}{c}
+																																										 2\left(q_{2}q_{4} - q_{1}q_{3}\right) - a_{x} \\
+																																										 2\left(q_{1}q_{2} + q_{3}q_{4}\right) - a_{y} \\
+																																										 2\left(\frac{1}{2}-q_{2}^2-q_{3}^2\right) - a_{z} \\
+																																										 2b_{x}\left(\frac{1}{2} - q_{3}^2-q_{4}^2\right) + 2b_{z}\left(q_{2}q_{4} - q_{1}q_{3}\right)- h_{x} \\
+																																										 2b_{x}\left(q_{2}q_{3} - q_{1}q_{4}\right) + 2b_{z}\left(q_{1}q_{2} + q_{3}q_{4}\right) - h_{y} \\
+																																										 2b_{x}\left(q_{1}q_{3} + q_{2}q_{4}\right) + 2b_{z}\left(\frac{1}{2} - q_{2}^2 - q_{3}^2\right)- h_{z}
+																																										\end{array}\right] \\																																								
+J^{T}\left(^{E}_{S}\hat{\mathbf{q}}_{k},^{E}\hat{\mathbf{gb}}\right) = \left[\begin{array}{cccc}
+																																				\frac{\partial F_{1}}{\partial q_{1}} & \frac{\partial F_{1}}{\partial q_{2}} & \frac{\partial F_{1}}{\partial q_{3}} & \frac{\partial F_{1}}{\partial q_{4}} \\
+																																				\frac{\partial F_{2}}{\partial q_{1}} & \frac{\partial F_{2}}{\partial q_{2}} & \frac{\partial F_{2}}{\partial q_{3}} & \frac{\partial F_{2}}{\partial q_{4}} \\
+																																				\frac{\partial F_{3}}{\partial q_{1}} & \frac{\partial F_{3}}{\partial q_{2}} & \frac{\partial F_{3}}{\partial q_3{}} & \frac{\partial F_{3}}{\partial q_{4}} \\
+																																				\frac{\partial F_{4}}{\partial q_{1}} & \frac{\partial F_{4}}{\partial q_{2}} & \frac{\partial F_{4}}{\partial q_{3}} & \frac{\partial F_{4}}{\partial q_{4}} \\
+																																				\frac{\partial F_{5}}{\partial q_{1}} & \frac{\partial F_{5}}{\partial q_{2}} & \frac{\partial F_{5}}{\partial q_{3}} & \frac{\partial F_{5}}{\partial q_{4}} \\
+																																				\frac{\partial F_{6}}{\partial q_{1}} & \frac{\partial F_{6}}{\partial q_{2}} & \frac{\partial F_{6}}{\partial q_3{}} & \frac{\partial F_{6}}{\partial q_{4}}
+																																			\end{array}\right] =\\ \nonumber																																			\left[\begin{array}{cccc}
+																																			-2q_{3} &  2q_{4} & -2q_{1} &  2q_{2} \\
+																																			 2q_{2} &  2q_{1} &  2q_{4} &  2q_{3} \\
+																																			      0 & -4q_{2} & -4q_{3} &       0 \\
+																																			-2b_{z}q_{3} &  2b_{z}q_{4} & -2b_{z}q_{1} &  2b_{z}q_{2} \\
+																																			-2b_{x}q_{4} + 2b_{z}q_{2} &  2b_{x}q_{3} + 2b_{z}q_{1} &  2b_{x}q_{2} + 2b_{z}q_{4} & -2b_{x}q_{1} + 2b_{z}q_{3} \\
+																																			 2b_{x}q_{3} & 2b_{x}q_{4} - 4b_{z}q_{2} & 2b_{x}q_{1} - 4b_{z}q_{3} &  2b_{x}q_{2}
+																																			\end{array}\right]
+\end{gather}

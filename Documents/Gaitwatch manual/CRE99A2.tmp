@@ -1,0 +1,9 @@
+\chapter{Experiments}
+\label{ch:experiments}
+\section{Fast Walking}
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{figures/fast_walking_01_left_shank.eps}
+\caption{Pitch angle of left shank measured while walking fast (GaitWatch vs. Qualisys).}
+\label{fig:fast_walking01}
+\end{figure}
