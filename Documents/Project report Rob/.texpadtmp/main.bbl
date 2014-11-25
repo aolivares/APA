@@ -1,0 +1,74 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Hass et~al.(2005)Hass, Waddell, Fleming, Juncos, and
+  Gregor]{hass_gait_2005-1}
+Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
+  Robert~J. Gregor.
+\newblock Gait initiation and dynamic balance control in parkinson's disease.
+\newblock \emph{Archives of Physical Medicine and Rehabilitation}, 86\penalty0
+  (11):\penalty0 2172--2176, November 2005.
+\newblock ISSN 0003-9993.
+\newblock \doi{10.1016/j.apmr.2005.05.013}.
+
+\bibitem[Medical(2014)]{patients_medical_definition_2014}
+Patients Medical.
+\newblock Definition of parkinson's disease.
+\newblock \url{http://www.patientsmedical.com/healthaz/parkinsons.aspx}, 2014.
+\newblock [Accessed November 22nd, 2014].
+
+\bibitem[Mancini et~al.(2009)Mancini, Zampieri, Carlson-Kuhta, Chiari, and
+  Horak]{mancini_anticipatory_2009}
+M.~Mancini, C.~Zampieri, P.~Carlson-Kuhta, L.~Chiari, and F.~B. Horak.
+\newblock Anticipatory postural adjustments prior to step initiation are
+  hypometric in untreated parkinson's disease: an accelerometer-based approach.
+\newblock \emph{European Journal of Neurology: The Official Journal of the
+  European Federation of Neurological Societies}, 16\penalty0 (9):\penalty0
+  1028--1034, September 2009.
+\newblock ISSN 1468-1331.
+\newblock \doi{10.1111/j.1468-1331.2009.02641.x}.
+
+\bibitem[Jacobs et~al.(2009)Jacobs, Nutt, Carlson-Kuhta, Stephens, and
+  Horak]{jacobs_knee_2009}
+Jesse~V. Jacobs, John~G. Nutt, Patricia Carlson-Kuhta, Marilee Stephens, and
+  Fay~B. Horak.
+\newblock Knee trembling during freezing of gait represents multiple
+  anticipatory postural adjustments.
+\newblock \emph{Experimental Neurology}, 215\penalty0 (2):\penalty0 334--341,
+  February 2009.
+\newblock ISSN 1090-2430.
+\newblock \doi{10.1016/j.expneurol.2008.10.019}.
+
+\bibitem[Klerk et~al.(2009)Klerk, Vugt, Geelen, and
+  Heida]{klerk_long-term_2009}
+D.~G. M.~de Klerk, J.~P. P.~van Vugt, J.~a.~G. Geelen, and T.~Heida.
+\newblock A long-term monitor including activity classification for motor
+  assessment in parkinson’s disease patients.
+\newblock In Jos~Vander Sloten, Pascal Verdonck, Marc Nyssen, and Jens
+  Haueisen, editors, \emph{4th European Conference of the International
+  Federation for Medical and Biological Engineering}, number~22 in {IFMBE}
+  Proceedings, pages 1706--1709. Springer Berlin Heidelberg, January 2009.
+\newblock ISBN 978-3-540-89207-6, 978-3-540-89208-3.
+\newblock URL
+  \url{http://link.springer.com/chapter/10.1007/978-3-540-89208-3_406}.
+
+\bibitem[Goetz et~al.(2004)Goetz, Poewe, Rascol, Sampaio, Stebbins, Counsell,
+  Giladi, Holloway, Moore, Wenning, Yahr, and Seidl]{goetz_movement_2004}
+Christopher~G. Goetz, Werner Poewe, Olivier Rascol, Cristina Sampaio, Glenn~T.
+  Stebbins, Carl Counsell, Nir Giladi, Robert~G. Holloway, Charity~G. Moore,
+  Gregor~K. Wenning, Melvin~D. Yahr, and Lisa Seidl.
+\newblock Movement disorder society task force report on the hoehn and yahr
+  staging scale: Status and recommendations the movement disorder society task
+  force on rating scales for parkinson's disease.
+\newblock \emph{Movement Disorders}, 19\penalty0 (9):\penalty0 1020--1028,
+  September 2004.
+\newblock ISSN 1531-8257.
+\newblock \doi{10.1002/mds.20213}.
+\newblock URL
+  \url{http://onlinelibrary.wiley.com/doi/10.1002/mds.20213/abstract}.
+
+\end{thebibliography}
