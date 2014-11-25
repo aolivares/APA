@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{7}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -19,7 +19,7 @@ Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
 Patients Medical.
 \newblock Definition of parkinson's disease.
 \newblock \url{http://www.patientsmedical.com/healthaz/parkinsons.aspx}, 2014.
-\newblock [Accessed November 22nd, 2014].
+\newblock [Accessed 22 November, 2014].
 
 \bibitem[Mancini et~al.(2009)Mancini, Zampieri, Carlson-Kuhta, Chiari, and
   Horak]{mancini_anticipatory_2009}
@@ -42,6 +42,16 @@ Jesse~V. Jacobs, John~G. Nutt, Patricia Carlson-Kuhta, Marilee Stephens, and
   February 2009.
 \newblock ISSN 1090-2430.
 \newblock \doi{10.1016/j.expneurol.2008.10.019}.
+
+\bibitem[Woollacott(2009)]{woollacott_anticipatory_2009}
+Marjorie Woollacott.
+\newblock Anticipatory postural adjustments.
+\newblock In Marc~D. Binder, Nobutaka Hirokawa, and Uwe Windhorst, editors,
+  \emph{Encyclopedia of Neuroscience}, page 133. Springer Berlin Heidelberg,
+  January 2009.
+\newblock ISBN 978-3-540-23735-8, 978-3-540-29678-2.
+\newblock URL
+  \url{http://link.springer.com/referenceworkentry/10.1007/978-3-540-29678-2_279}.
 
 \bibitem[Klerk et~al.(2009)Klerk, Vugt, Geelen, and
   Heida]{klerk_long-term_2009}

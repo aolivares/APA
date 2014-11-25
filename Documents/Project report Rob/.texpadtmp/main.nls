@@ -2,11 +2,11 @@
 
  \nomgroup{A}
 
-  \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{9}
+  \item [{APAs}]\begingroup Anticipatory Postural Adjustments\nomeqref {1.0}
+		\nompageref{9}
+  \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{10}
   \item [{COP}]\begingroup Centre of Pressure\nomeqref {1.0}
-		\nompageref{9}
-  \item [{FoG}]\begingroup Freezing of Gait\nomeqref {1.0}
-		\nompageref{9}
+		\nompageref{10}
   \item [{HY}]\begingroup Hoehn and Yahr scale\nomeqref {1.0}
 		\nompageref{11}
   \item [{MIMU}]\begingroup Magnetic Intertial Measurement Unit\nomeqref {1.0}
