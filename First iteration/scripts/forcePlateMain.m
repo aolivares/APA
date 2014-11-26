@@ -83,7 +83,7 @@ figure(1)
 plot(data(data_start:data_end, 1), data(data_start:data_end, 2:5))
 legend(header{3}(2:5))
 xlabel(header{3}(1))
-ylabel('Force (N)')
+ylabel('Force(N)')
 
 % -------------------------------------------------------------------------
 % Read some more details about the following blocks.
@@ -138,7 +138,8 @@ end
 figure(2);
 plot(m);
 title('Midline between both feet');
-xlabel('pressure in r-l-dimension');
+xlabel('Position in the forcePlate (cell)');
+ylabel('Pressure in r-l-dimension (N)');
 text(locs, pks, '+', 'VerticalAlignment', 'Bottom', ...
     'HorizontalAlignment', 'Center', 'FontSize', 16, 'col', 'r');
 text(ml, max(m) / 10, '\downarrow', 'VerticalAlignment', 'Bottom', ...
@@ -154,8 +155,8 @@ n = data_end - data_start + 1;
 % and 3 is both feet.
 data3 = zeros(n,3,3); 
 
-% Values: (1): COG (Center of Gravity) X (right-left).
-%         (2): COG Y (anteroposterior i.e. front-to-back).
+% Values: (1): COP (Center of Gravity) X (right-left).
+%         (2): COP Y (anteroposterior i.e. front-to-back).
 %         (3): Posterior margin (only Y).
 %         (4): Anterior margin (only Y is loaded).
 %         (5): Overall pressure.
@@ -176,13 +177,13 @@ th = text(60,45,num2str(b));
 % Draw central line
 lh = line([ml ml], [1, lines], 'color',[1 1 1]);
 
-% Initialize graphic marker COG (right).
+% Initialize graphic marker COP (right).
 cogr_h = line([20 25], [20 20], 'color', [1 1 1], 'linewidth', 2);
 
-% Initialize graphic marker COG (left).
+% Initialize graphic marker COP (left).
 cogl_h = line([20 25] ,[20 20] ,'color',[1 1 1],'linewidth',2);
 
-% Initialize graphic marker COG (both).
+% Initialize graphic marker COP (both).
 cogb_h = line([20 25] ,[20 20] ,'color',[1 0 0],'linewidth',3);                   
 graph_handles = [cogr_h cogl_h cogb_h];
 
@@ -228,22 +229,23 @@ for b = data_start:data_end
                 an = 1; 
                 en = columns;
         end
-        % Column vector. Calculate COG X to represent the markers.
+        % Column vector. Calculate COP X to represent the markers.
         m = sum(data2(:, an:en));   
         
         % Check whether any data is >0.
         if any(m)    
-            % Put the COG X in the rigth position.
-            data3(c,1,side) = sum(m .* (an:en)) ./ sum(m); 
+            % Put the COP X in the rigth position. We multiply this result 
+            % by 8.5 because each cell has 8.5 mm (as much width as heigth)
+            data3(c,1,side) = 8.5.*sum(m .* (an:en)) ./ sum(m); 
 
-            % Calculate COG Y.
+            % Calculate COP Y.
             m = sum(data2(:, an:en), 2);                                          
-            data3(c, 2, side) = sum(m .* (1:lines)') ./ sum(m);
+            data3(c, 2, side) = 8.5.*sum(m .* (1:lines)') ./ sum(m);
 
             % Calculate rearmost foot pressure point (heel position) (y only)
             data3(c, 3, side) = sum(m);
             
-            % Set the COG markers (X,Y).
+            % Set the COP markers (X,Y).
             set(graph_handles(side), 'xdata', [data3(c, 1, side) - 2 ...
                data3(c, 1, side) + 2], 'ydata', [data3(c, 2, side) ...
                data3(c, 2, side)], 'vis', 'on');
@@ -268,23 +270,23 @@ figure(4)
 % Set legend
 l = {'r foot','l foot','b feet'};
 
-% Plot right-left COG
+% Plot right-left COP (Medio-lateral)
 subplot(3, 1, 1);
 plot(data(data_start:data_end, 1), squeeze(data3(:, 1, :)), 'linewidth',...
     1.5);
 legend(l);
-title('lateral COG excursions');
-xlabel('Time [ ms ]');
-ylabel('< r     l >');
+title('Lateral COP excursions');
+xlabel('Time ( ms )');
+ylabel('L-COP (mm)');
 
-% Plot front-back COG
+% Plot front-back COP (Antero-Posterior)
 subplot(3,1,2);
 plot(data(data_start:data_end, 1), squeeze(data3(:, 2, :)), 'linewidth',...
     1.5);
 legend(l);
-title('ant-post COG excursions');
-xlabel('Time [ ms ]');
-ylabel('< p     a >');
+title('Ant-Post COP excursions');
+xlabel('Time ( ms )');
+ylabel('AP-COP (mm)');
 
 % Plot force.
 subplot(3,1,3);
@@ -292,14 +294,64 @@ plot(data(data_start:data_end, 1), squeeze(data3(:, 3, :)), 'linewidth',...
     1.5);
 legend(l);
 title('Force');
-xlabel('Time [ ms ]');
-ylabel('[ N ]');
+xlabel('Time( ms )');
+ylabel('Force ( N )');
 
 axes('position', [0 0 1 1],'visible', 'off')
 % Print filename on the figure.
 text(0.5, 0.05, strrep(filename, '_', ' '), 'units', 'normalized', ...
     'horizontalAlignment', 'center', 'VerticalAlignment', 'top', ...
     'Fontsize',12);
+
+% -------------------------------------------------------------------------
+% Other form to represent the same prior results.
+% -------------------------------------------------------------------------
+
+% Definition of the midline in mm
+ml_mm=8.5*ml;
+
+% Line to represent the midline.
+line_center=zeros(c,1);
+
+% Calculate COP X with respect to midline.
+data3(:, 1, :)=data3(:, 1, :)-ml_mm;
+
+
+figure(5)
+% Set legend
+l = {'r foot','l foot','b feet'};
+
+% Plot right-left COP (Medio-lateral)
+
+subplot(2, 1, 1);
+plot(data(data_start:data_end, 1), squeeze(data3(:, 1, :)), 'linewidth',...
+    1.5);
+hold on
+plot(data(data_start:data_end, 1), line_center,'-.');
+legend(l);
+title('Medio-Lateral COP excursions');
+xlabel('Time ( ms )');
+ylabel('ML-COP (mm)');
+axis([data(data_start) data(data_end) -max(max(abs(data3(:,1,:)))) ...
+    max(max(abs(data3(:,1,:))))])
+
+hold off
+
+% Plot front-back COP (Antero-Posterior)
+subplot(2,1,2);
+plot(data(data_start:data_end, 1), squeeze(data3(:, 2, :)), 'linewidth',...
+    1.5);
+legend(l);
+title('Ant-Post COP excursions');
+xlabel('Time ( ms )');
+ylabel('AP-COP (mm)');
+
+axes('position', [0 0 1 1],'visible', 'off')
+% Print filename on the figure.
+text(0.5, 0.05, strrep(filename, '_', ' '), 'units', 'normalized', ...
+    'horizontalAlignment', 'center', 'VerticalAlignment', 'top', ...
+    'Fontsize',12);
+
 
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 % END OF FORCEPLATEMAIN FILE
