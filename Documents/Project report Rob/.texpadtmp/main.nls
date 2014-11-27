@@ -7,6 +7,8 @@
   \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{10}
   \item [{COP}]\begingroup Centre of Pressure\nomeqref {1.0}
 		\nompageref{10}
+  \item [{GRF}]\begingroup Ground Reaction Force\nomeqref {1.0}
+		\nompageref{12}
   \item [{HY}]\begingroup Hoehn and Yahr scale\nomeqref {1.0}
 		\nompageref{11}
   \item [{MIMU}]\begingroup Magnetic Intertial Measurement Unit\nomeqref {1.0}

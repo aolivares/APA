@@ -6,44 +6,51 @@ A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Introduction.aux
 The style file: unsrtnat.bst
 Database file #1: ../references.bib
-You've used 8 entries,
+I was expecting a `,' or a `}'---line 334 of file ../references.bib
+ :  
+ :  note = {[Accessed 26 November, 2014]},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty year in encyclopedia_britannica_electromyography_2014
+You've used 10 entries,
             2481 wiz_defined-function locations,
-            620 strings with 7078 characters,
-and the built_in function-call counts, 3948 in all, are:
-= -- 331
-> -- 247
-< -- 6
-+ -- 91
-- -- 75
-* -- 349
-:= -- 650
-add.period$ -- 39
-call.type$ -- 8
-change.case$ -- 16
-chr.to.int$ -- 8
-cite$ -- 8
-duplicate$ -- 168
-empty$ -- 317
-format.name$ -- 83
-if$ -- 828
+            630 strings with 7365 characters,
+and the built_in function-call counts, 4472 in all, are:
+= -- 375
+> -- 261
+< -- 8
++ -- 99
+- -- 79
+* -- 370
+:= -- 733
+add.period$ -- 46
+call.type$ -- 10
+change.case$ -- 19
+chr.to.int$ -- 10
+cite$ -- 11
+duplicate$ -- 201
+empty$ -- 377
+format.name$ -- 89
+if$ -- 943
 int.to.chr$ -- 1
-int.to.str$ -- 9
-missing$ -- 6
-newline$ -- 61
-num.names$ -- 28
-pop$ -- 63
+int.to.str$ -- 11
+missing$ -- 8
+newline$ -- 72
+num.names$ -- 34
+pop$ -- 87
 preamble$ -- 1
-purify$ -- 8
+purify$ -- 10
 quote$ -- 0
-skip$ -- 98
+skip$ -- 119
 stack$ -- 0
-substring$ -- 180
-swap$ -- 42
+substring$ -- 184
+swap$ -- 46
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 56
-warning$ -- 0
-while$ -- 30
+type$ -- 67
+warning$ -- 1
+while$ -- 34
 width$ -- 0
-write$ -- 138
+write$ -- 163
+(There was 1 error message)
