@@ -23,7 +23,7 @@ A major challange to the human ballance control system is the fact that we are b
 
 \section{Goals}
 
-The goal of the project was to analyse anticipatory postural adjustments and subsequently build a classifier which is fed with data from both a force plate and a magnetic inertial measurement unit (MIMU)\nomenclature{MIMU}{Magnetic Intertial Measurement Unit} to distunguish between Parkinson patients and healthy subjects.
+The goal of the project was to analyse anticipatory postural adjustments and subsequently build a classifier using MATLAB, which is fed with data from both a force plate and a magnetic inertial measurement unit (MIMU)\nomenclature{MIMU}{Magnetic Intertial Measurement Unit} to distunguish between Parkinson patients and healthy subjects.
 
 
 \section{Motivation}
@@ -33,11 +33,11 @@ Advanced PD can increasingly diminish quality of life, since patients are depend
 
 \section{State of the art}
 
-There are several methods and devices to assess Parkinson's disease and to analyse anticipatory postural adjustments. The state of the art at the beginning of the project is presented below.
+There are several methods and devices to assess Parkinson's disease and to analyse anticipatory postural adjustments. They differ in terms of practicability, accuracy, validity, portability, and cost. The state of the art at the beginning of the project is described below.
 
 \subsection{Rating scales}
 
-A commonly used rating scale is the Unified Parkinson’s Disease Rating Scale (UPDRS),\nomenclature{UPDRS}{Unified Parkinson’s Disease Rating Scale} which is a short test performed by a physician \cite{klerk_long-term_2009}. The patient is rated on 31 different items (see table \ref{tab:UPDRS}) with a score of 0 (normal) to 4 (severely affected). Another method is the rough, but widely utilised and accepted Hoehn and Yahr scale (HY)\nomenclature{HY}{Hoehn and Yahr scale}. Parkinsonian motor impairment is categorised in 5 stages: Unilateral (Stage 1) to bilateral disease (Stage 2) without balance difficulties, to the presence of postural instability (Stage 3), loss of physical independence (Stage 4), up to being wheelchair- or bed-bound (Stage 5) \cite{goetz_movement_2004}. \citeauthor{klerk_long-term_2009} \cite{klerk_long-term_2009} mentioned the disadvantages such as subjectivity, short observation periods and unfamiliarity of the environment that both rating methods bring along.
+A commonly used rating scale is the Unified Parkinson’s Disease Rating Scale (UPDRS),\nomenclature{UPDRS}{Unified Parkinson’s Disease Rating Scale} which is a short test performed by a physician \cite{klerk_long-term_2009}. The patient is rated on 31 different items (see Table \ref{tab:UPDRS}) with a score of 0 (normal) to 4 (severely affected). Another method is the rough, but widely utilised and accepted Hoehn and Yahr scale (HY)\nomenclature{HY}{Hoehn and Yahr scale}. Parkinsonian motor impairment is categorised in 5 stages: Unilateral (Stage 1) to bilateral disease (Stage 2) without balance difficulties, to the presence of postural instability (Stage 3), loss of physical independence (Stage 4), up to being wheelchair- or bed-bound (Stage 5) \cite{goetz_movement_2004}. Without the need of complex technical devices they are relatively simple to perform. \citeauthor{klerk_long-term_2009} \cite{klerk_long-term_2009} mentioned the disadvantages such as subjectivity, short observation periods and unfamiliarity of the environment that both rating methods bring along.
 
 \begin{table}[h]
 \begin{tabular}{lll}
@@ -80,7 +80,7 @@ Motivation/initiative & Handwriting & Action or postural tremor of hands \\
 
 \subsection{Instrumentation}
 
-In addition to the named subjective rating scales, there are different devices used to quantify gait and posture and assess them ojectively. All of them come with certain pros and cons. The following devices have been used:
+In addition to the named subjective rating scales, there are different devices used to quantify gait and posture and assess them objectively. All of them come with certain pros and cons. The following devices have been used:
 
 \begin{itemize}
 
@@ -88,11 +88,18 @@ In addition to the named subjective rating scales, there are different devices u
 
 \item \textsc{Force plates:} Force plates quantify the ground reaction force (GRF)\nomenclature{GRF}{Ground Reaction Force}, which is the force exerted to the human body by the ground. The GRF is a three-dimensional vector with three orthogonal components. One component along the direction of gravity, one parallel to the ground in the sagittal plane, and one parallel to the ground in the frontal plane. Those are vertical planes that divide the body in left and right halves, and ventral and dorsal sections, respectively. A force plate usually gives an electrical voltage proportional to the force in each of the three directions. Force plates can be characterised according to the following criteria: Sensitivity in Volts per Newton, crosstalk (indication of vertical force if a horizontal force is applied and vice versa), repeatability (similar results under the same load), and time- and temperature drift \cite{griffiths_principles_2006}.
 
-\item \textsc{Inertial measurement units:} Devices that use a combination of inertial sensors like accelerometers and gyroscopes are referred to as inertial measurement units (IMUs)\nomenclature{IMU}{Inertial Measurement Unit}. If they also include magnetic field sensors (magnetometers), they are called magnetic inertial measurement units (MIMUs)\nomenclature{MIMU}{Magnetic Inertial Measurement Unit}. With these devices the orientation of the body with up to nine degrees of freedom can be obtained, provided that triaxial accelerometers and magnetometers are used, respectively \cite{olivares_vicente_signal_2013}.
+\item \textsc{Inertial measurement units:} Devices that use a combination of inertial sensors like accelerometers and gyroscopes are referred to as inertial measurement units (IMUs)\nomenclature{IMU}{Inertial Measurement Unit}. If they also include magnetic field sensors (magnetometers), they are called magnetic inertial measurement units (MIMUs)\nomenclature{MIMU}{Magnetic Inertial Measurement Unit}. With these devices the orientation of the body can be obtained with up to nine degrees of freedom, provided that triaxial accelerometers and magnetometers are used, respectively \cite{olivares_vicente_signal_2013}.
+
+Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained and the resultant acceleration is computed according to Newton's second law $ \mathbf{F} = m \cdot \mathbf a $ \cite{encyclopedia_britannica_accelerometer_2014}.
 
 \end{itemize}
 
 \subsection{Classification}
 
-Different classification methods/techniques were used..
+There are several research projects dealing with APA analysis and PD classification, as the evaluation of posture and gait are key components of the clinical evaluation of PD \cite{palmerini_classification_2013}.
 
+\citeauthor{klerk_long-term_2009} \cite{klerk_long-term_2009} developed a measurement system called PD Monitor, implementing an Activity Classifier that quantifies tremor and bradykinesia in the arm, tigh, and trunk, ambulant and over long periods of time. They validated their measurements with video records, which were rated by physicians using the UPDRS and concluded that ``the PD monitor can be used for a detailed evaluation of the PD motor symptoms in order to optimize treatment.'' \cite{klerk_long-term_2009}.
+
+\citeauthor{mancini_anticipatory_2009} \cite{mancini_anticipatory_2009} found that the 11 untreated early-to-middle stage Parkinson's patients have a significantly smaller peak COP displacement towards the stepping leg and peak trunk acceleration towards the stance leg, compared to the 12 age-matched healthy control subjects, even though step velocity and step length were not different. The results show that lateral APAs are impaired in early, untreated PD and that it is detectable with inertial sensors. As well as force plate-based, also acceleration-based extracted features can be used to detect impairments equally well. Due to the fact that the acceleration signal can be easily obtained via a sensor on a belt, no matter if in clinical or home environment, APA detection by means of accelerometers is considered as a useful way to characterise patients in early stage of PD without evident clinical symptoms. \cite{mancini_anticipatory_2009} proposes further studies to determine the relation between small APAs and the probability to develop start hesitation and freezing.
+
+\citeauthor{palmerini_classification_2013} \cite{palmerini_classification_2013} studied classification of PD subjects  using triaxial accelerometers on the lower back at L5 level and an ad hoc wrapper feature selection technique and achieved satisfactory accuracies. 20 early-mild PD subjects and 20 healthy age-matched control subjects had to perform two simple tests (quiet standing, Timed Up and Go test) in two evaluations over a 1-year follow-up.
