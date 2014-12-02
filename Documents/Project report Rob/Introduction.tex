@@ -23,7 +23,7 @@ A major challange to the human ballance control system is the fact that we are b
 
 \section{Goals}
 
-The goal of the project was to analyse anticipatory postural adjustments and subsequently build a classifier using MATLAB, which is fed with data from both a force plate and a magnetic inertial measurement unit (MIMU)\nomenclature{MIMU}{Magnetic Intertial Measurement Unit} to distunguish between Parkinson patients and healthy subjects.
+The goal of the project was to analyse anticipatory postural adjustments and subsequently build a classifier using MATLAB, which is fed with data from both a force plate and a magnetic inertial measurement unit to distunguish between Parkinson patients and healthy subjects.
 
 
 \section{Motivation}
@@ -74,8 +74,8 @@ Motivation/initiative & Handwriting & Action or postural tremor of hands \\
 & & Body bradikinesia and hypokinesia \\
 \hline
 \end{tabular}
-\label{tab:UPDRS}
 \caption{Unified Parkinson's Disease Rating Scale items adapted from \cite{herndon_handbook_2006}}
+\label{tab:UPDRS}
 \end{table}
 
 \subsection{Instrumentation}
@@ -92,6 +92,8 @@ In addition to the named subjective rating scales, there are different devices u
 
 Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained and the resultant acceleration is computed according to Newton's second law $ \mathbf{F} = m \cdot \mathbf a $ \cite{encyclopedia_britannica_accelerometer_2014}.
 
+Gyroscopes are used to measure angular velocity
+
 \end{itemize}
 
 \subsection{Classification}
@@ -100,6 +102,8 @@ There are several research projects dealing with APA analysis and PD classificat
 
 \citeauthor{klerk_long-term_2009} \cite{klerk_long-term_2009} developed a measurement system called PD Monitor, implementing an Activity Classifier that quantifies tremor and bradykinesia in the arm, tigh, and trunk, ambulant and over long periods of time. They validated their measurements with video records, which were rated by physicians using the UPDRS and concluded that ``the PD monitor can be used for a detailed evaluation of the PD motor symptoms in order to optimize treatment.'' \cite{klerk_long-term_2009}.
 
-\citeauthor{mancini_anticipatory_2009} \cite{mancini_anticipatory_2009} found that the 11 untreated early-to-middle stage Parkinson's patients have a significantly smaller peak COP displacement towards the stepping leg and peak trunk acceleration towards the stance leg, compared to the 12 age-matched healthy control subjects, even though step velocity and step length were not different. The results show that lateral APAs are impaired in early, untreated PD and that it is detectable with inertial sensors. As well as force plate-based, also acceleration-based extracted features can be used to detect impairments equally well. Due to the fact that the acceleration signal can be easily obtained via a sensor on a belt, no matter if in clinical or home environment, APA detection by means of accelerometers is considered as a useful way to characterise patients in early stage of PD without evident clinical symptoms. \cite{mancini_anticipatory_2009} proposes further studies to determine the relation between small APAs and the probability to develop start hesitation and freezing.
+\citeauthor{mancini_anticipatory_2009} \cite{mancini_anticipatory_2009} found that the 11 untreated early-to-middle stage Parkinson's patients that took part in their study have a significantly smaller peak COP displacement towards the stepping leg and peak trunk acceleration towards the stance leg, compared to the 12 age-matched healthy control subjects, even though step velocity and step length were not different. The results show that lateral APAs are impaired in early, untreated PD and that it is detectable with inertial sensors. As well as force plate-based, also acceleration-based extracted features can be used to detect impairments equally well. Due to the fact that the acceleration signal can be easily obtained via a sensor on a belt, no matter if in clinical or home environment, APA detection by means of accelerometers is considered as a useful way to characterise patients in early stage of PD without evident clinical symptoms. \cite{mancini_anticipatory_2009} proposes further studies to determine the relation between small APAs and the probability to develop start hesitation and freezing.
 
-\citeauthor{palmerini_classification_2013} \cite{palmerini_classification_2013} studied classification of PD subjects  using triaxial accelerometers on the lower back at L5 level and an ad hoc wrapper feature selection technique and achieved satisfactory accuracies. 20 early-mild PD subjects and 20 healthy age-matched control subjects had to perform two simple tests (quiet standing, Timed Up and Go test) in two evaluations over a 1-year follow-up.
+\citeauthor{palmerini_classification_2013} \cite{palmerini_classification_2013} states that PD classfication could deliver a tool to follow the progression of the disease during the entire course to examine the efficiency of treatment. They studied classification of PD subjects  using triaxial accelerometers on the lower back at L5 level and an ad hoc wrapper feature selection technique and achieved satisfactory accuracy of 93.75\%. 20 early-mild PD subjects and 20 healthy age-matched control subjects had to perform two simple tests (quiet standing, Timed Up and Go test), in two evaluations over a 1-year follow-up, to test accuracy and robustness over time. As well as \cite{mancini_anticipatory_2009} they found that lateral dynamics i.e. range of motion are impaired in early-mild PD and suggest further investigation on validity of measures in later stages.
+
+
