@@ -1,0 +1,23 @@
+\begin{thenomenclature} 
+
+ \nomgroup{A}
+
+  \item [{APAs}]\begingroup Anticipatory Postural Adjustments\nomeqref {1.0}
+		\nompageref{10}
+  \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{10}
+  \item [{COP}]\begingroup Centre of Pressure\nomeqref {1.0}
+		\nompageref{10}
+  \item [{GRF}]\begingroup Ground Reaction Force\nomeqref {1.0}
+		\nompageref{12}
+  \item [{HY}]\begingroup Hoehn and Yahr scale\nomeqref {1.0}
+		\nompageref{11}
+  \item [{IMU}]\begingroup Inertial Measurement Unit\nomeqref {1.0}
+		\nompageref{12}
+  \item [{MIMU}]\begingroup Magnetic Inertial Measurement Unit\nomeqref {1.0}
+		\nompageref{12}
+  \item [{PD}]\begingroup Parkinson's disease\nomeqref {1.0}
+		\nompageref{9}
+  \item [{UPDRS}]\begingroup Unified Parkinson’s Disease Rating Scale\nomeqref {1.0}
+		\nompageref{11}
+
+\end{thenomenclature}
