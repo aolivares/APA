@@ -11,47 +11,50 @@ I was expecting a `,' or a `}'---line 334 of file References.bib
  :  note = {[Accessed 26 November, 2014]},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--empty journal in olivares_vicente_gaitwatch_2013
+Warning--empty year in olivares_vicente_gaitwatch_2013
+Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in encyclopedia_britannica_electromyography_2014
 Warning--empty year in encyclopedia_britannica_accelerometer_2014
-You've used 15 entries,
+You've used 16 entries,
             2481 wiz_defined-function locations,
-            666 strings with 8608 characters,
-and the built_in function-call counts, 6407 in all, are:
-= -- 546
-> -- 359
-< -- 13
-+ -- 138
-- -- 108
-* -- 515
-:= -- 1050
-add.period$ -- 68
-call.type$ -- 15
-change.case$ -- 28
-chr.to.int$ -- 15
-cite$ -- 17
-duplicate$ -- 300
-empty$ -- 544
-format.name$ -- 123
-if$ -- 1356
+            670 strings with 8715 characters,
+and the built_in function-call counts, 6704 in all, are:
+= -- 568
+> -- 374
+< -- 14
++ -- 144
+- -- 112
+* -- 536
+:= -- 1096
+add.period$ -- 70
+call.type$ -- 16
+change.case$ -- 30
+chr.to.int$ -- 16
+cite$ -- 21
+duplicate$ -- 318
+empty$ -- 572
+format.name$ -- 130
+if$ -- 1417
 int.to.chr$ -- 1
-int.to.str$ -- 16
-missing$ -- 12
-newline$ -- 103
-num.names$ -- 51
-pop$ -- 132
+int.to.str$ -- 17
+missing$ -- 13
+newline$ -- 107
+num.names$ -- 54
+pop$ -- 146
 preamble$ -- 1
-purify$ -- 15
+purify$ -- 16
 quote$ -- 0
-skip$ -- 174
+skip$ -- 184
 stack$ -- 0
-substring$ -- 242
-swap$ -- 69
+substring$ -- 244
+swap$ -- 70
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 99
-warning$ -- 2
-while$ -- 50
+type$ -- 106
+warning$ -- 5
+while$ -- 52
 width$ -- 0
-write$ -- 240
+write$ -- 249
 (There was 1 error message)
