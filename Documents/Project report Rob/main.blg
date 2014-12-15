@@ -6,55 +6,51 @@ A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Introduction.aux
 The style file: unsrtnat.bst
 Database file #1: References.bib
-I was expecting a `,' or a `}'---line 334 of file References.bib
- :  
- :  note = {[Accessed 26 November, 2014]},
-(Error may have been on previous line)
-I'm skipping whatever remains of this entry
 Warning--empty journal in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in encyclopedia_britannica_electromyography_2014
 Warning--empty year in encyclopedia_britannica_accelerometer_2014
-You've used 16 entries,
+Warning--empty year in Intel_2013
+You've used 18 entries,
             2481 wiz_defined-function locations,
-            670 strings with 8715 characters,
-and the built_in function-call counts, 6704 in all, are:
-= -- 568
-> -- 374
-< -- 14
-+ -- 144
-- -- 112
-* -- 536
-:= -- 1096
-add.period$ -- 70
-call.type$ -- 16
-change.case$ -- 30
+            685 strings with 9332 characters,
+and the built_in function-call counts, 7537 in all, are:
+= -- 640
+> -- 422
+< -- 15
++ -- 164
+- -- 126
+* -- 619
+:= -- 1229
+add.period$ -- 80
+call.type$ -- 18
+change.case$ -- 34
 chr.to.int$ -- 16
-cite$ -- 21
-duplicate$ -- 318
-empty$ -- 572
-format.name$ -- 130
-if$ -- 1417
-int.to.chr$ -- 1
-int.to.str$ -- 17
-missing$ -- 13
-newline$ -- 107
-num.names$ -- 54
-pop$ -- 146
+cite$ -- 24
+duplicate$ -- 351
+empty$ -- 640
+format.name$ -- 148
+if$ -- 1588
+int.to.chr$ -- 3
+int.to.str$ -- 19
+missing$ -- 14
+newline$ -- 121
+num.names$ -- 60
+pop$ -- 166
 preamble$ -- 1
-purify$ -- 16
+purify$ -- 18
 quote$ -- 0
-skip$ -- 184
+skip$ -- 197
 stack$ -- 0
-substring$ -- 244
-swap$ -- 70
+substring$ -- 273
+swap$ -- 79
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 106
-warning$ -- 5
-while$ -- 52
+type$ -- 120
+warning$ -- 6
+while$ -- 58
 width$ -- 0
-write$ -- 249
-(There was 1 error message)
+write$ -- 283
+(There were 6 warnings)
