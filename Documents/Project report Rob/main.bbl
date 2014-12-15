@@ -1,25 +1,9 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{16}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Hass et~al.(2005)Hass, Waddell, Fleming, Juncos, and
-  Gregor]{hass_gait_2005-1}
-Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
-  Robert~J. Gregor.
-\newblock Gait initiation and dynamic balance control in parkinson's disease.
-\newblock \emph{Archives of Physical Medicine and Rehabilitation}, 86\penalty0
-  (11):\penalty0 2172--2176, November 2005.
-\newblock ISSN 0003-9993.
-\newblock \doi{10.1016/j.apmr.2005.05.013}.
-
-\bibitem[Herndon(2006)]{herndon_handbook_2006}
-Robert~M. Herndon.
-\newblock \emph{Handbook of Neurologic Rating Scales, 2nd Edition}.
-\newblock Demos Medical Publishing, 2006.
-\newblock ISBN 9781617050312.
 
 \bibitem[Medical(2014)]{patients_medical_definition_2014}
 Patients Medical.
@@ -49,6 +33,14 @@ Jesse~V. Jacobs, John~G. Nutt, Patricia Carlson-Kuhta, Marilee Stephens, and
 \newblock ISSN 1090-2430.
 \newblock \doi{10.1016/j.expneurol.2008.10.019}.
 
+\bibitem[Halliday et~al.(1998)Halliday, Winter, Frank, Patla, and
+  Prince]{halliday_initiation_1998}
+null Halliday, null Winter, null Frank, null Patla, and null Prince.
+\newblock The initiation of gait in young, elderly, and parkinson's disease
+  subjects.
+\newblock \emph{Gait \& Posture}, 8\penalty0 (1):\penalty0 8--14, August 1998.
+\newblock ISSN 1879-2219.
+
 \bibitem[Woollacott(2009)]{woollacott_anticipatory_2009}
 Marjorie Woollacott.
 \newblock Anticipatory postural adjustments.
@@ -58,6 +50,20 @@ Marjorie Woollacott.
 \newblock ISBN 978-3-540-23735-8, 978-3-540-29678-2.
 \newblock URL
   \url{http://link.springer.com/referenceworkentry/10.1007/978-3-540-29678-2_279}.
+
+\bibitem[Hass et~al.(2005)Hass, Waddell, Fleming, Juncos, and
+  Gregor]{hass_gait_2005-1}
+Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
+  Robert~J. Gregor.
+\newblock Gait initiation and dynamic balance control in parkinson's disease.
+\newblock \emph{Archives of Physical Medicine and Rehabilitation}, 86\penalty0
+  (11):\penalty0 2172--2176, November 2005.
+\newblock ISSN 0003-9993.
+\newblock \doi{10.1016/j.apmr.2005.05.013}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock {GaitWatch} user manual.
 
 \bibitem[Bötzel(2014)]{botzel_motivation_2014}
 Kai Prof.~Dr.med. Bötzel.
@@ -91,10 +97,50 @@ Christopher~G. Goetz, Werner Poewe, Olivier Rascol, Cristina Sampaio, Glenn~T.
 \newblock URL
   \url{http://onlinelibrary.wiley.com/doi/10.1002/mds.20213/abstract}.
 
+\bibitem[Herndon(2006)]{herndon_handbook_2006}
+Robert~M. Herndon.
+\newblock \emph{Handbook of Neurologic Rating Scales, 2nd Edition}.
+\newblock Demos Medical Publishing, 2006.
+\newblock ISBN 9781617050312.
+
 \bibitem[Britannica()]{encyclopedia_britannica_electromyography_2014}
 Encyclopedia Britannica.
 \newblock Electromyography.
 \newblock
   \url{http://global.britannica.com/EBchecked/topic/183371/electromyography}.
+
+\bibitem[Griffiths(2006)]{griffiths_principles_2006}
+Iwan~W. Griffiths.
+\newblock \emph{Principles of Biomechanics \& Motion Analysis}.
+\newblock Lippincott Williams \& Wilkins, 2006.
+\newblock ISBN 9780781752312.
+
+\bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
+Alberto Olivares~Vicente.
+\newblock \emph{Signal Processing of Magnetic and Inertial Sensor’s Signals
+  applied to Human Body Motion Monitoring}.
+\newblock Doctoral thesis, University of Granada, Granada, January 2013.
+\newblock URL \url{http://hera.ugr.es/tesisugr/21910947.pdf}.
+
+\bibitem[{Encyclopedia
+  Britannica}()]{encyclopedia_britannica_accelerometer_2014}
+{Encyclopedia Britannica}.
+\newblock Accelerometer.
+\newblock
+  \url{http://global.britannica.com/EBchecked/topic/2859/accelerometer}.
+\newblock [Accessed 01 December, 2014].
+
+\bibitem[Palmerini et~al.(2013)Palmerini, Mellone, Avanzolini, Valzania, and
+  Chiari]{palmerini_classification_2013}
+Luca Palmerini, Sabato Mellone, Guido Avanzolini, Franco Valzania, and Lorenzo
+  Chiari.
+\newblock Classification of early-mild subjects with parkinson’s disease by
+  using sensor-based measures of posture, gait, and transitions.
+\newblock In Niels Peek, Roque~Marín Morales, and Mor Peleg, editors,
+  \emph{Artificial Intelligence in Medicine}, number 7885 in Lecture Notes in
+  Computer Science, pages 176--180. Springer Berlin Heidelberg, January 2013.
+\newblock ISBN 978-3-642-38325-0, 978-3-642-38326-7.
+\newblock URL
+  \url{http://link.springer.com/chapter/10.1007/978-3-642-38326-7_27}.
 
 \end{thebibliography}
