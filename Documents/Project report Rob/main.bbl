@@ -1,4 +1,4 @@
-\begin{thebibliography}{18}
+\begin{thebibliography}{19}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -114,9 +114,9 @@ L.~Palmerini, S.~Mellone, G.~Avanzolini, F.~Valzania, and L.~Chiari.
 \newblock ISSN 1534-4320.
 \newblock \doi{10.1109/TNSRE.2012.2236577}.
 
-\bibitem[Britannica({\natexlab{a}})]{encyclopedia_britannica_electromyography_2014}
+\bibitem[Britannica(2014{\natexlab{a}})]{encyclopedia_britannica_electromyography_2014}
 Encyclopedia Britannica.
-\newblock Electromyography, {\natexlab{a}}.
+\newblock Electromyography, 2014{\natexlab{a}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/183371/electromyography}.
 \newblock [Accessed 26 November, 2014].
@@ -134,9 +134,9 @@ Alberto Olivares~Vicente.
 \newblock Doctoral thesis, University of Granada, Granada, January 2013.
 \newblock URL \url{http://hera.ugr.es/tesisugr/21910947.pdf}.
 
-\bibitem[Britannica({\natexlab{b}})]{encyclopedia_britannica_accelerometer_2014}
+\bibitem[Britannica(2014{\natexlab{b}})]{encyclopedia_britannica_accelerometer_2014}
 Encyclopedia Britannica.
-\newblock Accelerometer, {\natexlab{b}}.
+\newblock Accelerometer, 2014{\natexlab{b}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/2859/accelerometer}.
 \newblock [Accessed 01 December, 2014].
@@ -162,5 +162,15 @@ The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
   parkinson's disease monitoring and treatment through advanced technologies.
 \newblock URL \url{http://goo.gl/PxQAof}.
 \newblock [Accessed 15 December, 2014].
+
+\bibitem[Khorasani and Daliri(2014)]{khorasani_hmm_2014}
+Abed Khorasani and Mohammad~Reza Daliri.
+\newblock {HMM} for classification of parkinson’s disease based on the raw
+  gait data.
+\newblock \emph{Journal of Medical Systems}, 38\penalty0 (12):\penalty0 1--6,
+  December 2014.
+\newblock ISSN 0148-5598, 1573-689X.
+\newblock \doi{10.1007/s10916-014-0147-5}.
+\newblock URL \url{http://link.springer.com/article/10.1007/s10916-014-0147-5}.
 
 \end{thebibliography}
