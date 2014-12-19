@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -76,6 +76,17 @@ Alberto Olivares~Vicente and Kai Bötzel.
 Kai Bötzel.
 \newblock Motivation for early diagnosis of {PD}, November 2014.
 
+\bibitem[Mancini et~al.(2012)Mancini, Salarian, Carlson-Kuhta, Zampieri, King,
+  Chiari, and Horak]{mancini_isway:_2012}
+Martina Mancini, Arash Salarian, Patricia Carlson-Kuhta, Cris Zampieri, Laurie
+  King, Lorenzo Chiari, and Fay~B. Horak.
+\newblock {ISway}: a sensitive, valid and reliable measure of postural control.
+\newblock \emph{Journal of {NeuroEngineering} and Rehabilitation}, 9\penalty0
+  (1):\penalty0 1--8, December 2012.
+\newblock ISSN 1743-0003.
+\newblock \doi{10.1186/1743-0003-9-59}.
+\newblock URL \url{http://link.springer.com/article/10.1186/1743-0003-9-59}.
+
 \bibitem[Klerk et~al.(2009)Klerk, Vugt, Geelen, and
   Heida]{klerk_long-term_2009}
 D.~G. M.~de Klerk, J.~P. P.~van Vugt, J.~a.~G. Geelen, and T.~Heida.
@@ -126,6 +137,19 @@ Iwan~W. Griffiths.
 \newblock \emph{Principles of Biomechanics \& Motion Analysis}.
 \newblock Lippincott Williams \& Wilkins, 2006.
 \newblock ISBN 9780781752312.
+
+\bibitem[Mancini et~al.(2011)Mancini, Horak, Zampieri, Carlson-Kuhta, Nutt, and
+  Chiari]{mancini_trunk_2011}
+Martina Mancini, Fay~B. Horak, Cris Zampieri, Patricia Carlson-Kuhta, John~G.
+  Nutt, and Lorenzo Chiari.
+\newblock Trunk accelerometry reveals postural instability in untreated
+  parkinson’s disease.
+\newblock \emph{Parkinsonism \& Related Disorders}, 17\penalty0 (7):\penalty0
+  557--562, August 2011.
+\newblock ISSN 1353-8020.
+\newblock \doi{10.1016/j.parkreldis.2011.05.010}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1353802011001428}.
 
 \bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
 Alberto Olivares~Vicente.

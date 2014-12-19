@@ -10,45 +10,45 @@ Warning--empty journal in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Intel_2013
-You've used 20 entries,
+You've used 22 entries,
             2481 wiz_defined-function locations,
-            702 strings with 9768 characters,
-and the built_in function-call counts, 8351 in all, are:
-= -- 725
-> -- 452
+            722 strings with 10510 characters,
+and the built_in function-call counts, 9407 in all, are:
+= -- 811
+> -- 536
 < -- 17
-+ -- 176
-- -- 134
-* -- 687
-:= -- 1358
-add.period$ -- 91
-call.type$ -- 20
-change.case$ -- 38
-chr.to.int$ -- 18
-cite$ -- 24
-duplicate$ -- 389
-empty$ -- 712
-format.name$ -- 162
-if$ -- 1763
++ -- 206
+- -- 160
+* -- 799
+:= -- 1544
+add.period$ -- 103
+call.type$ -- 22
+change.case$ -- 42
+chr.to.int$ -- 20
+cite$ -- 26
+duplicate$ -- 427
+empty$ -- 784
+format.name$ -- 190
+if$ -- 1973
 int.to.chr$ -- 3
-int.to.str$ -- 21
-missing$ -- 16
-newline$ -- 136
-num.names$ -- 66
-pop$ -- 171
+int.to.str$ -- 23
+missing$ -- 18
+newline$ -- 152
+num.names$ -- 72
+pop$ -- 179
 preamble$ -- 1
-purify$ -- 20
+purify$ -- 22
 quote$ -- 0
-skip$ -- 223
+skip$ -- 241
 stack$ -- 0
-substring$ -- 315
-swap$ -- 85
+substring$ -- 357
+swap$ -- 91
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 134
+type$ -- 148
 warning$ -- 4
-while$ -- 66
+while$ -- 74
 width$ -- 0
-write$ -- 319
+write$ -- 357
 (There were 4 warnings)
