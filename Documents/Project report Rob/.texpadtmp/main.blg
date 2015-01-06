@@ -4,15 +4,18 @@ The top-level auxiliary file: main.aux
 A level-1 auxiliary file: Cover.aux
 A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Introduction.aux
+A level-1 auxiliary file: Synchronisation.aux
+A level-1 auxiliary file: Results.aux
+A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
-Database file #1: References.bib
+Database file #1: ../Bibliography.bib
 Warning--empty journal in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Intel_2013
 You've used 22 entries,
             2481 wiz_defined-function locations,
-            722 strings with 10510 characters,
+            725 strings with 10559 characters,
 and the built_in function-call counts, 9407 in all, are:
 = -- 811
 > -- 536

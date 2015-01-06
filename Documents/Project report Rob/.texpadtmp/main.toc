@@ -12,3 +12,11 @@
 \contentsline {subsubsection}{\numberline {1.4.2.3}Inertial Measurement Units}{13}{subsubsection.1.4.2.3}
 \contentsline {subsection}{\numberline {1.4.3}Classification}{13}{subsection.1.4.3}
 \contentsline {section}{\numberline {1.5}Document Structure}{15}{section.1.5}
+\contentsline {chapter}{\numberline {2}Synchronisation}{17}{chapter.2}
+\contentsline {section}{\numberline {2.1}Devices}{17}{section.2.1}
+\contentsline {chapter}{\numberline {3}Results and Discussion}{19}{chapter.3}
+\contentsline {section}{\numberline {3.1}Results}{19}{section.3.1}
+\contentsline {section}{\numberline {3.2}Discussion}{19}{section.3.2}
+\contentsline {chapter}{\numberline {4}Conclusion and Future Work}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Conclusions}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Future Work}{21}{section.4.2}
