@@ -1,4 +1,4 @@
-\begin{thebibliography}{22}
+\begin{thebibliography}{29}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -14,6 +14,10 @@ Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
   (11):\penalty0 2172--2176, November 2005.
 \newblock ISSN 0003-9993.
 \newblock \doi{10.1016/j.apmr.2005.05.013}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock {GaitWatch} user manual.
 
 \bibitem[Herndon(2006)]{herndon_handbook_2006}
 Robert~M. Herndon.
@@ -67,10 +71,6 @@ Marjorie Woollacott.
 \newblock ISBN 978-3-540-23735-8, 978-3-540-29678-2.
 \newblock URL
   \url{http://link.springer.com/referenceworkentry/10.1007/978-3-540-29678-2_279}.
-
-\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
-Alberto Olivares~Vicente and Kai Bötzel.
-\newblock {GaitWatch} user manual.
 
 \bibitem[Bötzel(2014)]{botzel_motivation_2014}
 Kai Bötzel.
@@ -205,5 +205,50 @@ Yunfeng Wu and Sridhar Krishnan.
   Engineering}, 18\penalty0 (2):\penalty0 150--158, April 2010.
 \newblock ISSN 1534-4320.
 \newblock \doi{10.1109/TNSRE.2009.2033062}.
+
+\bibitem[Electronics({\natexlab{a}})]{IMU5}
+SparkFun Electronics.
+\newblock Imu analog combo board 5dof, {\natexlab{a}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/9268}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[Electronics({\natexlab{b}})]{IDG500}
+SparkFun Electronics.
+\newblock Gyro breakout board idg500, {\natexlab{b}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/9094}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[Devices({\natexlab{a}})]{ADXL335}
+Analog Devices.
+\newblock Adxl335: Small, low power 3-axis ±3g accelerometer, {\natexlab{a}}.
+\newblock URL
+  \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl335/products/product.html}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[Devices({\natexlab{b}})]{ADXL345}
+Analog Devices.
+\newblock Adxl345: 3-axis, ±2g/±4g/±8g/±16g digital accelerometer,
+  {\natexlab{b}}.
+\newblock URL
+  \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl345/products/product.html}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[InvenSense()]{IMU3000}
+InvenSense.
+\newblock Imu-3000 triple axis motionprocessor\texttrademark gyroscope.
+\newblock URL \url{http://www.invensense.com/mems/gyro/imu3000.html}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[Electronics({\natexlab{c}})]{MicroMag3}
+SparkFun Electronics.
+\newblock Micromag 3-axis magnetometer, {\natexlab{c}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/244}.
+\newblock [Accessed 09 January, 2015].
+
+\bibitem[ALVIDI()]{AVRATxmega}
+ALVIDI.
+\newblock Avr atxmega - development module.
+\newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
+\newblock [Accessed 09 January, 2015].
 
 \end{thebibliography}

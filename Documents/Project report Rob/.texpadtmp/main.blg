@@ -4,7 +4,7 @@ The top-level auxiliary file: main.aux
 A level-1 auxiliary file: Cover.aux
 A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Introduction.aux
-A level-1 auxiliary file: Synchronisation.aux
+A level-1 auxiliary file: Hardware.aux
 A level-1 auxiliary file: Results.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
@@ -13,45 +13,52 @@ Warning--empty journal in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Intel_2013
-You've used 22 entries,
+Warning--empty year in IMU5
+Warning--empty year in IDG500
+Warning--empty year in ADXL335
+Warning--empty year in ADXL345
+Warning--empty year in IMU3000
+Warning--empty year in MicroMag3
+Warning--empty year in AVRATxmega
+You've used 29 entries,
             2481 wiz_defined-function locations,
-            725 strings with 10559 characters,
-and the built_in function-call counts, 9407 in all, are:
-= -- 811
-> -- 536
-< -- 17
-+ -- 206
-- -- 160
-* -- 799
-:= -- 1544
-add.period$ -- 103
-call.type$ -- 22
-change.case$ -- 42
-chr.to.int$ -- 20
-cite$ -- 26
-duplicate$ -- 427
-empty$ -- 784
-format.name$ -- 190
-if$ -- 1973
-int.to.chr$ -- 3
-int.to.str$ -- 23
+            758 strings with 11414 characters,
+and the built_in function-call counts, 11292 in all, are:
+= -- 977
+> -- 585
+< -- 24
++ -- 237
+- -- 174
+* -- 891
+:= -- 1828
+add.period$ -- 131
+call.type$ -- 29
+change.case$ -- 56
+chr.to.int$ -- 24
+cite$ -- 40
+duplicate$ -- 525
+empty$ -- 994
+format.name$ -- 211
+if$ -- 2384
+int.to.chr$ -- 6
+int.to.str$ -- 30
 missing$ -- 18
-newline$ -- 152
-num.names$ -- 72
-pop$ -- 179
+newline$ -- 194
+num.names$ -- 93
+pop$ -- 279
 preamble$ -- 1
-purify$ -- 22
+purify$ -- 29
 quote$ -- 0
-skip$ -- 241
+skip$ -- 297
 stack$ -- 0
-substring$ -- 357
-swap$ -- 91
+substring$ -- 371
+swap$ -- 110
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 148
-warning$ -- 4
-while$ -- 74
+type$ -- 197
+warning$ -- 11
+while$ -- 88
 width$ -- 0
-write$ -- 357
-(There were 4 warnings)
+write$ -- 453
+(There were 11 warnings)
