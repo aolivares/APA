@@ -64,69 +64,70 @@ clear all; close all; clc;
 gw = gwLibrary;
 
 % -------------------------------------------------------------------------
-% 2) Load data from both force plate and GaitWatch together with the
-%    time vectors.
+% 2) Load data from both force plate and GaitWatch.
 % -------------------------------------------------------------------------
 
-% force plate data in anterior-posterior direction. Swap / and \ for
-% MATLAB on Mac OS/Windows!!!
+% Select force plate data file with a dialog box (only .mat files).
+[filename_FP, filepath_FP] = uigetfile('*.mat', ...
+    'Select Force Plate data file (.mat)', '../data/ForcePlate');
 
-load ('forcePlate_GW_data_ES39/both_AP.mat');                           
-AP_FP = both_AP;                                    
-time_FP = time;
+% Select GaitWatch data file with a dialog box (only .mat files).
+[filename_GW, filepath_GW] = uigetfile('*.mat', ...
+    'Select GaitWatch data file (.mat)', '../data/GaitWatch');
 
-3*(time_FP(2)-time_FP(1))
+% Load force plate data into workspace.
+load(fullfile(filepath_FP, filename_FP));
 
-plot(time_FP, AP_FP);
-
-load ('forcePlate_GW_data_ES39/pitch_GKF_right_shank');
-acc_GW = a_Z_right_shank_1_C;               
-time_GW = time;
-
-%time_GW(2)-time_GW 
-
-%plot(time_GW, acc_GW);
-
-fs_FP = 120;        % Sampling frequency force plate
-fs_GW = 200;        % Sampling frequency GaitWatch 
+% Load GaitWatch data into workspace.
+load(fullfile(filepath_GW, filename_GW));
 
 %% 
 % -------------------------------------------------------------------------
-% 3) Separate the ten cycles of the GaitWatch data. That is, find the
-%    first peak of the ten cycles, respectively, in the GaitWatch data
-%    and store the following values to the first peak of the next cycle
-%    in separate vectors in a cell array.  
+% 3) Select the cycles in the GaitWatch data manually. 
 % -------------------------------------------------------------------------
 
-% Localise seperate cycles by selecting points between two cycles.
-indexes = gw.getDCindexes(acc_GW, 'ACC_Z_right_shank');
+% Localise seperate cycles by manually selecting points between two cycles.
+indexes = gw.getDCindexes(a_Z_right_shank_1, 'Acceleration Z-axis right shank');
 
 %% 
 
 n_cycles = length(indexes)-1;
-
-%cycle_lengths = indexes(2:length(indexes))-indexes(1:length(indexes)-1);
-
-%GW_cycles = zeros(n_cycles, max(cycle_lengths));
-
-GW_cycles = cell(n_cycles, 1);
+peak_ind = zeros(1, n_cycles);
 
 for i = 1 : n_cycles
     
-    % Find all peaks greater than 1.1 in cycle i.
-    [peak_values_GW, peak_locations_GW] = findpeaks(acc_GW(indexes(i):indexes(i+1)), 'minpeakheight', 1.1);
+    % Find all peaks greater than 1.4 in cycle i and store them in peak_ind.
+    [peak_values, peak_locations] = findpeaks(a_Z_right_shank_1(indexes(i):indexes(i+1)), 'minpeakheight', 1.4);
     
-    % Store data from the first peak to the beginning of the next cycle in
+    peak_ind(i) = peak_locations(1);
+   
+end
+
+%% 
+
+% -------------------------------------------------------------------------
+% * 4) Store the separate cycles in time series collection.
+% -------------------------------------------------------------------------
+
+
+acc_trunk = timeseries([], time);
+
+              
+
+
+
+%%
+
+
+%GW_cycles = cell(n_cycles, 1);
+% Store data from the first peak to the beginning of the next cycle in
     % cell array.
-    GW_cycles(i, 1) = acc_GW(peak_locations_GW(1):indexes(i+1));
+    %GW_cycles(i, 1) = acc_GW(peak_locations_GW(1):indexes(i+1));
     
 %     temp_cycle = acc_GW(peak_locations_GW(1):indexes(i+1));
 %     
 %     GW_cycles(i, : ) = [temp_cycle, zeros(1, (max(cycle_lengths)-length(temp_cycle)))];
-    
-end
 
-%% 
 
 % -------------------------------------------------------------------------
 % * 4) Store the separate cycles in time series collection.
@@ -159,5 +160,10 @@ GW_cycles_tsc = tscollection(GW_cycles_ts, 'name', strcat('GW_cycles_time_series
 %common_time = 0:5:min(length());
 
 GW_cycles_tsc_sync = resample(GW_cycles_tsc, common_time);
+
+That is, find the
+%    first peak of the ten cycles, respectively, in the GaitWatch data
+%    and store the following values to the first peak of the next cycle
+%    in separate vectors in a cell array.  
 
 
