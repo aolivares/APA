@@ -29,7 +29,7 @@
 %
 % Version:  2.0
 %
-% Last modification: 13/01/2015.
+% Last modification: 14/01/2015.
 %
 % -------------------------------------------------------------------------
 %
@@ -75,7 +75,7 @@ load ('forcePlate_GW_data_ES39/both_AP.mat');
 AP_FP = both_AP;                                    
 time_FP = time;
 
-%time_FP(2)-time_FP(1)
+3*(time_FP(2)-time_FP(1))
 
 plot(time_FP, AP_FP);
 
@@ -143,37 +143,21 @@ for i = 1 : n_cycles
 
 end
 
+% Store the separate cycles in time series collection.
+GW_cycles_tsc = tscollection(GW_cycles_ts, 'name', strcat('GW_cycles_time_series_collection of all', num2str(n_cycles),'cycles'));
+
 
 %% 
 
-% Store the separate cycles in time series collection.
-GW_cycles_tsc = tscollection(GW_cycles_ts);
+% -------------------------------------------------------------------------
+% 5) Resample the ten GaitWatch and the corresponding ten force plate
+%    timeseries with a common time vector. 
+% -------------------------------------------------------------------------
 
+%size(GW_cycles_tsc)
 
+%common_time = 0:5:min(length());
 
-% Interpolate values at each half-hour mark.
-
-tsc1 = resample(tsc,1:0.5:24);
-
-
-% ------------- Synchronisation -----------------
-
-% Create two timeseries, such that ts1.timeinfo.StartDate 
-% is one day after ts2.timeinfo.StartDate:
-
-ts1 = timeseries([1 2],[datestr(now); datestr(now+1)]);
-ts2 = timeseries([1 2],[datestr(now-1); datestr(now)]);
-
-% If you use this code, then ts1.timeinfo.StartDate
-% is changed to match ts2.TimeInfo.StartDate 
-% and ts1.Time changes to 1:
-
-[ts1 ts2] = synchronize(ts1,ts2,'union');
-
-% But if you use this code, then ts1.timeinfo.StartDate
-% is unchanged and ts1.Time is still 0:
-
-[ts1 ts2] = synchronize(ts1,ts2,'union','KeepOriginalTimes',true);
-
+GW_cycles_tsc_sync = resample(GW_cycles_tsc, common_time);
 
 
