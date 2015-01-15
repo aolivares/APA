@@ -69,11 +69,11 @@ gw = gwLibrary;
 
 % Select force plate data file with a dialog box (only .mat files).
 [filename_FP, filepath_FP] = uigetfile('*.mat', ...
-    'Select Force Plate data file (.mat)', '../data/ForcePlate');
+    'Select Force Plate data file (.mat)', '../../data/ForcePlate');
 
 % Select GaitWatch data file with a dialog box (only .mat files).
 [filename_GW, filepath_GW] = uigetfile('*.mat', ...
-    'Select GaitWatch data file (.mat)', '../data/GaitWatch');
+    'Select GaitWatch data file (.mat)', '../../data/GaitWatch');
 
 % Load force plate data into workspace.
 load(fullfile(filepath_FP, filename_FP));
@@ -81,89 +81,132 @@ load(fullfile(filepath_FP, filename_FP));
 % Load GaitWatch data into workspace.
 load(fullfile(filepath_GW, filename_GW));
 
-%% 
+fs_FP = 120;
+fs_GW = 200;
+
+
 % -------------------------------------------------------------------------
-% 3) Select the cycles in the GaitWatch data manually. 
+% 3) Select the cycles in the GaitWatch data manually and find peaks,
+%    that is, points when patient touches the force plate. 
 % -------------------------------------------------------------------------
 
-% Localise seperate cycles by manually selecting points between two cycles.
-indexes = gw.getDCindexes(a_Z_right_shank_1, 'Acceleration Z-axis right shank');
-
-%% 
-
+% Select the cycles in the GaitWatch data manually by selecting points
+% before and after each cycle.
+indexes = gw.getDCindexes(a_Z_right_shank_1_C, ... 
+          'Acceleration Z-axis right shank - Press ALT-key and select cycles');
+      
 n_cycles = length(indexes)-1;
 peak_ind = zeros(1, n_cycles);
 
 for i = 1 : n_cycles
     
     % Find all peaks greater than 1.4 in cycle i and store them in peak_ind.
-    [peak_values, peak_locations] = findpeaks(a_Z_right_shank_1(indexes(i):indexes(i+1)), 'minpeakheight', 1.4);
+    [peak_values, peak_locations] = findpeaks(a_Z_right_shank_1_C(indexes(i):indexes(i+1)), ...
+                                    'minpeakheight', 1.4);
     
-    peak_ind(i) = peak_locations(1);
+    peak_ind(i) = peak_locations(1)+indexes(i);
    
 end
 
-%% 
+% Plot detected peaks
+plot(time, a_Z_right_shank_1_C);
+hold on;
+plot(time(peak_ind), a_Z_right_shank_1_C(peak_ind), 'r.');
+
 
 % -------------------------------------------------------------------------
-% * 4) Store the separate cycles in time series collection.
+% * 4) Store GaitWatch Data and force plate data in time series collections
 % -------------------------------------------------------------------------
 
+% Create time series of acceleration trunk.
+a_trunk = timeseries([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
+                      a_Z_center_trunk_3_C], time, ...
+                      'name', 'Acceleration trunk');
+a_trunk.TimeInfo.Units = 'seconds';
+a_trunk.DataInfo.Units = 'g';
 
-acc_trunk = timeseries([], time);
-
-              
-
-
-
-%%
-
-
-%GW_cycles = cell(n_cycles, 1);
-% Store data from the first peak to the beginning of the next cycle in
-    % cell array.
-    %GW_cycles(i, 1) = acc_GW(peak_locations_GW(1):indexes(i+1));
+% Add events (touch of force plate) to time series acceleration trunk.
+for i = 1:length(peak_ind)
     
-%     temp_cycle = acc_GW(peak_locations_GW(1):indexes(i+1));
-%     
-%     GW_cycles(i, : ) = [temp_cycle, zeros(1, (max(cycle_lengths)-length(temp_cycle)))];
-
-
-% -------------------------------------------------------------------------
-% * 4) Store the separate cycles in time series collection.
-% -------------------------------------------------------------------------
-
-GW_cycles_ts = cell(n_cycles, 1);
-
-for i = 1 : n_cycles
-    
-    % Store the separate cycles in time series objects arranged in a cell
-    % array
-    GW_cycles_ts(i, 1) = timeseries(GW_cycles(i,1), 0:1/fs_GW:(1/fs_GW)*length(GW_cycles(i, 1)), 'name', strcat('GW_Cycle_', num2str(i)));
-    ts1_GW.TimeInfo.Units = 'milliseconds';
+    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
+            time(peak_ind(i)));
+        
+    event.Units = 'seconds';
+    a_trunk = addevent(a_trunk, event);
 
 end
 
-% Store the separate cycles in time series collection.
-GW_cycles_tsc = tscollection(GW_cycles_ts, 'name', strcat('GW_cycles_time_series_collection of all', num2str(n_cycles),'cycles'));
+
+% Create time series of acceleration thigh.
+a_thigh = timeseries([a_X_left_thigh_1_C';  a_Z_left_thigh_1_C'; ...
+                      a_X_right_thigh_1_C'; a_Z_right_thigh_1_C'], time, ...
+                      'name', 'Acceleration thigh');
+a_thigh.TimeInfo.Units = 'seconds';
+a_thigh.DataInfo.Units = 'g';
+
+% Add events (touch of force plate) to time series acceleration thigh.
+for i = 1:length(peak_ind)
+    
+    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
+            time(peak_ind(i)));
+        
+    event.Units = 'seconds';
+    a_thigh = addevent(a_thigh, event);
+
+end
 
 
-%% 
+% Create time series of acceleration shank.
+a_shank = timeseries([a_X_left_shank_1_C';  a_Z_left_shank_1_C'; ...
+                      a_X_right_shank_1_C'; a_Z_right_shank_1_C'], time, ...
+                      'name', 'Acceleration shank');
+a_shank.TimeInfo.Units = 'seconds';
+a_shank.DataInfo.Units = 'g';
 
-% -------------------------------------------------------------------------
-% 5) Resample the ten GaitWatch and the corresponding ten force plate
-%    timeseries with a common time vector. 
-% -------------------------------------------------------------------------
+% Add events (touch of force plate) to time series acceleration shank.
+for i = 1:length(peak_ind)
+    
+    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
+            time(peak_ind(i)));
+        
+    event.Units = 'seconds';
+    a_shank = addevent(a_shank, event);
 
-%size(GW_cycles_tsc)
+end
 
-%common_time = 0:5:min(length());
+% Store all accelerations in time series collection.
+a_tsc = tscollection({a_trunk, a_thigh, a_shank});
 
-GW_cycles_tsc_sync = resample(GW_cycles_tsc, common_time);
+hold off;
+figure();
+plot(a_trunk);
 
-That is, find the
-%    first peak of the ten cycles, respectively, in the GaitWatch data
-%    and store the following values to the first peak of the next cycle
-%    in separate vectors in a cell array.  
 
+% Extract force plate time vector from the first cycle of the force plate data.
+time_FP_c1 = (FP_data_complete{1, 1}(FP_data_complete{1, 2}:FP_data_complete{1, 3}, 1)')/1000;
+
+% Calculate bias and correct time axis of force plate data.
+time_bias_c1 = time(peak_ind(1))-time_FP_c1(1);
+
+time_FP_c1_corr = time_FP_c1 + time_bias_c1;
+
+% Create time series of time-corrected first force plate cycle.
+data_FP_c1 = timeseries(FP_data_complete{1, 1}(FP_data_complete{1, 2}:FP_data_complete{1, 3}, 2:5)', ...
+             time_FP_c1_corr , 'name', '1. force plate cycle');
+data_FP_c1.TimeInfo.Units = 'seconds';
+data_FP_c1.DataInfo.Units = 'N';
+
+% Add event (point in time when patient touches the force plate)
+event_1 = tsdata.event('1. touch of force plate', time(peak_ind(1)));
+event_1.Units = 'seconds';
+data_FP_c1 = addevent(data_FP_c1, event_1);
+
+figure();
+plot(data_FP_c1);
+
+% Resample first force plate cycle with GaitWatch time axis.
+data_FP_c1_rs = resample(data_FP_c1, time_FP_c1_corr:1/fs_GW:time_FP_c1_corr(length(time_FP_c1_corr)));
+
+figure();
+plot(data_FP_c1_rs);
 
