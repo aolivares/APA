@@ -182,31 +182,42 @@ figure();
 plot(a_trunk);
 
 
-% Extract force plate time vector from the first cycle of the force plate data.
-time_FP_c1 = (FP_data_complete{1, 1}(FP_data_complete{1, 2}:FP_data_complete{1, 3}, 1)')/1000;
+% Create empty time-series object and name it.
+data_FP_concat_rs = timeseries();
+
+for i = 1:n_cycles
+
+% Extract force plate time vector from cycle i of the force plate data
+% and scale it from milliseconds to seconds.
+time_FP = (FP_data_complete{i, 1}(FP_data_complete{i, 2}:FP_data_complete{i, 3}, 1)')/1000;
 
 % Calculate bias and correct time axis of force plate data.
-time_bias_c1 = time(peak_ind(1))-time_FP_c1(1);
+time_bias = time(peak_ind(i))-time_FP(1);
 
-time_FP_c1_corr = time_FP_c1 + time_bias_c1;
+time_FP_corr = time_FP + time_bias;
 
 % Create time series of time-corrected first force plate cycle.
-data_FP_c1 = timeseries(FP_data_complete{1, 1}(FP_data_complete{1, 2}:FP_data_complete{1, 3}, 2:5)', ...
-             time_FP_c1_corr , 'name', '1. force plate cycle');
-data_FP_c1.TimeInfo.Units = 'seconds';
-data_FP_c1.DataInfo.Units = 'N';
+data_FP = timeseries(FP_data_complete{i, 1}(FP_data_complete{i, 2}:FP_data_complete{i, 3}, 2:5)', ...
+                     time_FP_corr , 'name', strcat(num2str(i), '. force plate cycle'));
+data_FP.TimeInfo.Units = 'seconds';
+data_FP.DataInfo.Units = 'N';
 
 % Add event (point in time when patient touches the force plate)
-event_1 = tsdata.event('1. touch of force plate', time(peak_ind(1)));
-event_1.Units = 'seconds';
-data_FP_c1 = addevent(data_FP_c1, event_1);
+event = tsdata.event(strcat(num2str(i), '. touch of force plate'), time(peak_ind(i)));
+event.Units = 'seconds';
+data_FP = addevent(data_FP, event);
+
+% Resample force plate cycle with GaitWatch time axis.
+data_FP_rs = resample(data_FP, time_FP_corr:1/fs_GW:time_FP_corr(length(time_FP_corr)));
+
+% Concatenate cycle i with the previous force plate cycles.
+
+data_FP_concat_rs = append(data_FP_concat_rs, data_FP_rs);
+
+end
+
+set(data_FP_concat_rs, 'name', 'Force sensor data synchronised');
 
 figure();
-plot(data_FP_c1);
-
-% Resample first force plate cycle with GaitWatch time axis.
-data_FP_c1_rs = resample(data_FP_c1, time_FP_c1_corr:1/fs_GW:time_FP_c1_corr(length(time_FP_c1_corr)));
-
-figure();
-plot(data_FP_c1_rs);
+plot(data_FP_concat_rs);
 
