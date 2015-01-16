@@ -105,7 +105,7 @@ for i = 1 : n_cycles
                                     'minpeakheight', 1.4);
     
     peak_ind(i) = peak_locations(1)+indexes(i);
-   
+    
 end
 
 % Plot detected peaks
@@ -207,12 +207,22 @@ event = tsdata.event(strcat(num2str(i), '. touch of force plate'), time(peak_ind
 event.Units = 'seconds';
 data_FP = addevent(data_FP, event);
 
+if i == 1               % Only for verification
+    figure();
+    plot(data_FP)        
+end
+
 % Resample force plate cycle with GaitWatch time axis.
 data_FP_rs = resample(data_FP, time_FP_corr:1/fs_GW:time_FP_corr(length(time_FP_corr)));
 
 % Concatenate cycle i with the previous force plate cycles.
-
 data_FP_concat_rs = append(data_FP_concat_rs, data_FP_rs);
+
+if i == 1               % Only for verification
+    figure();
+    plot(data_FP_concat_rs)        
+end
+   
 
 end
 
