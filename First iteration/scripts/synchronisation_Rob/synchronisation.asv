@@ -81,46 +81,41 @@ load(fullfile(filepath_FP, filename_FP));
 % Load GaitWatch data into workspace.
 load(fullfile(filepath_GW, filename_GW));
 
-% Set sampling frequencies of the Force Plate and the Gaitwatch.
 fs_FP = 120;
 fs_GW = 200;
 
+
 % -------------------------------------------------------------------------
 % 3) Select the cycles in the GaitWatch data manually and find peaks,
-%    that is, points in which the patient walks on the force plate. 
+%    that is, points when patient touches the force plate. 
 % -------------------------------------------------------------------------
 
 % Select the cycles in the GaitWatch data manually by selecting points
 % before and after each cycle.
 indexes = gw.getDCindexes(a_Z_right_shank_1_C, ... 
-      'Acceleration Z-axis right shank - Press ALT-key and select cycles');
-
-% Compute number of selected cycles and initialize vector containing peaks.
-n_cycles = length(indexes) - 1;
+          'Acceleration Z-axis right shank - Press ALT-key and select cycles');
+      
+n_cycles = length(indexes)-1;
 peak_ind = zeros(1, n_cycles);
 
-% Sweep the signal and for each one of the cycles, find the initial peak.
-min_peak_height = 1.4;
 for i = 1 : n_cycles
     
-    % Find all peaks greater than 'min_peak_height' in cycle i and store 
-    % them in peak_ind.
-    [peak_values, peak_locations] = ...
-        findpeaks(a_Z_right_shank_1_C(indexes(i):indexes(i + 1)), ...
-                                    'minpeakheight', min_peak_height);
+    % Find all peaks greater than 1.4 in cycle i and store them in peak_ind.
+    [peak_values, peak_locations] = findpeaks(a_Z_right_shank_1_C(indexes(i):indexes(i+1)), ...
+                                    'minpeakheight', 1.4);
     
-    peak_ind(i) = peak_locations(1) + indexes(i);
+    peak_ind(i) = peak_locations(1)+indexes(i);
     
 end
 
-% Plot detected peaks.
+% Plot detected peaks
 plot(time, a_Z_right_shank_1_C);
 hold on;
 plot(time(peak_ind), a_Z_right_shank_1_C(peak_ind), 'r.');
 
 
 % -------------------------------------------------------------------------
-% 4) Store GaitWatch Data and force plate data in time series collections.
+% * 4) Store GaitWatch Data and force plate data in time series collections
 % -------------------------------------------------------------------------
 
 % Create time series of acceleration trunk.
