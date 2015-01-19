@@ -120,64 +120,31 @@ plot(time(peak_ind), a_Z_right_shank_1_C(peak_ind), 'r.');
 
 
 % -------------------------------------------------------------------------
+<<<<<<< Updated upstream:First iteration/scripts/synchronisation_Rob/synchronisation.m
 % 4) Store GaitWatch Data and force plate data in time series collections.
+=======
+% * 4) Store GaitWatch signals and force plate signals in time series
+%      collections.
+>>>>>>> Stashed changes:First iteration/scripts/Synchronisation/synchronisation.m
 % -------------------------------------------------------------------------
 
 % Create time series of acceleration trunk.
-a_trunk = timeseries([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
-                      a_Z_center_trunk_3_C], time, ...
-                      'name', 'Acceleration trunk');
-a_trunk.TimeInfo.Units = 'seconds';
-a_trunk.DataInfo.Units = 'g';
-
-% Add events (touch of force plate) to time series acceleration trunk.
-for i = 1:length(peak_ind)
-    
-    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
-            time(peak_ind(i)));
-        
-    event.Units = 'seconds';
-    a_trunk = addevent(a_trunk, event);
-
-end
-
-
+a_trunk = createTimeseries([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
+                            a_Z_center_trunk_3_C], time, ...
+                            'Acceleration trunk', 'seconds', 'g', ...
+                            time(peak_ind), '. touch of force plate');
+                        
 % Create time series of acceleration thigh.
-a_thigh = timeseries([a_X_left_thigh_1_C';  a_Z_left_thigh_1_C'; ...
-                      a_X_right_thigh_1_C'; a_Z_right_thigh_1_C'], time, ...
-                      'name', 'Acceleration thigh');
-a_thigh.TimeInfo.Units = 'seconds';
-a_thigh.DataInfo.Units = 'g';
-
-% Add events (touch of force plate) to time series acceleration thigh.
-for i = 1:length(peak_ind)
-    
-    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
-            time(peak_ind(i)));
-        
-    event.Units = 'seconds';
-    a_thigh = addevent(a_thigh, event);
-
-end
-
-
+a_thigh = createTimeseries([a_X_left_thigh_1_C';  a_Z_left_thigh_1_C'; ...
+                            a_X_right_thigh_1_C'; a_Z_right_thigh_1_C'], ...
+                            time, 'Acceleration thigh', 'seconds', 'g', ...
+                            time(peak_ind), '. touch of force plate');
+                        
 % Create time series of acceleration shank.
-a_shank = timeseries([a_X_left_shank_1_C';  a_Z_left_shank_1_C'; ...
-                      a_X_right_shank_1_C'; a_Z_right_shank_1_C'], time, ...
-                      'name', 'Acceleration shank');
-a_shank.TimeInfo.Units = 'seconds';
-a_shank.DataInfo.Units = 'g';
-
-% Add events (touch of force plate) to time series acceleration shank.
-for i = 1:length(peak_ind)
-    
-    event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
-            time(peak_ind(i)));
-        
-    event.Units = 'seconds';
-    a_shank = addevent(a_shank, event);
-
-end
+a_shank = createTimeseries([a_X_left_shank_1_C';  a_Z_left_shank_1_C'; ...
+                            a_X_right_shank_1_C'; a_Z_right_shank_1_C'], ...
+                            time, 'Acceleration shank', 'seconds', 'g', ...
+                            time(peak_ind), '. touch of force plate');
 
 % Store all accelerations in time series collection.
 a_tsc = tscollection({a_trunk, a_thigh, a_shank});
