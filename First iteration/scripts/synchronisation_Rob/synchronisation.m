@@ -194,21 +194,24 @@ for i = 1:n_cycles
 
 % Extract force plate time vector from cycle i of the force plate data
 % and scale it from milliseconds to seconds.
-time_FP = (FP_data_complete{i, 1}(FP_data_complete{i, 2}:FP_data_complete{i, 3}, 1)')/1000;
+time_FP = (FP_data_complete{i, 1}(FP_data_complete{i, 2}: ...
+    FP_data_complete{i, 3}, 1)') / 1000;
 
 % Calculate bias and correct time axis of force plate data.
-time_bias = time(peak_ind(i))-time_FP(1);
+time_bias = time(peak_ind(i)) - time_FP(1);
 
 time_FP_corr = time_FP + time_bias;
 
 % Create time series of time-corrected first force plate cycle.
-data_FP = timeseries(FP_data_complete{i, 1}(FP_data_complete{i, 2}:FP_data_complete{i, 3}, 2:5)', ...
-                     time_FP_corr , 'name', strcat(num2str(i), '. force plate cycle'));
+data_FP = timeseries(FP_data_complete{i, 1}(FP_data_complete{i, 2}: ...
+    FP_data_complete{i, 3}, 2:5)', time_FP_corr , 'name', ...
+    strcat(num2str(i), '. force plate cycle'));
 data_FP.TimeInfo.Units = 'seconds';
 data_FP.DataInfo.Units = 'N';
 
 % Add event (point in time when patient touches the force plate)
-event = tsdata.event(strcat(num2str(i), '. touch of force plate'), time(peak_ind(i)));
+event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
+    time(peak_ind(i)));
 event.Units = 'seconds';
 data_FP = addevent(data_FP, event);
 
@@ -218,7 +221,8 @@ if i == 1               % Only for verification
 end
 
 % Resample force plate cycle with GaitWatch time axis.
-data_FP_rs = resample(data_FP, time_FP_corr:1/fs_GW:time_FP_corr(length(time_FP_corr)));
+data_FP_rs = resample(data_FP, time_FP_corr : 1 / fs_GW : ...
+    time_FP_corr(length(time_FP_corr)));
 
 % Concatenate cycle i with the previous force plate cycles.
 data_FP_concat_rs = append(data_FP_concat_rs, data_FP_rs);
