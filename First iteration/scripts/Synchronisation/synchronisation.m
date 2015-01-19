@@ -120,12 +120,8 @@ plot(time(peak_ind), a_Z_right_shank_1_C(peak_ind), 'r.');
 
 
 % -------------------------------------------------------------------------
-<<<<<<< Updated upstream:First iteration/scripts/synchronisation_Rob/synchronisation.m
-% 4) Store GaitWatch Data and force plate data in time series collections.
-=======
-% * 4) Store GaitWatch signals and force plate signals in time series
-%      collections.
->>>>>>> Stashed changes:First iteration/scripts/Synchronisation/synchronisation.m
+% Store GaitWatch signals and force plate signals in time series
+% collections.
 % -------------------------------------------------------------------------
 
 % Create time series of acceleration trunk.
