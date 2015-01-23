@@ -29,25 +29,26 @@
 %
 % Version:  2.0
 %
-% Last modification: 22/01/2015.
+% Last modification: 23/01/2015.
 %
 % -------------------------------------------------------------------------
 %
-% The present file synchronises the two data sets of GaitWatch and force
-% plate. The file is structured as follows:
+% The present file synchronises the two data sets of the GaitWatch and the
+% force plate. The file is structured as follows:
 % 
 % * 1) Import the GaitWatch library containing all the core functions.
 % 
 % * 2) Load data from both force plate and GaitWatch. 
 %
-% * 3) Find the first peak in each cycle, that is, the point in which the
+% * 3) Find the first peak of each cycle in the GaitWatch signal of the
+%      acceleration of the shank, that is, the point in which the
 %      patient walks on the force plate. 
 % 
-% * 4) Store GaitWatch signals and force plate signals in time series
-%      collections.
+% * 4) Store GaitWatch signals signals in time series objects and add the
+%      point in time when the patient walks on the force plate as an event.
 % 
-% * 5) Synchronise and store seperate force plate cycles in a time series
-%      object.  
+% * 5) Store seperate force plate cycles in time series objects, then
+%      synchronise and resample them.
 % 
 % -------------------------------------------------------------------------
 % 0) Clear workspace and close all figures.
@@ -85,12 +86,13 @@ fs_FP = 120;
 fs_GW = 200;
 
 % -------------------------------------------------------------------------
-% 3) Find the first peak in each cycle, that is, the point in which the
+% 3) Find the first peak of each cycle in the GaitWatch signal of the
+%    acceleration of the shank, that is, the point in which the
 %    patient walks on the force plate. 
 % -------------------------------------------------------------------------
 
-% Set threshold for peak detection in acceleration signal and number of
-% samples between two cycles.
+% Set threshold for peak detection in acceleration signal and minimum
+% number of samples between two cycles.
 threshold = 1.3;
 gap = 1300;
 
@@ -99,19 +101,17 @@ gap = 1300;
                                 'minpeakheight', threshold);
 [peak_values_r, peak_locations_r] = findpeaks(a_Z_right_shank_1_C, ...
                                 'minpeakheight', threshold);
-
                             
 %%
 
-% Plot for visualisation
+% Plot for verification.
 close all;
 plot(time, a_Z_right_shank_1_C);
 hold on;
 plot(time(peak_locations_r), a_Z_right_shank_1_C(peak_locations_r), 'r.');
 
-%%
+figure();
 
-close all;
 plot(time, a_Z_left_shank_1_C, 'g');
 hold on;
 plot(time(peak_locations_l), a_Z_left_shank_1_C(peak_locations_l), 'k.');
@@ -125,14 +125,14 @@ peak_distance_r = diff(peak_locations_r);
 %%
 
 % Create logical vector to select last peak of each cycle. That is the one
-% before a gap of at least 1200 samples, respectively. 
+% before a gap of at least the number of samples stored in gap, respectively. 
 select_last_l = peak_distance_l > gap;
 select_last_r = peak_distance_r > gap;
 
 % close all;
 % plot(time, a_Z_left_shank_1_C, 'g');
 % hold on;
-% plot(time(peak_locations_l(select_l)), a_Z_left_shank_1_C(peak_locations_l(select_l)), 'k.');
+% plot(time(peak_locations_l(select_last_l)), a_Z_left_shank_1_C(peak_locations_l(select_last_l)), 'k.');
 
 %%
 
@@ -149,23 +149,23 @@ sync_peaks_r = [peak_locations_r(1)', peak_locations_r(logical(select_first_r))'
 
 %%
 
-% Plot for visualisation
+% Plot for verification.
 close all;
 plot(time, a_Z_right_shank_1_C);
 hold on;
 plot(time(sync_peaks_r), a_Z_right_shank_1_C(sync_peaks_r), 'r.');
 
-%%
+figure();
 
-close all;
 plot(time, a_Z_left_shank_1_C, 'g');
 hold on;
 plot(time(sync_peaks_l), a_Z_left_shank_1_C(sync_peaks_l), 'k.');
 
 %%
-clc;
-sync_peaks = [sync_peaks_r(sync_peaks_l > sync_peaks_r), sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 
+% Evaluate if the patient steps with the left or right limb first for each
+% cycle and store the peaks in sync_peaks, then sort it.
+sync_peaks = [sync_peaks_r(sync_peaks_l > sync_peaks_r), sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks = sort(sync_peaks);
 
 %%
@@ -182,8 +182,8 @@ hold off;
 %%
 
 % -------------------------------------------------------------------------
-% 4) Store GaitWatch signals and force plate signals in time series
-%    collections.
+% 4) Store GaitWatch signals signals in time series objects and add the
+%    point in time when the patient walks on the force plate as an event.
 % -------------------------------------------------------------------------
 
 % Create time series of acceleration trunk.
@@ -207,21 +207,21 @@ a_shank = createTimeseries([a_X_left_shank_1_C';  a_Z_left_shank_1_C'; ...
 % Store all accelerations in time series collection.
 a_tsc = tscollection({a_trunk, a_thigh, a_shank});
 
+% Plot for verification.
 close all;
-hold off;
-plot(a_shank);
+plot(a_trunk);
 
 %%
 
 % -------------------------------------------------------------------------
-% 5) Synchronise and store seperate force plate cycles in a time series
-%    object.
+% 5) Store seperate force plate cycles in time series objects, then
+%    synchronise and resample them.
 % -------------------------------------------------------------------------
 
-% Compute number of selected cycles.
+% Compute number of cycles.
 n_cycles = length(sync_peaks);
 
-% Create empty time series object and name it.
+% Create empty time series object.
 data_FP_concat_rs = timeseries();
 
 for i = 1:n_cycles
@@ -249,8 +249,9 @@ event = tsdata.event(strcat(num2str(i), '. touch of force plate'), ...
 event.Units = 'seconds';
 data_FP = addevent(data_FP, event);
 
-if i == 1               % Only for verification
-    figure();
+% Plot for verification.
+if i == 1              
+    close all;
     plot(data_FP)        
 end
 
@@ -261,7 +262,8 @@ data_FP_rs = resample(data_FP, time_FP_corr : 1 / fs_GW : ...
 % Concatenate cycle i with the previous force plate cycles.
 data_FP_concat_rs = append(data_FP_concat_rs, data_FP_rs);
 
-if i == 1               % Only for verification
+% Plot for verification.
+if i == 1               
     figure();
     plot(data_FP_concat_rs)        
 end
