@@ -234,7 +234,7 @@ plot(a_trunk{1, 1});
 %    time when the patient walks on the force plate as an event.
 % -------------------------------------------------------------------------
 
-% Rearrange data for testing until data extraction script is finished.
+% Rearrange data for testing.
 % Compute number of cycles.
 n_cycles = length(sync_peaks);
 
@@ -258,17 +258,17 @@ plot(FP_time{1, 1}, FP_data{1, 1});
 %%
 
 % Compute the times where the syncronisation peaks appear from the
-% sync_peaks vector containing the indexes of the peaks and the GW time
-% vector.
-sync_peak_times = time_GW(sync_peaks);
+% sync_peaks vector containing t
+sync_peaks_time = time_GW(sync_peaks);
 
-% Create cell array containing the time series of the seperate cycles of
-% the four force sensors.
-force_sensors = createTimeseriesFP(FP_data, FP_time, sync_peak_times, ...
-                                   fs_GW, 'Force Sensors', 'seconds', 'N');
+% Create cell array containing time series of the seperate cycles of the
+% four force sensors.
+force_sens = createTimeseriesFP(FP_data, FP_time, sync_peaks_time, fs_GW, ...
+                                'Force Sensors', 'seconds', 'N');
 
 % Plot for verification.
 close all;
-plot(force_sensors{1, 1});
+plot(force_sens{1, 1});
 figure();
 plot(a_trunk{1, 1});
+
