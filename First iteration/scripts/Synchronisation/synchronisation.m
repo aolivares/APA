@@ -272,3 +272,13 @@ close all;
 plot(force_sensors{1, 1});
 figure();
 plot(a_trunk{1, 1});
+
+%%
+
+% -------------------------------------------------------------------------
+% 6) Store time series objects as .mat file
+% -------------------------------------------------------------------------
+
+save('/Users/Rob/Documents/APA/First iteration/data/GaitWatch/Synchronised/GW_sync_ES_39.mat', ...
+     'a_trunk','a_shank', 'a_thigh', ...
+     'force_sensors');

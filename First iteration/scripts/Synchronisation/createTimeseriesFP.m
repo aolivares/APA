@@ -5,7 +5,7 @@ function [ ts_cell ] = createTimeseriesFP(data_FP, time_FP, ...
 %units, and adds events.
 %
 % - Input:
-%    |_ 'data_FP': NxM Data matrix consisting of N signals with M samples.
+%    |_ 'data_FP': Nx1 cell array consisting of N FP cycles.
 %    |_ 'time_FP': Row vector with the length M that contains the time steps.
 %    |_ 'sync_peaks_times': Row vector that contains the times of the
 %    synchronisation peaks.
