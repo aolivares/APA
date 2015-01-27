@@ -7,9 +7,9 @@
 % * Project name: Comparison of Posturographic Body-sway Measurements with 
 %                 Accelerometric Data.
 %
-% * Authors:      - Prof. Dr. Med. Kai Bötzel (1): 
+% * Authors:      - Prof. Dr. Med. Kai B?tzel (1): 
 %                   |_ kai.boetzel@med.uni-muenchen.de 
-%                 - Verónica  Torres (2): 
+%                 - Veronica  Torres (2): 
 %                   |_ vts24@correo.ugr.es 
 %                 - Dr. Eng. Alberto Olivares (3): 
 %                   |_ aolivares@ugr.es
@@ -28,75 +28,116 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 20/01/2015
+% * Last modification: 26/01/2015
 % -------------------------------------------------------------------------
-% INFORMATION: This file contain the routine to extract the FP signals from 
-% the ten separates forceplate cycles. After, these signals are stored in a 
-% FP_data_*.mat file.
+% INFORMATION: This file contains the routine to extract the FP signals 
+% from the ten separates forceplate cycles. After, these signals are stored 
+% in a FP_data_*.mat file.
+% The stored output file includes seven  cell type variables:
+% 
+% * force_sensors       : four signals that contains pressure of the four
+%                          forceplate sensors.
+% * time_FP             : time signal.
+% * force_cell_complete : matrices collection with the pressure of every
+%                         forceplate cell computed for each time frame.
+% * medlateral_COP      : medio-lateral COP (Center of Pressure) for three
+%                         differents cases organized by rows: rigth foot, 
+%                         left foot and both feet  respectively.
+% * antpost_COP         : antero-posterior COP (Center of Pressure) for 
+%                         three differents cases organized by rows: rigth  
+%                         foot, left foot and both feet  respectively.
+% * force_complete      : overall force for  three differents cases   
+%                         organized by rows: rigth foot, left foot and both 
+%                         feet  respectively.
+% * midline             : midline between both feets.
+% 
+% Each of them contains the signals of all cycles, organized by rows.
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
-% Clear workspace and close all figures.
+% 0) Clear workspace and close all figures.
 % -------------------------------------------------------------------------
 clear all; close all; clc;
 
 % -------------------------------------------------------------------------
-% Read the blocks of data
+% 1) Obtain the files names.
 % -------------------------------------------------------------------------
 
 % Select data files with a dialog box (only .txt files). Press 'Ctrl' and
 % click all data of the same patient.
 [filename_complete, filepath] = uigetfile('*.txt', ...
-    'Select all forceplate data file of the same patient(.txt)', ...
-    '../../data/ForcePlate','MultiSelect','on');
+    'Select Force Plate data file (.txt)', '../../data/ForcePlate/Raw',...
+    'MultiSelect','on');
+
+% Determine the number of files that we have selected.
+[aux,n_files] = size(filename_complete);
 
 % Check if filename_complete is a cell because if it isn't like that, only 
 % one file has been selecting.
-tf=iscell(filename_complete);
-if tf==0
+tf = iscell(filename_complete);
+if tf == 0
     msgbox('Please, you must select at least two files  ',...
     'Error','error');
     beep;
     
 end
 
-
 % -------------------------------------------------------------------------
-% Rearrange all selected files to match with GW signals correctly.
-% -------------------------------------------------------------------------
-
-% Determine the number of files that we have selected.
-[x, n_files]=size(filename_complete);
-[filename_complete,I]=sort(filename_complete);
-
-% -------------------------------------------------------------------------
-% Data processing.
+% 3) Sort the selected names.
 % -------------------------------------------------------------------------
 
-% Use the first name to create el completed name of the output file.
-filename=char(filename_complete(1));
+% Sort the selected names for they are in the correct order to match with
+% the appropiate GW signals.
+[filename_complete,I] = sort(filename_complete);
 
-% Obtain the name for the data that corresponding to the patient.
-name_file=textscan(filename,'%s','Delimiter',',');
-name_file=char(name_file{1}{1});
-name_file=strcat('FP_data_',name_file);
+% Rearrange the names again, because somo files like ...03 2 must be after 
+% ..03. We differenciate this name file name.
+ind = 0;
+
+for i = 1:n_files
+    
+    % Compare the length of one namefile and the next. If the first is
+    % shorter than the second, we change tha values to put the names in the
+    % correct order.
+    ind = ind+1;
+    
+    % Check we don't access non-existen array position.
+    if(ind < n_files)
+        if length(filename_complete{ind}) > length(filename_complete{ind+1})
+            
+          % We use a auxiliar variable to not overwrite the value of the 
+          % interchanged namefile
+          aux_filename = filename_complete{ind};
+          filename_complete{ind} = filename_complete{ind+1};
+          filename_complete{ind+1} = aux_filename;
+          ind = ind+1;
+          
+        end
+    end
+end
+
+% -------------------------------------------------------------------------
+% 4) Read the blocks of data and compute the interesting signals.
+% -------------------------------------------------------------------------
+
+% Define the variables used to store the data.
+force_sensors = cell(n_files, 1);
+time_FP = cell(n_files, 1);
+force_cell_complete = cell(n_files, 1);
+medlateral_COP = cell(n_files, 1);
+antpost_COP = cell(n_files, 1);
+force_complete = cell(n_files, 1);
+midline = cell(n_files, 1);
 
 % Read each selected data file.
-for i=1:n_files
+for i = 1:n_files
     
     % Convert the namefile in a char type to be able to read the file.
-    filename=char(filename_complete(i));
+    filename = char(filename_complete(i));
 
     % Read data file.
     [header, first_line, abta, count, col_first_block] = ...
         readFPHeader(fullfile(filepath,filename));
-    
-    % Read first block of data. The first block contains 5 columns:
-        %   (1) Time (ms).
-        %   (2) 'Li Vorfuß,N':  Front left foot pressure sensor.
-        %   (3) 'Li Rückfuß,N': Back left foot pressure sensor.
-        %   (4) 'Re Vorfuß,N':  Front right foot pressure sensor.
-        %   (5) 'Re Rückfuß,N': Back right foot pressure sensor.
 
     % Read formatted data from text file. As always "fid" is a file 
     % identifier that we obtain with "fopen".
@@ -120,14 +161,10 @@ for i=1:n_files
     data_start = start_end(1);
     data_end = start_end(2);
     
-    % Define the four pressure signals of the diferents platforce sensors 
+    % Define the four pressure signals of the different platforce sensors 
     % as well as the time.
-    time_FP=data(data_start:data_end, 1);
-    left_front_foot_force=data(data_start:data_end, 2);
-    left_back_foot_force=data(data_start:data_end, 3);
-    right_front_foot_force=data(data_start:data_end, 4);
-    right_back_foot_force=data(data_start:data_end, 5);
-
+    time_FP_cycle = data(data_start:data_end, 1)';
+    force_sensors_cycle = data(data_start:data_end, 2:5)';
 
     % Read 10 lines which contain information concerning the following data 
     % blocks.
@@ -147,14 +184,14 @@ for i=1:n_files
 
     % Read data block by block and evaluate only those which contain data
     % only to define the midline. 
-    m = zeros(columns,1);
-    
-    % 
+    m = zeros(columns,1);           
 
     for b = 1:data_end
+        
          % Read 8 lines which contain some irrelevant information.
          CX = textscan(fid, '%s', 8, 'Delimiter', '\n', 'whitespace', '');   
          C3 = textscan(fid, format, lines);
+         
          if b >= data_start
             for c = 1:columns
                 % Sum up the mean of all columns.
@@ -168,6 +205,7 @@ for i=1:n_files
 
     % Definition of the midline between both feet.
     [pks, locs] = findpeaks(m, 'minpeakdistance', 10, 'minpeakheight', 100);
+    
     if length(pks) == 2
         [~,ml] = min(m(locs(1):locs(2)));
         ml = ml + locs(1) - 1;
@@ -182,17 +220,17 @@ for i=1:n_files
 
     % 3 values per frame(x,y,N), for 3 feet: No 1 is right foot, 2 is left 
     % foot and 3 is both feet.
-    % data_file = zeros(n,3,4); 
-
+    
     % Values: (1): COP (Center of Gravity) X (right-left).
     %         (2): COP Y (anteroposterior i.e. front-to-back).
     %         (3): Posterior margin (only Y).
     %         (4): Anterior margin (only Y is loaded).
     %         (5): Overall pressure.
 
-    % Define the variable that contains the force data of each cell.
+    % Define the variable that contains the force data.
     force_cell = zeros(lines, columns);
-    
+    force_cell_complete_cycle = zeros(n, lines, columns);
+
     fid = fopen(fullfile(filepath,filename));
     dummy_data = textscan(fid, '%n', col_first_block * count, 'headerlines',...
         first_line - 1);
@@ -200,6 +238,7 @@ for i=1:n_files
 
     % Skip these data they contain no values
     for b = 1:data_start - 1  
+        
          % Read 8 lines which contain some irrelevant information
          CX = textscan(fid, '%s', 8, 'Delimiter', '\n', 'whitespace', '');   
          C3 = textscan(fid, format, lines);
@@ -207,179 +246,114 @@ for i=1:n_files
 
 
     for b = data_start:data_end
-        % Index for data3
+        
+        % Index for data
         c = b - data_start + 1; 
+        
         % Read 8 lines which contain some irrelevant information
         CX = textscan(fid, '%s', 8, 'Delimiter', '\n', 'whitespace', '');   
         C3 = textscan(fid, format, lines);
         for cc = 1:columns
            force_cell(:, cc) = C3{cc + 1};
         end
+        
+        % Store the matriz with the force of each cell in the correct
+        % position.
+        force_cell_complete_cycle(n,:,:) = force_cell;
 
         % Calculate COP in the differents cases.
         % Side 1 right, side 2 left, side 3 both
         for side = 1:3                                                              
             switch side
-                case 1   
-                 % Column vector. Calculate COP X to represent the markers.
-                     m = sum(force_cell(:, 1:ml));   
-
-                 % Check whether any data is >0.
-                    if any(m)    
-                        % Put the COP X in the rigth position. We multiply 
-                        % this result by 8.5 because each cell has 8.5 mm  
-                        % (as much width as heigth)
-                        right_lateral_COP(c) = 8.5.*sum(m .* (1:ml)) ./ ...
-                            sum(m);
-                        
-                        % Definition of the midline in mm.
-                        ml_mm=8.5*ml;
-                        
-                        % Calculate COP X with respect to midline.
-                        right_lateral_COP=right_lateral_COP - ml_mm;
-                        
-                        % Define the 0 number like not a number.
-                        right_lateral_COP(right_lateral_COP==0) = NaN;
-
-                        % Calculate COP Y.
-                        m = sum(force_cell(:, 1:ml), 2);                                          
-                        right_antpos_COP (c) = 8.5.*sum(m .* (1:lines)') ./ ...
-                            sum(m);
-                        
-                        % Define the 0 number like not a number.
-                        right_antpos_COP(right_antpos_COP==0) = NaN;
-                        
-                        % Calculate rearmost foot pressure point 
-                        % (heel position,y only)
-                        right_force (c) = sum(m);
-
-                        % Define the 0 number like not a number.
-                        right_force(right_force==0) = NaN;
-                    end
-                    
-                case 2  
-                 % Column vector. Calculate COP X to represent the markers.
-                     m = sum(force_cell(:, ml+1:columns));   
-
-                 % Check whether any data is >0.
-                    if any(m)    
-                        % Put the COP X in the rigth position. We multiply 
-                        % this result by 8.5 because each cell has 8.5 mm  
-                        % (as much width as heigth)
-                        left_lateral_COP(c)=8.5.*sum(m .* (ml+1:columns))...
-                            ./ sum(m); 
-                        
-                        % Define the 0 number like not a number.
-                        left_lateral_COP(left_lateral_COP==0) = NaN;
-                        
-                        % Definition of the midline in mm.
-                        ml_mm=8.5*ml;
-                        
-                        % Calculate COP X with respect to midline.
-                        left_lateral_COP=left_lateral_COP - ml_mm;
-
-                        % Calculate COP Y.
-                        m = sum(force_cell(:, ml+1:columns), 2);                                          
-                        left_antpos_COP (c) = 8.5.*sum(m .* (1:lines)') ./ ...
-                            sum(m);
-                        
-                        % Define the 0 number like not a number.
-                        left_antpos_COP(left_antpos_COP==0) = NaN;
-
-                        % Calculate rearmost foot pressure point 
-                        % (heel position,y only)
-                        left_force(c) = sum(m);
-                        
-                        % Define the 0 number like not a number.
-                        left_force(left_force==0) = NaN;
-
-                    end
-                    
+                case 1
+                    an = 1; 
+                    en = ml;
+                case 2
+                    an = ml + 1;
+                    en = columns;                                            
                 case 3
-                 % Column vector. Calculate COP X to represent the markers.
-                     m = sum(force_cell(:, 1:columns));   
-
-                 % Check whether any data is >0.
-                    if any(m)    
-                        % Put the COP X in the rigth position. We multiply 
-                        % this result by 8.5 because each cell has 8.5 mm  
-                        % (as much width as heigth)
-                        both_lateral_COP (c)= 8.5.*sum(m .* (1:columns))...
-                            ./ sum(m); 
-                        
-                        % Define the 0 number like not a number.
-                        both_lateral_COP(both_lateral_COP==0) = NaN;
-                        
-                        % Definition of the midline in mm.
-                        ml_mm=8.5*ml;
-                        
-                        % Calculate COP X with respect to midline.
-                        both_lateral_COP=both_lateral_COP - ml_mm;
-
-                        % Calculate COP Y.
-                        m = sum(force_cell(:, 1:columns), 2);                                          
-                        both_antpos_COP (c) = 8.5.*sum(m .* (1:lines)')...  
-                            ./ sum(m);
-                        
-                        % Define the 0 number like not a number.
-                        both_antpos_COP(both_antpos_COP==0) = NaN;
-
-                        % Calculate rearmost foot pressure point 
-                        % (heel position,y only)
-                        both_force (c) = sum(m);
-                        
-                        % Define the 0 number like not a number.
-                        both_force(both_force==0) = NaN;
-
-                    end
+                    an = 1; 
+                    en = columns;
             end
             
+            % Column vector. Calculate COP X to represent the markers.
+            m = sum(force_cell(:, an:en));   
+
+            % Check whether any data is >0.
+            if any(m)    
+                % Put the COP X in the rigth position. We multiply this  
+                % result by 8.5 because each cell has 8.5 mm (as much width
+                % as heigth)
+                lateral_COP(c,side) = 8.5.*sum(m .* (an:en)) ./ sum(m);
+                
+                % Definition of the midline in mm.
+                midline_mm = 8.5*ml;
+                
+                % Calculate COP X with respect to midline.
+                medlateral_COP_cycle = lateral_COP - midline_mm;
+
+                % Calculate COP Y.
+                m = sum(force_cell(:, an:en), 2);                                          
+                antpost_COP_cycle(c, side) = 8.5.*sum(m .* (1:lines)') ...
+                    ./sum(m);
+
+                % Calculate rearmost foot pressure point (heel position) 
+                % (y only)
+                force_complete_cycle(c, side) = sum(m);
+
+
+            end
+          
         end
 
     end
+    
 
     % Close data file.
     fclose(fid);
     
+    % Define the 0 number like not a number.
+    medlateral_COP_cycle(medlateral_COP_cycle == 0) = NaN;
+    antpost_COP_cycle(antpost_COP_cycle == 0) = NaN;
+    force_complete_cycle(force_complete_cycle == 0) = NaN;
     
-    % Store in the data struct.
-    FP_file=struct( 'time_FP', time_FP, 'left_front_foot_force',...
-      left_front_foot_force, 'left_back_foot_force', left_back_foot_force,...
-      'right_front_foot_force', right_front_foot_force,...
-      'right_back_foot_force', left_front_foot_force', 'force_cell', ...
-      force_cell, 'right_lateral_COP', right_lateral_COP, ...
-      'right_antpos_COP',right_antpos_COP, 'right_force', right_force,...
-      'left_lateral_COP', left_lateral_COP, 'left_antpos_COP', ...
-      left_antpos_COP, 'left_force', left_force, 'both_lateral_COP', ...
-      both_lateral_COP, 'both_antpos_COP', ...
-      both_antpos_COP, 'both_force', both_force, 'midline', ml_mm, ...
-      'data_start', data_start, 'data_end', data_end );
-  
-    % Fix a new name for all signal of one file
-    FP_file_name=strcat('FP_data', num2str(i));
-    eval([ FP_file_name ' = FP_file;' ]);
-     
-    % Save all data.
-    if i==1
-         save(['../../data/ForcePlate/' name_file '.mat'], FP_file_name);
-    else
-        save(['../../data/ForcePlate/' name_file '.mat'], FP_file_name,...
-            '-append');
-    end
+ 
+    % Store the data of each cycle.
+    force_sensors{i} = force_sensors_cycle;
+    time_FP{i} = time_FP_cycle;
+    force_cell_complete{i} = force_cell_complete_cycle;
+    medlateral_COP{i} = medlateral_COP_cycle';
+    antpost_COP{i} = antpost_COP_cycle';
+    force_complete{i} = force_complete_cycle';
+    midline{i} = midline_mm;
+    
 end
 
 % -------------------------------------------------------------------------
-% Show a completion message to warn the end of the run.
+% 5) Save all data.
+%--------------------------------------------------------------------------
+
+% Obtain the name for the data that corresponding to the patient.
+name_file = textscan(filename,'%s','Delimiter',',');
+name_file = char(name_file{1}{1});
+name_file = strcat('FP_data_',name_file);
+
+% Save all data.
+save(['../../data/ForcePlate/Preprocessed/' name_file '.mat'],  ...
+    'force_sensors','time_FP', 'force_cell_complete', 'medlateral_COP', ...
+    'antpost_COP', 'force_complete','midline');
+
+% -------------------------------------------------------------------------
+% 6) Show a completion message to warn the end of the run.
 % -------------------------------------------------------------------------
 
-% fprintf('\nThe run is finished!!!!!!\n\nIt has created %s.mat\n',name_file);
-% disp('You can see in ForcePlate folder')
+% Read a picture to show in the box.
+icon = imread('ok.jpg');
 
-icon=imread('ok.jpg');
+% Show the massage to warn the end.
 msgbox('Operation Completed!!!! You can find the created file in ForcePlate folder!',...
-    'Success','custom',icon);
+    'Success', 'custom', icon);
 
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 % END OF EXTRACT FP SIGNALS FILE
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-        
