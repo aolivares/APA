@@ -285,12 +285,6 @@ for i = 1:n_files
                 % result by 8.5 because each cell has 8.5 mm (as much width
                 % as heigth)
                 lateral_COP(c,side) = 8.5.*sum(m .* (an:en)) ./ sum(m);
-                
-                % Definition of the midline in mm.
-                midline_mm = 8.5*ml;
-                
-                % Calculate COP X with respect to midline.
-                medlateral_COP_cycle = lateral_COP - midline_mm;
 
                 % Calculate COP Y.
                 m = sum(force_cell(:, an:en), 2);                                          
@@ -313,9 +307,15 @@ for i = 1:n_files
     fclose(fid);
     
     % Define the 0 number like not a number.
-    medlateral_COP_cycle(medlateral_COP_cycle == 0) = NaN;
+    lateral_COP(lateral_COP == 0) = NaN;
     antpost_COP_cycle(antpost_COP_cycle == 0) = NaN;
     force_complete_cycle(force_complete_cycle == 0) = NaN;
+    
+   % Definition of the midline in mm.
+    midline_mm = 8.5*ml;
+
+   % Calculate COP X with respect to midline.
+    medlateral_COP_cycle = lateral_COP - midline_mm; 
     
  
     % Store the data of each cycle.
