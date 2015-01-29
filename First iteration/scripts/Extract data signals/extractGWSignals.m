@@ -27,11 +27,12 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 22/01/2015
+% * Last modification: 29/01/2015
 % -------------------------------------------------------------------------
 % INFORMATION: This file contain the routine for the GaitWatch signals 
 % processing.After, the most interesting signals are stored in a 
-% GW_data_*.mat file.
+% GW_data_*.mat file. This is a modified version of the 'main.m' 
+% file implemented by Alberto Olivares.
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -102,21 +103,27 @@ size_data_struct=size(data_struct);
 % previously donwloaded. The user is prompted to select one of the two
 % options. 
 
-S = {'Load data from GaitWatch','Load data from hard drive'};
-[Selection,ok] = listdlg('ListString',S,'Name',...
-    'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
-    'single');
+% S = {'Load data from GaitWatch','Load data from hard drive'};
+% [Selection,ok] = listdlg('ListString',S,'Name',...
+%     'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
+%     'single');
+% 
+% switch Selection
+%     
+%     case 1
+%     % Load data from GaitWatch. 
+%         GW_comm;
+%         
+%     case 2
+%     % Load data from the hard drive.
+%         [data, FileHeader] = gw.openGWfile();   
+% end
 
-switch Selection
-    
-    case 1
-    % Load data from GaitWatch. 
-        GW_comm;
-        
-    case 2
-    % Load data from the hard drive.
-        [data, FileHeader] = gw.openGWfile();   
-end
+
+% Load data from the hard drive.
+[filename, filepath] = uigetfile('../../data/GaitWatch/Raw/*.mat',...
+            'Select GaitWatch data file');
+load(fullfile(filepath,filename));
 
 % Build vector containing time samples.
 [f, date, start_time, end_time, file_id] = gw.getFHinfo(FileHeader);
