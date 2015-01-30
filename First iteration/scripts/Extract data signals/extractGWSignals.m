@@ -48,7 +48,7 @@ gw = gwLibrary;
 
 % Set flags which control the visibility of the figures.
 showPlots = 'yes';
-showMagData = 'no';
+showMagData = 'yes';
 comparation = 'yes';
 
 % -------------------------------------------------------------------------
@@ -146,11 +146,83 @@ for i=1:length(mag_x)-1
  time_mag(i+1)=time_mag(i)+1/f_mag;
 end
 
-% Correct magnetometer signals.
-mag_x = gw.correct_mag_data(mag_x);
-mag_y = gw.correct_mag_data(mag_y);
-mag_z = gw.correct_mag_data(mag_z);
-close all;
+% Correct magnetometer signals .
+% % mag_x = gw.correct_mag_data(mag_x);
+% % mag_y = gw.correct_mag_data(mag_y);
+% % mag_z = gw.correct_mag_data(mag_z);
+% % close all;
+
+% Correct magnetometer signals automatically.
+
+% Magnetometer X:
+
+% Detect the noise peaks using a threshold far above the mean. We detect
+% the positives peaks as well as negatives.
+mean_mag_x = mean(mag_x);
+threshold_x = 2000 + mean_mag_x;
+
+[~ , locs_high] = findpeaks(mag_x, 'minpeakheight', threshold_x);
+[~ , locs_short] = findpeaks(- mag_x, 'minpeakheight', threshold_x);
+
+indexes  =[locs_high locs_short];
+
+% Substitute the erroenous values by the subsequent value (unless the
+% erroneous value is in the last position of the singal, in which case 
+% it is substituted by the preceding value). 
+
+for i = 1:length(indexes)
+    if indexes(i) == length(mag_x)
+        mag_x(indexes(i)) =mag_x(indexes(i)-1);
+    else
+        mag_x(indexes(i)) = mag_x(indexes(i)+1);
+    end
+end
+
+% Magnetometer Y:
+
+% Detect the noise peaks using a threshold far above the mean.
+mean_mag_y = mean(mag_y);
+threshold_y = 1000 + mean_mag_y;
+
+[~ , locs_high] = findpeaks(mag_y, 'minpeakheight', threshold_y);
+[~ , locs_short] = findpeaks(- mag_y, 'minpeakheight', threshold_y);
+
+indexes  =[locs_high locs_short];
+
+% Substitute the erroenous values by the subsequent value (unless the
+% erroneous value is in the last position of the singal, in which case 
+% it is substituted by the preceding value). 
+
+for i = 1:length(indexes)
+    if indexes(i) == length(mag_y)
+        mag_y(indexes(i)) =mag_y(indexes(i)-1);
+    else
+        mag_y(indexes(i)) = mag_y(indexes(i)+1);
+    end
+end
+
+% Magnetometer Z:
+
+% Detect the noise peaks using a threshold far above the mean.
+mean_mag_z = mean(mag_z);
+threshold_z = 1000 + mean_mag_z;
+
+[~ , locs_high] = findpeaks(mag_z, 'minpeakheight', threshold_z);
+[~ , locs_short] = findpeaks(- mag_z, 'minpeakheight', threshold_z);
+
+indexes  =[locs_high locs_short];
+
+% Substitute the erroenous values by the subsequent value (unless the
+% erroneous value is in the last position of the singal, in which case 
+% it is substituted by the preceding value). 
+
+for i = 1:length(indexes)
+    if indexes(i) == length(mag_z)
+        mag_z(indexes(i)) =mag_z(indexes(i)-1);
+    else
+        mag_z(indexes(i)) = mag_z(indexes(i)+1);
+    end
+end
 
 % Interpolate the magnetometer signals
 mag_x_interp = interp1(time_mag,mag_x,time,'spline');
@@ -196,27 +268,38 @@ data = [double(data(:,1:22)) mag_x_interp' mag_y_interp' mag_z_interp'];
 
 % Show segment selection menu (multiple selection by holding the CTRL key
 % is also possible). 
-select_ok_flag = 0;
-while select_ok_flag == 0
+% select_ok_flag = 0;
+% while select_ok_flag == 0
+%     
+%     % Define the list of segments which are shown to the user. 
+%     S = cell(1,size_data_struct(1));
+%     for i = 1:size_data_struct(1)
+%         S{i} = [data_struct{i,4},' ',data_struct{i,5}];
+%     end
+%     S = unique(S,'stable');
+%     
+%     % Show the selection dialog to the user.
+%     [Selection,ok] = listdlg('ListString',S,'Name',...
+%         'Select the unit you wish to calibrate','ListSize',[160 120],...
+%         'SelectionMode','multiple');
+%     if ~isempty(Selection) 
+%         select_ok_flag = 1;
+%     else
+%         msg = msgbox('Please select at least one segment');
+%         uiwait(msg);
+%     end
+% end
+
     
-    % Define the list of segments which are shown to the user. 
-    S = cell(1,size_data_struct(1));
-    for i = 1:size_data_struct(1)
-        S{i} = [data_struct{i,4},' ',data_struct{i,5}];
-    end
-    S = unique(S,'stable');
-    
-    % Show the selection dialog to the user.
-    [Selection,ok] = listdlg('ListString',S,'Name',...
-        'Select the unit you wish to calibrate','ListSize',[160 120],...
-        'SelectionMode','multiple');
-    if ~isempty(Selection) 
-        select_ok_flag = 1;
-    else
-        msg = msgbox('Please select at least one segment');
-        uiwait(msg);
-    end
+% Define the list of segments which are shown to the user. 
+S = cell(1,size_data_struct(1));
+for i = 1:size_data_struct(1)
+    S{i} = [data_struct{i,4},' ',data_struct{i,5}];
 end
+S = unique(S,'stable');
+
+% Denition of all segments.
+Selection=[1 2 3 4 5 6 7];
 
 % We now extract all the data channels and dinamically generate the
 % variable name according to the information in 'data_struct' and the
@@ -889,7 +972,7 @@ for i = 1:length(Selection)
                 roll_gyro = gw.integRate(1/f,gx,roll_acc(1)); 
                 yaw_gyro = gw.integRate(1/f,gz,yaw_mag(1)); 
                 
-                GW_data{1}=pitch_gyro;
+%                 GW_data{1}=pitch_gyro;
                 
 %                 figure
 %                 subplot(3,1,1)
@@ -955,8 +1038,18 @@ end
 % save(savePath{1});
 
 % Save all data.
-name_file=FileHeader.FileName;
-save(['GaitWatch_data/' name_file ], 'pitch_gyro');
+% name_file=FileHeader.FileName;
+% save(['GaitWatch_data/' name_file ], 'pitch_gyro');
+
+% -------------------------------------------------------------------------
+% 7) Show a completion message to warn the end of the run.
+% -------------------------------------------------------------------------
+
+% Read a picture to show in the box.
+icon = imread('ok.jpg');
+
+% Show the massage to warn the end.
+msgbox('Operation Completed!!!!', 'Success', 'custom', icon);
 
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 % END OF ESTRACT GW SIGNALS ROUTINE
