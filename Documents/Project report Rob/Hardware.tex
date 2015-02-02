@@ -1,4 +1,4 @@
-\chapter{Hardware}
+\chapter{Hardware and Data Preprocessing}
 \label{ch:Hardware}
 
 As aforementioned, we used a MIMU (GaitWatch) and a force plate (Zebris FDM-S) to gather the raw gait data. In this chapter we will describe the employed hardware in detail. Subsequently, we will elaborate on how the necessary synchronisation of both systems was carried out.
@@ -37,3 +37,7 @@ Micromag3 triaxial magnetometer with a measurement range of ±11Gauss \cite{Micr
 
 
 \section{Synchronisation}
+
+The raw data that was collected with the MIMU and the force plate had distinct time axes, thus a synchronisation of both systems was necessary.
+
+First we created a MATLAB$\textsuperscript{\textregistered}$ routine that read the raw force plate data from separate text files, carried out the calibration of the GaitWatch data, and stored them all together in a .mat-file. Then another routine did the synchronisation. Therefore it first detected the difference between the time vectors of the force plate signals and the GaitWatch signals and corrected the force plate time vector, accordingly. Then the force plate signals were resampled. Eventually the whole series of signals was separated in chunks of one cycle and and stored in another .mat-file.
