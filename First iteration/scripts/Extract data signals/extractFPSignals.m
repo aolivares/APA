@@ -28,7 +28,7 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 26/01/2015
+% * Last modification: 29/01/2015
 % -------------------------------------------------------------------------
 % INFORMATION: This file contains the routine to extract the FP signals 
 % from the ten separates forceplate cycles. After, these signals are stored 
@@ -63,61 +63,57 @@ clear all; close all; clc;
 % 1) Obtain the files names.
 % -------------------------------------------------------------------------
 
-% Select data files with a dialog box (only .txt files). Press 'Ctrl' and
-% click all data of the same patient.
-[filename_complete, filepath] = uigetfile('*.txt', ...
-    'Select Force Plate data file (.txt)', '../../data/ForcePlate/Raw',...
-    'MultiSelect','on');
+% Select only one data files with a dialog box (only .txt files).
+[filename_one_file, filepath] = uigetfile('*.txt', ...
+    'Select Force Plate data file (.txt)', '../../data/ForcePlate/Raw');
 
-% Determine the number of files that we have selected.
-[aux,n_files] = size(filename_complete);
-
-% Check if filename_complete is a cell because if it isn't like that, only 
-% one file has been selecting.
-tf = iscell(filename_complete);
-if tf == 0
-    msgbox('Please, you must select at least two files  ',...
-    'Error','error');
-    beep;
-    
-end
+% Obtain the data name that corresponding to the patient to compare
+% with the rest of files names stored in .xlsx.
+name_file = textscan(filename_one_file,'%s','Delimiter',',');
+name_file = char(name_file{1}{1});
 
 % -------------------------------------------------------------------------
-% 3) Sort the selected names.
+% 2) Obtain all name files belonging to the same person.
 % -------------------------------------------------------------------------
 
-% Sort the selected names for they are in the correct order to match with
-% the appropiate GW signals.
-[filename_complete,I] = sort(filename_complete);
+% Read data from APA_Munic filenames.xlsx where are stored all file
+% names and other interesting information.
+sheet = 'APA_liste_3';
+[~,txt] = xlsread('../../data/APA_Munic filenames.xlsx',sheet);
+[rows,columns]=size(txt);
 
-% Rearrange the names again, because somo files like ...03 2 must be after 
-% ..03. We differenciate this name file name.
-ind = 0;
+% The four first rows are unuseful. We obtain only the FP names that are in
+% the first column.
+ind=1;
 
-for i = 1:n_files
+for i=5:rows-1
     
-    % Compare the length of one namefile and the next. If the first is
-    % shorter than the second, we change tha values to put the names in the
-    % correct order.
-    ind = ind+1;
+    % We extract the name that identifies the patient to compare with the 
+    % name file selected previously.
+    name_individual_file = strtrim(txt(i,1));               
+    name_individual_file = textscan(name_individual_file{1,1},'%s',...
+        'Delimiter',',');
+    name_individual_file = char(name_individual_file{1}{1});
     
-    % Check we don't access non-existen array position.
-    if(ind < n_files)
-        if length(filename_complete{ind}) > length(filename_complete{ind+1})
-            
-          % We use a auxiliar variable to not overwrite the value of the 
-          % interchanged namefile
-          aux_filename = filename_complete{ind};
-          filename_complete{ind} = filename_complete{ind+1};
-          filename_complete{ind+1} = aux_filename;
-          ind = ind+1;
-          
+    % Check if the string lengths are the same because you can't compare 
+    % char arrays with different sizes.
+    if length( name_individual_file) == length(name_file )
+        
+        % Check if the file names are the same, i.e if the file name 
+        % corresponds with person selected. These names are stored in a
+        % variable to access data file afterwards.
+        if (name_individual_file == name_file)
+            filename_complete( ind) = strtrim(txt(i,1));
+            ind = ind+1;
         end
     end
+
 end
 
+n_files = length(filename_complete);
+
 % -------------------------------------------------------------------------
-% 4) Read the blocks of data and compute the interesting signals.
+% 3) Read the blocks of data and compute the interesting signals.
 % -------------------------------------------------------------------------
 
 % Define the variables used to store the data.
@@ -330,21 +326,19 @@ for i = 1:n_files
 end
 
 % -------------------------------------------------------------------------
-% 5) Save all data.
+% 4) Save all data.
 %--------------------------------------------------------------------------
 
-% Obtain the name for the data that corresponding to the patient.
-name_file = textscan(filename,'%s','Delimiter',',');
-name_file = char(name_file{1}{1});
-name_file = strcat('FP_data_',name_file);
+% Create the output file name.
+ name_file = strcat('FP_data_',name_file);
 
 % Save all data.
-save(['/Users/Rob/Documents/APA/First iteration/data/ForcePlate/Preprocessed' name_file '.mat'],  ...
+save(['../../data/ForcePlate/Preprocessed/' name_file '.mat'],  ...
     'force_sensors','time_FP', 'force_cells', 'ML_COP', ...
     'AP_COP', 'force_sum','midline');
 
 % -------------------------------------------------------------------------
-% 6) Show a completion message to warn the end of the run.
+% 5) Show a completion message to warn the end of the run.
 % -------------------------------------------------------------------------
 
 % Read a picture to show in the box.
