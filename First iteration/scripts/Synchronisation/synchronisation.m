@@ -88,10 +88,9 @@ load(fullfile(filepath_GW, filename_GW));
 
 % Set sampling frequencies of the Force Plate and the GaitWatch.
 fs_FP = 120;
-fs_GW = 200;
+fs_GW = 200;   
 
-% Signal mapping for testing.
-time_GW = time;     
+time_GW = time;
 
 % -------------------------------------------------------------------------
 % 3) Find the first peak of each cycle in the GaitWatch signal of the
@@ -112,15 +111,27 @@ gap = 1300;
                                               'minpeakheight', threshold);
 
 % Plot for verification.
-close all;
-plot(time, a_Z_right_shank_1_C);
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time(peak_locations_r), a_Z_right_shank_1_C(peak_locations_r), 'r.')
-figure();
-plot(time, a_Z_left_shank_1_C, 'g');
-hold on;
-plot(time(peak_locations_l), a_Z_left_shank_1_C(peak_locations_l), 'k.');
+plot(time_GW(peak_locations_l), a_Z_left_shank_1_C(peak_locations_l), 'r.');
 
+title(['Acceleration left shank with all detected peaks greater than ' ...
+       'the threshold']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(peak_locations_r), a_Z_right_shank_1_C(peak_locations_r), 'm.');
+
+title(['Acceleration right shank with all detected peaks greater than ' ...
+       'the threshold']);
+   
+xlabel('Time in s');
+ylabel('Acceleration in g');
+                                          
 %%
 
 % Compute distance between two peaks.                             
@@ -136,14 +147,26 @@ select_last_r = peak_distance_r > gap;
 last_peaks_l = peak_locations_l(select_last_l);
 last_peaks_r = peak_locations_r(select_last_r);
 
+% Plot for verification.
 close all;
-plot(time, a_Z_right_shank_1_C);
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time(last_peaks_r), a_Z_right_shank_1_C(last_peaks_r), 'r.');
-figure()
-plot(time, a_Z_left_shank_1_C, 'g');
+plot(time_GW(last_peaks_l), a_Z_left_shank_1_C(last_peaks_l), 'r.');
+
+title('Acceleration left shank with last detected peak');
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
-plot(time(last_peaks_l), a_Z_left_shank_1_C(last_peaks_l), 'k.');
+plot(time_GW(last_peaks_r), a_Z_right_shank_1_C(last_peaks_r), 'm.');
+
+title('Acceleration right shank with last detected peak');
+   
+xlabel('Time in s');
+ylabel('Acceleration in g');
 
 %%
 
@@ -158,13 +181,24 @@ sync_peaks_r = [peak_locations_r(1)', peak_locations_r(logical(select_first_r))'
 
 % Plot for verification.
 close all;
-plot(time, a_Z_right_shank_1_C);
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time(sync_peaks_r), a_Z_right_shank_1_C(sync_peaks_r), 'r.');
-figure();
-plot(time, a_Z_left_shank_1_C, 'g');
+plot(time_GW(sync_peaks_l), a_Z_left_shank_1_C(sync_peaks_l), 'r.');
+
+title('Acceleration left shank with detected sync-peaks left');
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
-plot(time(sync_peaks_l), a_Z_left_shank_1_C(sync_peaks_l), 'k.');
+plot(time_GW(sync_peaks_r), a_Z_right_shank_1_C(sync_peaks_r), 'm.');
+
+title('Acceleration right shank with detected sync-peaks right');
+   
+xlabel('Time in s');
+ylabel('Acceleration in g');
 
 %%
 
@@ -180,13 +214,31 @@ last_peaks = sort(last_peaks);
 
 % Plot for verification.
 close all;
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time, a_Z_left_shank_1_C);
-plot(time(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
      a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.');
-plot(time, a_Z_right_shank_1_C, 'g');
-plot(time(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'k.');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+title(['Acceleration left shank with sync lines and red markers when ' ...
+       'patient steps with left foot first']);
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.');
+ 
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+title(['Acceleration right shank with sync lines and magenta markers ' ...
+       'when patient steps with right foot first']);
 
 %%
 
@@ -204,7 +256,7 @@ add_samples = floor(add_time * fs_GW);
 % Create cell array containing the time series of the seperate cycles of 
 % acceleration trunk.
 a_trunk = createTimeseriesGW([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
-                              a_Z_center_trunk_3_C], time, sync_peaks, ...
+                              a_Z_center_trunk_3_C], time_GW, sync_peaks, ...
                               last_peaks, add_samples, ...
                               'Acceleration trunk', 'seconds', 'g');
                         
@@ -212,19 +264,26 @@ a_trunk = createTimeseriesGW([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
 % acceleration thigh.
 a_thigh = createTimeseriesGW([a_X_left_thigh_1_C';  a_Z_left_thigh_1_C'; ...
                               a_X_right_thigh_1_C'; a_Z_right_thigh_1_C'], ...
-                              time, sync_peaks, last_peaks, add_samples, ...
+                              time_GW, sync_peaks, last_peaks, add_samples, ...
                               'Acceleration thigh', 'seconds', 'g');
                         
 % Create cell array containing the time series of the seperate cycles of 
 % acceleration shank.
 a_shank = createTimeseriesGW([a_X_left_shank_1_C';  a_Z_left_shank_1_C'; ...
                               a_X_right_shank_1_C'; a_Z_right_shank_1_C'], ...
-                              time, sync_peaks, last_peaks, add_samples, ...
+                              time_GW, sync_peaks, last_peaks, add_samples, ...
                               'Acceleration shank', 'seconds', 'g');
 
 % Plot for verification.
 close all;
+subplot(3, 1, 1);
 plot(a_trunk{1, 1});
+
+subplot(3, 1, 2);
+plot(a_thigh{1, 1});
+
+subplot(3, 1, 3);
+plot(a_shank{1, 1});
 
 %%
 
@@ -234,44 +293,35 @@ plot(a_trunk{1, 1});
 %    time when the patient walks on the force plate as an event.
 % -------------------------------------------------------------------------
 
-% Rearrange data for testing until data extraction script is finished.
-% Compute number of cycles.
-n_cycles = length(sync_peaks);
-
-FP_data = cell(n_cycles, 1);
-FP_time = cell(n_cycles, 1);
-
-for i=1:n_cycles
-    
-    FP_data(i, 1) = {FP_data_complete{i, 1}(FP_data_complete{i, 2}: ...
-                     FP_data_complete{i, 3}, 2:5)};
-             
-    FP_time(i, 1) = {FP_data_complete{i, 1}(FP_data_complete{i, 2}: ...
-                     FP_data_complete{i, 3}, 1) / 1000};
-    
-end
-
-%Plot for verification.
-close all;
-plot(FP_time{1, 1}, FP_data{1, 1});
-
-%%
-
 % Compute the times where the syncronisation peaks appear from the
 % sync_peaks vector containing the indexes of the peaks and the GW time
 % vector.
 sync_peak_times = time_GW(sync_peaks);
 
+n_cycles = length(sync_peaks);
+time_FP_s = cell(n_cycles, 1);
+for i=1:n_cycles
+    
+  
+    time_FP_s(i, 1) = {time_FP{i, 1} / 1000};
+                     
+end
+
+
 % Create cell array containing the time series of the seperate cycles of
 % the four force sensors.
-force_sensors = createTimeseriesFP(FP_data, FP_time, sync_peak_times, ...
+force_sensors_ts = createTimeseriesFP(force_sensors, time_FP_s, sync_peak_times, ...
                                    fs_GW, 'Force Sensors', 'seconds', 'N');
 
+force_sensors_complete = append(force_sensors_ts{1, :});
+force_sensors_complete_vec = force_sensors_complete(:, 1, :);
+
+data_fs = force_sensors_complete.data;
+data_fs_vec = data_fs(1, 1, :);
+                               
 % Plot for verification.
 close all;
-plot(force_sensors{1, 1});
-figure();
-plot(a_trunk{1, 1});
+plot(data_fs_vec);
 
 %%
 
@@ -282,3 +332,4 @@ plot(a_trunk{1, 1});
 save('/Users/Rob/Documents/APA/First iteration/data/GaitWatch/Synchronised/GW_sync_ES_39.mat', ...
      'a_trunk','a_shank', 'a_thigh', ...
      'force_sensors');
+ 
