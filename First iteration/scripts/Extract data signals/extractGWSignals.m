@@ -48,7 +48,7 @@ gw = gwLibrary;
 
 % Set flags which control the visibility of the figures.
 showPlots = 'yes';
-showMagData = 'yes';
+showMagData = 'no';
 comparation = 'yes';
 
 % -------------------------------------------------------------------------
@@ -98,27 +98,6 @@ size_data_struct=size(data_struct);
 % -------------------------------------------------------------------------
 % 3) Load data file.
 % -------------------------------------------------------------------------
-% Here the user has two options to load the data: either directly from the
-% device or from the hard drive of the workstation where the data were
-% previously donwloaded. The user is prompted to select one of the two
-% options. 
-
-% S = {'Load data from GaitWatch','Load data from hard drive'};
-% [Selection,ok] = listdlg('ListString',S,'Name',...
-%     'Select the origin of the data','ListSize',[250 100],'SelectionMode',...
-%     'single');
-% 
-% switch Selection
-%     
-%     case 1
-%     % Load data from GaitWatch. 
-%         GW_comm;
-%         
-%     case 2
-%     % Load data from the hard drive.
-%         [data, FileHeader] = gw.openGWfile();   
-% end
-
 
 % Load data from the hard drive.
 [filename, filepath] = uigetfile('../../data/GaitWatch/Raw/*.mat',...
@@ -130,7 +109,7 @@ load(fullfile(filepath,filename));
 
 % Build time signal. 
 len_data = length(data);
-time = (0:len_data-1) / f;
+time_GW = (0:len_data-1) / f;
 
 % Reshape data (split channel 23 into 3 channels and append them to the
 % data matrix)
@@ -146,14 +125,9 @@ for i=1:length(mag_x)-1
  time_mag(i+1)=time_mag(i)+1/f_mag;
 end
 
-% Correct magnetometer signals .
-% % mag_x = gw.correct_mag_data(mag_x);
-% % mag_y = gw.correct_mag_data(mag_y);
-% % mag_z = gw.correct_mag_data(mag_z);
-% % close all;
-
-% Correct magnetometer signals automatically.
-
+% -------------------------------------------------------------------------
+% 4) Correct magnetometer signals automatically.
+% -------------------------------------------------------------------------
 % Magnetometer X:
 
 % Detect the noise peaks using a threshold far above the mean. We detect
@@ -225,30 +199,30 @@ for i = 1:length(indexes)
 end
 
 % Interpolate the magnetometer signals
-mag_x_interp = interp1(time_mag,mag_x,time,'spline');
-mag_y_interp = interp1(time_mag,mag_y,time,'spline');
-mag_z_interp = interp1(time_mag,mag_z,time,'spline');
+mag_x_interp = interp1(time_mag,mag_x,time_GW,'spline');
+mag_y_interp = interp1(time_mag,mag_y,time_GW,'spline');
+mag_z_interp = interp1(time_mag,mag_z,time_GW,'spline');
 
 if strcmpi(showMagData,'yes')
     figure
     subplot(3,1,1)
     plot(time_mag,mag_x)
     hold on
-    plot(time,mag_x_interp,'--r')
+    plot(time_GW,mag_x_interp,'--r')
     legend('Original','Interpolated')
     xlabel('Time (s)');
     ylabel('Magnetic field (raw)')
     subplot(3,1,2)
     plot(time_mag,mag_y)
     hold on
-    plot(time,mag_y_interp,'--r')
+    plot(time_GW,mag_y_interp,'--r')
     legend('Original','Interpolated')
     xlabel('Time (s)');
     ylabel('Magnetic field (raw)')
     subplot(3,1,3)
     plot(time_mag,mag_z)
     hold on
-    plot(time,mag_z_interp,'--r')
+    plot(time_GW,mag_z_interp,'--r')
     legend('Original','Interpolated')
     xlabel('Time (s)');
     ylabel('Magnetic field (raw)')
@@ -259,39 +233,13 @@ end
 data = [double(data(:,1:22)) mag_x_interp' mag_y_interp' mag_z_interp'];
 
 % -------------------------------------------------------------------------
-% 4) Identify and extract data.
+% 5) Identify and extract data.
 % -------------------------------------------------------------------------
 % We now have to extract the data from the 'data' matrix. This is done 
 % dynamically, so the code is flexible and only depends on 'data_struct'. 
-% A vector is created for each one of the magnitudes which were measured by
-% the unit placed on the segment selected by the user from the list.
-
-% Show segment selection menu (multiple selection by holding the CTRL key
-% is also possible). 
-% select_ok_flag = 0;
-% while select_ok_flag == 0
-%     
-%     % Define the list of segments which are shown to the user. 
-%     S = cell(1,size_data_struct(1));
-%     for i = 1:size_data_struct(1)
-%         S{i} = [data_struct{i,4},' ',data_struct{i,5}];
-%     end
-%     S = unique(S,'stable');
-%     
-%     % Show the selection dialog to the user.
-%     [Selection,ok] = listdlg('ListString',S,'Name',...
-%         'Select the unit you wish to calibrate','ListSize',[160 120],...
-%         'SelectionMode','multiple');
-%     if ~isempty(Selection) 
-%         select_ok_flag = 1;
-%     else
-%         msg = msgbox('Please select at least one segment');
-%         uiwait(msg);
-%     end
-% end
-
+% A vector is created for each one of the magnitudes which were measured.
     
-% Define the list of segments which are shown to the user. 
+% Define the list of segments which are calculated. 
 S = cell(1,size_data_struct(1));
 for i = 1:size_data_struct(1)
     S{i} = [data_struct{i,4},' ',data_struct{i,5}];
@@ -302,8 +250,7 @@ S = unique(S,'stable');
 Selection=[1 2 3 4 5 6 7];
 
 % We now extract all the data channels and dinamically generate the
-% variable name according to the information in 'data_struct' and the
-% selection made by the user.
+% variable name according to the information in 'data_struct'.
 
 size_data_struct=size(data_struct);
 
@@ -337,7 +284,7 @@ for i = 1:length(Selection)
 end
 
 % -------------------------------------------------------------------------
-% 5) Calibrate acceleration.
+% 6) Calibrate acceleration.
 % -------------------------------------------------------------------------
 % We now search all the variables containing raw acceleration. To do so, we
 % build a list with all variables starting by 'a_'.
@@ -379,18 +326,6 @@ if ~isempty(acc_variables)
         acc_variables_3 = acc_variables_3(~cellfun('isempty',...
             acc_variables_3));
 
-        % If there are more than 2 segments with a triaxial accelerometer, 
-        % then the cell 'acc_variables_3' would look like: 
-        % [a_X_pos_segment1_3, a_X_pos_segment2_3, a_Y_pos_segment1_3,
-        %  a_Y_pos_segment2_3, a_Z_pos_segment1_3, a_Z_pos_segment2_3].
-        % That is a (1 x 3N) vector where N is the number of segments.
-        %
-        % We actually want it to look like like:
-        % [a_X_pos_segment1_3,  a_Y_pos_segment1_3, a_Z_pos_segment1_3;
-        %  a_X_pos_segment2_3,  a_Y_pos_segment2_3, a_Z_pos_segment2_3], 
-        % that is a (N x 3) matrix. 
-        % This is done by reshaping the cell.
-
         % Check if there are more than 3 variables (which would mean that 
         % there are more than two segments with triaxial accelerometers). 
         % If so, reshape the list. 
@@ -426,7 +361,7 @@ if ~isempty(acc_variables)
 end
 
 % -------------------------------------------------------------------------
-% 6) Calibrate angular rate.
+% 7) Calibrate angular rate.
 % -------------------------------------------------------------------------
 % We now search all the variables containing raw angular rate. To do so, we
 % build a list with all variables starting by 'g_'.
@@ -464,7 +399,7 @@ end
 
 
 % -------------------------------------------------------------------------
-% 7) Calibrate magnetic field.
+% 8) Calibrate magnetic field.
 % -------------------------------------------------------------------------
 % We now search all the variables containing raw magnetic field. To do so, 
 % we build a list with all variables starting by 'h_'.
@@ -500,7 +435,7 @@ end
 
 
 % -------------------------------------------------------------------------
-% 8) Compute orientation.
+% 9) Compute orientation.
 % -------------------------------------------------------------------------
 % Once we have extracted and calibrated all the data from the selected
 % segments, we proceed to compute the orientation of the segment with
@@ -580,24 +515,7 @@ for i = 1:length(Selection)
                 % Integrate angular rate (just for comparation purposes).            
                 ini_pos = pitch_acc_right_shank(1);
                 pitch_gyro_right_shank = gw.integRate(1/f,gy,ini_pos);
-%                 figure
-%                 plot(time,pitch_acc_right_shank)
-%                 hold on
-%                 plot(time,pitch_gyro_right_shank,'r')
-%                 plot(time,pitch_KF_right_shank ,'black')
-%                 plot(time,pitch_GKF_right_shank,'cyan')
-%                 title('Pitch angle of right shank - Comparison')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Accelerometer-based','Angular rate integration',...
-%                     'Kalman filter','Gated Kalman Filter')              
-%             else
-%                 figure
-%                 plot(time,pitch_KF_right_shank ,'black')
-%                 title('Pitch angle of right shank')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Kalman filter')
+
              end
             
         case 'left shank'
@@ -644,24 +562,7 @@ for i = 1:length(Selection)
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_left_shank(1);
                 pitch_gyro_left_shank = gw.integRate(1/f,gy,ini_pos);
-%                 figure
-%                 plot(time,pitch_acc_left_shank)
-%                 hold on
-%                 plot(time,pitch_gyro_left_shank,'r')
-%                 plot(time,pitch_KF_left_shank ,'black')
-%                 plot(time,pitch_GKF_left_shank, 'cyan')
-%                 title('Pitch angle of left shank - Comparison')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Accelerometer-based','Angular rate integration',...
-%                     'Kalman filter','Gated Kalman filter')  
-%             else
-%                 figure
-%                 plot(time,pitch_KF_left_shank ,'black')
-%                 title('Pitch angle of left shank')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Kalman filter')
+
             end
             
         case 'right thigh'
@@ -708,24 +609,7 @@ for i = 1:length(Selection)
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_right_thigh(1);
                 pitch_gyro_right_thigh = gw.integRate(1/f,gy,ini_pos);
-%                 figure
-%                 plot(time,pitch_acc_right_thigh)
-%                 hold on
-%                 plot(time,pitch_gyro_right_thigh,'r')
-%                 plot(time,pitch_KF_right_thigh ,'black')
-%                 plot(time,pitch_GKF_right_thigh,'cyan')
-%                 title('Pitch angle of right thigh - Comparison')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Accelerometer-based','Angular rate integration',...
-%                     'Kalman filter','Gated Kalman filter')   
-%             else
-%                 figure
-%                 plot(time,pitch_KF_right_thigh ,'black')
-%                 title('Pitch angle of right thigh')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Kalman filter')
+
             end
             
         case 'left thigh'
@@ -772,24 +656,7 @@ for i = 1:length(Selection)
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_left_thigh(1);
                 pitch_gyro_left_thigh = gw.integRate(1/f,gy,ini_pos);
-%                 figure
-%                 plot(time,pitch_acc_left_thigh)
-%                 hold on
-%                 plot(time,pitch_gyro_left_thigh,'r')
-%                 plot(time,pitch_KF_left_thigh ,'black')
-%                 plot(time,pitch_GKF_left_thigh,'cyan')
-%                 title('Pitch angle of left thigh - Comparison')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Accelerometer-based','Angular rate integration',...
-%                     'Kalman filter','Gated Kalman filter')   
-%             else
-%                 figure
-%                 plot(time,pitch_KF_left_thigh ,'black')
-%                 title('Pitch angle of left thigh')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch (deg)')
-%                 legend('Kalman filter')
+
             end
             
         case 'left arm'
@@ -809,16 +676,7 @@ for i = 1:length(Selection)
             roll_gyro_left_arm_f  = filtfilt(b,a,roll_gyro_left_arm) + ...
                 roll_gyro_left_arm(1);
             
-            % Plot results.
-%             figure
-%             plot(time,pitch_gyro_left_arm)
-%             hold on
-%             plot(time,pitch_gyro_left_arm_f,'black')
-%             plot(time,roll_gyro_left_arm,'r')
-%             plot(time,roll_gyro_left_arm_f,'g')
-%             title('Pitch and roll angles of left arm')
-%             legend('Pitch (unfiltered)', 'Pitch (filtered)',...
-%                 'Roll (unfiltered)', 'Roll (filtered)');
+
             
         case 'right arm'
             % Define the necessary signals.
@@ -836,17 +694,7 @@ for i = 1:length(Selection)
                 pitch_gyro_right_arm(1);
             roll_gyro_right_arm_f  = filtfilt(b,a,roll_gyro_right_arm)+...
                 roll_gyro_right_arm(1);
-            
-            % Plot results.
-%             figure
-%             plot(time,pitch_gyro_right_arm)
-%             hold on
-%             plot(time,pitch_gyro_right_arm_f,'black')
-%             plot(time,roll_gyro_right_arm,'r')
-%             plot(time,roll_gyro_right_arm_f,'g')
-%             title('Pitch and roll angles of right arm')
-%             legend('Pitch (unfiltered)', 'Pitch (filtered)',...
-%                 'Roll (unfiltered)', 'Roll (filtered)');
+
             
         case 'center trunk'
             % Define the necessary signals.
@@ -972,77 +820,51 @@ for i = 1:length(Selection)
                 roll_gyro = gw.integRate(1/f,gx,roll_acc(1)); 
                 yaw_gyro = gw.integRate(1/f,gz,yaw_mag(1)); 
                 
-%                 GW_data{1}=pitch_gyro;
                 
-%                 figure
-%                 subplot(3,1,1)
-%                 plot(time,pitch_acc)
-%                 title('Orientation angles of trunk - Comparison')
-%                 hold on
-%                 plot(time,pitch_gyro,'r')
-%                 plot(time,pitch_KF_center_trunk,'black')
-%                 plot(time,pitch_GKF_center_trunk,'cyan')
-%                 % plot(time,180/pi*pitch_EKF_center_trunk,'g')
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch angle (deg)')
-%                 legend('Accelerometer+Magnetometer','Gyroscope',...
-%                     'Kalman filter','Gated Kalmal filter')
-%                 subplot(3,1,2)
-%                 plot(time,roll_acc)
-%                 hold on
-%                 plot(time,roll_gyro,'r')
-%                 plot(time,roll_KF_center_trunk,'black')
-%                 plot(time,roll_GKF_center_trunk,'cyan')
-%                 %plot(time,180/pi*roll_EKF_center_trunk,'g')
-%                 xlabel('Time (s)')
-%                 ylabel('Roll angle (deg)')
-%                 legend('Accelerometer+Magnetometer','Gyroscope',...
-%                     'Kalman filter','Gated Kalman filter')
-%                 subplot(3,1,3)
-%                 plot(time,yaw_mag_kf)
-%                 hold on
-%                 plot(time,yaw_gyro,'r')
-%                 plot(time,yaw_KF_center_trunk,'black')
-%                 plot(time,yaw_GKF_center_trunk,'cyan')
-%                 plot(time,yaw_2KF_center_trunk,'g')
-%                 plot(time,yaw_2GKF_center_trunk,'--black')
-%                 %plot(time,180/pi*yaw_EKF_center_trunk,'g')
-%                 xlabel('Time (s)')
-%                 ylabel('Yaw angle (deg)')
-%                 legend('Accelerometer+Magnetometer','Gyroscope',...
-%                     'Kalman filter','Gated Kalman filter',...
-%                     'Double Kalman Filter','Double Gated Kalman Filter')      
-%             else
-%                 figure
-%                 subplot(3,1,1)
-%                 title('Orientation angles of trunk')
-%                 plot(time,roll_KF_center_trunk)
-%                 xlabel('Time (s)')
-%                 ylabel('Roll angle (deg)')
-%                 subplot(3,1,2)
-%                 plot(time,pitch_KF_center_trunk)
-%                 xlabel('Time (s)')
-%                 ylabel('Pitch angle (deg)')
-%                 subplot(3,1,3)
-%                 plot(time,yaw_KF_center_trunk)
-%                 xlabel('Time (s)')
-%                 ylabel('Yaw angle (deg)')
+
             end
     end
 end
 
 % -------------------------------------------------------------------------
-% 6) Save Workspace.
+% 10) Save Workspace.
 % -------------------------------------------------------------------------
-% savePath = strcat('data/workspaces/workspace',{' '},FileName);
-% save(savePath{1});
 
 % Save all data.
-% name_file=FileHeader.FileName;
-% save(['GaitWatch_data/' name_file ], 'pitch_gyro');
+name_file=FileHeader.FileName;
+name_file = textscan(name_file,'%s','Delimiter','.');
+name_file = char(name_file{1}{1});
+name_file = strcat( name_file,'_calibrated');
+save(['../../data/GaitWatch/Calibrated/' name_file '.mat'], ...
+'a_X_center_trunk_3_C', 'a_X_left_shank_1_C', 'a_X_left_thigh_1_C',...
+'a_X_right_shank_1_C', 'a_X_right_thigh_1_C', 'a_Y_center_trunk_3_C', ...
+'a_Z_center_trunk_3_C', 'a_Z_left_shank_1_C', 'a_Z_left_thigh_1_C',...
+'a_Z_right_shank_1_C', 'a_Z_right_thigh_1_C',...
+'g_X_center_trunk_1_C', 'g_X_left_arm_1_C', 'g_X_right_arm_1_C', ...
+'g_Y_center_trunk_1_C', 'g_Y_left_shank_1_C', 'g_Y_left_arm_1_C', ...
+'g_Y_left_thigh_1_C', 'g_Y_right_shank_1_C', 'g_Y_right_arm_1_C', ...
+'g_Y_right_thigh_1_C', 'g_Z_center_trunk_1_C',...
+'h_X_center_trunk_3_C', 'h_Y_center_trunk_3_C', 'h_Y_center_trunk_3_C',...
+'pitch_acc_left_shank', 'pitch_gyro_left_shank', 'pitch_KF_left_shank',...
+'pitch_GKF_left_shank', ...
+'pitch_acc_right_shank', 'pitch_gyro_right_shank',...
+'pitch_KF_right_shank', 'pitch_GKF_right_shank', ...
+'pitch_acc_left_thigh', 'pitch_gyro_left_thigh', 'pitch_KF_left_thigh',...
+'pitch_GKF_left_thigh', ...
+'pitch_acc_right_thigh', 'pitch_gyro_right_thigh', ...
+'pitch_KF_right_thigh', 'pitch_GKF_left_thigh', ...
+'pitch_gyro_left_arm', 'pitch_gyro_left_arm_f', 'pitch_gyro_right_arm',...
+'pitch_gyro_right_arm_f', 'roll_gyro_left_arm', 'roll_gyro_left_arm_f',...
+'roll_gyro_right_arm', 'roll_gyro_right_arm_f', ...
+'pitch_acc', 'pitch_gyro', 'pitch_KF_center_trunk', ...
+'pitch_GKF_center_trunk',...
+'roll_acc', 'roll_gyro', 'roll_KF_center_trunk', ...
+'roll_GKF_center_trunk',...
+'yaw_mag_kf', 'yaw_gyro', 'yaw_KF_center_trunk', 'yaw_GKF_center_trunk', ...
+'yaw_2KF_center_trunk', 'yaw_2GKF_center_trunk', 'time_GW');
 
 % -------------------------------------------------------------------------
-% 7) Show a completion message to warn the end of the run.
+% 11) Show a completion message to warn the end of the run.
 % -------------------------------------------------------------------------
 
 % Read a picture to show in the box.
