@@ -1,11 +1,11 @@
-\chapter{Hardware}
+\chapter{Hardware and Data Preprocessing}
 \label{ch:Hardware}
 
-As aforementioned, we used MIMUs and force plates to gather the raw gait data. In this chapter we will describe in detail the employed hardware, in our case, a device called GaitWatch, developed at the Department of Neurology of the Ludwig-Maximilians University in Munich in conjunction with the Department of Signal Theory, Telematics and Communications of the University of Granada, and a force-measuring plate (Zebris FDM-S). Subsequently, we will elaborate on how the data is arranged in the datasets and carry out the necessary synchronisation of both systems.
+As aforementioned, we used a MIMU (GaitWatch) and a force plate (Zebris FDM-S) to gather the raw gait data. In this chapter we will describe the employed hardware in detail. Subsequently, we will elaborate on how the necessary synchronisation of both systems was carried out.
 
 \section{GaitWatch}
 
-The GaitWatch device is a MIMU designed to monitor the motion of patients while attached to the body. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing it on a memory card. The several units are placed at the patient's thighs, shanks, arms and trunk as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of IMUs are described below:
+The GaitWatch device is a MIMU designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich in conjunction with the Department of Signal Theory, Telematics and Communications of the University of Granada. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's thighs, shanks, arms and trunk as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
 
 \begin{figure}
 	\centering
@@ -37,3 +37,7 @@ Micromag3 triaxial magnetometer with a measurement range of ±11Gauss \cite{Micr
 
 
 \section{Synchronisation}
+
+The raw data that was collected with the MIMU and the force plate had distinct time axes, thus a synchronisation of both systems was necessary.
+
+First we created a MATLAB$\textsuperscript{\textregistered}$ routine that read the raw force plate data from separate text files, carried out the calibration of the GaitWatch data, and stored them all together in a .mat-file. Then another routine did the synchronisation. Therefore it first detected the difference between the time vectors of the force plate signals and the GaitWatch signals and corrected the force plate time vector, accordingly. Then the force plate signals were resampled. Eventually the whole series of signals was separated in chunks of one cycle and and stored in another .mat-file.
