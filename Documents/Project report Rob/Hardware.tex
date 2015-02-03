@@ -42,3 +42,12 @@ The Zebris FDM-S is a force measuring plate with a sensor area of 540 x 330 mm a
 According to the data gathering protocol in \ref{data_gathering_protocol} the raw data that was collected with the MIMU and the force plate had distinct time axes, thus a synchronisation of both systems was necessary.
 
 In order to achieve this we created a MATLAB$\textsuperscript{\textregistered}$ routine that read the raw force plate data from separate text files, containing the data for one cycle each, carried out the calibration of the GaitWatch data and performed the synchronisation. Therefore it first detected the separate gait cycles, computed the differences between the time vectors of the force plate signals and the GaitWatch signals and corrected the force plate time vector, accordingly. Then the force plate signals were resampled at the GaitWatch sampling frequency of \mbox{200 Hz}. Eventually the whole series of signals were separated in chunks of one cycle and stored as cell array of time series objects in a .mat-file.
+
+\begin{figure}
+	\centering
+	\epsfig{file=images/left_right_detect, width=16cm}
+	\caption{Left-right detection}
+	\label{fig:left_right_detect}
+\end{figure}
+
+Because the patient could step with a preferred limb first we added a left-right detection before we set the synchronisation points as shown in Figure \ref{fig:left_right_detect}.

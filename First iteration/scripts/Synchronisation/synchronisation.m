@@ -88,9 +88,7 @@ load(fullfile(filepath_GW, filename_GW));
 
 % Set sampling frequencies of the Force Plate and the GaitWatch.
 fs_FP = 120;
-fs_GW = 200;   
-
-time_GW = time;
+fs_GW = 200;
 
 % -------------------------------------------------------------------------
 % 3) Find the first peak of each cycle in the GaitWatch signal of the
@@ -215,31 +213,33 @@ subplot(2, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
-     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.');
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'Color',[.7 .7 .7]);
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2 , 'Color',[.7 .7 .7]);
 changedependvar(hx,'x');
 
-title(['Acceleration left shank with sync lines and red markers when ' ...
+title(['Acceleration left shank with sync lines and red marker when ' ...
        'patient steps with left foot first']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.1])
 
 subplot(2, 1, 2)
 plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.');
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'Color',[.7 .7 .7]);
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2, 'Color',[.7 .7 .7]);
 changedependvar(hx,'x');
 
-title(['Acceleration right shank with sync lines and magenta markers ' ...
+title(['Acceleration right shank with sync lines and magenta marker ' ...
        'when patient steps with right foot first']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.3])
 
 %%
 
