@@ -20,45 +20,48 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 29 entries,
+Warning--empty journal in zebris_force_plate_2013
+Warning--empty year in zebris_force_plate_2013
+Warning--empty year in zebris_force_plate_2013
+You've used 30 entries,
             2481 wiz_defined-function locations,
-            758 strings with 11544 characters,
-and the built_in function-call counts, 11292 in all, are:
-= -- 977
-> -- 585
-< -- 24
-+ -- 237
-- -- 174
-* -- 891
-:= -- 1828
-add.period$ -- 131
-call.type$ -- 29
-change.case$ -- 56
-chr.to.int$ -- 24
-cite$ -- 40
-duplicate$ -- 525
-empty$ -- 994
-format.name$ -- 211
-if$ -- 2384
+            761 strings with 11612 characters,
+and the built_in function-call counts, 11548 in all, are:
+= -- 996
+> -- 592
+< -- 25
++ -- 241
+- -- 176
+* -- 906
+:= -- 1868
+add.period$ -- 133
+call.type$ -- 30
+change.case$ -- 58
+chr.to.int$ -- 25
+cite$ -- 44
+duplicate$ -- 543
+empty$ -- 1022
+format.name$ -- 214
+if$ -- 2436
 int.to.chr$ -- 6
-int.to.str$ -- 30
-missing$ -- 18
-newline$ -- 194
-num.names$ -- 93
-pop$ -- 279
+int.to.str$ -- 31
+missing$ -- 19
+newline$ -- 198
+num.names$ -- 96
+pop$ -- 293
 preamble$ -- 1
-purify$ -- 29
+purify$ -- 30
 quote$ -- 0
-skip$ -- 297
+skip$ -- 306
 stack$ -- 0
-substring$ -- 371
-swap$ -- 110
+substring$ -- 373
+swap$ -- 111
 text.length$ -- 5
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 197
-warning$ -- 11
-while$ -- 88
+type$ -- 204
+warning$ -- 14
+while$ -- 90
 width$ -- 0
-write$ -- 453
-(There were 11 warnings)
+write$ -- 462
+(There were 14 warnings)
