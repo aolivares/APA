@@ -4,8 +4,8 @@ function gw = gwLibrary
 % load, extract, calibrate, process and plot data gathered using GaitWatch.
 %
 % -------------------------------------------------------------------------
-% Author: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Author: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 13/12/2013.
 % -------------------------------------------------------------------------
 %
@@ -79,8 +79,8 @@ function [data, FileHeader] = openGWfile(dataPath)
 %                 monitoring session.
 % 
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares and Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares and Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -127,8 +127,8 @@ function channel = getDataChannel(data_struct,magnitude, axis,...
 % found inside the 'data' matrix. 
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares and Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares and Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -165,8 +165,8 @@ function [f, date, start_time, end_time, file_id] = ...
 % |_ 'FileName':    File name given by the user.
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -211,8 +211,8 @@ function [hx, hy, hz] = getMagData(magnetometer)
 % |_ 'hz': Magnetometer data gathered along Z axis (vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 05/11/2013.
 % -------------------------------------------------------------------------
 
@@ -258,8 +258,8 @@ function h_corr = correct_mag_data(h)
 % |_ 'h_corr': Corrected magnetometer signal (vector).
 % 
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -316,8 +316,8 @@ function [cal_hx, cal_hy, cal_hz] = mag3DCal(raw_hx, raw_hy, raw_hz,...
 %              (N x 1 vector).
 % 
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -326,7 +326,7 @@ cal_file_name = strcat(segment,'_XYZ_magCalParams');
 
 % 2) Build name of the path to the file containing the calibration 
 %    parameters.
-data_path = strcat('data/calibration/magnetometer/',cal_file_name);
+data_path = strcat('/APA/First iteration/data/Calibration Parameters/magnetometer/',cal_file_name);
     
 % 3) Load calibration parameters.
 try
@@ -373,8 +373,8 @@ function cal_acc = acc1DCal(raw_acc, sens_axis, position, segment)
 % |_ 'cal_acc': Calibrated acceleration (N x 1 vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -383,7 +383,7 @@ cal_file_name = strcat(position,'_',segment,'_',sens_axis,'_accCalParams');
 
 % 2) Build name of the path to the file containing the calibration 
 %    parameters.
-data_path = strcat('data/calibration/accelerometer/',cal_file_name);
+data_path = strcat('/APA/First iteration/data/Calibration Parameters/accelerometer/',cal_file_name);
 
 % 3) Load file containing the calibration parameters.
 load(data_path);
@@ -414,8 +414,8 @@ function [ax_cal, ay_cal, az_cal] = acc3DCal(ax_raw, ay_raw, az_raw,...
 % |_ 'az_cal': Calibrated acceleration along Z axis (N x 1 vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 11/11/2013.
 % -------------------------------------------------------------------------
 
@@ -424,7 +424,7 @@ cal_file_name = strcat(segment,'_XYZ_accCalParams');
 
 % 2) Build name of the path to the file containing the calibration 
 %    parameters.
-data_path = strcat('data/calibration/accelerometer/',cal_file_name);
+data_path = strcat('APA/First iteration/data/Calibration Parameters/accelerometer/',cal_file_name);
 
 % 3) Load file containing the calibration parameters.
 load(data_path);
@@ -464,8 +464,8 @@ function cal_rate = gyro1DCal(raw_rate, sens_axis, position, segment)
 % |_ 'cal_rate': Calibrated angular rate (N x 1 vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -474,7 +474,7 @@ cal_file_name = strcat(position,'_',segment,'_',sens_axis,'_gyroCalParams');
 
 % 2) Build name of the path to the file containing the calibration 
 %    parameters.
-data_path = strcat('data/calibration/gyroscope/',cal_file_name);
+data_path = strcat('/APA/First iteration/data/Calibration Parameters/gyroscope/',cal_file_name);
 
 % 3) Load file containing the calibration parameters.
 load(data_path);
@@ -505,8 +505,8 @@ function k = gyro1DscaleF(time,wg,rotation)
 % |_ 'k': Computed scale factor. 
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -544,8 +544,8 @@ function [alpha, beta] = comp_acc_mag_cal_params(sensor, x_axis, y_axis,...
 %             vector).
 % 
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 06/11/2013.
 % -------------------------------------------------------------------------
 
@@ -617,8 +617,8 @@ function F = ellipsoidEOF(p)
 % |_ 'F': value of the error function (scalar). 
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -671,8 +671,8 @@ function indexes = getDCindexes(signal,fig_title)
 % |_ 'indexes': The selected indexes.
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -735,8 +735,8 @@ function [detected, xo, yo, zo] = selectStaticPositions3D(x, y, z, lmin,...
 %                   (1 x N where N is the number of detected periods).
 %
 % -------------------------------------------------------------------------
-% Authors: Rafael López, Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Rafael L?pez, Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -894,8 +894,8 @@ function [a_parallel, a_antiparallel] = get_acc_parallel_values(acc)
 %                       gravity vector.
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -956,8 +956,8 @@ function euler = quatTOeuler(quatInput)
 %               - euler(:,3): rotation about the Z-axis (yaw).
 %
 % -------------------------------------------------------------------------
-% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai Bötzel.
-% Entity:  Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai B?tzel.
+% Entity:  Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 %
@@ -1000,8 +1000,8 @@ function quat = eulerToQuat(roll, pitch, yaw)
 % |_ 'quat': Orientation quaternion.
 %
 % -------------------------------------------------------------------------
-% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai Bötzel.
-% Entity:  Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai B?tzel.
+% Entity:  Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1040,8 +1040,8 @@ function quat = quat_mul(q1, q2)
 %  |_ quat: quaternion resulting from q1 x q2.
 %
 % -------------------------------------------------------------------------
-% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai Bötzel.
-% Entity:  Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors:  Alberto Olivares & Gonzalo Ruiz & Kai B?tzel.
+% Entity:  Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1090,8 +1090,8 @@ function [] = plotData(showPlot,x,y,dir_path,physMag,physUnits,segment,...
 % |_ This function returns no parameters. 
 %
 % -------------------------------------------------------------------------
-% Author: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Author: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1175,10 +1175,10 @@ function [roll, pitch, yaw, q_output] = quat9dofEKF(ax, ay, az, gx, gy,...
 % |_ 'q_output': Orientation quaternion (N x 4 matrix).
 % 
 % -------------------------------------------------------------------------
-% Authors:  Alberto Olivares & Kai Bötzel (based on the Visual Studio 
+% Authors:  Alberto Olivares & Kai B?tzel (based on the Visual Studio 
 %           version from the Microelectronics Laboratory of University 
 %           of Bergamo).
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1364,10 +1364,10 @@ function result = gradientDescent(ax, ay, az, hx, hy, hz, mu, ...
 % |_ 'result': computed orientation quaternion (4 x 1 vector). 
 %
 % -------------------------------------------------------------------------
-% Authors:  Alberto Olivares & Kai Bötzel (based on the Visual Studio 
+% Authors:  Alberto Olivares & Kai B?tzel (based on the Visual Studio 
 %           version from the Microelectronics Laboratory of University 
 %           of Bergamo).
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 28/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1487,8 +1487,8 @@ function [x1,x2,v_output,K_output] = fusion_KF(gyro, acc, frec, obsVar,...
 % |_ 'K_output': Kalman gain of each iteration. 
 
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares, Gonzalo Ruiz & Kai Böotzel.
-% Entity: Universidad de Granada & Ludwig-Maixmilians Universität München.
+% Authors: Alberto Olivares, Gonzalo Ruiz & Kai B?otzel.
+% Entity: Universidad de Granada & Ludwig-Maixmilians Universit?t M?nchen.
 % Last modification: 29/05/2012 .
 % -------------------------------------------------------------------------
 
@@ -1563,7 +1563,7 @@ end
 
 function corrected_angle = correct_quad_shifts(angle,units)
 
-% FUNCTION CORRECT_QUAD_SHIFTS corrects shifts of ±360° (or ±2pi rad) in 
+% FUNCTION CORRECT_QUAD_SHIFTS corrects shifts of ?360? (or ?2pi rad) in 
 % Euler angle signals. 
 %
 % Input parameters:
@@ -1575,8 +1575,8 @@ function corrected_angle = correct_quad_shifts(angle,units)
 %                       (vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 07/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1607,7 +1607,7 @@ end
 
 function corrected_angle = correct_yaw_quad_shifts(uncorrected_angle,units)
 
-% CORRECT_QUAD_SHIFTS corrects shifts of ±360° (or ±2pi rad) in Euler
+% CORRECT_QUAD_SHIFTS corrects shifts of ?360? (or ?2pi rad) in Euler
 % angle signals. 
 %
 % Input parameters:
@@ -1619,8 +1619,8 @@ function corrected_angle = correct_yaw_quad_shifts(uncorrected_angle,units)
 %                       (vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 22/01/2014.
 % -------------------------------------------------------------------------
 
@@ -1713,7 +1713,7 @@ end
 
 function corrected_angle = correct_ekf_quad_shifts(uncorrected_angle,units)
 
-% CORRECT_QUAD_SHIFTS corrects shifts of ±360° (or ±2pi rad) in Euler
+% CORRECT_QUAD_SHIFTS corrects shifts of ?360? (or ?2pi rad) in Euler
 % angle signals. 
 %
 % Input parameters:
@@ -1725,8 +1725,8 @@ function corrected_angle = correct_ekf_quad_shifts(uncorrected_angle,units)
 %                       (vector).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 22/01/2014.
 % -------------------------------------------------------------------------
 
@@ -1799,8 +1799,8 @@ function int_rate = integRate(dt,g,ini)
 % |_ 'int_rate': Integrated vector.
 %
 % -------------------------------------------------------------------------
-% Author: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Author: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 13/12/2013.
 % -------------------------------------------------------------------------
 
@@ -1842,8 +1842,8 @@ function [index_GW, index_QS] = sync_GW_QS(gw_signal, qs_signal)
 %                (scalar).
 %
 % -------------------------------------------------------------------------
-% Authors: Alberto Olivares & Kai Bötzel.
-% Entity: Universidad de Granada & Ludwig-Maximilians Universität München.
+% Authors: Alberto Olivares & Kai B?tzel.
+% Entity: Universidad de Granada & Ludwig-Maximilians Universit?t M?nchen.
 % Last modification: 21/11/2013.
 % -------------------------------------------------------------------------
 
@@ -1879,7 +1879,7 @@ end
 
 function SP = spectrum(x, LWIN, SHIFT, NFFT)
 
-% Calculo el espectro de la señal x para cada frame.
+% Calculo el espectro de la se?al x para cada frame.
 
 Nframes= floor((length(x)-LWIN)/SHIFT)+1;
 
