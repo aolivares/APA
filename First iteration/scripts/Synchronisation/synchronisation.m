@@ -55,6 +55,8 @@
 % -------------------------------------------------------------------------
 clear all; close all; clc;
 
+% Suppress warnings if not peak is detected while calibration.
+warning('off', 'signal:findpeaks:largeMinPeakHeight')
 
 % -------------------------------------------------------------------------
 % 1) Select, read and obtain information from the excel file.
