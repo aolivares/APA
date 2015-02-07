@@ -61,7 +61,7 @@ warning('off', 'signal:findpeaks:largeMinPeakHeight')
 % -------------------------------------------------------------------------
 % 1) Select, read and obtain information from the excel file.
 % -------------------------------------------------------------------------
-
+ 
 % Select only one data files with a dialog box (only .xlsl files).
 [filename_excel, filepath] = uigetfile('*.xlsx', ...
     'Select the Excel file with the data (.xlsx)', '/APA/First iteration/data/');

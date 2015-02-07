@@ -44,11 +44,11 @@ clear all
 
 % Select data file with a dialog box (only .txt files).
 [filename, filepath] = uigetfile('*.txt', ...
-    'Select Force Plate data file (.txt)', '../data/ForcePlate');
+    'Select Force Plate data file (.txt)', '../data/ForcePlate/Raw');
 
 % Read data file.
 [header, first_line, abta, count, col_first_block] = ...
-    read_fp_header(fullfile(filepath,filename));
+    readFPHeader(fullfile(filepath,filename));
 
 % Read first block of data. The first block contains 5 columns:
 %   (1) Time (ms).

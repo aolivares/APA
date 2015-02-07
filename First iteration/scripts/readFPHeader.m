@@ -1,7 +1,7 @@
 function [header, first_line, samp_time, count, col_first_block] = ...
-    read_fp_header(filename)
+    readFPHeader(filename)
 
-% FUNCTION READ_FP_HEADER Reads the header of the data files gathered by
+% FUNCTION readFPHeader Reads the header of the data files gathered by
 % the Zebris FDM-S Multifunction Force-measuring Plate.
 %
 % - Input:
