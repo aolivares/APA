@@ -6,9 +6,9 @@
 % * Project name: Comparison of Posturographic Body-sway Measurements with 
 %                 Accelerometric Data.
 %
-% * Authors:      - Prof. Dr. Med. Kai Bötzel (1): 
+% * Authors:      - Prof. Dr. Med. Kai B?tzel (1): 
 %                   |_ kai.boetzel@med.uni-muenchen.de 
-%                 - Verónica Torres (2): 
+%                 - Ver?nica Torres (2): 
 %                   |_ vts24@correo.ugr.es 
 %                 - Dr. Eng. Alberto Olivares (3): 
 %                   |_ aolivares@ugr.es
@@ -44,7 +44,7 @@ clear all
 
 % Select data file with a dialog box (only .txt files).
 [filename, filepath] = uigetfile('*.txt', ...
-    'Select Force Plate data file (.txt)', '../data/ForcePlate/Raw');
+    'Select Force Plate data file (.txt)', '../../data/ForcePlate/');
 
 % Read data file.
 [header, first_line, abta, count, col_first_block] = ...
@@ -52,10 +52,10 @@ clear all
 
 % Read first block of data. The first block contains 5 columns:
 %   (1) Time (ms).
-%   (2) 'Li Vorfuß,N':  Front left foot pressure sensor.
-%   (3) 'Li Rückfuß,N': Back left foot pressure sensor.
-%   (4) 'Re Vorfuß,N':  Front right foot pressure sensor.
-%   (5) 'Re Rückfuß,N': Back right foot pressure sensor.
+%   (2) 'Li Vorfu?,N':  Front left foot pressure sensor.
+%   (3) 'Li R?ckfu?,N': Back left foot pressure sensor.
+%   (4) 'Re Vorfu?,N':  Front right foot pressure sensor.
+%   (5) 'Re R?ckfu?,N': Back right foot pressure sensor.
 
 % Read formatted data from text file. As always "fid" is a file identifier 
 % that we obtain with "fopen".
