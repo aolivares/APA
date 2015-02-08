@@ -249,8 +249,12 @@ for j=1:length(index_GW)-1
              CX = textscan(fid, '%s', 8, 'Delimiter', '\n', 'whitespace', '');   
              C3 = textscan(fid, format, lines);
         end
-
-
+        
+        % Define the variable that contains the ML, AP and force data.
+        lateral_COP = zeros(n,3);
+        antpost_COP_cycle = zeros(n,3);
+        force_complete_cycle = zeros(n,3);
+        
         for b = data_start:data_end
 
             % Index for data
