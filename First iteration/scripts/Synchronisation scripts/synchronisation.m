@@ -1208,14 +1208,13 @@ fs_FP = 120;
 fs_GW = 200;
 
 % -------------------------------------------------------------------------
-% 3) Find the first peak of each cycle in the GaitWatch signal of the
-%    acceleration of the shank, that is, the point in which the patient 
-%    walks on the force plate. Detect if the patient steps with the left or
-%    the right foot first and use this point for synchronisation.
+% Find the second positive peak of each cycle in the GaitWatch signal 
+% of the z-axis of the acceleration of the shank, that is, the point in 
+% time when the patient walks on the force plate. 
 % -------------------------------------------------------------------------
 
 % Set threshold for peak detection in acceleration signal and minimum
-% number of samples between two cycles.
+% number of samples between standing and walking cycles.
 threshold = 1.2;
 gap = 500;
 
@@ -1229,16 +1228,12 @@ gap = 500;
 peak_distance_l = diff(peak_locations_l);
 peak_distance_r = diff(peak_locations_r);
 
-% Create logical vector to select last peak of each cycle. That is the one
-% before a gap of at least the number of samples stored in gap,
-% respectively. 
-select_l = peak_distance_l > gap;
-select_r = peak_distance_r > gap;
+% Select last peak of each part in a cycle then the patient stops 
+% walking/stepping
+last_first_peaks_l = peak_locations_l(peak_distance_l > gap);
+last_first_peaks_r = peak_locations_r(peak_distance_r > gap);
 
-last_first_peaks_l = peak_locations_l(select_l);
-last_first_peaks_r = peak_locations_r(select_r);
-
-% Add the very first detected peak.
+% Use only every second one.
 sync_peaks_l = last_first_peaks_l(1:2:length(last_first_peaks_l));
 sync_peaks_r = last_first_peaks_r(1:2:length(last_first_peaks_r));
 
@@ -1248,21 +1243,24 @@ sync_peaks = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks = sort(sync_peaks);
 
+% Detect last peak of each cycle to determine when a cycle ends
 last_peaks_l = last_first_peaks_l(2:2:length(last_first_peaks_l));
 last_peaks_r = last_first_peaks_r(2:2:length(last_first_peaks_r));
 
+% Use latest of both signals to make sure both signals are completely
+% included.
 last_peaks = [last_peaks_r(last_peaks_l < last_peaks_r), ...
               last_peaks_l(last_peaks_r < last_peaks_l)];
 last_peaks = sort(last_peaks);
 
 % -------------------------------------------------------------------------
-% 4) Store seperate GaitWatch cycles in a cell array of time series
-%    objects and add the point in time when the patient walks on the
-%    force plate as an event.
+% Store seperate GaitWatch cycles in a cell array of time series
+% objects and add the point in time when the patient walks on the
+% force plate as an event.
 % -------------------------------------------------------------------------
 
-% Set the additional time in seconds before (sync_peak) and after
-% (last_peak) each cycle that will be stored in the time series.
+% Set the additional time in seconds before (sync_peaks) and after
+% (last_peaks) each cycle that will be stored in the time series.
 add_time = 2;
 add_samples = floor(add_time * fs_GW);
 
@@ -1276,65 +1274,59 @@ a_trunk = createTimeseriesGW([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
 % Create cell array containing the time series of the seperate cycles of 
 % the acceleration of the thighs.
 a_thighs = createTimeseriesGW([a_X_left_thigh_1_C;  a_Z_left_thigh_1_C; ...
-                              a_X_right_thigh_1_C; a_Z_right_thigh_1_C], ...
-                              time_GW, sync_peaks, last_peaks, add_samples, ...
-                              'Acceleration thighs', 'seconds', 'g');
+                               a_X_right_thigh_1_C; a_Z_right_thigh_1_C], ...
+                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               'Acceleration thighs', 'seconds', 'g');
                         
 % Create cell array containing the time series of the seperate cycles of 
 % the acceleration of the shanks.
 a_shanks = createTimeseriesGW([a_X_left_shank_1_C;  a_Z_left_shank_1_C; ...
-                              a_X_right_shank_1_C; a_Z_right_shank_1_C], ...
-                              time_GW, sync_peaks, last_peaks, add_samples, ...
-                              'Acceleration shanks', 'seconds', 'g');
+                               a_X_right_shank_1_C; a_Z_right_shank_1_C], ...
+                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               'Acceleration shanks', 'seconds', 'g');
                           
                           
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the trunk.
 g_trunk = createTimeseriesGW([g_X_center_trunk_1_C; g_Y_center_trunk_1_C; ...
-                                 g_Z_center_trunk_1_C], time_GW, sync_peaks, ...
-                                 last_peaks, add_samples, ...
-                                 'Angular rate trunks', 'seconds', 'deg/s');
+                              g_Z_center_trunk_1_C], time_GW, sync_peaks, ...
+                              last_peaks, add_samples, ...
+                              'Angular rate trunks', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the thighs.
 g_thighs = createTimeseriesGW([g_Y_left_thigh_1_C; g_Y_right_thigh_1_C], ...
-                                 time_GW, sync_peaks, ...
-                                 last_peaks, add_samples, ...
-                                 'Angular rate thighs', 'seconds', 'deg/s');
+                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               'Angular rate thighs', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the shanks.
 g_shanks = createTimeseriesGW([g_Y_left_shank_1_C; g_Y_right_shank_1_C], ...
-                                 time_GW, sync_peaks, ...
-                                 last_peaks, add_samples, ...
-                                 'Angular rate shanks', 'seconds', 'deg/s');
+                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               'Angular rate shanks', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the arms.
 g_arms = createTimeseriesGW([g_X_left_arm_1_C; g_Y_left_arm_1_C; ...
-                                g_X_right_arm_1_C; g_Y_right_arm_1_C], ...
-                                 time_GW, sync_peaks, ...
-                                 last_peaks, add_samples, ...
-                                 'Angular rate arms', 'seconds', 'deg/s');
+                             g_X_right_arm_1_C; g_Y_right_arm_1_C], ...
+                             time_GW, sync_peaks, last_peaks, add_samples, ...
+                             'Angular rate arms', 'seconds', 'deg/s');
                              
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the magnetic field at the trunk.
 h_trunk = createTimeseriesGW([h_X_center_trunk_3_C; h_Y_center_trunk_3_C], ...
-                                 time_GW, sync_peaks, ...
-                                 last_peaks, add_samples, ...
-                                 'Magnetic field trunk', 'seconds', 'Gauss');                       
+                              time_GW, sync_peaks, last_peaks, add_samples, ...
+                              'Magnetic field trunk', 'seconds', 'Gauss');                       
 
 
 % -------------------------------------------------------------------------
-% 5) Synchronise and resample the seperate force plate cycles, then store 
-%    them in a cell array of time series objects and add the point in
-%    time when the patient walks on the force plate as an event.
+% Synchronise and resample the seperate force plate cycles, then store 
+% them in a cell array of time series objects and add the point in
+% time when the patient walks on the force plate as an event.
 % -------------------------------------------------------------------------
 
-% Compute the times where the syncronisation peaks appear from the
-% sync_peaks vector containing the indexes of the peaks and the GW time
-% vector.
+% Compute the points in time where the syncronisation peaks appear.
 sync_peak_times = time_GW(sync_peaks);
 
 % Create cell array containing the time series of the seperate cycles of
@@ -1345,23 +1337,22 @@ force_sensors_ts = createTimeseriesFP(force_sensors, time_FP, sync_peak_times, .
 % Create cell array containing the time series of the seperate cycles of
 % the sum of forces.                               
 force_sum_ts = createTimeseriesFP(force_sum, time_FP, sync_peak_times, ...
-                                   fs_GW, 'Force sum', 'seconds', 'N');
+                                  fs_GW, 'Force sum', 'seconds', 'N');
                                
 % Create cell array containing the time series of the seperate cycles of
 % the anterior-posterior center of pressure.
 AP_COP_ts = createTimeseriesFP(AP_COP, time_FP, sync_peak_times, ...
-                                   fs_GW, 'AP-COP', 'seconds', 'mm');
+                               fs_GW, 'AP-COP', 'seconds', 'mm');
                                
 % Create cell array containing the time series of the seperate cycles of
 % the anterior-posterior center of pressure.
 ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
-                                   fs_GW, 'ML-COP', 'seconds', 'mm');
+                               fs_GW, 'ML-COP', 'seconds', 'mm');
 
 
 % -------------------------------------------------------------------------
-% 6) Store time series objects as .mat file
+% 6) Store cell arrays of time series objects as .mat file
 % -------------------------------------------------------------------------
-
 
 % Create the output file name.
  name_file = textscan(filename_FP,'%s','Delimiter',',');
@@ -1372,17 +1363,15 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
        name_file], 'a_trunk','a_shanks', 'a_thighs', ...
        'g_trunk', 'g_thighs', 'g_shanks', 'g_arms', ...
        'h_trunk', ...
-       'force_sensors_ts');
+       'force_sensors_ts', 'force_sum_ts', 'AP_COP_ts', 'ML_COP_ts');
   
   fprintf('\nSaved synchronised signals!\n\n\n');
 
- 
 end
 
-
-
 % -------------------------------------------------------------------------
-% 6) Show a completion message to warn the end of the run.
+% 6) Show a completion message to indicate a successful synchronisation of
+% all patient data in the Excel-file.
 % -------------------------------------------------------------------------
 
 % Read a picture to show in the box.
@@ -1390,6 +1379,7 @@ icon = imread('ok.jpg');
 
 % Show the massage to warn the end.
 msgbox(['Synchronisation Completed! You can find the synchronised files in', ...
-        '/APA/First iteration/data/Synchronised'], 'Synchronisation Completed!', 'custom', icon);
+        '/APA/First iteration/data/Synchronised'], ...
+        'Synchronisation Completed!', 'custom', icon);
 
 
