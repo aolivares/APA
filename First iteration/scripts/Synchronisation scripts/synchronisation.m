@@ -1216,15 +1216,15 @@ fs_GW = 200;
 
 % Set threshold for peak detection in acceleration signal and minimum
 % number of samples between two cycles.
-threshold = 1.3;
-gap = 1300;
+threshold = 1.2;
+gap = 500;
 
 % Find all peaks greater than threshold.
 [peak_values_l, peak_locations_l] = findpeaks(a_Z_left_shank_1_C, ...
                                               'minpeakheight', threshold);
 [peak_values_r, peak_locations_r] = findpeaks(a_Z_right_shank_1_C, ...
                                               'minpeakheight', threshold);
-
+                                          
 % Compute distance between two peaks.                             
 peak_distance_l = diff(peak_locations_l);
 peak_distance_r = diff(peak_locations_r);
@@ -1232,26 +1232,24 @@ peak_distance_r = diff(peak_locations_r);
 % Create logical vector to select last peak of each cycle. That is the one
 % before a gap of at least the number of samples stored in gap,
 % respectively. 
-select_last_l = peak_distance_l > gap;
-select_last_r = peak_distance_r > gap;
+select_l = peak_distance_l > gap;
+select_r = peak_distance_r > gap;
 
-last_peaks_l = peak_locations_l(select_last_l);
-last_peaks_r = peak_locations_r(select_last_r);
-
-% Shift logical vector by one to the right to select the first instead of
-% the last peak of a cycle.
-select_first_l = [0, select_last_l(1:length(select_last_l) - 1)];
-select_first_r = [0, select_last_r(1:length(select_last_r) - 1)];
+last_first_peaks_l = peak_locations_l(select_l);
+last_first_peaks_r = peak_locations_r(select_r);
 
 % Add the very first detected peak.
-sync_peaks_l = [peak_locations_l(1), peak_locations_l(logical(select_first_l))];
-sync_peaks_r = [peak_locations_r(1), peak_locations_r(logical(select_first_r))];
+sync_peaks_l = last_first_peaks_l(1:2:length(last_first_peaks_l));
+sync_peaks_r = last_first_peaks_r(1:2:length(last_first_peaks_r));
 
 % Evaluate if the patient steps with the left or right limb first for each
 % cycle and store the first peak in sync_peaks, respectively, then sort it.
 sync_peaks = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks = sort(sync_peaks);
+
+last_peaks_l = last_first_peaks_l(2:2:length(last_first_peaks_l));
+last_peaks_r = last_first_peaks_r(2:2:length(last_first_peaks_r));
 
 last_peaks = [last_peaks_r(last_peaks_l < last_peaks_r), ...
               last_peaks_l(last_peaks_r < last_peaks_l)];
