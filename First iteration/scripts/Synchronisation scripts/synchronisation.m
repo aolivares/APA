@@ -1342,20 +1342,20 @@ sync_peak_times = time_GW(sync_peaks);
 force_sensors_ts = createTimeseriesFP(force_sensors, time_FP, sync_peak_times, ...
                                    fs_GW, 'Force Sensors', 'seconds', 'N');
                                
-% % Create cell array containing the time series of the seperate cycles of
-% % the sum of forces.                               
-% force_sum_ts = createTimeseriesFP(force_sum, time_FP, sync_peak_times, ...
-%                                    fs_GW, 'Force sum', 'seconds', 'N');
-%                                
-% % Create cell array containing the time series of the seperate cycles of
-% % the anterior-posterior center of pressure.
-% AP_COP_ts = createTimeseriesFP(AP_COP, time_FP, sync_peak_times, ...
-%                                    fs_GW, 'AP-COP', 'seconds', 'mm');
-%                                
-% % Create cell array containing the time series of the seperate cycles of
-% % the anterior-posterior center of pressure.
-% ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
-%                                    fs_GW, 'ML-COP', 'seconds', 'mm');
+% Create cell array containing the time series of the seperate cycles of
+% the sum of forces.                               
+force_sum_ts = createTimeseriesFP(force_sum, time_FP, sync_peak_times, ...
+                                   fs_GW, 'Force sum', 'seconds', 'N');
+                               
+% Create cell array containing the time series of the seperate cycles of
+% the anterior-posterior center of pressure.
+AP_COP_ts = createTimeseriesFP(AP_COP, time_FP, sync_peak_times, ...
+                                   fs_GW, 'AP-COP', 'seconds', 'mm');
+                               
+% Create cell array containing the time series of the seperate cycles of
+% the anterior-posterior center of pressure.
+ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
+                                   fs_GW, 'ML-COP', 'seconds', 'mm');
 
 
 % -------------------------------------------------------------------------
