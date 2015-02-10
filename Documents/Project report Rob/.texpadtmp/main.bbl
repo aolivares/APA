@@ -17,7 +17,7 @@ Chris~J. Hass, Dwight~E. Waddell, Richard~P. Fleming, Jorge~L. Juncos, and
 
 \bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
 Alberto Olivares~Vicente and Kai Bötzel.
-\newblock {GaitWatch} user manual.
+\newblock \emph{{GaitWatch} User Manual}.
 
 \bibitem[Herndon(2006)]{herndon_handbook_2006}
 Robert~M. Herndon.
@@ -27,7 +27,8 @@ Robert~M. Herndon.
 
 \bibitem[Medical(2014)]{patients_medical_definition_2014}
 Patients Medical.
-\newblock Definition of parkinson's disease, 2014.
+\newblock \emph{Definition of Parkinson's Disease}.
+\newblock 2014.
 \newblock URL \url{http://www.patientsmedical.com/healthaz/parkinsons.aspx}.
 \newblock [Accessed 22 November, 2014].
 
@@ -74,7 +75,7 @@ Marjorie Woollacott.
 
 \bibitem[Bötzel(2014)]{botzel_motivation_2014}
 Kai Bötzel.
-\newblock Motivation for early diagnosis of {PD}, November 2014.
+\newblock Email: Motivation for early diagnosis of {PD}, November 2014.
 
 \bibitem[Mancini et~al.(2012)Mancini, Salarian, Carlson-Kuhta, Zampieri, King,
   Chiari, and Horak]{mancini_isway:_2012}
@@ -127,7 +128,8 @@ L.~Palmerini, S.~Mellone, G.~Avanzolini, F.~Valzania, and L.~Chiari.
 
 \bibitem[Britannica(2014{\natexlab{a}})]{encyclopedia_britannica_electromyography_2014}
 Encyclopedia Britannica.
-\newblock Electromyography, 2014{\natexlab{a}}.
+\newblock \emph{Electromyography}.
+\newblock 2014{\natexlab{a}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/183371/electromyography}.
 \newblock [Accessed 26 November, 2014].
@@ -155,12 +157,13 @@ Martina Mancini, Fay~B. Horak, Cris Zampieri, Patricia Carlson-Kuhta, John~G.
 Alberto Olivares~Vicente.
 \newblock \emph{Signal Processing of Magnetic and Inertial Sensor’s Signals
   applied to Human Body Motion Monitoring}.
-\newblock Doctoral thesis, University of Granada, Granada, January 2013.
+\newblock {PhD thesis}, University of Granada, Granada, January 2013.
 \newblock URL \url{http://hera.ugr.es/tesisugr/21910947.pdf}.
 
 \bibitem[Britannica(2014{\natexlab{b}})]{encyclopedia_britannica_accelerometer_2014}
 Encyclopedia Britannica.
-\newblock Accelerometer, 2014{\natexlab{b}}.
+\newblock \emph{Accelerometer}.
+\newblock 2014{\natexlab{b}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/2859/accelerometer}.
 \newblock [Accessed 01 December, 2014].
@@ -182,8 +185,8 @@ Luca Palmerini, Sabato Mellone, Guido Avanzolini, Franco Valzania, and Lorenzo
 \bibitem[for Parkinson's Research~(MJFF) and Corporation()]{Intel_2013}
 The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
   Corporation.
-\newblock The michael j. fox foundation and intel join forces to improve
-  parkinson's disease monitoring and treatment through advanced technologies.
+\newblock {The Michael J. Fox Foundation and Intel Join Forces to Improve
+  Parkinson's Disease Monitoring and Treatment through Advanced Technologies}.
 \newblock URL \url{http://goo.gl/PxQAof}.
 \newblock [Accessed 15 December, 2014].
 
@@ -208,26 +211,27 @@ Yunfeng Wu and Sridhar Krishnan.
 
 \bibitem[Electronics({\natexlab{a}})]{IMU5}
 SparkFun Electronics.
-\newblock Imu analog combo board 5dof, {\natexlab{a}}.
+\newblock \emph{{IMU Analog Combo Board 5DOF}}, {\natexlab{a}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/9268}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[Electronics({\natexlab{b}})]{IDG500}
 SparkFun Electronics.
-\newblock Gyro breakout board idg500, {\natexlab{b}}.
+\newblock \emph{{Gyro Breakout Board IDG500}}, {\natexlab{b}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/9094}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[Devices({\natexlab{a}})]{ADXL335}
 Analog Devices.
-\newblock Adxl335: Small, low power 3-axis ±3g accelerometer, {\natexlab{a}}.
+\newblock \emph{{ADXL335: Small, Low Power 3-Axis ±3G Accelerometer}},
+  {\natexlab{a}}.
 \newblock URL
   \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl335/products/product.html}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[Devices({\natexlab{b}})]{ADXL345}
 Analog Devices.
-\newblock Adxl345: 3-axis, ±2g/±4g/±8g/±16g digital accelerometer,
+\newblock \emph{{ADXL345: 3-Axis, ±2g/±4g/±8g/±16g Digital Accelerometer}},
   {\natexlab{b}}.
 \newblock URL
   \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl345/products/product.html}.
@@ -235,24 +239,25 @@ Analog Devices.
 
 \bibitem[InvenSense()]{IMU3000}
 InvenSense.
-\newblock Imu-3000 triple axis motionprocessor\texttrademark gyroscope.
+\newblock \emph{{IMU-3000 Triple Axis MotionProcessor\texttrademark
+  Gyroscope}}.
 \newblock URL \url{http://www.invensense.com/mems/gyro/imu3000.html}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[Electronics({\natexlab{c}})]{MicroMag3}
 SparkFun Electronics.
-\newblock Micromag 3-axis magnetometer, {\natexlab{c}}.
+\newblock \emph{{MicroMag 3-Axis Magnetometer}}, {\natexlab{c}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/244}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[ALVIDI()]{AVRATxmega}
 ALVIDI.
-\newblock Avr atxmega - development module.
+\newblock \emph{{AVR ATxmega - Development Module}}.
 \newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
 \newblock [Accessed 09 January, 2015].
 
 \bibitem[GmbH()]{zebris_force_plate_2013}
 Zebris~Medical GmbH.
-\newblock {Zebris FDM-S} user manual.
+\newblock \emph{{Zebris FDM-S} User Manual}.
 
 \end{thebibliography}
