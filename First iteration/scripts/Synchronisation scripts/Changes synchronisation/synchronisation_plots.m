@@ -154,9 +154,9 @@ xlabel('Time in s');
 ylabel('Acceleration in g');
 
 subplot(2, 1, 2)
-plot(time_GW, a_Z_right_shank_1_C, 'g');
+plot(time_GW, a_X_right_shank_1_C, 'g');
 hold on;
-plot(time_GW(last_first_peaks_r), a_Z_right_shank_1_C(last_first_peaks_r), 'm.');
+%plot(time_GW(last_first_peaks_r), a_X_right_shank_1_C(last_first_peaks_r), 'm.');
 
 title('Acceleration right shank with last peak of each cycle');  
 xlabel('Time in s');
