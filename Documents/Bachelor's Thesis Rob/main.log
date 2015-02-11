@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  11 FEB 2015 13:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  11 FEB 2015 16:02
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -835,26 +835,26 @@ Writing nomenclature file main.nlo
 (./main.aux (./Cover.aux) (./Preface.aux) (./Statement.aux) (./Abstract.aux) (./Introduction.aux) (./Hardware.aux) (./Results.aux) (./Conclusion.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count145
@@ -882,7 +882,7 @@ Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count151
 \AtBeginShipoutBox=\box43
-Package hyperref Info: Link coloring OFF on input line 111.
+Package hyperref Info: Link coloring OFF on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -890,9 +890,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count152
 )
-LaTeX Info: Redefining \ref on input line 111.
-LaTeX Info: Redefining \pageref on input line 111.
-LaTeX Info: Redefining \nameref on input line 111.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
  (./main.out) (./main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -909,7 +909,7 @@ Package epstopdf Info: Source file: <images/universidad_de_granada.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/universidad_de_granada-eps-converted-to.pdf images/universidad_de_granada.eps>
 (epstopdf)             \includegraphics on input line 5.
 Package epstopdf Info: Output file is already uptodate.
- <images/universidad_de_granada-eps-converted-to.pdf, id=104, 414.54875pt x 129.48375pt>
+ <images/universidad_de_granada-eps-converted-to.pdf, id=107, 414.54875pt x 129.48375pt>
 File: images/universidad_de_granada-eps-converted-to.pdf Graphic file (type pdf)
  <use images/universidad_de_granada-eps-converted-to.pdf>
 Package pdftex.def Info: images/universidad_de_granada-eps-converted-to.pdf used on input line 5.
@@ -923,7 +923,7 @@ Package epstopdf Info: Source file: <images/fh-muenster.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/fh-muenster-eps-converted-to.pdf images/fh-muenster.eps>
 (epstopdf)             \includegraphics on input line 7.
 Package epstopdf Info: Output file is already uptodate.
- <images/fh-muenster-eps-converted-to.pdf, id=105, 156.585pt x 70.2625pt>
+ <images/fh-muenster-eps-converted-to.pdf, id=108, 156.585pt x 70.2625pt>
 File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 7.
@@ -957,82 +957,50 @@ Non-PDF special ignored!
 \openout2 = `Abstract.aux'.
 
  (./Abstract.tex
-Underfull \hbox (badness 1052) in paragraph at lines 6--7
+Underfull \hbox (badness 1052) in paragraph at lines 9--10
 \OT1/cmr/m/sl/12 In-for-ma-tion and Com-mu-ni-ca-tions Tech-nolo-gies of the Uni-ver-sity of
  []
 
-LaTeX Font Info:    Try loading font information for U+msa on input line 7.
+LaTeX Font Info:    Try loading font information for U+msa on input line 11.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 7.
+LaTeX Font Info:    Try loading font information for U+msb on input line 11.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )) [7
 
-
 ] [8
 
 
-] (./main.tocpdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.20 ... {3}Results and Discussion}{21}{chapter.3}
-                                                   [1
+] (./main.nls) [9
+
+] [10
+
+] (./main.toc [11
 
 ])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- (./main.nlspdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 \begin{thenomenclature}
-                            [2])pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.125 	\listoffigures
-                      [3
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.125 	\listoffigures
-                      [4
-
-] (./main.lof)
+ [12] (./main.lof)
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.126 	\listoftables
-                     [5]pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.126 	\listoftables
-                     [6
+ [13
+
+] [14
 
 ] (./main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
-pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.128 	\include{Introduction}
-                              [7]
-\openout2 = `Introduction.aux'.
-
- (./Introduction.texpdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 \chapter
-            {Introduction} [8
-
+ [15] [16
 
 ]
+\openout2 = `Introduction.aux'.
+
+ (./Introduction.tex
 Chapter 1.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 1.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1phv.fd
@@ -1043,12 +1011,23 @@ LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 
-LaTeX Warning: Reference `fig:APAoverview' on page 9 undefined on input line 14.
+LaTeX Warning: Reference `fig:APAoverview' on page 1 undefined on input line 14.
 
-[9]
+pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.15 
+      [1
+
+
+]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [10]
+pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.32 
+      [2]
 Overfull \hbox (2.37646pt too wide) in paragraph at lines 40--74
 [][] 
  []
@@ -1056,56 +1035,118 @@ Overfull \hbox (2.37646pt too wide) in paragraph at lines 40--74
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[11] [12] [13]
+pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.83 
+      [3]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Reference `fig:APAoverview' on page 14 undefined on input line 109.
+pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.87 
+      [4]pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.106 
+       [5]
+
+LaTeX Warning: Reference `fig:APAoverview' on page 6 undefined on input line 109.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]) [15]
+pdfTeX warning (ext4): destination with the same identifier (name{page.6}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.112 
+       [6])
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.7}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.137 	\include{Introduction}
+                              [7]pdfTeX warning (ext4): destination with the same identifier (name{page.8}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.137 	\include{Introduction}
+                              [8]
 \openout2 = `Hardware.aux'.
 
- (./Hardware.tex [16
+ (./Hardware.tex
+Chapter 2.
+
+LaTeX Warning: Reference `fig:GaitWatch_placement' on page 9 undefined on input line 8.
+
+pdfTeX warning (ext4): destination with the same identifier (name{page.9}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.27 
+      [9
 
 
 
 ]
-Chapter 2.
 
-LaTeX Warning: Reference `fig:GaitWatch_placement' on page 17 undefined on input line 8.
+LaTeX Warning: Reference `fig:left_right_detect' on page 10 undefined on input line 41.
 
-[17]
+pdfTeX warning (ext4): destination with the same identifier (name{page.10}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.45   N
+        ext, we computed the differences between the time vectors of the for... [10]
 
-LaTeX Warning: Reference `fig:left_right_detect' on page 18 undefined on input line 41.
+LaTeX Warning: Reference `fig:left_right_detect' on page 11 undefined on input line 45.
 
-[18]
-
-LaTeX Warning: Reference `fig:left_right_detect' on page 19 undefined on input line 45.
-
-) [19]
+)pdfTeX warning (ext4): destination with the same identifier (name{page.11}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.138 	\include{Hardware}
+                          [11]
 \openout2 = `Results.aux'.
 
- (./Results.tex [20
+ (./Results.texpdfTeX warning (ext4): destination with the same identifier (name{page.12}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 \chapter
+            {Results and Discussion} [12
 
 
 
 ]
 Chapter 3.
-) [21]
+)pdfTeX warning (ext4): destination with the same identifier (name{page.13}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.139 	\include{Results}
+                         [13]
 \openout2 = `Conclusion.aux'.
 
- (./Conclusion.tex [22
+ (./Conclusion.texpdfTeX warning (ext4): destination with the same identifier (name{page.14}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.1 \chapter
+            {Conclusion and Future Work} [14
 
 
 
 ]
 Chapter 4.
-) [23] [24] (./main.bbl [25
+)pdfTeX warning (ext4): destination with the same identifier (name{page.15}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.140 	\include{Conclusion}
+                            [15]pdfTeX warning (ext4): destination with the same identifier (name{page.16}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.140 	\include{Conclusion}
+                            [16] (./main.bbl [17
 
 
 
-] [26]
+] [18]
 Underfull \hbox (badness 4403) in paragraph at lines 225--231
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL335: Small, Low Power 3-Axis \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 3G Ac-celerom-e-
  []
@@ -1115,33 +1156,37 @@ Underfull \hbox (badness 2103) in paragraph at lines 233--239
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL345: 3-Axis, \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 2g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 4g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 8g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 16g Dig-i-tal Ac-celerom-e-
  []
 
-[27]) [28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 139.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 139.
+[19]) [20]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 149.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 149.
  (./main.aux (./Cover.aux) (./Preface.aux) (./Statement.aux) (./Abstract.aux) (./Introduction.aux) (./Hardware.aux) (./Results.aux) (./Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 139.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 139.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 149.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 149.
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1BDA43C7D26FC9A4324F6843540DD2A8;1589.
+(rerunfilecheck)             Checksum: 875F03FAE019CEDCF4D555565CB1956E;1639.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 139.
- ) 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 149.
+ )
+(\end occurred inside a group at level 1)
+
+### simple group (level 1) entered at line 3 ({)
+### bottom level 
 Here is how much of TeX's memory you used:
- 11118 strings out of 493117
- 163221 string characters out of 6135432
- 262061 words of memory out of 5000000
+ 11109 strings out of 493117
+ 163154 string characters out of 6135432
+ 262057 words of memory out of 5000000
  14176 multiletter control sequences out of 15000+600000
  18305 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,12n,44p,1561b,487s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,44p,1561b,561s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on main.pdf (36 pages, 373800 bytes).
+Output written on main.pdf (36 pages, 372356 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 94 named destinations out of 1000 (max. 500000)
- 211 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 503 PDF objects out of 1000 (max. 8388607)
+ 440 compressed objects within 5 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

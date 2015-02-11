@@ -9,6 +9,7 @@
 \usepackage{subfig}
 \usepackage{epstopdf}
 \usepackage{caption}
+\usepackage{graphicx}
 \usepackage{keyval}
 \usepackage{graphicx}
 \usepackage{float}
@@ -112,18 +113,26 @@
 
 	\include{Cover}
 	\clearemptydoublepage
+	
 	\include{Preface}
 	\clearemptydoublepage
+	
 	\include{Statement}
 	\clearemptydoublepage
+	
 	\include{Abstract}
 	\clearemptydoublepage
-	\setcounter{page}{1}
-	\tableofcontents
-    \printnomenclature[1.0in]
+	
+    \printnomenclature[1.5in]
+    \clearemptydoublepage
+    
+    \tableofcontents
     
 	\listoffigures
+	
 	\listoftables
+	
+	\mainmatter
 	
 	\include{Introduction}
 	\include{Hardware}
@@ -132,6 +141,7 @@
 	
 	\clearemptydoublepage
 	\bibliographystyle{unsrtnat}
+	\addcontentsline{toc}{chapter}{Bibliography}
 	\bibliography{Bibliography}
 	
 	\clearemptydoublepage

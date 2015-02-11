@@ -3,31 +3,31 @@
  \nomgroup{A}
 
   \item [{APAs}]\begingroup Anticipatory Postural Adjustments\nomeqref {1.0}
-		\nompageref{10}
+		\nompageref{2}
   \item [{CITIC-UGR}]\begingroup Research Centre for Information and Communications Technologies of the University of Granada\nomeqref {0}
 		\nompageref{3}
-  \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{10}
+  \item [{COM}]\begingroup Centre of Mass\nomeqref {1.0}\nompageref{2}
   \item [{COP}]\begingroup Centre of Pressure\nomeqref {1.0}
-		\nompageref{10}
+		\nompageref{2}
   \item [{GRF}]\begingroup Ground Reaction Force\nomeqref {1.0}
-		\nompageref{12}
+		\nompageref{4}
   \item [{HMM}]\begingroup Hidden Markov Model\nomeqref {1.0}
-		\nompageref{15}
+		\nompageref{7}
   \item [{HY}]\begingroup Hoehn and Yahr scale\nomeqref {1.0}
-		\nompageref{11}
+		\nompageref{3}
   \item [{IMU}]\begingroup Inertial Measurement Unit\nomeqref {1.0}
-		\nompageref{12}
+		\nompageref{5}
   \item [{LS-SVM}]\begingroup Least squares support vector machine\nomeqref {1.0}
-		\nompageref{15}
+		\nompageref{7}
   \item [{MIMU}]\begingroup Magnetic Inertial Measurement Unit\nomeqref {1.0}
-		\nompageref{13}
+		\nompageref{5}
   \item [{MJFF}]\begingroup Michael J. Fox Foundation for Parkinson’s Research\nomeqref {1.0}
-		\nompageref{14}
+		\nompageref{6}
   \item [{PD}]\begingroup Parkinson's disease\nomeqref {1.0}
-		\nompageref{9}
+		\nompageref{1}
   \item [{TUG}]\begingroup Timed Up and Go Test\nomeqref {1.0}
-		\nompageref{11}
+		\nompageref{3}
   \item [{UPDRS}]\begingroup Unified Parkinson’s Disease Rating Scale\nomeqref {1.0}
-		\nompageref{11}
+		\nompageref{3}
 
 \end{thenomenclature}
