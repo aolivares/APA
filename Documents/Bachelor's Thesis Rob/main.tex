@@ -18,7 +18,7 @@
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage{exceltex}
-\usepackage{nomencl}
+\usepackage{datetime}
 
 \definecolor{listinggray}{gray}{0.98}
 \definecolor{lbcolor}{rgb}{0.98,0.98,0.98}
@@ -62,8 +62,11 @@
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{array}
+\usepackage[acronym, nopostdot, nonumberlist]{glossaries}\newglossary[nlg]{notation}{not}{ntn}{Notation}
+
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{5}
+
 \setlength{\topmargin}{-1.1cm}
 \setlength{\parskip}{\baselineskip}
 \setlength{\parskip}{0.3cm}
@@ -93,46 +96,39 @@
 \newcommand{\x}{\mathbf{x}}
 \newcommand{\grad}{\hspace{-2mm}$\phantom{a}^{\circ}$}
 
-\newenvironment{abstract}
-{\begin{center}
-		\begin{minipage}{0.8\textwidth}
-			\slshape}
-		{\end{minipage}
-	\end{center}}
-	
-	
-	\typeout{ }
-	\typeout{----------------------------------------------------------------------}
-	\typeout{ }
+\makeglossaries
 
-\renewcommand{\nomname}{Abbreviations}	
-\makenomenclature
-	
-	
+\newglossaryentry{gls:set}{name=set,description={A collection of distinct objects}}
+
+\newacronym{svm}{svm}{support vector machine}
+\newglossaryentry{not:set}{
+type=notation,name={\ensuremath{\mathcal{S}}},description={A set},sort={S}}
+
 \begin{document}
 
 	\include{Cover}
 	\clearemptydoublepage
-	
-	\include{Preface}
-	\clearemptydoublepage
-	
+		
 	\include{Statement}
 	\clearemptydoublepage
 	
+	\include{Preface}
+	\clearemptydoublepage
+
 	\include{Abstract}
 	\clearemptydoublepage
-	
-    \printnomenclature[1.5in]
-    \clearemptydoublepage
-    
-    \tableofcontents
-    
-	\listoffigures
-	
+		
+	\tableofcontents
+    	
 	\listoftables
 	
-	\mainmatter
+	\listoffigures
+	
+	\printglossary[type=acronym]
+    \clearemptydoublepage
+    
+    \printglossary[type=acronym]
+    \clearemptydoublepage
 	
 	\include{Introduction}
 	\include{Hardware}
