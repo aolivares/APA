@@ -1,0 +1,30 @@
+\ifglsentryexists{PD}{}%
+{%
+\gls@defglossaryentry{PD}%
+{%
+name={PD},%
+sort={PD},%
+type={acronym},%
+first={Parkinson's disease (PD)},%
+firstplural={Parkinson's disease\acrpluralsuffix  (PD\acrpluralsuffix )},%
+text={PD},%
+plural={PD\acrpluralsuffix },%
+description={Parkinson's disease},%
+descriptionplural={Parkinson's disease\acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Parkinson's disease},%
+longplural={Parkinson's diseases},%
+short={PD},%
+shortplural={PDs},%
+counter={page},%
+parent={},%
+%
+}%
+}%

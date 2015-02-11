@@ -19,6 +19,7 @@
 \usepackage{verbatim}
 \usepackage{exceltex}
 \usepackage{datetime}
+\usepackage{setspace}
 
 \definecolor{listinggray}{gray}{0.98}
 \definecolor{lbcolor}{rgb}{0.98,0.98,0.98}
@@ -98,11 +99,9 @@
 
 \makeglossaries
 
-\newglossaryentry{gls:set}{name=set,description={A collection of distinct objects}}
-
-\newacronym{svm}{svm}{support vector machine}
-\newglossaryentry{not:set}{
-type=notation,name={\ensuremath{\mathcal{S}}},description={A set},sort={S}}
+\input{Glossary}
+\input{Acronyms}
+\input{Notation}
 
 \begin{document}
 
@@ -127,7 +126,7 @@ type=notation,name={\ensuremath{\mathcal{S}}},description={A set},sort={S}}
 	\printglossary[type=acronym]
     \clearemptydoublepage
     
-    \printglossary[type=acronym]
+    \printglossary[type=notation]
     \clearemptydoublepage
 	
 	\include{Introduction}
