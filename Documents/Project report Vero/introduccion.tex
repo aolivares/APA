@@ -16,29 +16,33 @@ Specifically, our work will be focused on signal processing of data gathered  by
  IMAGE 
 
 \section{Motivation}
-Parkinson’s disease is the second most common neurodegenerative disorder, extended globally and affects as much to men as to woman. PD is more common in the elderly, as of 60 years of age. It estimates seven  to ten million people worldwide are living with Parkinson’s disease. There is no cure to PD in this moment, so all effort is focus on improve or prolong the functionality of the patient for as long as possible. Therefore, it’s an incentive to work on this. \cite{ParkinsonDisease}\cite{pdf}
+Parkinson’s disease is the second most common neurodegenerative disorder, it is extended globally and affects as much to men as to women. PD is more common among the population over 60 years old. . It is estimated that seven  to ten million people worldwide are living with Parkinson’s disease. To this date, there is no cure to PD, so all efforts are focused on improving or prolonging the functionality of the patient for as long as possible. Therefore, it’s an incentive to work in this field. \cite{ParkinsonDisease}\cite{pdf}
 
-On the other hand, Intel and Michael J.Fox Fundation are teaming up recently to create a sensor technology and analytics platforms for Parkinson’s treatment and monitoring. We propose similar something with our Project. Fox Foundation CEO Todd Sherer told Fast Company. "Parkinson’s is a motor disorder for the most part, with slowness of movement, tremors, falls, problems sleeping, and many disease symptoms. The way it is measured right now requires episodic periodic visits to a neurologist, who puts patients through fairly subjective and coarse clinical tests, there are many 1-2-3-4 scales. What we need to advance is research that is a much more consistent and objective measure of the disease. People live with Parkinson’s 24 hours a day, 7 days a week, not just when they're in the doctor’s office."
+Furthermore, Intel and Michael J.Fox Fundation have rencently teamed up to create a sensor technology and analytics platforms for Parkinson’s treatment and monitoring. Fox Foundation CEO Todd Sherer told Fast Company. "Parkinson’s is a motor disorder for the most part, with slowness of movement, tremors, falls, problems sleeping, and many disease symptoms. The way it is measured right now requires episodic periodic visits to a neurologist, who puts patients through fairly subjective and coarse clinical tests, there are many 1-2-3-4 scales. What we need to advance is research that is a much more consistent and objective measure of the disease. People live with Parkinson’s 24 hours a day, 7 days a week, not just when they're in the doctor’s office."\cite{IntelAndMjf}
 
 The goal is tracking the  symptoms and progress of Parkinson’s disease day by day, and using this information to research on the disease in depth.
 
 \begin{figure}[H]
 	\centering
 	\epsfig{file=imagenes/IntelAndMjf, width=7cm}
-	\caption{Illustration of sensors distribution thought up by Intel and Mjf.}
+	\caption{Illustration of sensors distribution thought up by Intel and Mjf.\cite{IntelAndMjf}}
 	\label{fig:arte1}
 \end{figure}
 
-Diane Bryant, senior vice president of Intel's Data Center Group, said in a release. "Emerging technologies can not only create a new paradigm for measurement of Parkinson's, but as more data is made available to the medical community, it may also point to currently unidentified features of the disease that could lead to new areas of research." \cite{IntelAndMjf}
+Diane Bryant, senior vice president of Intel's Data Center Group, said in a release \cite{IntelAndMjf}.
+''Emerging technologies can not only create a new paradigm for measurement of Parkinson's, but as more data is made available to the medical community, it may also point to currently unidentified features of the disease that could lead to new areas of research'' .
 
 \section{Goals}
 
-The goal of this Project is the APA analysis ( Anticipatory Postural Adjustments) as much to healthy subjects as to untreated PD patients, because APAs could be used to characterize step initation deficits in subjects with PD.
+The main goal of this project is to perform a thorough analysis of Anticipatory Postural Adjustments (referred to as APA in the remainder of this document) of both healthy subjects and PD patients. APAs can be used to characterize step initiation deficits in subjects with PD and also as a differentiating factor which may help early diagnosis of the disease.
 
-One the platforce measurements are made, the main objetive is determining whether with inertial sensors worn by subjects ( in trunk, legs and arms) it’s possible to obtain good measurements and the relation between them, i.e, evaluate the correlation between inertial sensors measurements and platforce measurements.
+To this purpose, we will make use of a database gathered by the medical team in Munich. The database contains both data from a force plate and inertial sensors. The patients wear the motion monitoring system containing the inertial sensors while they step on and down the force plate.
 
-Other interesting idea is observing if APAs are homogeneus in healthy subjects and the differences with  PD patients. In this way, we can make a classification system.
-Other point is determining if only using inertial sensors we can obtain reliable data, because it would be interesting to be able to manage without force plate.
+Once the measurements are made, the main objective is to determine whether it is possible to use inertial sensors to extract the information provided by the force plate. That is, we will evaluate the correlation between inertial sensor measurements and the force plate measurements in order to study the feasibility of the wearable device to study APAs in an ambulatory way. 
+
+Additionally, we will try observing if APAs are homogeneus in healthy subjects and the differences with  PD patients. If that is the case, we would be able to build a classifier which is able to distinguish healthy subjects from PD patients based on the data measured by the wearable device and/or the force plate.
+
+In a nutshell, the ultimate goal is to determine whether doctors can substitute force plates (which strongly limit the range of action of the patients) by the inertial wearable system (which allows ambulatory).
 
 
 \section{Project structure}
