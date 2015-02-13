@@ -1,11 +1,11 @@
 \contentsline {chapter}{Statement of Authorship}{i}{Doc-Start}
 \contentsline {chapter}{Preface}{iii}{section*.1}
 \contentsline {chapter}{Abstract}{v}{chapter*.2}
-\contentsline {chapter}{Contents}{vii}{section*.3}
-\contentsline {chapter}{List of Figures}{ix}{chapter*.5}
-\contentsline {chapter}{List of Tables}{xi}{chapter*.6}
-\contentsline {chapter}{Acronyms}{xiii}{chapter*.8}
-\contentsline {chapter}{Notation}{xv}{chapter*.8}
+\contentsline {chapter}{Contents}{vii}{chapter*.2}
+\contentsline {chapter}{List of Figures}{ix}{chapter*.4}
+\contentsline {chapter}{List of Tables}{xi}{chapter*.5}
+\contentsline {chapter}{Acronyms}{xiii}{chapter*.7}
+\contentsline {chapter}{Notation}{xv}{chapter*.7}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}General}{1}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}Parkinson's Disease}{1}{subsection.1.1.1}

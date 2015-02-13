@@ -29,7 +29,7 @@ Warning--empty year in AVRATxmega
 Warning--empty year in zebris_force_plate_2013
 You've used 30 entries,
             2481 wiz_defined-function locations,
-            763 strings with 11659 characters,
+            763 strings with 11654 characters,
 and the built_in function-call counts, 11466 in all, are:
 = -- 994
 > -- 592
