@@ -16,7 +16,7 @@ Patients Medical.
 \newblock \emph{Definition of Parkinson's Disease}.
 \newblock 2014.
 \newblock URL \url{http://www.patientsmedical.com/healthaz/parkinsons.aspx}.
-\newblock [Accessed 22 November, 2014].
+\newblock [Accessed 22 November 2014].
 
 \bibitem[Mancini et~al.(2009)Mancini, Zampieri, Carlson-Kuhta, Chiari, and
   Horak]{mancini_anticipatory_2009}
@@ -132,7 +132,7 @@ Encyclopedia Britannica.
 \newblock 2014{\natexlab{a}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/183371/electromyography}.
-\newblock [Accessed 26 November, 2014].
+\newblock [Accessed 26 November 2014].
 
 \bibitem[Griffiths(2006)]{griffiths_principles_2006}
 Iwan~W. Griffiths.
@@ -166,7 +166,7 @@ Encyclopedia Britannica.
 \newblock 2014{\natexlab{b}}.
 \newblock URL
   \url{http://global.britannica.com/EBchecked/topic/2859/accelerometer}.
-\newblock [Accessed 01 December, 2014].
+\newblock [Accessed 01 December 2014].
 
 \bibitem[Palmerini et~al.(2013{\natexlab{b}})Palmerini, Mellone, Avanzolini,
   Valzania, and Chiari]{palmerini_classification_2013}
@@ -188,7 +188,7 @@ The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
 \newblock {The Michael J. Fox Foundation and Intel Join Forces to Improve
   Parkinson's Disease Monitoring and Treatment through Advanced Technologies}.
 \newblock URL \url{http://goo.gl/PxQAof}.
-\newblock [Accessed 15 December, 2014].
+\newblock [Accessed 15 December 2014].
 
 \bibitem[Khorasani and Daliri(2014)]{khorasani_hmm_2014}
 Abed Khorasani and Mohammad~Reza Daliri.
@@ -213,13 +213,13 @@ Yunfeng Wu and Sridhar Krishnan.
 SparkFun Electronics.
 \newblock \emph{{IMU Analog Combo Board 5DOF}}, {\natexlab{a}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/9268}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[Electronics({\natexlab{b}})]{IDG500}
 SparkFun Electronics.
 \newblock \emph{{Gyro Breakout Board IDG500}}, {\natexlab{b}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/9094}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[Devices({\natexlab{a}})]{ADXL335}
 Analog Devices.
@@ -227,7 +227,7 @@ Analog Devices.
   {\natexlab{a}}.
 \newblock URL
   \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl335/products/product.html}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[Devices({\natexlab{b}})]{ADXL345}
 Analog Devices.
@@ -235,26 +235,26 @@ Analog Devices.
   {\natexlab{b}}.
 \newblock URL
   \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl345/products/product.html}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[InvenSense()]{IMU3000}
 InvenSense.
 \newblock \emph{{IMU-3000 Triple Axis MotionProcessor\texttrademark
   Gyroscope}}.
 \newblock URL \url{http://www.invensense.com/mems/gyro/imu3000.html}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[Electronics({\natexlab{c}})]{MicroMag3}
 SparkFun Electronics.
 \newblock \emph{{MicroMag 3-Axis Magnetometer}}, {\natexlab{c}}.
 \newblock URL \url{https://www.sparkfun.com/products/retired/244}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[ALVIDI()]{AVRATxmega}
 ALVIDI.
 \newblock \emph{{AVR ATxmega - Development Module}}.
 \newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
-\newblock [Accessed 09 January, 2015].
+\newblock [Accessed 09 January 2015].
 
 \bibitem[GmbH()]{zebris_force_plate_2013}
 Zebris~Medical GmbH.

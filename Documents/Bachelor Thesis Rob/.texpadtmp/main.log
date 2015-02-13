@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  11 FEB 2015 21:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  13 FEB 2015 12:31
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1074,7 +1074,7 @@ Package epstopdf Info: Source file: <images/universidad_de_granada.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/universidad_de_granada-eps-converted-to.pdf images/universidad_de_granada.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
- <images/universidad_de_granada-eps-converted-to.pdf, id=138, 414.54875pt x 129.48375pt>
+ <images/universidad_de_granada-eps-converted-to.pdf, id=137, 414.54875pt x 129.48375pt>
 File: images/universidad_de_granada-eps-converted-to.pdf Graphic file (type pdf)
  <use images/universidad_de_granada-eps-converted-to.pdf>
 Package pdftex.def Info: images/universidad_de_granada-eps-converted-to.pdf used on input line 6.
@@ -1088,12 +1088,19 @@ Package epstopdf Info: Source file: <images/fh-muenster.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/fh-muenster-eps-converted-to.pdf images/fh-muenster.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
- <images/fh-muenster-eps-converted-to.pdf, id=139, 156.585pt x 70.2625pt>
+ <images/fh-muenster-eps-converted-to.pdf, id=138, 156.585pt x 70.2625pt>
 File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
 (pdftex.def)             Requested size: 142.26378pt x 63.83818pt.
- [1
+LaTeX Font Info:    Try loading font information for U+msa on input line 25.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 25.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) [1
 Non-PDF special ignored!
 
 \openout5 = `main.ist'.
@@ -1107,15 +1114,7 @@ Non-PDF special ignored!
 ]
 \openout2 = `Statement.aux'.
 
- (./Statement.tex
-LaTeX Font Info:    Try loading font information for U+msa on input line 9.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 9.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-))pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
+ (./Statement.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.122 	\include{Statement}
@@ -1284,20 +1283,20 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15423 strings out of 493117
- 231701 string characters out of 6135432
+ 15439 strings out of 493117
+ 231971 string characters out of 6135432
  387048 words of memory out of 5000000
- 18311 multiletter control sequences out of 15000+600000
- 17699 words of font info for 56 fonts, out of 8000000 for 9000
+ 18328 multiletter control sequences out of 15000+600000
+ 22038 words of font info for 73 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,12n,77p,1783b,489s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:gls:set} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (38 pages, 382522 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (38 pages, 383382 bytes).
 PDF statistics:
- 581 PDF objects out of 1000 (max. 8388607)
- 514 compressed objects within 6 object streams
- 108 named destinations out of 1000 (max. 500000)
+ 580 PDF objects out of 1000 (max. 8388607)
+ 513 compressed objects within 6 object streams
+ 107 named destinations out of 1000 (max. 500000)
  283 words of extra memory for PDF output out of 10000 (max. 10000000)
 
