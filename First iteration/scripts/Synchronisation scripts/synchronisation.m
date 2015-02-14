@@ -1317,7 +1317,21 @@ g_arms = createTimeseriesGW([g_X_left_arm_1_C; g_Y_left_arm_1_C; ...
 % the magnetic field at the trunk.
 h_trunk = createTimeseriesGW([h_X_center_trunk_3_C; h_Y_center_trunk_3_C], ...
                               time_GW, sync_peaks, last_peaks, add_samples, ...
-                              'Magnetic field trunk', 'seconds', 'Gauss');                       
+                              'Magnetic field trunk', 'seconds', 'Gauss');
+                          
+
+% Create cell array containing the time series of the seperate cycles of 
+% the angular rate of the arms.
+pitch_acc_thighs = createTimeseriesGW([pitch_acc_left_thigh; pitch_acc_right_thigh], ...
+                             time_GW, sync_peaks, last_peaks, add_samples, ...
+                             'Pitch acceleration thighs', 'seconds', 'deg/s');
+                         
+% Create cell array containing the time series of the seperate cycles of 
+% the angular rate of the arms.
+pitch_acc_shanks = createTimeseriesGW([pitch_acc_left_shank; pitch_acc_right_shank], ...
+                             time_GW, sync_peaks, last_peaks, add_samples, ...
+                             'Pitch acceleration shanks', 'seconds', 'deg/s');
+
 
 
 % -------------------------------------------------------------------------
@@ -1326,7 +1340,7 @@ h_trunk = createTimeseriesGW([h_X_center_trunk_3_C; h_Y_center_trunk_3_C], ...
 % time when the patient walks on the force plate as an event.
 % -------------------------------------------------------------------------
 
-% Compute the points in time where the syncronisation peaks appear.
+% Compute the points in time where the synchronisation peaks appear.
 sync_peak_times = time_GW(sync_peaks);
 
 % Create cell array containing the time series of the seperate cycles of
@@ -1338,6 +1352,11 @@ force_sensors_ts = createTimeseriesFP(force_sensors, time_FP, sync_peak_times, .
 % the sum of forces.                               
 force_sum_ts = createTimeseriesFP(force_sum, time_FP, sync_peak_times, ...
                                   fs_GW, 'Force sum', 'seconds', 'N');
+                              
+% Create cell array containing the time series of the seperate cycles of
+% the sum of forces.                               
+% force_cells_ts = createTimeseriesFP(force_cells, time_FP, sync_peak_times, ...
+%                                  fs_GW, 'Force cells', 'seconds', 'N');                              
                                
 % Create cell array containing the time series of the seperate cycles of
 % the anterior-posterior center of pressure.
@@ -1371,7 +1390,7 @@ end
 
 % -------------------------------------------------------------------------
 % 6) Show a completion message to indicate a successful synchronisation of
-% all patient data in the Excel-file.
+% all patient data in the selected Excel-file.
 % -------------------------------------------------------------------------
 
 % Read a picture to show in the box.
