@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  11 FEB 2015 13:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  14 FEB 2015 20:46
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -832,7 +832,7 @@ Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
 \openout5 = `main.nlo'.
 
 Writing nomenclature file main.nlo
-(/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
+(/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
@@ -909,7 +909,7 @@ Package epstopdf Info: Source file: <images/ugr.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/ugr-eps-converted-to.pdf images/ugr.eps>
 (epstopdf)             \includegraphics on input line 15.
 Package epstopdf Info: Output file is already uptodate.
- <images/ugr-eps-converted-to.pdf, id=104, 219.82124pt x 220.825pt>
+ <images/ugr-eps-converted-to.pdf, id=88, 219.82124pt x 220.825pt>
 File: images/ugr-eps-converted-to.pdf Graphic file (type pdf)
  <use images/ugr-eps-converted-to.pdf>
 Package pdftex.def Info: images/ugr-eps-converted-to.pdf used on input line 15.
@@ -942,7 +942,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.20 ... {3}Results and Discussion}{21}{chapter.3}
+l.19 ...Conclusion and Future Work}{21}{chapter.3}
                                                    [1
 
 ])
@@ -995,7 +995,7 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) [9] <Images/APA_overview.pdf, id=224, 247.19652pt x 133.58688pt>
+) [9] <Images/APA_overview.pdf, id=204, 247.19652pt x 133.58688pt>
 File: Images/APA_overview.pdf Graphic file (type pdf)
  <use Images/APA_overview.pdf>
 Package pdftex.def Info: Images/APA_overview.pdf used on input line 18.
@@ -1017,61 +1017,57 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [11] [12] [13]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14] [15]) [16]
+ [14]) [15] [16]
 \openout2 = `Hardware.aux'.
 
  (./Hardware.tex
 Chapter 2.
-<images/GaitWatch_placement.pdf, id=370, 340.75514pt x 292.43323pt>
+<images/GaitWatch_placement.pdf, id=350, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 12.
 (pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
- [17
+
+Overfull \hbox (24.06808pt too wide) in paragraph at lines 29--32
+\OT1/cmr/m/n/12 [[]], IMU3000 tri-ax-ial gy-ro-scope with pro-grammable range of \TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 250/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 500/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 1000/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 3000\TS1/cmr/m/n/12 °\OT1/cmr/m/n/12 /s
+ []
+
+[17
 
 
 
 ] [18 <./images/GaitWatch_placement.pdf>]
 Package epstopdf Info: Source file: <images/left_right_detect.eps>
-(epstopdf)                    date: 2015-02-09 20:52:15
-(epstopdf)                    size: 136432 bytes
+(epstopdf)                    date: 2015-02-14 20:08:46
+(epstopdf)                    size: 137261 bytes
 (epstopdf)             Output file: <images/left_right_detect-eps-converted-to.pdf>
-(epstopdf)                    date: 2015-02-09 20:52:15
-(epstopdf)                    size: 102175 bytes
+(epstopdf)                    date: 2015-02-14 20:08:50
+(epstopdf)                    size: 102495 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/left_right_detect-eps-converted-to.pdf images/left_right_detect.eps>
-(epstopdf)             \includegraphics on input line 50.
+(epstopdf)             \includegraphics on input line 49.
 Package epstopdf Info: Output file is already uptodate.
- <images/left_right_detect-eps-converted-to.pdf, id=451, 1009.7725pt x 580.1675pt>
+ <images/left_right_detect-eps-converted-to.pdf, id=430, 1009.7725pt x 580.1675pt>
 File: images/left_right_detect-eps-converted-to.pdf Graphic file (type pdf)
  <use images/left_right_detect-eps-converted-to.pdf>
-Package pdftex.def Info: images/left_right_detect-eps-converted-to.pdf used on input line 50.
+Package pdftex.def Info: images/left_right_detect-eps-converted-to.pdf used on input line 49.
 (pdftex.def)             Requested size: 455.24408pt x 261.55984pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [19 <./images/left_right_detect-eps-converted-to.pdf>]) [20]
-\openout2 = `Results.aux'.
+\openout2 = `Conclusion.aux'.
 
- (./Results.tex
+ (./Conclusion.tex
 Chapter 3.
 ) [21
 
 
 
-]
-\openout2 = `Conclusion.aux'.
-
- (./Conclusion.tex [22
+] [22] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.bbl [23
 
 
 
-]
-Chapter 4.
-) [23] [24] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.bbl [25
-
-
-
-] [26]
+] [24]
 Underfull \hbox (badness 4403) in paragraph at lines 225--231
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL335: Small, Low Power 3-Axis \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 3G Ac-celerom-e-
  []
@@ -1081,29 +1077,29 @@ Underfull \hbox (badness 2103) in paragraph at lines 233--239
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL345: 3-Axis, \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 2g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 4g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 8g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 16g Dig-i-tal Ac-celerom-e-
  []
 
-[27]) [28]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
- (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+[25]) [26]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
+ (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
  ) 
 Here is how much of TeX's memory you used:
- 11126 strings out of 493117
- 166228 string characters out of 6135432
- 261210 words of memory out of 5000000
- 14181 multiletter control sequences out of 15000+600000
+ 11107 strings out of 493117
+ 165750 string characters out of 6135432
+ 260528 words of memory out of 5000000
+ 14175 multiletter control sequences out of 15000+600000
  18305 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,12n,44p,1561b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (32 pages, 747795 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (30 pages, 746029 bytes).
 PDF statistics:
- 621 PDF objects out of 1000 (max. 8388607)
- 531 compressed objects within 6 object streams
- 95 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 591 PDF objects out of 1000 (max. 8388607)
+ 503 compressed objects within 6 object streams
+ 89 named destinations out of 1000 (max. 500000)
+ 189 words of extra memory for PDF output out of 10000 (max. 10000000)
 

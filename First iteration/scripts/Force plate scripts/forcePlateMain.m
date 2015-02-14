@@ -37,7 +37,7 @@
 % -------------------------------------------------------------------------
 
 % Delete workspace.
-clear all
+clear all, close all, clc;
 
 % Build Butterworth filter.
 [bb, aa] = butter(3, 0.3);

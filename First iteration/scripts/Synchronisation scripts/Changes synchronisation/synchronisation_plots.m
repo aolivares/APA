@@ -332,7 +332,7 @@ hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
-       'patient steps with the left foot first']);
+       'patient steps with the left foot first.']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
 axis([0, 300, -0.1, 2.1]);
@@ -352,7 +352,7 @@ hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
-       'when the patient steps with the right foot first']);
+       'when the patient steps with the right foot first.']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
 axis([0, 300, -0.1, 2.3]);
@@ -369,9 +369,10 @@ changedependvar(hx,'x');
 hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title('Exemplary the synchronised trace of the force sensor of the left front foot');
+title('Exemplary the course of the synchronised signals of the four force sensors.');
 xlabel('Time in s');
 ylabel('Force in N');
+legend(['Left front foot', 'Left back foot', 'Right front foot', 'Right back foot']);
 
 axis([0, 300, 0, 800]);
 
@@ -395,7 +396,7 @@ hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
-       'patient steps with the left foot first']);
+       'patient steps with the left foot first.']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
 axis([125, 165, -0.1, 2.1]);
@@ -414,8 +415,8 @@ changedependvar(hx,'x');
 hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
-       'when the patient steps with the right foot first']);
+title(['Acceleration of the z-axis of the right shank with synchronisation lines and red marker when the ' ...
+       'patient steps with the left foot first.']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
 axis([125, 165, -0.1, 2.3]);
@@ -432,9 +433,10 @@ changedependvar(hx,'x');
 hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title('Synchronised traces of the four force sensors of the force plate');
+title('Exemplary the course of the synchronised signals of the four force sensors.');
 xlabel('Time in s');
 ylabel('Force in N');
+legend('Left fore foot', 'Left hind foot', 'Right fore foot', 'Right hind foot');
 
 axis([125, 165, 0, 1000]);
 

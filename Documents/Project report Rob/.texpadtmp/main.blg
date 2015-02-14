@@ -5,10 +5,10 @@ A level-1 auxiliary file: Cover.aux
 A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: Hardware.aux
-A level-1 auxiliary file: Results.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
+Warning--I didn't find a database entry for ""
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty chapter and pages in patients_medical_definition_2014
 Warning--empty publisher in patients_medical_definition_2014
@@ -27,7 +27,7 @@ Warning--empty year in AVRATxmega
 Warning--empty year in zebris_force_plate_2013
 You've used 30 entries,
             2481 wiz_defined-function locations,
-            761 strings with 11632 characters,
+            760 strings with 11621 characters,
 and the built_in function-call counts, 11466 in all, are:
 = -- 994
 > -- 592
@@ -66,4 +66,4 @@ warning$ -- 16
 while$ -- 90
 width$ -- 0
 write$ -- 465
-(There were 16 warnings)
+(There were 17 warnings)
