@@ -102,12 +102,15 @@
 \input{Glossary}
 \input{Acronyms}
 \input{Notation}
-
+    
 \hypersetup{
-    pdftitle={My title},
-    pdfauthor={Robin Weiß},
-    pdfsubject={Electrical Engineering},
-    pdfcreator={Robin Weiß}}
+  pdftitle    = {Titel},
+  pdfsubject  = {Electrical Engineering},
+  pdfauthor   = {Robin Weiß},
+  pdfkeywords = {Bachelor Thesis} ,
+  pdfcreator  = {pdflatex},
+  pdfproducer = {LaTeX}
+}
 
 \begin{document}
 
@@ -117,33 +120,41 @@
 	\clearemptydoublepage
 	
 	\setcounter{page}{1}	
+	\phantomsection
 	\addcontentsline{toc}{chapter}{Statement of Authorship}
 	\include{Statement}
 	\clearemptydoublepage
 	
-	\addcontentsline{toc}{chapter}{Preface}
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Preface}{\vspace{2em}}
 	\include{Preface}
 	\clearemptydoublepage
 
+	\phantomsection
 	\addcontentsline{toc}{chapter}{Abstract}
 	\include{Abstract}
 	\clearemptydoublepage
 	
-	\addcontentsline{toc}{chapter}{Contents}	
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Contents}
 	\tableofcontents
 		
 	\listoffigures
+	\phantomsection
 	\addcontentsline{toc}{chapter}{List of Figures}
 
 	\listoftables
+	\phantomsection
 	\addcontentsline{toc}{chapter}{List of Tables}	
 	
-	\printglossary[type=acronym]
-	\addcontentsline{toc}{chapter}{Acronyms}
+	\printglossary[type=acronym, title={Abbreviations}]
+	\phantomsection
+	\addcontentsline{toc}{chapter}{Abbreviations}
     \clearemptydoublepage
     
-	\addcontentsline{toc}{chapter}{Notation}
     \printglossary[type=notation]
+    \phantomsection
+    \addcontentsline{toc}{chapter}{Notation}
     \clearemptydoublepage
 	
 	\mainmatter
