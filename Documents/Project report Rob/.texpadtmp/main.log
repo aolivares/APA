@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  14 FEB 2015 20:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  14 FEB 2015 21:00
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -909,7 +909,7 @@ Package epstopdf Info: Source file: <images/ugr.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/ugr-eps-converted-to.pdf images/ugr.eps>
 (epstopdf)             \includegraphics on input line 15.
 Package epstopdf Info: Output file is already uptodate.
- <images/ugr-eps-converted-to.pdf, id=88, 219.82124pt x 220.825pt>
+ <images/ugr-eps-converted-to.pdf, id=91, 219.82124pt x 220.825pt>
 File: images/ugr-eps-converted-to.pdf Graphic file (type pdf)
  <use images/ugr-eps-converted-to.pdf>
 Package pdftex.def Info: images/ugr-eps-converted-to.pdf used on input line 15.
@@ -995,7 +995,7 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) [9] <Images/APA_overview.pdf, id=204, 247.19652pt x 133.58688pt>
+) [9] <Images/APA_overview.pdf, id=208, 247.19652pt x 133.58688pt>
 File: Images/APA_overview.pdf Graphic file (type pdf)
  <use Images/APA_overview.pdf>
 Package pdftex.def Info: Images/APA_overview.pdf used on input line 18.
@@ -1022,7 +1022,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  (./Hardware.tex
 Chapter 2.
-<images/GaitWatch_placement.pdf, id=350, 340.75514pt x 292.43323pt>
+<images/GaitWatch_placement.pdf, id=354, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 12.
@@ -1046,7 +1046,7 @@ Package epstopdf Info: Source file: <images/left_right_detect.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/left_right_detect-eps-converted-to.pdf images/left_right_detect.eps>
 (epstopdf)             \includegraphics on input line 49.
 Package epstopdf Info: Output file is already uptodate.
- <images/left_right_detect-eps-converted-to.pdf, id=430, 1009.7725pt x 580.1675pt>
+ <images/left_right_detect-eps-converted-to.pdf, id=434, 1009.7725pt x 580.1675pt>
 File: images/left_right_detect-eps-converted-to.pdf Graphic file (type pdf)
  <use images/left_right_detect-eps-converted-to.pdf>
 Package pdftex.def Info: images/left_right_detect-eps-converted-to.pdf used on input line 49.
@@ -1078,14 +1078,14 @@ Underfull \hbox (badness 2103) in paragraph at lines 233--239
  []
 
 [25]) [26]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 134.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 134.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
  (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 134.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 134.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 134.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
  ) 
 Here is how much of TeX's memory you used:
  11107 strings out of 493117
@@ -1096,10 +1096,10 @@ Here is how much of TeX's memory you used:
  1141 hyphenation exceptions out of 8191
  44i,12n,44p,1561b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (30 pages, 746029 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (30 pages, 746331 bytes).
 PDF statistics:
- 591 PDF objects out of 1000 (max. 8388607)
- 503 compressed objects within 6 object streams
+ 595 PDF objects out of 1000 (max. 8388607)
+ 507 compressed objects within 6 object streams
  89 named destinations out of 1000 (max. 500000)
- 189 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 197 words of extra memory for PDF output out of 10000 (max. 10000000)
 
