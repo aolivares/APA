@@ -8,10 +8,9 @@ A level-1 auxiliary file: Hardware.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-Warning--I didn't find a database entry for ""
-Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty chapter and pages in patients_medical_definition_2014
 Warning--empty publisher in patients_medical_definition_2014
+Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty chapter and pages in encyclopedia_britannica_electromyography_2014
 Warning--empty publisher in encyclopedia_britannica_electromyography_2014
 Warning--empty chapter and pages in encyclopedia_britannica_accelerometer_2014
@@ -25,45 +24,45 @@ Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 Warning--empty year in zebris_force_plate_2013
-You've used 30 entries,
+You've used 31 entries,
             2481 wiz_defined-function locations,
-            760 strings with 11621 characters,
-and the built_in function-call counts, 11466 in all, are:
-= -- 994
-> -- 592
-< -- 25
-+ -- 241
-- -- 176
-* -- 933
-:= -- 1885
-add.period$ -- 136
-call.type$ -- 30
-change.case$ -- 46
-chr.to.int$ -- 25
-cite$ -- 46
-duplicate$ -- 571
-empty$ -- 972
-format.name$ -- 214
-if$ -- 2378
+            766 strings with 11913 characters,
+and the built_in function-call counts, 12010 in all, are:
+= -- 1045
+> -- 613
+< -- 26
++ -- 249
+- -- 182
+* -- 972
+:= -- 1959
+add.period$ -- 140
+call.type$ -- 31
+change.case$ -- 48
+chr.to.int$ -- 26
+cite$ -- 47
+duplicate$ -- 602
+empty$ -- 1023
+format.name$ -- 221
+if$ -- 2504
 int.to.chr$ -- 6
-int.to.str$ -- 31
-missing$ -- 23
-newline$ -- 201
-num.names$ -- 96
-pop$ -- 251
+int.to.str$ -- 32
+missing$ -- 24
+newline$ -- 207
+num.names$ -- 99
+pop$ -- 262
 preamble$ -- 1
-purify$ -- 30
+purify$ -- 31
 quote$ -- 0
-skip$ -- 297
+skip$ -- 319
 stack$ -- 0
-substring$ -- 373
-swap$ -- 122
-text.length$ -- 5
+substring$ -- 407
+swap$ -- 135
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 195
+type$ -- 202
 warning$ -- 16
-while$ -- 90
+while$ -- 95
 width$ -- 0
-write$ -- 465
-(There were 17 warnings)
+write$ -- 480
+(There were 16 warnings)

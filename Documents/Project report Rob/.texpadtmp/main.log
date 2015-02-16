@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  15 FEB 2015 19:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  16 FEB 2015 18:11
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -835,26 +835,26 @@ Writing nomenclature file main.nlo
 (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 111.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 111.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 112.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 111.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 111.
-LaTeX Font Info:    ... okay on input line 111.
+LaTeX Font Info:    ... okay on input line 112.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 112.
+LaTeX Font Info:    ... okay on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count145
@@ -882,7 +882,7 @@ Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count151
 \AtBeginShipoutBox=\box43
-Package hyperref Info: Link coloring OFF on input line 111.
+Package hyperref Info: Link coloring OFF on input line 112.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -890,9 +890,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count152
 )
-LaTeX Info: Redefining \ref on input line 111.
-LaTeX Info: Redefining \pageref on input line 111.
-LaTeX Info: Redefining \nameref on input line 111.
+LaTeX Info: Redefining \ref on input line 112.
+LaTeX Info: Redefining \pageref on input line 112.
+LaTeX Info: Redefining \nameref on input line 112.
  (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -919,7 +919,8 @@ Non-PDF special ignored!
 
 
 
-{/usr/local/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./images/ugr-eps-converted-to.pdf>]) [2
+
+{/Users/Rob/Library/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./images/ugr-eps-converted-to.pdf>]) [2
 
 
 ]
@@ -939,31 +940,16 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 2.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.19 ...Conclusion and Future Work}{21}{chapter.3}
-                                                   [1
+) [5
 
 ])
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.nlspdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.1 \begin{thenomenclature}
-                            [2])pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.121 	\listoffigures
-                      [3
+ [6] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.nls) [7
 
-]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.121 	\listoffigures
-                      [4
+
+] [8
 
 ] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.lof
 Overfull \hbox (0.16362pt too wide) in paragraph at lines 2--2
@@ -974,19 +960,18 @@ Overfull \hbox (0.16362pt too wide) in paragraph at lines 2--2
 \tf@lof=\write8
 \openout8 = `main.lof'.
 
- [5] [6
+ [9] [10
 
 ] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
- [7]
-\openout2 = `Introduction.aux'.
-
- (./Introduction.tex [8
-
+ [11] [12
 
 ]
+\openout2 = `Introduction.aux'.
+
+ (./Introduction.tex
 Chapter 1.
 LaTeX Font Info:    Try loading font information for OT1+phv on input line 1.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1phv.fd
@@ -995,7 +980,10 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 LaTeX Font Info:    Try loading font information for OT1+ptm on input line 1.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
-) [9] <Images/APA_overview.pdf, id=208, 247.19652pt x 133.58688pt>
+) [1
+
+
+] <Images/APA_overview.pdf, id=212, 247.19652pt x 133.58688pt>
 File: Images/APA_overview.pdf Graphic file (type pdf)
  <use Images/APA_overview.pdf>
 Package pdftex.def Info: Images/APA_overview.pdf used on input line 18.
@@ -1003,7 +991,7 @@ Package pdftex.def Info: Images/APA_overview.pdf used on input line 18.
 
 Underfull \vbox (badness 1661) has occurred while \output is active []
 
- [10 <./Images/APA_overview.pdf>]
+ [2 <./Images/APA_overview.pdf>]
 Overfull \hbox (2.37646pt too wide) in paragraph at lines 45--79
 [][] 
  []
@@ -1014,29 +1002,24 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11] [12] [13]
+ [3] [4] [5]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [14]) [15] [16]
+ [6]) [7] [8]
 \openout2 = `Hardware.aux'.
 
  (./Hardware.tex
 Chapter 2.
-<images/GaitWatch_placement.pdf, id=354, 340.75514pt x 292.43323pt>
+<images/GaitWatch_placement.pdf, id=358, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 12.
 (pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
-
-Overfull \hbox (24.06808pt too wide) in paragraph at lines 29--32
-\OT1/cmr/m/n/12 [[]], IMU3000 tri-ax-ial gy-ro-scope with pro-grammable range of \TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 250/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 500/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 1000/\TS1/cmr/m/n/12 ±\OT1/cmr/m/n/12 3000\TS1/cmr/m/n/12 °\OT1/cmr/m/n/12 /s
- []
-
-[17
+ [9
 
 
 
-] [18 <./images/GaitWatch_placement.pdf>]
+] [10 <./images/GaitWatch_placement.pdf>]
 Package epstopdf Info: Source file: <images/left_right_detect.eps>
 (epstopdf)                    date: 2015-02-14 20:08:46
 (epstopdf)                    size: 137261 bytes
@@ -1044,30 +1027,30 @@ Package epstopdf Info: Source file: <images/left_right_detect.eps>
 (epstopdf)                    date: 2015-02-14 20:08:50
 (epstopdf)                    size: 102495 bytes
 (epstopdf)             Command: <epstopdf --outfile=images/left_right_detect-eps-converted-to.pdf images/left_right_detect.eps>
-(epstopdf)             \includegraphics on input line 49.
+(epstopdf)             \includegraphics on input line 51.
 Package epstopdf Info: Output file is already uptodate.
- <images/left_right_detect-eps-converted-to.pdf, id=434, 1009.7725pt x 580.1675pt>
+ <images/left_right_detect-eps-converted-to.pdf, id=447, 1009.7725pt x 580.1675pt>
 File: images/left_right_detect-eps-converted-to.pdf Graphic file (type pdf)
  <use images/left_right_detect-eps-converted-to.pdf>
-Package pdftex.def Info: images/left_right_detect-eps-converted-to.pdf used on input line 49.
+Package pdftex.def Info: images/left_right_detect-eps-converted-to.pdf used on input line 51.
 (pdftex.def)             Requested size: 455.24408pt x 261.55984pt.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1067) has occurred while \output is active []
 
- [19 <./images/left_right_detect-eps-converted-to.pdf>]) [20]
+ [11 <./images/left_right_detect-eps-converted-to.pdf>]) [12]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
 Chapter 3.
-) [21
+) [13
 
 
 
-] [22] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.bbl [23
+] [14] (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.bbl [15
 
 
 
-] [24]
+] [16]
 Underfull \hbox (badness 4403) in paragraph at lines 225--231
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL335: Small, Low Power 3-Axis \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 3G Ac-celerom-e-
  []
@@ -1077,29 +1060,29 @@ Underfull \hbox (badness 2103) in paragraph at lines 233--239
 []\OT1/cmr/m/n/12 Analog De-vices.  \OT1/cmr/m/it/12 ADXL345: 3-Axis, \TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 2g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 4g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 8g/\TS1/cmr/m/it/12 ±\OT1/cmr/m/it/12 16g Dig-i-tal Ac-celerom-e-
  []
 
-[25]) [26]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 135.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 135.
+[17]) [18]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 143.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 143.
  (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 135.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 135.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 143.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 143.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 135.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 143.
  ) 
 Here is how much of TeX's memory you used:
- 11108 strings out of 493117
- 165758 string characters out of 6135432
- 260528 words of memory out of 5000000
- 14176 multiletter control sequences out of 15000+600000
+ 11116 strings out of 493117
+ 165893 string characters out of 6135432
+ 260654 words of memory out of 5000000
+ 14179 multiletter control sequences out of 15000+600000
  18305 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,12n,44p,1561b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,12n,44p,1561b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmss17.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (30 pages, 746331 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Project report Rob/.texpadtmp/main.pdf" (30 pages, 747630 bytes).
 PDF statistics:
- 595 PDF objects out of 1000 (max. 8388607)
- 507 compressed objects within 6 object streams
- 89 named destinations out of 1000 (max. 500000)
+ 611 PDF objects out of 1000 (max. 8388607)
+ 523 compressed objects within 6 object streams
+ 94 named destinations out of 1000 (max. 500000)
  197 words of extra memory for PDF output out of 10000 (max. 10000000)
 

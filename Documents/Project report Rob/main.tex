@@ -105,21 +105,29 @@
 	\typeout{ }
 
 \renewcommand{\nomname}{Abbreviations}	
+\renewcommand{\nompreamble}{\markboth{Abbreviations}{Abbreviations}}
 \makenomenclature
 	
 	
 \begin{document}
 
+	\frontmatter
+
 	\include{Cover}
 	\clearemptydoublepage
 	\include{Preface}
 	\clearemptydoublepage
-	\setcounter{page}{1}
+	
 	\tableofcontents
+	\clearemptydoublepage
+	
     \printnomenclature[1.0in]
     
 	\listoffigures
+	
 	\listoftables
+	
+	\mainmatter
 	
 	\include{Introduction}
 	\include{Hardware}
