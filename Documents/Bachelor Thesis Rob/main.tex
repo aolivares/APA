@@ -85,7 +85,6 @@
 \lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl\nouppercase\rightmark}}
 \rhead[\fancyplain{}{\sl\nouppercase\leftmark}]{\fancyplain{}{\thepage}}
 \cfoot{}
-\pagestyle{fancyplain}
 
 \ChTitleVar{\sf\Huge}
 \ChTitleAsIs
@@ -138,26 +137,35 @@
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Contents}
 	\tableofcontents
+	\thispagestyle{plain}
 		
 	\listoffigures
 	\phantomsection
 	\addcontentsline{toc}{chapter}{List of Figures}
+	\thispagestyle{plain}
+	\clearemptydoublepage
 
 	\listoftables
 	\phantomsection
-	\addcontentsline{toc}{chapter}{List of Tables}	
+	\addcontentsline{toc}{chapter}{List of Tables}
+	\thispagestyle{plain}
+	\clearemptydoublepage	
 	
 	\printglossary[type=acronym, title={Abbreviations}]
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Abbreviations}
-    \clearemptydoublepage
+	\thispagestyle{plain}
+	\clearemptydoublepage
     
     \printglossary[type=notation]
     \phantomsection
     \addcontentsline{toc}{chapter}{Notation}
+    \thispagestyle{plain}
     \clearemptydoublepage
 	
 	\mainmatter
+	
+	\pagestyle{fancyplain}
 		
 	\include{Introduction}
 	\include{Hardware}
