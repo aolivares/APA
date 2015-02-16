@@ -6,7 +6,7 @@
 % * Project name: Comparison of Posturographic Body-sway Measurements with 
 %                 Accelerometric Data.
 %
-% * Authors:      - Prof. Dr. Med. Kai B?tzel (1): 
+% * Authors:      - Prof. Dr. Med. Kai Boetzel (1): 
 %                   |_ kai.boetzel@med.uni-muenchen.de 
 %                 - Ver?nica  Torres (2): 
 %                   |_ vts24@correo.ugr.es 
@@ -39,13 +39,13 @@
 % Finally, it carries out the synchronisation between all them.
 % The file is structured as follows:
 % 
-% * 1) Selection of the excel file and obtain the GW file names.
+% * 1) Select Excel-file and obtain the GW file names.
 % 
-% * 2) Extraction FP data from  .txt files.
+% * 2) Extract FP data from .txt files.
 % 
-% * 3) Calibrate GW data.
+% * 3) Load and calibrate GW data.
 % 
-% * 4) Synchronisation.
+% * 4) Synchronise signals.
 % 
 % * 5) Save the synchronised data in *.mat file for each person.
 % -------------------------------------------------------------------------
@@ -1371,7 +1371,7 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
 
 
 % -------------------------------------------------------------------------
-% 6) Store cell arrays of time series objects as .mat file
+% Store cell arrays of time series objects as .mat file
 % -------------------------------------------------------------------------
 
 % Create the output file name.

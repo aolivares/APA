@@ -12,6 +12,9 @@
 % * Last modification: 20/01/2014.
 % -------------------------------------------------------------------------
 
+
+clear all, close all;
+
 % -------------------------------------------------------------------------
 % 0) GENERAL CONFIGURATION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 % -------------------------------------------------------------------------
@@ -25,7 +28,7 @@ wag_id = 15;
 f = 40;               
 
 % Set value of the magnitude of the gravity vector in the location in which
-% data were gathered. (In our case: Granada, Spain, 37°10'4''N 3°36'3''O, 
+% data were gathered. (In our case: Granada, Spain, 37?10'4''N 3?36'3''O, 
 % 738 meters over sea level). 
 g = 9.797024;
 
