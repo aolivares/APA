@@ -1,6 +1,8 @@
 \NeedsTeXFormat{LaTeX2e}
 \documentclass[12pt, a4paper]{book}
 
+%\usepackage[osf, sc]{mathpazo}
+\usepackage[osf]{libertine}
 \usepackage[Lenny]{fncychap}
 \usepackage{fancyhdr}
 \usepackage[utf8]{inputenc}
@@ -16,41 +18,27 @@
 \usepackage{textcomp}
 \usepackage{datetime}
 \usepackage[numbers, sort&compress, comma]{natbib}
-
 \usepackage{subeqnarray}
-\usepackage{bbm}
 \usepackage{longtable}
-\usepackage{rotating}
-\usepackage{psfrag}
-\usepackage{pifont}
-\usepackage{fancybox}
+\usepackage{booktabs}
+\usepackage{array}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-\usepackage [linktocpage]{hyperref}
-\usepackage{amssymb,amsfonts}
-\usepackage{multirow}
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{float}
-\usepackage{array}
+\usepackage{amssymb}
+\usepackage [linktocpage=all]{hyperref}
+\hypersetup{
+  pdftitle    = {Titel},
+  pdfsubject  = {Electrical Engineering},
+  pdfauthor   = {Robin Weiß},
+  pdfkeywords = {Bachelor Thesis} ,
+  pdfcreator  = {pdflatex},
+  pdfproducer = {LaTeX}
+}
+
 \usepackage[acronym, nopostdot, nonumberlist]{glossaries}\newglossary[nlg]{notation}{not}{ntn}{Notation}
 
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{5}
-
-\setlength{\topmargin}{-1.1cm}
-\setlength{\parskip}{\baselineskip}
-\setlength{\parskip}{0.3cm}
-\setlength{\textwidth}{16.5cm}
-\setlength{\evensidemargin}{-0.4cm}
-\setlength{\oddsidemargin}{0.3cm}
-\setlength{\headsep}{1.0cm}
-\setlength{\headheight}{3ex}
-\setlength{\footnotesep}{5mm}
-
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand{\labelitemii}{$\diamond$}
-\renewcommand{\labelitemiii}{$\cdot$}
 
 \lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl\nouppercase\rightmark}}
 \rhead[\fancyplain{}{\sl\nouppercase\leftmark}]{\fancyplain{}{\thepage}}
@@ -62,24 +50,12 @@
 \newcommand{\clearemptydoublepage}
 {\newpage{\pagestyle{empty}\cleardoublepage}}
 
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\grad}{\hspace{-2mm}$\phantom{a}^{\circ}$}
-
 \makeglossaries
 
 \input{Glossary}
 \input{Acronyms}
 \input{Notation}
     
-\hypersetup{
-  pdftitle    = {Titel},
-  pdfsubject  = {Electrical Engineering},
-  pdfauthor   = {Robin Weiß},
-  pdfkeywords = {Bachelor Thesis} ,
-  pdfcreator  = {pdflatex},
-  pdfproducer = {LaTeX}
-}
 
 \begin{document}
 
@@ -146,7 +122,6 @@
 	\bibliographystyle{unsrtnat}
 	\addcontentsline{toc}{chapter}{Bibliography}
 	\bibliography{Bibliography}
-	
 	\clearemptydoublepage
 	
 \end{document}

@@ -40,6 +40,24 @@ There are several rating scales as well as technical equipment that has been use
 
 A commonly used rating scale is the Unified Parkinson’s Disease Rating Scale (UPDRS), which is a short test performed by a physician \cite{klerk_long-term_2009}. The patient is rated on 31 different items (see Table \ref{tab:UPDRS}) with a score of 0 (normal) to 4 (severely affected) \cite{herndon_handbook_2006}. Another method is the rough, but widely utilised and accepted Hoehn and Yahr scale (HY). Parkinsonian motor impairment is categorised in 5 stages: Unilateral (Stage 1) to bilateral disease (Stage 2) without balance difficulties, to the presence of postural instability (Stage 3), loss of physical independence (Stage 4), up to being wheelchair- or bed-bound (Stage 5) \cite{goetz_movement_2004}. Finally, there is the Timed Up and Go Test (TUG). This clinical test consists of rising from a chair, walking three metres, turning, walking back, and sitting. The total duration then represents the clinical outcome. It is widely used to rate balance, mobility, and fall risk in PD in its entirety, but does not give information about the particular impairments \cite{palmerini_quantification_2013}.
 
+\section{Some Formulas}
+
+Due to the statistical nature of ionisation energy loss, large fluctuations can occur in the amount of energy deposited by a particle traversing an absorber element\footnote{Examples taken from Walter Schmidt's great gallery: \\ \url{http://home.vrweb.de/~was/mathfonts.html}}.  Continuous processes such as multiple scattering and energy loss play a relevant role in the longitudinal and lateral development of electromagnetic and hadronic showers, and in the case of sampling calorimeters the measured resolution can be significantly affected by such fluctuations in their active layers.  The description of ionisation fluctuations is characterised by the significance parameter $\kappa$, which is proportional to the ratio of mean energy loss to the maximum allowed energy transfer in a single collision with an atomic electron: Consider the \texttt{pdfspacing} option.
+\begin{eqnarray}
+\kappa =\frac{\xi}{E_{\mathrm{max}}} %\mathbb{ZNR}
+\end{eqnarray}
+$E_{\mathrm{max}}$ is the maximum transferable energy in a single collision with an atomic electron.
+\[E_{\mathrm{max}} =\frac{2 m_{\mathrm{e}} \beta^2\gamma^2 }{1 + 2\gamma m_{\mathrm{e}}/m_{\mathrm{x}} + \left ( m_{\mathrm{e}} /m_{\mathrm{x}}\right)^2}\ ,\]
+where $\gamma = E/m_{\mathrm{x}}$, $E$ is energy and $m_{\mathrm{x}}$ the mass of the incident particle, $\beta^2 = 1 - 1/\gamma^2$ and $m_{\mathrm{e}}$ is the electron mass. $\xi$ comes from the Rutherford scattering cross section and is defined as:
+\begin{eqnarray*} \xi  = \frac{2\pi z^2 e^4 N_{\mathrm{Av}} Z \rho
+\delta x}{m_{\mathrm{e}} \beta^2 c^2 A} =  153.4 \frac{z^2}{\beta^2}
+\frac{Z}{A}
+\rho \delta x \quad\mathrm{keV},
+\end{eqnarray*}
+where $\kappa$ measures the contribution of the collisions with energy transfer close to $E_{\mathrm{max}}$.  For a given absorber, $\kappa$ tends towards large values if $\delta x$ is large and/or if $\beta$ is small.  Likewise, $\kappa$ tends towards zero if $\delta x $ is small and/or if $\beta$ approaches $1$.
+
+The value of $\kappa$ distinguishes two regimes which occur in the description of ionisation fluctuations:
+
 Without the need for complex technical devices these tests are relatively simple to perform. \citeauthor{klerk_long-term_2009} \cite{klerk_long-term_2009} mentioned their disadvantages, including subjectivity, short observation periods, and unfamiliarity of the environment that these rating methods bring along. Further limitations are caused by clinician's bias and insensitivity to mild impairments (floor effect) \cite{mancini_isway:_2012}.
 
 \begin{table}[h]
