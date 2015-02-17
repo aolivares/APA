@@ -1,8 +1,9 @@
 \NeedsTeXFormat{LaTeX2e}
 \documentclass[12pt, a4paper]{book}
 
-%\usepackage[osf, sc]{mathpazo}
-\usepackage[osf]{libertine}
+\usepackage[sc]{mathpazo}
+\linespread{1.05}
+%\usepackage[osf]{libertine}
 \usepackage[Lenny]{fncychap}
 \usepackage{fancyhdr}
 \usepackage[utf8]{inputenc}
@@ -38,19 +39,21 @@
 \usepackage[acronym, nopostdot, nonumberlist]{glossaries}\newglossary[nlg]{notation}{not}{ntn}{Notation}
 
 \setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{5}
+\setcounter{secnumdepth}{4}
 
 \lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl\nouppercase\rightmark}}
 \rhead[\fancyplain{}{\sl\nouppercase\leftmark}]{\fancyplain{}{\thepage}}
 \cfoot{}
 
-\ChTitleVar{\sf\Huge}
-\ChTitleAsIs
+\clubpenalty = 10000
+\widowpenalty = 10000 
+\displaywidowpenalty = 10000
 
 \newcommand{\clearemptydoublepage}
 {\newpage{\pagestyle{empty}\cleardoublepage}}
 
 \makeglossaries
+\setlength{\glsdescwidth}{0.8\linewidth}
 
 \input{Glossary}
 \input{Acronyms}
@@ -97,13 +100,13 @@
 	\thispagestyle{plain}
 	\clearemptydoublepage	
 	
-	\printglossary[type=acronym, title={Abbreviations}]
+	\printglossary[type=acronym, title={Abbreviations}, style=super]
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Abbreviations}
 	\thispagestyle{plain}
 	\clearemptydoublepage
     
-    \printglossary[type=notation]
+    \printglossary[type=notation, style=super]
     \phantomsection
     \addcontentsline{toc}{chapter}{Notation}
     \thispagestyle{plain}
