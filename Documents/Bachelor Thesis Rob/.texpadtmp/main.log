@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  17 FEB 2015 17:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  17 FEB 2015 18:26
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -920,39 +920,39 @@ Package: glossary-tree 2014/03/06 v4.04 (NLCT)
 \glo@main@file=\write4
 \openout4 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 56.
+Package glossaries Info: Writing glossary file main.glo on input line 55.
 \glo@acronym@file=\write5
 \openout5 = `main.acn'.
 
-Package glossaries Info: Writing glossary file main.acn on input line 56.
+Package glossaries Info: Writing glossary file main.acn on input line 55.
 \glo@notation@file=\write6
 \openout6 = `main.ntn'.
 
-Package glossaries Info: Writing glossary file main.ntn on input line 56.
+Package glossaries Info: Writing glossary file main.ntn on input line 55.
  (./Glossary.tex) (./Acronyms.tex) (./Notation.tex) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 63.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
-LaTeX Font Info:    ... okay on input line 64.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 64.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
+LaTeX Font Info:    ... okay on input line 63.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 63.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
@@ -983,7 +983,7 @@ Package caption Info: End \AtBeginDocument code.
 )
 \c@lstlisting=\count194
 \AtBeginShipoutBox=\box38
-Package hyperref Info: Link coloring OFF on input line 64.
+Package hyperref Info: Link coloring OFF on input line 63.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -991,9 +991,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count195
 )
-LaTeX Info: Redefining \ref on input line 64.
-LaTeX Info: Redefining \pageref on input line 64.
-LaTeX Info: Redefining \nameref on input line 64.
+LaTeX Info: Redefining \ref on input line 63.
+LaTeX Info: Redefining \pageref on input line 63.
+LaTeX Info: Redefining \nameref on input line 63.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out)
 \@outlinefile=\write7
 \openout7 = `main.out'.
@@ -1077,13 +1077,13 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <14.4> not available
 )pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 	\include{Statement}
+l.73 	\include{Statement}
                           [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.75 	\clearemptydoublepage
+l.74 	\clearemptydoublepage
                             [2
 
 
@@ -1138,7 +1138,7 @@ Overfull \hbox (28.17505pt too wide) in paragraph at lines 21--22
 ] [12
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.acr)
-Overfull \hbox (8.96515pt too wide) in paragraph at lines 2--108
+Overfull \hbox (8.96515pt too wide) in paragraph at lines 2--107
 []
  []
 
@@ -1234,13 +1234,8 @@ LaTeX Warning: Reference `fig:GaitWatch_placement' on page 11 undefined on input
 
 
 ]
-Overfull \hbox (67.13863pt too wide) in paragraph at lines 24--27
-[]\OT1/pplx/m/n/12 ADXL345 tri-ax-ial ac-celerom-e-ter with pro-grammable range (\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 2g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 4g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 8g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 16g)
- []
-
-
-Overfull \hbox (115.07857pt too wide) in paragraph at lines 24--27
-\OT1/pplx/m/n/12 [[]], IMU3000 tri-ax-ial gy-ro-scope with pro-grammable range (\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 250/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 500/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 1000/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 3000\TS1/pplx/m/n/12 °\OT1/pplx/m/n/12 /s)
+Underfull \hbox (badness 10000) in paragraph at lines 24--27
+[]\OT1/pplx/m/n/12 ADXL345 tri-ax-ial ac-celerom-e-ter with pro-grammable range
  []
 
 [12] <images/left_right_detect.pdf, id=450, 853.2125pt x 539.75885pt>
@@ -1319,11 +1314,11 @@ Underfull \hbox (badness 2503) in paragraph at lines 233--239
 [22]) [23] [24
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 131.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 131.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 130.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 130.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Hardware.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 131.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 131.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 130.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 130.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
 
@@ -1342,7 +1337,7 @@ Here is how much of TeX's memory you used:
 pdfTeX warning (dest): name{glo:gls:set} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 493610 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 493645 bytes).
 PDF statistics:
  629 PDF objects out of 1000 (max. 8388607)
  557 compressed objects within 6 object streams
