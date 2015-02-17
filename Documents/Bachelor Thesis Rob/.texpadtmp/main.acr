@@ -3,8 +3,5 @@
 \glsgroupheading{C}\relax \glsresetentrylist %
 \glossentry{CITIC-UGR}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{v}}}\glsgroupskip
-\glsgroupheading{P}\relax \glsresetentrylist %
-\glossentry{PD}{\glossaryentrynumbers{\relax 
-		\setentrycounter[]{page}\glsnumberformat{1}}}%
+		\setentrycounter[]{page}\glsnumberformat{v}}}%
 \end{theglossary}\glossarypostamble
