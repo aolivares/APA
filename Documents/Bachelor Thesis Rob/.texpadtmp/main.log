@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  17 FEB 2015 16:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  17 FEB 2015 17:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1030,40 +1030,35 @@ File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
 (pdftex.def)             Requested size: 142.26378pt x 63.83818pt.
-LaTeX Font Info:    Try loading font information for OML+zplm on input line 24.
+LaTeX Font Info:    Try loading font information for OML+zplm on input line 33.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMS+zplm on input line 24.
+LaTeX Font Info:    Try loading font information for OMS+zplm on input line 33.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omszplm.fd
 File: omszplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMS/zplm.
 )
-LaTeX Font Info:    Try loading font information for OMX+zplm on input line 24.
+LaTeX Font Info:    Try loading font information for OMX+zplm on input line 33.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omxzplm.fd
 File: omxzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OMX/zplm.
 )
-LaTeX Font Info:    Try loading font information for OT1+zplm on input line 24.
+LaTeX Font Info:    Try loading font information for OT1+zplm on input line 33.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1zplm.fd
 File: ot1zplm.fd 2002/09/08 Fontinst v1.914 font definitions for OT1/zplm.
 )
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 25.92514pt on input line 24.
+(Font)              scaled to size 12.50409pt on input line 33.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 21.61124pt on input line 24.
+(Font)              scaled to size 9.37807pt on input line 33.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 15.0049pt on input line 24.
+(Font)              scaled to size 7.29405pt on input line 33.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 25.92514pt on input line 24.
+(Font)              scaled to size 12.50409pt on input line 33.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 21.61124pt on input line 24.
+(Font)              scaled to size 9.37807pt on input line 33.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 15.0049pt on input line 24.
-
-Overfull \hbox (50.53304pt too wide) in paragraph at lines 24--30
- [][] 
- []
-
-[1
+(Font)              scaled to size 7.29405pt on input line 33.
+ [1
 
 \openout3 = `main.ist'.
 
@@ -1079,18 +1074,6 @@ Overfull \hbox (50.53304pt too wide) in paragraph at lines 24--30
  (./Statement.tex
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/pplx/b/n' tried instead on input line 3.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 9.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 9.
-LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 9.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 12.50409pt on input line 9.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 9.37807pt on input line 9.
-LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.29405pt on input line 9.
 )pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
@@ -1121,9 +1104,9 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <24.88> not available
 
  (./Abstract.tex
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
-(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 14.
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 12.
 
-Overfull \hbox (28.17505pt too wide) in paragraph at lines 24--25
+Overfull \hbox (28.17505pt too wide) in paragraph at lines 21--22
 \OT1/pplx/m/n/12 the [][]CITIC-UGR[] and the De-part-ment of Neu-rol-ogy of the Klinikum Gro^^Yhadern
  []
 
@@ -1260,7 +1243,7 @@ Overfull \hbox (115.07857pt too wide) in paragraph at lines 24--27
 \OT1/pplx/m/n/12 [[]], IMU3000 tri-ax-ial gy-ro-scope with pro-grammable range (\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 250/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 500/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 1000/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 3000\TS1/pplx/m/n/12 °\OT1/pplx/m/n/12 /s)
  []
 
-[12] <images/left_right_detect.pdf, id=448, 853.2125pt x 539.75885pt>
+[12] <images/left_right_detect.pdf, id=450, 853.2125pt x 539.75885pt>
 File: images/left_right_detect.pdf Graphic file (type pdf)
  <use images/left_right_detect.pdf>
 Package pdftex.def Info: images/left_right_detect.pdf used on input line 45.
@@ -1349,20 +1332,20 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 15067 strings out of 493117
- 226620 string characters out of 6135432
+ 15051 strings out of 493117
+ 226344 string characters out of 6135432
  368607 words of memory out of 5000000
- 17958 multiletter control sequences out of 15000+600000
- 51133 words of font info for 130 fonts, out of 8000000 for 9000
+ 17941 multiletter control sequences out of 15000+600000
+ 46889 words of font info for 114 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  46i,12n,77p,1783b,490s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:gls:set} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 493034 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 493610 bytes).
 PDF statistics:
- 627 PDF objects out of 1000 (max. 8388607)
- 555 compressed objects within 6 object streams
+ 629 PDF objects out of 1000 (max. 8388607)
+ 557 compressed objects within 6 object streams
  123 named destinations out of 1000 (max. 500000)
  296 words of extra memory for PDF output out of 10000 (max. 10000000)
 
