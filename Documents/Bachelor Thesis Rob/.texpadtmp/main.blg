@@ -6,19 +6,13 @@ A level-1 auxiliary file: Statement.aux
 A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Abstract.aux
 A level-1 auxiliary file: Introduction.aux
-A level-1 auxiliary file: Hardware.aux
+A level-1 auxiliary file: Fundamentals.aux
+A level-1 auxiliary file: State_of_the_Art.aux
 A level-1 auxiliary file: Results.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-Warning--empty chapter and pages in patients_medical_definition_2014
-Warning--empty publisher in patients_medical_definition_2014
 Warning--empty year in olivares_vicente_gaitwatch_2013
-Warning--empty chapter and pages in encyclopedia_britannica_electromyography_2014
-Warning--empty publisher in encyclopedia_britannica_electromyography_2014
-Warning--empty chapter and pages in encyclopedia_britannica_accelerometer_2014
-Warning--empty publisher in encyclopedia_britannica_accelerometer_2014
-Warning--empty year in Intel_2013
 Warning--empty year in IMU5
 Warning--empty year in IDG500
 Warning--empty year in ADXL335
@@ -26,46 +20,49 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-Warning--empty year in zebris_force_plate_2013
-You've used 30 entries,
+Warning--empty chapter and pages in encyclopedia_britannica_electromyography_2014
+Warning--empty publisher in encyclopedia_britannica_electromyography_2014
+Warning--empty chapter and pages in encyclopedia_britannica_accelerometer_2014
+Warning--empty publisher in encyclopedia_britannica_accelerometer_2014
+You've used 15 entries,
             2481 wiz_defined-function locations,
-            763 strings with 11654 characters,
-and the built_in function-call counts, 11466 in all, are:
-= -- 994
-> -- 592
-< -- 25
-+ -- 241
-- -- 176
-* -- 933
-:= -- 1885
-add.period$ -- 136
-call.type$ -- 30
-change.case$ -- 46
-chr.to.int$ -- 25
-cite$ -- 46
-duplicate$ -- 571
-empty$ -- 972
-format.name$ -- 214
-if$ -- 2378
-int.to.chr$ -- 6
-int.to.str$ -- 31
-missing$ -- 23
-newline$ -- 201
-num.names$ -- 96
-pop$ -- 251
+            645 strings with 7186 characters,
+and the built_in function-call counts, 4500 in all, are:
+= -- 390
+> -- 183
+< -- 13
++ -- 88
+- -- 54
+* -- 317
+:= -- 753
+add.period$ -- 62
+call.type$ -- 15
+change.case$ -- 19
+chr.to.int$ -- 11
+cite$ -- 27
+duplicate$ -- 254
+empty$ -- 403
+format.name$ -- 71
+if$ -- 910
+int.to.chr$ -- 5
+int.to.str$ -- 16
+missing$ -- 8
+newline$ -- 100
+num.names$ -- 45
+pop$ -- 134
 preamble$ -- 1
-purify$ -- 30
+purify$ -- 15
 quote$ -- 0
-skip$ -- 297
+skip$ -- 127
 stack$ -- 0
-substring$ -- 373
-swap$ -- 122
-text.length$ -- 5
+substring$ -- 68
+swap$ -- 49
+text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 195
-warning$ -- 16
-while$ -- 90
+type$ -- 96
+warning$ -- 12
+while$ -- 34
 width$ -- 0
-write$ -- 465
-(There were 16 warnings)
+write$ -- 220
+(There were 12 warnings)
