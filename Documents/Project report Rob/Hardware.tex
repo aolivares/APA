@@ -5,7 +5,7 @@ As aforementioned, we used a MIMU (GaitWatch) and a force plate (Zebris FDM-S) t
 
 \section{GaitWatch}
 
-The GaitWatch device \cite{olivares_vicente_gaitwatch_2013} is a MIMU designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich in conjunction with the Department of Signal Theory, Telematics and Communications of the University of Granada. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's thighs, shanks, arms and trunk as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
+The GaitWatch device \cite{olivares_vicente_gaitwatch_2013} is designed to monitor the motion of patients by means of inertial sensors while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich in conjunction with the Department of Signal Theory, Telematics and Communications of the University of Granada. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's thighs, shanks, arms and trunk as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
 
 \begin{figure}
 	\centering
@@ -23,8 +23,6 @@ IMU Analog Combo Board with 5 Degrees of Freedom from \Citeauthor{IMU5} \cite{IM
 \item \textsc{Type B} (arms):
 
 IDG500 biaxial gyroscope with a measurement range of ±500\,°/s from \Citeauthor{IDG500} \cite{IDG500}.
-
-\vfill
 
 \item \textsc{Type C} (trunk):
 
@@ -46,6 +44,7 @@ According to the data gathering protocol in \ref{data_gathering_protocol} the ra
 The single data sets of each patient that we received from the clinic in Munich consisted of one .mat-file containing the GaitWatch signals and ten text files with the force plate signals of one cycle, respectively. An Excel-file for all patients of one complete data set stated the order of the separate text files, the corresponding GaitWatch .mat-file, their file names as well as additional hints and characteristics in respect of the patient, e.g. `patient with freezing' or `deep brain stimulation'. To read the force plate data in the right order and to associate the correct GaitWatch file we evaluated this Excel-file, so that the rest of the synchronisation could be automatised.
 
 We used the z-axis of the acceleration signals of both shanks for synchronisation, since those had a large peak at the point in time when the patient touched the force plate. That was also the time when the force plate signals attained nonzero values.  First we detected the second peak pointing upwards of each separate gait cycle in the aforementioned signals. We detected the second one since when the patient initiated the step onto the force plate there was a peak pointing upwards while accelerating his leg upwards, then a one pointing downwards at the point in time when the motion changes its direction and the patient lowers his leg. Finally, there was a second peak pointing upwards when the foot touches the force plate and thus the shank decelerates strongly. Patients could step with an arbitrary limb onto the force plate, in order to keep the procedure as natural as possible. As seen in the upper two graphs in Figure \ref{fig:left_right_detect} we distinguished between stepping with the left foot first and stepping with the right foot first and used the sooner peak as synchronisation line. 
+
 \begin{figure}
 	\centering
 	\epsfig{file=images/left_right_detect, width=16cm}
