@@ -1532,25 +1532,7 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
  ylabel('Acceleration in g');
  
  
- % First and last detected peak of each sub-cycle.
-figure();
-subplot(2, 1, 1);
-plot(time_GW, a_Z_left_shank_1_C);
-hold on;
-plot(time_GW(last_first_peaks_l), a_Z_left_shank_1_C(last_first_peaks_l), 'r.');
-
-title('Acceleration left shank with last peak of each cycle');
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-subplot(2, 1, 2)
-plot(time_GW, a_Z_right_shank_1_C, 'g');
-hold on;
-plot(time_GW(last_first_peaks_r), a_Z_right_shank_1_C(last_first_peaks_r), 'm.');
-
-title('Acceleration right shank with last peak of each cycle');  
-xlabel('Time in s');
-ylabel('Acceleration in g');
+ % First and last detected peak of each cycle
  
  
  
