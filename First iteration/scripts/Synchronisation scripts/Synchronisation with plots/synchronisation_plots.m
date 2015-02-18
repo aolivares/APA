@@ -126,11 +126,7 @@ title(['Acceleration right shank with all detected peaks greater than ' ...
        'the threshold']);
 xlabel('Time in s');
 ylabel('Acceleration in g');
-                                          
-%%
-close all;
-plot(time_GW, a_Z_left_shank_1_C);
-%%
+                                     
 
 % Compute distance between two peaks.                             
 peak_distance_l = diff(peak_locations_l);
