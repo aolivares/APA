@@ -1532,9 +1532,338 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
  ylabel('Acceleration in g');
  
  
- % First and last detected peak of each cycle
+ % Last detected peaks of each partial cycle.
+figure();
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(last_first_peaks_l), a_Z_left_shank_1_C(last_first_peaks_l), 'r.');
+
+title('Acceleration left shank with last peak of each  partial cycle');
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(last_first_peaks_r), a_Z_right_shank_1_C(last_first_peaks_r), 'm.');
+
+title('Acceleration right shank with last peak of each partial cycle');  
+xlabel('Time in s');
+ylabel('Acceleration in g');
  
+
+% Detected sync-peaks.
+figure()
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l), a_Z_left_shank_1_C(sync_peaks_l), 'r.');
+
+title('Acceleration left shank with detected sync-peaks left');
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r), a_Z_right_shank_1_C(sync_peaks_r), 'm.');
+
+title('Acceleration right shank with detected sync-peaks right');   
+xlabel('Time in s');
+ylabel('Acceleration in g');
+
+
+% Left-right detection.
+figure();
+subplot(2, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2 , 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+title(['Acceleration of z-axis of left shank with synchronisation lines and red marker when ' ...
+       'patient steps with the left foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.1]);
+
+subplot(2, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2, 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+title(['Acceleration of z-axis of right shank with synchronisation lines and magenta marker ' ...
+       'when patient steps with the right foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.3]);
+
+
+
+% Append all separate time series of the four force sensor signals and 
+% extract data from timeseries for plot.
+force_sensors_complete_ts = append(force_sensors_ts{1, :});
+fs_data = force_sensors_complete_ts.data;
+
+
+figure();
+subplot(3, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
+       'patient steps with the left foot first.']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([0, 300, -0.1, 2.1]);
+
+subplot(3, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
+ 
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
+       'when the patient steps with the right foot first.']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([0, 300, -0.1, 2.3]);
+
+subplot(3, 1, 3)
+plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+     [4, max(size(fs_data))]));
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('Exemplary the course of the synchronised signals of the four force sensors.');
+xlabel('Time in s');
+ylabel('Force in N');
+legend(['Left front foot', 'Left back foot', 'Right front foot', 'Right back foot']);
+
+axis([0, 300, 0, 800]);
+
+
+figure();
+subplot(3, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
+       'patient steps with the left foot first.']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.1]);
+
+subplot(3, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
+ 
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the right shank with synchronisation lines and red marker when the ' ...
+       'patient steps with the left foot first.']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([125, 165, -0.1, 2.3]);
+
+subplot(3, 1, 3)
+plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+     [4, max(size(fs_data))]));
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('Exemplary the course of the synchronised signals of the four force sensors.');
+xlabel('Time in s');
+ylabel('Force in N');
+legend('Left fore foot', 'Left hind foot', 'Right fore foot', 'Right hind foot');
+
+axis([125, 165, 0, 1000]);
+
+figure();
+subplot(3, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the' ...
+       'patient steps with the left foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([127, 129, -0.1, 2.1]);
+
+subplot(3, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
+ 
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
+       'when the patient steps with the right foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([127, 129, -0.1, 2.3]);
+
+subplot(3, 1, 3)
+plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+     [4, max(size(fs_data))]));
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('Exemplary the synchronised trace of the force sensor of the left front foot');
+xlabel('Time in s');
+ylabel('Force in N');
+
+axis([127, 129, 0, 800]);
+
+
+figure();
+subplot(3, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the' ...
+       'patient steps with the left foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([150, 152, -0.1, 2.1]);
+
+subplot(3, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
+ 
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
+       'when the patient steps with the right foot first']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+axis([150, 152, -0.1, 2.3]);
+
+subplot(3, 1, 3)
+plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+     [4, max(size(fs_data))]));
+ 
+% % Vertical line at the location of sync_peaks.
+% hx = graph2d.constantline(time_GW(sync_peaks_l(sync_peaks_l < sync_peaks_r)), 'LineStyle',':', 'LineWidth', 2, 'Color', 'r');
+% changedependvar(hx,'x');
+%  
+% % Vertical line at the location of sync_peaks.
+% hx = graph2d.constantline(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'LineStyle',':', 'LineWidth', 2, 'Color', 'm');
+% changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('Exemplary the synchronised trace of the force sensor of the left front foot');
+xlabel('Time in s');
+ylabel('Force in N');
+
+axis([150, 152, 0, 800]);
+
  
   
 end
