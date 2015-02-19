@@ -1,13 +1,13 @@
 clear all; close all; clc;
 
-load('acc_shank_ES39.mat');
+load('acc_shank_RK55.mat');
 
 % Set tuning parameter for peak detection in acceleration signal, that is, 
 % threshold and minimum number of samples between standing and walking.
 threshold_pos = 1.05;    
 threshold_neg = -0.9;
-diff_threshold = 0.05;
-gap = 300;
+diff_threshold = 0.05; %0.05
+gap = 390;
 
 % Find all peaks greater than threshold.
 [peak_values_l, peak_locations_l] = findpeaks(a_Z_left_shank_1_C, ...
@@ -18,7 +18,12 @@ gap = 300;
 
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time_GW(1:end-1), diff(a_Z_left_shank_1_C) < 0.05, 'r');
+plot(time_GW(1:end-1), diff(a_Z_left_shank_1_C) < diff_threshold, 'r');
+
+figure();
+plot(time_GW, a_Z_right_shank_1_C);
+hold on;
+plot(time_GW(1:end-1), diff(a_Z_right_shank_1_C) < diff_threshold, 'r');
 
 %%
 diff_vec_l = diff(a_Z_left_shank_1_C) < diff_threshold;
@@ -29,11 +34,16 @@ ind_vec_r = find(diff_vec_r == 0);
 
 close all;
 stem(diff(ind_vec_l));
+
 figure();
 stem(diff(ind_vec_r));
 
 %%
-
+close all;
+plot(time_GW, a_Z_left_shank_1_C);
+hold on;
+plot(time_GW(find((a_Z_left_shank_1_C < 1.1)&(a_Z_left_shank_1_C > 0.8))), a_Z_left_shank_1_C(find((a_Z_left_shank_1_C < 1.1)&(a_Z_left_shank_1_C > 0.8))), 'r');
+%%
 
 % Detect the last peak before a gap of more than gap samples.
 last_first_peaks_l = ind_vec_l(diff(ind_vec_l) > gap);
@@ -43,7 +53,16 @@ close all;
 
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
-plot(time_GW(last_first_peaks_l), a_Z_left_shank_1_C(last_first_peaks_l), 'r.', 'markersize', 20);
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(last_first_peaks_l), 'LineStyle',':', 'LineWidth', 1 , 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+figure();
+plot(time_GW, a_Z_right_shank_1_C);
+hold on;
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(last_first_peaks_r), 'LineStyle',':', 'LineWidth', 1 , 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
 
 %%
 
@@ -75,16 +94,21 @@ subplot(2, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(last_peaks_l), a_Z_left_shank_1_C(last_peaks_l), 'r.', 'markersize', 20);
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(last_peaks_l), 'LineStyle',':', 'LineWidth', 1 , 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
      
 subplot(2, 1, 2);
 plot(time_GW, a_Z_right_shank_1_C);
 hold on;
 plot(time_GW(last_peaks_r), a_Z_right_shank_1_C(last_peaks_r), 'r.', 'markersize', 20);
-
+% Vertical line at the location of sync_peaks.
+hx = graph2d.constantline(time_GW(last_peaks_r), 'LineStyle',':', 'LineWidth', 1 , 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
 
 %%
 
-for cycle = 1:n_cycles
+for cycle = 1:9
 
 %---Left shank---%
 
@@ -112,8 +136,8 @@ sync_peaks_l(cycle) = find(a_Z_left_shank_1_C(neg_peaks_l(cycle):end_p_l(cycle))
 %---Right shank---%
 
 % Set interval.
-start_p_r(cycle) = last_peaks_r(cycle) - 800;
-end_p_r(cycle) = last_peaks_r(cycle) + 400;
+start_p_r(cycle) = last_peaks_r(cycle) - 600;
+end_p_r(cycle) = last_peaks_r(cycle) + 100;
                                   
 % Find all peaks smaller than threshold in the interval specified by start_p and end_p.
 [neg_peak_values_int_r, neg_peak_locations_int_r] = findpeaks(-a_Z_right_shank_1_C(start_p_r(cycle):end_p_r(cycle)), ...
