@@ -1,6 +1,7 @@
+
 clear all; close all; clc;
 
-load('acc_shank_ES39.mat');
+load('acc_shank_RK55.mat');
 
 % Set tuning parameter for peak detection in acceleration signal, that is, 
 % threshold and minimum number of samples between standing and walking.
