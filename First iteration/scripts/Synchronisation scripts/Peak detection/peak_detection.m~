@@ -28,8 +28,9 @@ ind_vec_l = find(diff_vec_l == 0);
 ind_vec_r = find(diff_vec_r == 0);
 
 close all;
+subplot(2, 1, 1);
 stem(diff(ind_vec_l));
-figure();
+subplot(2, 1, 2);
 stem(diff(ind_vec_r));
 
 %%
