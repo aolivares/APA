@@ -1224,7 +1224,7 @@ input_signal = sqrt(axC .^ 2 + azC .^ 2)';
 
 % FSD (window size, decision threshold, overlapping and normalization
 % factor). 
-lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 100; lambda = 50;
+lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 75; lambda = 30;
 
 % LTSD (window size, decision threshold and overlapping).
 lwin_ltsd = 100;       threshold_ltsd = 4;   shift_ltsd = 10;
