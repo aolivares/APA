@@ -1266,7 +1266,7 @@ plot(marker_ltsd + 1, 'r')
 legend('Input signal','LTSD decision')
 
 % -------------------------------------------------------------------------
-% 4.1) Find the second positive peak of each cycle in the GaitWatch signal 
+% 4.2) Find the second positive peak of each cycle in the GaitWatch signal 
 %      of the z-axis of the acceleration of the shank, that is, the point 
 %      in time when the patient walks onto the force plate. 
 % -------------------------------------------------------------------------
@@ -1275,74 +1275,75 @@ legend('Input signal','LTSD decision')
 [width_pulses,initcross,finalcross] = pulsewidth (marker_ltsd);
 
 % Determine the beginning and end of each interval.
-initcross_first =round(initcross(1:2:length(initcross)));
-initcross_last=round(initcross(2:2:length(initcross)));
-finalcross_first=round(finalcross(1:2:length(finalcross)));
-finalcross_last=round(finalcross(2:2:length(finalcross)));
+initcross_first = round(initcross(1:2:length(initcross)));
+initcross_last = round(initcross(2:2:length(initcross)));
+finalcross_first = round(finalcross(1:2:length(finalcross)));
+finalcross_last = round(finalcross(2:2:length(finalcross)));
 
-% Calculate the peaks in each interval.
+% Obtain the peaks in each interval.
 for k = 1:length(initcross_last)
  
-    % Extract the part of the right shank signal to obtain the peaks
-    interv_first_r = a_Z_right_shank_1_C(initcross_first(k):finalcross_first(k));
-    interv_last_r = a_Z_right_shank_1_C(initcross_last(k):finalcross_last(k));
+    % Extract the part of the right shank signal to obtain the peaks.
+    interv_first_r = a_Z_right_shank_1_C( ...
+                        initcross_first(k):finalcross_first(k));
+    interv_last_r = a_Z_right_shank_1_C( ...
+                        initcross_last(k):finalcross_last(k));
     
-    % Extract the part of the left shank signal to obtain the peaks
-    interv_first_l = a_Z_left_shank_1_C(initcross_first(k):finalcross_first(k));
-    interv_last_l = a_Z_left_shank_1_C(initcross_last(k):finalcross_last(k));
-
+    % Extract the part of the left shank signal to obtain the peaks.
+    interv_first_l = a_Z_left_shank_1_C( ...
+                        initcross_first(k):finalcross_first(k));
+    interv_last_l = a_Z_left_shank_1_C( ...
+                        initcross_last(k):finalcross_last(k));
+                    
+    % Set up the threshold to fix the minimum value to detect a peak.
     threshold = 1.4;
-    gap = 500;
     
     % Find the peaks of the first part of the cycle.
-    [peak_values_first_r, peak_locations_first_r] = findpeaks(interv_first_r, ...
-                    'minpeakheight', threshold);
-    [peak_values_first_l, peak_locations_first_l] = findpeaks(interv_first_l, ...
-                    'minpeakheight', threshold);
+    [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
+                                interv_first_r,'minpeakheight', threshold);
+    [peak_values_first_l, peak_locations_first_l] = findpeaks( ...
+                                interv_first_l,'minpeakheight', threshold);
                 
-                
-    % Recalculate the threshold to find some peak. 
-    while(length(peak_locations_first_r)<2)
+    % Recalculate the threshold to find some peak. With this we garantee 
+    % the existence of at least two peaks in the interval to do the 
+    % synchronisation correctly. 
+    while(length(peak_locations_first_r) < 2)
 
-         threshold=threshold-0.001;
-         [peak_values_first_r, peak_locations_first_r] = findpeaks(interv_first_r, ...
-                                      'minpeakheight', threshold); 
-       
-
+         threshold = threshold - 0.001;
+         [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
+                                interv_first_r, 'minpeakheight', threshold);
     end
-    while(length(peak_locations_first_l)<2)
+    
+    while(length(peak_locations_first_l) < 2)
 
-         threshold=threshold-0.01;
-         [peak_values_first_l, peak_locations_first_l] = findpeaks(interv_first_l, ...
-                                      'minpeakheight', threshold); 
-        
+         threshold = threshold - 0.01;
+         [peak_values_first_l, peak_locations_first_l] = findpeaks(...
+                                interv_first_l, 'minpeakheight', threshold);    
     end
 
-    % It's used the second peak for the synchronism
-   
-     sync_peaks_r (k) =initcross_first(k)+peak_locations_first_r(2);
-     sync_peaks_l (k)=initcross_first(k)+peak_locations_first_l(2);
+    % It's used the second peak for the synchronisation.
+     sync_peaks_r (k) = initcross_first(k) + peak_locations_first_r(2);
+     sync_peaks_l (k) = initcross_first(k) + peak_locations_first_l(2);
      
-    % Reset the threshold
+    % Reset the threshold to obtain the last peak of the each cycle.
     threshold = 1.1;
 
-    % The last peak of the second interval of the cycle is the last peak to
-    % identificate the end of the cycle.
-    [peak_values_last_r, peak_locations_last_r] = findpeaks(interv_last_r, ...
-                                                  'minpeakheight', threshold);
-                                              
-    last_peaks_r(k) = initcross_last(k)+peak_locations_last_r(length(peak_locations_last_r));
-    
-    [peak_values_last_l, peak_locations_last_l] = findpeaks(interv_last_l, ...
-                                                  'minpeakheight', threshold);
-                                              
-    last_peaks_l(k) = initcross_last(k)+peak_locations_last_l(length(peak_locations_last_l));    
+    % The last peak of the second interval of each cycle is the peak to
+    % identify the end of the cycle.
+    [peak_values_last_r, peak_locations_last_r] = findpeaks( ...
+                                 interv_last_r, 'minpeakheight', threshold);
+                             
+    [peak_values_last_l, peak_locations_last_l] = findpeaks( ...
+                                 interv_last_l, 'minpeakheight', threshold);
 
-    
+    % Rescale the index of the peak to adjust its position at the original
+    % signal.                         
+    last_peaks_r(k) = initcross_last(k) + ...
+                      peak_locations_last_r(length(peak_locations_last_r));
+                                              
+    last_peaks_l(k) = initcross_last(k) + ...
+                      peak_locations_last_l(length(peak_locations_last_l));      
 end
-
-
-
 
 % Evaluate if the patient steps with the left or right limb first for each
 % cycle and store the first peak in sync_peaks, respectively, then sort it.
@@ -1600,17 +1601,17 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
  name_file = textscan(filename_FP,'%s','Delimiter',',');
  name_file = char(name_file{1}{1});
  name_file = strcat( name_file,'_synchronised.mat');
-%  
-%  save(['../../data/Synchronised/' ...
-%        name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
-%        'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
-%        'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
-%        'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
-%        'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
-%        'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
-%        'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
-%        'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
-%        'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF');
+ 
+ save(['../../data/Synchronised/' ...
+       name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
+       'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
+       'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
+       'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
+       'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
+       'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
+       'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
+       'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
+       'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF');
   
   fprintf('\nSaved synchronised signals!\n\n\n');
   
