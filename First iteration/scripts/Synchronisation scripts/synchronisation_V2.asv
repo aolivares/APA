@@ -1271,10 +1271,9 @@ legend('Input signal','LTSD decision')
 %      in time when the patient walks onto the force plate. 
 % -------------------------------------------------------------------------
 
-% Determinate the number of activity intervals (two by each cycle).
+% Determinate the number of invervals (two by each cycle).
 [width_pulses,initcross,finalcross] = pulsewidth (marker_ltsd);
 
-% Determine the beginning and end of each interval.
 initcross_first =round(initcross(1:2:length(initcross)));
 initcross_last=round(initcross(2:2:length(initcross)));
 finalcross_first=round(finalcross(1:2:length(finalcross)));
@@ -1300,6 +1299,14 @@ for k = 1:length(initcross_last)
     [peak_values_first_l, peak_locations_first_l] = findpeaks(interv_first_l, ...
                     'minpeakheight', threshold);
                 
+    % Set a gap between peaks.
+    for i=1:length(peak_locations_first_r)
+        
+        gap_peak=peak_locations_first_r(i+1:length(peak_locations_first_r))-peak_locations_first_r(i)
+        if(gap_peak>100)
+            peak_locations_first_r=[i i+gap_peak];
+        end
+    end
                 
     % Recalculate the threshold to find some peak. 
     while(length(peak_locations_first_r)<2)
