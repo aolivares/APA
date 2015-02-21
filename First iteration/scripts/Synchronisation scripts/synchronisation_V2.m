@@ -1302,7 +1302,7 @@ for k = 1:length(initcross_last)
     % Recalculate the threshold to find some peak. 
     while(length(peak_locations_first_r)<2)
 
-         threshold=threshold-0.01;
+         threshold=threshold-0.001;
          [peak_values_first_r, peak_locations_first_r] = findpeaks(interv_first_r, ...
                                       'minpeakheight', threshold); 
 
