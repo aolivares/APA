@@ -1297,12 +1297,15 @@ for k = 1:length(initcross_last)
                     
     % Set up the threshold to fix the minimum value to detect a peak.
     threshold = 1.4;
+    gap = 70;
     
     % Find the peaks of the first part of the cycle.
     [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
-                                interv_first_r,'minpeakheight', threshold);
+                                interv_first_r,'minpeakdistance', gap,...
+                               'minpeakheight', threshold);
     [peak_values_first_l, peak_locations_first_l] = findpeaks( ...
-                                interv_first_l,'minpeakheight', threshold);
+                                interv_first_l,'minpeakdistance', gap,...
+                                'minpeakheight', threshold);
                 
     % Recalculate the threshold to find some peak. With this we garantee 
     % the existence of at least two peaks in the interval to do the 
@@ -1311,19 +1314,21 @@ for k = 1:length(initcross_last)
 
          threshold = threshold - 0.001;
          [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
-                                interv_first_r, 'minpeakheight', threshold);
+                                 interv_first_r,'minpeakdistance', gap,...
+                                 'minpeakheight', threshold);
     end
     
     while(length(peak_locations_first_l) < 2)
 
          threshold = threshold - 0.01;
          [peak_values_first_l, peak_locations_first_l] = findpeaks(...
-                                interv_first_l, 'minpeakheight', threshold);    
+                                 interv_first_l,'minpeakdistance', gap,...
+                                'minpeakheight', threshold);    
     end
 
     % It's used the second peak for the synchronisation.
-     sync_peaks_r (k) = initcross_first(k) + peak_locations_first_r(2);
-     sync_peaks_l (k) = initcross_first(k) + peak_locations_first_l(2);
+     sync_peaks_r (k) = initcross_first(k) + peak_locations_first_r(2)-1;
+     sync_peaks_l (k) = initcross_first(k) + peak_locations_first_l(2)-1;
      
     % Reset the threshold to obtain the last peak of the each cycle.
     threshold = 1.1;
