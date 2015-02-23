@@ -149,7 +149,9 @@
 
 
 \begin{document}
-
+	\renewcommand{\contentsname}{Contents}
+	\renewcommand{\listfigurename}{List of figures}
+	\renewcommand{\listtablename}{List of tables}
 	\pagenumbering{roman}    % Numeraci�n de p�ginas con num romanos
 	\setcounter{page}{1}      % Establece la siguiente p�gina como la 1
 	\include{portada}		% Inclu�mos la portada en espa�ol
@@ -157,21 +159,26 @@
 	
 	\include{statement}      % Incluimos la declaración del proyecto
 	\clearemptydoublepage
-	\include{acknowlwdgements}      % Incluimos agradecimientos
+	\include{acknowledgements}      % Incluimos agradecimientos
 	\clearemptydoublepage
-	\include{Abstract}      % Incluimos resumen
+	\include{abstract}      % Incluimos resumen
 	\clearemptydoublepage
 	\include{abbrevations}      % Incluimos abreviaciones
 	\clearemptydoublepage
 	
 	\tableofcontents          % Pone índice
+   \listoffigures		   	% Crea la lista de figuras
+   \listoftables			% Crea la lista de tablas
 	\clearemptydoublepage
-	\renewcommand{\listfigurename}{List of figures}
-	\renewcommand{\listtablename}{List of tables}
+
 	
 
 	\clearemptydoublepage
 	\include{Introduccion}
+	\clearemptydoublepage
+	\include{Hardware}
+	\clearemptydoublepage
+	\include{Synchronisation}		
 
 	
 	\clearemptydoublepage
