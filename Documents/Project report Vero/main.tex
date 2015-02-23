@@ -4,7 +4,7 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PREAMBULO  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% ----------------------Especificaciones de diseño---------------------------- %
+% ----------------------Especificaciones de diseï¿½o---------------------------- %
 
 \NeedsTeXFormat{LaTeX2e}
 \documentclass[12pt]{book}
@@ -59,14 +59,14 @@
 	stringstyle=\color[rgb]{0.627,0.126,0.941},
 }
 
-\usepackage[numbers,sort&compress,comma]{natbib}	% Modo de poner la bibliografía
+\usepackage[numbers,sort&compress,comma]{natbib}	% Modo de poner la bibliografï¿½a
 \usepackage{verbatim}      %  \begin{comment}...\end{comment}
 \usepackage{subeqnarray}   % equationarray with numbers 1a, 1b, ...
-\usepackage{bbm}           % Para símbolo tipo números reales. Ej: \bbm{R}
-\usepackage{longtable}     % Para tablas largas de más de una página
+\usepackage{bbm}           % Para sï¿½mbolo tipo nï¿½meros reales. Ej: \bbm{R}
+\usepackage{longtable}     % Para tablas largas de mï¿½s de una pï¿½gina
 \usepackage{rotating}
 \usepackage{psfrag}        % Para cambiar fragmentos de text en .eps por otro en latex
-\usepackage{pifont}        % Para otros símbolos
+\usepackage{pifont}        % Para otros sï¿½mbolos
 \usepackage{fancybox}      % Para encuadrar texto en recuadros
 \usepackage{amsmath}       % Mejora la calidad de las formulas
 \usepackage{amsfonts}
@@ -82,25 +82,25 @@
 
 
 
-\setcounter{tocdepth}{2}             % toc = table of contents. Para definir niveles del índice
-\setcounter{secnumdepth}{5}          % Hasta cuándo se enumeran los caps, seccs, etc
+\setcounter{tocdepth}{2}             % toc = table of contents. Para definir niveles del ï¿½ndice
+\setcounter{secnumdepth}{5}          % Hasta cuï¿½ndo se enumeran los caps, seccs, etc
 
 
 \setlength{\topmargin}{-1.1cm}        % margen por arriba
 \setlength{\parskip}{\baselineskip}
 \setlength{\parskip}{0.3cm}          % Espacio entre parrafos
-\setlength{\textwidth}{16.5cm}       % Ancho del área imprimible	
-\setlength{\evensidemargin}{-0.4cm}  % Margen izdo en páginas pares
-\setlength{\oddsidemargin}{0.3cm}    % Margen izdo en páginas impares
+\setlength{\textwidth}{16.5cm}       % Ancho del ï¿½rea imprimible	
+\setlength{\evensidemargin}{-0.4cm}  % Margen izdo en pï¿½ginas pares
+\setlength{\oddsidemargin}{0.3cm}    % Margen izdo en pï¿½ginas impares
 % evensidemargin = -oddsidemargin !!!
 
 \setlength{\headsep}{1.0cm}
 \setlength{\headheight}{3ex}
 \setlength{\footnotesep}{5mm}
-%\setlength{\mathindent}{1.0cm}       % Controla el espacio entre margen y ec si no está centrada
+%\setlength{\mathindent}{1.0cm}       % Controla el espacio entre margen y ec si no estï¿½ centrada
 
 
-%%% Definitionen für Fancy Headings
+%%% Definitionen fï¿½r Fancy Headings
 %\renewcommand{\baselinestretch}{3mm}
 %\renewcommand{\labelenumi}{\roman{enumi}.}
 %\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
@@ -115,7 +115,7 @@
 \pagestyle{fancyplain}  		% normale Kopfzeile; ohne Seitenzahl: empty
 
 % Formato de capitulos
-\ChTitleVar{\sf\Huge} % Tamaño de la letra del nombre del cap
+\ChTitleVar{\sf\Huge} % Tamaï¿½o de la letra del nombre del cap
 \ChTitleAsIs
 
 
@@ -150,9 +150,26 @@
 
 \begin{document}
 
-	\pagenumbering{roman}    % Numeración de páginas con num romanos
-	\setcounter{page}{1}      % Establece la siguiente página como la 1
-	\include{portada}						% Incluímos la portada en español
+	\pagenumbering{roman}    % Numeraciï¿½n de pï¿½ginas con num romanos
+	\setcounter{page}{1}      % Establece la siguiente pï¿½gina como la 1
+	\include{portada}		% Incluï¿½mos la portada en espaï¿½ol
+	\clearemptydoublepage
+	
+	\include{statement}      % Incluimos la declaraciÃ³n del proyecto
+	\clearemptydoublepage
+	\include{acknowlwdgements}      % Incluimos agradecimientos
+	\clearemptydoublepage
+	\include{Abstract}      % Incluimos resumen
+	\clearemptydoublepage
+	\include{abbrevations}      % Incluimos abreviaciones
+	\clearemptydoublepage
+	
+	\tableofcontents          % Pone Ã­ndice
+	\clearemptydoublepage
+	\renewcommand{\listfigurename}{List of figures}
+	\renewcommand{\listtablename}{List of tables}
+	
+
 	\clearemptydoublepage
 	\include{Introduccion}
 
