@@ -27,7 +27,7 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 20/02/2015
+% * Last modification: 25/02/2015
 % -------------------------------------------------------------------------
 % INFORMATION: This file contains the routine to extract, process and
 % synchronise the signals from Forceplate and Gait Watch.
@@ -54,6 +54,12 @@
 % 0) Clear workspace.
 % -------------------------------------------------------------------------
 clear all; close all; clc;
+
+% Set flags which control the visibility of the figures.
+showPlotsCheck = 'yes';
+showPlotsAccShank = 'yes';
+showPlotsGyroShank = 'yes';
+showPlotsGyroTrunk = 'yes';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -333,7 +339,8 @@ end
 % Clear the unuseful variables.
 clearvars -except force_sensors time_FP force_cells ML_COP ...
 AP_COP force_sum midline filename_GW_total index_GW filename_FP ...
-file_excel j
+file_excel j showPlotsCheck showPlotsAccShank showPlotsAccTrunk ...
+showPlotsGyroShank
 
 
 % -------------------------------------------------------------------------
@@ -346,10 +353,6 @@ fprintf('\nCalibration in progress...\n');
 % Extract the GW file name for the each patient.
 filename_GW = filename_GW_total(j);
 
-% Set flags which control the visibility of the figures.
-showPlots = 'yes';
-showMagData = 'no';
-comparation = 'yes';
 
 % -------------------------------------------------------------------------
 % 3.1) Define structure of data array.
@@ -500,31 +503,6 @@ end
 mag_x_interp = interp1(time_mag,mag_x,time_GW,'spline');
 mag_y_interp = interp1(time_mag,mag_y,time_GW,'spline');
 mag_z_interp = interp1(time_mag,mag_z,time_GW,'spline');
-
-if strcmpi(showMagData,'yes')
-    figure
-    subplot(3,1,1)
-    plot(time_mag,mag_x)
-    hold on
-    plot(time_GW,mag_x_interp,'--r')
-    legend('Original','Interpolated')
-    xlabel('Time (s)');
-    ylabel('Magnetic field (raw)')
-    subplot(3,1,2)
-    plot(time_mag,mag_y)
-    hold on
-    plot(time_GW,mag_y_interp,'--r')
-    legend('Original','Interpolated')
-    xlabel('Time (s)');
-    ylabel('Magnetic field (raw)')
-    subplot(3,1,3)
-    plot(time_mag,mag_z)
-    hold on
-    plot(time_GW,mag_z_interp,'--r')
-    legend('Original','Interpolated')
-    xlabel('Time (s)');
-    ylabel('Magnetic field (raw)')
-end
 
 % Remove channel 23 from the data matrix and add three new channels 
 % containing the interpolated magnetometer signals to the data matrix.
@@ -811,11 +789,10 @@ for i = 1:length(Selection)
                                     alpha1,alpha2,beta1,beta2,...
                                     pitch_acc_right_shank(1), marker_fsd)';
 
-            if strcmpi(comparation,'yes')
                 % Integrate angular rate (just for comparation purposes).            
                 ini_pos = pitch_acc_right_shank(1);
                 pitch_gyro_right_shank = gw.integRate(1/f,gy,ini_pos);
-             end
+            
 
         case 'left shank'
             % Define the necessary signals.
@@ -861,11 +838,10 @@ for i = 1:length(Selection)
                                     var(gy),alpha1,alpha2,beta1,beta2,...
                                     pitch_acc_left_shank(1), marker_fsd)';
 
-            if strcmpi(comparation,'yes')
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_left_shank(1);
                 pitch_gyro_left_shank = gw.integRate(1/f,gy,ini_pos);
-            end
+
 
         case 'right thigh'
             % Define the necessary signals.
@@ -910,11 +886,9 @@ for i = 1:length(Selection)
                                     alpha1,alpha2,beta1,beta2,...
                                     pitch_acc_right_thigh(1), marker_fsd)';
 
-            if strcmpi(comparation,'yes')
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_right_thigh(1);
                 pitch_gyro_right_thigh = gw.integRate(1/f,gy,ini_pos);
-            end
 
         case 'left thigh'
             % Define the necessary signals.
@@ -960,11 +934,9 @@ for i = 1:length(Selection)
                                    var(gy),alpha1,alpha2,beta1,beta2,...
                                    pitch_acc_left_thigh(1), marker_fsd)';
 
-            if strcmpi(comparation,'yes')
                 % Integrate angular rate (just for comparation purposes).
                 ini_pos = pitch_acc_left_thigh(1);
                 pitch_gyro_left_thigh = gw.integRate(1/f,gy,ini_pos);
-            end
 
         case 'left arm'
             % Define the necessary signals.
@@ -1131,12 +1103,9 @@ for i = 1:length(Selection)
                                         gyroVarY, gyroVarZ, alpha, mu_gain,...
                                         f, state_ini);           
 
-            if strcmpi(comparation,'yes')
-
                 pitch_gyro = gw.integRate(1/f,gy,pitch_acc(1));
                 roll_gyro = gw.integRate(1/f,gx,roll_acc(1)); 
                 yaw_gyro = gw.integRate(1/f,gz,yaw_mag(1)); 
-            end
       end
 end
 
@@ -1169,7 +1138,8 @@ g_Z_center_trunk_1_C=g_Z_center_trunk_1_C';
 
 clearvars -except force_sensors time_FP force_cells ML_COP ...
 AP_COP force_sum midline filename_GW_total filename_FP index_GW ...
-file_excel j ...
+file_excel j showPlotsCheck showPlotsAccShank showPlotsAccTrunk ...
+showPlotsGyroShank ...
 a_X_center_trunk_3_C a_X_left_shank_1_C a_X_left_thigh_1_C...
 a_X_right_shank_1_C a_X_right_thigh_1_C a_Y_center_trunk_3_C ...
 a_Z_center_trunk_3_C a_Z_left_shank_1_C a_Z_left_thigh_1_C...
@@ -1227,7 +1197,7 @@ input_signal = sqrt(axC .^ 2 + azC .^ 2)';
 lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 100; lambda = 50;
 
 % LTSD (window size, decision threshold and overlapping).
-lwin_ltsd = 100;       threshold_ltsd = 4;   shift_ltsd = 10;
+lwin_ltsd = 100;       threshold_ltsd = 4.3;   shift_ltsd = 10;
 
 % 3) Get the decision signal of the FSD algorithm and the marker.
 [V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
@@ -1240,7 +1210,8 @@ lwin_ltsd = 100;       threshold_ltsd = 4;   shift_ltsd = 10;
     threshold_ltsd);
 [marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
     input_signal, lwin_ltsd, shift_ltsd);
-    
+
+if strcmpi(showPlotsCheck,'yes')    
 figure
 subplot(2, 1, 1)
 plot(T_fsd_expanded)
@@ -1264,103 +1235,82 @@ plot(input_signal)
 hold on
 plot(marker_ltsd + 1, 'r')
 legend('Input signal','LTSD decision')
-
+end
 % -------------------------------------------------------------------------
-% 4.2) Find the second positive peak of each cycle in the GaitWatch signal 
+% 4.1) Find the second positive peak of each cycle in the GaitWatch signal 
 %      of the z-axis of the acceleration of the shank, that is, the point 
 %      in time when the patient walks onto the force plate. 
 % -------------------------------------------------------------------------
 
-% Determinate the number of activity intervals (two by each cycle).
-[width_pulses,initcross,finalcross] = pulsewidth (marker_ltsd);
+% Set tuning parameter for peak detection in acceleration signal.
+threshold_pos = 1.05;    
+threshold_neg = -0.9;
 
-% Determine the beginning and end of each interval.
-initcross_first = round(initcross(1:2:length(initcross)));
-initcross_last = round(initcross(2:2:length(initcross)));
-finalcross_first = round(finalcross(1:2:length(finalcross)));
-finalcross_last = round(finalcross(2:2:length(finalcross)));
+% Determinate the initial and end point of each interval where we need to 
+% find the peaks, i.e, the first activity period of each cycle. 
+edges = find(diff(marker_ltsd)~=0);
+initcross = edges(1:4:length(edges));
+finalcross = edges(2:4:length(edges));
 
-% Obtain the peaks in each interval.
-for k = 1:length(initcross_last)
+% Calculate the peaks in each interval.
+for k = 1:length(initcross)
+
+    % Find all peaks smaller than threshold in each interval in the left 
+    % shank signal.
+    [neg_peak_values_l, neg_peak_locations_l] = findpeaks(...
+                            -a_Z_left_shank_1_C(initcross(k):finalcross(k)),...
+                            'minpeakheight', threshold_neg);
+
+    % Store the index of the highest negative peak.                                      
+    neg_peaks_l(k) = find(a_Z_left_shank_1_C(initcross(k):finalcross(k))== ...
+                    -max(neg_peak_values_l), 1, 'last') + initcross(k) - 1;
+                                     
  
-    % Extract the part of the right shank signal to obtain the peaks.
-    interv_first_r = a_Z_right_shank_1_C( ...
-                        initcross_first(k):finalcross_first(k));
-    interv_last_r = a_Z_right_shank_1_C( ...
-                        initcross_last(k):finalcross_last(k));
-    
-    % Extract the part of the left shank signal to obtain the peaks.
-    interv_first_l = a_Z_left_shank_1_C( ...
-                        initcross_first(k):finalcross_first(k));
-    interv_last_l = a_Z_left_shank_1_C( ...
-                        initcross_last(k):finalcross_last(k));
-                    
-    % Set up the threshold to fix the minimum value to detect a peak.
-    threshold = 1.4;
-    gap = 70;
-    
-    % Find the peaks of the first part of the cycle.
-    [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
-                                interv_first_r,'minpeakdistance', gap,...
-                               'minpeakheight', threshold);
-    [peak_values_first_l, peak_locations_first_l] = findpeaks( ...
-                                interv_first_l,'minpeakdistance', gap,...
-                                'minpeakheight', threshold);
-                
-    % Recalculate the threshold to find some peak. With this we garantee 
-    % the existence of at least two peaks in the interval to do the 
-    % synchronisation correctly. 
-    while(length(peak_locations_first_r) < 2)
+    % Find all peaks greater than threshold in the interval specified by the 
+    % minimum peak calculated above and the end of the interval.
+    [peak_values_l, peak_locations_l] = findpeaks(a_Z_left_shank_1_C(...
+                                        neg_peaks_l(k):finalcross(k)), ...
+                                        'minpeakheight', threshold_pos);
 
-         threshold = threshold - 0.001;
-         [peak_values_first_r, peak_locations_first_r] = findpeaks( ...
-                                 interv_first_r,'minpeakdistance', gap,...
-                                 'minpeakheight', threshold);
-    end
-    
-    while(length(peak_locations_first_l) < 2)
-
-         threshold = threshold - 0.01;
-         [peak_values_first_l, peak_locations_first_l] = findpeaks(...
-                                 interv_first_l,'minpeakdistance', gap,...
-                                'minpeakheight', threshold);    
-    end
-
-    % It's used the second peak for the synchronisation.
-     sync_peaks_r (k) = initcross_first(k) + peak_locations_first_r(2)-1;
-     sync_peaks_l (k) = initcross_first(k) + peak_locations_first_l(2)-1;
-     
-    % Reset the threshold to obtain the last peak of the each cycle.
-    threshold = 1.1;
-
-    % The last peak of the second interval of each cycle is the peak to
-    % identify the end of the cycle.
-    [peak_values_last_r, peak_locations_last_r] = findpeaks( ...
-                                 interv_last_r, 'minpeakheight', threshold);
+    % Store the index of the highest positive peak .                                      
+    sync_peaks_l(k) = find(...
+                     a_Z_left_shank_1_C(neg_peaks_l(k):finalcross(k)) ...
+                     == max(peak_values_l), 1, 'first') + neg_peaks_l(k) - 1;
                              
-    [peak_values_last_l, peak_locations_last_l] = findpeaks( ...
-                                 interv_last_l, 'minpeakheight', threshold);
+    % Find all peaks smaller than threshold in each interval in the right 
+    % shank signal.
+    [neg_peak_values_r, neg_peak_locations_r] = findpeaks(...
+                            -a_Z_right_shank_1_C(initcross(k):finalcross(k)),...
+                            'minpeakheight', threshold_neg);
 
-    % Rescale the index of the peak to adjust its position at the original
-    % signal.                         
-    last_peaks_r(k) = initcross_last(k) + ...
-                      peak_locations_last_r(length(peak_locations_last_r));
-                                              
-    last_peaks_l(k) = initcross_last(k) + ...
-                      peak_locations_last_l(length(peak_locations_last_l));      
+    % Store the index of the highest negative peak.                                      
+    neg_peaks_r(k) = find(a_Z_right_shank_1_C(initcross(k):finalcross(k))== ...
+                    -max(neg_peak_values_r), 1, 'last') + initcross(k) - 1;
+                                     
+ 
+    % Find all peaks greater than threshold in the interval specified by the 
+    % minimum peak calculated above and the end of the interval.
+    [peak_values_r, peak_locations_r] = findpeaks(a_Z_right_shank_1_C(...
+                                        neg_peaks_r(k):finalcross(k)), ...
+                                        'minpeakheight', threshold_pos);
+
+    % Store the index of the highest positive peak .                                      
+    sync_peaks_r(k) = find(...
+                     a_Z_right_shank_1_C(neg_peaks_r(k):finalcross(k)) ...
+                     == max(peak_values_r), 1, 'first') + neg_peaks_r(k) - 1;
+
 end
 
 % Evaluate if the patient steps with the left or right limb first for each
 % cycle and store the first peak in sync_peaks, respectively, then sort it.
-sync_peaks = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
+% In this case, we use the acceleration data.
+sync_peaks_acc = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
-sync_peaks = sort(sync_peaks);
+sync_peaks_acc = sort(sync_peaks_acc);
 
-% Store last peak of the latest of both signals to make sure both signals
-% are completely included.
-last_peaks = [last_peaks_r(last_peaks_l < last_peaks_r), ...
-              last_peaks_l(last_peaks_r < last_peaks_l)];
-last_peaks = sort(last_peaks);
+
+% Store last peak of each cycle.
+ last_peaks = edges(4:4:length(edges));
 
 % -------------------------------------------------------------------------
 % 4.2 Store seperate GaitWatch cycles in a cell array of time series
@@ -1376,7 +1326,7 @@ add_samples = floor(add_time * fs_GW);
 % Create cell array containing the time series of the seperate cycles of 
 % the acceleration of the trunk.
 a_trunk = createTimeseriesGW([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
-                              a_Z_center_trunk_3_C], time_GW, sync_peaks, ...
+                              a_Z_center_trunk_3_C], time_GW, sync_peaks_acc, ...
                               last_peaks, add_samples, ...
                               'Acceleration trunk', 'seconds', 'g');
                         
@@ -1384,48 +1334,48 @@ a_trunk = createTimeseriesGW([a_X_center_trunk_3_C; a_Y_center_trunk_3_C; ...
 % the acceleration of the thighs.
 a_thighs = createTimeseriesGW([a_X_left_thigh_1_C;  a_Z_left_thigh_1_C; ...
                                a_X_right_thigh_1_C; a_Z_right_thigh_1_C], ...
-                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                                'Acceleration thighs', 'seconds', 'g');
                         
 % Create cell array containing the time series of the seperate cycles of 
 % the acceleration of the shanks.
 a_shanks = createTimeseriesGW([a_X_left_shank_1_C;  a_Z_left_shank_1_C; ...
                                a_X_right_shank_1_C; a_Z_right_shank_1_C], ...
-                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                                'Acceleration shanks', 'seconds', 'g');
                           
                           
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the trunk.
 g_trunk = createTimeseriesGW([g_X_center_trunk_1_C; g_Y_center_trunk_1_C; ...
-                              g_Z_center_trunk_1_C], time_GW, sync_peaks, ...
+                              g_Z_center_trunk_1_C], time_GW, sync_peaks_acc, ...
                               last_peaks, add_samples, ...
                               'Angular rate trunks', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the thighs.
 g_thighs = createTimeseriesGW([g_Y_left_thigh_1_C; g_Y_right_thigh_1_C], ...
-                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                                'Angular rate thighs', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the shanks.
 g_shanks = createTimeseriesGW([g_Y_left_shank_1_C; g_Y_right_shank_1_C], ...
-                               time_GW, sync_peaks, last_peaks, add_samples, ...
+                               time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                                'Angular rate shanks', 'seconds', 'deg/s');
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the angular rate of the arms.
 g_arms = createTimeseriesGW([g_X_left_arm_1_C; g_Y_left_arm_1_C; ...
                              g_X_right_arm_1_C; g_Y_right_arm_1_C], ...
-                             time_GW, sync_peaks, last_peaks, add_samples, ...
+                             time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                              'Angular rate arms', 'seconds', 'deg/s');
                              
                              
 % Create cell array containing the time series of the seperate cycles of 
 % the magnetic field at the trunk.
 h_trunk = createTimeseriesGW([h_X_center_trunk_3_C; h_Y_center_trunk_3_C], ...
-                              time_GW, sync_peaks, last_peaks, add_samples, ...
+                              time_GW, sync_peaks_acc, last_peaks, add_samples, ...
                               'Magnetic field trunk', 'seconds', 'Gauss');
                           
 
@@ -1433,7 +1383,7 @@ h_trunk = createTimeseriesGW([h_X_center_trunk_3_C; h_Y_center_trunk_3_C], ...
 % the pitch of the thighs (computed from acceleration).
 pitch_thighs_acc = createTimeseriesGW([pitch_acc_left_thigh; ...
                                        pitch_acc_right_thigh], ...
-                                       time_GW, sync_peaks, last_peaks, ...
+                                       time_GW, sync_peaks_acc, last_peaks, ...
                                        add_samples, ['Pitch thighs ', ...
                                        '(computed from acceleration)'], ...
                                        'seconds', 'deg');
@@ -1442,7 +1392,7 @@ pitch_thighs_acc = createTimeseriesGW([pitch_acc_left_thigh; ...
 % the pitch of the shanks (computed from acceleration).
 pitch_shanks_acc = createTimeseriesGW([pitch_acc_left_shank; ...
                                        pitch_acc_right_shank], ...
-                                       time_GW, sync_peaks, last_peaks, ...
+                                       time_GW, sync_peaks_acc, last_peaks, ...
                                        add_samples, ['Pitch shanks ', ...
                                        '(computed from acceleration)'], ...
                                        'seconds', 'deg');
@@ -1450,7 +1400,7 @@ pitch_shanks_acc = createTimeseriesGW([pitch_acc_left_shank; ...
 % Create cell array containing the time series of the seperate cycles of 
 % the pitch of the trunk (GKF).
 pitch_trunk_GKF = createTimeseriesGW(pitch_GKF_center_trunk, ...
-                                     time_GW, sync_peaks, last_peaks, ...
+                                     time_GW, sync_peaks_acc, last_peaks, ...
                                      add_samples, 'Pitch trunk (GKF)', ...
                                      'seconds', 'deg');
 
@@ -1458,7 +1408,7 @@ pitch_trunk_GKF = createTimeseriesGW(pitch_GKF_center_trunk, ...
 % the pitch of the thighs.
 pitch_thighs_GKF = createTimeseriesGW([pitch_GKF_left_thigh; ...
                                        pitch_GKF_right_thigh], ...
-                                      time_GW, sync_peaks, last_peaks, ...
+                                      time_GW, sync_peaks_acc, last_peaks, ...
                                       add_samples, 'Pitch thighs (GKF)', ...
                                       'seconds', 'deg');
                          
@@ -1466,7 +1416,7 @@ pitch_thighs_GKF = createTimeseriesGW([pitch_GKF_left_thigh; ...
 % the pitch of the shanks (GKF).
 pitch_shanks_GKF = createTimeseriesGW([pitch_GKF_left_shank; ...
                                        pitch_GKF_right_shank], ...
-                                       time_GW, sync_peaks, last_peaks, ...
+                                       time_GW, sync_peaks_acc, last_peaks, ...
                                        add_samples, 'Pitch thighs (GKF)', ...
                                        'seconds', 'deg');
                          
@@ -1474,7 +1424,7 @@ pitch_shanks_GKF = createTimeseriesGW([pitch_GKF_left_shank; ...
 % the pitch of the arms (computed from gyroscope).
 pitch_arms_gyro = createTimeseriesGW([pitch_gyro_left_arm; ...
                                       pitch_gyro_right_arm], ...
-                                      time_GW, sync_peaks, last_peaks, ...
+                                      time_GW, sync_peaks_acc, last_peaks, ...
                                       add_samples, ['Pitch arms ', ...
                                       '(computed from gyroscope)'], ...
                                       'seconds', 'deg');
@@ -1483,7 +1433,7 @@ pitch_arms_gyro = createTimeseriesGW([pitch_gyro_left_arm; ...
 % the pitch of the thighs (computed from gyroscope).
 pitch_thighs_gyro = createTimeseriesGW([pitch_gyro_left_thigh; ...
                                         pitch_gyro_right_thigh], ...
-                                        time_GW, sync_peaks, last_peaks, ...
+                                        time_GW, sync_peaks_acc, last_peaks, ...
                                         add_samples, ['Pitch thighs ', ...
                                         '(computed from gyroscope)'], ...
                                         'seconds', 'deg');
@@ -1492,7 +1442,7 @@ pitch_thighs_gyro = createTimeseriesGW([pitch_gyro_left_thigh; ...
 % the pitch of the shanks (computed from gyroscope).
 pitch_shanks_gyro = createTimeseriesGW([pitch_gyro_left_shank; ...
                                         pitch_gyro_right_shank], ...
-                                        time_GW, sync_peaks, last_peaks, ...
+                                        time_GW, sync_peaks_acc, last_peaks, ...
                                         add_samples, ['Pitch shanks ', ...
                                         '(computed from gyroscope)'], ...
                                         'seconds', 'deg');
@@ -1500,14 +1450,14 @@ pitch_shanks_gyro = createTimeseriesGW([pitch_gyro_left_shank; ...
 % Create cell array containing the time series of the seperate cycles of 
 % the pitch of the trunk (KF).
 pitch_trunk_KF = createTimeseriesGW(pitch_KF_center_trunk, time_GW, ...
-                                    sync_peaks, last_peaks, add_samples, ...
+                                    sync_peaks_acc, last_peaks, add_samples, ...
                                     'Pitch trunk (KF)', 'seconds', 'deg');
                          
 % Create cell array containing the time series of the seperate cycles of 
 % the pitch of the thighs (KF).
 pitch_thighs_KF = createTimeseriesGW([pitch_KF_left_thigh; ...
                                       pitch_KF_right_thigh], ...
-                                      time_GW, sync_peaks, last_peaks, ...
+                                      time_GW, sync_peaks_acc, last_peaks, ...
                                       add_samples, 'Pitch thighs (KF)', ...
                                       'seconds', 'deg');
                          
@@ -1515,51 +1465,51 @@ pitch_thighs_KF = createTimeseriesGW([pitch_KF_left_thigh; ...
 % the pitch of the shanks (KF).
 pitch_shanks_KF = createTimeseriesGW([pitch_KF_left_shank; ...
                                       pitch_KF_right_shank], ...
-                                      time_GW, sync_peaks, last_peaks, ...
+                                      time_GW, sync_peaks_acc, last_peaks, ...
                                       add_samples, 'Pitch shanks (KF)', ...
                                       'seconds', 'deg');
                          
 % Create cell array containing the time series of the seperate cycles of 
 % the roll of the trunk (GKF).
 roll_trunk_GKF = createTimeseriesGW(roll_GKF_center_trunk, time_GW, ...
-                                    sync_peaks, last_peaks, add_samples, ...
+                                    sync_peaks_acc, last_peaks, add_samples, ...
                                    'Roll trunk (GKF)', 'seconds', 'deg');
                          
 % Create cell array containing the time series of the seperate cycles of 
 % the roll of the trunk (KF).
 roll_trunk_KF = createTimeseriesGW(roll_KF_center_trunk, time_GW, ...
-                                   sync_peaks, last_peaks, add_samples, ...
+                                   sync_peaks_acc, last_peaks, add_samples, ...
                                    'Roll trunk (KF)', 'seconds', 'deg');
                          
 % Create cell array containing the time series of the seperate cycles of 
 % the roll of the arms (GKF).
 roll_arms_GKF = createTimeseriesGW([roll_gyro_left_arm; ...
                                     roll_gyro_right_arm], time_GW, ...
-                                    sync_peaks, last_peaks, add_samples, ...
+                                    sync_peaks_acc, last_peaks, add_samples, ...
                                     'Roll arms (gyroscope)', 'seconds', 'deg');
                          
 % Create cell array containing the time series of the seperate cycles of 
 % the yaw of the trunk (GKF).
 yaw_trunk_GKF = createTimeseriesGW(yaw_GKF_center_trunk, time_GW, ...
-                                   sync_peaks, last_peaks, add_samples, ...
+                                   sync_peaks_acc, last_peaks, add_samples, ...
                                    'Yaw trunk (GKF)', 'seconds', 'deg');
 
 % Create cell array containing the time series of the seperate cycles of 
 % the yaw of the trunk (2GKF).
 yaw_trunk_2GKF = createTimeseriesGW(yaw_2GKF_center_trunk, time_GW, ...
-                                    sync_peaks, last_peaks, add_samples, ...
+                                    sync_peaks_acc, last_peaks, add_samples, ...
                                     'Yaw trunk (2GKF)', 'seconds', 'deg');
 
 % Create cell array containing the time series of the seperate cycles of 
 % the yaw of the trunk (KF).
 yaw_trunk_KF = createTimeseriesGW(yaw_KF_center_trunk, time_GW, ...
-                                  sync_peaks, last_peaks, add_samples, ...
+                                  sync_peaks_acc, last_peaks, add_samples, ...
                                   'Yaw trunk (KF)', 'seconds', 'deg');
 
 % Create cell array containing the time series of the seperate cycles of 
 % the yaw of the trunk (2KF).
 yaw_trunk_2KF = createTimeseriesGW(yaw_2KF_center_trunk, time_GW, ...
-                                   sync_peaks, last_peaks, add_samples, ...
+                                   sync_peaks_acc, last_peaks, add_samples, ...
                                   'Yaw trunk (2KF)', 'seconds', 'deg');
 
 
@@ -1570,7 +1520,7 @@ yaw_trunk_2KF = createTimeseriesGW(yaw_2KF_center_trunk, time_GW, ...
 % -------------------------------------------------------------------------
 
 % Compute the points in time where the synchronisation peaks appear.
-sync_peak_times = time_GW(sync_peaks);
+sync_peak_times = time_GW(sync_peaks_acc);
 
 % Create cell array containing the time series of the seperate cycles of
 % the four force sensors.
@@ -1606,66 +1556,24 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
  name_file = textscan(filename_FP,'%s','Delimiter',',');
  name_file = char(name_file{1}{1});
  name_file = strcat( name_file,'_synchronised.mat');
- 
- save(['../../data/Synchronised/' ...
-       name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
-       'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
-       'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
-       'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
-       'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
-       'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
-       'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
-       'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
-       'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF');
+%  
+%  save(['../../data/Synchronised/' ...
+%        name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
+%        'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
+%        'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
+%        'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
+%        'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
+%        'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
+%        'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
+%        'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
+%        'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF');
   
   fprintf('\nSaved synchronised signals!\n\n\n');
   
- % Plots for verification.
-
- % All peaks.
-%  subplot(2, 1, 1);
-%  plot(time_GW, a_Z_left_shank_1_C);
-%  hold on;
-%  plot(time_GW(peak_locations_l), a_Z_left_shank_1_C(peak_locations_l), 'r.');
-% 
-%  title(['Acceleration left shank with all detected peaks greater than ' ...
-%        'the threshold']);
-%  xlabel('Time in s');
-%  ylabel('Acceleration in g');
-% 
-%  subplot(2, 1, 2)
-%  plot(time_GW, a_Z_right_shank_1_C, 'g');
-%  hold on;
-%  plot(time_GW(peak_locations_r), a_Z_right_shank_1_C(peak_locations_r), 'm.');
-
-%  title(['Acceleration right shank with all detected peaks greater than ' ...
-%        'the threshold']);
-%  xlabel('Time in s');
-%  ylabel('Acceleration in g');
- 
- 
-%  % Last detected peaks of each partial cycle.
-% figure();
-% subplot(2, 1, 1);
-% plot(time_GW, a_Z_left_shank_1_C);
-% hold on;
-% plot(time_GW(last_first_peaks_l), a_Z_left_shank_1_C(last_first_peaks_l), 'r.');
-% 
-% title('Acceleration left shank with last peak of each  partial cycle');
-% xlabel('Time in s');
-% ylabel('Acceleration in g');
-% 
-% subplot(2, 1, 2)
-% plot(time_GW, a_Z_right_shank_1_C, 'g');
-% hold on;
-% plot(time_GW(last_first_peaks_r), a_Z_right_shank_1_C(last_first_peaks_r), 'm.');
-% 
-% title('Acceleration right shank with last peak of each partial cycle');  
-% xlabel('Time in s');
-% ylabel('Acceleration in g');
- 
+% Plots.
 
 % Detected sync-peaks.
+if strcmpi(showPlotsAccShank,'yes')
 figure()
 subplot(2, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
@@ -1695,7 +1603,7 @@ plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
      a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2 , 'Color',[.7 .7 .7]);
+hx = graph2d.constantline(time_GW(sync_peaks_acc), 'LineStyle',':', 'LineWidth', 2 , 'Color',[.7 .7 .7]);
 changedependvar(hx,'x');
 
 title(['Acceleration of z-axis of left shank with synchronisation lines and red marker when ' ...
@@ -1711,7 +1619,7 @@ plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
      a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks), 'LineStyle',':', 'LineWidth', 2, 'Color',[.7 .7 .7]);
+hx = graph2d.constantline(time_GW(sync_peaks_acc), 'LineStyle',':', 'LineWidth', 2, 'Color',[.7 .7 .7]);
 changedependvar(hx,'x');
 
 title(['Acceleration of z-axis of right shank with synchronisation lines and magenta marker ' ...
@@ -1787,8 +1695,8 @@ ylabel('Force in N');
 legend(['Left front foot', 'Left back foot', 'Right front foot', 'Right back foot']);
 
 axis([0, 300, 0, 800]);
-
-
+end
+if strcmpi(showPlotsCheck,'yes')
 figure();
 subplot(3, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
@@ -1968,8 +1876,98 @@ xlabel('Time in s');
 ylabel('Force in N');
 
 axis([150, 152, 0, 800]);
+end
 
+% Synchronisation with the gyroscope signal.
+
+% Set tuning parameter for peak detection in gyroscope signal.
+%threshold_pos = 100;    
+threshold_neg = -100;
+% Calculate the peaks in each interval.
+for k = 1:length(initcross)
+
+    % Find all peaks smaller than threshold in each interval in the left 
+    % shank signal.
+    [neg_peak_values_l, neg_peak_locations_l] = findpeaks(...
+                            -g_Y_left_shank_1_C(initcross(k):finalcross(k)),...
+                            'minpeakheight', threshold_neg);
+
+    % Store the index of the highest negative peak.                                      
+    neg_peaks_l(k) = find(g_Y_left_shank_1_C(initcross(k):finalcross(k))== ...
+                    -max(neg_peak_values_l), 1, 'last') + initcross(k) - 1;
+                                     
  
+    % Find all peaks greater than threshold in the interval specified by the 
+    % minimum peak calculated above and the end of the interval.
+    [peak_values_l, peak_locations_l] = findpeaks(g_Y_left_shank_1_C(...
+                                        neg_peaks_l(k):finalcross(k)));
+
+    % Store the index of the highest positive peak .                                      
+    sync_peaks_l(k) = find(...
+                     g_Y_left_shank_1_C(neg_peaks_l(k):finalcross(k)) ...
+                     == max(peak_values_l), 1, 'first') + neg_peaks_l(k) - 1;
+                             
+    % Find all peaks smaller than threshold in each interval in the right 
+    % shank signal.
+    [neg_peak_values_r, neg_peak_locations_r] = findpeaks(...
+                            -g_Y_right_shank_1_C(initcross(k):finalcross(k)),...
+                            'minpeakheight', threshold_neg);
+
+    % Store the index of the highest negative peak.                                      
+    neg_peaks_r(k) = find(g_Y_right_shank_1_C(initcross(k):finalcross(k))== ...
+                    -max(neg_peak_values_r), 1, 'last') + initcross(k) - 1;
+                                     
+ 
+    % Find all peaks greater than threshold in the interval specified by the 
+    % minimum peak calculated above and the end of the interval.
+    [peak_values_r, peak_locations_r] = findpeaks(g_Y_right_shank_1_C(...
+                                        neg_peaks_r(k):finalcross(k)));
+
+    % Store the index of the highest positive peak .                                      
+    sync_peaks_r(k) = find(...
+                     g_Y_right_shank_1_C(neg_peaks_r(k):finalcross(k)) ...
+                     == max(peak_values_r), 1, 'first') + neg_peaks_r(k) - 1;
+
+end
+
+% Evaluate if the patient steps with the left or right limb first for each
+% cycle and store the first peak in sync_peaks, respectively, then sort it.
+% In this case, we use the gyroscopo data.
+sync_peaks_gyro = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
+              sync_peaks_l(sync_peaks_r > sync_peaks_l)];
+sync_peaks_gyro = sort(sync_peaks_acc);
+
+% Detected sync-peaks.
+if strcmpi(showPlotsGyroShank,'yes')
+figure()
+subplot(2, 1, 1);
+plot(time_GW, g_Y_left_shank_1_C);
+hold on;
+plot(time_GW(sync_peaks_l), g_Y_left_shank_1_C(sync_peaks_l), 'r.');
+
+title('Acceleration left shank with detected sync-peaks left');
+xlabel('Time in s');
+ylabel('??');
+
+subplot(2, 1, 2)
+plot(time_GW, g_Y_right_shank_1_C, 'g');
+hold on;
+plot(time_GW(sync_peaks_r), g_Y_right_shank_1_C(sync_peaks_r), 'm.');
+
+title('Gyroscope right shank with detected sync-peaks right');   
+xlabel('Time in s');
+ylabel('?');
+
+figure ()
+plot(time_GW(sync_peaks_acc), a_Z_right_shank_1_C(sync_peaks_acc),'m.');
+hold on;
+plot(time_GW(sync_peaks_gyro),g_Y_right_shank_1_C( sync_peaks_gyro), 'r.');
+hx = graph2d.constantline(time_GW(sync_peaks_gyro), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'g');
+changedependvar(hx,'x');
+title('Comparation between peaks detection in acc and gyro signals');  
+
+
+end
   
 end
 
