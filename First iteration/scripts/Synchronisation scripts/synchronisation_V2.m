@@ -1969,6 +1969,11 @@ sync_peaks_gyro = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks_gyro = sort(sync_peaks_gyro);
 
+% Correlation between both detected sync-peaks arrays: acceletometer and
+% gyroscope:
+correlation_acc_gyro = xcorr(sync_peaks_gyro, sync_peaks_acc);
+max_correlation = correlation_acc_gyro(round(length(correlation_acc_gyro)/2));
+
 % Detected sync-peaks.
 if strcmpi(showPlotsGyroShank,'yes')
 figure()
@@ -1990,6 +1995,7 @@ title('Orientation (Gyroscope) of the right shank with detected sync-peaks right
 xlabel('Time in s');
 ylabel('Angle (deg)');
 
+% Comparation between peaks detection in Acc and Gyro signals.
 figure ()
 plot(time_GW(sync_peaks_acc), a_Z_right_shank_1_C(sync_peaks_acc),'m.');
 hold on;
@@ -1997,8 +2003,19 @@ plot(time_GW(sync_peaks_gyro),g_Y_right_shank_1_C( sync_peaks_gyro), 'r.');
 hx = graph2d.constantline(time_GW(sync_peaks_gyro), 'LineStyle',':',...
     'LineWidth', 2 , 'Color', 'g');
 changedependvar(hx,'x');
+legend ('Acc', 'Gyro', 'Location', 'NorthEastOutside');
 title('Comparation between peaks detection in Acc and Gyro signals');  
 
+% Correlation between peaks detection in Acc and Gyro signals.
+figure ()
+plot(correlation_acc_gyro);
+hold on;
+plot(round(length(correlation_acc_gyro)/2),max_correlation, 'r.');
+hx = graph2d.constantline(round(length(correlation_acc_gyro)/2),...
+    'LineStyle',':', 'LineWidth', 2 , 'Color', 'g');
+changedependvar(hx,'x');
+
+title('Correlation between peaks detection in Acc and Gyro signals');
 
 end
   
