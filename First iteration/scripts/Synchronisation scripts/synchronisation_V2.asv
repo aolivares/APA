@@ -1641,17 +1641,14 @@ subplot(3, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
-     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)),...
-     'r.', 'markersize', 20);
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
@@ -1664,17 +1661,14 @@ subplot(3, 1, 2)
 plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     'm.', 'markersize', 20);
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
@@ -1688,20 +1682,17 @@ plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
      [4, max(size(fs_data))]));
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title('Exemplary the course of the synchronised signals of the four force sensors.');
 xlabel('Time in s');
 ylabel('Force in N');
-legend(['Left front foot', 'Left back foot', 'Right front foot', ...
-    'Right back foot']);
+legend(['Left front foot', 'Left back foot', 'Right front foot', 'Right back foot']);
 
 axis([0, 300, 0, 800]);
 end
@@ -1711,16 +1702,14 @@ subplot(3, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
-     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)),...
-     'r.', 'markersize', 20);
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
 hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the ' ...
@@ -1733,17 +1722,14 @@ subplot(3, 1, 2)
 plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)),...
-     'm.', 'markersize', 20);
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the right shank with synchronisation lines and red marker when the ' ...
@@ -1757,13 +1743,11 @@ plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
      [4, max(size(fs_data))]));
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title('Exemplary the course of the synchronised signals of the four force sensors.');
@@ -1778,17 +1762,14 @@ subplot(3, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
-     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.',...
-     'markersize', 20);
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the' ...
@@ -1801,17 +1782,14 @@ subplot(3, 1, 2)
 plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     'm.', 'markersize', 20);
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
@@ -1825,13 +1803,11 @@ plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
      [4, max(size(fs_data))]));
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title('Exemplary the synchronised trace of the force sensor of the left front foot');
@@ -1846,17 +1822,14 @@ subplot(3, 1, 1);
 plot(time_GW, a_Z_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l(sync_peaks_r > sync_peaks_l)), ...
-     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', ...
-     'markersize', 20);
+     a_Z_left_shank_1_C(sync_peaks_l(sync_peaks_r > sync_peaks_l)), 'r.', 'markersize', 20);
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the left shank with synchronisation lines and red marker when the' ...
@@ -1869,17 +1842,14 @@ subplot(3, 1, 2)
 plot(time_GW, a_Z_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r(sync_peaks_l > sync_peaks_r)), ...
-     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)),...
-     'm.', 'markersize', 20);
+     a_Z_right_shank_1_C(sync_peaks_r(sync_peaks_l > sync_peaks_r)), 'm.', 'markersize', 20);
  
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title(['Acceleration of the z-axis of the right shank with synchronisation lines and magenta marker ' ...
@@ -1894,13 +1864,11 @@ plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
 
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
+hx = graph2d.constantline(time_GW(sync_peaks_l), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'r');
 changedependvar(hx,'x');
 
 % Vertical line at the location of sync_peaks.
-hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
+hx = graph2d.constantline(time_GW(sync_peaks_r), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
 title('Exemplary the synchronised trace of the force sensor of the left front foot');
@@ -1912,9 +1880,9 @@ end
 
 % Synchronisation with the gyroscope signal.
 
-% Set tuning parameter for peak detection in gyroscope signal. 
+% Set tuning parameter for peak detection in gyroscope signal.
+%threshold_pos = 100;    
 threshold_neg = -100;
-
 % Calculate the peaks in each interval.
 for k = 1:length(initcross)
 
@@ -1994,10 +1962,9 @@ figure ()
 plot(time_GW(sync_peaks_acc), a_Z_right_shank_1_C(sync_peaks_acc),'m.');
 hold on;
 plot(time_GW(sync_peaks_gyro),g_Y_right_shank_1_C( sync_peaks_gyro), 'r.');
-hx = graph2d.constantline(time_GW(sync_peaks_gyro), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'g');
+hx = graph2d.constantline(time_GW(sync_peaks_gyro), 'LineStyle',':', 'LineWidth', 2 , 'Color', 'g');
 changedependvar(hx,'x');
-title('Comparation between peaks detection in Acc and Gyro signals');  
+title('Comparation between peaks detection in acc and gyro signals');  
 
 
 end
