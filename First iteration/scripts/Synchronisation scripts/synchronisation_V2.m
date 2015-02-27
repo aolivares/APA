@@ -1913,59 +1913,6 @@ axis([150, 152, 0, 800]);
 end
 
 % Synchronisation with the gyroscope signal.
-input_signal = sqrt(g_Y_right_shank_1_C .^ 2 + g_Y_right_shank_1_C .^ 2)';
-%input_signal= g_Y_right_shank_1_C';
-
-% FSD (window size, decision threshold, overlapping and normalization
-% factor). 
-lwin_fsd = 100;  threshold_fsd = 9;  shift_fsd = 100; lambda = 50;
-
-% LTSD (window size, decision threshold and overlapping).
-lwin_ltsd = 100;       threshold_ltsd = 9;   shift_ltsd = 10;
-
-% 3) Get the decision signal of the FSD algorithm and the marker.
-[V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
-    threshold_fsd);
-[marker_fsd, T_fsd_expanded] = wag.compEstMark(V_fsd, T_fsd, input_signal, ...
-    lwin_fsd, shift_fsd);
-
-% 4) Get the decision signal of the LTSD algorithm and the marker.
-[V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
-    threshold_ltsd);
-[marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
-    input_signal, lwin_ltsd, shift_ltsd);
-
-if strcmpi(showPlotsCheck,'yes')    
-figure
-subplot(2, 1, 1)
-plot(T_fsd_expanded)
-hold on
-plot(threshold_fsd * ones(1, length(T_fsd_expanded)), 'r')
-legend('Detector output (FSD)', 'Detection threshold')
-subplot(2, 1, 2)
-plot(T_ltsd_expanded)
-hold on
-plot(threshold_ltsd * ones(1, length(T_ltsd_expanded)), 'r')
-legend('Detector output (LTSD)', 'Detection threshold')
-
-figure
-subplot(2, 1, 1)
-plot(input_signal)
-hold on
-plot(marker_fsd.*400, 'r')
-legend('Input signal','FSD decision')
-subplot(2, 1, 2)
-plot(input_signal)
-hold on
-plot(marker_ltsd.*400, 'r')
-legend('Input signal','LTSD decision')
-end
-
-% Determinate the initial and end point of each interval where we need to 
-% find the peaks, i.e, the first activity period of each cycle. 
-edges = find(diff(marker_ltsd)~=0);
-initcross = edges(1:4:length(edges));
-finalcross = edges(2:4:length(edges));
 
 % Calculate the peaks in each interval.
 for k = 1:length(initcross)                                 
@@ -1999,6 +1946,14 @@ sync_peaks_gyro = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks_gyro = sort(sync_peaks_gyro);
 
+% Calculate the mean between the peaks detected with the acceleration
+% signal and gyroscope signal.
+sync_peaks_mean = (sync_peaks_gyro + sync_peaks_acc)./2;
+
+% It's created this variable to show a bar plot.
+sync_peaks = [sync_peaks_acc; sync_peaks_mean ;sync_peaks_gyro]'; 
+sync_peaks = sync_peaks./[sync_peaks_mean; sync_peaks_mean; sync_peaks_mean]';
+
 % Detected sync-peaks.
 if strcmpi(showPlotsGyroShank,'yes')
 figure()
@@ -2031,6 +1986,11 @@ changedependvar(hx,'x');
 legend ('Acc', 'Gyro', 'Location', 'NorthEastOutside');
 title('Comparation between peaks detection in Acc and Gyro signals');  
 
+figure ()
+bar (sync_peaks,'group');
+axis([0, length(sync_peaks_mean)+1, 0.98, 1.005]);
+legend ('Acc','Mean' , 'Gyro', 'Location', 'NorthEastOutside');
+title('Difference between peaks detection in Acc and Gyro signals'); 
 end
  
 % Show other signals of the trunk for acceletometer data and the gyroscope
