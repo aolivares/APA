@@ -59,7 +59,7 @@ clear all; close all; clc;
 showPlotsCheck = 'yes';
 showPlotsAccShank = 'yes';
 showPlotsGyroShank = 'yes';
-showPlotsGyroTrunk = 'yes';
+showPlotsGyroTrunk = 'no';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -1110,27 +1110,29 @@ for i = 1:length(Selection)
 end
 
 % Turn some signals into row vectors to use them easier afterwards.
-a_X_left_shank_1_C=a_X_left_shank_1_C';
-a_X_left_thigh_1_C=a_X_left_thigh_1_C';
-a_X_right_shank_1_C=a_X_right_shank_1_C';
-a_X_right_thigh_1_C=a_X_right_thigh_1_C';
+a_X_left_shank_1_C =a_X_left_shank_1_C';
+a_X_left_thigh_1_C =a_X_left_thigh_1_C';
+a_X_right_shank_1_C =a_X_right_shank_1_C';
+a_X_right_thigh_1_C =a_X_right_thigh_1_C';
 
-a_Z_left_shank_1_C=a_Z_left_shank_1_C';
-a_Z_left_thigh_1_C=a_Z_left_thigh_1_C';
-a_Z_right_shank_1_C=a_Z_right_shank_1_C';
+a_Z_left_shank_1_C =a_Z_left_shank_1_C';
+a_Z_left_thigh_1_C =a_Z_left_thigh_1_C';
+a_Z_right_shank_1_C =a_Z_right_shank_1_C';
 a_Z_right_thigh_1_C=a_Z_right_thigh_1_C';
 
-g_X_center_trunk_1_C=g_X_center_trunk_1_C';
-g_X_left_arm_1_C=g_X_left_arm_1_C';
-g_X_right_arm_1_C=g_X_right_arm_1_C';
-g_Y_center_trunk_1_C=g_Y_center_trunk_1_C';
-g_Y_left_shank_1_C=g_Y_left_shank_1_C';
-g_Y_left_arm_1_C=g_Y_left_arm_1_C';
-g_Y_left_thigh_1_C=g_Y_left_thigh_1_C';
-g_Y_right_shank_1_C=g_Y_right_shank_1_C';
-g_Y_right_arm_1_C=g_Y_right_arm_1_C';
-g_Y_right_thigh_1_C=g_Y_right_thigh_1_C';
-g_Z_center_trunk_1_C=g_Z_center_trunk_1_C';  
+% Subtract the mode of the gyroscope's signals to centrate these signals in
+% the 0 value.
+g_X_center_trunk_1_C = g_X_center_trunk_1_C' - mode(g_X_center_trunk_1_C);
+g_X_left_arm_1_C = g_X_left_arm_1_C' - mode(g_X_left_arm_1_C);
+g_X_right_arm_1_C = g_X_right_arm_1_C' - mode(g_X_right_arm_1_C);
+g_Y_center_trunk_1_C = g_Y_center_trunk_1_C' - mode(g_Y_center_trunk_1_C);
+g_Y_left_shank_1_C= g_Y_left_shank_1_C' - mode(g_Y_left_shank_1_C);
+g_Y_left_arm_1_C = g_Y_left_arm_1_C' - mode(g_Y_left_arm_1_C);
+g_Y_left_thigh_1_C = g_Y_left_thigh_1_C' - mode(g_Y_left_thigh_1_C);
+g_Y_right_shank_1_C = g_Y_right_shank_1_C' - mode (g_Y_right_shank_1_C);
+g_Y_right_arm_1_C = g_Y_right_arm_1_C' - mode(g_Y_right_arm_1_C);
+g_Y_right_thigh_1_C = g_Y_right_thigh_1_C' - mode(g_Y_right_thigh_1_C);
+g_Z_center_trunk_1_C = g_Z_center_trunk_1_C' - mode(g_Z_center_trunk_1_C);  
 
 % ---------------------------------------------------------------------
 % 3.9) Clear variables
@@ -1912,53 +1914,81 @@ end
 
 % Synchronisation with the gyroscope signal.
 
-% Set tuning parameter for peak detection in gyroscope signal. 
-threshold_neg = -100;
+% input_signal = sqrt(g_Y_left_shank_1_C .^ 2 + g_Y_left_shank_1_C .^ 2)';
+% 
+% % FSD (window size, decision threshold, overlapping and normalization
+% % factor). 
+% lwin_fsd = 100;  threshold_fsd = 18;  shift_fsd = 100; lambda = 50;
+% 
+% % LTSD (window size, decision threshold and overlapping).
+% lwin_ltsd = 100;       threshold_ltsd = 5;   shift_ltsd = 10;
+% 
+% % 3) Get the decision signal of the FSD algorithm and the marker.
+% [V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
+%     threshold_fsd);
+% [marker_fsd, T_fsd_expanded] = wag.compEstMark(V_fsd, T_fsd, input_signal, ...
+%     lwin_fsd, shift_fsd);
+% 
+% % 4) Get the decision signal of the LTSD algorithm and the marker.
+% [V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
+%     threshold_ltsd);
+% [marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
+%     input_signal, lwin_ltsd, shift_ltsd);
+% 
+% if strcmpi(showPlotsCheck,'yes')    
+% figure
+% subplot(2, 1, 1)
+% plot(T_fsd_expanded)
+% hold on
+% plot(threshold_fsd * ones(1, length(T_fsd_expanded)), 'r')
+% legend('Detector output (FSD)', 'Detection threshold')
+% subplot(2, 1, 2)
+% plot(T_ltsd_expanded)
+% hold on
+% plot(threshold_ltsd * ones(1, length(T_ltsd_expanded)), 'r')
+% legend('Detector output (LTSD)', 'Detection threshold')
+% 
+% figure
+% subplot(2, 1, 1)
+% plot(input_signal)
+% hold on
+% plot(marker_fsd + 1, 'r')
+% legend('Input signal','FSD decision')
+% subplot(2, 1, 2)
+% plot(input_signal)
+% hold on
+% plot(marker_ltsd + 1, 'r')
+% legend('Input signal','LTSD decision')
+% end
+% 
+% % Determinate the initial and end point of each interval where we need to 
+% % find the peaks, i.e, the first activity period of each cycle. 
+% edges = find(diff(marker_ltsd)~=0);
+% initcross = edges(1:4:length(edges));
+% finalcross = edges(2:4:length(edges));
 
 % Calculate the peaks in each interval.
-for k = 1:length(initcross)
-
-    % Find all peaks smaller than threshold in each interval in the left 
-    % shank signal.
-    [neg_peak_values_l, neg_peak_locations_l] = findpeaks(...
-                            -g_Y_left_shank_1_C(initcross(k):finalcross(k)),...
-                            'minpeakheight', threshold_neg);
-
-    % Store the index of the highest negative peak.                                      
-    neg_peaks_l(k) = find(g_Y_left_shank_1_C(initcross(k):finalcross(k))== ...
-                    -max(neg_peak_values_l), 1, 'last') + initcross(k) - 1;
-                                     
+for k = 1:length(initcross)                                 
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_l, peak_locations_l] = findpeaks(g_Y_left_shank_1_C(...
-                                        neg_peaks_l(k):finalcross(k)));
+                                        initcross(k):finalcross(k)));
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_l(k) = find(...
-                     g_Y_left_shank_1_C(neg_peaks_l(k):finalcross(k)) ...
-                     == max(peak_values_l), 1, 'first') + neg_peaks_l(k) - 1;
-                             
-    % Find all peaks smaller than threshold in each interval in the right 
-    % shank signal.
-    [neg_peak_values_r, neg_peak_locations_r] = findpeaks(...
-                            -g_Y_right_shank_1_C(initcross(k):finalcross(k)),...
-                            'minpeakheight', threshold_neg);
-
-    % Store the index of the highest negative peak.                                      
-    neg_peaks_r(k) = find(g_Y_right_shank_1_C(initcross(k):finalcross(k))== ...
-                    -max(neg_peak_values_r), 1, 'last') + initcross(k) - 1;
-                                     
+                     g_Y_left_shank_1_C(initcross(k):finalcross(k)) ...
+                     == max(peak_values_l), 1, 'first') + initcross(k) - 1;
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_r, peak_locations_r] = findpeaks(g_Y_right_shank_1_C(...
-                                        neg_peaks_r(k):finalcross(k)));
+                                        initcross(k):finalcross(k)));
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_r(k) = find(...
-                     g_Y_right_shank_1_C(neg_peaks_r(k):finalcross(k)) ...
-                     == max(peak_values_r), 1, 'first') + neg_peaks_r(k) - 1;
+                     g_Y_right_shank_1_C(initcross(k):finalcross(k)) ...
+                     == max(peak_values_r), 1, 'first') + initcross(k) - 1;
 
 end
 
@@ -1969,11 +1999,6 @@ sync_peaks_gyro = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks_gyro = sort(sync_peaks_gyro);
 
-% Correlation between both detected sync-peaks arrays: acceletometer and
-% gyroscope:
-correlation_acc_gyro = xcorr(sync_peaks_gyro, sync_peaks_acc);
-max_correlation = correlation_acc_gyro(round(length(correlation_acc_gyro)/2));
-
 % Detected sync-peaks.
 if strcmpi(showPlotsGyroShank,'yes')
 figure()
@@ -1982,18 +2007,18 @@ plot(time_GW, g_Y_left_shank_1_C);
 hold on;
 plot(time_GW(sync_peaks_l), g_Y_left_shank_1_C(sync_peaks_l), 'r.');
 
-title('Orientation (Gyroscope) of the left shank with detected sync-peaks left');
+title('Angular Velocity  (Gyroscope) of the left shank with detected sync-peaks');
 xlabel('Time in s');
-ylabel('Angle (deg)');
+ylabel('Angular Velocity (º/s)');
 
 subplot(2, 1, 2)
 plot(time_GW, g_Y_right_shank_1_C, 'g');
 hold on;
 plot(time_GW(sync_peaks_r), g_Y_right_shank_1_C(sync_peaks_r), 'm.');
 
-title('Orientation (Gyroscope) of the right shank with detected sync-peaks right');   
+title('Angular Velocity (Gyroscope) of the right shank with detected sync-peaks');   
 xlabel('Time in s');
-ylabel('Angle (deg)');
+ylabel('Angular Velocity (º/s)');
 
 % Comparation between peaks detection in Acc and Gyro signals.
 figure ()
@@ -2005,17 +2030,6 @@ hx = graph2d.constantline(time_GW(sync_peaks_gyro), 'LineStyle',':',...
 changedependvar(hx,'x');
 legend ('Acc', 'Gyro', 'Location', 'NorthEastOutside');
 title('Comparation between peaks detection in Acc and Gyro signals');  
-
-% Correlation between peaks detection in Acc and Gyro signals.
-figure ()
-plot(correlation_acc_gyro);
-hold on;
-plot(round(length(correlation_acc_gyro)/2),max_correlation, 'r.');
-hx = graph2d.constantline(round(length(correlation_acc_gyro)/2),...
-    'LineStyle',':', 'LineWidth', 2 , 'Color', 'g');
-changedependvar(hx,'x');
-
-title('Correlation between peaks detection in Acc and Gyro signals');
 
 end
  
