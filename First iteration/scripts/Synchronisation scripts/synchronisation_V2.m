@@ -1946,6 +1946,10 @@ sync_peaks_gyro = [sync_peaks_r(sync_peaks_l > sync_peaks_r), ...
               sync_peaks_l(sync_peaks_r > sync_peaks_l)];
 sync_peaks_gyro = sort(sync_peaks_gyro);
 
+% Calculate the linear correlation between the peaks detected with the 
+% acceleration signal and gyroscope signal.
+[corr_sync, prob_sync] = corr(sync_peaks_acc', sync_peaks_gyro');
+
 % Calculate the mean between the peaks detected with the acceleration
 % signal and gyroscope signal.
 sync_peaks_mean = (sync_peaks_gyro + sync_peaks_acc)./2;
@@ -1953,6 +1957,9 @@ sync_peaks_mean = (sync_peaks_gyro + sync_peaks_acc)./2;
 % It's created this variable to show a bar plot.
 sync_peaks = [sync_peaks_acc; sync_peaks_mean ;sync_peaks_gyro]'; 
 sync_peaks = sync_peaks./[sync_peaks_mean; sync_peaks_mean; sync_peaks_mean]';
+
+% Calculate the linear correlation between the peaks detected with the 
+% acceleration signal and gyroscope signal.
 
 % Detected sync-peaks.
 if strcmpi(showPlotsGyroShank,'yes')
@@ -1988,9 +1995,19 @@ title('Comparation between peaks detection in Acc and Gyro signals');
 
 figure ()
 bar (sync_peaks,'group');
-axis([0, length(sync_peaks_mean)+1, 0.98, 1.005]);
+axis([0, length(sync_peaks_mean)+1, 0.8, 1.005]);
 legend ('Acc','Mean' , 'Gyro', 'Location', 'NorthEastOutside');
 title('Difference between peaks detection in Acc and Gyro signals'); 
+
+figure ()
+
+plot(time_GW(sync_peaks_acc), time_GW( sync_peaks_gyro), '.r');
+title('Linear correlation between the peaks detected with the acceleration signal and gyroscope signal ');
+xlabel('Time in s (in Acc signal)');
+ylabel('Time in s (in Gyro signal)');
+th = text(50,200,strcat( 'Correlation: ',num2str(corr_sync)) ,...
+    'edgeColor', 'c');
+
 end
  
 % Show other signals of the trunk for acceletometer data and the gyroscope
