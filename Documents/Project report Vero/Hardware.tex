@@ -1,8 +1,40 @@
 \chapter{Hardware Description}
 \label{ch:Hardware}
+Along this chapter we will introduce a general description of all devices used to data gathering for the development of this project.
+
+
+It should be noted at this point that there are two clearly differentiated parts. In the first of them, we work with Force Plate and GaitWatch data, taking out their characteristic signals and synchronising them. In the second of them, we work jointly with Gait Watch and Qualisys System data for the purpose of comparing the accuracy in the calculated orientation angles.
+
 
 \section{GaitWatch}
 
+GaitWatch is an Inertial Measurement Unit (IMU) designed for gait monitoring of patients. It was developed by Prof. Dr. Med. Kai B¨otzel at the Department of Neurology of Ludwig-Maximilians University in Munich in conjunction with Dr. Alberto Olivares Vicente from the Department of Signal Theory, Telematics and Communications of the University of Granada. \cite{OlivaresBotzel2013}
+
+The system is composed of the central processing unit and
+a set of measuring units which are wired to it. The measuring units are 
+placed in the patients’ thighs, shanks, arms and trunk.
+
+The central processing unit has a microcontroller is in charge of gathering the data from the external measurement units and writing it to the memory card. So, this central unit is placed in the trunk inside a box and it contains an AL-XAVRB board with an AVRATxmega processor which contains the necessary embedded firmware to gather the data from all the measurement units and store it in a microSD card. Also, the trunk box contains some embedded magnetic and inertial sensors.
+
+There are three different kinds of external units with the following components:
+\begin{itemize}
+	\item Type A (thighs and shanks): 
+	\begin{itemize}
+		\item IMU 5 from Sparkfun. IMU 5 contains an IDG500  biaxial gyroscope (from which only Y axis is actually used) with a measurement range of $\pm500deg/s$ and a $\pm3g$ triaxial accelerometer, ADXL335 .
+	\end{itemize}
+	\item Type B (arms):
+	\begin{itemize}
+		\item IDG500  biaxial $\pm500deg/s$ gyroscope.
+	\end{itemize}
+	\item Type C (trunk box):
+	\begin{itemize}
+		\item ADXL345  triaxial accelerometer with programmable range ($\pm16g/\pm8g/\pm4g/\pm2g$).
+		\item IMU3000 triaxial gyroscope with programmable range ($\pm250/\pm500/\pm1000/\pm3000 (deg/s)$).
+		\item Micromag3  triaxial magnetometer ($\pm11Gauss$).
+	\end{itemize}
+\end{itemize}
+
+
 \section{Force Platform}
 
-\section{Sensors based in cameras}
+\section{Qualisys System}
