@@ -48,6 +48,8 @@
 % * 4) Synchronise signals.
 % 
 % * 5) Save the synchronised data in *.mat file for each person.
+%
+% * 6)
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -59,7 +61,7 @@ clear all; close all; clc;
 showPlotsCheck = 'yes';
 showPlotsAccShank = 'yes';
 showPlotsGyroShank = 'yes';
-showPlotsGyroTrunk = 'no';
+showPlotsTrunk = 'no';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -2009,10 +2011,90 @@ th = text(50,200,strcat( 'Correlation: ',num2str(corr_sync)) ,...
     'edgeColor', 'c');
 
 end
- 
+
+% -------------------------------------------------------------------------
+% 6) Determine APA characteristics in trunk signals, COP and the
+% correlation between them.
+% -------------------------------------------------------------------------
+
+% Determine when the second step ocurred. We extract the part of the signal
+% when the patient carried out the step. It happens between the beginning of
+% activity period of each cycle and the end of FP data.
+
+init_second_step = edges(3:4:length(edges));
+
+force_sum_complete_ts = append(force_sum_ts{1, :});
+force_sum_data = force_sum_complete_ts.data(3,1,:);
+force_sum_data = reshape(force_sum_data, 1, length(force_sum_data));
+
+final_second_step = find(diff(force_sum_data > 100)~=0);
+final_second_step = final_second_step(2:2:length(final_second_step));
+final_second_step = force_sum_complete_ts.time(final_second_step);
+
 % Show other signals of the trunk for acceletometer data and the gyroscope
 % data.
-if strcmpi(showPlotsGyroTrunk,'yes')
+if strcmpi(showPlotsTrunk,'yes')
+    
+figure();
+subplot(3, 1, 1);
+plot(time_GW, a_Z_left_shank_1_C);
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
+       'patient steps with the second time']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+%axis([127, 129, -0.1, 2.1]);
+
+subplot(3, 1, 2)
+plot(time_GW, a_Z_right_shank_1_C, 'g');
+
+ 
+% Vertical line at init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
+       'patient steps with the second time']);
+xlabel('Time in s');
+ylabel('Acceleration in g');
+%axis([127, 129, -0.1, 2.3]);
+
+subplot(3, 1, 3)
+plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+     [4, max(size(fs_data))]));
+
+% Vertical line at init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('The force in FP with lines marker when the patient steps with the second time');
+xlabel('Time in s');
+ylabel('Force in N');
+
+%axis([127, 129, 0, 800]);
+
 figure()
 subplot(3, 1, 1);
 plot(time_GW, g_X_center_trunk_1_C);
