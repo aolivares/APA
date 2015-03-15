@@ -58,10 +58,10 @@
 clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
-showPlotsCheck = 'yes';
-showPlotsAccShank = 'yes';
-showPlotsGyroShank = 'yes';
-showPlotsTrunk = 'no';
+showPlotsCheck = 'no';
+showPlotsAccShank = 'no';
+showPlotsGyroShank = 'no';
+showPlotsTrunk = 'yes';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -341,7 +341,7 @@ end
 % Clear the unuseful variables.
 clearvars -except force_sensors time_FP force_cells ML_COP ...
 AP_COP force_sum midline filename_GW_total index_GW filename_FP ...
-file_excel j showPlotsCheck showPlotsAccShank showPlotsGyroTrunk ...
+file_excel j showPlotsCheck showPlotsAccShank showPlotsTrunk ...
 showPlotsGyroShank
 
 
@@ -1142,7 +1142,7 @@ g_Z_center_trunk_1_C = g_Z_center_trunk_1_C' - mode(g_Z_center_trunk_1_C);
 
 clearvars -except force_sensors time_FP force_cells ML_COP ...
 AP_COP force_sum midline filename_GW_total filename_FP index_GW ...
-file_excel j showPlotsCheck showPlotsAccShank showPlotsGyroTrunk ...
+file_excel j showPlotsCheck showPlotsAccShank showPlotsTrunk ...
 showPlotsGyroShank ...
 a_X_center_trunk_3_C a_X_left_shank_1_C a_X_left_thigh_1_C...
 a_X_right_shank_1_C a_X_right_thigh_1_C a_Y_center_trunk_3_C ...
@@ -1575,6 +1575,10 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
   fprintf('\nSaved synchronised signals!\n\n\n');
   
 % Plots.
+% Append all separate time series of the four force sensor signals and 
+% extract data from timeseries for plot.
+force_sensors_complete_ts = append(force_sensors_ts{1, :});
+fs_data = force_sensors_complete_ts.data;
 
 % Detected sync-peaks.
 if strcmpi(showPlotsAccShank,'yes')
@@ -1631,14 +1635,6 @@ title(['Acceleration of z-axis of right shank with synchronisation lines and mag
 xlabel('Time in s');
 ylabel('Acceleration in g');
 axis([125, 165, -0.1, 2.3]);
-
-
-
-% Append all separate time series of the four force sensor signals and 
-% extract data from timeseries for plot.
-force_sensors_complete_ts = append(force_sensors_ts{1, :});
-fs_data = force_sensors_complete_ts.data;
-
 
 figure();
 subplot(3, 1, 1);
@@ -2031,6 +2027,13 @@ final_second_step = find(diff(force_sum_data > 100)~=0);
 final_second_step = final_second_step(2:2:length(final_second_step));
 final_second_step = force_sum_complete_ts.time(final_second_step);
 
+% Extract data from timeseries for plot.
+AP_COP_complete_ts = append(AP_COP_ts{1, :});
+AP_COP_data = AP_COP_complete_ts.data;
+
+ML_COP_complete_ts = append(ML_COP_ts{1, :});
+ML_COP_data = ML_COP_complete_ts.data;
+
 % Show other signals of the trunk for acceletometer data and the gyroscope
 % data.
 if strcmpi(showPlotsTrunk,'yes')
@@ -2096,60 +2099,80 @@ ylabel('Force in N');
 %axis([127, 129, 0, 800]);
 
 figure()
-subplot(3, 1, 1);
+subplot(4, 1, 1);
 plot(time_GW, g_X_center_trunk_1_C);
-hold on;
-plot(time_GW(sync_peaks_gyro), g_X_center_trunk_1_C(sync_peaks_gyro), 'r.');
 
-title('Orientation in the trunk (axe X) with detected sync-peaks ');
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
+       'patient steps with the second time']);
 xlabel('Time in s');
-ylabel('Angle (deg)');
+ylabel('Acceleration in g');
 
-subplot(3, 1, 2)
+
+subplot(4, 1, 2)
+plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
+     [1, max(size(AP_COP_data))]));
+
+% Vertical line at init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('AP COP with lines marker when the patient steps with the second time');
+xlabel('Time in s');
+ylabel('COP in mm');
+
+subplot(4, 1, 3);
 plot(time_GW, g_Y_center_trunk_1_C);
-hold on;
-plot(time_GW(sync_peaks_gyro), g_Y_center_trunk_1_C(sync_peaks_gyro), 'r.');
 
-title('Orientation in the trunk (axe Y) with detected sync-peaks ');
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
+       'patient steps with the second time']);
 xlabel('Time in s');
-ylabel('Angle (deg)');
+ylabel('Acceleration in g');
+%axis([127, 129, -0.1, 2.1]);
 
-subplot(3, 1, 3)
-plot(time_GW, g_Z_center_trunk_1_C);
-hold on;
-plot(time_GW(sync_peaks_gyro), g_Z_center_trunk_1_C(sync_peaks_gyro), 'r.');
+subplot(4, 1, 4)
+plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
+     [1, max(size(ML_COP_data))]));
 
-title('Orientation in the trunk (axe Z) with detected sync-peaks ');
+% Vertical line at init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line at final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title('ML COP with lines marker when the patient steps with the second time');
 xlabel('Time in s');
-ylabel('Angle (deg)');
+ylabel('COP in mm');
 
-figure()
-subplot(3, 1, 1);
-plot(time_GW, a_X_center_trunk_3_C);
-hold on;
-plot(time_GW(sync_peaks_acc), a_X_center_trunk_3_C(sync_peaks_acc), 'r.');
-
-title('Acceleration in the trunk (axe X) with detected sync-peaks ');
-xlabel('Time in s');
-ylabel('Acc (g)');
-
-subplot(3, 1, 2)
-plot(time_GW, a_Y_center_trunk_3_C);
-hold on;
-plot(time_GW(sync_peaks_acc), a_Y_center_trunk_3_C(sync_peaks_acc), 'r.');
-
-title('Acceleration in the trunk (axe Y) with detected sync-peaks ');
-xlabel('Time in s');
-ylabel('Acc (g)');
-
-subplot(3, 1, 3)
-plot(time_GW, a_Z_center_trunk_3_C);
-hold on;
-plot(time_GW(sync_peaks_acc), a_Z_center_trunk_3_C(sync_peaks_acc), 'r.');
-
-title('Acceleration in the trunk (axe Z) with detected sync-peaks ');
-xlabel('Time in s');
-ylabel('Acc (g)');
 
 end
 end

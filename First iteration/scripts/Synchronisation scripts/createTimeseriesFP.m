@@ -50,9 +50,9 @@ function [ ts_cell ] = createTimeseriesFP(data_FP, time_FP, ...
 n_cycles = max(size(time_FP));
 
 % Create empty cell array.
-ts_cell = cell(1, n_cycles-1);
+ts_cell = cell(1, n_cycles);
 
-for i = 1:n_cycles-1
+for i = 1:n_cycles
 
 % Calculate bias to correct time vector of force plate data.
 time_bias = sync_peak_times(i) - time_FP{i, 1}(1);
