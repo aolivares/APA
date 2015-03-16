@@ -5,17 +5,31 @@
 
 Devices that use a combination of inertial sensors like accelerometers and gyroscopes are referred to as inertial measurement units (IMUs). If they also include magnetic field sensors (magnetometers), they are called magnetic inertial measurement units (MIMUs){Magnetic Inertial Measurement Unit}. With these devices the orientation of the body can be obtained with up to nine degrees of freedom, provided that triaxial accelerometers, gyroscopes and magnetometers are used, respectively \cite{olivares_vicente_signal_2013}.
 
+MIMUs are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the movement. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}. Moreover, \citeauthor{mancini_isway:_2012} \cite{mancini_isway:_2012} pointed out the need of data pre-processing and the question of how to generate a clinically understandable presentation of the movement data.
+
 
 \subsection{Accelerometer}
+
+Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained and the resultant acceleration is computed according to Newton's second law $ \mathbf{F} = m \cdot \mathbf a $ \cite{encyclopedia_britannica_accelerometer_2014}.
 
 
 \subsection{Gyroscopes}
 
+Gyroscopes measure angular velocity and are based on the Coriolis Effect. By means of integration of the angular velocity the rotation angle is obtained \cite{olivares_vicente_signal_2013}.
+
 
 \subsection{Magnetometer}
 
+Magnetometers measure the strength and the direction of the magnetic field in a point in space, using the relationship between magnetic fields, movement and induced currents \cite{olivares_vicente_signal_2013}.
 
-\section{Kalman Filter}
+
+\section{Digital Filters}
+
+\subsection{Filter Basics}
+
+\subsection{Adaptive Filters}
+
+\subsection{Kalman Filters}
 
 
 \section{Orientation Estimation}

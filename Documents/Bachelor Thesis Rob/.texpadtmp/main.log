@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  26 FEB 2015 16:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  16 MAR 2015 18:04
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -258,7 +258,30 @@ Now handling font encoding U ...
    defining Unicode char U+2026 (decimal 8230)
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
-)) (/usr/local/texlive/2014/texmf-dist/tex/latex/subfig/subfig.sty
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/blindtext/blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2009/10/20 v1.13 Space after command names (DPC,MH)
+)
+\c@blindtext=\count88
+\c@Blindtext=\count89
+\c@blind@countparstart=\count90
+\blind@countxx=\count91
+\blindtext@numBlindtext=\count92
+\blind@countyy=\count93
+\c@blindlist=\count94
+\c@blindlistlevel=\count95
+\c@blindlist@level=\count96
+\blind@listitem=\count97
+\c@blind@listcount=\count98
+\c@blind@levelcount=\count99
+\blind@mathformula=\count100
+\blind@Mathformula=\count101
+\c@blind@randomcount=\count102
+\c@blind@randommax=\count103
+\c@blind@pangramcount=\count104
+\c@blind@pangrammax=\count105
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
  (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/05/08 v1.15 key=value parser (DPC)
@@ -276,19 +299,19 @@ Package caption3 Info: TeX engine: e-TeX on input line 57.
 \caption@parindent=\dimen108
 \caption@hangindent=\dimen109
 )
-\c@ContinuedFloat=\count88
+\c@ContinuedFloat=\count106
 )
-\c@KVtest=\count89
+\c@KVtest=\count107
 \sf@farskip=\skip59
 \sf@captopadj=\dimen110
 \sf@capskip=\skip60
 \sf@nearskip=\skip61
-\c@subfigure=\count90
-\c@subfigure@save=\count91
-\c@lofdepth=\count92
-\c@subtable=\count93
-\c@subtable@save=\count94
-\c@lotdepth=\count95
+\c@subfigure=\count108
+\c@subfigure@save=\count109
+\c@lofdepth=\count110
+\c@subtable=\count111
+\c@subtable@save=\count112
+\c@lotdepth=\count113
 \sf@top=\skip62
 \sf@bottom=\skip63
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/epsfig.sty
@@ -310,7 +333,7 @@ Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 )
-\Gread@gobject=\count96
+\Gread@gobject=\count114
 ))
 \Gin@req@height=\dimen111
 \Gin@req@width=\dimen112
@@ -331,7 +354,8 @@ Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 Package: kvsetkeys 2012/04/25 v1.16 Key value parser (HO)
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2011/02/16 v1.5 Avoid name clashes with e-TeX commands (HO)
- (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+
+(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )
@@ -341,8 +365,7 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 ))) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
-
-(/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
 Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
 Package ifpdf Info: pdfTeX in PDF mode is detected.
 )
@@ -358,28 +381,28 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))) (/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count97
+\c@float@type=\count115
 \float@exts=\toks17
 \float@box=\box26
 \@float@everytoks=\toks18
 \@floatcapt=\box27
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count98
+\lst@mode=\count116
 \lst@gtempboxa=\box28
 \lst@token=\toks19
-\lst@length=\count99
+\lst@length=\count117
 \lst@currlwidth=\dimen115
-\lst@column=\count100
-\lst@pos=\count101
+\lst@column=\count118
+\lst@pos=\count119
 \lst@lostspace=\dimen116
 \lst@width=\dimen117
-\lst@newlines=\count102
-\lst@lineno=\count103
+\lst@newlines=\count120
+\lst@lineno=\count121
 \lst@maxwidth=\dimen118
  (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-\c@lstnumber=\count104
-\lst@skipnumbers=\count105
+\c@lstnumber=\count122
+\lst@skipnumbers=\count123
 \lst@framebox=\box29
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2014/03/04 1.5c listings configuration
@@ -548,9 +571,9 @@ Package: datetime 2013/09/10 v2.59 Date Time Package
 Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
  (/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty
 Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count106
+\et@xins=\count124
 )
-\etb@tempcnta=\count107
+\etb@tempcnta=\count125
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fmtcount.sty
 Package: fmtcount 2013/08/17 v2.03
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ifthen.sty
@@ -559,42 +582,42 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 Package: fcprefix 2012/09/28
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2012/09/28
-\fc@digit@counter=\count108
+\fc@digit@counter=\count126
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks20
 \ex@=\dimen119
 )
-\c@padzeroesN=\count109
-\fc@tmpcatcode=\count110
-\@DT@modctr=\count111
-\@ordinalctr=\count112
-\@orgargctr=\count113
-\@strctr=\count114
-\@tmpstrctr=\count115
-\@DT@loopN=\count116
-\@DT@X=\count117
+\c@padzeroesN=\count127
+\fc@tmpcatcode=\count128
+\@DT@modctr=\count129
+\@ordinalctr=\count130
+\@orgargctr=\count131
+\@strctr=\count132
+\@tmpstrctr=\count133
+\@DT@loopN=\count134
+\@DT@X=\count135
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2013/08/17
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count118
-\@month=\count119
-\@year=\count120
-\c@HOUR=\count121
-\c@HOURXII=\count122
-\c@MINUTE=\count123
-\c@TOHOUR=\count124
-\c@TOMINUTE=\count125
-\c@SECOND=\count126
-\currenthour=\count127
-\currentminute=\count128
-\currentsecond=\count129
+\@day=\count136
+\@month=\count137
+\@year=\count138
+\c@HOUR=\count139
+\c@HOURXII=\count140
+\c@MINUTE=\count141
+\c@TOHOUR=\count142
+\c@TOMINUTE=\count143
+\c@SECOND=\count144
+\currenthour=\count145
+\currentminute=\count146
+\currentsecond=\count147
 Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
-\@dtctr=\count130
-\dayofyear=\count131
-\dayofweek=\count132
+\@dtctr=\count148
+\dayofyear=\count149
+\dayofweek=\count150
 LaTeX Info: Redefining \today on input line 736.
 \dt@a=\toks21
 \dt@b=\toks22
@@ -603,26 +626,26 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip64
 \bibsep=\skip65
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count133
+\c@NAT@ctr=\count151
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/subeqnarray/subeqnarray.sty
 Package: subeqnarray 2004/04/15 v2.1c subeqnarray package
-\c@subequation=\count134
+\c@subequation=\count152
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
 \LTleft=\skip66
 \LTright=\skip67
 \LTpre=\skip68
 \LTpost=\skip69
-\LTchunksize=\count135
+\LTchunksize=\count153
 \LTcapwidth=\dimen120
 \LT@head=\box30
 \LT@firsthead=\box31
 \LT@foot=\box32
 \LT@lastfoot=\box33
-\LT@cols=\count136
-\LT@rows=\count137
-\c@LT@tables=\count138
-\c@LT@chunks=\count139
+\LT@cols=\count154
+\LT@rows=\count155
+\c@LT@tables=\count156
+\c@LT@chunks=\count157
 \LT@p@ftn=\toks23
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
@@ -636,12 +659,12 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 \cmidrulesep=\dimen128
 \cmidrulekern=\dimen129
 \defaultaddspace=\dimen130
-\@cmidla=\count140
-\@cmidlb=\count141
+\@cmidla=\count158
+\@cmidlb=\count159
 \@aboverulesep=\dimen131
 \@belowrulesep=\dimen132
-\@thisruleclass=\count142
-\@lastruleclass=\count143
+\@thisruleclass=\count160
+\@lastruleclass=\count161
 \@thisrulewidth=\dimen133
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
@@ -663,13 +686,13 @@ Package: amsbsy 1999/11/29 v1.2d
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count144
+\inf@bad=\count162
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count145
-\leftroot@=\count146
+\uproot@=\count163
+\leftroot@=\count164
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count147
-\DOTSCASE@=\count148
+\classnum@=\count165
+\DOTSCASE@=\count166
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
@@ -678,15 +701,15 @@ LaTeX Info: Redefining \cdots on input line 466.
 \big@size=\dimen137
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count149
-\c@MaxMatrixCols=\count150
+\macc@depth=\count167
+\c@MaxMatrixCols=\count168
 \dotsspace@=\muskip10
-\c@parentequation=\count151
-\dspbrk@lvl=\count152
+\c@parentequation=\count169
+\dspbrk@lvl=\count170
 \tag@help=\toks25
-\row@=\count153
-\column@=\count154
-\maxfields@=\count155
+\row@=\count171
+\column@=\count172
+\maxfields@=\count173
 \andhelp@=\toks26
 \eqnshift@=\dimen138
 \alignsep@=\dimen139
@@ -745,14 +768,14 @@ Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen144
-\Hy@linkcounter=\count156
-\Hy@pagecounter=\count157
+\Hy@linkcounter=\count174
+\Hy@pagecounter=\count175
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count158
+\Hy@SavedSpaceFactor=\count176
  (/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
@@ -768,14 +791,14 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count159
+\c@Hy@tempcnt=\count177
 (/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen145
-\Fld@menulength=\count160
+\Fld@menulength=\count178
 \Field@Width=\dimen146
 \Fld@charsize=\dimen147
 Package hyperref Info: Hyper figures OFF on input line 6295.
@@ -787,17 +810,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count161
-\c@Item=\count162
-\c@Hfootnote=\count163
+\Hy@abspage=\count179
+\c@Item=\count180
+\c@Hfootnote=\count181
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count164
-\c@bookmark@seq@number=\count165
+\Fld@listcount=\count182
+\c@bookmark@seq@number=\count183
  (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
@@ -810,7 +833,7 @@ Package: xkeyval 2014/05/09 v2.6d package option processing (HA)
  (/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 \XKV@toks=\toks29
 \XKV@tempa@toks=\toks30
-\XKV@depth=\count166
+\XKV@depth=\count184
 File: xkeyval.tex 2014/05/09 v2.6d key=value parser (HA)
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
 Package: mfirstuc 2013/11/04 v1.08 (NLCT)
@@ -824,25 +847,25 @@ Package: xfor 2009/02/05 v1.05 (NLCT)
 Package: datatool-base 2013/09/06 v2.18 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count167
+\c@su@anzahl=\count185
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-fp.sty
 Package: datatool-fp 2013/08/29 v2.17 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp.sty
 Package: fp 1995/04/02
  `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count168
+\actioncount=\count186
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count169
-\FP@xia=\count170
-\FP@xib=\count171
-\FP@xfa=\count172
-\FP@xfb=\count173
-\FP@rega=\count174
-\FP@regb=\count175
-\FP@regs=\count176
-\FP@times=\count177
+\FP@xs=\count187
+\FP@xia=\count188
+\FP@xib=\count189
+\FP@xfa=\count190
+\FP@xfb=\count191
+\FP@rega=\count192
+\FP@regb=\count193
+\FP@regs=\count194
+\FP@times=\count195
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-snap.sty
@@ -855,7 +878,7 @@ Package: fp-trigo 1995/04/14
 Package: fp-pas 1994/08/29
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count178
+\FPseed=\count196
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-upn.sty
@@ -864,18 +887,18 @@ Package: fp-upn 1996/10/21
 Package: fp-eval 1995/04/03
 )))
 \@dtl@toks=\toks33
-\@dtl@tmpcount=\count179
+\@dtl@tmpcount=\count197
 \dtl@tmplength=\skip76
-\dtl@sortresult=\count180
-\@dtl@numgrpsepcount=\count181
-\@dtl@datatype=\count182
-\dtl@codeA=\count183
-\dtl@codeB=\count184
-\@dtl@foreach@level=\count185
+\dtl@sortresult=\count198
+\@dtl@numgrpsepcount=\count199
+\@dtl@datatype=\count200
+\dtl@codeA=\count201
+\dtl@codeB=\count202
+\@dtl@foreach@level=\count203
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307.sty
 Package: glossaries-compatible-307 2013/11/14 v4.0 (NLCT)
 )
-\gls@level=\count186
+\gls@level=\count204
 \@gls@tmpb=\toks34
 \gls@tmplen=\skip77
 \glskeylisttok=\toks35
@@ -896,7 +919,7 @@ Package: glossary-super 2013/11/14 v4.0 (NLCT)
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count187
+\c@tracingst=\count205
 \ST@wd=\dimen148
 \ST@rightskip=\skip81
 \ST@leftskip=\skip82
@@ -920,39 +943,39 @@ Package: glossary-tree 2014/03/06 v4.04 (NLCT)
 \glo@main@file=\write4
 \openout4 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 55.
+Package glossaries Info: Writing glossary file main.glo on input line 56.
 \glo@acronym@file=\write5
 \openout5 = `main.acn'.
 
-Package glossaries Info: Writing glossary file main.acn on input line 55.
+Package glossaries Info: Writing glossary file main.acn on input line 56.
 \glo@notation@file=\write6
 \openout6 = `main.ntn'.
 
-Package glossaries Info: Writing glossary file main.ntn on input line 55.
+Package glossaries Info: Writing glossary file main.ntn on input line 56.
  (./Glossary.tex) (./Acronyms.tex) (./Notation.tex) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/State_of_the_Art.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Fundamentals.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 63.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 63.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 64.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 64.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 63.
-LaTeX Font Info:    ... okay on input line 63.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 63.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 64.
+LaTeX Font Info:    ... okay on input line 64.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 64.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 )
@@ -969,31 +992,31 @@ Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
  (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count188
+\scratchcounter=\count206
 \scratchdimen=\dimen159
 \scratchbox=\box37
-\nofMPsegments=\count189
-\nofMParguments=\count190
+\nofMPsegments=\count207
+\nofMParguments=\count208
 \everyMPshowfont=\toks39
-\MPscratchCnt=\count191
+\MPscratchCnt=\count209
 \MPscratchDim=\dimen160
-\MPnumerator=\count192
-\makeMPintoPDFobject=\count193
+\MPnumerator=\count210
+\makeMPintoPDFobject=\count211
 \everyMPtoPDFconversion=\toks40
 )
-\c@lstlisting=\count194
+\c@lstlisting=\count212
 \AtBeginShipoutBox=\box38
-Package hyperref Info: Link coloring OFF on input line 63.
+Package hyperref Info: Link coloring OFF on input line 64.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count195
+\c@section@level=\count213
 )
-LaTeX Info: Redefining \ref on input line 63.
-LaTeX Info: Redefining \pageref on input line 63.
-LaTeX Info: Redefining \nameref on input line 63.
+LaTeX Info: Redefining \ref on input line 64.
+LaTeX Info: Redefining \pageref on input line 64.
+LaTeX Info: Redefining \nameref on input line 64.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out)
 \@outlinefile=\write7
 \openout7 = `main.out'.
@@ -1011,7 +1034,7 @@ Package epstopdf Info: Source file: <images/universidad_de_granada.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/universidad_de_granada-eps-converted-to.pdf images/universidad_de_granada.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
- <images/universidad_de_granada-eps-converted-to.pdf, id=131, 414.54875pt x 129.48375pt>
+ <images/universidad_de_granada-eps-converted-to.pdf, id=143, 414.54875pt x 129.48375pt>
 File: images/universidad_de_granada-eps-converted-to.pdf Graphic file (type pdf)
  <use images/universidad_de_granada-eps-converted-to.pdf>
 Package pdftex.def Info: images/universidad_de_granada-eps-converted-to.pdf used on input line 6.
@@ -1025,7 +1048,7 @@ Package epstopdf Info: Source file: <images/fh-muenster.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/fh-muenster-eps-converted-to.pdf images/fh-muenster.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
- <images/fh-muenster-eps-converted-to.pdf, id=132, 156.585pt x 70.2625pt>
+ <images/fh-muenster-eps-converted-to.pdf, id=144, 156.585pt x 70.2625pt>
 File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
@@ -1077,13 +1100,13 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <14.4> not available
 )pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.73 	\include{Statement}
+l.74 	\include{Statement}
                           [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.74 	\clearemptydoublepage
+l.75 	\clearemptydoublepage
                             [2
 
 
@@ -1105,11 +1128,6 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <24.88> not available
  (./Abstract.tex
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pplx/b/n' tried instead on input line 12.
-
-Overfull \hbox (28.17505pt too wide) in paragraph at lines 21--22
-\OT1/pplx/m/n/12 the [][]CITIC-UGR[] and the De-part-ment of Neu-rol-ogy of the Klinikum Gro^^Yhadern
- []
-
 ) [5
 
 ] [6
@@ -1121,7 +1139,11 @@ Overfull \hbox (28.17505pt too wide) in paragraph at lines 21--22
 \tf@toc=\write8
 \openout8 = `main.toc'.
 
- [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof)
+ [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof
+
+Package natbib Warning: Citation `olivares_vicente_gaitwatch_2013' on page ix undefined on input line 2.
+
+)
 \tf@lof=\write9
 \openout9 = `main.lof'.
 
@@ -1138,7 +1160,7 @@ Overfull \hbox (28.17505pt too wide) in paragraph at lines 21--22
 ] [12
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.acr)
-Overfull \hbox (8.96515pt too wide) in paragraph at lines 2--107
+Overfull \hbox (8.96515pt too wide) in paragraph at lines 2--108
 []
  []
 
@@ -1171,9 +1193,6 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <17.28> not available
 
 Package natbib Warning: Citation `olivares_vicente_gaitwatch_2013' on page 1 undefined on input line 17.
 
-
-LaTeX Warning: Reference `fig:GaitWatch_placement' on page 1 undefined on input line 17.
-
 LaTeX Font Info:    Try loading font information for TS1+pplx on input line 22.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplx.fd
 File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
@@ -1198,52 +1217,82 @@ Overfull \hbox (31.81058pt too wide) in paragraph at lines 32--35
 \OT1/pplx/m/n/12 (\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 2g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 4g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 8g/\TS1/pplx/m/n/12 ±\OT1/pplx/m/n/12 16g) [[]], IMU3000 tri-ax-ial gy-ro-scope with pro-grammable
  []
 
-)
+<images/GaitWatch_placement.pdf, id=297, 340.75514pt x 292.43323pt>
+File: images/GaitWatch_placement.pdf Graphic file (type pdf)
+ <use images/GaitWatch_placement.pdf>
+Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 40.
+(pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
+
+
+Package natbib Warning: Citation `olivares_vicente_gaitwatch_2013' on page 2 undefined on input line 41.
+
+
+Package natbib Warning: Citation `olivares_vicente_gaitwatch_2013' on page 2 undefined on input line 41.
+
 LaTeX Font Info:    Font shape `OT1/pplx/m/sl' in size <12> not available
-(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 119.
- [2]
+(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 48.
+[2 <./images/GaitWatch_placement.pdf>]) [3]
 \openout2 = `State_of_the_Art.aux'.
 
- (./State_of_the_Art.tex
-Chapter 2.
-) [3
+ (./State_of_the_Art.tex [4
 
 
 
 ]
+Chapter 2.
+) [5]
 \openout2 = `Fundamentals.aux'.
 
- (./Fundamentals.tex [4
+ (./Fundamentals.tex [6
 
 
 
 ]
 Chapter 3.
 
-Package natbib Warning: Citation `olivares_vicente_signal_2013' on page 5 undefined on input line 6.
+Package natbib Warning: Citation `olivares_vicente_signal_2013' on page 7 undefined on input line 6.
 
-) [5]
+
+Package natbib Warning: Citation `olivares_vicente_signal_2013' on page 7 undefined on input line 8.
+
+
+Package natbib Warning: Citation `mancini_isway:_2012' on page 7 undefined on input line 8.
+
+
+Package natbib Warning: Citation `mancini_isway:_2012' on page 7 undefined on input line 8.
+
+
+Package natbib Warning: Citation `encyclopedia_britannica_accelerometer_2014' on page 7 undefined on input line 13.
+
+
+Package natbib Warning: Citation `olivares_vicente_signal_2013' on page 7 undefined on input line 18.
+
+[7]
+
+Package natbib Warning: Citation `olivares_vicente_signal_2013' on page 8 undefined on input line 23.
+
+) [8]
 \openout2 = `Implementation.aux'.
 
- (./Implementation.tex [6
+ (./Implementation.tex
+Chapter 4.
+) [9
 
 
 
 ]
-Chapter 4.
-) [7]
 \openout2 = `Results.aux'.
 
- (./Results.tex [8
+ (./Results.tex [10
 
 
 
 ]
 Chapter 5.
-) [9]
+) [11]
 \openout2 = `Conclusion.aux'.
 
- (./Conclusion.tex [10
+ (./Conclusion.tex [12
 
 
 
@@ -1252,7 +1301,7 @@ Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [11]) [12] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
+ [13]) [14] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
 Underfull \hbox (badness 3815) in paragraph at lines 21--27
 []\OT1/pplx/m/n/12 Analog De-vices.  \OT1/pplx/m/it/12 ADXL335: Small, Low Power 3-Axis \TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 3G
  []
@@ -1282,43 +1331,39 @@ Underfull \hbox (badness 6001) in paragraph at lines 29--35
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
-) [13
+) [15
 
 
 
-] [14
+] [16
 
 ]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 132.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 132.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 133.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 133.
 (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/State_of_the_Art.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Fundamentals.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 132.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 132.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 133.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 133.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 14897 strings out of 493117
- 223239 string characters out of 6135432
- 364572 words of memory out of 5000000
- 17825 multiletter control sequences out of 15000+600000
- 35510 words of font info for 82 fonts, out of 8000000 for 9000
+ 15101 strings out of 493117
+ 226630 string characters out of 6135432
+ 371031 words of memory out of 5000000
+ 18010 multiletter control sequences out of 15000+600000
+ 37635 words of font info for 88 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 46i,11n,43p,1783b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 46i,11n,77p,1783b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{glo:gls:set} has been referenced but does not exist, replaced by a fixed one
 
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (32 pages, 273170 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (34 pages, 507815 bytes).
 PDF statistics:
- 410 PDF objects out of 1000 (max. 8388607)
- 360 compressed objects within 4 object streams
- 82 named destinations out of 1000 (max. 500000)
- 267 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 497 PDF objects out of 1000 (max. 8388607)
+ 429 compressed objects within 5 object streams
+ 88 named destinations out of 1000 (max. 500000)
+ 296 words of extra memory for PDF output out of 10000 (max. 10000000)
 

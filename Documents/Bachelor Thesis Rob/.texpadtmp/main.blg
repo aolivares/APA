@@ -15,6 +15,8 @@ The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
 Warning--I didn't find a database entry for "olivares_vicente_gaitwatch_2013"
 Warning--I didn't find a database entry for "olivares_vicente_signal_2013"
+Warning--I didn't find a database entry for "mancini_isway:_2012"
+Warning--I didn't find a database entry for "encyclopedia_britannica_accelerometer_2014"
 Warning--empty year in IMU5
 Warning--empty year in IDG500
 Warning--empty year in ADXL335
@@ -24,7 +26,7 @@ Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 You've used 7 entries,
             2481 wiz_defined-function locations,
-            596 strings with 5642 characters,
+            598 strings with 5703 characters,
 and the built_in function-call counts, 1807 in all, are:
 = -- 166
 > -- 49
@@ -63,4 +65,4 @@ warning$ -- 7
 while$ -- 14
 width$ -- 0
 write$ -- 103
-(There were 9 warnings)
+(There were 11 warnings)
