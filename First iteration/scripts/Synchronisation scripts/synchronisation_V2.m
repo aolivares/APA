@@ -58,10 +58,10 @@
 clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
-showPlotsCheck = 'no';
-showPlotsAccShank = 'no';
+showPlotsCheck = 'yes';
+showPlotsAccShank = 'yes';
 showPlotsGyroShank = 'no';
-showPlotsTrunk = 'yes';
+showPlotsTrunk = 'no';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -72,7 +72,7 @@ warning('off', 'signal:findpeaks:largeMinPeakHeight')
  
 % Select only one data files with a dialog box (only .xlsl files).
 [filename_excel, filepath] = uigetfile('*.xlsx', ...
-    'Select the Excel file with the data (.xlsx)', '../../data');
+    'Select the Excel file with the data (.xlsx)', '../../data/excel files');
 
 % Read data from *.xlsx where are stored all filenames and other 
 % interesting information.
@@ -166,8 +166,13 @@ for i = 1:n_files
     % on the force plate.
     start_end = any(data(:, 2:5), 2);                                  
     start_end = find(diff(start_end) ~= 0)+1; 
+    if (length(start_end)<2)
+        data_start = 1;
+        data_end = start_end(1);
+    else
     data_start = start_end(1);
-    data_end = start_end(2);
+    data_end = start_end(2);  
+    end
 
     % Define the four pressure signals of the different platforce sensors 
     % as well as the time.
@@ -239,7 +244,7 @@ for i = 1:n_files
     force_cell = zeros(lines, columns);
     force_cell_complete_cycle = zeros(lines, columns, n);
 
-    fid = fopen(fullfile('/APA/First iteration/data/ForcePlate/',...
+    fid = fopen(fullfile('../../data/ForcePlate/',...
                 filename_FP));
     dummy_data = textscan(fid, '%n', col_first_block * count, 'headerlines',...
                  first_line - 1);
@@ -1201,7 +1206,7 @@ input_signal = sqrt(axC .^ 2 + azC .^ 2)';
 lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 100; lambda = 50;
 
 % LTSD (window size, decision threshold and overlapping).
-lwin_ltsd = 100;       threshold_ltsd = 4.3;   shift_ltsd = 10;
+lwin_ltsd = 100;       threshold_ltsd = 5.5;   shift_ltsd = 10;
 
 % 3) Get the decision signal of the FSD algorithm and the marker.
 [V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
