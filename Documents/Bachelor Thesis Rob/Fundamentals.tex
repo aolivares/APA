@@ -3,33 +3,62 @@
 
 \section{Inertial Sensors}
 
-Devices that use a combination of inertial sensors like accelerometers and gyroscopes are referred to as inertial measurement units (IMUs). If they also include magnetic field sensors (magnetometers), they are called magnetic inertial measurement units (MIMUs){Magnetic Inertial Measurement Unit}. With these devices the orientation of the body can be obtained with up to nine degrees of freedom, provided that triaxial accelerometers, gyroscopes and magnetometers are used, respectively \cite{olivares_vicente_signal_2013}.
+Devices using a combination of accelerometers and gyroscopes to measure the orientation of a solid body with up to six degrees of freedom are referred to as \gls{IMUs}. If they include magnetic field sensors (magnetometers), they are termed magnetic inertial measurement units \gls{MIMUs}.\cite{olivares_vicente_signal_2013}.
 
-MIMUs are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the movement. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}. Moreover, \citeauthor{mancini_isway:_2012} \cite{mancini_isway:_2012} pointed out the need of data pre-processing and the question of how to generate a clinically understandable presentation of the movement data.
+MIMUs are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the movement. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}.
 
-
-\subsection{Accelerometer}
+\subsection{Accelerometers}
 
 Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained and the resultant acceleration is computed according to Newton's second law $ \mathbf{F} = m \cdot \mathbf a $ \cite{encyclopedia_britannica_accelerometer_2014}.
 
-
 \subsection{Gyroscopes}
 
-Gyroscopes measure angular velocity and are based on the Coriolis Effect. By means of integration of the angular velocity the rotation angle is obtained \cite{olivares_vicente_signal_2013}.
+Gyroscopes measure angular velocity and are based on the Coriolis Effect. By integrating the angular velocity the rotation angle is obtained \cite{olivares_vicente_signal_2013}.
 
-
-\subsection{Magnetometer}
+\subsection{Magnetometers}
 
 Magnetometers measure the strength and the direction of the magnetic field in a point in space, using the relationship between magnetic fields, movement and induced currents \cite{olivares_vicente_signal_2013}.
 
 
+\section{The Filtering Problem}
+
+Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it is also called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
+
+Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement is to estimate the state \gls{not:x(t)_v} given prior information.
+
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-, thin, black}, align=center]
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+    \node [block, align=center, 
+    	pin={[pinstyle]below:System \\ Errors}]
+    	(dynamical) {Dynamical \\ system};
+    \node [block, align=center, right of=dynamical, pin={[pinstyle]below:Measurement \\ errors}, node distance=4.5cm] (measuring) {Measuring \\ system};
+    \node [block, align=center, right of=measuring, pin={[pinstyle]below:Prior \\ information}, node distance=4.5cm] (estimator) {Estimator};
+    \node [output, right of=estimator] (output) {};
+    
+    \draw [->, align=center] (dynamical) -- node[name=x] {State \\ $\mathbf{x}(t)$} (measuring);
+    \draw [->, align=center] (measuring) -- node[name=y] {Observation \\ $\mathbf{y}(t)$} (estimator);
+    \draw [->, align=center] (estimator) -- node[name=y] {Estimate \\ of state \\ $\hat{\mathbf{x}}(t)$} (output);
+\end{tikzpicture}
+\caption{Block diagram depicting the components involved in state estimation adopted from \cite{haykin2002adaptive}.} \label{fig:state_estimation}
+\end{figure}
+
+   
+
 \section{Digital Filters}
 
-\subsection{Filter Basics}
+In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals, digital filtering refers to applying mathematical operations to a discrete-time signal. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
+
+Digital filters can be classified as linear and nonlinear. If the quantity at the output of the filter is a linear function of its input, that is, the filter function satisfies the superposition principle, the filter is said to be linear. Otherwise, the filter is nonlinear.
 
 \subsection{Adaptive Filters}
 
-\subsection{Kalman Filters}
+Assuming the availability of statistical parameters as the mean and correlation functions of the useful signal and the unwanted noise 
 
+\subsection{Kalman Filters}
 
 \section{Orientation Estimation}
