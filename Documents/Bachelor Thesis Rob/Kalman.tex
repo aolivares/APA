@@ -1,0 +1,67 @@
+\chapter{The Kalman Filter}
+\label{ch:kalman}
+
+\section{The Filtering Problem}
+
+Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
+
+Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement is to deliver a reliable estimate \gls{not:x_hat(t)_v} of the state \gls{not:x(t)_v}, taking prior information into account.
+
+\tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-, thin, black}, align=center]
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+    \node [block, align=center, 
+    	pin={[pinstyle]below:System \\ Errors}]
+    	(dynamical) {Dynamical \\ system};
+    \node [block, align=center, right of=dynamical, pin={[pinstyle]below:Measurement \\ errors}, node distance=4.5cm] (measuring) {Measuring \\ system};
+    \node [block, align=center, right of=measuring, pin={[pinstyle]below:Prior \\ information}, node distance=4.5cm] (estimator) {Estimator};
+    \node [output, right of=estimator] (output) {};
+    
+    \draw [->, align=center] (dynamical) -- node[name=x] {State \\ \gls{not:x(t)_v}} (measuring);
+    \draw [->, align=center] (measuring) -- node[name=y] {Observation \\ \gls{not:y(t)_v}} (estimator);
+    \draw [->, align=center] (estimator) -- node[name=y] {Estimate \\ of state \\ $\hat{\mathbf{x}}(t)$} (output);
+\end{tikzpicture}
+\caption{Block diagram depicting the components involved in state estimation adopted from \cite{haykin2002adaptive}.} \label{fig:state_estimation}
+\end{figure}
+
+   
+
+\section{Digital Filters}
+
+In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
+
+Digital filters can be classified as linear and nonlinear. If the quantity at the output of the filter is a linear function of its input, that is, the filter function satisfies the superposition principle, the filter is said to be linear. Otherwise, the filter is nonlinear.
+
+\subsection{Wiener Filter}
+
+A statistical criterion according to which the performance of a filter can be measured is the mean-squared error, defined as:
+
+$$\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(\hat{x}_i - x_i)^2$$
+
+\noindent
+where $i$ denotes the element of the vector  $\hat{\mathbf{x}}$ and the actual state vector $\mathbf{x}$ with a length of $n$, respectively. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. Since the Wiener filter requires apriori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+
+\subsection{Adaptive Filters}
+
+ 
+
+\subsection{Kalman Filters}
+
+The following simple example from \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
+
+Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation is $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure 
+
+\begin{tikzpicture}
+
+\draw[thick] plot[samples=200, smooth, domain=-.5:5.5] (\x, {0.1+2.8/(0.9*sqrt(2*pi))*exp(-((\x-2.5)^2)/(2*0.9^2))}) coordinate[pos=0.8] (A);
+  \draw[->] (-1,0) -- (6,0) node[right] {$x$};
+  \draw[->] (0,-1) -- (0,2) node[right] {$f_{x(t_1)|z(t_1)}(x|z_1)$};
+  
+  
+\end{tikzpicture}
+
+\section{Orientation Estimation}

@@ -7,7 +7,8 @@ A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Abstract.aux
 A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: State_of_the_Art.aux
-A level-1 auxiliary file: Fundamentals.aux
+A level-1 auxiliary file: IMUs.aux
+A level-1 auxiliary file: Kalman.aux
 A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Results.aux
 A level-1 auxiliary file: Conclusion.aux
@@ -22,45 +23,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 11 entries,
+You've used 12 entries,
             2481 wiz_defined-function locations,
-            621 strings with 6364 characters,
-and the built_in function-call counts, 3151 in all, are:
-= -- 289
-> -- 99
-< -- 11
-+ -- 53
-- -- 28
-* -- 194
-:= -- 512
-add.period$ -- 42
-call.type$ -- 11
-change.case$ -- 13
-chr.to.int$ -- 8
-cite$ -- 19
-duplicate$ -- 193
-empty$ -- 286
-format.name$ -- 41
-if$ -- 647
+            630 strings with 6481 characters,
+and the built_in function-call counts, 3424 in all, are:
+= -- 312
+> -- 106
+< -- 12
++ -- 57
+- -- 30
+* -- 208
+:= -- 557
+add.period$ -- 46
+call.type$ -- 12
+change.case$ -- 14
+chr.to.int$ -- 9
+cite$ -- 20
+duplicate$ -- 212
+empty$ -- 316
+format.name$ -- 44
+if$ -- 706
 int.to.chr$ -- 4
-int.to.str$ -- 12
-missing$ -- 3
-newline$ -- 72
-num.names$ -- 33
-pop$ -- 95
+int.to.str$ -- 13
+missing$ -- 5
+newline$ -- 78
+num.names$ -- 36
+pop$ -- 106
 preamble$ -- 1
-purify$ -- 11
+purify$ -- 12
 quote$ -- 0
-skip$ -- 107
+skip$ -- 116
 stack$ -- 0
-substring$ -- 54
-swap$ -- 47
+substring$ -- 56
+swap$ -- 50
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 74
+type$ -- 78
 warning$ -- 8
-while$ -- 25
+while$ -- 27
 width$ -- 0
-write$ -- 158
+write$ -- 172
 (There were 9 warnings)
