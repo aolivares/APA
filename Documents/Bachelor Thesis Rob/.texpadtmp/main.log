@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  20 MAR 2015 09:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  20 MAR 2015 16:46
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1183,30 +1183,30 @@ Package glossaries Info: Writing glossary file main.acn on input line 58.
 \openout7 = `main.ntn'.
 
 Package glossaries Info: Writing glossary file main.ntn on input line 58.
- (./Glossary.tex) (./Acronyms.tex) (./Notation.tex) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/State_of_the_Art.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/IMUs.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Kalman.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
+ (./Acronyms.tex) (./Notation.tex) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 69.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 68.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 68.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 69.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 68.
+LaTeX Font Info:    ... okay on input line 68.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 68.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplx.fd
 File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 ) ABD: EveryShipout initializing macros (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -1236,7 +1236,7 @@ Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count231
 \AtBeginShipoutBox=\box69
-Package hyperref Info: Link coloring OFF on input line 69.
+Package hyperref Info: Link coloring OFF on input line 68.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1244,9 +1244,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count232
 )
-LaTeX Info: Redefining \ref on input line 69.
-LaTeX Info: Redefining \pageref on input line 69.
-LaTeX Info: Redefining \nameref on input line 69.
+LaTeX Info: Redefining \ref on input line 68.
+LaTeX Info: Redefining \pageref on input line 68.
+LaTeX Info: Redefining \nameref on input line 68.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out)
 \@outlinefile=\write8
 \openout8 = `main.out'.
@@ -1264,7 +1264,7 @@ Package epstopdf Info: Source file: <images/universidad_de_granada.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/universidad_de_granada-eps-converted-to.pdf images/universidad_de_granada.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
- <images/universidad_de_granada-eps-converted-to.pdf, id=158, 414.54875pt x 129.48375pt>
+ <images/universidad_de_granada-eps-converted-to.pdf, id=146, 414.54875pt x 129.48375pt>
 File: images/universidad_de_granada-eps-converted-to.pdf Graphic file (type pdf)
  <use images/universidad_de_granada-eps-converted-to.pdf>
 Package pdftex.def Info: images/universidad_de_granada-eps-converted-to.pdf used on input line 6.
@@ -1278,7 +1278,7 @@ Package epstopdf Info: Source file: <images/fh-muenster.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/fh-muenster-eps-converted-to.pdf images/fh-muenster.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
- <images/fh-muenster-eps-converted-to.pdf, id=159, 156.585pt x 70.2625pt>
+ <images/fh-muenster-eps-converted-to.pdf, id=147, 156.585pt x 70.2625pt>
 File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
@@ -1330,13 +1330,13 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <14.4> not available
 )pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.79 	\include{Statement}
+l.78 	\include{Statement}
                           [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.80 	\clearemptydoublepage
+l.79 	\clearemptydoublepage
                             [2
 
 
@@ -1369,7 +1369,12 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 \tf@toc=\write9
 \openout9 = `main.toc'.
 
- [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof)
+ [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof
+Overfull \hbox (8.13603pt too wide) in paragraph at lines 3--3
+ [][] [][]\OT1/pplx/m/n/12 Placement of the Gait-Watch com-po-nents at the body adopted 
+ []
+
+)
 \tf@lof=\write10
 \openout10 = `main.lof'.
 
@@ -1386,7 +1391,7 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 ] [12
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.acr)
-Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--113
+Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--112
 []
  []
 
@@ -1415,6 +1420,9 @@ File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <17.28> not available
 (Font)              Font shape `OT1/pplx/b/n' tried instead on input line 4.
+LaTeX Font Info:    Try loading font information for TS1+pplx on input line 13.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplx.fd
+File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
 )
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1426,131 +1434,113 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
-]
+])
 LaTeX Font Info:    Font shape `OT1/pplx/m/sl' in size <12> not available
-(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 125.
+(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 124.
  [2]
-\openout2 = `State_of_the_Art.aux'.
+\openout2 = `MARG_sensors.aux'.
 
- (./State_of_the_Art.tex
+ (./MARG_sensors.tex
 Chapter 2.
-) [3
+
+Package natbib Warning: Citation `encyclopedia_britannica_accelerometer_2014' on page 3 undefined on input line 10.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3
 
 
 
 ]
-\openout2 = `IMUs.aux'.
+Overfull \hbox (0.69275pt too wide) in paragraph at lines 24--25
+[]\OT1/pplx/m/n/12 Devices us-ing a com-bi-na-tion of ac-celerom-e-ters and gy-ro-scopes to mea-
+ []
 
- (./IMUs.tex [4
+[4] <images/GaitWatch_placement.pdf, id=344, 340.75514pt x 292.43323pt>
+File: images/GaitWatch_placement.pdf Graphic file (type pdf)
+ <use images/GaitWatch_placement.pdf>
+Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 53.
+(pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
+) [5 <./images/GaitWatch_placement.pdf>]
+\openout2 = `Digital_filters.aux'.
+
+ (./Digital_filters.tex [6
 
 
 
 ]
 Chapter 3.
+[7] [8]) [9]
+\openout2 = `Implementation.aux'.
 
-Package natbib Warning: Citation `encyclopedia_britannica_accelerometer_2014' on page 5 undefined on input line 10.
-
-[5]
-Overfull \hbox (0.69275pt too wide) in paragraph at lines 24--25
-[]\OT1/pplx/m/n/12 Devices us-ing a com-bi-na-tion of ac-celerom-e-ters and gy-ro-scopes to mea-
- []
-
-LaTeX Font Info:    Try loading font information for TS1+pplx on input line 35.
-(/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplx.fd
-File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
-) [6] <images/GaitWatch_placement.pdf, id=364, 340.75514pt x 292.43323pt>
-File: images/GaitWatch_placement.pdf Graphic file (type pdf)
- <use images/GaitWatch_placement.pdf>
-Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 53.
-(pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
-) [7 <./images/GaitWatch_placement.pdf>]
-\openout2 = `Kalman.aux'.
-
- (./Kalman.tex [8
+ (./Implementation.tex [10
 
 
 
 ]
 Chapter 4.
-[9] [10]) [11]
-\openout2 = `Implementation.aux'.
+) [11]
+\openout2 = `Conclusion.aux'.
 
- (./Implementation.tex [12
+ (./Conclusion.tex [12
 
 
 
 ]
 Chapter 5.
-) [13]
-\openout2 = `Results.aux'.
-
- (./Results.tex [14
-
-
-
-]
-Chapter 6.
-) [15]
-\openout2 = `Conclusion.aux'.
-
- (./Conclusion.tex [16
-
-
-
-]
-Chapter 7.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]) [18] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
-Underfull \hbox (badness 2564) in paragraph at lines 46--52
+ [13]) [14] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl [15
+
+
+
+]
+Underfull \hbox (badness 2564) in paragraph at lines 60--66
 \OT1/pplx/m/it/12 celerom-e-ter\OT1/pplx/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 46--52
+Underfull \hbox (badness 2503) in paragraph at lines 60--66
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 54--60
+Underfull \hbox (badness 1742) in paragraph at lines 68--74
 []\OT1/pplx/m/n/12 Analog De-vices.  \OT1/pplx/m/it/12 ADXL345: 3-Axis, \TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 2g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 4g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 8g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 16g Dig-i-tal
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 54--60
+Underfull \hbox (badness 2503) in paragraph at lines 68--74
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
-[19
-
-
-
-]) [20]
+) [16]
 
 Package natbib Warning: There were undefined citations.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 139.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 139.
-(/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/State_of_the_Art.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/IMUs.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Kalman.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Results.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 139.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 139.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 136.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 136.
+(/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 136.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 136.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 28066 strings out of 493117
- 521832 string characters out of 6135432
- 689359 words of memory out of 5000000
- 30688 multiletter control sequences out of 15000+600000
+ 27951 strings out of 493117
+ 519411 string characters out of 6135432
+ 686211 words of memory out of 5000000
+ 30597 multiletter control sequences out of 15000+600000
  41306 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,12n,77p,1783b,974s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,11n,77p,1783b,974s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (38 pages, 536028 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (34 pages, 534980 bytes).
 PDF statistics:
- 593 PDF objects out of 1000 (max. 8388607)
- 515 compressed objects within 6 object streams
- 107 named destinations out of 1000 (max. 500000)
- 332 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 561 PDF objects out of 1000 (max. 8388607)
+ 488 compressed objects within 5 object streams
+ 100 named destinations out of 1000 (max. 500000)
+ 308 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,5 +1,12 @@
-\chapter{The Kalman Filter}
+\chapter{Digital Filters}
 \label{ch:kalman}
+
+This Chapter dicusses basics of digital filters. The 
+the shortcomings of the Wiener filter and its solution - the Kalman Filter a
+
+In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
+
+Digital filters can be classified as linear and nonlinear. If the quantity at the output of the filter is a linear function of its input, that is, the filter function satisfies the superposition principle, the filter is said to be linear. Otherwise, the filter is nonlinear.
 
 \section{The Filtering Problem}
 
@@ -28,15 +35,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 \caption{Block diagram depicting the components involved in state estimation adopted from \cite{haykin2002adaptive}.} \label{fig:state_estimation}
 \end{figure}
 
-   
-
-\section{Digital Filters}
-
-In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
-
-Digital filters can be classified as linear and nonlinear. If the quantity at the output of the filter is a linear function of its input, that is, the filter function satisfies the superposition principle, the filter is said to be linear. Otherwise, the filter is nonlinear.
-
-\subsection{Wiener Filter}
+\section{Wiener Filter}
 
 A statistical criterion according to which the performance of a filter can be measured is the mean-squared error, defined as:
 
@@ -45,11 +44,11 @@ $$\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(\hat{x}_i - x_i)^2$$
 \noindent
 where $i$ denotes the element of the vector  $\hat{\mathbf{x}}$ and the actual state vector $\mathbf{x}$ with a length of $n$, respectively. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. Since the Wiener filter requires apriori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
 
-\subsection{Adaptive Filters}
+\section{Adaptive Filters}
 
  
 
-\subsection{Kalman Filters}
+\section{Kalman Filter}
 
 The following simple example from \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
 
@@ -64,4 +63,6 @@ Suppose you are lost at sea during the night and take a star sighting to determi
   
 \end{tikzpicture}
 
-\section{Orientation Estimation}
+\section{Extended Kalman Filter}
+
+

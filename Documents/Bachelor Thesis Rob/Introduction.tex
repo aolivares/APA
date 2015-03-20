@@ -3,22 +3,22 @@
 
 \section{General}
 
-Human body motion analysis has become an integral part of medical diagnostic techniques. 
-
+Orientation estimation assisted by inertial sensors have become an integral part of medical diagnosis and therapy techniques as it provides an objective means of monitoring and assessing human body motion.
 
 \section{Motivation}
 
 
 \section{Goals}
 
-The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to improve the estimation of orientation angles by means of inertial sensors.
-
-
+The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to improve the estimation of orientation angles by means of inertial sensors. The filter algorithm should be implemented using MATLAB$\textsuperscript{\textregistered}$ and validated against existing algorithms by comparing their respective error rates. An existing system for human body motion analysis called GaitWatch was available so that no new hardware had to be developed to gather movement data.
 
 \section{Methodology}
 
-Our Team was composed of three members and worked using the agile software development methodology. Working software was delivered frequently and was the principal measure of progression. To follow the progress of other team members at any time we used Pivotal Tracker, a tool for agile project management and GitHub, a repository hosting service based on the distributed version control system Git. I used the document markup language \LaTeX{} to write this thesis.
+Subsequent to the introductory overview of the subject and the definition of the project objectives, this chapter ends with a description of the state of the art. Chapter 2 outlines the fundamentals of MARG sensors and gives a detailed description of the GaitWatch device. Chapter 3 explains the theoretical basics of digital filters including the Kalman filter as a particular one. Those are necessary for the actual implementation of the filter and the orientation estimation in Chapter 4, in which also the results are presented and discussed. Finally, Chapter 5 concludes and proposes possible future work.
 
-\section{Document Structure}
+As additional means to communicate with my supervisor and enable him to follow the progress of the project at any time we used Pivotal Tracker, a tool for agile project management and GitHub, a repository hosting service based on the distributed version control system Git. I used the document markup language \LaTeX{} to write this thesis.
 
-This thesis begins with an introductory chapter where the scope of the concrete task is discussed as well as its goals and ends with the hardware we used. Chapter 2 describes the state of the art. In Chapter 3, we will elaborate on the Fundamentals necessary for the implementation. Chapter 4 presents and discusses the results. Finally, Chapter 5 concludes and proposes possible future work.
+\section{State of the Art}
+
+There are several research works in the literature dealing with orientation estimation by means of inertial sensors, as the examination of posture and gait are key components of the clinical evaluation of PD [19]. The state of the art at the commencement of the project is described below.
+

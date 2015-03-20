@@ -3,7 +3,7 @@
 
 MARG sensors is a collective term for magnetic, angular rate, and gravitational sensors. It encompasses inertial sensors, such as accelerometers and gyroscopes, as well as magnetic field sensors, also referred to as magnetometers. This chapter compiles the functional principles of MARG sensors and introduces \glspl{IMU} as a combination of those. At the end of the chapter the GaitWatch device is described in detail.
 
-MARG sensors have numerous applications in navigation. They are used in 
+MARG sensors can be found in smart phones, fitness trackers, and other wearable devices where they have become a prevalent research environment for estimation and tracking human body motion \cite{bennett_motion_2014}. Large enterprises, such as Intel and Apple \cite{Intel_2013}\cite{Apple_2015}, . Moreover they have numerous applications in navigation.
 
 \section{Accelerometers}
 
@@ -25,7 +25,7 @@ Devices using a combination of accelerometers and gyroscopes to measure the orie
 
 \glspl{MIMU} are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the movement. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}.
 
-\section{GaitWatch}
+\section{The GaitWatch}
 
 The \gls{MIMU} we used to gather the movement data is called GaitWatch, a device designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
 
@@ -51,6 +51,6 @@ Micromag3 \allowbreak triaxial magnetometer with a measurement range of ±11\,Ga
 \begin{figure}
 	\centering
 	\epsfig{file=images/GaitWatch_placement, width=9cm}
-	\caption{Placement of GaitWatch components at the body \cite{olivares_vicente_gaitwatch_2013}.}
+	\caption{Placement of the GaitWatch components at the body adopted from \cite{olivares_vicente_gaitwatch_2013}.}
 	\label{fig:GaitWatch_placement}
 \end{figure}

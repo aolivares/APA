@@ -1,4 +1,4 @@
-\begin{thebibliography}{12}
+\begin{thebibliography}{14}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -22,6 +22,20 @@ T.R. Bennett, R.~Jafari, and N.~Gans.
 \newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
   {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
 \newblock \doi{10.1109/BSN.2014.17}.
+
+\bibitem[for Parkinson's Research~(MJFF) and Corporation()]{Intel_2013}
+The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
+  Corporation.
+\newblock {The Michael J. Fox Foundation and Intel Join Forces to Improve
+  Parkinson's Disease Monitoring and Treatment through Advanced Technologies}.
+\newblock URL \url{http://goo.gl/PxQAof}.
+\newblock [Accessed 20 March, 2015].
+
+\bibitem[Inc.()]{Apple_2015}
+Apple Inc.
+\newblock {ResearchKit}.
+\newblock URL \url{http://www.apple.com/researchkit}.
+\newblock [Accessed 20 March, 2015].
 
 \bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
 Alberto Olivares~Vicente.
@@ -80,7 +94,7 @@ Alberto Olivares~Vicente.
 \bibitem[Maybeck(1979)]{Maybeck79}
 Peter~S. Maybeck.
 \newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
-\newblock Academic Press, 5 1979.
+\newblock Academic Press, 1979.
 \newblock ISBN 9780124110427.
 
 \end{thebibliography}
