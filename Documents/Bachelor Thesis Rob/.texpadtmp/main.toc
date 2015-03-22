@@ -24,7 +24,7 @@
 \contentsline {section}{\numberline {3.1}The Filtering Problem}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Wiener Filter}{10}{section.3.2}
 \contentsline {section}{\numberline {3.3}Adaptive Filters}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Kalman Filter}{11}{section.3.4}
+\contentsline {section}{\numberline {3.4}Kalman Filter}{12}{section.3.4}
 \contentsline {section}{\numberline {3.5}Extended Kalman Filter}{12}{section.3.5}
 \contentsline {chapter}{\numberline {4}Implementation}{13}{chapter.4}
 \contentsline {section}{\numberline {4.1}Realisation in Matlab}{13}{section.4.1}

@@ -34,14 +34,39 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{Wiener Filter}
 
-A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. This error signal is defined as the difference between some desired response and the actual filter output.
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $w_0, w_1, w_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $n$ it produces an output designated by $y(n)$, which provides an estimate of a desired response denoted by $d(n)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem and the resulting requirement is summarised with the following statement:
 
-According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem is summarised with the following statement:
+\begin{quote}``Design a linear discrete-time filter whose output $y(n)$ provides an estimate of the desired response $d(n)$, given a set of input samples $u(0), u(1), u(2), \dots$, such that the mean-square value of the estimation error $e(n)$, defined as the difference between the desired response $d(n)$ and the actual response $y(n)$, is minimized.''
+\end{quote}
 
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=2.6cm, minimum width=3.2cm]
+\tikzstyle{sum} = [draw, circle, node distance=4cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{error} = [coordinate]
+\tikzstyle{pinstyle} = [pin edge={to-,thin,black}]
 
-Since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+    
+\node [input, name=input] {};
+\node [block, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $w_0, w_1, w_2, \dots$};
+\node [sum, right of=filter, node distance=4.4cm] (sum) {$\sum$};	
+\node [output, right of=sum, node distance=2.8cm, name=output] {};
+\node [error, below of=sum, node distance=2.8cm, name=error] {};
 
+\draw [draw,->, align=left] (input) -- node [pos=0.29]{Input \\ $u(0), u(1), u(2), \dots$} (filter);
+\draw [draw,->, align=left] (filter) -- node {Output \\ $y(n)$} node[pos=0.9, label={below:$-$}] {} (sum);
+\draw [draw,->, align=left] (output) -- node [label={above:Desired \\ response \\ $d(n)$}] {} node[pos=0.9] {$+$} (sum);
+\draw [draw,->, align=left] (sum) -- node {Estimation \\ error \\ $e(n)$} (error);
 
+\end{tikzpicture}
+\caption{Block diagram representation of the statistical filtering problem adopted from \cite{haykin2002adaptive}.} \label{fig:filtering_problem}
+\end{figure}
+
+Assum a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise. Then, the solution to this statistical optimisation problem is commonly known as the Wiener filter. Yet, since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
 
 \section{Adaptive Filters}
 
