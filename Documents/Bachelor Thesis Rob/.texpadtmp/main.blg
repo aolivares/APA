@@ -12,10 +12,15 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
+I was expecting a `,' or a `}'---line 152 of file ../Bibliography.bib
+ : 
+ : doi={10.1109/TITB.2007.899496},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--I didn't find a database entry for "encyclopedia_britannica_accelerometer_2014"
 Warning--empty year in olivares_vicente_gaitwatch_2013
-Warning--empty year in Intel_2013
 Warning--empty year in Apple_2015
+Warning--empty year in Intel_2013
 Warning--empty year in IMU5
 Warning--empty year in IDG500
 Warning--empty year in ADXL335
@@ -23,45 +28,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 14 entries,
+You've used 22 entries,
             2481 wiz_defined-function locations,
-            639 strings with 6842 characters,
-and the built_in function-call counts, 3993 in all, are:
-= -- 361
-> -- 128
-< -- 14
-+ -- 67
-- -- 36
-* -- 234
-:= -- 643
-add.period$ -- 54
-call.type$ -- 14
-change.case$ -- 18
-chr.to.int$ -- 11
-cite$ -- 24
-duplicate$ -- 240
-empty$ -- 376
-format.name$ -- 54
-if$ -- 831
+            703 strings with 8915 characters,
+and the built_in function-call counts, 7855 in all, are:
+= -- 676
+> -- 356
+< -- 17
++ -- 151
+- -- 104
+* -- 582
+:= -- 1254
+add.period$ -- 88
+call.type$ -- 22
+change.case$ -- 34
+chr.to.int$ -- 19
+cite$ -- 32
+duplicate$ -- 422
+empty$ -- 710
+format.name$ -- 130
+if$ -- 1670
 int.to.chr$ -- 4
-int.to.str$ -- 15
-missing$ -- 5
-newline$ -- 90
-num.names$ -- 42
-pop$ -- 136
+int.to.str$ -- 23
+missing$ -- 13
+newline$ -- 140
+num.names$ -- 66
+pop$ -- 197
 preamble$ -- 1
-purify$ -- 14
+purify$ -- 22
 quote$ -- 0
-skip$ -- 136
+skip$ -- 238
 stack$ -- 0
-substring$ -- 60
-swap$ -- 53
-text.length$ -- 1
+substring$ -- 241
+swap$ -- 101
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 92
+type$ -- 148
 warning$ -- 10
-while$ -- 31
+while$ -- 58
 width$ -- 0
-write$ -- 198
-(There were 11 warnings)
+write$ -- 322
+(There was 1 error message)

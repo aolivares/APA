@@ -1,8 +1,10 @@
 \chapter{Digital Filters}
 \label{ch:kalman}
 
-This Chapter dicusses basics of digital filters. The 
-the shortcomings of the Wiener filter and its solution - the Kalman Filter a
+This Chapter discusses the basics of digital filters,
+the shortcomings of the Wiener filter and its solution - the Kalman Filter.
+
+Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
 
 In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
 
@@ -10,9 +12,7 @@ Digital filters can be classified as linear and nonlinear. If the quantity at th
 
 \section{The Filtering Problem}
 
-Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
-
-Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement is to deliver a reliable estimate \gls{not:x_hat(t)_v} of the state \gls{not:x(t)_v}, taking prior information into account.
+Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement is to deliver a reliable estimate \gls{not:x_hat(t)_v} of the actual state \gls{not:x(t)_v}, taking prior information into account.
 
 \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
 \tikzstyle{output} = [coordinate]
@@ -37,12 +37,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{Wiener Filter}
 
-A statistical criterion according to which the performance of a filter can be measured is the mean-squared error, defined as:
-
-$$\operatorname{MSE}=\frac{1}{n}\sum_{i=1}^n(\hat{x}_i - x_i)^2$$
-
-\noindent
-where $i$ denotes the element of the vector  $\hat{\mathbf{x}}$ and the actual state vector $\mathbf{x}$ with a length of $n$, respectively. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. Since the Wiener filter requires apriori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+A statistical criterion according to which the performance of a filter can be measured is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. Since the Wiener filter requires apriori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
 
 \section{Adaptive Filters}
 
