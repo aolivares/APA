@@ -34,11 +34,20 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{Wiener Filter}
 
-A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. This error signal is defined as the difference between some desired response and the actual filter output. Since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. This error signal is defined as the difference between some desired response and the actual filter output.
+
+According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem is summarised with the following statement:
+
+
+Since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+
+
 
 \section{Adaptive Filters}
 
-A possible approach to mitigate the limitations of the Wiener filter for non-stationary processes is the `estimate and plug' procedure. The filter `estimates' the statistical parameters of the relevant signals and `plugs' them into a non-recursive formula for computing the filter parameters. This procedure requires excessively elaborate and costly hardware for real-time operation \cite{haykin2002adaptive}. To overcome this disadvantage one may use an adaptive filter, which is a self-designing system that relies on, in contrast, a recursive algorithm. It allows the filter to perform satisfactorily even if no complete knowledge of the relevant signal characteristics it available. 
+A possible approach to mitigate the limitations of the Wiener filter for non-stationary processes is the `estimate and plug' procedure. The filter `estimates' the statistical parameters of the relevant signals and `plugs' them into a non-recursive formula for computing the filter parameters. This procedure requires excessively elaborate and costly hardware for real-time operation \cite{haykin2002adaptive}. To overcome this disadvantage one may use an adaptive filter, which is a self-designing system that relies, in contrast, on a recursive algorithm. It allows the filter to perform satisfactorily even if there is no complete knowledge of the relevant signal characteristics. Provided the variations in the  statistics of the input data are sufficiently slow, the algorithm can track time variations and is thus suitable for non-stationary environments. The algorithm starts from some predetermined set of initial conditions respecting the knowledge about the system. In a stationary environment it converges to the optimum Wiener solution in some statistical sense after successive iterations.
+
+Due to the fact that the parameters of an adaptive filter are updated each iteration, they become data dependent. The system does not obey the principles of superposition which therefore makes the adaptive filter in reality a nonlinear system. However, an adaptive filter is commonly said to be linear if its input-output map satisfies the superposition principle, as long as its parameters are held fixed. Otherwise it is said to be nonlinear.
 
 
 \section{Kalman Filter}
