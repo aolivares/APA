@@ -1,12 +1,9 @@
 \chapter{Digital Filters}
-\label{ch:kalman}
-
-This Chapter discusses the basics of digital filters,
-the shortcomings of the Wiener filter and its solution - the Kalman Filter.
+\label{ch:digital_filters}
 
 Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
 
-In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A sequence of samples at equidistant time instants represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
+In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A discrete-time signal is a sequence of samples at equidistant time instants that represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
 
 Digital filters can be classified as linear and nonlinear. If the quantity at the output of the filter is a linear function of its input, that is, the filter function satisfies the superposition principle, the filter is said to be linear. Otherwise, the filter is nonlinear.
 
@@ -37,11 +34,12 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{Wiener Filter}
 
-A statistical criterion according to which the performance of a filter can be measured is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. Since the Wiener filter requires apriori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Assuming a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise, the so-called Wiener filter is said to be optimum as it minimises the mean-square value of the error signal. This error signal is defined as the difference between some desired response and the actual filter output. Since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
 
 \section{Adaptive Filters}
 
- 
+A possible approach to mitigate the limitations of the Wiener filter for non-stationary processes is the `estimate and plug' procedure. The filter `estimates' the statistical parameters of the relevant signals and `plugs' them into a non-recursive formula for computing the filter parameters. This procedure requires excessively elaborate and costly hardware for real-time operation \cite{haykin2002adaptive}. To overcome this disadvantage one may use an adaptive filter, which is a self-designing system that relies on, in contrast, a recursive algorithm. It allows the filter to perform satisfactorily even if no complete knowledge of the relevant signal characteristics it available. 
+
 
 \section{Kalman Filter}
 
