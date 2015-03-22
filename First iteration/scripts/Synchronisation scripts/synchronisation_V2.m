@@ -1,5 +1,5 @@
 % |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-% ------------------------ Extract Signals --------------------------------
+% ------------------------ Synchronisation Signals --------------------------------
 % |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 % -------------------------------------------------------------------------
@@ -49,7 +49,6 @@
 % 
 % * 5) Save the synchronised data in *.mat file for each person.
 %
-% * 6)
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -60,8 +59,8 @@ clear all; close all; clc;
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'yes';
 showPlotsAccShank = 'yes';
-showPlotsGyroShank = 'no';
-showPlotsTrunk = 'no';
+showPlotsGyroShank = 'yes';
+% showPlotsTrunk = 'yes';
 
 % Suppress warnings if no peak is detected during the calibration.
 warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -1117,15 +1116,15 @@ for i = 1:length(Selection)
 end
 
 % Turn some signals into row vectors to use them easier afterwards.
-a_X_left_shank_1_C =a_X_left_shank_1_C';
-a_X_left_thigh_1_C =a_X_left_thigh_1_C';
-a_X_right_shank_1_C =a_X_right_shank_1_C';
-a_X_right_thigh_1_C =a_X_right_thigh_1_C';
+a_X_left_shank_1_C = a_X_left_shank_1_C';
+a_X_left_thigh_1_C = a_X_left_thigh_1_C';
+a_X_right_shank_1_C = a_X_right_shank_1_C';
+a_X_right_thigh_1_C = a_X_right_thigh_1_C';
 
-a_Z_left_shank_1_C =a_Z_left_shank_1_C';
-a_Z_left_thigh_1_C =a_Z_left_thigh_1_C';
-a_Z_right_shank_1_C =a_Z_right_shank_1_C';
-a_Z_right_thigh_1_C=a_Z_right_thigh_1_C';
+a_Z_left_shank_1_C = a_Z_left_shank_1_C';
+a_Z_left_thigh_1_C = a_Z_left_thigh_1_C';
+a_Z_right_shank_1_C = a_Z_right_shank_1_C';
+a_Z_right_thigh_1_C = a_Z_right_thigh_1_C';
 
 % Subtract the mode of the gyroscope's signals to centrate these signals in
 % the 0 value.
@@ -1193,7 +1192,7 @@ fs_GW = 200;
 % -------------------------------------------------------------------------
 wag = wagLibrary;    
 
-% Define input signal.
+% Define input signal for rigth shank.
 axC = a_X_right_shank_1_C;
 azC = a_Z_right_shank_1_C;
 
@@ -1203,10 +1202,10 @@ input_signal = sqrt(axC .^ 2 + azC .^ 2)';
 
 % FSD (window size, decision threshold, overlapping and normalization
 % factor). 
-lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 100; lambda = 50;
+lwin_fsd = 100;  threshold_fsd = 5.5;  shift_fsd = 100; lambda = 50;
 
 % LTSD (window size, decision threshold and overlapping).
-lwin_ltsd = 100;       threshold_ltsd = 5.5;   shift_ltsd = 10;
+lwin_ltsd = 100;       threshold_ltsd = 4.3;   shift_ltsd = 10;
 
 % 3) Get the decision signal of the FSD algorithm and the marker.
 [V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
@@ -1217,7 +1216,7 @@ lwin_ltsd = 100;       threshold_ltsd = 5.5;   shift_ltsd = 10;
 % 4) Get the decision signal of the LTSD algorithm and the marker.
 [V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
     threshold_ltsd);
-[marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
+[marker_ltsd_right, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
     input_signal, lwin_ltsd, shift_ltsd);
 
 if strcmpi(showPlotsCheck,'yes')    
@@ -1242,9 +1241,63 @@ legend('Input signal','FSD decision')
 subplot(2, 1, 2)
 plot(input_signal)
 hold on
-plot(marker_ltsd + 1, 'r')
+plot(marker_ltsd_right + 1, 'r')
 legend('Input signal','LTSD decision')
 end
+
+% Define input signal for left shank.
+axC = a_X_left_shank_1_C;
+azC = a_Z_left_shank_1_C;
+
+input_signal = sqrt(axC .^ 2 + azC .^ 2)';
+
+% Computation of intensity markers.
+
+% FSD (window size, decision threshold, overlapping and normalization
+% factor). 
+lwin_fsd = 100;  threshold_fsd = 3;  shift_fsd = 100; lambda = 50;
+
+% LTSD (window size, decision threshold and overlapping).
+lwin_ltsd = 200;       threshold_ltsd = 5;   shift_ltsd = 10;
+
+% 3) Get the decision signal of the FSD algorithm and the marker.
+[V_fsd, T_fsd] = wag.fsd(input_signal, lwin_fsd, shift_fsd, 512, ...
+    threshold_fsd);
+[marker_fsd, T_fsd_expanded] = wag.compEstMark(V_fsd, T_fsd, input_signal, ...
+    lwin_fsd, shift_fsd);
+
+% 4) Get the decision signal of the LTSD algorithm and the marker.
+[V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
+    threshold_ltsd);
+[marker_ltsd_left, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
+    input_signal, lwin_ltsd, shift_ltsd);
+
+if strcmpi(showPlotsCheck,'yes')    
+figure
+subplot(2, 1, 1)
+plot(T_fsd_expanded)
+hold on
+plot(threshold_fsd * ones(1, length(T_fsd_expanded)), 'r')
+legend('Detector output (FSD)', 'Detection threshold')
+subplot(2, 1, 2)
+plot(T_ltsd_expanded)
+hold on
+plot(threshold_ltsd * ones(1, length(T_ltsd_expanded)), 'r')
+legend('Detector output (LTSD)', 'Detection threshold')
+
+figure
+subplot(2, 1, 1)
+plot(input_signal)
+hold on
+plot(marker_fsd + 1, 'r')
+legend('Input signal','FSD decision')
+subplot(2, 1, 2)
+plot(input_signal)
+hold on
+plot(marker_ltsd_left + 1, 'r')
+legend('Input signal','LTSD decision')
+end
+
 % -------------------------------------------------------------------------
 % 4.1) Find the second positive peak of each cycle in the GaitWatch signal 
 %      of the z-axis of the acceleration of the shank, that is, the point 
@@ -1252,60 +1305,69 @@ end
 % -------------------------------------------------------------------------
 
 % Set tuning parameter for peak detection in acceleration signal.
-threshold_pos = 1.05;    
+threshold_pos = 0.5;    
 threshold_neg = -0.9;
 
 % Determinate the initial and end point of each interval where we need to 
 % find the peaks, i.e, the first activity period of each cycle. 
-edges = find(diff(marker_ltsd)~=0);
-initcross = edges(1:4:length(edges));
-finalcross = edges(2:4:length(edges));
+edges_right = find(diff(marker_ltsd_right)~=0);
+initcross_right = edges_right(1:4:length(edges_right));
+finalcross_right = edges_right(2:4:length(edges_right));
+
+edges_left = find(diff(marker_ltsd_left)~=0);
+initcross_left = edges_left(1:4:length(edges_left));
+finalcross_left = edges_left(2:4:length(edges_left));
 
 % Calculate the peaks in each interval.
-for k = 1:length(initcross)
+for k = 1:length(initcross_right)
 
     % Find all peaks smaller than threshold in each interval in the left 
     % shank signal.
     [neg_peak_values_l, neg_peak_locations_l] = findpeaks(...
-                            -a_Z_left_shank_1_C(initcross(k):finalcross(k)),...
+                            -a_Z_left_shank_1_C(...
+                            initcross_left(k):finalcross_left(k)),...
                             'minpeakheight', threshold_neg);
 
     % Store the index of the highest negative peak.                                      
-    neg_peaks_l(k) = find(a_Z_left_shank_1_C(initcross(k):finalcross(k))== ...
-                    -max(neg_peak_values_l), 1, 'last') + initcross(k) - 1;
+    neg_peaks_l(k) = find(a_Z_left_shank_1_C(...
+                    initcross_left(k):finalcross_left(k))== -max(...
+                    neg_peak_values_l), 1, 'last') + initcross_left(k) - 1;
                                      
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_l, peak_locations_l] = findpeaks(a_Z_left_shank_1_C(...
-                                        neg_peaks_l(k):finalcross(k)), ...
+                                        neg_peaks_l(k):finalcross_left(k)), ...
                                         'minpeakheight', threshold_pos);
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_l(k) = find(...
-                     a_Z_left_shank_1_C(neg_peaks_l(k):finalcross(k)) ...
+                     a_Z_left_shank_1_C(neg_peaks_l(k):finalcross_left(k)) ...
                      == max(peak_values_l), 1, 'first') + neg_peaks_l(k) - 1;
                              
     % Find all peaks smaller than threshold in each interval in the right 
     % shank signal.
     [neg_peak_values_r, neg_peak_locations_r] = findpeaks(...
-                            -a_Z_right_shank_1_C(initcross(k):finalcross(k)),...
+                            -a_Z_right_shank_1_C(...
+                            initcross_right(k):finalcross_right(k)),...
                             'minpeakheight', threshold_neg);
 
     % Store the index of the highest negative peak.                                      
-    neg_peaks_r(k) = find(a_Z_right_shank_1_C(initcross(k):finalcross(k))== ...
-                    -max(neg_peak_values_r), 1, 'last') + initcross(k) - 1;
+    neg_peaks_r(k) = find(a_Z_right_shank_1_C(...
+                    initcross_right(k):finalcross_right(k))== ...
+                    -max(neg_peak_values_r), 1, 'last') + ...
+                    initcross_right(k) - 1;
                                      
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_r, peak_locations_r] = findpeaks(a_Z_right_shank_1_C(...
-                                        neg_peaks_r(k):finalcross(k)), ...
+                                        neg_peaks_r(k):finalcross_right(k)), ...
                                         'minpeakheight', threshold_pos);
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_r(k) = find(...
-                     a_Z_right_shank_1_C(neg_peaks_r(k):finalcross(k)) ...
+                     a_Z_right_shank_1_C(neg_peaks_r(k):finalcross_right(k)) ...
                      == max(peak_values_r), 1, 'first') + neg_peaks_r(k) - 1;
 
 end
@@ -1319,7 +1381,7 @@ sync_peaks_acc = sort(sync_peaks_acc);
 
 
 % Store last peak of each cycle.
- last_peaks = edges(4:4:length(edges));
+ last_peaks = edges_right(4:4:length(edges_right));
 
 % -------------------------------------------------------------------------
 % 4.2 Store seperate GaitWatch cycles in a cell array of time series
@@ -1565,21 +1627,25 @@ ML_COP_ts = createTimeseriesFP(ML_COP, time_FP, sync_peak_times, ...
  name_file = textscan(filename_FP,'%s','Delimiter',',');
  name_file = char(name_file{1}{1});
  name_file = strcat( name_file,'_synchronised.mat');
-%  
-%  save(['../../data/Synchronised/' ...
-%        name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
-%        'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
-%        'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
-%        'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
-%        'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
-%        'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
-%        'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
-%        'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
-%        'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF');
+ 
+ save(['../../data/Synchronised/' ...
+       name_file], 'a_shanks', 'a_thighs', 'a_trunk', 'AP_COP_ts', ...
+       'force_cells_ts', 'force_sensors_ts', 'force_sum_ts', 'g_arms', ...
+       'g_shanks', 'g_thighs', 'g_trunk', 'h_trunk', 'ML_COP_ts', ...
+       'pitch_arms_gyro', 'pitch_shanks_acc', 'pitch_shanks_GKF', ...
+       'pitch_shanks_gyro', 'pitch_shanks_KF', 'pitch_thighs_acc', ...
+       'pitch_thighs_GKF', 'pitch_thighs_gyro', 'pitch_thighs_KF', ...
+       'pitch_trunk_GKF', 'pitch_trunk_KF', 'roll_arms_GKF', ...
+       'roll_trunk_GKF', 'roll_trunk_KF', 'yaw_trunk_2GKF', ...
+       'yaw_trunk_2KF', 'yaw_trunk_GKF', 'yaw_trunk_KF', 'edges_right', ...
+       'edges_left', 'time_GW','sync_peaks_r','sync_peaks_l');
   
   fprintf('\nSaved synchronised signals!\n\n\n');
   
+% -------------------------------------------------------------------------  
 % Plots.
+% -------------------------------------------------------------------------
+
 % Append all separate time series of the four force sensor signals and 
 % extract data from timeseries for plot.
 force_sensors_complete_ts = append(force_sensors_ts{1, :});
@@ -1915,30 +1981,35 @@ ylabel('Force in N');
 axis([150, 152, 0, 800]);
 end
 
+% -------------------------------------------------------------------------
 % Synchronisation with the gyroscope signal.
+% -------------------------------------------------------------------------
 
 % Calculate the peaks in each interval.
-for k = 1:length(initcross)                                 
+for k = 1:length(initcross_left)                                 
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_l, peak_locations_l] = findpeaks(g_Y_left_shank_1_C(...
-                                        initcross(k):finalcross(k)));
+                                        initcross_left(k):finalcross_left(k)));
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_l(k) = find(...
-                     g_Y_left_shank_1_C(initcross(k):finalcross(k)) ...
-                     == max(peak_values_l), 1, 'first') + initcross(k) - 1;
+                     g_Y_left_shank_1_C(initcross_left(k):finalcross_left(k)) ...
+                     == max(peak_values_l), 1, 'first') + ...
+                     initcross_left(k) - 1;
  
     % Find all peaks greater than threshold in the interval specified by the 
     % minimum peak calculated above and the end of the interval.
     [peak_values_r, peak_locations_r] = findpeaks(g_Y_right_shank_1_C(...
-                                        initcross(k):finalcross(k)));
+                                        initcross_right(k):...
+                                        finalcross_right(k)));
 
     % Store the index of the highest positive peak .                                      
     sync_peaks_r(k) = find(...
-                     g_Y_right_shank_1_C(initcross(k):finalcross(k)) ...
-                     == max(peak_values_r), 1, 'first') + initcross(k) - 1;
+                     g_Y_right_shank_1_C( ...
+                     initcross_right(k):finalcross_right(k))==...
+                     max(peak_values_r), 1, 'first') + initcross_right(k) - 1;
 
 end
 
@@ -1960,9 +2031,6 @@ sync_peaks_mean = (sync_peaks_gyro + sync_peaks_acc)./2;
 % It's created this variable to show a bar plot.
 sync_peaks = [sync_peaks_acc; sync_peaks_mean ;sync_peaks_gyro]'; 
 sync_peaks = sync_peaks./[sync_peaks_mean; sync_peaks_mean; sync_peaks_mean]';
-
-% Calculate the linear correlation between the peaks detected with the 
-% acceleration signal and gyroscope signal.
 
 % Detected sync-peaks.
 if strcmpi(showPlotsGyroShank,'yes')
@@ -2012,174 +2080,174 @@ th = text(50,200,strcat( 'Correlation: ',num2str(corr_sync)) ,...
     'edgeColor', 'c');
 
 end
-
-% -------------------------------------------------------------------------
-% 6) Determine APA characteristics in trunk signals, COP and the
-% correlation between them.
-% -------------------------------------------------------------------------
-
-% Determine when the second step ocurred. We extract the part of the signal
-% when the patient carried out the step. It happens between the beginning of
-% activity period of each cycle and the end of FP data.
-
-init_second_step = edges(3:4:length(edges));
-
-force_sum_complete_ts = append(force_sum_ts{1, :});
-force_sum_data = force_sum_complete_ts.data(3,1,:);
-force_sum_data = reshape(force_sum_data, 1, length(force_sum_data));
-
-final_second_step = find(diff(force_sum_data > 100)~=0);
-final_second_step = final_second_step(2:2:length(final_second_step));
-final_second_step = force_sum_complete_ts.time(final_second_step);
-
-% Extract data from timeseries for plot.
-AP_COP_complete_ts = append(AP_COP_ts{1, :});
-AP_COP_data = AP_COP_complete_ts.data;
-
-ML_COP_complete_ts = append(ML_COP_ts{1, :});
-ML_COP_data = ML_COP_complete_ts.data;
-
-% Show other signals of the trunk for acceletometer data and the gyroscope
-% data.
-if strcmpi(showPlotsTrunk,'yes')
-    
-figure();
-subplot(3, 1, 1);
-plot(time_GW, a_Z_left_shank_1_C);
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-%axis([127, 129, -0.1, 2.1]);
-
-subplot(3, 1, 2)
-plot(time_GW, a_Z_right_shank_1_C, 'g');
-
- 
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-%axis([127, 129, -0.1, 2.3]);
-
-subplot(3, 1, 3)
-plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
-     [4, max(size(fs_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('The force in FP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('Force in N');
-
-%axis([127, 129, 0, 800]);
-
-figure()
-subplot(4, 1, 1);
-plot(time_GW, g_X_center_trunk_1_C);
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-
-subplot(4, 1, 2)
-plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
-     [1, max(size(AP_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('AP COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-
-subplot(4, 1, 3);
-plot(time_GW, g_Y_center_trunk_1_C);
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-%axis([127, 129, -0.1, 2.1]);
-
-subplot(4, 1, 4)
-plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
-     [1, max(size(ML_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('ML COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-
-
-end
+% 
+% % -------------------------------------------------------------------------
+% % 6) Determine APA characteristics in trunk signals, COP and the
+% % correlation between them.
+% % -------------------------------------------------------------------------
+% 
+% % Determine when the second step ocurred. We extract the part of the signal
+% % when the patient carried out the step. It happens between the beginning of
+% % activity period of each cycle and the end of FP data.
+% 
+% init_second_step = edges_right(3:4:length(edges_right));
+% 
+% force_sum_complete_ts = append(force_sum_ts{1, :});
+% force_sum_data = force_sum_complete_ts.data(3,1,:);
+% force_sum_data = reshape(force_sum_data, 1, length(force_sum_data));
+% 
+% final_second_step = find(diff(force_sum_data > 100)~=0);
+% final_second_step = final_second_step(2:2:length(final_second_step));
+% final_second_step = force_sum_complete_ts.time(final_second_step);
+% 
+% % Extract data from timeseries for plot.
+% AP_COP_complete_ts = append(AP_COP_ts{1, :});
+% AP_COP_data = AP_COP_complete_ts.data;
+% 
+% ML_COP_complete_ts = append(ML_COP_ts{1, :});
+% ML_COP_data = ML_COP_complete_ts.data;
+% 
+% % Show other signals of the trunk for acceletometer data and the gyroscope
+% % data.
+% if strcmpi(showPlotsTrunk,'yes')
+%     
+% figure();
+% subplot(3, 1, 1);
+% plot(time_GW, a_Z_left_shank_1_C);
+% 
+% % Vertical line init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
+%        'patient steps with the second time']);
+% xlabel('Time in s');
+% ylabel('Acceleration in g');
+% %axis([127, 129, -0.1, 2.1]);
+% 
+% subplot(3, 1, 2)
+% plot(time_GW, a_Z_right_shank_1_C, 'g');
+% 
+%  
+% % Vertical line at init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line at final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
+%        'patient steps with the second time']);
+% xlabel('Time in s');
+% ylabel('Acceleration in g');
+% %axis([127, 129, -0.1, 2.3]);
+% 
+% subplot(3, 1, 3)
+% plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
+%      [4, max(size(fs_data))]));
+% 
+% % Vertical line at init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line at final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title('The force in FP with lines marker when the patient steps with the second time');
+% xlabel('Time in s');
+% ylabel('Force in N');
+% 
+% %axis([127, 129, 0, 800]);
+% 
+% figure()
+% subplot(4, 1, 1);
+% plot(time_GW, g_X_center_trunk_1_C);
+% 
+% % Vertical line init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
+%        'patient steps with the second time']);
+% xlabel('Time in s');
+% ylabel('Acceleration in g');
+% 
+% 
+% subplot(4, 1, 2)
+% plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
+%      [1, max(size(AP_COP_data))]));
+% 
+% % Vertical line at init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line at final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title('AP COP with lines marker when the patient steps with the second time');
+% xlabel('Time in s');
+% ylabel('COP in mm');
+% 
+% subplot(4, 1, 3);
+% plot(time_GW, g_Y_center_trunk_1_C);
+% 
+% % Vertical line init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
+%        'patient steps with the second time']);
+% xlabel('Time in s');
+% ylabel('Acceleration in g');
+% %axis([127, 129, -0.1, 2.1]);
+% 
+% subplot(4, 1, 4)
+% plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
+%      [1, max(size(ML_COP_data))]));
+% 
+% % Vertical line at init.
+% hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+%     'LineWidth', 2 , 'Color', 'r');
+% changedependvar(hx,'x');
+% 
+% % Vertical line at final.
+% hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+%     'LineWidth', 2 , 'Color', 'm');
+% changedependvar(hx,'x');
+% 
+% title('ML COP with lines marker when the patient steps with the second time');
+% xlabel('Time in s');
+% ylabel('COP in mm');
+% 
+% 
+% end
 end
 
 % Show a completion message to indicate a successful synchronisation of

@@ -53,14 +53,22 @@ function [ ts_cell ] = createTimeseriesGW(data_GW, time_GW, sync_peaks, ...
 n_cycles = length(sync_peaks);
 
 % Create empty cell array.
-ts_cell = cell(1, n_cycles-1);
+ts_cell = cell(1, n_cycles);
 
-for i = 1:n_cycles-1
+for i = 1:n_cycles
 
-% Create time series object
-ts = timeseries(data_GW(:, sync_peaks(i)-add_samples:last_peaks(i)+add_samples), ...
-                time_GW(sync_peaks(i)-add_samples:last_peaks(i)+add_samples), ...
+% Create time series object 
+
+  if( i == n_cycles)
+    ts = timeseries(data_GW(:, sync_peaks(i)-add_samples:last_peaks(i)), ...
+                time_GW(sync_peaks(i)-add_samples:last_peaks(i)), ...
                 'name', strcat(num2str(i), ['. cycle of ', name]));
+  else
+    ts = timeseries(data_GW(:, sync_peaks(i)-add_samples:last_peaks(i)+add_samples), ...
+                time_GW(sync_peaks(i)-add_samples:last_peaks(i)+add_samples), ...
+                'name', strcat(num2str(i), ['. cycle of ', name]));  
+  end
+  
 ts.TimeInfo.Units = time_unit;
 ts.DataInfo.Units = data_unit;
 
