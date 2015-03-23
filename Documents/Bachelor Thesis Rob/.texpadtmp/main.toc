@@ -26,14 +26,14 @@
 \contentsline {section}{\numberline {3.3}Adaptive Filters}{11}{section.3.3}
 \contentsline {section}{\numberline {3.4}Kalman Filter}{12}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}A Simple Example}{12}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}The Kalman Equations}{16}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{16}{section.3.5}
-\contentsline {chapter}{\numberline {4}Implementation}{17}{chapter.4}
-\contentsline {section}{\numberline {4.1}Realisation in Matlab}{17}{section.4.1}
-\contentsline {section}{\numberline {4.2}Experiments}{17}{section.4.2}
-\contentsline {section}{\numberline {4.3}Results}{17}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discussion}{17}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{19}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{19}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{20}{section.5.2}
-\contentsline {chapter}{Bibliography}{21}{section.5.2}
+\contentsline {subsection}{\numberline {3.4.2}The Kalman Equations}{17}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{17}{section.3.5}
+\contentsline {chapter}{\numberline {4}Implementation}{19}{chapter.4}
+\contentsline {section}{\numberline {4.1}Realisation in Matlab}{19}{section.4.1}
+\contentsline {section}{\numberline {4.2}Experiments}{19}{section.4.2}
+\contentsline {section}{\numberline {4.3}Results}{19}{section.4.3}
+\contentsline {section}{\numberline {4.4}Discussion}{19}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{21}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{21}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{22}{section.5.2}
+\contentsline {chapter}{Bibliography}{23}{section.5.2}

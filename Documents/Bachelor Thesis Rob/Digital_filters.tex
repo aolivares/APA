@@ -79,7 +79,7 @@ Due to the fact that the parameters of an adaptive filter are updated each itera
 
 \subsection{A Simple Example}
 
-The following simple example from \citeauthor{Maybeck79} \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
+The following simple example from \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
 
 Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation is $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure \ref{fig:measurement_z1}. The best estimate of your position, based on this conditional probability density, is
 
@@ -238,16 +238,47 @@ where $u$ is a nominal velocity and $w$ is a noise term, representing the uncert
 
 The conditional density of the position at time $t_2$, given $z_1$ and $z_2$, was previously derived. Figure \ref{fig:propagation} shows graphically how the density travels along the x-axis as time progresses. It start at the best estimate and moves according to the above mentioned model of dynamics. Due to the constant addition of uncertainty over time it spreads out. As the variance becomes greater you become less sure of your position. The Gaussian density $f_{x(t_3)|z(t_1), z(t_2)}(x|z_1, z_2)$ can be expressed mathematically by its mean and variance given by
 
-\begin{equation}\label{}
+\begin{equation}\label{eq:system_model}
   \hat{x}(t^-_3)=\hat{x}(t_2)+u[t_3-t_2]
 \end{equation}
 
-\begin{equation}\label{}
+\begin{equation}\label{eq:variance_predicted}
   \sigma^2_x(t^-_3)=\sigma^2_x(t_2)+\sigma^2_w[t_3-t_2]
 \end{equation}
 
 \noindent
 $\hat{x}(t^-_3)$ is the optimal prediction of the location at $t^-_3$ before the measurement is taken at $t_3$, associated with the variance in this prediction, $\sigma^2_x(t^-_3)$.
+
+Now a measurement $z_3$ with an assumed variance $\sigma^2_{z_3}$ is taken. As before, its conditional probability density is combined with the density with mean $\hat{x}(t^-_3)$ and variance $\sigma^2_x(t^-_3)$, to yield a Gaussian density with mean
+
+\begin{equation}\label{eq:estimation_kalman}
+  \hat{x}(t_3) = \hat{x}(t^-_3) + K(t_3)[z_3-\hat{x}(t^-_3)]
+\end{equation}
+
+\noindent
+and variance
+
+\begin{equation}\label{eq:variance_kalman}
+  \sigma^2_x(t_3) = \sigma^2_x(t^-_3)-K(t_3)\sigma^2_x(t^-_3)\,,
+\end{equation}
+
+\noindent
+where the gain $K(t_3)$ is given by
+
+\begin{equation}\label{eq:gain_kalman}
+  K(t_3) = \frac{\sigma^2_x(t^-_3)}{\sigma^2_x(t^-_3)+\sigma^2_{z_3}}\,.
+\end{equation}
+
+Observing the form of Equation \ref{eq:gain_kalman} the reasonableness of the filter structure becomes obvious. If the variance of the measurement noise $\sigma^2_{z_3}$ is large, then $K(t_3)$ is small, meaning that little confidence is put in a very noisy measurement and that it is weighted lightly. For $\sigma^2_{z_3}\rightarrow\infty$, $K(t_3)$ becomes zero, and $\hat{x}(t_3)$ equals $\hat{x}(t^-_3)$. Thus, an infinitely noisy measurement is totally ignored. Likewise, if the dynamical system noise variance $\sigma^2_w$ is large, then according to Equation \ref{eq:variance_predicted}, $\sigma^2_x(t^-_3)$ will be large, and so will be $K(t_3)$. Therefore, the measurement is weighted heavily, in case you are not very certain about the output of the system model within the filter structure. In the limit as $\sigma^2_w \rightarrow\infty$, $\sigma^2_x(t^-_3) \rightarrow\infty$, and $K(t_3) \rightarrow1$, so Equation \ref{eq:filter_output} yields
+
+\begin{equation}\label{eq:prediction_kalman}
+  \hat{x}(t_3) = \hat{x}(t^-_3) + 1 \cdot [z_3-\hat{x}(t^-_3)] = z_3\,.
+\end{equation}
+
+\noindent
+That means that in the limit of absolutely no confidence in the system model output, solely the new measurement is taken as the optimal estimate.
+
+Extending Equation \ref{eq:system_model} and \ref{eq:variance_predicted} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter algorithm depicted in Figure \ref{}. The update phase at the measurement time corresponds tp the extension of Equation \ref{eq:estimation_kalman} and \ref{eq:gain_kalman}.
 
 \subsection{The Kalman Equations}
 
