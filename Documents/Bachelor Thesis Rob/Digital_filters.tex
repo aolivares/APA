@@ -77,9 +77,22 @@ Due to the fact that the parameters of an adaptive filter are updated each itera
 
 \section{Kalman Filter}
 
-The following simple example from \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
+\subsection{A Simple Example}
 
-Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation is $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure \ref{fig:measurement_z1}.
+The following simple example from \citeauthor{Maybeck79} \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
+
+Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation is $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure \ref{fig:measurement_z1}. The best estimate of your position, based on this conditional probability density, is
+
+\begin{equation}
+  \hat{x}(t_1)=z_1
+\end{equation}
+
+\noindent
+and the variance of the error in the estimate is
+
+\begin{equation}
+  \sigma^2_x(t_1)=\sigma^2_{z_1}\,.
+\end{equation}
 
 \begin{figure}
 \centering
@@ -96,6 +109,7 @@ Suppose you are lost at sea during the night and take a star sighting to determi
 \caption{Conditional density of position based on measurement value $z_1$, adopted from \cite{Maybeck79}.} \label{fig:measurement_z1}
 \end{figure}
 
+Right after you, say a trained navigator friend takes an independent fix at time $t_2 \cong t_1$, so that the true position has not changes at all. He obtains a measurement $z_2$ with a variance $\sigma_{z_2}$, which is somewhat smaller than yours, since he has a higher skill. Figure \ref{fig:measurement_z2} depicts the conditional density of your position at time $t_2$, based only on the measurement value $z_2$. Combining these data, your position at time $t_2 \cong t_1$, $x(t_2)$, given both $z_1$ and $z_2$, is then a Gaussian density with mean $\mu$ and variance $\sigma^2$, as indicated in Figure \ref{fig:combination}, with
 
 \begin{figure}
 \centering
@@ -137,8 +151,60 @@ Suppose you are lost at sea during the night and take a star sighting to determi
     >=0pt}] (5,3.5) -- (4.67,3.5) node[below, pos=0.5] {$\sigma$};
   
 \end{tikzpicture}
-\caption{Conditional density of position based on data $z_1$ and $z_2$, adopted from \cite{Maybeck79}.} \label{fig:measurement_z2}
+\caption{Conditional density of position based on data $z_1$ and $z_2$, adopted from \cite{Maybeck79}.} \label{fig:combination}
 \end{figure}
+
+
+\begin{equation}\label{eq:mu}
+  \mu=z_1\frac{\sigma^2_{z_2}}{\sigma^2_{z_1}+\sigma^2_{z_2}}+z_2\frac{\sigma^2_{z_1}}{\sigma^2_{z_1}+\sigma^2_{z_2}}
+\end{equation}
+
+and
+
+\begin{equation}
+  \frac{1}{\sigma^2}=\frac{1}{\sigma^2_{z_1}}+\frac{1}{\sigma^2_{z_2}}\,.
+\end{equation}
+
+\noindent
+The uncertainty in your estimate of position has been decreased because $\sigma$ is less than either $\sigma^2_{z_1}$ or $\sigma^2_{z_2}$. Even if $\sigma_{z_1}$ was very large, the variance of the estimate is less than $\sigma_{z_2}$, which means that even poor quality data increases the precision of the filter output. The best estimate, given this density, is
+
+\begin{equation}\label{eq:filter_output}
+  \hat{x}(t_2)=\mu\,,
+\end{equation}
+
+\noindent
+with an associated error variance $\sigma^2$.
+
+Having a closer look at the form of $\mu$ in Equation \ref{eq:mu}, one notices that it makes good sense. If the measurements were of equal precision, meaning $\sigma_{z_1}=\sigma_{z_2}$, the optimal estate is simply the average of both measurements, as would be expected. If $\sigma_{z_1}$ is larger than $\sigma_{z_2}$, the equation weights $z_2$ more heavily than $z_1$.
+
+Equation \ref{eq:filter_output} for the filter output can be written as
+
+\begin{equation}\label{eq:x2_hat}
+\begin{split}
+  \hat{x}(t_2) & =z_1\frac{\sigma^2_{z_2}}{\sigma^2_{z_1}+\sigma^2_{z_2}}+z_2\frac{\sigma^2_{z_1}}{\sigma^2_{z_1}+\sigma^2_{z_2}} \\
+  & =z_1+\frac{\sigma^2_{z_1}}{\sigma^2_{z_1}+\sigma^2_{z_2}}[z_2-z_1]
+\end{split}
+\end{equation}
+
+\noindent
+or in a form that is used in Kalman filter implementations, with $\hat{x}(t_1)=z_1$, as
+
+\begin{equation}\label{eq:x2_hat_kalman}
+  \hat{x}(t_2) = \hat{x}(t_1) + K(t_2)[z_2-\hat{x}(t_1)]\,,
+\end{equation}
+
+\noindent
+where
+
+\begin{equation}\label{eq:}
+  K(t_2) = \frac{\sigma^2_{z_1}}{\sigma^2_{z_1}+\sigma^2_{z_2}}\,.
+\end{equation}
+
+\noindent
+These equation represent the `predictor-corrector' structure of the Kalman filter. A prediction of the value that the desired variables and the measurements will have at the next measurement time is made, based on all previous information. Then the difference between the measurement and its predicted value is used to correct the prediction of the desired variables. According to Equation \ref{eq:x2_hat_kalman} the optimal estimate at time $t_2$, $\hat{x}(t_2)$, is equal to $\hat{x}(t_1)$, the best prediction of its value before $z_2$ is taken, plus a correction term of an optimal weighting value times the difference between $z_2$ and the best prediction of it before the measurement is actually taken.
+
+\subsection{The Kalman Equations}
+
 
 \section{Extended Kalman Filter}
 
