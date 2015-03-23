@@ -66,7 +66,7 @@ A statistical criterion, according to which the performance of a filter can be m
 \caption{Block diagram representation of the statistical filtering problem, adopted from \cite{haykin2002adaptive}.} \label{fig:filtering_problem}
 \end{figure}
 
-Assum a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise. Then, the solution to this statistical optimisation problem is commonly known as the Wiener filter. Yet, since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+Assume a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise. Then, the solution to this statistical optimisation problem is commonly known as the Wiener filter. Yet, since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
 
 \section{Adaptive Filters}
 
@@ -76,6 +76,8 @@ Due to the fact that the parameters of an adaptive filter are updated each itera
 
 
 \section{Kalman Filter}
+
+The Kalman filter is a set of recursive mathematical equations that provides an efficient means to estimate the state of a process, even when the precise nature of the modelled system is unknown. The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}.
 
 \subsection{A Simple Example}
 
@@ -276,9 +278,9 @@ Observing the form of Equation \ref{eq:gain_kalman} the reasonableness of the fi
 \end{equation}
 
 \noindent
-That means that in the limit of absolutely no confidence in the system model output, solely the new measurement is taken as the optimal estimate.
+That means that in the limit of absolutely no confidence in the system model output, solely the new measurement is taken as the optimal estimate. Finally, if you are absolutely sure of your estimate before $z_3$ comes available, $\sigma^2_x(t^-_3)$ would become zero, and so would $K(t_3)$, which means that the measurements would be left disregarded. 
 
-Extending Equation \ref{eq:system_model} and \ref{eq:variance_predicted} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter algorithm depicted in Figure \ref{}. The update phase at the measurement time corresponds tp the extension of Equation \ref{eq:estimation_kalman} and \ref{eq:gain_kalman}.
+Extending Equation \ref{eq:system_model} and \ref{eq:variance_predicted} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter algorithm depicted in Figure \ref{}. The update phase at the measurement time corresponds to the extension of Equation \ref{eq:estimation_kalman} and \ref{eq:gain_kalman}.
 
 \subsection{The Kalman Equations}
 
