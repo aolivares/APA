@@ -26,8 +26,8 @@
 \contentsline {section}{\numberline {3.3}Adaptive Filters}{11}{section.3.3}
 \contentsline {section}{\numberline {3.4}Kalman Filter}{12}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}A Simple Example}{12}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}The Kalman Equations}{15}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{15}{section.3.5}
+\contentsline {subsection}{\numberline {3.4.2}The Kalman Equations}{16}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{16}{section.3.5}
 \contentsline {chapter}{\numberline {4}Implementation}{17}{chapter.4}
 \contentsline {section}{\numberline {4.1}Realisation in Matlab}{17}{section.4.1}
 \contentsline {section}{\numberline {4.2}Experiments}{17}{section.4.2}

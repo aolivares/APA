@@ -196,12 +196,58 @@ or in a form that is used in Kalman filter implementations, with $\hat{x}(t_1)=z
 \noindent
 where
 
-\begin{equation}\label{eq:}
+\begin{equation}\label{}
   K(t_2) = \frac{\sigma^2_{z_1}}{\sigma^2_{z_1}+\sigma^2_{z_2}}\,.
 \end{equation}
 
 \noindent
 These equation represent the `predictor-corrector' structure of the Kalman filter. A prediction of the value that the desired variables and the measurements will have at the next measurement time is made, based on all previous information. Then the difference between the measurement and its predicted value is used to correct the prediction of the desired variables. According to Equation \ref{eq:x2_hat_kalman} the optimal estimate at time $t_2$, $\hat{x}(t_2)$, is equal to $\hat{x}(t_1)$, the best prediction of its value before $z_2$ is taken, plus a correction term of an optimal weighting value times the difference between $z_2$ and the best prediction of it before the measurement is actually taken.
+
+To incorporate dynamics into the model, suppose you travel for some time before taking another measurement. The best model you have for your motion may be of the form
+
+\begin{equation}\label{}
+  \frac{dx}{dt} = u + w\,,
+\end{equation}
+
+\noindent
+where $u$ is a nominal velocity and $w$ is a noise term, representing the uncertainty in your knowledge of the actual velocity due to disturbances and effects not accounted for in the simple first order equation. It will be modeled as white Gaussian noise with a mean of zero and variance of $\sigma^2_w$.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[pile/.style={->, >=stealth'}]
+
+\draw[very thick] plot[samples=200, smooth, domain=0.8:3.2] (\x, {0.05+5/(0.35*sqrt(2*pi))*exp(-((\x-2)^2)/(2*0.35^2))});
+\draw[very thick] plot[samples=200, smooth, domain=2.2:7.8] (\x, {0.2+5/(0.7*sqrt(2*pi))*exp(-((\x-5)^2)/(2*0.7^2))});
+\draw[very thick] plot[samples=200, smooth, domain=4.5:11.5] (\x, {0.4+5/(1.3*sqrt(2*pi))*exp(-((\x-8)^2)/(2*1.3^2))});
+
+  \draw[->] (-0.5,0) -- (12,0) node[below, pos=0.98] {$x$};
+  \draw[->] (0,-0.5) -- (0,6.5) node[right] {$f_{x(t)|z(t_1), z(t_2)}(x|z_1, z_2)$};
+  \draw[-] (8,0) -- (8,1.94) node[pos=-0.15] {$\hat{x}(t^-_3)$};
+  \draw[pile, style={->, >=stealth', shorten <=0pt, shorten
+    >=0pt}] (8,0.8) -- (10.07,0.8) node[below, pos=0.5] {$\sigma_x(t^-_3)$};
+  \draw[-] (5,0) -- (5,3.07) node[pos=-0.09] {$\hat{x}(t)$};
+    \draw[pile, style={->, >=stealth', shorten <=0pt, shorten
+    >=0pt}] (5,2) -- (5.65,2) node[right, pos=0.98] {$\sigma_x(t)$};
+  \draw[-] (2,0) -- (2,5.75) node[pos=-0.05] {$\hat{x}(t_2)$};
+    \draw[pile, style={->, >=stealth', shorten <=0pt, shorten
+    >=0pt}] (2,3.5) -- (2.33,3.5) node[right, pos=0.95] {$\sigma_x(t_2)$};
+  
+\end{tikzpicture}
+\caption{Propagation of conditional probability density, adopted from \cite{Maybeck79}.} \label{fig:propagation}
+\end{figure}
+
+The conditional density of the position at time $t_2$, given $z_1$ and $z_2$, was previously derived. Figure \ref{fig:propagation} shows graphically how the density travels along the x-axis as time progresses. It start at the best estimate and moves according to the above mentioned model of dynamics. Due to the constant addition of uncertainty over time it spreads out. As the variance becomes greater you become less sure of your position. The Gaussian density $f_{x(t_3)|z(t_1), z(t_2)}(x|z_1, z_2)$ can be expressed mathematically by its mean and variance given by
+
+\begin{equation}\label{}
+  \hat{x}(t^-_3)=\hat{x}(t_2)+u[t_3-t_2]
+\end{equation}
+
+\begin{equation}\label{}
+  \sigma^2_x(t^-_3)=\sigma^2_x(t_2)+\sigma^2_w[t_3-t_2]
+\end{equation}
+
+\noindent
+$\hat{x}(t^-_3)$ is the optimal prediction of the location at $t^-_3$ before the measurement is taken at $t_3$, associated with the variance in this prediction, $\sigma^2_x(t^-_3)$.
 
 \subsection{The Kalman Equations}
 

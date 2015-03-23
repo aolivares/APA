@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  23 MAR 2015 16:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  23 MAR 2015 19:06
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1389,6 +1389,11 @@ Overfull \hbox (6.67198pt too wide) in paragraph at lines 8--8
  [][] [][]\OT1/pplx/m/n/12 Conditional den-sity of po-si-tion based on mea-sure-ment value 
  []
 
+
+Overfull \hbox (7.69202pt too wide) in paragraph at lines 10--10
+ [][] [][]\OT1/pplx/m/n/12 Propagation of con-di-tional prob-a-bil-ity den-sity, adopted from 
+ []
+
 )
 \tf@lof=\write10
 \openout10 = `main.lof'.
@@ -1467,7 +1472,7 @@ Package natbib Warning: Citation `encyclopedia_britannica_accelerometer_2014' on
 
 Underfull \vbox (badness 4303) has occurred while \output is active []
 
- [5] [6] <images/GaitWatch_placement.pdf, id=409, 340.75514pt x 292.43323pt>
+ [5] [6] <images/GaitWatch_placement.pdf, id=413, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 49.
@@ -1484,16 +1489,16 @@ Chapter 3.
 [9] [10]
 Underfull \vbox (badness 1939) has occurred while \output is active []
 
- [11] [12] [13] [14]) [15]
+ [11] [12] [13] [14] [15]) [16]
 \openout2 = `Implementation.aux'.
 
- (./Implementation.tex [16
+ (./Implementation.tex
+Chapter 4.
+) [17
 
 
 
 ]
-Chapter 4.
-) [17]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex [18
@@ -1544,18 +1549,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 28935 strings out of 493117
- 539666 string characters out of 6135432
- 764631 words of memory out of 5000000
- 31549 multiletter control sequences out of 15000+600000
+ 30173 strings out of 493117
+ 565442 string characters out of 6135432
+ 765757 words of memory out of 5000000
+ 32783 multiletter control sequences out of 15000+600000
  41306 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,77p,1783b,974s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 577198 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (42 pages, 596683 bytes).
 PDF statistics:
- 685 PDF objects out of 1000 (max. 8388607)
- 599 compressed objects within 6 object streams
- 132 named destinations out of 1000 (max. 500000)
+ 697 PDF objects out of 1000 (max. 8388607)
+ 609 compressed objects within 7 object streams
+ 136 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 
