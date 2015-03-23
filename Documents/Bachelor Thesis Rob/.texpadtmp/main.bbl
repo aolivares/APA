@@ -15,6 +15,12 @@ Simon Haykin.
 \newblock Prentice Hall, Upper Saddle River, N.J, 2002.
 \newblock ISBN 9780130484345.
 
+\bibitem[Maybeck(1979)]{Maybeck79}
+Peter~S. Maybeck.
+\newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
+\newblock Academic Press, 1979.
+\newblock ISBN 9780124110427.
+
 \bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
 T.R. Bennett, R.~Jafari, and N.~Gans.
 \newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
@@ -165,11 +171,5 @@ Alberto Olivares~Vicente.
 \newblock \emph{{AVR ATxmega -- Development Module}}.
 \newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
 \newblock [Accessed 17 March 2015].
-
-\bibitem[Maybeck(1979)]{Maybeck79}
-Peter~S. Maybeck.
-\newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
-\newblock Academic Press, 1979.
-\newblock ISBN 9780124110427.
 
 \end{thebibliography}
