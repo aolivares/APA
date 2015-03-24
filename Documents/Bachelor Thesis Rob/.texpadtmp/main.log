@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  24 MAR 2015 19:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  24 MAR 2015 23:53
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1370,11 +1370,6 @@ LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
 \openout9 = `main.toc'.
 
  [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof
-Overfull \hbox (8.13603pt too wide) in paragraph at lines 3--3
- [][] [][]\OT1/pplx/m/n/12 Placement of the Gait-Watch com-po-nents at the body adopted 
- []
-
-
 Overfull \hbox (3.94807pt too wide) in paragraph at lines 6--6
  [][] [][]\OT1/pplx/m/n/12 Block di-a-gram rep-re-sen-ta-tion of the sta-tis-ti-cal fil-ter-ing prob- 
  []
@@ -1387,11 +1382,6 @@ Overfull \hbox (6.67198pt too wide) in paragraph at lines 7--7
 
 Overfull \hbox (6.67198pt too wide) in paragraph at lines 8--8
  [][] [][]\OT1/pplx/m/n/12 Conditional den-sity of po-si-tion based on mea-sure-ment value 
- []
-
-
-Overfull \hbox (7.69202pt too wide) in paragraph at lines 10--10
- [][] [][]\OT1/pplx/m/n/12 Propagation of con-di-tional prob-a-bil-ity den-sity, adopted from 
  []
 
 )
@@ -1420,12 +1410,15 @@ Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--112
 
 ] [14
 
-] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.not) [15
+] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.not [15
 
 
-] [16
+])
+Overfull \hbox (18.6126pt too wide) in paragraph at lines 34--118
+[]
+ []
 
-]
+[16]
 \openout2 = `Introduction.aux'.
 
  (./Introduction.tex
@@ -1454,6 +1447,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 
+
 ]
 LaTeX Font Info:    Font shape `OT1/pplx/m/sl' in size <12> not available
 (Font)              Font shape `OT1/pplx/m/it' tried instead on input line 34.
@@ -1472,7 +1466,7 @@ Package natbib Warning: Citation `encyclopedia_britannica_accelerometer_2014' on
 
 Underfull \vbox (badness 4303) has occurred while \output is active []
 
- [5] [6] <images/GaitWatch_placement.pdf, id=413, 340.75514pt x 292.43323pt>
+ [5] [6] <images/GaitWatch_placement.pdf, id=430, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 49.
@@ -1488,7 +1482,7 @@ Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 49.
 Chapter 3.
 [9] [10] [11] [12] [13] [14] [15] [16]
 
-LaTeX Warning: Reference `' on page 17 undefined on input line 285.
+LaTeX Warning: Reference `' on page 17 undefined on input line 288.
 
 [17]) [18]
 \openout2 = `Implementation.aux'.
@@ -1554,18 +1548,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 30195 strings out of 493117
- 565794 string characters out of 6135432
- 764813 words of memory out of 5000000
- 32797 multiletter control sequences out of 15000+600000
+ 30725 strings out of 493117
+ 574449 string characters out of 6135432
+ 767971 words of memory out of 5000000
+ 33309 multiletter control sequences out of 15000+600000
  41306 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,77p,1783b,974s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (44 pages, 597451 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (44 pages, 602058 bytes).
 PDF statistics:
- 724 PDF objects out of 1000 (max. 8388607)
- 634 compressed objects within 7 object streams
- 144 named destinations out of 1000 (max. 500000)
+ 740 PDF objects out of 1000 (max. 8388607)
+ 649 compressed objects within 7 object streams
+ 162 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 
