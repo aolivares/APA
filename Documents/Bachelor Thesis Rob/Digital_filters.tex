@@ -1,7 +1,7 @@
 \chapter{Digital Filters}
 \label{ch:digital_filters}
 
-Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy, distorted data. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
+Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy measurements of a process. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
 
 In contrast to analogue filters that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extracted the useful signal, a digital filter is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A discrete-time signal is a sequence of samples at equidistant time instants that represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
 
@@ -9,7 +9,7 @@ Digital filters can be classified as linear and nonlinear. If the quantity at th
 
 \section{The Filtering Problem}
 
-Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement is to deliver a reliable estimate \gls{not:x_hat(t)_v} of the actual state \gls{not:x(t)_v}, taking prior information into account.
+Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, \gls{not:x(t)_v}, is usually hidden and can only be observed by indirect measurements \gls{not:y(t)_v} that are a function of \gls{not:x(t)_v} and subject to noise. Equally, the equation describing the evolution of the state \gls{not:x(t)_v} is usually subject to system errors. These could be caused by, for instance, effects not accounted for in the model. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector \gls{not:y(t)_v} over an interval $[0, T]$. The requirement of the filter is to deliver a reliable estimate \gls{not:x_hat(t)_v} of the actual state \gls{not:x(t)_v}, by taking the measurement as well as prior information into account.
 
 \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
 \tikzstyle{output} = [coordinate]
@@ -66,24 +66,26 @@ A statistical criterion, according to which the performance of a filter can be m
 \caption{Block diagram representation of the statistical filtering problem, adopted from \cite{haykin2002adaptive}.} \label{fig:filtering_problem}
 \end{figure}
 
-Assume a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise. Then, the solution to this statistical optimisation problem is commonly known as the Wiener filter. Yet, since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes.
+Assume a stationary stochastic process with known statistical parameters as the mean and correlation functions of the useful signal and the unwanted additive noise. Then, the solution to this statistical optimisation problem is commonly known as the Wiener filter. Yet, since the Wiener filter requires a priori information about the statistics of the data to be processed, it may not be optimum for non-stationary processes. For such an environment, in which the statistics are time-vaying, it needs a filter that constantly adapts its parameters to optimise its output.
 
 \section{Adaptive Filters}
 
-A possible approach to mitigate the limitations of the Wiener filter for non-stationary processes is the `estimate and plug' procedure. The filter `estimates' the statistical parameters of the relevant signals and `plugs' them into a non-recursive formula for computing the filter parameters. This procedure requires excessively elaborate and costly hardware for real-time operation \cite{haykin2002adaptive}. To overcome this disadvantage one may use an adaptive filter, which is a self-designing system that relies, in contrast, on a recursive algorithm. It allows the filter to perform satisfactorily even if there is no complete knowledge of the relevant signal characteristics. Provided the variations in the  statistics of the input data are sufficiently slow, the algorithm can track time variations and is thus suitable for non-stationary environments. The algorithm starts from some predetermined set of initial conditions respecting the knowledge about the system. In a stationary environment it converges to the optimum Wiener solution in some statistical sense after successive iterations.
+A possible approach to mitigate the limitations of the Wiener filter for non-stationary processes is the `estimate and plug' procedure. The filter `estimates' the statistical parameters of the relevant signals and `plugs' them into a non-recursive formula for computing the filter parameters. This procedure requires excessively elaborate and costly hardware for real-time operation \cite{haykin2002adaptive}. To overcome this disadvantage one may use an adaptive filter, which is a self-designing system that relies, in contrast, on a recursive algorithm. It allows the filter to perform satisfactorily even if there is no complete knowledge of the relevant signal characteristics. Provided the variations in the  statistics of the input data are sufficiently slow, the algorithm can track time variations and is thus suitable for non-stationary environments. The algorithm starts from some predetermined set of initial conditions respecting the knowledge about the system. In a stationary environment it converges to the optimum Wiener solution in some statistical sense after successive iterations. The Kalman filter is such an adaptive filter.
 
 Due to the fact that the parameters of an adaptive filter are updated each iteration, they become data dependent. The system does not obey the principles of superposition which therefore makes the adaptive filter in reality a nonlinear system. However, an adaptive filter is commonly said to be linear if its input-output map satisfies the superposition principle, as long as its parameters are held fixed. Otherwise it is said to be nonlinear.
 
 
 \section{Kalman Filter}
 
-The Kalman filter is a set of recursive mathematical equations that provides an efficient means to estimate the state of a process, even when the precise nature of the modelled system is unknown. The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}.
+The Kalman filter is a set of recursive mathematical equations that provides an efficient means to estimate the state of a process, even when the precise nature of the modelled system is unknown. It incorporates knowledge of the system and measurement device dynamics, the statistical description of the system errors and measurement noise, uncertainty in the dynamics model, and available information about initial conditions of the variables of interest to produce an estimate of these variables, in a way that the mean of the squarred error is minimised \cite{Maybeck79}. 
 
-\subsection{A Simple Example}
+The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}. It finds applications in autonomous and assisted navigation, more examples missing, among others.
 
-The following simple example from \cite{Maybeck79} is no complete mathematical derivation but an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
+The following introductory example from \cite{Maybeck79} is an illustrative description of the determination of a one-dimensional position to understand how the Kalman filter works.
 
-Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation is $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure \ref{fig:measurement_z1}. The best estimate of your position, based on this conditional probability density, is
+\subsection{An Introductory Example}
+
+Suppose you are lost at sea during the night and take a star sighting to determine your approximate position at time $t_1$ to be $z_1$. Your location estimate is, due to inherent measurement device inaccuracies and human error, somewhat uncertain, and thus assumed to be associated with a standard deviation $\sigma_{z_1}$. The conditional probability of $x(t_1)$, your actual position at time $t_1$, conditioned on the observed value $z_1$, is depicted in Figure \ref{fig:measurement_z1}. The best estimate of your position, based on this conditional probability density, is
 
 \begin{equation}
   \hat{x}(t_1)=z_1
@@ -282,7 +284,9 @@ That means that in the limit of absolutely no confidence in the system model out
 
 Extending Equation \ref{eq:system_model} and \ref{eq:variance_predicted} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter algorithm depicted in Figure \ref{}. The update phase at the measurement time corresponds to the extension of Equation \ref{eq:estimation_kalman} and \ref{eq:gain_kalman}.
 
-\subsection{The Kalman Equations}
+\subsection{Formulation of the Kalman Filter Equations}
+ 
+The Kalman filter formulation is based on three assumptions.
 
 
 \section{Extended Kalman Filter}
