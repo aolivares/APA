@@ -5,22 +5,31 @@
   type=notation,  name={$m$},  description={Mass},  sort={m}}
   
 \newglossaryentry{not:sigma}{
-  type=notation,  name={$\sigma$},  description={Standard of conditional probability density},  sort={sigma}}
+  type=notation,  name={$\sigma$},  description={Standard deviation of conditional probability density},  sort={sigma}}
   
 \newglossaryentry{not:sigma_2}{
   type=notation,  name={$\sigma^2$},  description={Variance of conditional probability density},  sort={sigma}}
   
 \newglossaryentry{not:mu}{
-  type=notation,  name={$\mu$},  description={Mean of conditional probability density},  sort={sigma}}
+  type=notation,  name={$\mu$},  description={Mean value of conditional probability density},  sort={sigma}}
   
 \newglossaryentry{not:n}{
   type=notation,  name={$n$},  description={Discrete time},  sort={n}}
   
 \newglossaryentry{not:a}{
-  type=notation,  name={$\mathbf{a}$},  description={Three-dimensional acceleration},  sort={a}}
+  type=notation,  name={$\mathbf{a}$},  description={Three-dimensional acceleration vector},  sort={a}}
   
 \newglossaryentry{not:impulse}{
   type=notation,  name={$w_0, w_1, w_2, \dots$},  description={Impulse response of a linear discrete-time filter},  sort={wa}}
+  
+\newglossaryentry{not:input}{
+  type=notation,  name={$y(0), y(1), y(2), \dots$},  description={Time series that serves as input to a linear discrete-time filter},  sort={yaa}}
+  
+\newglossaryentry{not:desired_response}{
+  type=notation,  name={$d$},  description={Desired filter response of a linear discrete-time filter},  sort={d}}
+  
+\newglossaryentry{not:error_signal}{
+  type=notation,  name={$e$},  description={Error signal of a linear discrete-time filter},  sort={e}}
   
 \newglossaryentry{not:t}{
   type=notation,  name={$t$},  description={Continuous time},  sort={t}}
@@ -32,13 +41,19 @@
   type=notation,  name={$x$},  description={One-dimensional location},  sort={x}}
   
 \newglossaryentry{not:x_hat}{
-  type=notation,  name={$\hat{x}$},  description={Estimate of one-dimensional location},  sort={xa}}
+  type=notation,  name={$\hat{x}$},  description={Estimate of $x$},  sort={xa}}
   
-\newglossaryentry{not:w}{
-  type=notation,  name={$\mathbf{w}$},  description={Process noise vector},  sort={w}}
+\newglossaryentry{not:w_v}{
+  type=notation,  name={$\mathbf{w}$},  description={Process noise vector},  sort={wa}}
   
 \newglossaryentry{not:v}{
   type=notation,  name={$\mathbf{v}$},  description={Measurement noise vector},  sort={v}}
+  
+\newglossaryentry{not:u}{
+  type=notation,  name={$u$},  description={Nominal velocity},  sort={u}}
+  
+\newglossaryentry{not:w}{
+  type=notation,  name={$w$},  description={Noise term},  sort={w}}
 
 \newglossaryentry{not:x_hat_v}{
   type=notation,  name={$\hat{\mathbf{x}}$},  description={Estimate of the state vector of a linear dynamical system},  sort={xd}}
@@ -55,8 +70,11 @@
 \newglossaryentry{not:H}{
   type=notation,  name={$\mathbf{H}$},  description={Measurement sensitivity matrix defining the linear relationship between the state of the dynamical system and the measurements that can be made},  sort={H}}
   
+\newglossaryentry{not:K_v}{
+  type=notation,  name={$\mathbf{K}$},  description={Kalman gain matrix},  sort={Ka}}
+  
 \newglossaryentry{not:K}{
-  type=notation,  name={$\mathbf{K}$},  description={Kalman gain matrix},  sort={K}}
+  type=notation,  name={$K$},  description={Weighting factor},  sort={K}}
   
 \newglossaryentry{not:P}{
   type=notation,  name={$\mathbf{P}$},  description={Covariance matrix of state estimation uncertainty},  sort={P}}

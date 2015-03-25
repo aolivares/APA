@@ -17,7 +17,6 @@ I was expecting a `,' or a `}'---line 176 of file ../Bibliography.bib
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--I didn't find a database entry for "encyclopedia_britannica_accelerometer_2014"
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Apple_2015
 Warning--empty year in Intel_2013
@@ -30,7 +29,7 @@ Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 You've used 24 entries,
             2481 wiz_defined-function locations,
-            721 strings with 9260 characters,
+            720 strings with 9218 characters,
 and the built_in function-call counts, 8725 in all, are:
 = -- 765
 > -- 374

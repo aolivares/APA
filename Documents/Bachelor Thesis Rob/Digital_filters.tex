@@ -34,9 +34,9 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{Wiener Filter}
 
-A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $w_0, w_1, w_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $n$ it produces an output designated by $y(n)$, which provides an estimate of a desired response denoted by $d(n)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem and the resulting requirement is summarised with the following statement:
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $w_0, w_1, w_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $n$ it produces an output designated by $\hat{x}(n)$, which provides an estimate of a desired response denoted by $d(n)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem and the resulting requirement is summarised with the following statement:
 
-\begin{quote}``Design a linear discrete-time filter whose output $y(n)$ provides an estimate of the desired response $d(n)$, given a set of input samples $u(0), u(1), u(2), \dots$, such that the mean-square value of the estimation error $e(n)$, defined as the difference between the desired response $d(n)$ and the actual response $y(n)$, is minimized.''
+\begin{quote}``Design a linear discrete-time filter whose output $\hat{x}(n)$ provides an estimate of the desired response $d(n)$, given a set of input samples $y(0), y(1), y(2), \dots$, such that the mean-square value of the estimation error $e(n)$, defined as the difference between the desired response $d(n)$ and the actual response $\hat{x}(n)$, is minimized.''
 \end{quote}
 
 \tikzstyle{block} = [draw, rectangle, 
@@ -57,8 +57,8 @@ A statistical criterion, according to which the performance of a filter can be m
 \node [output, right of=sum, node distance=2.8cm, name=output] {};
 \node [error, below of=sum, node distance=2.8cm, name=error] {};
 
-\draw [draw,->, align=left] (input) -- node [pos=0.29]{Input \\ $u(0), u(1), u(2), \dots$} (filter);
-\draw [draw,->, align=left] (filter) -- node {Output \\ $y(n)$} node[pos=0.9, label={below:$-$}] {} (sum);
+\draw [draw,->, align=left] (input) -- node [pos=0.29]{Input \\ $y(0), y(1), y(2), \dots$} (filter);
+\draw [draw,->, align=left] (filter) -- node {Output \\ $\hat{x}(n)$} node[pos=0.9, label={below:$-$}] {} (sum);
 \draw [draw,->, align=left] (output) -- node [label={above:Desired \\ response \\ $d(n)$}] {} node[pos=0.9] {$+$} (sum);
 \draw [draw,->, align=left] (sum) -- node {Estimation \\ error \\ $e(n)$} (error);
 
@@ -237,7 +237,7 @@ where $u$ is a nominal velocity and $w$ is a noise term, representing the uncert
     >=0pt}] (2,3.5) -- (2.33,3.5) node[right, pos=0.95] {$\sigma_x(t_2)$};
  
   \draw[pile, style={dashed, ->, >=stealth', shorten <=0pt, shorten
-    >=0pt}] (2,4) -- (8,4) node[above, pos=0.75] {$t$};
+    >=0pt}] (2,4) -- (8,4) node[above, pos=0.75] {$u[t_3-t_2]$};
   
 \end{tikzpicture}
 \caption{Propagation of conditional probability density from \cite{Maybeck79}.} \label{fig:propagation}
