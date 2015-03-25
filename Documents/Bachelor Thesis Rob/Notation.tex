@@ -1,6 +1,9 @@
 \newglossaryentry{not:F}{
   type=notation,  name={$\mathbf{F}$},  description={Three-dimensional force vector},  sort={F}}
   
+\newglossaryentry{not:B_v}{
+  type=notation,  name={$\mathbf{B}$},  description={Control matrix that relates the control input to the state $\mathbf{x}$},  sort={B}}
+ 
 \newglossaryentry{not:m}{
   type=notation,  name={$m$},  description={Mass},  sort={m}}
   
@@ -76,14 +79,23 @@
 \newglossaryentry{not:K}{
   type=notation,  name={$K$},  description={Weighting factor},  sort={K}}
   
+ \newglossaryentry{not:k}{
+  type=notation,  name={$k$},  description={Discrete time normalised to sampling time ($t/T_s$), or sample number, $k \in \mathbb{N}^0$},  sort={k}}
+  
+\newglossaryentry{not:T_s}{
+  type=notation,  name={$T_s$},  description={Sampling time $T_s=1/f_s$},  sort={Ts}} 
+
+\newglossaryentry{not:f_s}{  
+  type=notation,  name={$f_s$},  description={Sampling frequency},  sort={fs}}
+  
 \newglossaryentry{not:P}{
   type=notation,  name={$\mathbf{P}$},  description={Covariance matrix of state estimation uncertainty},  sort={P}}
   
 \newglossaryentry{not:Q}{
-  type=notation,  name={$\mathbf{Q}$},  description={Covariance matrix of state estimation uncertainty},  sort={Q}}
+  type=notation,  name={$\mathbf{Q}$},  description={Covariance matrix of process noise in the system state dynamics},  sort={Q}}
   
 \newglossaryentry{not:R}{
-  type=notation,  name={$\mathbf{R}$},  description={Covariance matrix of state estimation uncertainty},  sort={R}}
+  type=notation,  name={$\mathbf{R}$},  description={Covariance matrix of observational (measurement) uncertainty},  sort={R}}
   
 \newglossaryentry{not:phi}{
   type=notation,  name={$\mathbf{\Phi}$},  description={State transition matrix of a discrete linear dynamical system},  sort={phi}}

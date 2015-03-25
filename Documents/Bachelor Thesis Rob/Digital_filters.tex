@@ -288,11 +288,60 @@ That means that in the limit of absolutely no confidence in the system model out
 Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman} and \ref{eq:gain_kalman} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations.
 
 \subsection{Formulation of the Kalman Filter Equations}
- 
-The Kalman filter formulation is based on three assumptions.
 
-\begin{equation}\label{eq:difference_equation}
-  \mathbf{x}_k = \mathbf{A}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{A}_k\mathbf{w}_{k-1}\,.
+Let $\mathbf{x} \in \mathbb{R}^n$ be the state vector of a discrete-time controlled process governed by the linear stochastic difference equation 
+
+\begin{equation}\label{eq:time_dynamical_system_plant}
+  \mathbf{x}_k = \mathbf{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}\,,
+\end{equation}
+
+\noindent
+where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sampling interval. The observation or measurement vector $\mathbf{z}_k \in \mathbb{R}^m$ is given by
+
+\begin{equation}\label{eq:time_dynamical_system_measurement}
+  \mathbf{z}_k = \mathbf{H}_{k}\mathbf{x}_{k}+\mathbf{v}_{k}\,.
+\end{equation}
+
+\noindent
+The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the process noise and the measurement noise, respectively, modelled as zero-mean, Gaussian white noise
+
+\begin{equation}\label{eq:process_noise}
+  \mathbf{w}_{k} \sim N(0,\mathbf{Q})\,,
+\end{equation}
+
+\begin{equation}\label{eq:measurement_noise}
+  \mathbf{v}_{k} \sim N(0,\mathbf{R})\,,
+\end{equation}
+ 
+\noindent
+where $\mathbf{Q}_k$ is the process noise covariance matrix and $\mathbf{R}_k$ the measurement noise covariance matrix. The $n\times n$ matrix $\mathbf{\Phi}_{k}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k}$ relates the optional control input $\mathbf{u}_k \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ matrix $\mathbf{H}_{k}$ relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
+
+The vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ is defined as the a priori state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the a posteriori state estimate at step $k$ given the measurement $\mathbf{z}_k$ given by
+
+\begin{equation}\label{eq:apriori_estimate}
+  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}
+\end{equation}
+
+\begin{equation}\label{eq:aposteriori_estimate}
+  \hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]
+\end{equation}
+
+\noindent
+The term $[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ is called the innovation and $\mathbf{K}_{k}$ the Kalman gain, given by
+
+\begin{equation}\label{eq:Kalman_gain}
+  \mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}\,,
+\end{equation}
+
+\noindent
+with
+
+\begin{equation}\label{eq:apriori_error_cov}
+  \mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}\,,
+\end{equation}
+
+\begin{equation}\label{eq:aposteriori_error_cov}
+  \mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}\,.
 \end{equation}
 
 \section{Extended Kalman Filter}

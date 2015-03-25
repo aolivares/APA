@@ -5,7 +5,7 @@
 \contentsline {chapter}{List of Figures}{ix}{section*.9}
 \contentsline {chapter}{List of Tables}{xi}{section*.11}
 \contentsline {chapter}{Abbreviations}{xiii}{section*.14}
-\contentsline {chapter}{Notation}{xvi}{section*.17}
+\contentsline {chapter}{Notation}{xvii}{section*.17}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}General}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Motivation}{1}{section.1.2}
@@ -26,14 +26,14 @@
 \contentsline {section}{\numberline {3.3}Adaptive Filters}{11}{section.3.3}
 \contentsline {section}{\numberline {3.4}Kalman Filter}{12}{section.3.4}
 \contentsline {subsection}{\numberline {3.4.1}An Introductory Example}{12}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Formulation of the Kalman Filter Equations}{17}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{18}{section.3.5}
-\contentsline {chapter}{\numberline {4}Implementation}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Realisation in Matlab}{19}{section.4.1}
-\contentsline {section}{\numberline {4.2}Experiments}{19}{section.4.2}
-\contentsline {section}{\numberline {4.3}Results}{19}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discussion}{19}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{21}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{21}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{22}{section.5.2}
-\contentsline {chapter}{Bibliography}{23}{section.5.2}
+\contentsline {subsection}{\numberline {3.4.2}Formulation of the Kalman Filter Equations}{18}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{19}{section.3.5}
+\contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}
+\contentsline {section}{\numberline {4.1}Realisation in Matlab}{21}{section.4.1}
+\contentsline {section}{\numberline {4.2}Experiments}{21}{section.4.2}
+\contentsline {section}{\numberline {4.3}Results}{21}{section.4.3}
+\contentsline {section}{\numberline {4.4}Discussion}{21}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{23}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{23}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{24}{section.5.2}
+\contentsline {chapter}{Bibliography}{25}{section.5.2}
