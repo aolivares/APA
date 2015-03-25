@@ -306,11 +306,11 @@ where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sam
 The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the process noise and the measurement noise, respectively, modelled as zero-mean, Gaussian white noise
 
 \begin{equation}\label{eq:process_noise}
-  \mathbf{w}_{k} \sim N(0,\mathbf{Q})\,,
+  \mathbf{w}_{k} \sim N(0,\mathbf{Q}_k)\,,
 \end{equation}
 
 \begin{equation}\label{eq:measurement_noise}
-  \mathbf{v}_{k} \sim N(0,\mathbf{R})\,,
+  \mathbf{v}_{k} \sim N(0,\mathbf{R}_k)\,,
 \end{equation}
  
 \noindent
@@ -319,7 +319,7 @@ where $\mathbf{Q}_k$ is the process noise covariance matrix and $\mathbf{R}_k$ t
 The vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ is defined as the a priori state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the a posteriori state estimate at step $k$ given the measurement $\mathbf{z}_k$ given by
 
 \begin{equation}\label{eq:apriori_estimate}
-  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}
+  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}
 \end{equation}
 
 \begin{equation}\label{eq:aposteriori_estimate}
@@ -327,7 +327,7 @@ The vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ is defined as the a priori st
 \end{equation}
 
 \noindent
-The term $[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ is called the innovation and $\mathbf{K}_{k}$ the Kalman gain, given by
+The term $[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ is called the measurement innovation or residual. It reflects the discordance between the predicted measurement $\mathbf{H}_{k}\hat{\mathbf{x}}^-_k$ and the actual measurement $\mathbf{z}_k$. The $n\times m$ matrix $\mathbf{K}_{k}$ is termed the Kalman gain and is given by
 
 \begin{equation}\label{eq:Kalman_gain}
   \mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}\,,
@@ -340,9 +340,44 @@ with
   \mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}\,,
 \end{equation}
 
+\noindent
+and
+
 \begin{equation}\label{eq:aposteriori_error_cov}
   \mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}\,.
 \end{equation}
+
+The Kalman filter equations can be divided into two groups: \emph{time update} equations \ref{eq:apriori_estimate} and \ref{eq:apriori_error_cov}, and the \emph{measurement update} Equations \ref{eq:Kalman_gain}, \ref{eq:estimation_kalman}, and \ref{eq:aposteriori_error_cov} as shown in Figure \ref{fig:kalman_filter_cycle}.
+
+\tikzstyle{block} = [draw, rectangle, 
+    minimum height=2cm, minimum width=10cm]
+\tikzstyle{output} = [coordinate]
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, node distance=4cm,>=latex']
+    
+\node [block, align=left] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=left, below of=init, node distance=3.5cm] (predict) {Time update (predict) \\ Project state ahead (a priori estimate): \\ $\hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Project error covariance ahead: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=left, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Update a priori estimate with measurement $\mathbf{z}_k$: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
+\node [output, below of=update, node distance=3cm, name=output] {Output};
+\node [output, below of=update, node distance=2.5cm, name=help1] {};
+\node [output, right of=help1, node distance=5.6cm, name=help2] {};
+\node [output, below of=init, node distance=1.5cm, name=help4] {};
+\node [output, right of=help4, node distance=5.6cm, name=help3] {};
+
+\draw [draw,->, align=left] (init) -- (predict);
+\draw [draw,->, align=left] (predict) -- (update);
+\draw [draw,->, align=left] (update) -- node [label={left:Output}]{} (output);
+\draw [draw,-] (help1) -- (help2);
+\draw [draw,-] (help2) -- (help3);
+\draw [draw,->] (help3) -- (help4);
+
+\end{tikzpicture}
+\caption{Operation cycle of Kalman filter algorithm.} \label{fig:kalman_filter_cycle}
+\end{figure}
+
+
 
 \section{Extended Kalman Filter}
 

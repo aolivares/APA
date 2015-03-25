@@ -8,5 +8,6 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Conditional density of position based on measurement value $z_2$ alone from \cite {Maybeck79}.\relax }}{14}{figure.caption.22}
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Conditional density of position based on data $z_1$ and $z_2$ from \cite {Maybeck79}.\relax }}{14}{figure.caption.23}
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Propagation of conditional probability density from \cite {Maybeck79}.\relax }}{16}{figure.caption.24}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Operation cycle of Kalman filter algorithm.\relax }}{19}{figure.caption.25}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
