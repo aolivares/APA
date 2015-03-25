@@ -57,17 +57,14 @@ load(fullfile(filepath,filename));
 % usually used to be clearer. But the difference between edges of the right
 % and left shank is very small.
 
+% We consider the second step starts in the beginning of the second period
+% of activity of each cycle.
 init_second_step = edges_right(3:4:length(edges_right));
 
-force_sum_complete_ts = append(force_sum_ts{1, :});
-force_sum_data = force_sum_complete_ts.data(3,1,:);
-force_sum_data = reshape(force_sum_data, 1, length(force_sum_data));
-
-final_second_step = find(diff(force_sum_data > 100)~=0);
-final_second_step = final_second_step(2:2:length(final_second_step));
-final_second_step = force_sum_complete_ts.time(final_second_step);
-
 % Extract data from timeseries for plot.
+force_sum_complete_ts = append(force_sum_ts{1, :});
+force_sum_data = force_sum_complete_ts.data;
+
 force_sensors_complete_ts = append(force_sensors_ts{1, :});
 fs_data = force_sensors_complete_ts.data;
 
@@ -83,8 +80,19 @@ a_shanks_data = a_shanks_complete_ts.data;
 a_trunk_complete_ts = append(a_trunk{1, :});
 a_trunk_data = a_trunk_complete_ts.data;
 
+% Determine the time point where there isn't force signal (considerating 
+% both feet) for each cycle.
+force_sum_data = reshape(force_sum_data(3,1,:), 1, ...
+                 length(force_sum_data(3,1,:)));
+
+final_second_step_edge = find(diff(force_sum_data > 100)~=0);
+final_second_step_edge = final_second_step_edge(2:2:...
+                        length(final_second_step_edge));
+final_second_step = force_sum_complete_ts.time(final_second_step_edge);
+
+
 % -------------------------------------------------------------------------
-% Plots
+% 1.2) Plots
 % -------------------------------------------------------------------------
 
 % --------------- Acceleration in shanks and force-------------------------
@@ -427,7 +435,7 @@ ylabel('COP in mm');
 axis([190, 210, -200, 150]);
 
 % -------------------------------------------------------------------------
-% 1.1) Differences when the patient starts with left or right foot.
+% 1.3) Differences when the patient starts with left or right foot.
 % -------------------------------------------------------------------------
 
 % Determine the cycles when patient start with left or right foot.
@@ -440,6 +448,7 @@ a_trunk_left = a_trunk(cycle_start_left);
 a_trunk_left_X = zeros(length(cycle_start_left),5000); 
 a_trunk_left_Y = zeros(length(cycle_start_left),5000);
 
+% We group the cycles start with the left foot.
 for i = 1:length(cycle_start_left)
     
    a_trunk_left_data = a_trunk_left{i}.data;
@@ -469,6 +478,7 @@ a_trunk_right = a_trunk(cycle_start_right);
 a_trunk_right_X = zeros(length(cycle_start_left),5000); 
 a_trunk_right_Y = zeros(length(cycle_start_left),5000);
 
+% We group the cycles start with the left foot.
 for i = 1:length(cycle_start_right)
     
    a_trunk_right_data = a_trunk_right{i}.data;
@@ -492,3 +502,101 @@ figure ()
 plot(a_trunk_right_X');
 title('Pattern of the Acceleration signal of the trunk in the X-axe');
 axis([0, 2000, 0, 1]);
+
+% -------------------------------------------------------------------------
+% 2) Detect APA in trunk signal.
+% -------------------------------------------------------------------------
+
+% -------------------------------------------------------------------------
+% 2.1) Application of Activity detectors in trunk signal
+% -------------------------------------------------------------------------
+% wag = wagLibrary;    
+% 
+% % Define input signal for rigth shank.
+% axC =  reshape(a_trunk_data(1, 1, :), ...
+%      [1, max(size(a_trunk_data))]);
+% ayC =  reshape(a_trunk_data(2, 1, :), ...
+%      [1, max(size(a_trunk_data))]);
+% 
+% input_signal = sqrt(axC .^ 2 + ayC .^ 2)';
+% 
+% % Computation of intensity markers.
+% 
+% % LTSD (window size, decision threshold and overlapping).
+% lwin_ltsd = 100;       threshold_ltsd = 14;   shift_ltsd = 10;
+% 
+% % Get the decision signal of the LTSD algorithm and the marker.
+% [V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
+%     threshold_ltsd);
+% [marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
+%     input_signal, lwin_ltsd, shift_ltsd);
+%   
+% figure
+% plot(T_ltsd_expanded)
+% hold on
+% plot(threshold_ltsd * ones(1, length(T_ltsd_expanded)), 'r')
+% legend('Detector output (LTSD)', 'Detection threshold')
+% 
+% figure
+% plot(input_signal)
+% hold on
+% plot(marker_ltsd +1, 'r')
+% legend('Input signal','LTSD decision')
+% 
+% % Determinate the initial and end point of each interval where we need to 
+% % find the peaks, i.e, the first activity period of each cycle. 
+% edges = find(diff(marker_ltsd)~=0);
+% initcross = edges(3:4:length(edges));
+% finalcross = edges(4:4:length(edges));
+
+% -------------------------------------------------------------------------
+% 2.2) Find the first 'negative' peak of each cycle in the signal 
+%      of the x-axis of the acceleration of the trunk, that is, the point 
+%      in time when the patient shifted backward. 
+% -------------------------------------------------------------------------
+
+% Determine the initial and end point (in time) of each interval where 
+% we need to find the peaks, i.e, the second activity period of each cycle.
+initcross = time_GW(init_second_step);
+finalcross = final_second_step';
+
+% Obtain the trunk signal of X-axis (Antereo-Posterior movement).
+a_trunk_data_X = reshape(a_trunk_data(1, 1, :), ...
+                [1, max(size(a_trunk_data))]);
+
+% Calculate the peaks in each interval.
+for k = 1:length(initcross)
+    
+    initcross_ind = find(a_trunk_complete_ts.time==initcross(k));
+    % To find a noninteger value, we use a tolerance value based on our data.
+    % Otherwise, the result is sometimes an empty matrix due to 
+    % floating-point roundoff error.
+    finalcross_ind = find(abs(a_trunk_complete_ts.time - finalcross(k)) < 0.001);
+
+    % Find all peaks in each interval.
+    [neg_peak_values, neg_peak_locations] = findpeaks(...
+                            -a_trunk_data_X(...
+                            initcross_ind:finalcross_ind));
+
+    % Store the index of the first negative peak.                                      
+    peaks_APA_trunk_X(k) = find(a_trunk_data_X(...
+                    initcross_ind:finalcross_ind)== -max(...
+                    neg_peak_values), 1, 'first') + initcross_ind - 1;
+                                     
+
+end
+
+figure ();
+plot(a_trunk_complete_ts.time, a_trunk_data_X, 'g');
+hold on;
+plot(a_trunk_complete_ts.time(peaks_APA_trunk_X), a_trunk_data_X(peaks_APA_trunk_X), 'm.');
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
