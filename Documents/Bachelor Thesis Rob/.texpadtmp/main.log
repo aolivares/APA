@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  25 MAR 2015 20:23
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  27 MAR 2015 00:25
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1411,25 +1411,20 @@ Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--112
 ] [14
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.not
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 27.
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 23.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [15
 
 
 ]
-Overfull \hbox (18.6126pt too wide) in paragraph at lines 35--88
+Overfull \hbox (44.68892pt too wide) in paragraph at lines 37--85
 [] 
  []
 
 LaTeX Font Info:    Font shape `OT1/pplx/m/sl' in size <12> not available
-(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 88.
-[16])
-Overfull \hbox (44.68892pt too wide) in paragraph at lines 88--118
-[]
- []
-
-[17] [18
+(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 85.
+[16]) [17] [18
 
 ]
 \openout2 = `Introduction.aux'.
@@ -1469,7 +1464,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 Chapter 2.
-[5] [6] <images/GaitWatch_placement.pdf, id=459, 340.75514pt x 292.43323pt>
+[5] [6] <images/GaitWatch_placement.pdf, id=463, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 49.
@@ -1483,16 +1478,16 @@ Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 49.
 
 ]
 Chapter 3.
-[9] [10] [11] [12] [13] [14] [15] [16] [17] [18]) [19]
+[9] [10] [11] [12] [13] [14] [15] [16] [17] [18]) [19] [20]
 \openout2 = `Implementation.aux'.
 
- (./Implementation.tex [20
+ (./Implementation.tex
+Chapter 4.
+) [21
 
 
 
 ]
-Chapter 4.
-) [21]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex [22
@@ -1540,18 +1535,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 31271 strings out of 493117
- 585102 string characters out of 6135432
- 772557 words of memory out of 5000000
- 33823 multiletter control sequences out of 15000+600000
+ 31419 strings out of 493117
+ 587546 string characters out of 6135432
+ 772787 words of memory out of 5000000
+ 33971 multiletter control sequences out of 15000+600000
  41657 words of font info for 102 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,77p,1783b,974s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,16n,77p,1783b,986s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (48 pages, 613058 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (48 pages, 617195 bytes).
 PDF statistics:
- 799 PDF objects out of 1000 (max. 8388607)
- 702 compressed objects within 8 object streams
+ 805 PDF objects out of 1000 (max. 8388607)
+ 708 compressed objects within 8 object streams
  190 named destinations out of 1000 (max. 500000)
  340 words of extra memory for PDF output out of 10000 (max. 10000000)
 

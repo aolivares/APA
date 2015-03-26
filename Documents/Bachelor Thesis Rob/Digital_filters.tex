@@ -13,11 +13,11 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
 \tikzstyle{output} = [coordinate]
-\tikzstyle{pinstyle} = [pin edge={to-, thin, black}, align=center]
+\tikzstyle{pinstyle} = [pin edge={to-, thick, black}, align=center]
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
     \node [block, align=center, 
     	pin={[pinstyle]below:System \\ Errors}]
     	(dynamical) {Dynamical \\ system};
@@ -49,7 +49,7 @@ A statistical criterion, according to which the performance of a filter can be m
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, node distance=3cm,>=latex']
+\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
     
 \node [input, name=input] {};
 \node [block, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $w_0, w_1, w_2, \dots$};
@@ -77,7 +77,7 @@ Due to the fact that the parameters of an adaptive filter are updated each itera
 
 \section{Kalman Filter}
 
-The Kalman filter is a set of recursive mathematical equations that provides an efficient means to estimate the state of a linear dynamic system perturbed by additive white Gaussian noise, even when the precise nature of the modelled system is unknown. It incorporates knowledge of the system and measurement device dynamics, the statistical description of the system errors and measurement noise, uncertainty in the dynamics model, and available information about initial conditions of the variables of interest to produce an estimate of these variables, in a way that the mean of the squarred error is minimised \cite{Maybeck79}. 
+The Kalman filter is a set of recursive mathematical equations that provides an efficient means to estimate the state of a linear dynamic system perturbed by additive white Gaussian noise, even when the precise nature of the modelled system is unknown. It incorporates knowledge of the system and measurement device dynamics, the statistical description of the system errors and measurement noise, uncertainty in the dynamics model, and available information about initial conditions of the variables of interest, to produce an estimate of these variables, in a way that the mean of the squarred error is minimised \cite{Maybeck79}. 
 
 The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}. It finds applications in autonomous and assisted navigation, more examples missing, among others.
 
@@ -292,18 +292,18 @@ Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:
 Let $\mathbf{x} \in \mathbb{R}^n$ be the state vector of a discrete-time controlled process governed by the linear stochastic difference equation 
 
 \begin{equation}\label{eq:time_dynamical_system_plant}
-  \mathbf{x}_k = \mathbf{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}\,,
+  \mathbf{x}_k = \mathbf{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}
 \end{equation}
 
 \noindent
-where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sampling interval. The observation or measurement vector $\mathbf{z}_k \in \mathbb{R}^m$ is given by
+and $\mathbf{z}_k \in \mathbb{R}^m$ the observation or measurement vector of this process, given by
 
 \begin{equation}\label{eq:time_dynamical_system_measurement}
-  \mathbf{z}_k = \mathbf{H}_{k}\mathbf{x}_{k}+\mathbf{v}_{k}\,.
+  \mathbf{z}_k = \mathbf{H}_{k}\mathbf{x}_{k}+\mathbf{v}_{k}\,,
 \end{equation}
 
 \noindent
-The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the process noise and the measurement noise, respectively, modelled as zero-mean, Gaussian white noise
+where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sampling interval. The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the process noise and the measurement noise, respectively, modelled as zero-mean, Gaussian white noise
 
 \begin{equation}\label{eq:process_noise}
   \mathbf{w}_{k} \sim N(0,\mathbf{Q}_k)\,,
@@ -314,16 +314,18 @@ The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the proces
 \end{equation}
  
 \noindent
-where $\mathbf{Q}_k$ is the process noise covariance matrix and $\mathbf{R}_k$ the measurement noise covariance matrix. The $n\times n$ matrix $\mathbf{\Phi}_{k}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k}$ relates the optional control input $\mathbf{u}_k \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ matrix $\mathbf{H}_{k}$ relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
+with the the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. They are assumed to be uncorrelated. The $n\times n$ transition matrix $\mathbf{\Phi}_{k}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k}$ relates the optional control input $\mathbf{u}_k \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
 
-The vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ is defined as the a priori state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the a posteriori state estimate at step $k$ given the measurement $\mathbf{z}_k$ given by
+The Kalman filter solves the problem of estimating the state $\mathbf{x}_k$ of the given linear stochastic system, represented by $\hat{\mathbf{x}}_k$, which is also a linear function of the measurement $\mathbf{z}_k$, minimising the weighted mean-squarred error. This problem is called the \emph{linear quadratic Gaussian} estimation problem; the dynamic system is linear, the performance cost function is quadratic, and the random process is Gaussian.
+
+We define the vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ as the \emph{a priori} state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the \emph{a posteriori} state estimate at step $k$ given the measurement $\mathbf{z}_k$:
 
 \begin{equation}\label{eq:apriori_estimate}
-  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}
+  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}\,,
 \end{equation}
 
 \begin{equation}\label{eq:aposteriori_estimate}
-  \hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]
+  \hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]\,.
 \end{equation}
 
 \noindent
@@ -337,7 +339,7 @@ The term $[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ is called the measu
 with
 
 \begin{equation}\label{eq:apriori_error_cov}
-  \mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}\,,
+  \mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}
 \end{equation}
 
 \noindent
@@ -347,34 +349,92 @@ and
   \mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}\,.
 \end{equation}
 
-The Kalman filter equations can be divided into two groups: \emph{time update} equations \ref{eq:apriori_estimate} and \ref{eq:apriori_error_cov}, and the \emph{measurement update} Equations \ref{eq:Kalman_gain}, \ref{eq:estimation_kalman}, and \ref{eq:aposteriori_error_cov} as shown in Figure \ref{fig:kalman_filter_cycle}.
+\noindent
+Figure \ref{fig:kalman_filter_model} illustrates the relation of the Kalman filter to the discrete-time dynamical system, where $z^{-1}$ denotes the unit-delay and $\mathbf{I}$ the $n\times n$ identity matrix. 
 
-\tikzstyle{block} = [draw, rectangle, 
-    minimum height=2cm, minimum width=10cm]
+\tikzstyle{block} = [draw, rectangle, minimum height=0.8cm, minimum width=0.8cm]
+\tikzstyle{sum} = [draw, circle]
+\tikzstyle{output} = [coordinate]
+\tikzstyle{input} = [coordinate]
+
+\begin{figure}
+\centering
+\resizebox{13.5cm}{!}{
+\begin{tikzpicture}[auto, thick, node distance=1.5cm,>=latex']
+	
+	\node [sum] (sum1) {$\sum$};
+	\node [input, above of=sum1] (w) {};
+    \node [block, align=center, 
+    	right of=sum1, node distance=3cm] (H) {$\mathbf{H}_k$};
+    \node [block, align=center, below of=sum1, node distance=1.8cm] (phi) {$\mathbf{\Phi}_{k-1}$};
+    \node [sum, right of=H, node distance=1.5cm] (sum2) {$\sum$};
+    \node [sum, right of=sum2, node distance=1.8cm] (sum3) {$\sum$};
+    \node [input, above of=sum2] (v) {};
+    \node [block, align=center, 
+    	right of=sum3, node distance=1.5cm] (K) {$\mathbf{K}_k$};
+    \node [block, align=center, below of=K, node distance=1.8cm] (H1) {$\mathbf{H}_k$};
+    \node [block, align=center, right of=H1, node distance=2.5cm] (phi1) {$\mathbf{\Phi}_{k-1}$};
+    \node [block, align=center, right of=phi1, node distance=2.2cm] (delay1) {$z^{-1_{ }}\mathbf{I}$};
+    \node [sum, right of=K, node distance=1.5cm] (sum4) {$\sum$};
+    \node [output, right of=sum4, node distance=4.0cm] (out) {};
+    
+    
+    \draw [->] (sum1) -- node[] {$\mathbf{x}_k$} node[name=x_k, pos=0.8] {} (H);
+    \node [block, below of=x_k, node distance=1.93cm] (delay) {$z^{-1_{ }}\mathbf{I}$};
+    \draw [->, align=center] (delay) -- node [label={below:$\mathbf{x}_{k-1}$}, pos=0.4] {} (phi);
+    \draw [->] (phi) -- node[pos=0.87] {$+$} (sum1);
+    \draw [->] (H) -- node[label={below:$+$}, pos=0.77] {} (sum2);
+    \draw [->] (sum2) -- node[] {$\mathbf{z}_k$} node[label={below:$+$}, pos=0.79] {} (sum3);
+    \draw [->] (sum3) -- node[label={below:$+$}, pos=0.65] {} (K);
+    \draw [->] (w) -- node [label={left:$\mathbf{w}_{k-1}$}, pos=0.29]{} node[label={left:$+$}, pos=0.88] {} (sum1);
+    \draw [->] (v) -- node [label={left:$\mathbf{v}_{k}$}, pos=0.29]{} node[label={left:$+$}, pos=0.88] {} (sum2);
+    \draw [->] (x_k) -- (delay);
+    \draw [->] (H1) -| node[pos=0.89] {$-$} (sum3);
+    \draw [->] (K) -- node[label={below:$+$}, pos=0.77] {} (sum4);
+    \draw [->] (phi1) -- node[pos=0.27, name=h-phi] {} node[] {$\mathbf{x}^-_k$} (H1);
+    \draw [->] (delay1) -- node[] {$\mathbf{x}^-_{k-1}$} node[] {} (phi1);
+     \draw [->] (h-phi) -- node[pos=0.90] {$+$} (sum4);
+     \draw [->] (sum4) -- node[pos=0.77, name=xk_hat] {$\hat{\mathbf{x}}_k$} (out);
+     \draw [->] (xk_hat) -- (delay1);
+     
+\end{tikzpicture}
+}
+
+\caption{Block diagram depicting the relation between a discrete-time dynamical system, its observation, and the Kalman filter.} \label{fig:kalman_filter_model}
+\end{figure}
+
+
+
+
+The Kalman filter equations can be divided into two groups: \emph{time update} Equations \ref{eq:apriori_estimate}, \ref{eq:apriori_error_cov} and \emph{measurement update} Equations \ref{eq:aposteriori_estimate} , \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}, as seen in Figure \ref{fig:kalman_filter_cycle}, which shows the predict and update behaviour of the filter algorithm. 
+
+
+\tikzstyle{block} = [draw, rectangle, thick, 
+    minimum height=1.5cm, minimum width=8cm]
 \tikzstyle{output} = [coordinate]
 
 \begin{figure}
 \centering
 \begin{tikzpicture}[auto, node distance=4cm,>=latex']
     
-\node [block, align=left] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
-\node [block, align=left, below of=init, node distance=3.5cm] (predict) {Time update (predict) \\ Project state ahead (a priori estimate): \\ $\hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Project error covariance ahead: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=left, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Update a priori estimate with measurement $\mathbf{z}_k$: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
+\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3cm, name=output] {Output};
 \node [output, below of=update, node distance=2.5cm, name=help1] {};
-\node [output, right of=help1, node distance=5.6cm, name=help2] {};
-\node [output, below of=init, node distance=1.5cm, name=help4] {};
-\node [output, right of=help4, node distance=5.6cm, name=help3] {};
+\node [output, right of=help1, node distance=4.8cm, name=help2] {};
+\node [output, below of=init, node distance=1.25cm, name=help4] {};
+\node [output, right of=help4, node distance=4.8cm, name=help3] {};
 
-\draw [draw,->, align=left] (init) -- (predict);
-\draw [draw,->, align=left] (predict) -- (update);
-\draw [draw,->, align=left] (update) -- node [label={left:Output}]{} (output);
-\draw [draw,-] (help1) -- (help2);
-\draw [draw,-] (help2) -- (help3);
-\draw [draw,->] (help3) -- (help4);
+\draw [draw,->, thick, align=left] (init) -- (predict);
+\draw [draw,->, thick, align=left] (predict) -- (update);
+\draw [draw,->, thick, align=left] (update) -- node [label={left:Output}]{} (output);
+\draw [draw,-, thick] (help1) -- (help2);
+\draw [draw,-, thick] (help2) -- (help3);
+\draw [draw,->, thick] (help3) -- (help4);
 
 \end{tikzpicture}
-\caption{Operation cycle of Kalman filter algorithm.} \label{fig:kalman_filter_cycle}
+\caption{Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.} \label{fig:kalman_filter_cycle}
 \end{figure}
 
 
