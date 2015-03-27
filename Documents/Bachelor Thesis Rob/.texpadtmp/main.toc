@@ -16,10 +16,10 @@
 \contentsline {subsection}{\numberline {1.5.2}MARG Sensors in Medical Research}{2}{subsection.1.5.2}
 \contentsline {chapter}{\numberline {2}MARG Sensors}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Accelerometers}{5}{section.2.1}
-\contentsline {section}{\numberline {2.2}Gyroscopes}{5}{section.2.2}
+\contentsline {section}{\numberline {2.2}Gyroscopes}{6}{section.2.2}
 \contentsline {section}{\numberline {2.3}Magnetometers}{6}{section.2.3}
-\contentsline {section}{\numberline {2.4}Inertial Measurement Units}{6}{section.2.4}
-\contentsline {section}{\numberline {2.5}The GaitWatch}{6}{section.2.5}
+\contentsline {section}{\numberline {2.4}Inertial Measurement Units}{7}{section.2.4}
+\contentsline {section}{\numberline {2.5}The GaitWatch}{7}{section.2.5}
 \contentsline {chapter}{\numberline {3}Digital Filters}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}The Filtering Problem}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Wiener Filter}{10}{section.3.2}
