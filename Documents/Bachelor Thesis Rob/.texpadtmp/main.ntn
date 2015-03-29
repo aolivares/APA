@@ -29,6 +29,9 @@
 \glossaryentry{P?\glossentry{not:P}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Q?\glossentry{not:Q}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{R?\glossentry{not:R}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{phi?\glossentry{not:phi}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{phia?\glossentry{not:phi}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xc?\glossentry{not:x_k}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{za?\glossentry{not:unit-delay}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{phi?\glossentry{not:roll}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{theta?\glossentry{not:pitch}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{psi?\glossentry{not:yaw}|setentrycounter[]{page}\glsnumberformat}{1}

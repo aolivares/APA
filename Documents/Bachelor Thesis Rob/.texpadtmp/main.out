@@ -19,21 +19,22 @@
 \BOOKMARK [1][-]{section.2.2}{Gyroscopes}{chapter.2}% 19
 \BOOKMARK [1][-]{section.2.3}{Magnetometers}{chapter.2}% 20
 \BOOKMARK [1][-]{section.2.4}{Inertial Measurement Units}{chapter.2}% 21
-\BOOKMARK [1][-]{section.2.5}{The GaitWatch}{chapter.2}% 22
-\BOOKMARK [0][-]{chapter.3}{Digital Filters}{}% 23
-\BOOKMARK [1][-]{section.3.1}{The Filtering Problem}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.2}{Wiener Filter}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{Adaptive Filters}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.4}{Kalman Filter}{chapter.3}% 27
-\BOOKMARK [2][-]{subsection.3.4.1}{An Introductory Example}{section.3.4}% 28
-\BOOKMARK [2][-]{subsection.3.4.2}{Formulation of the Kalman Filter Equations}{section.3.4}% 29
-\BOOKMARK [1][-]{section.3.5}{Extended Kalman Filter}{chapter.3}% 30
-\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 31
-\BOOKMARK [1][-]{section.4.1}{Realisation in Matlab}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.2}{Experiments}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.3}{Results}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.4}{Discussion}{chapter.4}% 35
-\BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 36
-\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}% 37
-\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 38
-\BOOKMARK [0][-]{section.5.2}{Bibliography}{}% 39
+\BOOKMARK [2][-]{subsection.2.4.1}{Euler Angles}{section.2.4}% 22
+\BOOKMARK [1][-]{section.2.5}{The GaitWatch}{chapter.2}% 23
+\BOOKMARK [0][-]{chapter.3}{Digital Filters}{}% 24
+\BOOKMARK [1][-]{section.3.1}{The Filtering Problem}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.2}{Wiener Filter}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.3}{Adaptive Filters}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Kalman Filter}{chapter.3}% 28
+\BOOKMARK [2][-]{subsection.3.4.1}{An Introductory Example}{section.3.4}% 29
+\BOOKMARK [2][-]{subsection.3.4.2}{Formulation of the Kalman Filter Equations}{section.3.4}% 30
+\BOOKMARK [1][-]{section.3.5}{Extended Kalman Filter}{chapter.3}% 31
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 32
+\BOOKMARK [1][-]{section.4.1}{Realisation in Matlab}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.2}{Experiments}{chapter.4}% 34
+\BOOKMARK [1][-]{section.4.3}{Results}{chapter.4}% 35
+\BOOKMARK [1][-]{section.4.4}{Discussion}{chapter.4}% 36
+\BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 37
+\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 39
+\BOOKMARK [0][-]{section.5.2}{Bibliography}{}% 40

@@ -19,21 +19,22 @@
 \contentsline {section}{\numberline {2.2}Gyroscopes}{6}{section.2.2}
 \contentsline {section}{\numberline {2.3}Magnetometers}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Inertial Measurement Units}{7}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Euler Angles}{7}{subsection.2.4.1}
 \contentsline {section}{\numberline {2.5}The GaitWatch}{7}{section.2.5}
-\contentsline {chapter}{\numberline {3}Digital Filters}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}The Filtering Problem}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}Wiener Filter}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Adaptive Filters}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Kalman Filter}{12}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}An Introductory Example}{12}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Formulation of the Kalman Filter Equations}{18}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{19}{section.3.5}
-\contentsline {chapter}{\numberline {4}Implementation}{21}{chapter.4}
-\contentsline {section}{\numberline {4.1}Realisation in Matlab}{21}{section.4.1}
-\contentsline {section}{\numberline {4.2}Experiments}{21}{section.4.2}
-\contentsline {section}{\numberline {4.3}Results}{21}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discussion}{21}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{23}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{23}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{24}{section.5.2}
-\contentsline {chapter}{Bibliography}{25}{section.5.2}
+\contentsline {chapter}{\numberline {3}Digital Filters}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}The Filtering Problem}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Wiener Filter}{12}{section.3.2}
+\contentsline {section}{\numberline {3.3}Adaptive Filters}{13}{section.3.3}
+\contentsline {section}{\numberline {3.4}Kalman Filter}{14}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}An Introductory Example}{14}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Formulation of the Kalman Filter Equations}{20}{subsection.3.4.2}
+\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{21}{section.3.5}
+\contentsline {chapter}{\numberline {4}Implementation}{23}{chapter.4}
+\contentsline {section}{\numberline {4.1}Realisation in Matlab}{23}{section.4.1}
+\contentsline {section}{\numberline {4.2}Experiments}{23}{section.4.2}
+\contentsline {section}{\numberline {4.3}Results}{23}{section.4.3}
+\contentsline {section}{\numberline {4.4}Discussion}{23}{section.4.4}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{26}{section.5.2}
+\contentsline {chapter}{Bibliography}{27}{section.5.2}
