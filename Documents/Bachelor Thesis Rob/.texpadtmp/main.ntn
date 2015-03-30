@@ -35,3 +35,5 @@
 \glossaryentry{phi?\glossentry{not:roll}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{theta?\glossentry{not:pitch}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{psi?\glossentry{not:yaw}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{xayaza?\glossentry{not:navigation_frame}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{xayazb?\glossentry{not:body_frame}|setentrycounter[]{page}\glsnumberformat}{1}
