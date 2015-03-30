@@ -166,9 +166,9 @@ Euler angles are one of several ways to describe the rotational orientation of a
 \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
 \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
 
-\draw[thick,red,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_1$};
-\draw[thick,red,->] (0,0,0) -- (0,.7,0) node[anchor=south]{$y_1$};
-\draw[thick,red,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z_1$};
+\draw[thick,red,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_0$};
+\draw[thick,red,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y_0$};
+\draw[thick,red,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z_0$};
 
 \end{tikzpicture}
 \end{subfigure}
@@ -192,29 +192,30 @@ Euler angles are one of several ways to describe the rotational orientation of a
 \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
 \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
 
-%set rotation "x(\phi)y(\theta)z(\psi)"
-%syntax: \tdplotsetrotatedcoords{\phi}{\theta}{\psi}
-\tdplotsetrotatedcoords{\phivec}{\thetavec}{\psivec}
+\draw[thick,red,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_0$};
+\draw[thick,red,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y_0$};
+
+\tdplotsetrotatedcoords{0}{0}{25}
 
 %use the tdplot_rotated_coords style to work in the rotated, translated coordinate frame
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_1$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_1$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z_1$};
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_1$};
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_1$};
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z_1=z_0$};
 
 %show its psi arc and label
 %syntax: \tdplotdrawarc[coordinate frame, draw options]{center point}{r}{angle}{label options}{label}
-\tdplotdrawarc[->]{(0,0,0)}{0.35}{0}{\psivec}{anchor=north}{$\psi$}
+\tdplotdrawarc[-stealth]{(0,0,0)}{0.35}{0}{\psivec}{anchor=north}{$\psi$}
 
 %draw dashed arcs
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:360:0.7);
+\draw[dashed] (0.7,0,0) arc (0:115:0.7);
 
 \end{tikzpicture}
 \end{subfigure}
 
 \begin{subfigure}[]{0.45\textwidth}
-                \caption{Rotation around $y_1$ by $\theta$}
+                \caption{Rotation by $\theta$ around $y_1$ }
 
-\tdplotsetmaincoords{60}{80}
+\tdplotsetmaincoords{60}{170}
 
 \begin{tikzpicture}[scale=3.5,tdplot_main_coords]
 
@@ -225,33 +226,27 @@ Euler angles are one of several ways to describe the rotational orientation of a
 
 \tdplotsetrotatedcoords{0}{0}{25}
 
-%use the tdplot_rotated_coords style to work in the rotated, coordinate frame
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_2$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_2$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north east]{$z_2$};
+\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_1$};
+\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z_1$};
 
+\tdplotsetmaincoords{60}{145}
+\tdplotsetrotatedcoords{0}{25}{0}
 
-%draw some dashed arcs, demonstrating direct arc drawing
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:360:0.7);
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_2$};
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_2=y_1$};
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,.7) node[anchor=north east]{$z_2$};
 
-\tdplotsetmaincoords{60}{55}
-\tdplotsetrotatedcoords{0}{30}{0}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.5,0,0) node[anchor=north west]{$x_2$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.5,0) node[anchor=west]{$y_2$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,.5) node[anchor=north east]{$z_2$};
-
-%\tdplotsetthetaplanecoords{25}
-
-%\tdplotdrawarc[->]{(0,0,0)}{0.35}{0}{30}{anchor=north}{$\theta$}
+\tdplotsetthetaplanecoords{0}
+\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:115:0.7);
+\tdplotdrawarc[-stealth,tdplot_rotated_coords]{(0,0,0)}{0.55}{0}{25}{anchor=north}{$\theta$}
 
 \end{tikzpicture}
 \end{subfigure}
 \quad
 \begin{subfigure}[]{0.45\textwidth}
-                \caption{Rotation around $y_1$ by $\theta$}
+    \caption{Rotation by $\phi$ around $x_2$}
 
-\tdplotsetmaincoords{60}{80}
+\tdplotsetmaincoords{60}{130}
 
 \begin{tikzpicture}[scale=3.5,tdplot_main_coords]
 
@@ -260,38 +255,27 @@ Euler angles are one of several ways to describe the rotational orientation of a
 \draw[thick,->] (0,0,0) -- (0,1,0) node[anchor=north west]{$y$};
 \draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
 
-\tdplotsetrotatedcoords{0}{0}{25}
+\tdplotsetmaincoords{60}{105}
+\tdplotsetrotatedcoords{0}{25}{0}
 
-%use the tdplot_rotated_coords style to work in the rotated, coordinate frame
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_2$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_2$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north east]{$z_2$};
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x_3=x_2$};
+\draw[thick,tdplot_rotated_coords,red,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y_2$};
+\draw[thick,tdplot_rotated_coords,red,->] (0,0,0) -- (0,0,.7) node[anchor=north east]{$z_2$};
 
+\tdplotsetrotatedthetaplanecoords{90}
+\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:90:0.7);
 
-%draw some dashed arcs, demonstrating direct arc drawing
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:360:0.7);
+\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:-23:0.7);
 
-\tdplotsetmaincoords{60}{55}
-\tdplotsetrotatedcoords{0}{30}{0}
+\tdplotsetmaincoords{60}{125}
+\tdplotsetrotatedcoords{10}{40}{20}
 
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.5,0,0) node[anchor=north west]{$x_2$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.5,0) node[anchor=west]{$y_2$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,.5) node[anchor=north east]{$z_2$};
-
-\tdplotsetmaincoords{22}{70}
-\tdplotsetrotatedcoords{0}{0}{0}
-
-\draw[thick,tdplot_rotated_coords,green,->] (0,0,0) -- (.3,0,0) node[anchor=north west]{$x_2$};
-\draw[thick,tdplot_rotated_coords,green,->] (0,0,0) -- (0,.3,0) node[anchor=west]{$y_2$};
-\draw[thick,tdplot_rotated_coords,green,->] (0,0,0) -- (0,0,.3) node[anchor=north east]{$z_2$};
-
-
-%\tdplotsetthetaplanecoords{25}
-
-%\tdplotdrawarc[->]{(0,0,0)}{0.35}{0}{30}{anchor=north}{$\theta$}
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.63,0) node[anchor=west]{$y_3$};
+\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,1.1) node[anchor=north east]{$z_3$};
 
 \end{tikzpicture}
 \end{subfigure}
+
 
 \caption{Euler angles from \cite{olivares_vicente_gaitwatch_2013}.}
 	\label{fig:GaitWatch_placement}

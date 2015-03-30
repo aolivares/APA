@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  30 MAR 2015 00:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  30 MAR 2015 15:58
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1506,24 +1506,14 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 177.
 
-Overfull \hbox (5.77928pt too wide) in paragraph at lines 211--212
-[][] 
- []
-
-
-Overfull \hbox (16.65823pt too wide) in paragraph at lines 248--249
-[][] 
- []
-
-
-Overfull \hbox (16.65823pt too wide) in paragraph at lines 293--294
+Overfull \hbox (25.26593pt too wide) in paragraph at lines 243--244
 [][] 
  []
 
 [7] [8] [9] <images/GaitWatch_placement.pdf, id=545, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
-Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 328.
+Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 312.
 (pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
 ) [10 <./images/GaitWatch_placement.pdf>]
 \openout2 = `Digital_filters.aux'.
@@ -1600,15 +1590,15 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 32198 strings out of 493117
- 602028 string characters out of 6135432
- 787021 words of memory out of 5000000
- 34724 multiletter control sequences out of 15000+600000
+ 32279 strings out of 493117
+ 603656 string characters out of 6135432
+ 787069 words of memory out of 5000000
+ 34805 multiletter control sequences out of 15000+600000
  53537 words of font info for 136 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,16n,77p,1783b,1087s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (50 pages, 742132 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (50 pages, 742460 bytes).
 PDF statistics:
  884 PDF objects out of 1000 (max. 8388607)
  774 compressed objects within 8 object streams
