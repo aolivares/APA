@@ -7,6 +7,7 @@ A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Abstract.aux
 A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: MARG_sensors.aux
+A level-1 auxiliary file: Orientation_estimation.aux
 A level-1 auxiliary file: Digital_filters.aux
 A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
@@ -17,8 +18,8 @@ I was expecting a `,' or a `}'---line 190 of file ../Bibliography.bib
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--empty year in Wiki_taitbryan
 Warning--empty year in olivares_vicente_gaitwatch_2013
+Warning--empty year in Wiki_taitbryan
 Warning--empty year in Apple_2015
 Warning--empty year in Intel_2013
 Warning--empty year in IMU5
@@ -30,7 +31,7 @@ Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 You've used 26 entries,
             2481 wiz_defined-function locations,
-            736 strings with 9783 characters,
+            737 strings with 9809 characters,
 and the built_in function-call counts, 9620 in all, are:
 = -- 843
 > -- 422

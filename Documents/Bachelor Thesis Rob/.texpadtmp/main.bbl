@@ -16,15 +16,15 @@ Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
 \newblock \doi{10.1007/978-1-4614-6859-2_3}.
 \newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
 
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock \emph{{GaitWatch} User Manual}.
+
 \bibitem[{Juansempere}()]{Wiki_taitbryan}
 {Juansempere}.
 \newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
 \newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
 \newblock [Accessed 31 March, 2015].
-
-\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
-Alberto Olivares~Vicente and Kai Bötzel.
-\newblock \emph{{GaitWatch} User Manual}.
 
 \bibitem[Haykin(2002)]{haykin2002adaptive}
 Simon Haykin.

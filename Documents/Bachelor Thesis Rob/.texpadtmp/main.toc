@@ -2,7 +2,7 @@
 \contentsline {chapter}{Preface}{iii}{section*.3}
 \contentsline {chapter}{Abstract}{v}{section*.5}
 \contentsline {chapter}{Contents}{vii}{section*.6}
-\contentsline {chapter}{List of Figures}{ix}{section*.9}
+\contentsline {chapter}{List of Figures}{x}{section*.9}
 \contentsline {chapter}{List of Tables}{xi}{section*.11}
 \contentsline {chapter}{Abbreviations}{xiii}{section*.14}
 \contentsline {chapter}{Notation}{xvii}{section*.17}
@@ -19,22 +19,28 @@
 \contentsline {section}{\numberline {2.2}Gyroscopes}{6}{section.2.2}
 \contentsline {section}{\numberline {2.3}Magnetometers}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Inertial Measurement Units}{7}{section.2.4}
-\contentsline {subsection}{\numberline {2.4.1}Euler Angles}{7}{subsection.2.4.1}
-\contentsline {section}{\numberline {2.5}The GaitWatch}{9}{section.2.5}
-\contentsline {chapter}{\numberline {3}Digital Filters}{11}{chapter.3}
-\contentsline {section}{\numberline {3.1}The Filtering Problem}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Wiener Filter}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Adaptive Filters}{13}{section.3.3}
-\contentsline {section}{\numberline {3.4}Kalman Filter}{14}{section.3.4}
-\contentsline {subsection}{\numberline {3.4.1}An Introductory Example}{14}{subsection.3.4.1}
-\contentsline {subsection}{\numberline {3.4.2}Formulation of the Kalman Filter Equations}{20}{subsection.3.4.2}
-\contentsline {section}{\numberline {3.5}Extended Kalman Filter}{21}{section.3.5}
-\contentsline {chapter}{\numberline {4}Implementation}{23}{chapter.4}
-\contentsline {section}{\numberline {4.1}Realisation in Matlab}{23}{section.4.1}
-\contentsline {section}{\numberline {4.2}Experiments}{23}{section.4.2}
-\contentsline {section}{\numberline {4.3}Results}{23}{section.4.3}
-\contentsline {section}{\numberline {4.4}Discussion}{23}{section.4.4}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{26}{section.5.2}
-\contentsline {chapter}{Bibliography}{27}{section.5.2}
+\contentsline {section}{\numberline {2.5}The GaitWatch}{7}{section.2.5}
+\contentsline {chapter}{\numberline {3}Orientation Estimation}{9}{chapter.3}
+\contentsline {section}{\numberline {3.1}Euler Angles}{9}{section.3.1}
+\contentsline {section}{\numberline {3.2}Rotation Matrices}{9}{section.3.2}
+\contentsline {section}{\numberline {3.3}Projection of Gravity Vector and Earth's Magnetic Field}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Integration of Angular Rate}{11}{section.3.4}
+\contentsline {section}{\numberline {3.5}Sensor Fusion}{11}{section.3.5}
+\contentsline {chapter}{\numberline {4}Digital Filters}{13}{chapter.4}
+\contentsline {section}{\numberline {4.1}The Filtering Problem}{13}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wiener Filters}{14}{section.4.2}
+\contentsline {section}{\numberline {4.3}Adaptive Filters}{15}{section.4.3}
+\contentsline {section}{\numberline {4.4}The Kalman Filter}{16}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{16}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{22}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{23}{section.4.5}
+\contentsline {chapter}{\numberline {5}Implementation}{25}{chapter.5}
+\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{25}{section.5.1}
+\contentsline {section}{\numberline {5.2}Realisation in Matlab}{25}{section.5.2}
+\contentsline {section}{\numberline {5.3}Experiments}{25}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{25}{section.5.4}
+\contentsline {section}{\numberline {5.5}Discussion}{25}{section.5.5}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{27}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{27}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{28}{section.6.2}
+\contentsline {chapter}{Bibliography}{29}{section.6.2}
