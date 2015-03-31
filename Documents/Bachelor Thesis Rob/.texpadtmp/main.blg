@@ -17,6 +17,7 @@ I was expecting a `,' or a `}'---line 190 of file ../Bibliography.bib
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--empty year in Wiki_taitbryan
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Apple_2015
 Warning--empty year in Intel_2013
@@ -27,45 +28,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 25 entries,
+You've used 26 entries,
             2481 wiz_defined-function locations,
-            730 strings with 9620 characters,
-and the built_in function-call counts, 9355 in all, are:
-= -- 820
-> -- 415
-< -- 21
-+ -- 174
-- -- 121
-* -- 688
-:= -- 1485
-add.period$ -- 105
-call.type$ -- 25
-change.case$ -- 40
-chr.to.int$ -- 22
-cite$ -- 35
-duplicate$ -- 503
-empty$ -- 847
-format.name$ -- 150
-if$ -- 2012
+            736 strings with 9783 characters,
+and the built_in function-call counts, 9620 in all, are:
+= -- 843
+> -- 422
+< -- 22
++ -- 178
+- -- 123
+* -- 699
+:= -- 1525
+add.period$ -- 109
+call.type$ -- 26
+change.case$ -- 42
+chr.to.int$ -- 23
+cite$ -- 37
+duplicate$ -- 517
+empty$ -- 877
+format.name$ -- 153
+if$ -- 2070
 int.to.chr$ -- 4
-int.to.str$ -- 26
+int.to.str$ -- 27
 missing$ -- 16
-newline$ -- 161
-num.names$ -- 79
-pop$ -- 222
+newline$ -- 167
+num.names$ -- 82
+pop$ -- 237
 preamble$ -- 1
-purify$ -- 25
+purify$ -- 26
 quote$ -- 0
-skip$ -- 289
+skip$ -- 298
 stack$ -- 0
-substring$ -- 314
-swap$ -- 123
+substring$ -- 316
+swap$ -- 125
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 169
-warning$ -- 10
-while$ -- 72
+type$ -- 176
+warning$ -- 11
+while$ -- 74
 width$ -- 0
-write$ -- 375
+write$ -- 388
 (There was 1 error message)

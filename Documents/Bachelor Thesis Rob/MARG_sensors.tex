@@ -38,7 +38,7 @@ Devices using a combination of accelerometers and gyroscopes to measure the orie
 
 \subsection{Euler Angles}
 
-Euler angles are one of several ways to describe the rotational orientation of an object and its associated body frame, with respect to the navigation frame, in three-dimensional Euclidean space. They represent a sequence of three elemental rotations about the axis of the coordinate system, defined as follows:
+Euler angles are one of several ways to describe the orientation of an object and its associated body frame in three-dimensional Euclidean space, with respect to the navigation frame, that is, the reference frame. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
 
 \begin{itemize}
 \item The \emph{roll} angle $\phi$ determines the rotation around the $x$-axis.
@@ -47,140 +47,41 @@ Euler angles are one of several ways to describe the rotational orientation of a
 \end{itemize}
 
 \noindent
-Figure \ref{fig:Euler_angles} (a) -- (c) depicts the rotation about the axes $z, y^{'}, x^{''}$, respectively, according to the Tait-Bryan convention. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, this intrinsic rotations occur about the axes of the rotating coordinate system, which changes its orientation after each orientation. Figure \ref{fig:Euler_angles} (d) shows the final orientation of the body frame $X, Y, Z$, with respect to the navigation frame $x, y, z$, after the rotation. The colour red indicates the orientation before and the colour blue the orientation after the rotation, respectively.
+Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y^{'}, x^{''}$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are intrinsic rotations, which occur about the axes of the rotating coordinate system, which changes its orientation after each orientation. The colour blue indicates the orientation before and the colour red the orientation after the rotation.
 
 \begin{figure}
 \centering
-\begin{subfigure}[]{0.45\textwidth}
-	\caption[]{Rotation by $\psi$ around $z$.}
+\begin{tikzpicture}
+\node[inner sep=0pt] (tait) at (0,0)
+    {\includegraphics[width=.5\textwidth]{Images/taitbryan.pdf}};
+    
+\node [] at (0.5,0.2) {$\phi$};
+\node [] at (0.65,-1.85) {$\psi$};
+\node [] at (1.55,-0.9) {$\theta$};
 
-\tdplotsetmaincoords{60}{110}
+\node [] at (-3.4,-1.1) {$x$};
+\node [] at (0.19,-3.35) {$y$};
+\node [] at (0.12,2.43) {$z$};
+\node [] at (2.2,1.3) {$y^{'}$};
 
-\resizebox {!} {5cm} {
-\begin{tikzpicture}[scale=4.5,tdplot_main_coords]
 
-\draw[thick,red,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x$};
-\draw[thick,red,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y$};
-
-\tdplotsetrotatedcoords{0}{0}{25}
-
-\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x^{'}$};
-\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y^{'}$};
-\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z^{'}=z$};
-
-\tdplotdrawarc[-stealth]{(0,0,0)}{0.35}{0}{25}{anchor=north}{$\psi$}
-
-\draw[dashed] (0.7,0,0) arc (0:115:0.7);
-
+\node [] at (3.3,0.6) {$X = x^{''}$};
+\node [] at (-1.5,2.05) {$Y$};
+\node [] at (-2.0,-1.7) {$Z$};
 \end{tikzpicture}
-}
-\end{subfigure}
-\quad
-\begin{subfigure}[]{0.45\textwidth}
-                \caption{Rotation by $\theta$ around $y^{'}$.}
-
-\tdplotsetmaincoords{60}{170}
-
-\resizebox {!} {5cm} {
-\begin{tikzpicture}[scale=3.5,tdplot_main_coords]
-
-\tdplotsetrotatedcoords{0}{0}{25}
-
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north east]{$x^{'}$};
-\draw[thick,red,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z^{'}$};
-
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:90:0.7);
-
-\tdplotsetmaincoords{60}{145}
-\tdplotsetrotatedcoords{0}{25}{0}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x^{''}$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.7,0) node[anchor=south west]{$y^{''}=y^{'}$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,.7) node[anchor=north east]{$z^{''}$};
-
-\tdplotsetthetaplanecoords{0}
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:115:0.7);
-\tdplotdrawarc[-stealth,tdplot_rotated_coords]{(0,0,0)}{0.55}{0}{25}{anchor=north}{$\theta$}
-
-\end{tikzpicture}
-}
-\end{subfigure}
-
-\begin{subfigure}[]{0.45\textwidth}
-    \caption{Rotation by $\phi$ around $x^{''}$.}
-
-\tdplotsetmaincoords{90}{130}
-
-\resizebox {!} {5cm} {
-\begin{tikzpicture}[scale=3.5,tdplot_main_coords]
-
-\tdplotsetmaincoords{90}{105}
-\tdplotsetrotatedcoords{0}{25}{0}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$X=x^{''}$};
-\draw[thick,tdplot_rotated_coords,red,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y^{''}$};
-\draw[thick,tdplot_rotated_coords,red,->] (0,0,0) -- (0,0,.7) node[anchor=south]{$z^{''}$};
-
-
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:90:0.7);
-
-\tdplotsetrotatedthetaplanecoords{90}
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:90:0.7);
-\draw[dashed,tdplot_rotated_coords] (0.7,0,0) arc (0:-21:0.7);
-
-\tdplotdrawarc[-stealth,tdplot_rotated_coords,->]{(0,0,0)}{0.55} {90}{74}{anchor=west}{$\phi$}
-
-\tdplotsetmaincoords{90}{125}
-\tdplotsetrotatedcoords{10}{50}{20}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.67,0) node[anchor=west]{$y^{'}$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,0.93) node[anchor=north east]{$Z$};
-
-\end{tikzpicture}
-}
-\end{subfigure}
-\quad
-\begin{subfigure}[]{0.45\textwidth}
-    \caption{Final orientation of body frame with respect to navigation frame after rotation.}
-
-\tdplotsetmaincoords{60}{111}
-
-\resizebox {!} {5cm} {
-\begin{tikzpicture}[scale=3.5,tdplot_main_coords]
-
-\draw[thick,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x$};
-\draw[thick,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y$};
-\draw[thick,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z$};
-
-\tdplotsetmaincoords{90}{105}
-\tdplotsetrotatedcoords{0}{25}{10}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (.8,0,0) node[anchor=north west]{$X$};
-
-\tdplotsetmaincoords{90}{125}
-\tdplotsetrotatedcoords{10}{50}{20}
-
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,.6,0) node[anchor=west]{$Y$};
-\draw[thick,tdplot_rotated_coords,blue,->] (0,0,0) -- (0,0,0.7) node[anchor=north east]{$Z$};
-
-\end{tikzpicture}
-}
-\end{subfigure}
-\caption{Representation of the body frame with respect to the navigation frame after rotation by means of Euler angles.}
-	\label{fig:Euler_angles}
+\caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y^{'}, x^{''}$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
-To transform the coordinates of a vector $\mathbf{b}$ to a different coordinate system, i.e. rotate the vector in space, rotation matrixes are used. The rotated vector is given by
+To transform the coordinates of a vector $\mathbf{b}$ to a different coordinate system, i.e. rotate the vector in space, rotation matrices are used. The rotated vector is given by
 
 \begin{equation}
   \mathbf{b^{'}} = \mathbf{R} \mathbf{b}
 \end{equation}
 
-where $\mathbf{R}$ is the rotation matrix. To rotate the vector according to the common aerospace rotation sequence, that is, the above mentioned Tait-Bryan convention, 
-
+where $\mathbf{R}$ is the rotation matrix. To rotate the vector according to the common aerospace rotation sequence, that is, the above mentioned ($z, y^{'}, x^{''}$)-convention, the following rotation matrices
 
 \begin{equation}
-C =
+C_{nb} =
 \end{equation}
 \noindent
 \resizebox{\linewidth}{!}{%

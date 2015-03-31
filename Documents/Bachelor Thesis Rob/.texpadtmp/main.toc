@@ -20,7 +20,7 @@
 \contentsline {section}{\numberline {2.3}Magnetometers}{6}{section.2.3}
 \contentsline {section}{\numberline {2.4}Inertial Measurement Units}{7}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Euler Angles}{7}{subsection.2.4.1}
-\contentsline {section}{\numberline {2.5}The GaitWatch}{9}{section.2.5}
+\contentsline {section}{\numberline {2.5}The GaitWatch}{8}{section.2.5}
 \contentsline {chapter}{\numberline {3}Digital Filters}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}The Filtering Problem}{11}{section.3.1}
 \contentsline {section}{\numberline {3.2}Wiener Filter}{12}{section.3.2}
