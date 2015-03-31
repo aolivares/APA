@@ -1,7 +1,7 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces A mass-and-spring accelerometer under different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest from \cite {bhattacharyya_inertial_sensors_applications_13}.\relax }}{6}{figure.caption.18}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi , \theta , \phi $ about the axes $z, y^{'}, x^{''}$, respectively. Adapted from \cite {Wiki_taitbryan}.\relax }}{8}{figure.caption.19}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi , \theta , \phi $ about the axes $z, y^{'}, X$, respectively. Adapted from \cite {Wiki_taitbryan}.\relax }}{8}{figure.caption.19}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Placement of the GaitWatch components at the body from \cite {olivares_vicente_gaitwatch_2013}.\relax }}{10}{figure.caption.20}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Block diagram depicting the components involved in state estimation from \cite {haykin2002adaptive}.\relax }}{12}{figure.caption.21}

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="680"
+   height="665"
+   id="tait-bryan-angles"
+   version="1.0"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="taitbryan.svg">
+  <metadata
+     id="metadata4010">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Tait-Bryan angles</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1224"
+     inkscape:window-height="675"
+     id="namedview4008"
+     showgrid="false"
+     inkscape:zoom="2.0075453"
+     inkscape:cx="452.56037"
+     inkscape:cy="260.28537"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="tait-bryan-angles"
+     inkscape:snap-bbox="true"
+     inkscape:snap-global="false" />
+  <title
+     id="title3972">Tait-Bryan angles</title>
+  <desc
+     id="desc3974">
+    http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg
+  </desc>
+  <defs
+     id="defs3976">
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrowhead_red"
+       style="overflow:visible">
+      <path
+         d="M -5,0 L -6,3 L 2,0 L -6,-3 L -5,0 z"
+         style="fill:red;stroke:none;stroke-width:0"
+         id="path3979" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrowhead_green"
+       style="overflow:visible">
+      <path
+         d="M -5,0 L -6,3 L 2,0 L -6,-3 L -5,0 z"
+         style="fill:#00aa4f;stroke:none;stroke-width:0"
+         id="path3982" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrowhead_blue"
+       style="overflow:visible">
+      <path
+         d="M -5,0 L -6,3 L 2,0 L -6,-3 L -5,0 z"
+         style="fill:blue;stroke:none;stroke-width:0"
+         id="path3985" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrowhead_black"
+       style="overflow:visible">
+      <path
+         d="M -5,0 L -6,3 L 2,0 L -6,-3 L -5,0 z"
+         style="fill:#000000;stroke:none;stroke-width:0"
+         id="path3988" />
+    </marker>
+  </defs>
+  <rect
+     style="fill:#ffffff;stroke:none"
+     x="0"
+     y="0"
+     width="680"
+     height="665"
+     id="rect3990" />
+  <g
+     id="drawing"
+     transform="translate(353.5,439.5)"
+     style="fill:none;stroke:#000000;stroke-width:3px;stroke-linecap:butt;stroke-linejoin:round">
+    <path
+       id="ellipse_blue"
+       d="M -322,0 A 322,188 0 1 1 322,0 A 322,188 0 1 1 -322,0 z"
+       style="stroke:blue;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8,8;stroke-dashoffset:0" />
+    <path
+       id="arrow_x"
+       d="M 0,0 -314.95551,-1.4088983"
+       style="stroke:#0000ff;marker-end:url(#Arrowhead_blue)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       id="ellipse_red"
+       d="M -114.16,175.79 A 322,188 66 1 1 114.16,-175.79"
+       style="stroke:red;fill:#ffffff;stroke-width:2;stroke-miterlimit:4;stroke-dasharray:8,8;stroke-dashoffset:0" />
+    <g
+       id="green_elements"
+       style="stroke:#00aa4f;fill:#00aa4f">
+      <path
+         id="knot_line"
+         d="M -114.16,175.79 L 176.64,-272"
+         style="marker-end:url(#Arrowhead_green)" />
+      <path
+         id="perpendicular_line_green"
+         d="M -0.70444894,-2.6999686e-8 290.51326,78.625635"
+         style="stroke-width:3;stroke-miterlimit:4;stroke-dasharray:24, 12;stroke-dashoffset:0"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       id="arrow_y"
+       d="M 0,0 7.5559141,180.65005"
+       style="stroke:#0000ff;marker-end:url(#Arrowhead_blue)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       id="angle_psi"
+       d="M 2.5068517,52.47517 C 34.506169,53.171636 68.908283,40.062937 70.419099,10.518301 71.568782,-11.964234 57.855253,-30.64906 35.966079,-42.493595"
+       style="stroke:#000000;marker-end:url(#Arrowhead_black)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="csc" />
+    <g
+       id="red_axes"
+       style="stroke:red">
+      <path
+         id="arrow_X"
+         d="M 0,0 234.77754,-159.41314"
+         style="marker-end:url(#Arrowhead_red)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="arrow_Y"
+         d="M 0,0 -143,-280"
+         style="marker-end:url(#Arrowhead_red)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+      <path
+         id="arrow_Z"
+         d="M 0,0 -173.67141,54.116125"
+         style="marker-end:url(#Arrowhead_red)"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc" />
+    </g>
+    <path
+       id="angle_phi"
+       d="M 41.1,-65.393347 C 25.68096,-104.26826 -20.435811,-116.60733 -46,-106"
+       style="stroke:#000000;marker-end:url(#Arrowhead_black)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       id="angle_theta"
+       d="M 114.88665,30.126695 C 119.46557,-1.7733051 115.46557,-27.12553 96.965572,-57.12553"
+       style="stroke:#000000;marker-end:url(#Arrowhead_black)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       id="arrow_z"
+       d="M 0,0 0,-316.875"
+       style="stroke:#0000ff;marker-end:url(#Arrowhead_blue)"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>
