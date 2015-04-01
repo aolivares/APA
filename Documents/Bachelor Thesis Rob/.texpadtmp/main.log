@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  1 APR 2015 15:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  1 APR 2015 21:34
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1402,21 +1402,21 @@ Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--113
 ] [14
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.not
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 23.
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 28.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [15
 
 
 ]
-Overfull \hbox (18.6126pt too wide) in paragraph at lines 37--90
+Overfull \hbox (18.6126pt too wide) in paragraph at lines 32--88
 [] 
  []
 
 LaTeX Font Info:    Font shape `OT1/pplx/m/sl' in size <12> not available
-(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 90.
+(Font)              Font shape `OT1/pplx/m/it' tried instead on input line 88.
 [16])
-Overfull \hbox (44.68892pt too wide) in paragraph at lines 90--119
+Overfull \hbox (44.68892pt too wide) in paragraph at lines 88--119
 []
  []
 
@@ -1460,7 +1460,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 ]
 Chapter 2.
-[5] <images/accelerometer.pdf, id=509, 341.4504pt x 109.71089pt>
+[5] <images/accelerometer.pdf, id=513, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
 Package pdftex.def Info: images/accelerometer.pdf used on input line 15.
@@ -1485,7 +1485,7 @@ Overfull \hbox (3.68497pt too wide) in paragraph at lines 20--21
 
 Underfull \vbox (badness 4913) has occurred while \output is active []
 
- [6 <./images/accelerometer.pdf>] [7] <images/GaitWatch_placement.pdf, id=571, 340.75514pt x 292.43323pt>
+ [6 <./images/accelerometer.pdf>] [7] <images/GaitWatch_placement.pdf, id=576, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 64.
@@ -1499,60 +1499,38 @@ Chapter 3.
 
 
 
-] <Images/taitbryan.pdf, id=641, 546.04pt x 533.995pt>
+] <Images/taitbryan.pdf, id=645, 546.04pt x 533.995pt>
 File: Images/taitbryan.pdf Graphic file (type pdf)
  <use Images/taitbryan.pdf>
 Package pdftex.def Info: Images/taitbryan.pdf used on input line 23.
 (pdftex.def)             Requested size: 272.99881pt x 266.9724pt.
- [10 <./Images/taitbryan.pdf>] [11]
-Overfull \hbox (3.63826pt too wide) in paragraph at lines 109--109
+ [10 <./Images/taitbryan.pdf>]
+Overfull \hbox (3.63826pt too wide) in paragraph at lines 107--107
 []\OT1/pplx/b/n/17.28 Projection of Grav-ity Vec-tor and Earth's Mag-
  []
 
-
-./Orientation_estimation.tex:115: Package glossaries Error: Glossary entry `(' has not been defined.
-
-See the glossaries package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.115 ...ation estimates, it is impaired by \gls(A
-                                                  RW)
-You need to define a glossary entry before you can use it.
-
-
-./Orientation_estimation.tex:119: Package glossaries Error: Glossary entry `(' has not been defined.
-
-See the glossaries package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.119 ...le estimates due to suffering from \gls(A
-                                                  RW) and dynamic bias, a me...
-You need to define a glossary entry before you can use it.
-
-) [12]
+[11] [12]) [13]
 \openout2 = `Digital_filters.aux'.
 
- (./Digital_filters.tex
+ (./Digital_filters.tex [14
+
+
+
+]
 Chapter 4.
-[13
-
-
-
-] [14] [15] [16] [17] [18] [19] [20] [21] [22]) [23] [24]
+[15] [16] [17] [18] [19] [20] [21] [22] [23] [24]) [25] [26]
 \openout2 = `Implementation.aux'.
 
  (./Implementation.tex
 Chapter 5.
-) [25
+) [27
 
 
 
 ]
 \openout2 = `Conclusion.aux'.
 
- (./Conclusion.tex [26
+ (./Conclusion.tex [28
 
 
 
@@ -1561,7 +1539,7 @@ Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [27]) [28] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
+ [29]) [30] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
 Underfull \hbox (badness 1048) in paragraph at lines 10--18
 \OT1/pplx/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
  []
@@ -1571,11 +1549,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 24--28
 []$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplx/m/n/12 .
  []
 
-[29
+[31
 
 
 
-] [30]
+] [32]
 Underfull \hbox (badness 2564) in paragraph at lines 158--164
 \OT1/pplx/m/it/12 celerom-e-ter\OT1/pplx/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
@@ -1595,7 +1573,7 @@ Underfull \hbox (badness 2503) in paragraph at lines 166--172
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
-[31]) [32]
+[33]) [34]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 138.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 138.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
@@ -1605,18 +1583,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 31944 strings out of 493117
- 597716 string characters out of 6135432
- 782753 words of memory out of 5000000
- 34449 multiletter control sequences out of 15000+600000
+ 32043 strings out of 493117
+ 601348 string characters out of 6135432
+ 784012 words of memory out of 5000000
+ 34542 multiletter control sequences out of 15000+600000
  43060 words of font info for 106 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,77p,1783b,984s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (52 pages, 768258 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (54 pages, 771800 bytes).
 PDF statistics:
- 950 PDF objects out of 1000 (max. 8388607)
- 835 compressed objects within 9 object streams
- 216 named destinations out of 1000 (max. 500000)
+ 974 PDF objects out of 1000 (max. 8388607)
+ 857 compressed objects within 9 object streams
+ 222 named destinations out of 1000 (max. 500000)
  414 words of extra memory for PDF output out of 10000 (max. 10000000)
 

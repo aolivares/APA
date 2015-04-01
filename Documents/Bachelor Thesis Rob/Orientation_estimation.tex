@@ -41,7 +41,7 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y^{'}, Z$ 
 
 \section{Transformation Matrices}
 
-Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}^{'}$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the coordinate vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}^{'}$ is denoted $\mathbf{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}^{'}}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
+Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}^{'}$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}^{'}$ is denoted $\mathbf{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}^{'}}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
 
 \begin{equation}\label{eq:transformation}
   \mathbf{b^{'}} = \mathbf{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}^{'}}(\mathbf{b}) = \mathbf{T} \mathbf{b}\,,
@@ -104,16 +104,26 @@ The matrices $\mathbf{C}_{bn}$ and $\mathbf{C}_{nb}$ are known as Direct Cosine 
 
 \section{Quaternions}
 
-\blindtext
-
-\section{Projection of Gravity Vector and Earth's Magnetic Field}
+\section{Projection of Gravity Vector and Earth's Magnetic Field Vector}
 
 As described in Chapter \ref{ch:MARG}, accelerometers measure the acceleration they experience. Under static or quasi-static (steady, linear motion) conditions, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. Be means of simple trigonometric transformations estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
 
 \section{Integration of Angular Rate}
 
-Another way to compute the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Alhough this would theoretically lead to very accurate orientation estimates, it is impaired by \gls(ARW)
+Another way to estimate the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Although this would theoretically lead to very accurate orientation estimates, they are impaired by \gls{ARW} and dynamical bias in practice. \gls{ARW} is an effect caused by the integration of high-frequency, thermo-mechanical noise, which leads to a random additive angle in the orientation signal. An even greater impact than AWR has the gyroscopes dynamic bias, which has its origin in low-frequency flicker noise. Both effects cause a dramatical drift in the angle signal over time.
 
 \section{Sensor Fusion}
 
-Since the projection of the gravity vector and the vector of Earth's magnetic field are only valid under static or static condition, or at low acceleration, and the integration of the angular rate leads to non-reliable estimates due to suffering from \gls(ARW) and dynamic bias, a means to combine the information of both sensors and thus achieve a more accurate overall estimate  
+Since the projection of the gravity vector and the Earth's magnetic field vector are only valid under static or quasi-static conditions, or at low acceleration, and the integration of the angular rate leads to non-reliable estimates due to suffering from \gls{ARW} and dynamic bias, but is not affected by the intensity of motion, a means to combine the information of both sensors is desirable. The combination of information from multiple sensors to increase the overall precision of the estimation of a certain quantity of interest is termed sensor fusion. \citeauthor{raol2009multi} \cite{raol2009multi} states the following advantages of sensor fusion:
+ 
+\begin{itemize}
+\item Robust functional and operational performance is given, in case of data loss from one sensor, due to redundancy provided by multiple sensors.
+\item Enhanced confidence in the results inferred from the measurement of one sensor, if they are confirmed by the measurement of another sensor.
+\item With sensor fusion an arbitrary fine time resolution of measurements is possible, whereas single sensors need a finite time to transmit measurements and so limit the frequency of measurements.
+\item One sensor might be, to some extent, better in a certain state of the measured process, e.g. low or high motion intensity in attitude estimation, and thus, by fusing multiple sensor signals, a satisfactory accuracy among all states of the process could be attained.
+\end{itemize}
+
+\noindent
+Sensor fusion can be realised by the use of a Kalman filter, which is described in detail in the next chapter.
+
+

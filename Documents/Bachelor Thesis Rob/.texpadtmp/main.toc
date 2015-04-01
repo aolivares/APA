@@ -24,24 +24,24 @@
 \contentsline {section}{\numberline {3.1}Euler Angles}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Transformation Matrices}{10}{section.3.2}
 \contentsline {section}{\numberline {3.3}Quaternions}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Projection of Gravity Vector and Earth's Magnetic Field}{12}{section.3.4}
+\contentsline {section}{\numberline {3.4}Projection of Gravity Vector and Earth's Magnetic Field Vector}{11}{section.3.4}
 \contentsline {section}{\numberline {3.5}Integration of Angular Rate}{12}{section.3.5}
 \contentsline {section}{\numberline {3.6}Sensor Fusion}{12}{section.3.6}
-\contentsline {chapter}{\numberline {4}Digital Filters}{13}{chapter.4}
-\contentsline {section}{\numberline {4.1}The Filtering Problem}{13}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wiener Filters}{14}{section.4.2}
-\contentsline {section}{\numberline {4.3}Adaptive Filters}{15}{section.4.3}
-\contentsline {section}{\numberline {4.4}The Kalman Filter}{16}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{16}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{22}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{23}{section.4.5}
-\contentsline {chapter}{\numberline {5}Implementation}{25}{chapter.5}
-\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{25}{section.5.1}
-\contentsline {section}{\numberline {5.2}Realisation in Matlab}{25}{section.5.2}
-\contentsline {section}{\numberline {5.3}Experiments}{25}{section.5.3}
-\contentsline {section}{\numberline {5.4}Results}{25}{section.5.4}
-\contentsline {section}{\numberline {5.5}Discussion}{25}{section.5.5}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{27}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{27}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{28}{section.6.2}
-\contentsline {chapter}{Bibliography}{29}{section.6.2}
+\contentsline {chapter}{\numberline {4}Digital Filters}{15}{chapter.4}
+\contentsline {section}{\numberline {4.1}The Filtering Problem}{15}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wiener Filters}{16}{section.4.2}
+\contentsline {section}{\numberline {4.3}Adaptive Filters}{17}{section.4.3}
+\contentsline {section}{\numberline {4.4}The Kalman Filter}{18}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{18}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{24}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{25}{section.4.5}
+\contentsline {chapter}{\numberline {5}Implementation}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}Realisation in Matlab}{27}{section.5.2}
+\contentsline {section}{\numberline {5.3}Experiments}{27}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{27}{section.5.4}
+\contentsline {section}{\numberline {5.5}Discussion}{27}{section.5.5}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{29}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{29}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{30}{section.6.2}
+\contentsline {chapter}{Bibliography}{31}{section.6.2}

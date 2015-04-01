@@ -13,7 +13,7 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 190 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 201 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
@@ -29,45 +29,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 26 entries,
+You've used 27 entries,
             2481 wiz_defined-function locations,
-            737 strings with 9809 characters,
-and the built_in function-call counts, 9620 in all, are:
-= -- 843
-> -- 422
-< -- 22
-+ -- 178
-- -- 123
-* -- 699
-:= -- 1525
-add.period$ -- 109
-call.type$ -- 26
-change.case$ -- 42
-chr.to.int$ -- 23
-cite$ -- 37
-duplicate$ -- 517
-empty$ -- 877
-format.name$ -- 153
-if$ -- 2070
+            744 strings with 9956 characters,
+and the built_in function-call counts, 9905 in all, are:
+= -- 869
+> -- 429
+< -- 23
++ -- 182
+- -- 125
+* -- 713
+:= -- 1573
+add.period$ -- 114
+call.type$ -- 27
+change.case$ -- 43
+chr.to.int$ -- 24
+cite$ -- 38
+duplicate$ -- 536
+empty$ -- 907
+format.name$ -- 156
+if$ -- 2132
 int.to.chr$ -- 4
-int.to.str$ -- 27
-missing$ -- 16
-newline$ -- 167
-num.names$ -- 82
-pop$ -- 237
+int.to.str$ -- 28
+missing$ -- 18
+newline$ -- 174
+num.names$ -- 85
+pop$ -- 247
 preamble$ -- 1
-purify$ -- 26
+purify$ -- 27
 quote$ -- 0
-skip$ -- 298
+skip$ -- 308
 stack$ -- 0
-substring$ -- 316
-swap$ -- 125
+substring$ -- 318
+swap$ -- 127
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 176
+type$ -- 180
 warning$ -- 11
-while$ -- 74
+while$ -- 76
 width$ -- 0
-write$ -- 388
+write$ -- 404
 (There was 1 error message)
