@@ -22,25 +22,26 @@
 \BOOKMARK [1][-]{section.2.5}{The GaitWatch}{chapter.2}% 22
 \BOOKMARK [0][-]{chapter.3}{Orientation Estimation}{}% 23
 \BOOKMARK [1][-]{section.3.1}{Euler Angles}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.2}{Rotation Matrices}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{Projection of Gravity Vector and Earth's Magnetic Field}{chapter.3}% 26
-\BOOKMARK [1][-]{section.3.4}{Integration of Angular Rate}{chapter.3}% 27
-\BOOKMARK [1][-]{section.3.5}{Sensor Fusion}{chapter.3}% 28
-\BOOKMARK [0][-]{chapter.4}{Digital Filters}{}% 29
-\BOOKMARK [1][-]{section.4.1}{The Filtering Problem}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.2}{Wiener Filters}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.3}{Adaptive Filters}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.4}{The Kalman Filter}{chapter.4}% 33
-\BOOKMARK [2][-]{subsection.4.4.1}{An Introductory Example}{section.4.4}% 34
-\BOOKMARK [2][-]{subsection.4.4.2}{Formulation of the Kalman Filter Equations}{section.4.4}% 35
-\BOOKMARK [1][-]{section.4.5}{The Extended Kalman Filter}{chapter.4}% 36
-\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 37
-\BOOKMARK [1][-]{section.5.1}{Theoretical Part of Implementation}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.2}{Realisation in Matlab}{chapter.5}% 39
-\BOOKMARK [1][-]{section.5.3}{Experiments}{chapter.5}% 40
-\BOOKMARK [1][-]{section.5.4}{Results}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.5}{Discussion}{chapter.5}% 42
-\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 43
-\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 44
-\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 45
-\BOOKMARK [0][-]{section.6.2}{Bibliography}{}% 46
+\BOOKMARK [1][-]{section.3.2}{Transformation Matrices}{chapter.3}% 25
+\BOOKMARK [1][-]{section.3.3}{Quaternions}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.4}{Projection of Gravity Vector and Earth's Magnetic Field}{chapter.3}% 27
+\BOOKMARK [1][-]{section.3.5}{Integration of Angular Rate}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.6}{Sensor Fusion}{chapter.3}% 29
+\BOOKMARK [0][-]{chapter.4}{Digital Filters}{}% 30
+\BOOKMARK [1][-]{section.4.1}{The Filtering Problem}{chapter.4}% 31
+\BOOKMARK [1][-]{section.4.2}{Wiener Filters}{chapter.4}% 32
+\BOOKMARK [1][-]{section.4.3}{Adaptive Filters}{chapter.4}% 33
+\BOOKMARK [1][-]{section.4.4}{The Kalman Filter}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.4.1}{An Introductory Example}{section.4.4}% 35
+\BOOKMARK [2][-]{subsection.4.4.2}{Formulation of the Kalman Filter Equations}{section.4.4}% 36
+\BOOKMARK [1][-]{section.4.5}{The Extended Kalman Filter}{chapter.4}% 37
+\BOOKMARK [0][-]{chapter.5}{Implementation}{}% 38
+\BOOKMARK [1][-]{section.5.1}{Theoretical Part of Implementation}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.2}{Realisation in Matlab}{chapter.5}% 40
+\BOOKMARK [1][-]{section.5.3}{Experiments}{chapter.5}% 41
+\BOOKMARK [1][-]{section.5.4}{Results}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.5}{Discussion}{chapter.5}% 43
+\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 44
+\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 45
+\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 46
+\BOOKMARK [0][-]{section.6.2}{Bibliography}{}% 47

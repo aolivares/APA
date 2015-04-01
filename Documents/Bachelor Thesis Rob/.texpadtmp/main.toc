@@ -22,10 +22,11 @@
 \contentsline {section}{\numberline {2.5}The GaitWatch}{7}{section.2.5}
 \contentsline {chapter}{\numberline {3}Orientation Estimation}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Euler Angles}{9}{section.3.1}
-\contentsline {section}{\numberline {3.2}Rotation Matrices}{9}{section.3.2}
-\contentsline {section}{\numberline {3.3}Projection of Gravity Vector and Earth's Magnetic Field}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Integration of Angular Rate}{11}{section.3.4}
-\contentsline {section}{\numberline {3.5}Sensor Fusion}{11}{section.3.5}
+\contentsline {section}{\numberline {3.2}Transformation Matrices}{10}{section.3.2}
+\contentsline {section}{\numberline {3.3}Quaternions}{11}{section.3.3}
+\contentsline {section}{\numberline {3.4}Projection of Gravity Vector and Earth's Magnetic Field}{12}{section.3.4}
+\contentsline {section}{\numberline {3.5}Integration of Angular Rate}{12}{section.3.5}
+\contentsline {section}{\numberline {3.6}Sensor Fusion}{12}{section.3.6}
 \contentsline {chapter}{\numberline {4}Digital Filters}{13}{chapter.4}
 \contentsline {section}{\numberline {4.1}The Filtering Problem}{13}{section.4.1}
 \contentsline {section}{\numberline {4.2}Wiener Filters}{14}{section.4.2}
