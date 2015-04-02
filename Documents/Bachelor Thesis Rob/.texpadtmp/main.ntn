@@ -1,5 +1,5 @@
 \glossaryentry{F?\glossentry{not:F}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{B?\glossentry{not:B_v}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{Ba?\glossentry{not:B_v}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{m?\glossentry{not:m}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{sigma?\glossentry{not:sigma}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{sigma?\glossentry{not:sigma_2}|setentrycounter[]{page}\glsnumberformat}{1}
@@ -40,3 +40,5 @@
 \glossaryentry{Ta?\glossentry{not:transformation_matrix}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Cbn?\glossentry{not:transformation_matrix_bn}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Cnb?\glossentry{not:transformation_matrix_nb}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{Om?\glossentry{not:omega}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{b?\glossentry{not:position_vector}|setentrycounter[]{page}\glsnumberformat}{1}

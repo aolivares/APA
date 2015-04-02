@@ -287,12 +287,12 @@ That means that in the limit of absolutely no confidence in the system model out
 
 Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman} and \ref{eq:gain_kalman} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations.
 
-\subsection{Formulation of the Kalman Filter Equations}
+\subsection{Formulation of the Kalman Filter Equations} \label{sec:Kalman_equations}
 
 Let $\mathbf{x}_k \in \mathbb{R}^n$ be the state vector of a discrete-time controlled process governed by the linear stochastic difference equation 
 
 \begin{equation}\label{eq:time_dynamical_system_plant}
-  \mathbf{x}_k = \mathbf{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}
+  \mathbf{x}_k = \bm{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}
 \end{equation}
 
 \noindent
@@ -314,14 +314,14 @@ where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sam
 \end{equation}
  
 \noindent
-with the the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. They are assumed to be uncorrelated. The $n\times n$ transition matrix $\mathbf{\Phi}_{k}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k}$ relates the optional control input $\mathbf{u}_k \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
+with the the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. They are assumed to be uncorrelated. The $n\times n$ transition matrix $\bm{\Phi}_{k}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k}$ relates the optional control input $\mathbf{u}_k \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
 
 The Kalman filter solves the problem of estimating the state $\mathbf{x}_k$ of the given linear stochastic system, represented by $\hat{\mathbf{x}}_k$, which is also a linear function of the measurement $\mathbf{z}_k$, minimising the weighted mean-squarred error. This problem is called the \emph{linear quadratic Gaussian} estimation problem; the dynamic system is linear, the performance cost function is quadratic, and the random process is Gaussian.
 
 We define the vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ as the \emph{a priori} state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the \emph{a posteriori} state estimate at step $k$ given the measurement $\mathbf{z}_k$:
 
 \begin{equation}\label{eq:apriori_estimate}
-  \hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}\,,
+  \hat{\mathbf{x}}^-_k = \bm{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}\,,
 \end{equation}
 
 \begin{equation}\label{eq:aposteriori_estimate}
@@ -339,7 +339,7 @@ The term $[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ is called the measu
 with
 
 \begin{equation}\label{eq:apriori_error_cov}
-  \mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}
+  \mathbf{P}^-_{k} = \bm{\Phi}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}
 \end{equation}
 
 \noindent
@@ -366,14 +366,14 @@ Figure \ref{fig:kalman_filter_model} illustrates the relation of the Kalman filt
 	\node [input, above of=sum1] (w) {};
     \node [block, align=center, 
     	right of=sum1, node distance=3cm] (H) {$\mathbf{H}_k$};
-    \node [block, align=center, below of=sum1, node distance=1.8cm] (phi) {$\mathbf{\Phi}_{k-1}$};
+    \node [block, align=center, below of=sum1, node distance=1.8cm] (phi) {$\bm{\Phi}_{k-1}$};
     \node [sum, right of=H, node distance=1.5cm] (sum2) {$\sum$};
     \node [sum, right of=sum2, node distance=1.8cm] (sum3) {$\sum$};
     \node [input, above of=sum2] (v) {};
     \node [block, align=center, 
     	right of=sum3, node distance=1.5cm] (K) {$\mathbf{K}_k$};
     \node [block, align=center, below of=K, node distance=1.8cm] (H1) {$\mathbf{H}_k$};
-    \node [block, align=center, right of=H1, node distance=2.5cm] (phi1) {$\mathbf{\Phi}_{k-1}$};
+    \node [block, align=center, right of=H1, node distance=2.5cm] (phi1) {$\bm{\Phi}_{k-1}$};
     \node [block, align=center, right of=phi1, node distance=2.2cm] (delay1) {$z^{-1_{ }}\mathbf{I}$};
     \node [sum, right of=K, node distance=1.5cm] (sum4) {$\sum$};
     \node [output, right of=sum4, node distance=4.0cm] (out) {};
@@ -417,8 +417,8 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 \centering
 \begin{tikzpicture}[auto, node distance=4cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \mathbf{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \bm{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
 \node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3cm, name=output] {Output};
 \node [output, below of=update, node distance=2.5cm, name=help1] {};
@@ -443,22 +443,35 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 Up to this point the Kalman filter has solved the filtering problem for a linear model of a dynamical system. One may extend the Kalman filter to systems with state dynamics governed by non-linear state transformations
 
 \begin{equation}\label{eq:time_dynamical_system_plant_extended}
-  \mathbf{x}_k = \mathbf{\psi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})+\mathbf{w}_{k-1}, \quad \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
+  \mathbf{x}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})+\mathbf{w}_{k-1}, \quad \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
 \end{equation}
 
 \noindent
-and/or with a nonlinear transformation from state variables to measurement variables,
+and/or with a nonlinear transformation from state variables to measurement variables
 
 \begin{equation}\label{eq:time_dynamical_system_measurement_extended}
   \mathbf{z}_k = \mathbf{h}_{k}(\mathbf{x}_{k})+\mathbf{v}_{k}, \quad \mathbf{v}_{k} \sim \mathcal{N}(0,\mathbf{R}_k)\,,
 \end{equation}
 
 \noindent
-where the \emph{non-linear} function $\mathbf{\Phi}_{k-1}$ relates the state at the previous time step $k-1$ to the current time step $k$ and the likewise \emph{non-linear} function $\mathbf{H}_{k}$ relates the state $\mathbf{x}_{k}$ to the measurement $\mathbf{z}_k$.
+where the \emph{non-linear} function $\bm{\phi}_{k-1}$ relates the state at the previous time step $k-1$ to the current time step $k$ and the likewise \emph{non-linear} function $\mathbf{h}_{k}$ relates the state $\mathbf{x}_{k}$ to the measurement $\mathbf{z}_k$.
+
+Through a linearisation of the state-space model of Equations \ref{eq:time_dynamical_system_plant_extended} and \ref{eq:time_dynamical_system_measurement_extended} at each time instant around the most recent state estimate, the standard Kalman filter equation from Section \ref{sec:Kalman_equations} can be applied. The resulting filter is referred to as the \emph{extended Kalman filter} (EKF). The approximation proceeds in two stages. First the following two Jacobian matrices are constructed: 
+
+\begin{equation}\label{eq:Phi_first_order}
+  \bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}} \,,
+\end{equation}
+and
+\begin{equation}\label{eq:Phi_first_order}
+  \mathbf{H}^{[1]}_{k} = \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k}} \,.
+\end{equation}
+
+\noindent
+The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of x. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{h}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of x. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. Then the two matrices are employed in a \emph{first-order Taylor approximation}
 
 
 
-Through a linearisation . The resulting filter is referred to as the \emph{extended Kalman filter} (EKF).
+
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=8cm]
@@ -468,8 +481,8 @@ Through a linearisation . The resulting filter is referred to as the \emph{exten
 \centering
 \begin{tikzpicture}[auto, node distance=4cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}$, 0) \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \bm{\phi}_{k-1}(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}$) \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
 \node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3cm, name=output] {Output};
 \node [output, below of=update, node distance=2.5cm, name=help1] {};
