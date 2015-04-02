@@ -13,5 +13,6 @@
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Propagation of conditional probability density from \cite {Maybeck79}.\relax }}{22}{figure.caption.26}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Block diagram depicting the relation between a discrete-time dynamical system, its observation, and the Kalman filter.\relax }}{25}{figure.caption.27}
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.\relax }}{26}{figure.caption.28}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.\relax }}{27}{figure.caption.29}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

@@ -1,4 +1,4 @@
-\begin{thebibliography}{27}
+\begin{thebibliography}{28}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -37,6 +37,16 @@ Peter~S. Maybeck.
 \newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
 \newblock Academic Press, 1979.
 \newblock ISBN 9780124110427.
+
+\bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
+  Waluyo]{wee_soon_ambulatory_2008}
+Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
+\newblock Ambulatory monitoring of human posture and walking speed using
+  wearable accelerometer sensors.
+\newblock In \emph{Engineering in Medicine and Biology Society, 2008. EMBS
+  2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
+  Aug 2008.
+\newblock \doi{10.1109/IEMBS.2008.4650382}.
 
 \bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
 T.R. Bennett, R.~Jafari, and N.~Gans.

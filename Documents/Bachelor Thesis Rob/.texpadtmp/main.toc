@@ -7,13 +7,12 @@
 \contentsline {chapter}{Abbreviations}{xiii}{section*.14}
 \contentsline {chapter}{Notation}{xvii}{section*.17}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}General}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Motivation}{1}{section.1.2}
-\contentsline {section}{\numberline {1.3}Goals}{1}{section.1.3}
-\contentsline {section}{\numberline {1.4}Methodology}{1}{section.1.4}
-\contentsline {section}{\numberline {1.5}State of the Art}{2}{section.1.5}
-\contentsline {subsection}{\numberline {1.5.1}Kalman Filtering in Orientation Estimation}{2}{subsection.1.5.1}
-\contentsline {subsection}{\numberline {1.5.2}MARG Sensors in Medical Research}{2}{subsection.1.5.2}
+\contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
+\contentsline {section}{\numberline {1.2}Goals}{1}{section.1.2}
+\contentsline {section}{\numberline {1.3}Methodology}{2}{section.1.3}
+\contentsline {section}{\numberline {1.4}State of the Art}{2}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Kalman Filtering in Orientation Estimation}{2}{subsection.1.4.1}
+\contentsline {subsection}{\numberline {1.4.2}MARG Sensors in Medical Research}{3}{subsection.1.4.2}
 \contentsline {chapter}{\numberline {2}MARG Sensors}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Accelerometers}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Gyroscopes}{6}{section.2.2}
@@ -35,13 +34,13 @@
 \contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{18}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{24}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{25}{section.4.5}
-\contentsline {chapter}{\numberline {5}Implementation}{27}{chapter.5}
-\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{27}{section.5.1}
-\contentsline {section}{\numberline {5.2}Realisation in Matlab}{27}{section.5.2}
-\contentsline {section}{\numberline {5.3}Experiments}{27}{section.5.3}
-\contentsline {section}{\numberline {5.4}Results}{27}{section.5.4}
-\contentsline {section}{\numberline {5.5}Discussion}{27}{section.5.5}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{29}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{29}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{30}{section.6.2}
-\contentsline {chapter}{Bibliography}{31}{section.6.2}
+\contentsline {chapter}{\numberline {5}Implementation}{29}{chapter.5}
+\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}Realisation in Matlab}{29}{section.5.2}
+\contentsline {section}{\numberline {5.3}Experiments}{29}{section.5.3}
+\contentsline {section}{\numberline {5.4}Results}{29}{section.5.4}
+\contentsline {section}{\numberline {5.5}Discussion}{29}{section.5.5}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{31}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{31}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{32}{section.6.2}
+\contentsline {chapter}{Bibliography}{33}{section.6.2}

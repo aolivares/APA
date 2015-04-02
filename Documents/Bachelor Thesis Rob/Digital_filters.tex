@@ -289,7 +289,7 @@ Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:
 
 \subsection{Formulation of the Kalman Filter Equations}
 
-Let $\mathbf{x} \in \mathbb{R}^n$ be the state vector of a discrete-time controlled process governed by the linear stochastic difference equation 
+Let $\mathbf{x}_k \in \mathbb{R}^n$ be the state vector of a discrete-time controlled process governed by the linear stochastic difference equation 
 
 \begin{equation}\label{eq:time_dynamical_system_plant}
   \mathbf{x}_k = \mathbf{\Phi}_{k-1}\mathbf{x}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}+\mathbf{w}_{k-1}
@@ -306,11 +306,11 @@ and $\mathbf{z}_k \in \mathbb{R}^m$ the observation or measurement vector of thi
 where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sampling interval. The $n\times1$ vector $w_k$ and the $m\times1$ vector $v_k$ represent the process noise and the measurement noise, respectively, modelled as zero-mean, Gaussian white noise
 
 \begin{equation}\label{eq:process_noise}
-  \mathbf{w}_{k} \sim N(0,\mathbf{Q}_k)\,,
+  \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
 \end{equation}
 
 \begin{equation}\label{eq:measurement_noise}
-  \mathbf{v}_{k} \sim N(0,\mathbf{R}_k)\,,
+  \mathbf{v}_{k} \sim \mathcal{N}(0,\mathbf{R}_k)\,,
 \end{equation}
  
 \noindent
@@ -438,7 +438,56 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 \end{figure}
 
 
-
 \section{The Extended Kalman Filter}
+
+Up to this point the Kalman filter has solved the filtering problem for a linear model of a dynamical system. One may extend the Kalman filter to systems with state dynamics governed by non-linear state transformations
+
+\begin{equation}\label{eq:time_dynamical_system_plant_extended}
+  \mathbf{x}_k = \mathbf{\psi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})+\mathbf{w}_{k-1}, \quad \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
+\end{equation}
+
+\noindent
+and/or with a nonlinear transformation from state variables to measurement variables,
+
+\begin{equation}\label{eq:time_dynamical_system_measurement_extended}
+  \mathbf{z}_k = \mathbf{h}_{k}(\mathbf{x}_{k})+\mathbf{v}_{k}, \quad \mathbf{v}_{k} \sim \mathcal{N}(0,\mathbf{R}_k)\,,
+\end{equation}
+
+\noindent
+where the \emph{non-linear} function $\mathbf{\Phi}_{k-1}$ relates the state at the previous time step $k-1$ to the current time step $k$ and the likewise \emph{non-linear} function $\mathbf{H}_{k}$ relates the state $\mathbf{x}_{k}$ to the measurement $\mathbf{z}_k$.
+
+
+
+Through a linearisation . The resulting filter is referred to as the \emph{extended Kalman filter} (EKF).
+
+\tikzstyle{block} = [draw, rectangle, thick, 
+    minimum height=1.5cm, minimum width=8cm]
+\tikzstyle{output} = [coordinate]
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[auto, node distance=4cm,>=latex']
+    
+\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \mathbf{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = f(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}$, 0) \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \mathbf{\Phi}_{k-1} \mathbf{P}_{k-1} \mathbf{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
+\node [output, below of=update, node distance=3cm, name=output] {Output};
+\node [output, below of=update, node distance=2.5cm, name=help1] {};
+\node [output, right of=help1, node distance=4.8cm, name=help2] {};
+\node [output, below of=init, node distance=1.25cm, name=help4] {};
+\node [output, right of=help4, node distance=4.8cm, name=help3] {};
+
+\draw [draw,->, thick, align=left] (init) -- (predict);
+\draw [draw,->, thick, align=left] (predict) -- (update);
+\draw [draw,->, thick, align=left] (update) -- node [label={left:Output}]{} (output);
+\draw [draw,-, thick] (help1) -- (help2);
+\draw [draw,-, thick] (help2) -- (help3);
+\draw [draw,->, thick] (help3) -- (help4);
+
+\end{tikzpicture}
+\caption{Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.} \label{fig:kalman_filter_cycle}
+\end{figure}
+
+
 
 
