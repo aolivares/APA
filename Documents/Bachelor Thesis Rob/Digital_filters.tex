@@ -434,29 +434,44 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 \draw [draw,->, thick] (help3) -- (help4);
 
 \end{tikzpicture}
-\caption{Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.} \label{fig:kalman_filter_cycle}
+\caption{Operation cycle of Kalman filter algorithm illustrating predict and correct behaviour.} \label{fig:kalman_filter_cycle}
 \end{figure}
 
 
 \section{The Extended Kalman Filter}
 
-Up to this point the Kalman filter has solved the filtering problem for a linear model of a dynamical system. One may extend the Kalman filter to systems with state dynamics governed by non-linear state transformations
+Up to this point the Kalman filter has solved the filtering problem for linear time-dynamical systems. One may extend the Kalman filter to systems with state dynamics governed by non-linear state transformations
 
 \begin{equation}\label{eq:time_dynamical_system_plant_extended}
-  \mathbf{x}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})+\mathbf{w}_{k-1}, \quad \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
+  \mathbf{x}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1})+\mathbf{w}_{k-1}, \quad \mathbf{w}_{k} \sim \mathcal{N}(0,\mathbf{Q}_k)\,,
 \end{equation}
 
 \noindent
-and/or with a nonlinear transformation from state variables to measurement variables
+and/or with a non-linear transformation from state variables to measurement variables
 
 \begin{equation}\label{eq:time_dynamical_system_measurement_extended}
-  \mathbf{z}_k = \mathbf{h}_{k}(\mathbf{x}_{k})+\mathbf{v}_{k}, \quad \mathbf{v}_{k} \sim \mathcal{N}(0,\mathbf{R}_k)\,,
+  \mathbf{z}_k = \mathbf{h}_{k}(\mathbf{x}_{k})+\mathbf{v}_{k}, \quad \mathbf{v}_{k} \sim \mathcal{N}(0,\mathbf{R}_k)\,.
 \end{equation}
 
 \noindent
-where the \emph{non-linear} function $\bm{\phi}_{k-1}$ relates the state at the previous time step $k-1$ to the current time step $k$ and the likewise \emph{non-linear} function $\mathbf{h}_{k}$ relates the state $\mathbf{x}_{k}$ to the measurement $\mathbf{z}_k$.
+The \emph{functional} $\bm{\phi}_{k-1}$ denotes the \emph{non-linear} transition matrix function that may be time varying. It relates the state at the previous time step $k-1$ to the current time step $k$. The functional $\mathbf{h}_{k}$ denotes a \emph{non-linear} measurement matrix function that relates the state $\mathbf{x}_{k}$ to the measurement $\mathbf{z}_k$ and is possibly time varying, too.
 
-Through a linearisation of the state-space model of Equations \ref{eq:time_dynamical_system_plant_extended} and \ref{eq:time_dynamical_system_measurement_extended} at each time instant around the most recent state estimate, the standard Kalman filter equation from Section \ref{sec:Kalman_equations} can be applied. The resulting filter is referred to as the \emph{extended Kalman filter} (EKF). The approximation proceeds in two stages. First the following two Jacobian matrices are constructed: 
+Some non-linear problems can be deemed \emph{quasilinear}, which means that the variation of the non-linear functionals $\bm{\phi}$ and $\mathbf{h}$ are predominantly linear about the value $\mathbf{x}$. That is,
+
+\begin{equation}\label{eq:linear_phi}
+  \bm{\phi}_{k}(\mathbf{x} + d \mathbf{x}) \approx \bm{\phi}_{k}(\mathbf{x}) + d \mathbf{x} \left. \frac{\partial \bm{\phi}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}}\,,
+\end{equation}
+
+\begin{equation}\label{eq:linear_h}
+  \mathbf{h}_{k}(\mathbf{x} + d \mathbf{x}) \approx \mathbf{h}_{k}(\mathbf{x}) + d \mathbf{x} \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}}\,,
+\end{equation}
+
+\noindent
+which requires that $\bm{\phi}$ and $\mathbf{h}$ are differentiable at $\mathbf{x}$.
+
+Through a \emph{linearisation} of the state-space model of Equations \ref{eq:time_dynamical_system_plant_extended} and \ref{eq:time_dynamical_system_measurement_extended} at each time instant around the most recent state estimate, the standard Kalman filter equation from Section \ref{sec:Kalman_equations} can be applied. The filter resulting from a \emph{linear approximation} of the state transitions and the relation of the measurement to the respective state is referred to as the \emph{extended Kalman filter} (EKF).
+
+The Jacobian matrices of the functionals $\bm{\phi}$ and $\mathbf{h}$, which are employed in the linearisation, are given by  
 
 \begin{equation}\label{eq:Phi_first_order}
   \bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}} \,,
@@ -467,11 +482,43 @@ and
 \end{equation}
 
 \noindent
-The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of x. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{h}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of x. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. Then the two matrices are employed in a \emph{first-order Taylor approximation}
+The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{H}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. The superscript $^{[1]}$ denotes the first-order approximation.
 
+The predicted state estimate is given by
 
+\begin{equation}\label{eq:apriori_estimate_extended}
+  \hat{\mathbf{x}}^{-}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1})\,,
+\end{equation}
 
+\noindent
+and the predicted measurement by
 
+\begin{equation}\label{eq:predicted_measurement_extended}
+  \hat{\mathbf{z}}_k = \mathbf{h}_{k}(\mathbf{x}^{-}_{k})\,.
+\end{equation}
+
+\noindent
+The \emph{a posteriori} estimate is then, conditioned on the actual measurement, 
+
+\begin{equation}\label{eq:aposteriori_estimate_extended}
+  \hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\hat{\mathbf{z}}_k]\,.
+\end{equation}
+
+The a priori covariance matrix $\mathbf{P}^-_{k}$, the cooresponding Kalman gain $\mathbf{K}_{k}$, and the a posteriori covariance matrix $\mathbf{P}_{k}$ are equal to Equations \ref{eq:Kalman_gain_extended}, \ref{eq:apriori_error_cov}, and \ref{eq:aposteriori_error_cov} in Section \ref{sec:Kalman_equations} but reproduced here for convenience of presentation:
+
+\begin{equation}\label{eq:apriori_error_cov_extended}
+  \mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}
+\end{equation}
+
+\begin{equation}\label{eq:Kalman_gain_extended}
+  \mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}
+\end{equation}
+
+\begin{equation}\label{eq:aposteriori_error_cov_extended}
+  \mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}
+\end{equation}
+
+Figure \ref{fig:kalman_filter_cycle} illustrates the predict and update behaviour of the extended Kalman filter algorithm. 
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=8cm]
@@ -481,9 +528,9 @@ The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the pa
 \centering
 \begin{tikzpicture}[auto, node distance=4cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \bm{\phi}_{k-1}(\hat{\mathbf{x}}_{k-1}, \mathbf{u}_{k-1}$) \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
+\node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}^{[1]}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1})$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict] (update) {Measurement update (correct) \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3cm, name=output] {Output};
 \node [output, below of=update, node distance=2.5cm, name=help1] {};
 \node [output, right of=help1, node distance=4.8cm, name=help2] {};
@@ -498,7 +545,7 @@ The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the pa
 \draw [draw,->, thick] (help3) -- (help4);
 
 \end{tikzpicture}
-\caption{Operation cycle of Kalman filter algorithm depicting predict and correct behaviour.} \label{fig:kalman_filter_cycle}
+\caption{Operation cycle of extended Kalman filter algorithm illustrating predict and correct behaviour.} \label{fig:kalman_filter_cycle}
 \end{figure}
 
 

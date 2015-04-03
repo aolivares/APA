@@ -22,14 +22,14 @@
 \glossaryentry{xe?\glossentry{not:x_hat_minus}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{y?\glossentry{not:y}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{zaa?\glossentry{not:z}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{H?\glossentry{not:H}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{Ha?\glossentry{not:H}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Kaa?\glossentry{not:K_v}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Ka?\glossentry{not:K}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{k?\glossentry{not:k}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{P?\glossentry{not:P}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Q?\glossentry{not:Q}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{R?\glossentry{not:R}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{phia?\glossentry{not:phi}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{phiaa?\glossentry{not:phi}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xc?\glossentry{not:x_k}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{za?\glossentry{not:unit-delay}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{phi?\glossentry{not:roll}|setentrycounter[]{page}\glsnumberformat}{1}
@@ -42,3 +42,5 @@
 \glossaryentry{Cnb?\glossentry{not:transformation_matrix_nb}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Om?\glossentry{not:omega}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{b?\glossentry{not:position_vector}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{phia?\glossentry{not:phi_vec}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{h?\glossentry{not:h_vec}|setentrycounter[]{page}\glsnumberformat}{1}
