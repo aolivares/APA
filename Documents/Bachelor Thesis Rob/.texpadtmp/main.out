@@ -35,8 +35,8 @@
 \BOOKMARK [2][-]{subsection.4.4.2}{Formulation of the Kalman Filter Equations}{section.4.4}% 35
 \BOOKMARK [1][-]{section.4.5}{The Extended Kalman Filter}{chapter.4}% 36
 \BOOKMARK [0][-]{chapter.5}{Implementation}{}% 37
-\BOOKMARK [1][-]{section.5.1}{Theoretical Part of Implementation}{chapter.5}% 38
-\BOOKMARK [1][-]{section.5.2}{Realisation in Matlab}{chapter.5}% 39
+\BOOKMARK [1][-]{section.5.1}{Theoretical Design}{chapter.5}% 38
+\BOOKMARK [1][-]{section.5.2}{Implementation}{chapter.5}% 39
 \BOOKMARK [1][-]{section.5.3}{Experiments}{chapter.5}% 40
 \BOOKMARK [1][-]{section.5.4}{Results}{chapter.5}% 41
 \BOOKMARK [1][-]{section.5.5}{Discussion}{chapter.5}% 42

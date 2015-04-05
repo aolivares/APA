@@ -1,7 +1,7 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-Orientation estimation of the human body assisted by inertial sensors has become an integral part of medical diagnosis, therapy techniques, and rehabilitation as it provides an objective means of monitoring and assessing human body motion. The progressive miniaturisation of wearable sensors has made them more acceptable to patients and has consequently lead to an increasingly pervasive adoption for medical applications \cite{wee_soon_ambulatory_2008}.
+Orientation estimation of the human body assisted by inertial sensors has become an integral part of medical diagnosis, therapy techniques, and rehabilitation as it provides an objective means of monitoring and assessing human body motion. The progressive miniaturisation of wearable inertial and magnetic sensors has made them more acceptable to patients and has consequently lead to an increasingly pervasive adoption for medical applications \cite{wee_soon_ambulatory_2008}.
 
 For the application in health care accurate orientation estimates are crucial...
 
@@ -10,7 +10,7 @@ For the application in health care accurate orientation estimates are crucial...
 
 \section{Goals}
 
-The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to improve the estimation of orientation angles of the (shanks, or whole legs???) by means of inertial sensors. The filter algorithm should be implemented using MATLAB$\textsuperscript{\textregistered}$ and validated against existing algorithms by comparing their respective root-mean-square error (RMSE). An existing system for human body motion analysis called GaitWatch was available so that no new hardware had to be developed to gather the movement data. The data was collected in Munich???
+The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to improve the estimation of orientation angles of the (shanks, thighs, whole leg???) by means of inertial sensors. The filter algorithm should be implemented using MATLAB$\textsuperscript{\textregistered}$ and validated against existing algorithms by comparing their respective \gls{RMSE} (Any algorithms that are already implemented for comparison that I can cite or state??). An existing system for human body motion analysis called GaitWatch (Has the data been gathered with the GaitWatch at all? Or was it the Wagyromag or another device?) was available so that no new hardware had to be developed to gather the movement data. The data was collected in (Munich???, how many patients? data gathering protocol?)
 
 \section{Methodology}
 
@@ -20,13 +20,13 @@ As additional means to communicate with my supervisor and enable him to follow t
 
 \section{State of the Art}\label{sec:state_of_the_art}
 
-There are several research works in the literature dealing with orientation estimation by means inertial sensors. Many use Kalman filters to fuse signals from different sensors and therefore gain a higher accuracy in angle estimation. The state of the art at the commencement of the project is described below. Subsequently, current attempts to revolutionise medical research assisted by inertial sensors are presented.
+There are several research works in the literature dealing with orientation estimation by means of inertial sensors. Kalman filters have been used successfully to improve those angle estimations. The state of the art at the commencement of the project is described below. Subsequently, current attempts to revolutionise medical research assisted by inertial sensors are presented.
 
 \subsection{Kalman Filtering in Orientation Estimation}
 
-Given the fact that inertial sensors are used to establish objective body motion parameters that affect medical diagnosis, therapy, and rehabilitation, the need of a high level of accuracy becomes obvious. A wide variety of Kalman filter algorithms have been developed in the literature.
+Given the fact that inertial and magnetic field sensors are used to establish objective body motion parameters that affect medical diagnosis, therapy, and rehabilitation, the necessity of a high level of accuracy becomes obvious. In order to obtain precise orientation estimates from sensor data it is essential to mitigate the effects of measurement noise and to combine the advantages of different  sensors through sensor fusion. Therefore, a wide variety of Kalman filter algorithms have been developed in the literature.
 
-\citeauthor{bennett_motion_2014} demonstrated in \cite{bennett_motion_2014} that accelerometer angle estimates are inaccurate for typical motions of the leg. They mentioned the need to decouple the acceleration due to motion from the acceleration due to gravity, since the former cannot be neglected during fast motions. Therefore, they used a kinematic model of the leg to determine the acceleration that occurs due to gravity only. An extended Kalman filter fused the corrected acceleration data with measurements of a gyroscope during motion. Their method improved upon the raw accelerometer method during motion and at rest by a RMSE that was 83\% smaller.
+\citeauthor{bennett_motion_2014} demonstrated in \cite{bennett_motion_2014} that accelerometer angle estimates are inaccurate for typical motions of the leg. They mentioned the need to decouple the acceleration due to motion from the acceleration due to gravity, since the former cannot be neglected during fast motions. Therefore, they deployed a kinematic model of the leg to determine the acceleration that occurs due to motion and corrected the acceleration signal accordingly. An extended Kalman filter fused the corrected acceleration data with measurements of a gyroscope during motion. Their method improved upon the raw accelerometer method during motion and at rest by a \gls{RMSE} that was 83\% smaller.
 
 \subsection{MARG Sensors in Medical Research}\label{sec:MARG_sensors_medical}
 

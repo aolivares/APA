@@ -35,8 +35,8 @@
 \contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{24}{subsection.4.4.2}
 \contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{25}{section.4.5}
 \contentsline {chapter}{\numberline {5}Implementation}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Theoretical Part of Implementation}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Realisation in Matlab}{29}{section.5.2}
+\contentsline {section}{\numberline {5.1}Theoretical Design}{29}{section.5.1}
+\contentsline {section}{\numberline {5.2}Implementation}{29}{section.5.2}
 \contentsline {section}{\numberline {5.3}Experiments}{29}{section.5.3}
 \contentsline {section}{\numberline {5.4}Results}{29}{section.5.4}
 \contentsline {section}{\numberline {5.5}Discussion}{29}{section.5.5}
