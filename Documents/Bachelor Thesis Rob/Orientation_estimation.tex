@@ -1,7 +1,7 @@
 \chapter{Orientation Estimation}
 \label{ch:orientation_estimation}
 
-In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as attitude, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Before, two different ways of expressing orientation -- Euler angles and quaternions -- are described.
+In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as attitude, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Beforehand, two main mathematical constructs used to express attitude -- Euler angles and quaternions -- are described.
 
 \section{Euler Angles}
 
@@ -14,7 +14,7 @@ Euler angles are one of several ways to describe the orientation of an object an
 \end{itemize}
 
 \noindent
-Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y^{'}, Z$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation before and the colour red the orientation after the rotation. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are intrinsic rotations that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
+Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', Z$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation before and the colour red the orientation after the rotation. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are intrinsic rotations that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
 
 \begin{figure}[ht]
 \centering
@@ -29,26 +29,28 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y^{'}, Z$ 
 \node [] at (-3.4,-1.1) {$x$};
 \node [] at (0.25,-3.3) {$y$};
 \node [] at (0.12,2.43) {$z$};
-\node [] at (2.0,1.2) {$y^{'}$};
+\node [] at (2.0,1.2) {$y'$};
 
 
 \node [] at (2.8,0.6) {$X$};
 \node [] at (-1.5,2.05) {$Y$};
 \node [] at (-2.0,-1.7) {$Z$};
 \end{tikzpicture}
-\caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y^{'}, X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
+\caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
 \section{Transformation Matrices}
 
-Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}^{'}$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}^{'}$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}^{'}}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
+Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}'$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}'$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
 
 \begin{equation}\label{eq:transformation}
-  \mathbf{b^{'}} = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}^{'}}(\mathbf{b}) = \mathbf{T} \mathbf{b}\,,
+  \mathbf{b'} = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}(\mathbf{b}) = \mathbf{T} \mathbf{b}\,,
 \end{equation}
 
 \noindent
-where $\mathbf{T}$ is the transformation matrix. To transform the coordinate vector from the navigation frame to the body frame, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $C_{nb}$ is given by
+where $\mathbf{T}$ is the transformation matrix.
+
+To transform the coordinate vector from the navigation frame to the body frame, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $C_{nb}$ is given by
 
 \begin{equation}
 \begin{split}
@@ -83,7 +85,49 @@ where $\mathbf{T}$ is the transformation matrix. To transform the coordinate vec
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{nb}$) the left multiplication of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{b}$ represent the orthogonal projection onto the axis of the coordinate system that result from the two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, respectively. The matrix $\mathbf{C}_{bn}$ for transforming the coordinate vector from the body frame to the navigation frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{nb}$) the left multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{b}$ represent the coordinate rotations about the single axes $x, y, z$, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated in Figure \ref{fig:transformation_matrix}. The single matrices $\mathbf{C}_{bn}$ and $\mathbf{C}_{nb}$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the navigation frame. The form stated here is already simplified. The matrix $\mathbf{C}_{bn}$ for transforming the coordinate vector from the body frame to the navigation frame is given by
+
+\begin{figure}
+\centering
+
+\tdplotsetmaincoords{60}{110}
+
+\begin{tikzpicture}[scale=6,tdplot_main_coords]
+
+\coordinate (O) at (0,0,0);
+\pgfmathsetmacro{\psivec}{55}
+\tdplotsetcoord{P}{0.9}{40}{\psivec}
+
+\draw[thick,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x$};
+\draw[thick,->] (0,0,0) -- (0,.7,0) node[anchor=north west]{$y$};
+
+\tdplotsetrotatedcoords{0}{0}{25}
+
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (.7,0,0) node[anchor=north west]{$x'$};
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,.7,0) node[anchor=west]{$y'$};
+\draw[thick,blue,tdplot_rotated_coords,->] (0,0,0) -- (0,0,.7) node[anchor=north west]{$z'=z$};
+
+%draw a vector from origin to point (P) 
+\draw[-stealth,color=red] (O) -- (P);
+
+%draw projection on xy plane, and a connecting line
+\draw[dashed, red] (O) -- (Pxy);
+\draw[dashed, red] (P) -- (Pxy);
+\draw[dashed] (Px) -- (Pxy);
+\draw[dashed] (Py) -- (Pxy);
+
+\tdplotdrawarc[-stealth]{(0,0,0)}{0.46}{0}{25}{anchor=north}{$\psi$}
+
+\draw[dashed] (0.7,0,0) arc (0:115:0.7);
+
+\draw[dashed, blue, tdplot_rotated_coords] (0.51, 0, 0) -- (Pxy);
+\draw[dashed, blue, tdplot_rotated_coords] (0, 0.272, 0) -- (Pxy);
+
+\end{tikzpicture}
+\caption{An exemplary coordinate rotation about the $z$-axis by an angle $\psi$, illustrating the orthogonal projection on the resulting axes $x', y', z'$.}
+	\label{fig:transformation_matrix}
+\end{figure}
+
 
 \begin{equation}
 \mathbf{C}_{bn} = {\left[\begin{smallmatrix}
@@ -100,9 +144,11 @@ Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{nb}$) the
 \end{equation}
 
 \noindent
-The matrices $\mathbf{C}_{bn}$ and $\mathbf{C}_{nb}$ are known as Direct Cosine Matrices. Note that $\mathbf{C}_{bn} = \mathbf{C}^T_{nb} = \mathbf{C}^{-1}_{nb}$, so that $\mathbf{C}^{ }_{bn} \mathbf{C}_{nb} = \mathbf{I}$.  
+Note that $\mathbf{C}_{bn} = \mathbf{C}^T_{nb} = \mathbf{C}^{-1}_{nb}$, so that $\mathbf{C}^{ }_{bn} \mathbf{C}_{nb} = \mathbf{I}$.  
 
 \section{Quaternions}
+
+Quaternions are a number system that extends the complex numbers. 
 
 \section{Projection of Gravity Vector and Earth's Magnetic Field Vector}
 

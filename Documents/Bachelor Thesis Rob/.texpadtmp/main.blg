@@ -18,8 +18,14 @@ I was expecting a `,' or a `}'---line 201 of file ../Bibliography.bib
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Illegal end of database file---line 305 of file ../Bibliography.bib
+ : 
+ : 
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Wiki_taitbryan
+Warning--empty year in emarketer_smartphones
 Warning--empty year in Apple_2015
 Warning--empty year in Intel_2013
 Warning--empty year in IMU5
@@ -29,45 +35,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 28 entries,
+You've used 29 entries,
             2481 wiz_defined-function locations,
-            752 strings with 10304 characters,
-and the built_in function-call counts, 10529 in all, are:
-= -- 922
-> -- 462
-< -- 24
-+ -- 194
-- -- 135
-* -- 761
-:= -- 1661
-add.period$ -- 118
-call.type$ -- 28
-change.case$ -- 45
-chr.to.int$ -- 25
-cite$ -- 39
-duplicate$ -- 569
-empty$ -- 961
-format.name$ -- 167
-if$ -- 2276
+            756 strings with 10486 characters,
+and the built_in function-call counts, 10785 in all, are:
+= -- 943
+> -- 469
+< -- 25
++ -- 198
+- -- 137
+* -- 772
+:= -- 1699
+add.period$ -- 121
+call.type$ -- 29
+change.case$ -- 47
+chr.to.int$ -- 26
+cite$ -- 41
+duplicate$ -- 583
+empty$ -- 991
+format.name$ -- 170
+if$ -- 2332
 int.to.chr$ -- 4
-int.to.str$ -- 29
+int.to.str$ -- 30
 missing$ -- 19
-newline$ -- 180
-num.names$ -- 88
-pop$ -- 258
+newline$ -- 185
+num.names$ -- 91
+pop$ -- 270
 preamble$ -- 1
-purify$ -- 28
+purify$ -- 29
 quote$ -- 0
-skip$ -- 333
+skip$ -- 346
 stack$ -- 0
-substring$ -- 356
-swap$ -- 142
+substring$ -- 358
+swap$ -- 144
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 187
-warning$ -- 11
-while$ -- 80
+type$ -- 194
+warning$ -- 12
+while$ -- 82
 width$ -- 0
-write$ -- 419
-(There was 1 error message)
+write$ -- 430
+(There were 2 error messages)
