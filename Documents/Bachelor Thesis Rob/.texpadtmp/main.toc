@@ -23,26 +23,26 @@
 \contentsline {chapter}{\numberline {3}Orientation Estimation}{9}{chapter.3}
 \contentsline {section}{\numberline {3.1}Euler Angles}{9}{section.3.1}
 \contentsline {section}{\numberline {3.2}Transformation Matrices}{10}{section.3.2}
-\contentsline {section}{\numberline {3.3}Quaternions}{11}{section.3.3}
-\contentsline {section}{\numberline {3.4}Projection of Gravity Vector and Earth's Magnetic Field Vector}{12}{section.3.4}
-\contentsline {section}{\numberline {3.5}Integration of Angular Rate}{12}{section.3.5}
-\contentsline {section}{\numberline {3.6}Sensor Fusion}{13}{section.3.6}
-\contentsline {chapter}{\numberline {4}Digital Filters}{15}{chapter.4}
-\contentsline {section}{\numberline {4.1}The Filtering Problem}{15}{section.4.1}
-\contentsline {section}{\numberline {4.2}Wiener Filters}{16}{section.4.2}
-\contentsline {section}{\numberline {4.3}Adaptive Filters}{17}{section.4.3}
-\contentsline {section}{\numberline {4.4}The Kalman Filter}{18}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{18}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{24}{subsection.4.4.2}
-\contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{25}{section.4.5}
-\contentsline {chapter}{\numberline {5}Implementation}{29}{chapter.5}
-\contentsline {section}{\numberline {5.1}Initial Situation}{29}{section.5.1}
-\contentsline {section}{\numberline {5.2}Theoretical Design}{29}{section.5.2}
-\contentsline {section}{\numberline {5.3}Implementation}{29}{section.5.3}
-\contentsline {section}{\numberline {5.4}Experiments}{29}{section.5.4}
-\contentsline {section}{\numberline {5.5}Results}{29}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discussion}{29}{section.5.6}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{31}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{31}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{32}{section.6.2}
-\contentsline {chapter}{Bibliography}{33}{section.6.2}
+\contentsline {section}{\numberline {3.3}Quaternions}{12}{section.3.3}
+\contentsline {section}{\numberline {3.4}Projection of Gravity Vector and Earth's Magnetic Field Vector}{14}{section.3.4}
+\contentsline {section}{\numberline {3.5}Integration of Angular Rate}{14}{section.3.5}
+\contentsline {section}{\numberline {3.6}Sensor Fusion}{15}{section.3.6}
+\contentsline {chapter}{\numberline {4}Digital Filters}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}The Filtering Problem}{17}{section.4.1}
+\contentsline {section}{\numberline {4.2}Wiener Filters}{18}{section.4.2}
+\contentsline {section}{\numberline {4.3}Adaptive Filters}{19}{section.4.3}
+\contentsline {section}{\numberline {4.4}The Kalman Filter}{20}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{20}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{26}{subsection.4.4.2}
+\contentsline {section}{\numberline {4.5}The Extended Kalman Filter}{27}{section.4.5}
+\contentsline {chapter}{\numberline {5}Implementation}{31}{chapter.5}
+\contentsline {section}{\numberline {5.1}Initial Situation}{31}{section.5.1}
+\contentsline {section}{\numberline {5.2}Theoretical Design}{31}{section.5.2}
+\contentsline {section}{\numberline {5.3}Implementation}{31}{section.5.3}
+\contentsline {section}{\numberline {5.4}Experiments}{31}{section.5.4}
+\contentsline {section}{\numberline {5.5}Results}{31}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discussion}{31}{section.5.6}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{33}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{33}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{34}{section.6.2}
+\contentsline {chapter}{Bibliography}{35}{section.6.2}

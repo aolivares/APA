@@ -39,6 +39,8 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', Z$ by 
 \caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
+Singularities...
+
 \section{Transformation Matrices}
 
 Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}'$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}'$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
@@ -148,7 +150,127 @@ Note that $\mathbf{C}_{bn} = \mathbf{C}^T_{nb} = \mathbf{C}^{-1}_{nb}$, so that 
 
 \section{Quaternions}
 
-Quaternions are a number system that extends the complex numbers. 
+Quaternions are a number system that extends the complex numbers. They were first described by Irish mathematician William Rowan Hamilton in 1843. The set of quaternions is equal to $\mathbb{R}^4$ and denoted $\mathbb{H}$. A quaternion $\mathbf{q} \in \mathbb{H}$ may be represented as a vector
+
+\begin{equation}
+  \mathbf{q} = q_0 + q_1 i + q_2 j + q_3 k = \begin{bmatrix}
+  	q_0, & q_1, & q_2, & q_3
+  \end{bmatrix}^T = \begin{bmatrix}
+  	q_0 \\ \mathbf{q}_{1:3} 
+  \end{bmatrix}\,,
+\end{equation}
+ 
+\noindent
+whereby the following relations hold:
+
+\begin{equation}
+  \begin{matrix}
+i^2 =j^2=k^2=ijk =-1\,,\\ \\
+  {\begin{split}
+  ij & = k, \qquad ji = -k, \\
+jk & = i, \qquad kj = -i, \\
+ki & = j, \qquad ik = -j\,.
+\end{split}}
+\end{matrix}
+\end{equation}
+
+The \emph{adjoint}, \emph{norm} and \emph{inverse} of a quaternion are defined as
+
+\begin{equation}
+  \bar{\mathbf{q}} = \begin{bmatrix}
+  	q_0 \\ -\mathbf{q}_{1:3} 
+  \end{bmatrix}\,,
+\end{equation}
+
+\begin{equation}
+  ||\mathbf{q}|| = \sqrt[]{q_0^2 + q_1^2 + q_2^2 + q_3^2}
+\end{equation}
+
+\begin{equation}
+	\mathbf{q}^{-1} = \frac{\bar{\mathbf{q}}}{||\mathbf{q}||}
+\end{equation}
+
+The sum of two quaternions is defined as
+
+\begin{equation}
+  \mathbf{q} + \mathbf{p} = \begin{bmatrix}
+  	q_0 + p_0 \\ \mathbf{q}_{1:3} + \mathbf{p}_{1:3}
+  \end{bmatrix}\,.
+\end{equation}
+
+Quaternion multiplication is defined as
+
+\begin{equation}
+  \mathbf{q} \mathbf{p} = \begin{bmatrix}
+  	q_0 p_0 -\mathbf{q}^T_{1:3} \mathbf{p}_{1:3}\\
+  	q_0 \mathbf{p}_{1:3} + p_0 \mathbf{q}_{1:3} - \mathbf{q}_{1:3} \times \mathbf{p}_{1:3}
+  \end{bmatrix}\,,
+\end{equation}
+
+\noindent
+and can be written as the second quaternion left-multiplied by a matrix-valued function $Q$ of the first quaternion.
+
+\begin{equation}
+  \mathbf{q} \mathbf{p} = Q(\mathbf{q}) \mathbf{p} = \bar{Q}(\mathbf{p}) \mathbf{q}
+\end{equation}
+
+\noindent
+The \emph{quaternion matrix function}, $Q : \mathbb{H} \rightarrow \mathbb{R}^{4\times4}$ is defined by
+
+\begin{equation}
+	Q(\mathbf{q}) = \begin{bmatrix}
+ q_0 & -q_1 & -q_2 & -q_3\\
+ q_1 & q_0 & q_3 & -q_2\\
+ q_2 & -q_3 & q_0 & q_1 \\
+ q_3 & q_2 & -q_1 & q_0
+\end{bmatrix}\,,
+\end{equation}
+
+\noindent
+and the \emph{conjugate quaternion matrix function}, $\bar{Q} : \mathbb{H} \rightarrow \mathbb{R}^{4\times4}$ is defined by
+
+\begin{equation}
+	\bar{Q}(\mathbf{q}) = \begin{bmatrix}
+ q_0 & -q_1 & -q_2 & -q_3\\
+ q_1 & q_0 & -q_3 & q_2\\
+ q_2 & q_3 & q_0 & -q_1 \\
+ q_3 & -q_2 & q_1 & q_0
+\end{bmatrix}\,.
+\end{equation}
+
+
+
+Unit quaternions, that is quaternions with unity norm, can be used to represent the attitude of a rigid body in three dimensional space. Let $z \in \mathbb{R}^3$ be an arbitrary vector in the navigation frame and let $z' \in \mathbb{R}^3$ be the same vector in the body frame. Furthermore let $\mathbf{r}$ be a quaternion with $||\mathbf{r}|| = 1$. Then the following relations hold:
+
+\begin{equation}
+  \begin{bmatrix}
+  	0 \\ \mathbf{z}' 
+  \end{bmatrix} = \mathbf{r} \begin{bmatrix}
+  	0 \\ \mathbf{z} 
+  \end{bmatrix} \mathbf{r}^{-1}\,,
+\end{equation}
+
+\noindent
+Sequences of rotations can thus be represented by products of quaternions where the rotation by $\phi, \theta, \psi$ about the three axes $x, y, z$ is given by
+
+\begin{equation}
+  \mathbf{r}(\alpha) = \begin{bmatrix}
+  	\cos \frac{\alpha}{2}, & \sin \frac{\alpha}{2}, & \sin \frac{\alpha}{2}, & \sin \frac{\alpha}{2}
+  \end{bmatrix}^T\,.
+\end{equation}
+
+The reverse mapping from quaternions to Euler angles is given by
+
+\begin{equation}
+  \begin{bmatrix}
+\phi \\ \theta \\ \psi
+\end{bmatrix} =
+\begin{bmatrix}
+\mbox{atan2} (\frac{(2(q_0 q_1 + q_2 q_3)}{1 - 2(q_1^2 + q_2^2)}) \\
+\mbox{arcsin} (2(q_0 q_2 - q_3 q_1)) \\
+\mbox{atan2} (\frac{2(q_0 q_3 + q_1 q_2)}{1 - 2(q_2^2 + q_3^2)})
+\end{bmatrix}\,.
+\end{equation}
 
 \section{Projection of Gravity Vector and Earth's Magnetic Field Vector}
 
@@ -157,6 +279,8 @@ As described in Chapter \ref{ch:MARG}, accelerometers measure the acceleration t
 \section{Integration of Angular Rate}
 
 Another way to estimate the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Although this would theoretically lead to very accurate orientation estimates, they are impaired by \gls{ARW} and dynamical bias in practice. \gls{ARW} is an effect caused by the integration of high-frequency, thermo-mechanical noise, which leads to a random additive angle in the orientation signal. An even greater impact than AWR has the gyroscopes dynamic bias, which has its origin in low-frequency flicker noise. Both effects cause a dramatical drift in the angle signal over time.
+
+Quaternions are very well suited to tracking the attitude of an object by integrating the body-fixed angular velocity over time...
 
 \section{Sensor Fusion}
 
