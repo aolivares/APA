@@ -39,7 +39,7 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', Z$ by 
 \caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
-Singularities...
+Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$ for $n \in \mathbb{Z}$. At these points a rotation about the $X$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}. The usage of \emph{quaternions} instead of Euler angles avoids the problem of gimbal locks.
 
 \section{Transformation Matrices}
 
@@ -161,7 +161,7 @@ Quaternions are a number system that extends the complex numbers. They were firs
 \end{equation}
  
 \noindent
-whereby the following relations hold:
+whereby the following relations between the imaginary units $i, j, k$ hold:
 
 \begin{equation}
   \begin{matrix}
@@ -240,7 +240,7 @@ and the \emph{conjugate quaternion matrix function}, $\bar{Q} : \mathbb{H} \righ
 
 
 
-Unit quaternions, that is quaternions with unity norm, can be used to represent the attitude of a rigid body in three dimensional space. Let $z \in \mathbb{R}^3$ be an arbitrary vector in the navigation frame and let $z' \in \mathbb{R}^3$ be the same vector in the body frame. Furthermore let $\mathbf{r}$ be a quaternion with $||\mathbf{r}|| = 1$. Then the following relations hold:
+Unit quaternions, that is quaternions with unity norm, can be used to represent rotations in three dimensional space. Let $z \in \mathbb{R}^3$ be an arbitrary vector in the navigation frame and let $z' \in \mathbb{R}^3$ be the same vector in the body frame. Furthermore, let $\mathbf{r}$ be a quaternion with $||\mathbf{r}|| = 1$. Then the following relations hold:
 
 \begin{equation}
   \begin{bmatrix}
@@ -250,15 +250,26 @@ Unit quaternions, that is quaternions with unity norm, can be used to represent 
   \end{bmatrix} \mathbf{r}^{-1}\,,
 \end{equation}
 
+\begin{equation}
+  \begin{bmatrix}
+  	0 \\ \mathbf{z} 
+  \end{bmatrix} = \mathbf{r}^{-1} \begin{bmatrix}
+  	0 \\ \mathbf{z}' 
+  \end{bmatrix} \mathbf{r}\,.
+\end{equation}
+
 \noindent
-Sequences of rotations can thus be represented by products of quaternions where the rotation by $\phi, \theta, \psi$ about the three axes $x, y, z$ is given by
+Sequences of rotations can thus be represented by products of quaternions. The quaternion for a single rotation by $\alpha$ about the axis $\bm{\epsilon} \in \mathbb{R}^3$, $||\bm{\epsilon}|| = 1$, is given by
 
 \begin{equation}
-  \mathbf{r}(\alpha) = \begin{bmatrix}
-  	\cos \frac{\alpha}{2}, & \sin \frac{\alpha}{2}, & \sin \frac{\alpha}{2}, & \sin \frac{\alpha}{2}
+  \mathbf{r}_{\epsilon}(\alpha) = \begin{bmatrix}
+  	\cos \frac{\alpha}{2}, & \bm{\epsilon} \sin \frac{\alpha}{2}
+  \end{bmatrix}^T = \begin{bmatrix}
+  	\cos \frac{\alpha}{2}, & \epsilon _1 \sin \frac{\alpha}{2}, & \epsilon _2 \sin \frac{\alpha}{2}, & \epsilon _3 \sin \frac{\alpha}{2}
   \end{bmatrix}^T\,.
 \end{equation}
 
+\noindent
 The reverse mapping from quaternions to Euler angles is given by
 
 \begin{equation}
@@ -271,6 +282,8 @@ The reverse mapping from quaternions to Euler angles is given by
 \mbox{atan2} (\frac{2(q_0 q_3 + q_1 q_2)}{1 - 2(q_2^2 + q_3^2)})
 \end{bmatrix}\,.
 \end{equation}
+
+Quaternions are less intuitive than Euler angles. Nevertheless, they are very popular in attitude representation, since they are mathematically elegant and don't suffer from singularities.
 
 \section{Projection of Gravity Vector and Earth's Magnetic Field Vector}
 
