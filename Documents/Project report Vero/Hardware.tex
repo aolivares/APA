@@ -14,7 +14,21 @@ The system is composed of the central processing unit and
 a set of measuring units which are wired to it. The measuring units are 
 placed in the patients’ thighs, shanks, arms and trunk.
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/GeneralDiagramGW, width=7cm}
+	\caption{General Diagram of the Gait Watch.}
+	\label{fig:arte1}
+\end{figure}
+
 The central processing unit has a microcontroller is in charge of gathering the data from the external measurement units and writing it to the memory card. So, this central unit is placed in the trunk inside a box and it contains an AL-XAVRB board with an AVRATxmega processor which contains the necessary embedded firmware to gather the data from all the measurement units and store it in a microSD card. Also, the trunk box contains some embedded magnetic and inertial sensors.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/devicesGW, width=7cm}
+	\caption{Devices used in Gait Watch System.}
+	\label{fig:arte1}
+\end{figure}
 
 There are three different kinds of external units with the following components:
 \begin{itemize}
@@ -38,13 +52,16 @@ There are three different kinds of external units with the following components:
 \section{Force Platform}
 Force Plate (FDM-S Multifunction Force-measuring Plate, Zebris) is a System for force measurement and it can be used as a complete measuring unit for stance and roll-off analysis. \cite{forceplate}
 
-This platform consist of a large number of force sensors and enables the distribution of static and dynamic forces under the feet to be analyzed during stance and gait (65x40 cells of sensors). As a result, foot deformities, foot function and posture can be analyzed and are available as an evaluation report. \cite{forceplate}
+This platform consist of a large number of force sensors and enables the distribution of static and dynamic forces under the feet to be analyzed during stance and gait (65x40 cells of sensors). As a result, foot deformities, foot function and posture can be analysed and are available as an evaluation report. \cite{forceplate}
 
 Therefore, this gathered information can be used afterward to analyse the postural adjustments with the right software.
 
-
-
-											image
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/FDMS_Zebris, width=7cm}
+	\caption{Platform used to analyse the force under the feet.}
+	\label{fig:arte1}
+\end{figure}
 
 
 \section{Qualisys System}
@@ -53,6 +70,13 @@ The Qualisys optical motion tracker is a system that uses high speed digital cam
 This technology is used by researchers and clinicians to undertand the basic for human motion or improve treatment during a reabilitation process. Also, it used in industrial applications, for example, the interior design of a car can be improved by using this System to evaluate the confort and safety factors for the car driver. \cite{Qualisys}
 
 The technology is precise and delivers high quality data to the observer in real-time. The core component of Qualisys System is one or more infrared optical cameras that emit a beam of infrared light. Also, there are small retro-reflective markers on a object or person. When the cameras emit infrared light onto the markers, these reflect the light back to the camera sensor and this information is used to calculate the position with high spatial resolution  \cite{Qualisys}. The used system has eight cameras which are distributed around a room.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/QualysisSystem, width=7cm}
+	\caption{Qualisys optical motion tracker.}
+	\label{fig:arte1}
+\end{figure}
 
 The provided software tools allows to perform basic motion calculations,
 such as speed, acceleration, rotation and angle, as well as other more complex
