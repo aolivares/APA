@@ -1,0 +1,230 @@
+\begin{thebibliography}{29}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Collin et~al.(2013)Collin, Davidson, Kirkko-Jaakkola, and
+  Leppäkoski]{bhattacharyya_inertial_sensors_applications_13}
+Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
+\newblock Inertial sensors and their applications.
+\newblock In Shuvra~S. Bhattacharyya, Ed~F. Deprettere, Rainer Leupers, and
+  Jarmo Takala, editors, \emph{Handbook of Signal Processing Systems}, pages
+  69--96. Springer New York, 2013.
+\newblock ISBN 978-1-4614-6858-5.
+\newblock \doi{10.1007/978-1-4614-6859-2_3}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock \emph{{GaitWatch} User Manual}.
+
+\bibitem[{Juansempere}()]{Wiki_taitbryan}
+{Juansempere}.
+\newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
+\newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
+\newblock [Accessed 31 March, 2015].
+
+\bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
+T.R. Bennett, R.~Jafari, and N.~Gans.
+\newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
+  {Orientation} {Estimates}.
+\newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
+  {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
+\newblock \doi{10.1109/BSN.2014.17}.
+
+\bibitem[Haykin(2002)]{haykin2002adaptive}
+Simon Haykin.
+\newblock \emph{Adaptive filter theory}.
+\newblock Prentice Hall, Upper Saddle River, N.J, 2002.
+\newblock ISBN 9780130484345.
+
+\bibitem[Maybeck(1979)]{Maybeck79}
+Peter~S. Maybeck.
+\newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
+\newblock Academic Press, 1979.
+\newblock ISBN 9780124110427.
+
+\bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
+  Waluyo]{wee_soon_ambulatory_2008}
+Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
+\newblock Ambulatory monitoring of human posture and walking speed using
+  wearable accelerometer sensors.
+\newblock In \emph{Engineering in Medicine and Biology Society, 2008. EMBS
+  2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
+  Aug 2008.
+\newblock \doi{10.1109/IEMBS.2008.4650382}.
+
+\bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
+Alberto Olivares~Vicente.
+\newblock \emph{Signal Processing of Magnetic and Inertial Sensor’s Signals
+  applied to Human Body Motion Monitoring}.
+\newblock {PhD thesis}, University of Granada, Granada, January 2013.
+\newblock URL \url{http://hera.ugr.es/tesisugr/21910947.pdf}.
+
+\bibitem[Veltink et~al.(1996)Veltink, Bussmann, de~Vries, Martens, and van
+  Lummel]{veltink_detection_96}
+P.H. Veltink, H.B.J. Bussmann, W.~de~Vries, Wim~L.J. Martens, and R.C. van
+  Lummel.
+\newblock Detection of static and dynamic activities using uniaxial
+  accelerometers.
+\newblock \emph{Rehabilitation Engineering, IEEE Transactions on}, 4\penalty0
+  (4):\penalty0 375--385, Dec 1996.
+\newblock ISSN 1063-6528.
+\newblock \doi{10.1109/86.547939}.
+
+\bibitem[Najafi et~al.(2003)Najafi, Aminian, Paraschiv-Ionescu, Loew, Bula, and
+  Robert]{najafi_ambulatory_03}
+B.~Najafi, K.~Aminian, A.~Paraschiv-Ionescu, F.~Loew, C.J. Bula, and P.~Robert.
+\newblock Ambulatory system for human motion analysis using a kinematic sensor:
+  monitoring of daily physical activity in the elderly.
+\newblock \emph{Biomedical Engineering, IEEE Transactions on}, 50\penalty0
+  (6):\penalty0 711--723, June 2003.
+\newblock ISSN 0018-9294.
+\newblock \doi{10.1109/TBME.2003.812189}.
+
+\bibitem[Ermes et~al.(2008)Ermes, Parkka, Mantyjarvi, and
+  Korhonen]{ermes_sports_08}
+M.~Ermes, J.~Parkka, J.~Mantyjarvi, and I.~Korhonen.
+\newblock Detection of daily activities and sports with wearable sensors in
+  controlled and uncontrolled conditions.
+\newblock \emph{Information Technology in Biomedicine, IEEE Transactions on},
+  12\penalty0 (1):\penalty0 20--26, Jan 2008.
+
+\bibitem[Giggins et~al.(2013)Giggins, Kelly, and
+  Caulfield]{giggins_rehabilitation_13}
+O.~Giggins, D.~Kelly, and B.~Caulfield.
+\newblock Evaluating rehabilitation exercise performance using a single
+  inertial measurement unit.
+\newblock In \emph{Pervasive Computing Technologies for Healthcare
+  (PervasiveHealth), 2013 7th International Conference on}, pages 49--56, May
+  2013.
+
+\bibitem[Lupinski et~al.(2011)Lupinski, Menon, Roh, Yuen, Valdevit, and
+  Andrish]{lupinski_ligament_11}
+J.~Lupinski, V.~Menon, P.~Roh, S.~Yuen, A.~Valdevit, and J.~Andrish.
+\newblock Measuring knee compliance to facilitate post-op ligament
+  rehabilitation.
+\newblock In \emph{Bioengineering Conference (NEBEC), 2011 IEEE 37th Annual
+  Northeast}, pages 1--2, April 2011.
+\newblock \doi{10.1109/NEBC.2011.5778529}.
+
+\bibitem[Bonnet et~al.(2013)Bonnet, Mazza, Fraisse, and
+  Cappozzo]{bonnet_squat_13}
+V.~Bonnet, C.~Mazza, P.~Fraisse, and A.~Cappozzo.
+\newblock Real-time estimate of body kinematics during a planar squat task
+  using a single inertial measurement unit.
+\newblock \emph{Biomedical Engineering, IEEE Transactions on}, 60\penalty0
+  (7):\penalty0 1920--1926, July 2013.
+\newblock ISSN 0018-9294.
+\newblock \doi{10.1109/TBME.2013.2245131}.
+
+\bibitem[Zhang et~al.(2013)Zhang, Hoflinger, and
+  Reindl]{hoflinger_localization_13}
+Rui Zhang, F.~Hoflinger, and L.~Reindl.
+\newblock Inertial sensor based indoor localization and monitoring system for
+  emergency responders.
+\newblock \emph{Sensors Journal, IEEE}, 13\penalty0 (2):\penalty0 838--848, Feb
+  2013.
+\newblock ISSN 1530-437X.
+\newblock \doi{10.1109/JSEN.2012.2227593}.
+
+\bibitem[Bennett et~al.(2013)Bennett, Jafari, and Gans]{Bennett_distance_13}
+T.~Bennett, R.~Jafari, and N.~Gans.
+\newblock An extended kalman filter to estimate human gait parameters and
+  walking distance.
+\newblock In \emph{American Control Conference (ACC), 2013}, pages 752--757,
+  June 2013.
+\newblock \doi{10.1109/ACC.2013.6579926}.
+
+\bibitem[{eMarketer}()]{emarketer_smartphones}
+{eMarketer}.
+\newblock {2 Billion Consumers Worldwide to Get Smart(phones) by 2016}.
+\newblock URL
+  \url{http://www.emarketer.com/Article/2-Billion-Consumers-Worldwide-Smartphones-by-2016/1011694}.
+
+\bibitem[{Apple Inc.}()]{Apple_2015}
+{Apple Inc.}
+\newblock {ResearchKit}.
+\newblock URL \url{http://www.apple.com/researchkit}.
+\newblock [Accessed 20 March, 2015].
+
+\bibitem[for Parkinson's Research~(MJFF) and Corporation()]{Intel_2013}
+The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
+  Corporation.
+\newblock {The Michael J. Fox Foundation and Intel Join Forces to Improve
+  Parkinson's Disease Monitoring and Treatment through Advanced Technologies}.
+\newblock URL \url{http://goo.gl/PxQAof}.
+\newblock [Accessed 20 March, 2015].
+
+\bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
+{SparkFun Electronics}.
+\newblock \emph{{IMU Analog Combo Board 5DOF}}, {\natexlab{a}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/9268}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{SparkFun Electronics}({\natexlab{b}})]{IDG500}
+{SparkFun Electronics}.
+\newblock \emph{{Gyro Breakout Board IDG500}}, {\natexlab{b}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/9094}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{Analog Devices}({\natexlab{a}})]{ADXL335}
+{Analog Devices}.
+\newblock \emph{{ADXL335: Small, Low Power 3-Axis ±3G Accelerometer}},
+  {\natexlab{a}}.
+\newblock URL
+  \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl335/products/product.html}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{Analog Devices}({\natexlab{b}})]{ADXL345}
+{Analog Devices}.
+\newblock \emph{{ADXL345: 3-Axis, ±2g/±4g/±8g/±16g Digital Accelerometer}},
+  {\natexlab{b}}.
+\newblock URL
+  \url{http://www.analog.com/en/mems-sensors/mems-inertial-sensors/adxl345/products/product.html}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{InvenSense}()]{IMU3000}
+{InvenSense}.
+\newblock \emph{{IMU-3000 Triple Axis MotionProcessor\texttrademark
+  Gyroscope}}.
+\newblock URL \url{http://www.invensense.com/mems/gyro/imu3000.html}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{SparkFun Electronics}({\natexlab{c}})]{MicroMag3}
+{SparkFun Electronics}.
+\newblock \emph{{MicroMag 3-Axis Magnetometer}}, {\natexlab{c}}.
+\newblock URL \url{https://www.sparkfun.com/products/retired/244}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[{ALVIDI}()]{AVRATxmega}
+{ALVIDI}.
+\newblock \emph{{AVR ATxmega -- Development Module}}.
+\newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
+\newblock [Accessed 17 March 2015].
+
+\bibitem[Raol(2009)]{raol2009multi}
+J.R. Raol.
+\newblock \emph{Multi-Sensor Data Fusion with MATLAB{\textregistered}}.
+\newblock CRC Press, 2009.
+\newblock ISBN 9781439800058.
+\newblock URL \url{https://books.google.de/books?id=7s8xpR-5rOUC}.
+
+\bibitem[Kalman(1960)]{kalman_1960}
+Rudolph~Emil Kalman.
+\newblock A new approach to linear filtering and prediction problems.
+\newblock \emph{Transactions of the ASME--Journal of Basic Engineering},
+  82\penalty0 (Series D):\penalty0 35--45, 1960.
+
+\bibitem[Welch(2014)]{welch2014}
+Gregory~F. Welch.
+\newblock Kalman filter.
+\newblock In Katsushi Ikeuchi, editor, \emph{Computer Vision}, pages 435--437.
+  Springer US, 2014.
+\newblock ISBN 978-0-387-30771-8.
+\newblock \doi{10.1007/978-0-387-31439-6_716}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
+
+\end{thebibliography}
