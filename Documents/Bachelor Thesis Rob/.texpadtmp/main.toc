@@ -4,8 +4,6 @@
 \contentsline {chapter}{Contents}{vii}{section*.6}
 \contentsline {chapter}{List of Figures}{x}{section*.9}
 \contentsline {chapter}{List of Tables}{xi}{section*.11}
-\contentsline {chapter}{Abbreviations}{xiii}{section*.14}
-\contentsline {chapter}{Notation}{xvii}{section*.17}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{1}{section.1.2}
@@ -14,6 +12,8 @@
 \contentsline {section}{\numberline {1.5}State of the Art}{2}{section.1.5}
 \contentsline {subsection}{\numberline {1.5.1}Kalman Filtering in Orientation Estimation}{2}{subsection.1.5.1}
 \contentsline {subsection}{\numberline {1.5.2}MARG Sensors in Medical Research}{3}{subsection.1.5.2}
+\contentsline {chapter}{Abbreviations}{1}{section*.12}
+\contentsline {chapter}{Notation}{1}{section*.13}
 \contentsline {chapter}{\numberline {2}MARG Sensors}{5}{chapter.2}
 \contentsline {section}{\numberline {2.1}Accelerometers}{5}{section.2.1}
 \contentsline {section}{\numberline {2.2}Gyroscopes}{6}{section.2.2}
@@ -45,4 +45,3 @@
 \contentsline {chapter}{\numberline {6}Conclusion and Future Work}{33}{chapter.6}
 \contentsline {section}{\numberline {6.1}Conclusions}{33}{section.6.1}
 \contentsline {section}{\numberline {6.2}Future Work}{34}{section.6.2}
-\contentsline {chapter}{Bibliography}{35}{section.6.2}
