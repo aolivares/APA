@@ -40,6 +40,19 @@ Therefore, the following sections explain how the information has been obtained 
 \subsubsection{Selection, reading and obtaining of information from the excel file}
 \subsubsection{Extraction of the forceplate data}
 \subsubsection{Calibration of the GaitWatch data}
+When we are working with sensors, calibration is one of the most important aspect that needs to be carried out. Prior to the calibration process,
+the information at the sensors  will be a signal composed of integer
+numbers  or real numbers bounded into a range which is determined by the precision of the sensors and converters. These numeric values lack of physical value, so it is absolutely necessary to convert them into a scale that can be measured in physical units.
+
+The sensors present several errors due to some effects like scale factor may not be linear or the triad isn’t perfectly orthogonal. To remove these undesired effects, the software include a model to compensate this before the calibration. 
+To do so, we have used the code made by Dr. Alberto Olivares Vicente in his doctoral thesis, with minor modifications of his work.
+
+Besides the unwanted effects mentioned above, the output of magnetometers is distorted by wide band measurement noise appearing several large peaks of noise in the signals. To remove this automatically, we used a threshold considering that these peaks are much greater than the mean of the signal.
+
+Image
+
+The erroneus values in the magnetometer signal are removed sustituting these samples by the subsequent value unless the erroneous value is in the last position of the singal, in which case it is substituted by the preceding value.
+
 \subsubsection{Synchronisation}	
 \subsection{Results discurssion}
 
