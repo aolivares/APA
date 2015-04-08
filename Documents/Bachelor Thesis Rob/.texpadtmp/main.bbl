@@ -1,4 +1,4 @@
-\begin{thebibliography}{29}
+\begin{thebibliography}{30}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -226,5 +226,12 @@ Gregory~F. Welch.
 \newblock ISBN 978-0-387-30771-8.
 \newblock \doi{10.1007/978-0-387-31439-6_716}.
 \newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
+
+\bibitem[Spong and Hutchinson(2005)]{spong2005robot}
+M.W. Spong and S.~Hutchinson.
+\newblock \emph{Robot Modeling and Control}.
+\newblock Wiley, 2005.
+\newblock ISBN 9780471649908.
+\newblock URL \url{http://books.google.de/books?id=wGapQAAACAAJ}.
 
 \end{thebibliography}

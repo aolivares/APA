@@ -13,12 +13,12 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 201 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 210 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 317 of file ../Bibliography.bib
+Illegal end of database file---line 326 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -35,45 +35,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 29 entries,
+You've used 30 entries,
             2481 wiz_defined-function locations,
-            756 strings with 10486 characters,
-and the built_in function-call counts, 10785 in all, are:
-= -- 943
-> -- 469
-< -- 25
-+ -- 198
-- -- 137
-* -- 772
-:= -- 1699
-add.period$ -- 121
-call.type$ -- 29
-change.case$ -- 47
-chr.to.int$ -- 26
-cite$ -- 41
-duplicate$ -- 583
-empty$ -- 991
-format.name$ -- 170
-if$ -- 2332
+            763 strings with 10622 characters,
+and the built_in function-call counts, 11111 in all, are:
+= -- 972
+> -- 484
+< -- 26
++ -- 204
+- -- 141
+* -- 792
+:= -- 1753
+add.period$ -- 126
+call.type$ -- 30
+change.case$ -- 48
+chr.to.int$ -- 27
+cite$ -- 42
+duplicate$ -- 602
+empty$ -- 1021
+format.name$ -- 177
+if$ -- 2403
 int.to.chr$ -- 4
-int.to.str$ -- 30
-missing$ -- 19
-newline$ -- 185
-num.names$ -- 91
-pop$ -- 270
+int.to.str$ -- 31
+missing$ -- 21
+newline$ -- 192
+num.names$ -- 94
+pop$ -- 280
 preamble$ -- 1
-purify$ -- 29
+purify$ -- 30
 quote$ -- 0
-skip$ -- 346
+skip$ -- 357
 stack$ -- 0
-substring$ -- 358
-swap$ -- 144
+substring$ -- 360
+swap$ -- 146
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 194
+type$ -- 198
 warning$ -- 12
-while$ -- 82
+while$ -- 84
 width$ -- 0
-write$ -- 430
+write$ -- 446
 (There were 2 error messages)

@@ -38,11 +38,11 @@
 \contentsline {chapter}{\numberline {5}Implementation}{31}{chapter.5}
 \contentsline {section}{\numberline {5.1}Initial Situation}{31}{section.5.1}
 \contentsline {section}{\numberline {5.2}Theoretical Design}{31}{section.5.2}
-\contentsline {section}{\numberline {5.3}Implementation}{31}{section.5.3}
-\contentsline {section}{\numberline {5.4}Experiments}{32}{section.5.4}
-\contentsline {section}{\numberline {5.5}Results}{32}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discussion}{32}{section.5.6}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{33}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{33}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{34}{section.6.2}
-\contentsline {chapter}{Bibliography}{35}{section.6.2}
+\contentsline {section}{\numberline {5.3}Implementation}{32}{section.5.3}
+\contentsline {section}{\numberline {5.4}Experiments}{33}{section.5.4}
+\contentsline {section}{\numberline {5.5}Results}{33}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discussion}{33}{section.5.6}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{35}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{35}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{36}{section.6.2}
+\contentsline {chapter}{Bibliography}{37}{section.6.2}

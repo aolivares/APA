@@ -9,16 +9,18 @@ This chapter describes the theoretical design of the system and the implementati
 
 \section{Theoretical Design}
 
-According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure \ref{fig:robot}, the revolute joints represent the hip und knee joint, and the two links the thigh and shank, respectively.
+According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle of link 2, $\psi_2$, with respect to link 1.
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
-    \node [draw, very thick, rectangle, rounded corners=3pt, minimum height=3.5cm, minimum width=1cm, align=center, rotate around={30:(0,0)}] at (0.7, -1.25) (link1) {};
-    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.5cm, align=center, rotate around={30:(0, 0)}, label={[label distance=0.1cm]right:Sensor 1}] at (0.98, -1.7) (sensor1) {};
+\begin{tikzpicture}[auto, thick,>=latex']
+	\node [draw, rectangle, minimum height=1.6cm, minimum width=1.6cm, pattern=north west lines] at (0,0) (solid) {};
+
+    \node [draw,  fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.5cm, minimum width=1cm, align=center, rotate around={30:(0,0)}] at (0.7, -1.25) (link1) {};
+    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.5cm, align=center, rotate around={30:(0, 0)}, label={[label distance=0.18cm]335:IMU 1}] at (0.98, -1.7) (sensor1) {};
     
     \node [draw, fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.5cm, minimum width=0.6cm, align=center, rotate around={145:(0,0)}] at (0.6, -3.7) (link2) {};
-    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.5cm, align=center, rotate around={145:(0, 0)}, label={left:Sensor 2}] at (0, -4.56) (sensor2) {};
+    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.5cm, align=center, rotate around={145:(0, 0)}, label={left:IMU 2}] at (0, -4.56) (sensor2) {};
     
     \node[coordinate] (X) at (2.5,0) {};
     \node[coordinate] (Y) at (0,2.5) {};
@@ -33,11 +35,30 @@ According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when w
     \draw[-stealth] (1.2,-1) arc (300:355:1.2);
     \draw[-stealth] (0.8,-4.1) arc (240:303:1.4);
     
-    \node at (1.3, -0.4) (angle1) {$\alpha_1$};
-    \node at (1.5, -3.7) (angle1) {$\alpha_2$};
+    \node at (1.3, -0.4) (angle1) {$\psi_1$};
+    \node at (1.5, -3.7) (angle1) {$\psi_2$};
+
 \end{tikzpicture}
-\caption{Acceleration seen by the sensor (b) with and (a) without motion from \cite{bennett_motion_2014}.} \label{fig:robot}
+\caption{Acceleration seen by the sensor attached to the pendubot (b) with and (a) without motion from \cite{bennett_motion_2014}.} \label{fig:robot}
 \end{figure} 
+
+The \glspl{IMU} on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively.
+
+According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
+
+\begin{align}
+  x &= a_1 \cos \psi_1 + a_2 \cos(\psi_1 + \psi_2) \\
+  \dot{x} &= -a_1 \dot{\psi}_1 \sin \psi_1  - a_2 (\dot{\psi}_1 + \dot{\psi}_2) \sin(\psi_1 + \psi_2) \\
+  \ddot{x} {}&= -a_1 [\dot{\psi}^2_1 \cos \psi_1 + \ddot{\psi}_1 \sin \psi_1] - a_2 [(\dot{\psi}_1 + \dot{\psi}_2)^2 \cos(\psi_1 + \psi_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} + (\ddot{\psi}_1 + \ddot{\psi}_2) \sin(\psi_1 + \psi_2)] \\
+  \nonumber \\
+  y &= a_1 \sin \psi_1 + a_2 \sin(\psi_1 + \psi_2) \\
+  \dot{y} &= a_1 \dot{\psi}_1 \cos \psi_1  + a_2 (\dot{\psi}_1 + \dot{\psi}_2) \cos(\psi_1 + \psi_2) \\
+  \ddot{y} {}&= a_1 [\ddot{\psi}_1 \cos \psi_1 - \dot{\psi}^2_1 \sin \psi_1] + a_2 [(\ddot{\psi}_1 + \ddot{\psi}_2) \cos(\psi_1 + \psi_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} - (\dot{\psi}_1 + \dot{\psi}_2)^2 \sin(\psi_1 + \psi_2)]
+\end{align}
+
+in which $a_1$ and $a_2$ are the lengths of the two links, respectively.
 
 \section{Implementation}
 
