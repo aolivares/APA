@@ -17,4 +17,5 @@
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Operation cycle of the Kalman filter algorithm illustrating predict and correct behaviour.\relax }}{28}{figure.caption.30}
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Operation cycle of the extended Kalman filter algorithm illustrating predict and correct behaviour.\relax }}{30}{figure.caption.31}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Acceleration seen by the sensor (b) with and (a) without motion from \cite {bennett_motion_2014}.\relax }}{32}{figure.caption.32}
 \addvspace {10\p@ }

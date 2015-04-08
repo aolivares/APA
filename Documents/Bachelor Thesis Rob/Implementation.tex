@@ -9,6 +9,26 @@ This chapter describes the implementation and applies the fundamentals acquired 
 
 \section{Theoretical Design}
 
+According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure , the revolute joints represent the the hip und knee joints, and the the two links the femur and tibia/fibula, respectively.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
+    \node [draw, very thick, rectangle, minimum height=3.5cm, minimum width=1cm, align=center, rotate around={30:(0,0)}] at (0.6, -0.9) (link1) {};
+    \node [draw, very thick, rectangle, minimum height=1cm, minimum width=0.7cm, align=center, rotate around={30:(0, 0)}] at (1, -1) (link1) {};
+
+    
+    \node[coordinate] (X) at (2.5,0) {};
+    \node[coordinate] (Y) at (0,2.5) {};
+    \node[coordinate] (O) at (-0, 0) {};
+    
+    \draw[->] (O) -- node[name=x] {$x$}(X);
+    \draw[->] (O) -- node[name=y] {$y$}(Y);
+      
+    \end{tikzpicture}
+
+\caption{Acceleration seen by the sensor (b) with and (a) without motion from \cite{bennett_motion_2014}.} \label{fig:acceleration_motion}
+\end{figure} 
 
 
 \section{Implementation}
