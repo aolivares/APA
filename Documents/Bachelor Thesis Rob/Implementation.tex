@@ -9,7 +9,11 @@ This chapter describes the theoretical design of the system and the implementati
 
 \section{Theoretical Design}
 
-According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1.
+This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, that is, the kinematic model and the extended Kalman filter, to the existing GaitWatch system and its associated conventions. 
+
+\subsection{Kinematic model}
+
+When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1.
 
 \begin{figure}
 \centering
@@ -69,7 +73,10 @@ The orientation of the sensor frames at rest are different from the world frame 
     \end{bmatrix}\,.
 \end{equation}
 
-The rotated tangential and radial components of the motion based acceleration estimates, $A_{tan}$ and $A_{rad}$ are found using $\mathbf{T}_z(\psi)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, according to Equation \ref{eq:transformation}, respectively. Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
+\noindent
+The rotated tangential and radial components of the motion based acceleration estimates, $A_{tan}$ and $A_{rad}$ are found using $\mathbf{T}_z(\psi)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, according to Equation \ref{eq:transformation}, respectively.
+
+Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
 \begin{bmatrix}
@@ -95,7 +102,104 @@ According to Equation \ref{eq:projection_gravity} the improved angle estimate is
 
 \noindent
 This can be used to reduce the estimation error due to gyroscope drift.
+
+\subsection{Extended Kalman Filter Model}
+
+The state space model of the extended Kalman filter is given by the state vector
+
+\begin{equation} \label{eq:state_vector}
+  \mathbf{x} = \begin{bmatrix}
+  	x, & y, & \psi_1, & \omega_1, & \alpha_1, & \psi_2, & \omega_2, & \alpha_2, & \beta_1, & \beta_2
+  \end{bmatrix}^T
+\end{equation}
+
+where $\psi_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\psi_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
+
+The measurement matrix $\mathbf{y}$ is given by
+
+\begin{equation} \label{eq:measurement_vector}
+  \mathbf{y} = \begin{bmatrix}
+  	\omega_1 + \beta_1, & \omega_1 + \omega_2 + \beta_2, & \psi_1 + \psi_2
+  \end{bmatrix}^T\,.
+\end{equation}
  
+\noindent
+The element $y_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $y_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $y_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
+
+(As in 20 )The linear approximation of the state equations at each iteration yields the state transition matrix
+
+\begin{equation}
+  \bm{\Phi}^{[1]}_{k} =  \mathbf{I}_{10} + \mathbf{F} T_s\,,
+\end{equation}
+
+\noindent
+with
+
+\begin{equation}
+\mathbf{F} = \begin{bmatrix}
+  0 & 0 & 0 & A & 0 & 0 & B & 0 & 0 & 0\\
+  0 & 0 & 0 & C & 0 & 0 & D & 0 & 0 & 0\\
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}\,,
+\end{equation}
+
+\noindent
+and
+
+\begin{equation*}
+  \begin{array}{cc}
+  \begin{split}
+  	A &= -a_1 \sin \psi_1 -a_2 \sin (\psi_1 + \psi_2)\,, \quad \\
+  	C &= a_1 \cos \psi_1 + a_2 \cos (\psi_1 + \psi_2)\,,
+  \end{split} &
+  \begin{split}
+  B &= -a_2 \sin (\psi_1 + \psi_2)\,, \\
+  C &= a_2 \cos (\psi_1 + \psi_2)\,,	
+  \end{split}
+\end{array}\,.
+\end{equation*}
+
+\noindent
+$T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix.
+
+\begin{equation}
+\mathbf{H} = \begin{bmatrix}
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0\\
+  0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1\\
+  0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+\end{bmatrix}\,.
+\end{equation}
+
+\begin{equation}
+\mathbf{R} = \begin{bmatrix}
+  \sigma_1 & 0 & 0\\
+  0 & \sigma_2 & 0\\
+  0 & 0 & \sigma_3
+\end{bmatrix}\,.
+\end{equation}
+
+\begin{equation}
+\mathbf{Q} = \begin{bmatrix}
+  \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\end{bmatrix}\,.
+\end{equation}
+
 \section{Implementation}
 
 The filter algorithm was implemented in \textsc{Matlab}$\textsuperscript{\textregistered}$.
