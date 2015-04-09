@@ -1,7 +1,7 @@
 \chapter{Orientation Estimation}
 \label{ch:orientation_estimation}
 
-In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as attitude, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Beforehand, two main mathematical constructs used to express attitude -- Euler angles and quaternions -- are described.
+This chapter covers fundamentals of orientation estimation that are necessary for the implementation of the aforementioned system. In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as attitude, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Beforehand, two main mathematical constructs used to express attitude -- Euler angles and quaternions -- are described.
 
 \section{Euler Angles}
 
@@ -16,7 +16,7 @@ Euler angles are one of several ways to describe the orientation of an object an
 \noindent
 Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', Z$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation before and the colour red the orientation after the rotation. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are intrinsic rotations that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
 
-\begin{figure}[ht]
+\begin{figure}
 \centering
 \begin{tikzpicture}[scale=1.4]
 \node[inner sep=0pt] (tait) at (0,0)
@@ -291,7 +291,7 @@ As described in Chapter \ref{ch:MARG}, accelerometers measure the acceleration t
 
 When the accelerometer is motionless, its measurements will be directly related to the angle of the sensor relative to gravity, as depicted in Figure \ref{fig:acceleration_motion} (a). In that case $\theta$ is given by
 
-\begin{equation}
+\begin{equation} \label{eq:projection_gravity}
   \theta = \mbox{atan2}(\frac{A_y}{A_x})\,.
 \end{equation}
 

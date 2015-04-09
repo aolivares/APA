@@ -9,7 +9,7 @@ This chapter describes the theoretical design of the system and the implementati
 
 \section{Theoretical Design}
 
-According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle of link 2, $\psi_2$, with respect to link 1.
+According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when walking in a straight line, the human leg can be modelled as a two-link planar revolute robot. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1.
 
 \begin{figure}
 \centering
@@ -42,26 +42,24 @@ According to \citeauthor{bennett_motion_2014} \cite{bennett_motion_2014}, when w
 \caption{Acceleration seen by the sensor attached to the pendubot (b) with and (a) without motion from \cite{bennett_motion_2014}.} \label{fig:robot}
 \end{figure} 
 
-The \glspl{IMU} on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively.
-
-According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
+The \glspl{IMU} on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
 
 \begin{align}
   x &= a_1 \cos \psi_1 + a_2 \cos(\psi_1 + \psi_2) \\
   \dot{x} &= -a_1 \dot{\psi}_1 \sin \psi_1  - a_2 (\dot{\psi}_1 + \dot{\psi}_2) \sin(\psi_1 + \psi_2) \\
   \ddot{x} {}&= -a_1 [\dot{\psi}^2_1 \cos \psi_1 + \ddot{\psi}_1 \sin \psi_1] - a_2 [(\dot{\psi}_1 + \dot{\psi}_2)^2 \cos(\psi_1 + \psi_2) \nonumber \\ 
-  &\mathrel{\phantom{=}} + (\ddot{\psi}_1 + \ddot{\psi}_2) \sin(\psi_1 + \psi_2)] \\
+  &\mathrel{\phantom{=}} + (\ddot{\psi}_1 + \ddot{\psi}_2) \sin(\psi_1 + \psi_2)] \label{eq:acc_x} \\
   \nonumber \\
   y &= a_1 \sin \psi_1 + a_2 \sin(\psi_1 + \psi_2) \\
   \dot{y} &= a_1 \dot{\psi}_1 \cos \psi_1  + a_2 (\dot{\psi}_1 + \dot{\psi}_2) \cos(\psi_1 + \psi_2) \\
   \ddot{y} {}&= a_1 [\ddot{\psi}_1 \cos \psi_1 - \dot{\psi}^2_1 \sin \psi_1] + a_2 [(\ddot{\psi}_1 + \ddot{\psi}_2) \cos(\psi_1 + \psi_2) \nonumber \\ 
-  &\mathrel{\phantom{=}} - (\dot{\psi}_1 + \dot{\psi}_2)^2 \sin(\psi_1 + \psi_2)]
+  &\mathrel{\phantom{=}} - (\dot{\psi}_1 + \dot{\psi}_2)^2 \sin(\psi_1 + \psi_2)] \label{eq:acc_y}
 \end{align}
 
 \noindent
 in which $a_1$ and $a_2$ are the lengths of the two links, respectively.
 
-The orientation of the sensor frames at rest are different from the world frame at rest and dynamic when the pendulum is in motion. To transform the values from the world frame to the dynamic body frame of \gls{IMU} 2 we used the transformation matrix $\mathbf{T}_z(\psi)$ in Equation \ref{eq:transformation_matrices} with $\psi = \psi_1 + \psi_2$, which yields
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. To transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is depicted in Figure, we used the transformation matrix $\mathbf{T}_z(\psi)$ in Equation \ref{eq:transformation_matrices} with $\psi = \psi_1 + \psi_2$, which yields
 
 \begin{equation}
 \mathbf{T}_z(\psi) = \begin{bmatrix}
@@ -71,8 +69,33 @@ The orientation of the sensor frames at rest are different from the world frame 
     \end{bmatrix}\,.
 \end{equation}
 
+The rotated tangential and radial components of the motion based acceleration estimates, $A_{tan}$ and $A_{rad}$ are found using $\mathbf{T}_z(\psi)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, according to Equation \ref{eq:transformation}, respectively. Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
+\begin{equation}
+\begin{bmatrix}
+    g_x \\
+    g_y 
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    A_x \\
+    A_y 
+    \end{bmatrix} -
+    \begin{bmatrix}
+    A_{rad} \\
+    A_{tan} 
+    \end{bmatrix}\,.
+\end{equation}
 
+\noindent
+According to Equation \ref{eq:projection_gravity} the improved angle estimate is
+
+\begin{equation}
+  \theta = \mbox{atan2}(\frac{g_y}{g_x})\,.
+\end{equation}
+
+\noindent
+This can be used to reduce the estimation error due to gyroscope drift.
+ 
 \section{Implementation}
 
 The filter algorithm was implemented in \textsc{Matlab}$\textsuperscript{\textregistered}$.
