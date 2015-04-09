@@ -17,7 +17,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
+\begin{tikzpicture}[auto, thick, rounded corners=1pt, node distance=3cm,>=latex']
     \node [block, align=center, 
     	pin={[pinstyle]below:System \\ Errors}]
     	(dynamical) {Dynamical \\ system};
@@ -52,7 +52,7 @@ A statistical criterion, according to which the performance of a filter can be m
 \begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
     
 \node [input, name=input] {};
-\node [block, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $w_0, w_1, w_2, \dots$};
+\node [block, rounded corners=1pt, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $w_0, w_1, w_2, \dots$};
 \node [sum, right of=filter, node distance=4.4cm] (sum) {$\sum$};	
 \node [output, right of=sum, node distance=2.8cm, name=output] {};
 \node [error, below of=sum, node distance=2.8cm, name=error] {};
@@ -415,7 +415,7 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[auto, node distance=4cm,>=latex']
+\begin{tikzpicture}[auto, rounded corners=1pt, node distance=4cm,>=latex']
     
 \node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
 \node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^-_k = \bm{\Phi}_{k-1}\hat{\mathbf{x}}_{k-1}+\mathbf{B}_{k-1}\mathbf{u}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^T_{k-1} + \mathbf{Q}_{k-1}$};
@@ -429,10 +429,7 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 \draw [draw,->, thick, align=left] (init) -- (predict);
 \draw [draw,->, thick, align=left] (predict) -- (update);
 \draw [draw,->, thick, align=left] (update) -- node [label={left:Output}]{} (output);
-\draw [draw,-, thick] (help1) -- (help2);
-\draw [draw,-, thick] (help2) -- (help3);
-\draw [draw,->, thick] (help3) -- (help4);
-
+\draw [draw,->, thick] (help1) -- (help2) -- (help3) -- (help4);
 \end{tikzpicture}
 \caption{Operation cycle of the Kalman filter algorithm illustrating predict and correct behaviour.} \label{fig:kalman_filter_cycle}
 \end{figure}
@@ -526,7 +523,7 @@ Figure \ref{fig:kalman_filter_cycle} illustrates the predict and update behaviou
 
 \begin{figure}[ht]
 \centering
-\begin{tikzpicture}[auto, node distance=4cm,>=latex']
+\begin{tikzpicture}[auto, rounded corners=1pt, node distance=4cm,>=latex']
     
 \node [block, align=center] (init) {Initialisation of parameters \\ $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}^{[1]}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
 \node [block, align=center, below of=init, node distance=3.2cm] (predict) {Time update (predict) \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1})$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
@@ -540,10 +537,7 @@ Figure \ref{fig:kalman_filter_cycle} illustrates the predict and update behaviou
 \draw [draw,->, thick, align=left] (init) -- (predict);
 \draw [draw,->, thick, align=left] (predict) -- (update);
 \draw [draw,->, thick, align=left] (update) -- node [label={left:Output}]{} (output);
-\draw [draw,-, thick] (help1) -- (help2);
-\draw [draw,-, thick] (help2) -- (help3);
-\draw [draw,->, thick] (help3) -- (help4);
-
+\draw [draw,->, thick] (help1) -- (help2) -- (help3) -- (help4);
 \end{tikzpicture}
 \caption{Operation cycle of the extended Kalman filter algorithm illustrating predict and correct behaviour.} \label{fig:kalman_filter_cycle}
 \end{figure}

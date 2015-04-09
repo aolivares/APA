@@ -58,7 +58,20 @@ According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ 
   &\mathrel{\phantom{=}} - (\dot{\psi}_1 + \dot{\psi}_2)^2 \sin(\psi_1 + \psi_2)]
 \end{align}
 
+\noindent
 in which $a_1$ and $a_2$ are the lengths of the two links, respectively.
+
+The orientation of the sensor frames at rest are different from the world frame at rest and dynamic when the pendulum is in motion. To transform the values from the world frame to the dynamic body frame of \gls{IMU} 2 we used the transformation matrix $\mathbf{T}_z(\psi)$ in Equation \ref{eq:transformation_matrices} with $\psi = \psi_1 + \psi_2$, which yields
+
+\begin{equation}
+\mathbf{T}_z(\psi) = \begin{bmatrix}
+    \cos (\psi_1 + \psi_2) \; & \sin (\psi_1 + \psi_2) \; & 0 \\
+    -\sin (\psi_1 + \psi_2) \; & \cos (\psi_1 + \psi_2) \; & 0 \\
+    0 \; & 0 \; & 1
+    \end{bmatrix}\,.
+\end{equation}
+
+
 
 \section{Implementation}
 

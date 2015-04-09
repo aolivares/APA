@@ -54,7 +54,7 @@ where $\mathbf{T}$ is the transformation matrix.
 
 To transform the coordinate vector from the navigation frame to the body frame, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $C_{nb}$ is given by
 
-\begin{equation}
+\begin{equation}\label{eq:transformation_matrices}
 \begin{split}
 \mathbf{C}_{nb} & = \mathbf{T}_x(\phi) \mathbf{T}_y(\theta) \mathbf{T}_z(\psi) \\
  & = {\left[ \begin{smallmatrix}
@@ -303,7 +303,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
 \begin{subfigure}[]{0.45\textwidth}
 \caption{}
 \begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
-    \node [draw, very thick, rectangle, minimum height=6em, minimum width=3em, align=center, rotate around={27:(-1,0.5)}] (sensor) {Sensor};
+    \node [draw, very thick, rounded corners=1pt, rectangle, minimum height=6em, minimum width=3em, align=center, rotate around={27:(-1,0.5)}] (sensor) {Sensor};
     \node[coordinate] (A) at (0.7, -0.6) {};
     \node[coordinate] (B) at (1.95, -3) {};
     \node[coordinate] (C) at (0.7, -3.56) {};
@@ -319,7 +319,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
 \quad
 \begin{subfigure}[]{0.45\textwidth}
 \caption{}
-\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
+\begin{tikzpicture}[auto, thick, rounded corners=1pt, node distance=3cm,>=latex']
     \node [draw, very thick, rectangle, minimum height=6em, minimum width=3em, align=center, rotate around={27:(-1,0.5)}] (sensor) {Sensor};
     \node[coordinate] (A) at (0.7, -0.6) {};
     \node[coordinate] (B) at (2.1, -3.55) {};
