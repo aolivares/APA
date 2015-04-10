@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  9 APR 2015 20:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  10 APR 2015 16:08
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1533,7 +1533,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ] <images/accelerometer.pdf, id=567, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
-Package pdftex.def Info: images/accelerometer.pdf used on input line 15.
+Package pdftex.def Info: images/accelerometer.pdf used on input line 14.
 (pdftex.def)             Requested size: 384.1122pt x 123.42274pt.
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1548,13 +1548,9 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Overfull \hbox (3.68497pt too wide) in paragraph at lines 20--21
+Overfull \hbox (3.68497pt too wide) in paragraph at lines 19--20
  [][] 
  []
-
-
-Underfull \vbox (badness 4913) has occurred while \output is active []
-
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1572,7 +1568,7 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 [7] <images/GaitWatch_placement.pdf, id=629, 340.75514pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
-Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 64.
+Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 63.
 (pdftex.def)             Requested size: 256.0748pt x 219.76166pt.
 )
 
@@ -1857,15 +1853,6 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [38] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
-Underfull \hbox (badness 1048) in paragraph at lines 10--18
-\OT1/pplx/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--28
-[]$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplx/m/n/12 .
- []
-
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1877,6 +1864,10 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 
 
 ]
+Underfull \hbox (badness 10000) in paragraph at lines 109--113
+[]\OT1/pplx/m/n/12 eMarketer.  2 Bil-lion Con-sumers World-wide to Get
+ []
+
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
  Make it at least 14.49998pt.
@@ -1884,28 +1875,33 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  This may cause the page layout to be inconsistent, however.
 
 [40]
-Underfull \hbox (badness 10000) in paragraph at lines 142--146
-[]\OT1/pplx/m/n/12 eMarketer.  2 Bil-lion Con-sumers World-wide to Get
+Underfull \hbox (badness 1048) in paragraph at lines 130--138
+\OT1/pplx/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
  []
 
 
-Underfull \hbox (badness 2564) in paragraph at lines 174--180
+Underfull \hbox (badness 2564) in paragraph at lines 152--158
 \OT1/pplx/m/it/12 celerom-e-ter\OT1/pplx/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 174--180
+Underfull \hbox (badness 2503) in paragraph at lines 152--158
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 182--188
+Underfull \hbox (badness 1742) in paragraph at lines 160--166
 []\OT1/pplx/m/n/12 Analog De-vices.  \OT1/pplx/m/it/12 ADXL345: 3-Axis, \TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 2g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 4g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 8g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 16g Dig-i-tal
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 182--188
+Underfull \hbox (badness 2503) in paragraph at lines 160--166
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 191--195
+[]$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplx/m/n/12 .
  []
 
 
@@ -1935,15 +1931,15 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 33465 strings out of 493117
- 627979 string characters out of 6135432
- 812698 words of memory out of 5000000
- 35867 multiletter control sequences out of 15000+600000
+ 33466 strings out of 493117
+ 628013 string characters out of 6135432
+ 812762 words of memory out of 5000000
+ 35868 multiletter control sequences out of 15000+600000
  50185 words of font info for 122 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,77p,1783b,1011s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpbn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmit8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmn8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpmne.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/kpfonts/jkpsy.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (62 pages, 816205 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (62 pages, 817094 bytes).
 PDF statistics:
  1159 PDF objects out of 1200 (max. 8388607)
  1028 compressed objects within 11 object streams

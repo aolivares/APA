@@ -7,9 +7,9 @@ This chapter describes the theoretical design of the system and the implementati
 
  (Any algorithms that are already implemented for comparison that I can cite or state and describe how they differ from the one that I will implement??)
 
-\section{Theoretical Design}
+\section{Theoretical Design}\label{sec:theoretical_design}
 
-This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, that is, the kinematic model and the extended Kalman filter, to the existing GaitWatch system and its associated conventions. 
+This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, that is, the kinematic model and the extended Kalman filter, to the existing GaitWatch system and its associated conventions with respect to axes definitions and rotation about them. 
 
 \subsection{Kinematic model}
 
@@ -163,11 +163,11 @@ and
   B &= -a_2 \sin (\psi_1 + \psi_2)\,, \\
   C &= a_2 \cos (\psi_1 + \psi_2)\,,	
   \end{split}
-\end{array}\,.
+\end{array}
 \end{equation*}
 
 \noindent
-$T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix.
+where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix.
 
 \begin{equation}
 \mathbf{H} = \begin{bmatrix}
@@ -205,6 +205,12 @@ $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the 
 The filter algorithm was implemented in \textsc{Matlab}$\textsuperscript{\textregistered}$.
 
 \section{Experiments}
+
+The movement data was gathered at the Department of Neurology of the Klinikum Großhadern, Munich.
+
+\subsection{Test Sequence}
+
+The subject wore the GaitWatch system on his body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch and force plate record was started and the subject made a step onto the force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of it again. This sequence was repeated ten times.
 
 \section{Results}
 
