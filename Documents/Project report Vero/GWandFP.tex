@@ -2,6 +2,12 @@
 \label{ch:GWandFP}
 
 \section{Introduction and chapter's structure}
+Along this chapter we will introduce the protocol used to obtain the Gait Watch and Force Plate signals as well as the developed software to synchronise and analyse the signals that characterise the anticipatory postural adjustments before gait.
+
+On the one hand, we carry out the synchronisation between the signal from inertial sensors (Gait Watch) and the force signals from the platform. It's very important for comparing both devices, determining the differences and similarities and finally resolving if we can obtain the same information from both systems.
+
+On the other hand, we’ll analise the most interesting signals to characterise the APAs, obtaining the parameters of them which may be of interest.
+
 
 \section{Data gathering Protocol}
 Prior to start of data gathering, it’s necessary to set up the protocol for procedure that patients have to carry out while the data are recorded. The establishing this procedure is very important so that the synchronisation works properly because we have to identify a clear movement in both signals to match one signal with the other at the same time.
@@ -25,6 +31,7 @@ This procedure is repeated ten times by each subject in order to characterise be
 It’s important to clarify that the GaitWatch recording contains all these ten episodes ( in other cases more) and the platform recording only contains one episode each. So, this is a fact that we have to consider to do the synchronisation.
 
 \section{Synchronisation}
+
 \subsection{Introduction and chapter's structure}
 One of the most important aspects whether you have data acquired from multiples devices or channels is the synchronisation. If these data are not appropriately correlated or synchronised, the analysis and conclusions from your use will be erroneous. Also, it’s very important doing all automatically when you have a data on a broad scale.
 Therefore, the following sections explain how the information has been obtained and processed automatically, as well as what features have been calculated to characterise the movements of the patients and to carry out the synchronisation between the Force Plate signals and GaitWatch signals. This content is superficially depicted in figure XX.
@@ -38,7 +45,18 @@ Therefore, the following sections explain how the information has been obtained 
 
 \subsection{Design of developed code  in Matlab}
 \subsubsection{Selection, reading and obtaining of information from the excel file}
+All patients data , that is, the different files have been generated after the gathering (  of the force plate as well as Gait Watch), gathering date, duration of the experiment and other observations are saved in a Excel file. 
+
+In order to automate all as much as possible, the code is in charge of extraction of the necessary data (files names) to carry out the appropriate calculations for each patient. This is done once the Excel file has been selected, thus, it have to have a specific structure to be able to read the data correctly.
+
+At the end of this fraction of code, we save all file names of both systems (force plate and Gait Watch) corresponding to each patient, in order to access and extract them posteriorly.
+
 \subsubsection{Extraction of the forceplate data}
+As we said before, the  force plate data files are recorded independently each others, that is, there is a *.txt file for each repeat.
+Each file contains the force data of the toes and heels of both feet. It really realises a distribution of the sensors to cover these four segments. Every measure is obtained for each point of time according to the sample frequency. Also, this file contains the force data from each cell that is part of platform in each frame.
+
+Once we recover this data, some parameters are calculated for the movement characterization carried out over the platform. 
+
 \subsubsection{Calibration of the GaitWatch data}
 When we are working with sensors, calibration is one of the most important aspect that needs to be carried out. Prior to the calibration process,
 the information at the sensors  will be a signal composed of integer
