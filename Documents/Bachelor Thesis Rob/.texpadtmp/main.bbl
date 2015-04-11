@@ -5,6 +5,47 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
+\bibitem[Collin et~al.(2013)Collin, Davidson, Kirkko-Jaakkola, and
+  Leppäkoski]{bhattacharyya_inertial_sensors_applications_13}
+Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
+\newblock Inertial sensors and their applications.
+\newblock In Shuvra~S. Bhattacharyya, Ed~F. Deprettere, Rainer Leupers, and
+  Jarmo Takala, editors, \emph{Handbook of Signal Processing Systems}, pages
+  69--96. Springer New York, 2013.
+\newblock ISBN 978-1-4614-6858-5.
+\newblock \doi{10.1007/978-1-4614-6859-2_3}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock \emph{{GaitWatch} User Manual}.
+
+\bibitem[{Juansempere}()]{Wiki_taitbryan}
+{Juansempere}.
+\newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
+\newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
+\newblock [Accessed 31 March, 2015].
+
+\bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
+T.R. Bennett, R.~Jafari, and N.~Gans.
+\newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
+  {Orientation} {Estimates}.
+\newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
+  {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
+\newblock \doi{10.1109/BSN.2014.17}.
+
+\bibitem[Haykin(2002)]{haykin2002adaptive}
+Simon Haykin.
+\newblock \emph{Adaptive filter theory}.
+\newblock Prentice Hall, Upper Saddle River, N.J, 2002.
+\newblock ISBN 9780130484345.
+
+\bibitem[Maybeck(1979)]{Maybeck79}
+Peter~S. Maybeck.
+\newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
+\newblock Academic Press, 1979.
+\newblock ISBN 9780124110427.
+
 \bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
   Waluyo]{wee_soon_ambulatory_2008}
 Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
@@ -14,14 +55,6 @@ Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
   2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
   Aug 2008.
 \newblock \doi{10.1109/IEMBS.2008.4650382}.
-
-\bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
-T.R. Bennett, R.~Jafari, and N.~Gans.
-\newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
-  {Orientation} {Estimates}.
-\newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
-  {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
-\newblock \doi{10.1109/BSN.2014.17}.
 
 \bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
 Alberto Olivares~Vicente.
@@ -125,17 +158,6 @@ The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
 \newblock URL \url{http://www.apple.com/researchkit}.
 \newblock [Accessed 20 March, 2015].
 
-\bibitem[Collin et~al.(2013)Collin, Davidson, Kirkko-Jaakkola, and
-  Leppäkoski]{bhattacharyya_inertial_sensors_applications_13}
-Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
-\newblock Inertial sensors and their applications.
-\newblock In Shuvra~S. Bhattacharyya, Ed~F. Deprettere, Rainer Leupers, and
-  Jarmo Takala, editors, \emph{Handbook of Signal Processing Systems}, pages
-  69--96. Springer New York, 2013.
-\newblock ISBN 978-1-4614-6858-5.
-\newblock \doi{10.1007/978-1-4614-6859-2_3}.
-\newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
-
 \bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
 {SparkFun Electronics}.
 \newblock \emph{{IMU Analog Combo Board 5DOF}}, {\natexlab{a}}.
@@ -183,34 +205,12 @@ Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
 \newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
 \newblock [Accessed 17 March 2015].
 
-\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
-Alberto Olivares~Vicente and Kai Bötzel.
-\newblock \emph{{GaitWatch} User Manual}.
-
-\bibitem[{Juansempere}()]{Wiki_taitbryan}
-{Juansempere}.
-\newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
-\newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
-\newblock [Accessed 31 March, 2015].
-
 \bibitem[Raol(2009)]{raol2009multi}
 J.R. Raol.
 \newblock \emph{Multi-Sensor Data Fusion with MATLAB{\textregistered}}.
 \newblock CRC Press, 2009.
 \newblock ISBN 9781439800058.
 \newblock URL \url{https://books.google.de/books?id=7s8xpR-5rOUC}.
-
-\bibitem[Haykin(2002)]{haykin2002adaptive}
-Simon Haykin.
-\newblock \emph{Adaptive filter theory}.
-\newblock Prentice Hall, Upper Saddle River, N.J, 2002.
-\newblock ISBN 9780130484345.
-
-\bibitem[Maybeck(1979)]{Maybeck79}
-Peter~S. Maybeck.
-\newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
-\newblock Academic Press, 1979.
-\newblock ISBN 9780124110427.
 
 \bibitem[Kalman(1960)]{kalman_1960}
 Rudolph~Emil Kalman.

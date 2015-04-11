@@ -26,7 +26,7 @@
 		\setentrycounter[]{page}\glsnumberformat{1}}}%
 \glossentry{MEMS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{5}}}%
+		\setentrycounter[]{page}\glsnumberformat{5\delimN 6}}}%
 \glossentry{MIMU}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{7}}}\glsgroupskip

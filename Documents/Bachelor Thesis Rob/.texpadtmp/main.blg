@@ -23,6 +23,8 @@ Illegal end of database file---line 326 of file ../Bibliography.bib
  : 
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
+Warning--empty year in olivares_vicente_gaitwatch_2013
+Warning--empty year in Wiki_taitbryan
 Warning--empty year in emarketer_smartphones
 Warning--empty year in Intel_2013
 Warning--empty year in Apple_2015
@@ -33,8 +35,6 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-Warning--empty year in olivares_vicente_gaitwatch_2013
-Warning--empty year in Wiki_taitbryan
 You've used 30 entries,
             2481 wiz_defined-function locations,
             763 strings with 10622 characters,

@@ -5,25 +5,37 @@ MARG sensors is a collective term for magnetic, angular rate, and gravitational 
 
 \section{Accelerometers}
 
-Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained and the resultant acceleration is computed according to Newton's second law $\mathbf{F} = m \cdot \mathbf{a}$, where $ \mathbf{F}$ denotes the three-dimensional force vector, $m$ the mass, and $\mathbf{a}$ the three-dimensional acceleration vector. Usually, an accelerometer consists of a small proof mass connected via a spring to the case of the instrument. The proof mass is displaced  by $\Delta x$ with respect to the case, when the instrument experiences a certain acceleration along its sensitive axis. Disregarding drag force, the displacement is directly proportional to the force exerted by the mass and thus to the acceleration. Therefore, by measuring the displacement of the proof mass the acceleration can be obtained. Figure \ref{fig:accelerometer} shows the displacement $\Delta x$ of the mass in respect to the case of the instrument for three different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to gravity. In cases where the three-dimensional vector of the acceleration is required, three single-axis accelerometers are used. Although a mutually orthogonal mount is common practice, any non-coplanar arrangement is acceptable, as long as the angle between the sensitive axis are known \cite{bhattacharyya_inertial_sensors_applications_13}.
+Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained. The resultant acceleration is computed according to Newton's second law $\mathbf{f} = m \cdot \mathbf{a}$, where $ \mathbf{f} \in \mathbb{R}^3$ denotes the force vector, $m$ the mass, and $\mathbf{a} \in \mathbb{R}^3$ the acceleration vector. Usually, an accelerometer consists of a small proof mass connected via a spring to the case of the instrument. The proof mass is displaced  by $\Delta x$ with respect to the case, when the instrument experiences a certain acceleration along its sensitive axis. Disregarding drag force, the displacement is directly proportional to the force exerted by the mass and thus to the acceleration. Therefore, by measuring the displacement of the proof mass the acceleration can be obtained. Figure \ref{fig:accelerometer} shows the displacement $\Delta x$ of the mass in respect to the case of the instrument for three different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $g$. According to how the mass displacement is sensed, accelerometers can be classified as resistive, capacitive, and piezoelectric. Besides there are surface acoustic wave, fibre optic, vibrating beam and solid-state \gls{MEMS} accelerometers. To obtain a three-dimensional accelerometer, three single-axis accelerometers are mounted together. Although a mutually orthogonal mount is common practice, any non-coplanar arrangement is acceptable, as long as the angles between the sensitive axes are known. Nowadays most accelerometers are manufactured using MEMS technology, which was developed for the military and aerospace markets in the 1970s \cite{bhattacharyya_inertial_sensors_applications_13}. 
 
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
-    
+\begin{tikzpicture}[scale=0.95, auto, thick, node distance=3cm,>=latex']
     \pgftext{\includegraphics[width=13.5cm]{images/accelerometer}} at (0pt,0pt);
     \node [] (a) at (-6.7, -1.1) {(a)};
     \node [] (b) at (-1.1, -1.1) {(b)};
     \node [] (c) at (3.9, -1.1) {(c)};
-    
+    \node [] (c) at (-4.525, 0.44) {$0$};
+    \node [] (c) at (1.03, 0.44) {$0$};
+    \node [] (c) at (4, 0.26) {$0$};
+    \node [] (c) at (0.58, 0.44) {$\Delta x$};
+    \node [] (c) at (3.82, -0.08) {$\Delta x$};
+    \node [] (c) at (6.5, 1.5) {$g$};
+    \node [] (c) at (-4.525, -0.75) {\scriptsize Proof};
+    \node [] (c) at (-4.525, -1.05) {\scriptsize mass};
+    \node [] (c) at (-2, -0.05) {\scriptsize Sensitive};
+    \node [] (c) at (-2, -0.45) {\scriptsize axis};
+    \node [] (c) at (2.2, 0.85) {\scriptsize Acceleration};
 \end{tikzpicture}
-\caption{A mass-and-spring accelerometer under different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to gravity, from \cite{bhattacharyya_inertial_sensors_applications_13}.}
+\caption{A mass-and-spring accelerometer under different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $g$, from \cite{bhattacharyya_inertial_sensors_applications_13}.}
 	\label{fig:accelerometer}
 \end{figure}
 
+
 \section{Gyroscopes}
 
-Gyroscopes, also called angular rate sensors, measure angular velocity and are based on the Coriolis Effect. By integrating the angular velocity the rotation angle is obtained \cite{olivares_vicente_signal_2013}.
+Gyroscopes measure angular velocity, which is why they are also referred to as angular velocity sensors or angular rate sensors.
+
+based on the Coriolis Effect. By integrating the angular velocity the rotation angle can obtained \cite{olivares_vicente_signal_2013}.
 
 \section{Magnetometers}
 
