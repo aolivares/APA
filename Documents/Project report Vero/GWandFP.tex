@@ -57,6 +57,33 @@ Each file contains the force data of the toes and heels of both feet. It really 
 
 Once we recover this data, some parameters are calculated for the movement characterization carried out over the platform. 
 
+\begin{itemize}
+	\item \textbf{Midline}: it represents the midline between both feet. This is important to find the gap between feet and it gives us a idea of their position in the platform. Thus, we carry out the sum of cells force in the anterior-posterior direction. So, this line is in the minimum between two maximum corresponding to the position of both feet. We use this parameter to calculate the center of pressure.
+	
+	\item \textbf{The total force in the platform for each point of time}: This signal is useful to do the synchronisation due to we can determine clearer when the patient touches the plate.
+	
+	\item \textbf{Antero-posterior COP}: center of pressure forward-backward direction.
+	
+	\item \textbf{Medio-lateral  COP}: center of pressure  in right and left direction.
+	
+	
+\end{itemize}
+
+Center of pressure can be expressed as follows:
+
+\begin{equation}
+	\label{COP}
+	R=\sum_{i}^{n}m_{i}r_{i}
+\end{equation}
+
+
+Where R is the “Center of pressure”, M is the total force and mi are the force that are located in space with coordinated ri, in this case, in the plane. This location (ri) is calculate with respect to the midline.
+
+These signals help us to characterise Anticipatory Postural Adjustments  before gait.  APAs indicate the movement or swinging of body before walk or carry out some movement. Thus, these are the interesting  measures to compare between each repeat as well as each patients to characterise the movement, determine if there is a pattern and figure out the differences and similarities between them.
+
+All these signals are saved for each cycle in a single variable corresponding to the patient.
+
+
 \subsubsection{Calibration of the GaitWatch data}
 When we are working with sensors, calibration is one of the most important aspect that needs to be carried out. Prior to the calibration process,
 the information at the sensors  will be a signal composed of integer
