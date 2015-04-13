@@ -13,9 +13,12 @@ This section maps the theoretical design of the system proposed by \citeauthor{b
 
 \subsection{Kinematic model}
 
-When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1.
+The kinematic model related the angles of the thigh and shank about the hip and knee joint, respectively. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot} (a), the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1. 
 
 \begin{figure}
+\centering
+\begin{subfigure}[]{0.49\textwidth}
+\caption{}
 \centering
 \begin{tikzpicture}[auto, thick,>=latex']
 	\node [draw, rectangle, minimum height=1.6cm, minimum width=1.6cm, pattern=north west lines] at (0,0) (solid) {};
@@ -41,12 +44,22 @@ When walking in a straight line, the human leg can be modelled as a two-link pla
     
     \node at (1.3, -0.4) (angle1) {$\psi_1$};
     \node at (1.5, -3.7) (angle1) {$\psi_2$};
-
 \end{tikzpicture}
-\caption{Acceleration seen by the sensor attached to the pendubot (b) with and (a) without motion from \cite{bennett_motion_2014}.} \label{fig:robot}
+\end{subfigure}
+\begin{subfigure}[]{0.49\textwidth}
+\caption{}
+\centering
+	\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
+    \pgftext{\includegraphics[width=3.5cm]{images/sensors_on_leg}} at (0pt,0pt);
+    \node [] (a) at (-4.4, -2) {};
+    \node [] (b) at (-4.5, 0.1) {};
+    \node [] (c) at (4.45, 3.3) {};
+\end{tikzpicture}
+\end{subfigure}
+\caption{(a) Kinematic model of the human leg, from \cite{bennett_motion_2014}, and (b) , from \cite{tao_gait_2012}.} \label{fig:robot}
 \end{figure} 
 
-The \glspl{IMU} on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
+The \glspl{IMU} placed on the thighs and shanks, as illustrated in Figure \ref{fig:robot} (b) measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
 
 \begin{align}
   x &= a_1 \cos \psi_1 + a_2 \cos(\psi_1 + \psi_2) \\
@@ -126,10 +139,20 @@ The measurement matrix $\mathbf{y}$ is given by
 \noindent
 The element $y_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $y_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $y_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-(As in 20 )The linear approximation of the state equations at each iteration yields the state transition matrix
+The derivative of the state vector is
+
+\begin{equation} \label{eq:state_vector_derivative}
+  \dot{\mathbf{x}} = f(\mathbf{x}) = \left[\begin{smallmatrix}
+  -a_1 [\dot{\psi}^2_1 \cos \psi_1 + \ddot{\psi}_1 \sin \psi_1] - a_2 [(\dot{\psi}_1 + \dot{\psi}_2)^2 \cos(\psi_1 + \psi_2) \\
+  a_1 [\ddot{\psi}_1 \cos \psi_1 - \dot{\psi}^2_1 \sin \psi_1] + a_2 [(\ddot{\psi}_1 + \ddot{\psi}_2) \cos(\psi_1 + \psi_2) \\ \omega_1 \\ \alpha_1 \\ \omega_2 \\ 0 \\ 0 \\ 0 \\ 0 \\ 0
+  \end{smallmatrix}\right]
+\end{equation}
+
+\noindent
+This can be written as
 
 \begin{equation}
-  \bm{\Phi}^{[1]}_{k} =  \mathbf{I}_{10} + \mathbf{F} T_s\,,
+  \dot{\mathbf{x}} = \mathbf{F} \mathbf{x}
 \end{equation}
 
 \noindent
@@ -161,13 +184,22 @@ and
   \end{split} &
   \begin{split}
   B &= -a_2 \sin (\psi_1 + \psi_2)\,, \\
-  C &= a_2 \cos (\psi_1 + \psi_2)\,,	
+  C &= a_2 \cos (\psi_1 + \psi_2)\,,.
   \end{split}
 \end{array}
 \end{equation*}
 
 \noindent
+The linear approximation of the state equations at each iteration yields the state transition matrix
+
+\begin{equation}
+  \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{10} + \mathbf{F} T_s\,,
+\end{equation}
+
+\noindent
 where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix.
+
+The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ relates the states to the measurements according to Equation \ref{eq:time_dynamical_system_measurement_extended} and is given by 
 
 \begin{equation}
 \mathbf{H} = \begin{bmatrix}
@@ -177,12 +209,14 @@ where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}
 \end{bmatrix}\,.
 \end{equation}
 
+The process and measurement covariance matrices $\mathbf{R} \in \mathbb{R}^{3 \times 3}$ and $\mathbf{Q} \in \mathbb{R}^{10 \times 10}$, respectively, are given by
+
 \begin{equation}
 \mathbf{R} = \begin{bmatrix}
   \sigma_1 & 0 & 0\\
   0 & \sigma_2 & 0\\
   0 & 0 & \sigma_3
-\end{bmatrix}\,.
+\end{bmatrix}\,,
 \end{equation}
 
 \begin{equation}
@@ -210,7 +244,7 @@ The movement data was gathered at the Department of Neurology of the Klinikum Gr
 
 \subsection{Test Sequence}
 
-The subject wore the GaitWatch system on his body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch and force plate record was started and the subject made a step onto the force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of it again. This sequence was repeated ten times.
+The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch and force plate record was started and the subject made a step onto the force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of it again. This sequence was repeated ten times.
 
 \section{Results}
 
