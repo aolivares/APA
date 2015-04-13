@@ -1,16 +1,17 @@
 \chapter{Introduction}
 \label{ch:Introduction}
 
-Orientation estimation of the human body by means of inertial sensors has become an integral part of medical diagnosis, therapy techniques, and rehabilitation, as it provides an objective means of monitoring and assessing human body motion. The progressive miniaturisation of unobtrusive wearable inertial and magnetic sensors has made them more acceptable to patients and has consequently lead to an increasingly pervasive adoption for medical applications \cite{wee_soon_ambulatory_2008}.
+Monitoring and assessment of human body motion, in particular the analysis of gait, has become an integral part of medical diagnosis, therapy techniques, and rehabilitation \cite{tao_gait_2012}. \emph{Gait analysis} involves the measurement and assessment of quantitative parameters that characterise human locomotion. First research in this field was conducted in the late 19\textsuperscript{th} century \cite{tao_gait_2012}. Standard gait analysis based on multi-camera motion capture systems and force platforms require specialised gait laboratories, expensive equipment, and lengthy setup times. Unobtrusive wearable sensors mitigate these limitations. The progressive miniaturisation of inertial and magnetic field sensors has made them more acceptable to patients and has consequently lead to an increasingly pervasive adoption for medical applications \cite{wee_soon_ambulatory_2008}.
 
-For the application in health care accurate orientation estimates are crucial. A high degree of precision based on data from miniaturised sensors necessitates adequate signal processing, in order to mitigate the influence of disruptive factors such as bias instability and noise, among others. This signal processing of inertial and magnetic data encompasses calibration, adaptive filtering, and sensor fusion.
+For the application in health care accurate orientation estimates are crucial. A high degree of precision based on data from miniaturised sensors necessitates adequate signal processing, in order to mitigate the influence of disruptive factors such as bias instability and noise, among others. This signal processing of inertial and magnetic data encompasses calibration, adaptive filtering, and sensor fusion. The latter two are a part of this work.
 
 \section{Motivation}
 
+Accurate orientation estimation by means of wearable inertial and magnetic field sensors allows objective assessment of human gait and can benefit medical applications without the above-mentioned constraints.
 
 \section{Goals}
 
-The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, in order to improve the estimation of orientation angles of the human leg by means of inertial sensors. The filter algorithm should be implemented using \textsc{Matlab}$\textsuperscript{\textregistered}$ and validated against existing algorithms by comparing their respective \gls{RMSE}.
+The goal of this thesis was implementing a new Kalman filter based orientation algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, in order to improve the estimation of orientation angles of the human leg by means of inertial sensors. The filter algorithm should be implemented using \textsc{Matlab}\textsuperscript{\textregistered} and validated against existing algorithms by comparing their respective \gls{RMSE}.
 
 An existing system for human body motion analysis called GaitWatch was available, so that no new hardware had to be developed to gather the movement data. A detailed description of the device is found at the end of Chapter \ref{ch:MARG}. 
 
@@ -18,7 +19,7 @@ An existing system for human body motion analysis called GaitWatch was available
 
 This document presents my work within the overall project in a chronological order. Subsequent to the previous introductory overview of the topic and the definition of the project objectives, this chapter ends with a description of the state of the art. To accomplish the tasks defined in the previous section, I had to acquire several fundamentals in various subjects. Chapters 2 to 4 outline the necessary fundamentals of MARG sensors, orientation estimation and digital filters, respectively.  This enables comprehension of the overall project, even for readers that are not familiar with some of the subjects. The actual implementation of the Kalman filter, including a prior theoretical design is given in Chapter 5. This chapter also encompasses the experimental setup, results and a discussion of the latter. Finally, Chapter 6 covers conclusions and future work.
 
-I implemented the filter algorithm in the numerical computing environment and programming language \textsc{Matlab}$\textsuperscript{\textregistered}$. As additional means to communicate with my supervisor and enable him to follow the progress of the project at any time we used Pivotal Tracker, a tool for agile project management, and GitHub, a repository hosting service based on the distributed version control system Git. This thesis was written in the document markup language \LaTeX{}.
+I implemented the filter algorithm in the numerical computing environment and programming language \textsc{Matlab}\textsuperscript{\textregistered}. As additional means to communicate with my supervisor and enable him to follow the progress of the project at any time we used Pivotal Tracker, a tool for agile project management, and GitHub, a repository hosting service based on the distributed version control system Git. This thesis was written in the document markup language \LaTeX{}.
  
 \section{State of the Art}\label{sec:state_of_the_art}
 

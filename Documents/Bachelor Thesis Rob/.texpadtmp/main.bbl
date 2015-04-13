@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{31}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -45,6 +45,13 @@ Peter~S. Maybeck.
 \newblock \emph{Stochastic Models, Estimation and Control: Volume 1}.
 \newblock Academic Press, 1979.
 \newblock ISBN 9780124110427.
+
+\bibitem[Tao et~al.(2012)Tao, Liu, Zheng, and Feng]{tao_gait_2012}
+Weijun Tao, Tao Liu, Rencheng Zheng, and Hutian Feng.
+\newblock Gait analysis using wearable sensors.
+\newblock \emph{Sensors}, 12\penalty0 (2):\penalty0 2255--2283, February 2012.
+\newblock \doi{10.3390/s120202255}.
+\newblock URL \url{http://www.mdpi.com/1424-8220/12/2/2255}.
 
 \bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
   Waluyo]{wee_soon_ambulatory_2008}
