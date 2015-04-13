@@ -98,8 +98,26 @@ Besides the unwanted effects mentioned above, the output of magnetometers is dis
 The erroneus values in the magnetometer signal are removed sustituting these samples by the subsequent value unless the erroneous value is in the last position of the singal, in which case it is substituted by the preceding value.
 
 \subsubsection{Synchronisation}	
-\subsection{Results discurssion}
+In this section we will explain how we carried through the synchronisation of the Force Plate and GaitWatch signals and the considerations adopted to do it properly.
+
+The first step is to detect when the step happens in both systems. In order to do this, we’ll use the completed force from force plate system and shank acceleration from the Gait Watch accelerometer. We chose these signals because it’s easy to see in them the point when the patients step.
+
+The time point when the patient do the step in the platform is exactly when the person touches it, that is, the time point that corresponding with the first sample in the force signal with a value other than zero.
+
+In the acceleration signal case, this fact happens in the first positive peak after a negative peak. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points downwards thus the great negative peak will be when the leg is in the máximum distance from ground. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward.
+
+Once we understand the signal behaviour in connection with the patient movement we have to differentiate each cycles in the signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure XX shows the result.
+
+Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time.
+
+Other important aspect is to consider the sample frequency. The sample frequency is 120 Hz in force plate signals and 200 Hz in GaitWatch signals. Thus, we have to reshape the Force Plate signals to match other signals.
+
+All the key parameters and signals are saved using “time series”  for adding descriptive information to the fact.
+
+Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is very similar to prior signal however this is clearer to the naked eye.
+Nevertheless, the correlation between the peaks detected with both systems are almost the same. This indicates that it was done correctly and these detected points are suitable to do the synchronisation.
 
 
 \section{APA analysis}
 
+\subsection{Results discurssion}
