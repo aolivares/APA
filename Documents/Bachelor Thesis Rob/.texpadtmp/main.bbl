@@ -1,4 +1,4 @@
-\begin{thebibliography}{31}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -52,6 +52,27 @@ Weijun Tao, Tao Liu, Rencheng Zheng, and Hutian Feng.
 \newblock \emph{Sensors}, 12\penalty0 (2):\penalty0 2255--2283, February 2012.
 \newblock \doi{10.3390/s120202255}.
 \newblock URL \url{http://www.mdpi.com/1424-8220/12/2/2255}.
+
+\bibitem[Bonato(2005)]{bonato_advances_2005}
+Paolo Bonato.
+\newblock Advances in wearable technology and applications in physical medicine
+  and rehabilitation.
+\newblock \emph{Journal of NeuroEngineering and Rehabilitation}, 2:\penalty0
+  2--2, 2005.
+\newblock ISSN 1743-0003.
+\newblock \doi{10.1186/1743-0003-2-2}.
+\newblock URL \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC552335/}.
+
+\bibitem[Godfrey et~al.(2008)Godfrey, Conway, Meagher, and
+  ÓLaighin]{godfrey_direct_2008}
+A.~Godfrey, R.~Conway, D.~Meagher, and G.~ÓLaighin.
+\newblock Direct measurement of human movement by accelerometry.
+\newblock \emph{Medical Engineering \& Physics}, 30\penalty0 (10):\penalty0
+  1364--1386, December 2008.
+\newblock ISSN 1350-4533.
+\newblock \doi{10.1016/j.medengphy.2008.09.005}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1350453308001653}.
 
 \bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
   Waluyo]{wee_soon_ambulatory_2008}

@@ -18,7 +18,11 @@ I was expecting a `,' or a `}'---line 209 of file ../Bibliography.bib
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 343 of file ../Bibliography.bib
+Repeated entry---line 270 of file ../Bibliography.bib
+ : @article{bonato_advances_2005
+ :                              ,
+I'm skipping whatever remains of this entry
+Illegal end of database file---line 376 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -35,45 +39,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 31 entries,
+You've used 33 entries,
             2481 wiz_defined-function locations,
-            771 strings with 10810 characters,
-and the built_in function-call counts, 11597 in all, are:
-= -- 1016
-> -- 511
-< -- 26
-+ -- 214
-- -- 149
-* -- 841
-:= -- 1832
-add.period$ -- 131
-call.type$ -- 31
-change.case$ -- 50
-chr.to.int$ -- 28
-cite$ -- 43
-duplicate$ -- 621
-empty$ -- 1061
-format.name$ -- 186
-if$ -- 2503
+            789 strings with 11458 characters,
+and the built_in function-call counts, 12447 in all, are:
+= -- 1102
+> -- 545
+< -- 27
++ -- 228
+- -- 159
+* -- 914
+:= -- 1972
+add.period$ -- 143
+call.type$ -- 33
+change.case$ -- 54
+chr.to.int$ -- 30
+cite$ -- 45
+duplicate$ -- 659
+empty$ -- 1134
+format.name$ -- 198
+if$ -- 2681
 int.to.chr$ -- 4
-int.to.str$ -- 32
-missing$ -- 22
-newline$ -- 199
-num.names$ -- 97
-pop$ -- 285
+int.to.str$ -- 34
+missing$ -- 24
+newline$ -- 215
+num.names$ -- 103
+pop$ -- 293
 preamble$ -- 1
-purify$ -- 31
+purify$ -- 33
 quote$ -- 0
-skip$ -- 366
+skip$ -- 386
 stack$ -- 0
-substring$ -- 393
-swap$ -- 149
+substring$ -- 441
+swap$ -- 154
 text.length$ -- 7
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 205
+type$ -- 219
 warning$ -- 12
-while$ -- 88
+while$ -- 96
 width$ -- 0
-write$ -- 463
-(There were 2 error messages)
+write$ -- 501
+(There were 3 error messages)
