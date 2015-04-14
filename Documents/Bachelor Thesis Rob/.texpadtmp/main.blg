@@ -22,7 +22,7 @@ Repeated entry---line 270 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 376 of file ../Bibliography.bib
+Illegal end of database file---line 445 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -39,45 +39,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 33 entries,
+You've used 37 entries,
             2481 wiz_defined-function locations,
-            789 strings with 11458 characters,
-and the built_in function-call counts, 12447 in all, are:
-= -- 1102
-> -- 545
-< -- 27
-+ -- 228
-- -- 159
-* -- 914
-:= -- 1972
-add.period$ -- 143
-call.type$ -- 33
-change.case$ -- 54
-chr.to.int$ -- 30
-cite$ -- 45
-duplicate$ -- 659
-empty$ -- 1134
-format.name$ -- 198
-if$ -- 2681
+            827 strings with 12978 characters,
+and the built_in function-call counts, 14605 in all, are:
+= -- 1298
+> -- 673
+< -- 29
++ -- 274
+- -- 197
+* -- 1120
+:= -- 2319
+add.period$ -- 165
+call.type$ -- 37
+change.case$ -- 62
+chr.to.int$ -- 34
+cite$ -- 49
+duplicate$ -- 750
+empty$ -- 1303
+format.name$ -- 240
+if$ -- 3138
 int.to.chr$ -- 4
-int.to.str$ -- 34
-missing$ -- 24
-newline$ -- 215
-num.names$ -- 103
-pop$ -- 293
+int.to.str$ -- 38
+missing$ -- 28
+newline$ -- 244
+num.names$ -- 117
+pop$ -- 315
 preamble$ -- 1
-purify$ -- 33
+purify$ -- 37
 quote$ -- 0
-skip$ -- 386
+skip$ -- 436
 stack$ -- 0
-substring$ -- 441
-swap$ -- 154
-text.length$ -- 7
+substring$ -- 564
+swap$ -- 178
+text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 219
+type$ -- 247
 warning$ -- 12
-while$ -- 96
+while$ -- 114
 width$ -- 0
-write$ -- 501
+write$ -- 573
 (There were 3 error messages)

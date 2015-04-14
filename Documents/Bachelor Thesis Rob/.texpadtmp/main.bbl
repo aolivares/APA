@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{37}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -83,6 +83,50 @@ Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
   2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
   Aug 2008.
 \newblock \doi{10.1109/IEMBS.2008.4650382}.
+
+\bibitem[Mancini et~al.(2009)Mancini, Zampieri, Carlson-Kuhta, Chiari, and
+  Horak]{mancini_anticipatory_2009}
+M.~Mancini, C.~Zampieri, P.~Carlson-Kuhta, L.~Chiari, and F.~B. Horak.
+\newblock Anticipatory postural adjustments prior to step initiation are
+  hypometric in untreated parkinson's disease: an accelerometer-based approach.
+\newblock \emph{European Journal of Neurology: The Official Journal of the
+  European Federation of Neurological Societies}, 16\penalty0 (9):\penalty0
+  1028--1034, September 2009.
+\newblock ISSN 1468-1331.
+\newblock \doi{10.1111/j.1468-1331.2009.02641.x}.
+
+\bibitem[Palmerini et~al.(2011)Palmerini, Rocchi, Mellone, Valzania, and
+  Chiari]{palmerini_feature_2011}
+L.~Palmerini, L.~Rocchi, S.~Mellone, F.~Valzania, and L.~Chiari.
+\newblock Feature selection for accelerometer-based posture analysis in
+  parkinson \#x0027;s disease.
+\newblock \emph{{IEEE} Transactions on Information Technology in Biomedicine},
+  15\penalty0 (3):\penalty0 481--490, May 2011.
+\newblock ISSN 1089-7771.
+\newblock \doi{10.1109/TITB.2011.2107916}.
+
+\bibitem[Klerk et~al.(2009)Klerk, Vugt, Geelen, and
+  Heida]{klerk_long-term_2009}
+D.~G. M.~de Klerk, J.~P. P.~van Vugt, J.~a.~G. Geelen, and T.~Heida.
+\newblock A long-term monitor including activity classification for motor
+  assessment in parkinson’s disease patients.
+\newblock In Jos~Vander Sloten, Pascal Verdonck, Marc Nyssen, and Jens
+  Haueisen, editors, \emph{4th European Conference of the International
+  Federation for Medical and Biological Engineering}, number~22 in {IFMBE}
+  Proceedings, pages 1706--1709. Springer Berlin Heidelberg, January 2009.
+\newblock ISBN 978-3-540-89207-6, 978-3-540-89208-3.
+\newblock URL
+  \url{http://link.springer.com/chapter/10.1007/978-3-540-89208-3_406}.
+
+\bibitem[Wong et~al.(2007)Wong, Wong, and Lo]{wong_clinical_2007}
+Wai~Yin Wong, Man~Sang Wong, and Kam~Ho Lo.
+\newblock Clinical {Applications} of {Sensors} for {Human} {Posture} and
+  {Movement} {Analysis}: {A} {Review}.
+\newblock \emph{Prosthetics and Orthotics International}, 31\penalty0
+  (1):\penalty0 62--75, March 2007.
+\newblock ISSN 0309-3646, 1746-1553.
+\newblock \doi{10.1080/03093640600983949}.
+\newblock URL \url{http://poi.sagepub.com/content/31/1/62}.
 
 \bibitem[Olivares~Vicente(2013)]{olivares_vicente_signal_2013}
 Alberto Olivares~Vicente.
