@@ -108,6 +108,19 @@ In the acceleration signal case, this fact happens in the first positive peak af
 
 Once we understand the signal behaviour in connection with the patient movement we have to differentiate each cycles in the signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure XX shows the result.
 
+In addition we did a comparative study testing two different methods based on the  computation of the spectrum (Fourier Transform) of the input signal. Also, we tried several input signal to determine which is the best option to do the motion detection in this case.
+
+We will use the Long Term Spectral Detector (LTSD) \cite{Ramirez2004} and a variation of this called Framed Spectrum Detector (FSD). Spectrum-based methods have been used in others kinds of applications like Voice Activity detection \cite{Ramirez2006}\cite{Ramirez2007} and activity sequences detection such as running or sitting-standing up\cite{A.Olivares2013} .
+
+The technical difference between LTSD and FSD is that the first of them compute the Long term spectral Envelope whereas FSD uses the spectrum of each frame  in which the input signal is divided\cite{A.Olivares2013}. What we observe when we use them in our signals is that the results are better when we use LTSD instead of FSD method  in the amoung of the cases[figure]. 
+
+The LTSD method has a better decision rate than FSD method because it is designed to work under condition where the SNR is low, i.e the signal present large noise\cite{A.Olivares2013}. In our case, we want detect the differents cycles that corresponding to each repeat so the different peaks of activity inside each period can be a problema to do the detection correctly because really it is interpretated like noise for the detector. Thus, the LTSD method is more interesting for this type of signal.
+
+Once we select the best method for the detection we tested several input signal for the detector: shank acceleration signal, absolute value of the shank acceleratio signal and module of the shank acceleration signal. Finally, the best result was obtained when we used module of the shank acceleration signal because when this input signal is used in the resulting output signal is easier to distinguish the different episodes.
+
+Futhermore, the motion activity deterction was carried out for the right leg as well as left one. It is not neccessary in some cases when the patient do the movements or activities quickly as the detected activity interval  include both movements in the same episode. However, when patient spend some time to step again in the same repeat, it is possible that some step is not  include in the interval so the result would be erroneus. Thus, to realice a general algorism useful in whatever case we differenciate between both feet.
+
+
 Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time.
 
 Other important aspect is to consider the sample frequency. The sample frequency is 120 Hz in force plate signals and 200 Hz in GaitWatch signals. Thus, we have to reshape the Force Plate signals to match other signals.
