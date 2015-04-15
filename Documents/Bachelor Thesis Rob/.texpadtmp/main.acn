@@ -12,7 +12,7 @@
 \glossaryentry{CITIC-UGR?\glossentry{CITIC-UGR}|setentrycounter[]{page}\glsnumberformat}{iii}
 \glossaryentry{RMSE?\glossentry{RMSE}|setentrycounter[]{page}\glsnumberformat}{2}
 \glossaryentry{LTSD?\glossentry{LTSD}|setentrycounter[]{page}\glsnumberformat}{4}
-\glossaryentry{RMSE?\glossentry{RMSE}|setentrycounter[]{page}\glsnumberformat}{4}
+\glossaryentry{RMSE?\glossentry{RMSE}|setentrycounter[]{page}\glsnumberformat}{5}
 \glossaryentry{MEMS?\glossentry{MEMS}|setentrycounter[]{page}\glsnumberformat}{7}
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{7}
 \glossaryentry{MEMS?\glossentry{MEMS}|setentrycounter[]{page}\glsnumberformat}{8}
@@ -25,3 +25,4 @@
 \glossaryentry{Pendubot?\glossentry{pendubot}|setentrycounter[]{page}\glsnumberformat}{34}
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{34}
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{35}
+\glossaryentry{MARG sensors?\glossentry{MARG}|setentrycounter[]{page}\glsnumberformat}{39}
