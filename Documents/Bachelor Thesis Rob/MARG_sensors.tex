@@ -1,11 +1,11 @@
 \chapter{MARG Sensors}
 \label{ch:MARG}
 
-MARG sensors is a collective term for magnetic, angular rate, and gravitational sensors, which encompasses inertial sensors, as well as magnetic field sensors, also referred to as magnetometers. Inertial sensors itself generally fall into two categories: instruments sensing linear inertial displacement (accelerometers) and rotational inertial rate sensors (gyroscopes). They are applied in various contexts to quantify vibration, motion, and shock \cite{bhattacharyya_inertial_sensors_applications_13}. Particularly, the development of \gls{MEMS} opened up many medical applications as mentioned in Section \ref{sec:MARG_sensors_medical}. This chapter compiles the functional principles of MARG sensors and introduces \glspl{IMU} as a combination of those. At the end of the chapter the aforementioned GaitWatch device that was used to gather the movement data for the experiments is described in detail.
+MARG sensors is a collective term for magnetic, angular rate, and gravitational sensors, which encompasses inertial sensors, as well as magnetic field sensors, also referred to as magnetometers. Inertial sensors itself generally fall into two categories: instruments sensing linear inertial displacement (accelerometers) and rotational inertial rate sensors (gyroscopes). They are applied in various contexts to quantify vibration, motion, and shock \cite{bhattacharyya_inertial_sensors_applications_13}. Particularly, the development of \gls{MEMS} opened up many medical applications as stated in Section \ref{sec:MARG_sensors_medical}. This chapter compiles the functional principles of MARG sensors and introduces \glspl{IMU} as a combination of those. At the end of the chapter the aforementioned GaitWatch device that was used to gather the movement data for the experiments is described in detail.
 
 \section{Accelerometers}
 
-Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be measured directly, the force exerted to a reference mass is obtained. The resultant acceleration is computed according to Newton's second law $\mathbf{f} = m \cdot \mathbf{a}$, where $ \mathbf{f} \in \mathbb{R}^3$ denotes the force vector, $m$ the mass, and $\mathbf{a} \in \mathbb{R}^3$ the acceleration vector. Usually, an accelerometer consists of a small proof mass connected via a spring to the case of the instrument. The proof mass is displaced  by $\Delta x$ with respect to the case, when the instrument experiences a certain acceleration along its sensitive axis. Disregarding drag force, the displacement is directly proportional to the force exerted by the mass and thus to the acceleration. Therefore, by measuring the displacement of the proof mass the acceleration can be obtained. Figure \ref{fig:accelerometer} shows the displacement $\Delta x$ of the mass in respect to the case of the instrument for three different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $g$. According to how the mass displacement is sensed, accelerometers can be classified as resistive, capacitive, and piezoelectric. Besides there are surface acoustic wave, fibre optic, vibrating beam and solid-state \gls{MEMS} accelerometers. To obtain a three-dimensional accelerometer, three single-axis accelerometers are mounted together. Although a mutually orthogonal mount is common practice, any non-coplanar arrangement is acceptable, as long as the angles between the sensitive axes are known. Nowadays most accelerometers are manufactured using MEMS technology, which was developed for the military and aerospace markets in the 1970s \cite{bhattacharyya_inertial_sensors_applications_13}. 
+Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be sensed directly, the force exerted on a reference mass is measured. The resultant acceleration is computed according to Newton's second law $\mathbf{f} = m \cdot \mathbf{a}$, where $ \mathbf{f} \in \mathbb{R}^3$ denotes the force vector, $m$ the mass, and $\mathbf{a} \in \mathbb{R}^3$ the acceleration vector. Usually, an accelerometer consists of a small proof mass connected via a spring to the case of the instrument. The proof mass is displaced  by $\Delta x$ with respect to the case, when the instrument experiences a certain acceleration along its sensitive axis. Disregarding drag force, the displacement is directly proportional to the force exerted by the mass and thus to the acceleration. Therefore, by measuring the displacement of the proof mass the acceleration can be obtained. Figure \ref{fig:accelerometer} shows the displacement $\Delta x$ of the mass in respect to the case of the instrument for three different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $g$. According to how the mass displacement is sensed, accelerometers can be classified as resistive, capacitive, and piezoelectric. Besides, there are surface acoustic wave, fibre optic, vibrating beam and solid-state \gls{MEMS} accelerometers. To obtain a three-dimensional accelerometer, three single-axis accelerometers are mounted together. Although a mutually orthogonal mount is common practice, any non-coplanar arrangement is acceptable, as long as the angles between the sensitive axes are known. Nowadays most accelerometers are manufactured using MEMS technology, which was developed for the military and aerospace markets in the 1970s \cite{bhattacharyya_inertial_sensors_applications_13}. 
 
 \begin{figure}
 \centering
@@ -33,7 +33,37 @@ Accelerometers measure the acceleration of an object relative to an inertial fra
 
 \section{Gyroscopes}
 
-A Gyroscope is a device for measuring angular orientation based on the principle of preserving angular momentum. A spinning rotor tends to maintain the direction of its spin axis. This so-called Coriolis Effect is used to measure angular velocity. Gyroscopes are also referred to as angular velocity sensors or angular rate sensors. By integrating the angular velocity the rotation angle can obtained \cite{olivares_vicente_signal_2013}.
+Gyroscopes are used for measuring and maintaining angular orientation. Based on different physical principles, essentially the Sagnac and Coriolis effect, gyroscopes measure angular velocity, which is why they are also referred to as angular velocity sensors or angular rate sensors. By integrating the angular velocity the rotation angle can obtained. Here we will only elaborate on the working principle of vibrating gyroscopes, since they are employed in the GaitWatch device. \citeauthor{armenise2010advances} give a comprehensive overview of current gyroscope technologies in \cite{armenise2010advances}. Usually, vibrating gyroscopes are manufactured using MEMS technology. MEMS gyros are of low to medium accuracy \cite{bhattacharyya_inertial_sensors_applications_13}, but due to their size they are ideally suited for medical applications.
+
+Vibrating gyros, also called Coriolis vibratory gyroscope, sense angular velocity based on the effect of Coriolis force on a vibrating mass. The Coriolis force $\mathbf{f}_C$ is a fictitious force experienced by a mass $m$ moving in a rotating reference frame, when there is a variation of its distance with respect to the spin axis. It can be calculated by $\mathbf{f}_C = -2m(\bm{\omega} \times \mathbf{v})$, where $\mathbf{v}$ is the mass velocity in the rotating reference frame and $\bm{\omega}$ is the angular velocity of the reference frame. Using This relation the angular rate can be computed by measuring the Coriolis force.
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[auto, thick,>=latex', cross/.style={path picture={ 
+  \draw[black]
+(path picture bounding box.south east) -- (path picture bounding box.north west) (path picture bounding box.south west) -- (path picture bounding box.north east); }}]
+	\node [draw, rectangle, minimum height=4cm, minimum width=0.5cm, pattern=north west lines] at (-1,0) (solid1) {};
+
+    \node [draw, rectangle, minimum height=0.5cm, minimum width=4cm, pattern=north west lines] at (2,-3) (solid2) {};
+    
+    \node [draw, rectangle, minimum height=3cm, minimum width=3cm] at (2,0) (mass) {};
+      
+    \node[coordinate] (X) at (7,-1.1) {};
+    \node[coordinate] (Y) at (4.5,1.4) {};
+    \node[coordinate] (O) at (4.5, -1.1) {};
+    
+    \draw[->] (O) -- node[name=x] {$x$}(X);
+    \draw[->] (O) -- node[name=y] {$y$}(Y);
+    \node [draw,circle, fill=white,cross,minimum width=0.2 cm](z) at (4.5, -1.1){};
+    
+    \draw[-stealth] (2.25,1) arc (80:390:1);
+    
+    \node at (2.5, 1) (angle1) {$\omega$};
+    \node at (1, 1.1) (angle1) {$m$};
+\end{tikzpicture}
+\caption{Two degree-of-freedom spring-mass-damper system in a rotating reference frame, from \cite{armenise2010advances}.} \label{fig:gyroscope}
+\end{figure} 
+ 
 
 \section{Magnetometers}
 

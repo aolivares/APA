@@ -13,21 +13,21 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 209 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 218 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 269 of file ../Bibliography.bib
+Repeated entry---line 278 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 533 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 542 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 538 of file ../Bibliography.bib
+Illegal end of database file---line 547 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -46,45 +46,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 45 entries,
+You've used 46 entries,
             2481 wiz_defined-function locations,
-            884 strings with 15445 characters,
-and the built_in function-call counts, 18760 in all, are:
-= -- 1647
-> -- 917
+            890 strings with 15635 characters,
+and the built_in function-call counts, 19132 in all, are:
+= -- 1675
+> -- 944
 < -- 35
-+ -- 365
-- -- 271
-* -- 1468
-:= -- 2955
-add.period$ -- 202
-call.type$ -- 45
-change.case$ -- 78
-chr.to.int$ -- 41
-cite$ -- 59
-duplicate$ -- 949
-empty$ -- 1648
-format.name$ -- 324
-if$ -- 4047
++ -- 375
+- -- 279
+* -- 1498
+:= -- 3021
+add.period$ -- 207
+call.type$ -- 46
+change.case$ -- 79
+chr.to.int$ -- 42
+cite$ -- 60
+duplicate$ -- 968
+empty$ -- 1678
+format.name$ -- 333
+if$ -- 4124
 int.to.chr$ -- 5
-int.to.str$ -- 46
-missing$ -- 35
-newline$ -- 297
-num.names$ -- 141
-pop$ -- 388
+int.to.str$ -- 47
+missing$ -- 37
+newline$ -- 304
+num.names$ -- 144
+pop$ -- 398
 preamble$ -- 1
-purify$ -- 45
+purify$ -- 46
 quote$ -- 0
-skip$ -- 569
+skip$ -- 578
 stack$ -- 0
-substring$ -- 764
-swap$ -- 247
+substring$ -- 766
+swap$ -- 249
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 303
+type$ -- 307
 warning$ -- 14
-while$ -- 141
+while$ -- 143
 width$ -- 0
-write$ -- 700
+write$ -- 716
 (There were 4 error messages)
