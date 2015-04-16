@@ -130,6 +130,27 @@ All the key parameters and signals are saved using “time series”  for adding
 Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is very similar to prior signal however this is clearer to the naked eye.
 Nevertheless, the correlation between the peaks detected with both systems are almost the same. This indicates that it was done correctly and these detected points are suitable to do the synchronisation.
 
+In XX table we can see that the mean of the difference between the peaks detected with the accelerometer and gyroscope signals is less than 0.5 second in all cases, so it is very small. Also, the correlation between them is very high and the probability of no correlation is smaller than 0.05 what want to say that the correlation is significantly different from zero.
+
+\begin{table}[h]
+	\caption{Comparation between the peaks detected with acceletometer and gyroscope}	
+	\centering
+	\begin{tabular}{|c|c|c|c|}\hline
+		
+		Patient 				& Average peaks difference 	& Corr 	& Prob 	\\ \hline
+		ES39 & 0.3438			& 1.0									& 1.096 e-13					\\
+		RK55	& 0.3014			& 1.0									& 2.720 e-13				\\
+		RS46o & 0.2500			& 1.0									& 2.750  e-29					\\
+		MM57	& 0.4970			& 1.0									& 3.480 e-26					\\
+		WS42  & 0.3990			& 1.0									& 1.410 e-25					\\
+		SW47	& 0.3615			& 1.0									& 2.190 e-25					\\
+		TS40  & 0.2674			& 1.0									& 1.559 e-31				\\ \hline
+	\end{tabular}
+	\label{tab:comparationAccGyro}
+	
+\end{table}
+
+
 
 \section{APA analysis}
 
