@@ -18,7 +18,7 @@
 \BOOKMARK [1][-]{section.2.2}{Gyroscopes}{chapter.2}% 18
 \BOOKMARK [1][-]{section.2.3}{Magnetometers}{chapter.2}% 19
 \BOOKMARK [1][-]{section.2.4}{Inertial Measurement Units}{chapter.2}% 20
-\BOOKMARK [1][-]{section.2.5}{The GaitWatch}{chapter.2}% 21
+\BOOKMARK [2][-]{subsection.2.4.1}{The GaitWatch}{section.2.4}% 21
 \BOOKMARK [0][-]{chapter.3}{Orientation Estimation}{}% 22
 \BOOKMARK [1][-]{section.3.1}{Euler Angles}{chapter.3}% 23
 \BOOKMARK [1][-]{section.3.2}{Transformation Matrices}{chapter.3}% 24
