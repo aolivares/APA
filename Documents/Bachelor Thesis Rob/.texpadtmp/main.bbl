@@ -1,4 +1,4 @@
-\begin{thebibliography}{46}
+\begin{thebibliography}{47}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -316,6 +316,14 @@ The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
 {Sage Bionetworks}.
 \newblock {mPower: Mobile Parkinson Disease Study}.
 \newblock URL \url{http://parkinsonmpower.org}.
+
+\bibitem[Lenz and Edelstein(2006)]{lenz_magnetic_2006}
+J.~Lenz and Alan~S. Edelstein.
+\newblock Magnetic sensors and their applications.
+\newblock \emph{Sensors Journal, IEEE}, 6\penalty0 (3):\penalty0 631--649, June
+  2006.
+\newblock ISSN 1530-437X.
+\newblock \doi{10.1109/JSEN.2006.874493}.
 
 \bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
 {SparkFun Electronics}.

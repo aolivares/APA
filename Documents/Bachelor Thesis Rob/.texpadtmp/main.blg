@@ -22,12 +22,12 @@ Repeated entry---line 278 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 542 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 554 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 547 of file ../Bibliography.bib
+Illegal end of database file---line 559 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -46,45 +46,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 46 entries,
+You've used 47 entries,
             2481 wiz_defined-function locations,
-            890 strings with 15635 characters,
-and the built_in function-call counts, 19132 in all, are:
-= -- 1675
-> -- 944
-< -- 35
-+ -- 375
-- -- 279
-* -- 1498
-:= -- 3021
-add.period$ -- 207
-call.type$ -- 46
-change.case$ -- 79
-chr.to.int$ -- 42
-cite$ -- 60
-duplicate$ -- 968
-empty$ -- 1678
-format.name$ -- 333
-if$ -- 4124
+            895 strings with 15754 characters,
+and the built_in function-call counts, 19543 in all, are:
+= -- 1715
+> -- 959
+< -- 36
++ -- 381
+- -- 283
+* -- 1533
+:= -- 3085
+add.period$ -- 212
+call.type$ -- 47
+change.case$ -- 81
+chr.to.int$ -- 43
+cite$ -- 61
+duplicate$ -- 987
+empty$ -- 1716
+format.name$ -- 340
+if$ -- 4214
 int.to.chr$ -- 5
-int.to.str$ -- 47
-missing$ -- 37
-newline$ -- 304
-num.names$ -- 144
-pop$ -- 398
+int.to.str$ -- 48
+missing$ -- 38
+newline$ -- 311
+num.names$ -- 147
+pop$ -- 403
 preamble$ -- 1
-purify$ -- 46
+purify$ -- 47
 quote$ -- 0
-skip$ -- 578
+skip$ -- 589
 stack$ -- 0
-substring$ -- 766
-swap$ -- 249
+substring$ -- 789
+swap$ -- 252
 text.length$ -- 13
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 307
+type$ -- 314
 warning$ -- 14
-while$ -- 143
+while$ -- 146
 width$ -- 0
-write$ -- 716
+write$ -- 733
 (There were 4 error messages)
