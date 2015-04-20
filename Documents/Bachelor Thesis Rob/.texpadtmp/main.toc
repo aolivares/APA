@@ -2,9 +2,9 @@
 \contentsline {chapter}{Preface}{iii}{chapter*.2}
 \contentsline {chapter}{Abstract}{v}{chapter*.3}
 \contentsline {chapter}{Contents}{vii}{section*.4}
-\contentsline {chapter}{List of Figures}{x}{section*.7}
-\contentsline {chapter}{Abbreviations}{xi}{section*.10}
-\contentsline {chapter}{Notation}{xv}{section*.13}
+\contentsline {chapter}{List of Figures}{x}{chapter*.6}
+\contentsline {chapter}{Abbreviations}{xi}{chapter*.8}
+\contentsline {chapter}{Notation}{xv}{chapter*.10}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -47,4 +47,4 @@
 \contentsline {chapter}{\numberline {6}Conclusion and Future Work}{41}{chapter.6}
 \contentsline {section}{\numberline {6.1}Conclusions}{41}{section.6.1}
 \contentsline {section}{\numberline {6.2}Future Work}{42}{section.6.2}
-\contentsline {chapter}{Bibliography}{43}{section.6.2}
+\contentsline {chapter}{Bibliography}{43}{section*.27}

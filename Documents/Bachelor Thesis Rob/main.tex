@@ -69,9 +69,6 @@
     \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
     \renewcommand{\headfont}{\small}  
 
-\def\toc@heading{
-{\chapter*{\contentsname}}%chapters
-	 		\@mkboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}}
 
 
 \usepackage[osf, sc]{mathpazo}
@@ -111,7 +108,7 @@
   pdfproducer = {LaTeX}
 }
 
-\usepackage[acronym, nopostdot, nonumberlist]{glossaries}\newglossary[nlg]{notation}{not}{ntn}{Notation}
+\usepackage[acronym, nopostdot, nonumberlist, ucmark=true]{glossaries}\newglossary[nlg]{notation}{not}{ntn}{Notation}
 
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{4}
@@ -136,6 +133,8 @@
 \begin{document}
 
 	\frontmatter
+	
+	\pagestyle{scrheadings}
 
 	\include{Cover}
 	\clearemptydoublepage
@@ -155,35 +154,25 @@
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Contents}
 	\tableofcontents
-	\thispagestyle{plain}
+	\clearemptydoublepage
 		
 	\listoffigures
-	\phantomsection
 	\addcontentsline{toc}{chapter}{List of Figures}
-	\thispagestyle{plain}
 	\clearemptydoublepage
 
 %	\listoftables
-%	\phantomsection
 %	\addcontentsline{toc}{chapter}{List of Tables}
-%	\thispagestyle{plain}
 %	\clearemptydoublepage	
 	
 	\printglossary[type=acronym, title={Abbreviations}, style=super]
-	\phantomsection
 	\addcontentsline{toc}{chapter}{Abbreviations}
-	\thispagestyle{plain}
 	\clearemptydoublepage
     
     \printglossary[type=notation, style=super]
-    \phantomsection
     \addcontentsline{toc}{chapter}{Notation}
-    \thispagestyle{plain}
     \clearemptydoublepage
 	
 	\mainmatter
-	
-	\pagestyle{scrheadings}
 		
 	\include{Introduction}
 	\include{MARG_sensors}
@@ -193,6 +182,7 @@
 	\include{Conclusion}
 	
 	\clearemptydoublepage
+	\phantomsection
 	\bibliographystyle{unsrtnat}
 	\addcontentsline{toc}{chapter}{Bibliography}
 	\bibliography{Bibliography}

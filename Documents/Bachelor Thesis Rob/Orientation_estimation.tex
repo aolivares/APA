@@ -262,11 +262,14 @@ Unit quaternions, that is quaternions with unity norm, can be used to represent 
 Sequences of rotations can thus be represented by products of quaternions. The quaternion for a single rotation by $\alpha$ about the axis $\bm{\epsilon} \in \mathbb{R}^3$, $||\bm{\epsilon}|| = 1$, is given by
 
 \begin{equation}
-  \mathbf{r}_{\epsilon}(\alpha) = \begin{bmatrix}
+\begin{split}
+  \mathbf{r}_{\epsilon}(\alpha) &= \begin{bmatrix}
   	\cos \frac{\alpha}{2}, & \bm{\epsilon} \sin \frac{\alpha}{2}
-  \end{bmatrix}^T = \begin{bmatrix}
+  \end{bmatrix}^T \\
+  &= \begin{bmatrix}
   	\cos \frac{\alpha}{2}, & \epsilon _1 \sin \frac{\alpha}{2}, & \epsilon _2 \sin \frac{\alpha}{2}, & \epsilon _3 \sin \frac{\alpha}{2}
   \end{bmatrix}^T\,.
+\end{split}
 \end{equation}
 
 \noindent
