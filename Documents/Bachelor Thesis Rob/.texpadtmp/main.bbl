@@ -1,4 +1,4 @@
-\begin{thebibliography}{47}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -324,6 +324,13 @@ J.~Lenz and Alan~S. Edelstein.
   2006.
 \newblock ISSN 1530-437X.
 \newblock \doi{10.1109/JSEN.2006.874493}.
+
+\bibitem[Thompson et~al.(2011)Thompson, Li, and Horsley]{thompson_lorentz_2011}
+M.J. Thompson, M.~Li, and D.A. Horsley.
+\newblock Low power 3-axis {Lorentz} force navigation magnetometer.
+\newblock In \emph{Micro Electro Mechanical Systems (MEMS), 2011 IEEE 24th
+  International Conference on}, pages 593--596, Jan 2011.
+\newblock \doi{10.1109/MEMSYS.2011.5734494}.
 
 \bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
 {SparkFun Electronics}.

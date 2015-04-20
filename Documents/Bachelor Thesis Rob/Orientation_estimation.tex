@@ -5,7 +5,7 @@ This chapter covers fundamentals of orientation estimation that are necessary fo
 
 \section{Euler Angles}
 
-Euler angles are one of several ways to describe the orientation of an object and its associated body frame in three-dimensional Euclidean space, with respect to the navigation frame, i.e. the reference frame. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
+Euler angles are one of several ways to describe the orientation of an object and its associated body frame in three-dimensional Euclidean space, with respect to a reference frame. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
 
 \begin{itemize}
 \item The \emph{roll} angle $\phi$ determines the rotation around the $x$-axis with a range $-\pi < \phi \leq \pi$.
@@ -39,14 +39,14 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', Z$ by 
 \caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
-Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$ for $n \in \mathbb{Z}$. At these points a rotation about the $X$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}. The usage of \emph{quaternions} instead of Euler angles avoids the problem of gimbal locks.
+Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$, $n \in \mathbb{Z}$. At these points a rotation about the $x$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}. The usage of \emph{quaternions} instead of Euler angles avoids the problem of gimbal locks.
 
-\section{Transformation Matrices}
+\subsection{Transformation Matrix}
 
-Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}'$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{b}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}'$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}: (b_1, b_2, b3) \mapsto (b1^{'}, b2^{'}, b3^{'})$. Then, the transformation from $\mathbf{b}$ to $\mathbf{b}^{'}$ is given by
+Coordinates representing a point in one coordinate system can be transformed to another. Such a linear transformations can be expressed as multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}'$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{p}$ denote the position vector of a point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}'$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}: (p_1, p_2, p_3) \mapsto (p'_1, p'_2, p'_3)$. Then, the transformation from $\mathbf{}$ to $\mathbf{p}'$ is given by
 
 \begin{equation}\label{eq:transformation}
-  \mathbf{b'} = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}(\mathbf{b}) = \mathbf{T} \mathbf{b}\,,
+  \mathbf{p'} = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}(\mathbf{p}) = \mathbf{T} \mathbf{p}\,,
 \end{equation}
 
 \noindent

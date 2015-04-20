@@ -1,11 +1,81 @@
 \NeedsTeXFormat{LaTeX2e}
 \documentclass[12pt, a4paper]{book}
 
-\usepackage[sc]{mathpazo}
-\linespread{1.05}
-\usepackage[Lenny]{fncychap}
-\usepackage{fancyhdr}
 \usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor} 
+\definecolor{halfgray}{gray}{0.55} % chapter numbers will be semi transparent .5 .55 .6 .0
+\usepackage{xspace}
+\usepackage{mparhack}
+\let\oldmarginpar\marginpar
+\renewcommand{\marginpar}[1]{\oldmarginpar%
+ [\raggedleft\hspace{0pt}{#1}]%
+ {\raggedright\hspace{0pt}{#1}}}
+
+\usepackage{textcase} 
+\usepackage{soul} % for letterspacing 
+                \sodef\allcapsspacing{\upshape}{0.15em}{0.65em}{0.6em}%
+                \sodef\lowsmallcapsspacing{\scshape}{0.075em}{0.5em}{0.6em}%   
+                \DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}%   
+                \DeclareRobustCommand{\spacedlowsmallcaps}[1]{\MakeTextLowercase{\textsc{\lowsmallcapsspacing{#1}}}}%\protect
+                
+ \DeclareRobustCommand{\spacedallcaps}[1]{\MakeTextUppercase{\allcapsspacing{#1}}}
+ 
+% \newfont{\chapterNumber}{eurb10 scaled 7000}
+\newfont{\chapterNumber}{pplr9d scaled 7000}
+ 
+\usepackage{titlesec}
+% something like Bringhurst  
+    \titleformat{\chapter}[display]%
+        {\relax} % format
+{\mbox{}\oldmarginpar{\vspace*{-3\baselineskip}\color{halfgray}\chapterNumber\thechapter}} % label
+{0pt} % sep
+{\raggedright\spacedallcaps} % before-code
+[\normalsize\vspace*{.8\baselineskip}\titlerule] % after-code 
+    
+    % sections \FloatBarrier
+    \titleformat{\section}
+        {\relax}{\textsc{\MakeTextLowercase{\thesection}}}{1em}{\spacedlowsmallcaps}
+    % subsections
+    \titleformat{\subsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsection}}}{1em}{\normalsize\itshape}
+    % subsubsections
+    \titleformat{\subsubsection}
+        {\relax}{\textsc{\MakeTextLowercase{\thesubsubsection}}}{1em}{\normalsize\itshape}
+        
+\usepackage[titles]{tocloft}
+
+% chapters
+        	\renewcommand{\cftchappresnum}{\scshape\MakeTextLowercase}%
+            \renewcommand{\cftchapfont}{\scshape}%
+            \renewcommand{\cftchappagefont}{\normalfont}%
+            
+            \renewcommand{\cftsecpresnum}{\scshape\MakeTextLowercase}%
+    	\renewcommand{\cftsecfont}{\normalfont}%
+      \renewcommand{\cftsecpagefont}{\normalfont}%
+      
+%      \renewcommand{\cftchapleader}{\hspace{1.5em}}% 
+%            	\renewcommand{\cftchapafterpnum}{\cftparfillskip}% 
+%            	\renewcommand{\cftsecleader}{\hspace{1.5em}}% 
+%      	\renewcommand{\cftsecafterpnum}{\cftparfillskip}%
+%      	\renewcommand{\cftsubsecleader}{\hspace{1.5em}}% 
+%      	\renewcommand{\cftsubsecafterpnum}{\cftparfillskip}
+
+	\usepackage[automark]{scrpage2} % provides headers and footers (KOMA Script)
+    \clearscrheadings
+    \setheadsepline{0pt}
+    \renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+    \renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}} 
+    \lehead{\mbox{\llap{\small\thepage\kern2em}\headmark\hfil}}
+    \rohead{\mbox{\hfil{\headmark}\rlap{\small\kern2em\thepage}}}
+    \renewcommand{\headfont}{\small}  
+
+\def\toc@heading{
+{\chapter*{\contentsname}}%chapters
+	 		\@mkboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}}
+
+
+\usepackage[osf, sc]{mathpazo}
+\linespread{1.05}
 \usepackage{blindtext}
 \usepackage{tikz}
 \usetikzlibrary{shapes, arrows,calc,patterns,decorations.pathmorphing, decorations.markings}
@@ -46,10 +116,6 @@
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{4}
 
-\lhead[\fancyplain{}{\thepage}]{\fancyplain{}{\sl\nouppercase\rightmark}}
-\rhead[\fancyplain{}{\sl\nouppercase\leftmark}]{\fancyplain{}{\thepage}}
-\cfoot{}
-
 \clubpenalty = 10000
 \widowpenalty = 10000 
 \displaywidowpenalty = 10000
@@ -80,13 +146,9 @@
 	\include{Statement}
 	\clearemptydoublepage
 	
-	\phantomsection
-	\addcontentsline{toc}{chapter}{Preface}
 	\include{Preface}
 	\clearemptydoublepage
 
-	\phantomsection
-	\addcontentsline{toc}{chapter}{Abstract}
 	\include{Abstract}
 	\clearemptydoublepage
 	
@@ -121,7 +183,7 @@
 	
 	\mainmatter
 	
-	\pagestyle{fancyplain}
+	\pagestyle{scrheadings}
 		
 	\include{Introduction}
 	\include{MARG_sensors}

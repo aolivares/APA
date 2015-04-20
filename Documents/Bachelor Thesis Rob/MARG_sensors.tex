@@ -101,19 +101,15 @@ Usually, vibrating gyroscopes are manufactured using MEMS technology. MEMS gyros
 
 \section{Magnetometers}
 
-Magnetometers measure the strength and the direction of the magnetic field at a point in space. There are numerous techniques used to produce magnetic field sensors, which exploit a broad range of physical phenomena \cite{lenz_magnetic_2006}. Many magnetic sensors use the relationship between magnetic fields, movement and induced currents \cite{olivares_vicente_signal_2013}. \citeauthor{lenz_magnetic_2006} deliver a complete survey of common technologies used for magnetic field sensing in \cite{lenz_magnetic_2006}. Most \gls{MEMS} magnetometers sense mechanical motion of the MEMS structure due to the Lorentz force on a current-carrying conductor in the magnetic field.
-
-In body motion analysis magnetometers are mainly used for calibration of accelerometers and gyroscopes.
+Magnetometers measure the strength and the direction of the magnetic field at a point in space. There are numerous techniques used to produce magnetic field sensors, which exploit a broad range of physical phenomena \cite{lenz_magnetic_2006}. \citeauthor{lenz_magnetic_2006} give a complete survey of common technologies used for magnetic field sensing in \cite{lenz_magnetic_2006}. Many \gls{MEMS} magnetometers sense mechanical motion of a MEMS structure due to Lorentz force and estimate the strength of the magnetic field according to the displacement. When an external magnetic field interacts with a current-carrying silicon MEMS structure the Lorentz force causes a displacement of this structure. Piezoresistive, capacitive, or optical sensing can be used to detect the displacement of the MEMS structure. MEMS Lorentz force magnetometers are free from hysteresis, require no specialised materials and can be monolithically integrated with other MEMS inertial sensors \cite{thompson_lorentz_2011}.
 
 \section{Inertial Measurement Units}
 
-Devices using a combination of accelerometers and gyroscopes to measure the orientation of a rigid body with up to six degrees of freedom are referred to as \glspl{IMU}. If they include additional magnetometers they are termed \glspl{MIMU} and can obtain the orientation of the body with up to nine degrees of freedom, whereby the number of degrees of freedom states the number of independent motions, with respect to a reference frame, that are allowed to the body in space.
-
-\glspl{MIMU} are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the measurement interval. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}.
+Devices using a combination of accelerometers and gyroscopes to measure the orientation of a rigid body with up to six degrees of freedom are referred to as \glspl{IMU}. If they include additional magnetometers they are termed \glspl{MIMU}. The number of degrees of freedom states the number of independent motions, with respect to a reference frame, that are allowed to the body in space. \glspl{MIMU} are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the measurement interval. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}.
 
 \subsection{The GaitWatch}
 
-The above mentioned GaitWatch device we used to gather the movement data was designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
+The above-mentioned GaitWatch device was designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain. The system is composed of a set of embedded magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the embedded box sensors, as well as from the external measurement units, and storing them on a memory card. The various units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
 
 
 \begin{itemize}
@@ -142,7 +138,7 @@ Micromag3 \allowbreak triaxial magnetometer with a measurement range of ±11\,Ga
     \node [] (b) at (-4.5, 0.1) {Type B};
     \node [align=center] (c) at (4.45, 3.3) {CPU and \\ Type C};
 \end{tikzpicture}
-\caption{Placement of the GaitWatch components at the body from \cite{olivares_vicente_gaitwatch_2013}.}
+\caption{Placement of the GaitWatch components at the body, from \cite{olivares_vicente_gaitwatch_2013}.}
 	\label{fig:GaitWatch_placement}
 \end{figure}
 

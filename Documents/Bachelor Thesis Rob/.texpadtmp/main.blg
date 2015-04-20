@@ -22,12 +22,12 @@ Repeated entry---line 278 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 554 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 564 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 559 of file ../Bibliography.bib
+Illegal end of database file---line 569 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -46,45 +46,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 47 entries,
+You've used 48 entries,
             2481 wiz_defined-function locations,
-            895 strings with 15754 characters,
-and the built_in function-call counts, 19543 in all, are:
-= -- 1715
-> -- 959
-< -- 36
-+ -- 381
-- -- 283
-* -- 1533
-:= -- 3085
-add.period$ -- 212
-call.type$ -- 47
-change.case$ -- 81
-chr.to.int$ -- 43
-cite$ -- 61
-duplicate$ -- 987
-empty$ -- 1716
-format.name$ -- 340
-if$ -- 4214
+            902 strings with 16000 characters,
+and the built_in function-call counts, 20077 in all, are:
+= -- 1763
+> -- 980
+< -- 37
++ -- 389
+- -- 289
+* -- 1571
+:= -- 3158
+add.period$ -- 216
+call.type$ -- 48
+change.case$ -- 83
+chr.to.int$ -- 44
+cite$ -- 62
+duplicate$ -- 1018
+empty$ -- 1767
+format.name$ -- 347
+if$ -- 4340
 int.to.chr$ -- 5
-int.to.str$ -- 48
-missing$ -- 38
-newline$ -- 311
-num.names$ -- 147
-pop$ -- 403
+int.to.str$ -- 49
+missing$ -- 39
+newline$ -- 317
+num.names$ -- 150
+pop$ -- 414
 preamble$ -- 1
-purify$ -- 47
+purify$ -- 48
 quote$ -- 0
-skip$ -- 589
+skip$ -- 611
 stack$ -- 0
-substring$ -- 789
-swap$ -- 252
-text.length$ -- 13
+substring$ -- 819
+swap$ -- 265
+text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 314
+type$ -- 321
 warning$ -- 14
-while$ -- 146
+while$ -- 150
 width$ -- 0
-write$ -- 733
+write$ -- 748
 (There were 4 error messages)

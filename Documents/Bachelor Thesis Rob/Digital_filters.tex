@@ -32,7 +32,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 \caption{Block diagram depicting the components involved in state estimation from \cite{haykin2002adaptive}.} \label{fig:state_estimation}
 \end{figure}
 
-\section{Wiener Filters}
+\section{The Wiener Filter}
 
 A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $w_0, w_1, w_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $n$ it produces an output designated by $\hat{x}(n)$, which provides an estimate of a desired response denoted by $d(n)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem and the resulting requirement is summarised with the following statement:
 
@@ -435,7 +435,7 @@ The Kalman filter equations can be divided into two groups: \emph{time update} E
 \end{figure}
 
 
-\section{The Extended Kalman Filter}
+\subsection{The Extended Kalman Filter}
 
 Up to this point the Kalman filter has solved the filtering problem for linear time-dynamical systems. One may extend the Kalman filter to systems with state dynamics governed by non-linear state transformations
 
