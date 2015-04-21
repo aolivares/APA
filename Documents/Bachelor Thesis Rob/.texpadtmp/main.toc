@@ -21,9 +21,9 @@
 \contentsline {subsection}{\numberline {2.4.1}The GaitWatch}{11}{subsection.2.4.1}
 \contentsline {chapter}{\numberline {3}Orientation Estimation}{13}{chapter.3}
 \contentsline {section}{\numberline {3.1}Euler Angles}{13}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Transformation Matrix}{15}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.1}Transformation Matrix}{14}{subsection.3.1.1}
 \contentsline {section}{\numberline {3.2}Quaternions}{16}{section.3.2}
-\contentsline {section}{\numberline {3.3}Projection of Gravity Vector and Earth's Magnetic Field Vector}{18}{section.3.3}
+\contentsline {section}{\numberline {3.3}Projection of the Gravity Vector and Earth's Magnetic Field Vector}{18}{section.3.3}
 \contentsline {section}{\numberline {3.4}Integration of Angular Rate}{19}{section.3.4}
 \contentsline {section}{\numberline {3.5}Sensor Fusion}{19}{section.3.5}
 \contentsline {chapter}{\numberline {4}Digital Filters}{21}{chapter.4}
@@ -34,17 +34,17 @@
 \contentsline {subsection}{\numberline {4.4.1}An Introductory Example}{24}{subsection.4.4.1}
 \contentsline {subsection}{\numberline {4.4.2}Formulation of the Kalman Filter Equations}{29}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}The Extended Kalman Filter}{31}{subsection.4.4.3}
-\contentsline {chapter}{\numberline {5}Implementation}{35}{chapter.5}
-\contentsline {section}{\numberline {5.1}Initial Situation}{35}{section.5.1}
-\contentsline {section}{\numberline {5.2}Theoretical Design}{35}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Kinematic model}{35}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Extended Kalman Filter Model}{37}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Implementation}{39}{section.5.3}
-\contentsline {section}{\numberline {5.4}Experiments}{39}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Test Sequence}{40}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Results}{40}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discussion}{40}{section.5.6}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{41}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{41}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{42}{section.6.2}
-\contentsline {chapter}{Bibliography}{43}{section*.27}
+\contentsline {chapter}{\numberline {5}Implementation}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Initial Situation}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Theoretical Design}{37}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Kinematic model}{37}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Extended Kalman Filter Model}{39}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Implementation}{41}{section.5.3}
+\contentsline {section}{\numberline {5.4}Experiments}{41}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Test Sequence}{42}{subsection.5.4.1}
+\contentsline {section}{\numberline {5.5}Results}{42}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discussion}{42}{section.5.6}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{43}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{43}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{44}{section.6.2}
+\contentsline {chapter}{Bibliography}{45}{section*.27}

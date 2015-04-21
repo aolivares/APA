@@ -8,17 +8,17 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi , \theta , \phi $ about the axes $z, y', X$, respectively. Adapted from \cite {Wiki_taitbryan}.\relax }}{14}{figure.caption.14}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces An exemplary coordinate rotation about the $z$-axis by an angle $\psi $, illustrating the orthogonal projection on the resulting axes $x', y', z'$.\relax }}{16}{figure.caption.15}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Acceleration seen by the sensor (b) with and (a) without motion from \cite {bennett_motion_2014}.\relax }}{19}{figure.caption.16}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Acceleration seen by the sensor (b) with and (a) without motion, from \cite {bennett_motion_2014}.\relax }}{19}{figure.caption.16}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Block diagram depicting the components involved in state estimation from \cite {haykin2002adaptive}.\relax }}{22}{figure.caption.17}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Block diagram representation of the statistical filtering problem from \cite {haykin2002adaptive}.\relax }}{23}{figure.caption.18}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Conditional density of position based on measurement value $z_1$ from \cite {Maybeck79}.\relax }}{25}{figure.caption.19}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Conditional density of position based on measurement value $z_2$ alone from \cite {Maybeck79}.\relax }}{25}{figure.caption.20}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Conditional density of position based on data $z_1$ and $z_2$ from \cite {Maybeck79}.\relax }}{26}{figure.caption.21}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Propagation of conditional probability density from \cite {Maybeck79}.\relax }}{28}{figure.caption.22}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Block diagram depicting the components involved in state estimation, from \cite {haykin2002adaptive}.\relax }}{22}{figure.caption.17}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Block diagram representation of the statistical filtering problem, from \cite {haykin2002adaptive}.\relax }}{23}{figure.caption.18}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Conditional probability density of position based on measurement value $z_1$, from \cite {Maybeck79}.\relax }}{25}{figure.caption.19}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Conditional probability density of position based on measurement value $z_2$ alone, from \cite {Maybeck79}.\relax }}{25}{figure.caption.20}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Conditional probability density of position based on data $z_1$ and $z_2$, from \cite {Maybeck79}.\relax }}{26}{figure.caption.21}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Propagation of conditional probability density, from \cite {Maybeck79}.\relax }}{28}{figure.caption.22}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Block diagram depicting the relation between a discrete-time dynamical system, its observation, and the Kalman filter.\relax }}{31}{figure.caption.23}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Operation cycle of the Kalman filter algorithm illustrating predict and correct behaviour.\relax }}{32}{figure.caption.24}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Operation cycle of the extended Kalman filter algorithm illustrating predict and correct behaviour.\relax }}{34}{figure.caption.25}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Operation cycle of the Kalman filter algorithm illustrating `predict and correct' behaviour.\relax }}{32}{figure.caption.24}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.\relax }}{35}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces (a) Kinematic model of the human leg, from \cite {bennett_motion_2014}, and (b) , from \cite {tao_gait_2012}.\relax }}{36}{figure.caption.26}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces (a) Kinematic model of the human leg, from \cite {bennett_motion_2014}, and (b) , from \cite {tao_gait_2012}.\relax }}{38}{figure.caption.26}
 \addvspace {10\p@ }

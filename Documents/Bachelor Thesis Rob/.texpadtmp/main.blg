@@ -13,27 +13,33 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 218 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 233 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 278 of file ../Bibliography.bib
+Repeated entry---line 293 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 564 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 494 of file ../Bibliography.bib
+ :   
+ :   month={October},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 589 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 569 of file ../Bibliography.bib
+Illegal end of database file---line 594 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Wiki_taitbryan
+Warning--empty author in Maybeck79
 Warning--empty booktitle in bennett_extended_2013
 Warning--empty year in emarketer_smartphones
 Warning--empty year in Intel_2013
@@ -46,45 +52,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 48 entries,
+You've used 49 entries,
             2481 wiz_defined-function locations,
-            902 strings with 16000 characters,
-and the built_in function-call counts, 20077 in all, are:
-= -- 1763
-> -- 980
-< -- 37
-+ -- 389
-- -- 289
-* -- 1571
-:= -- 3158
-add.period$ -- 216
-call.type$ -- 48
-change.case$ -- 83
-chr.to.int$ -- 44
-cite$ -- 62
-duplicate$ -- 1018
-empty$ -- 1767
-format.name$ -- 347
-if$ -- 4340
+            912 strings with 16286 characters,
+and the built_in function-call counts, 20504 in all, are:
+= -- 1812
+> -- 984
+< -- 38
++ -- 392
+- -- 290
+* -- 1603
+:= -- 3213
+add.period$ -- 220
+call.type$ -- 49
+change.case$ -- 87
+chr.to.int$ -- 45
+cite$ -- 65
+duplicate$ -- 1043
+empty$ -- 1810
+format.name$ -- 348
+if$ -- 4444
 int.to.chr$ -- 5
-int.to.str$ -- 49
-missing$ -- 39
-newline$ -- 317
-num.names$ -- 150
-pop$ -- 414
+int.to.str$ -- 50
+missing$ -- 38
+newline$ -- 322
+num.names$ -- 152
+pop$ -- 418
 preamble$ -- 1
-purify$ -- 48
+purify$ -- 49
 quote$ -- 0
-skip$ -- 611
+skip$ -- 630
 stack$ -- 0
-substring$ -- 819
-swap$ -- 265
-text.length$ -- 14
+substring$ -- 845
+swap$ -- 273
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 321
-warning$ -- 14
-while$ -- 150
+type$ -- 331
+warning$ -- 15
+while$ -- 153
 width$ -- 0
-write$ -- 748
-(There were 4 error messages)
+write$ -- 764
+(There were 5 error messages)
