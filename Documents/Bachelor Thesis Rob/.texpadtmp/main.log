@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  22 APR 2015 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  22 APR 2015 23:11
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1281,11 +1281,7 @@ Package glossaries Info: Writing glossary file main.ntn on input line 124.
 
 LaTeX Warning: Label `eq:Phi_first_order' multiply defined.
 
-) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux
-
-LaTeX Warning: Label `fig:robot' multiply defined.
-
-) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
+) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
@@ -1308,9 +1304,9 @@ File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 134.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 134.
 LaTeX Font Info:    ... okay on input line 134.
-LaTeX Font Info:    Try loading font information for OT1+pplj on input line 134.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplj.fd
-File: ot1pplj.fd 2004/09/06 font definitions for OT1/pplj.
+LaTeX Font Info:    Try loading font information for OT1+pplx on input line 134.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplx.fd
+File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
 ) (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count227
@@ -1394,10 +1390,6 @@ File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
 (pdftex.def)             Requested size: 142.26378pt x 63.83818pt.
-LaTeX Font Info:    Try loading font information for OT1+pplx on input line 33.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplx.fd
-File: ot1pplx.fd 2004/09/06 font definitions for OT1/pplx.
-)
 LaTeX Font Info:    Try loading font information for OML+zplm on input line 33.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/omlzplm.fd
 File: omlzplm.fd 2002/09/08 Fontinst v1.914 font definitions for OML/zplm.
@@ -1490,8 +1482,8 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.toc
-LaTeX Font Info:    Font shape `OT1/pplj/bx/n' in size <12> not available
-(Font)              Font shape `OT1/pplj/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/pplx/bx/n' in size <12> not available
+(Font)              Font shape `OT1/pplx/b/n' tried instead on input line 1.
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
@@ -1506,12 +1498,17 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [8] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.lof
 Overfull \hbox (7.11273pt too wide) in paragraph at lines 5--5
- [][] [][]\OT1/pplj/m/n/12 A mass-and-spring ac-celerom-e-ter un-der dif-fer-ent con-di-tions: 
+ [][] [][]\OT1/pplx/m/n/12 A mass-and-spring ac-celerom-e-ter un-der dif-fer-ent con-di-tions: 
+ []
+
+
+Overfull \hbox (7.04124pt too wide) in paragraph at lines 9--9
+ \OT1/pplx/m/n/12 ler an-gles $\OML/zplm/m/it/12  \OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^R\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^^$ \OT1/pplx/m/n/12 about the axes $\OML/zplm/m/it/12 z\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 y[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 X$\OT1/pplx/m/n/12 , re-spec-tively. Adapted 
  []
 
 
 Overfull \hbox (2.9976pt too wide) in paragraph at lines 14--14
- [][] [][]\OT1/pplj/m/n/12 Block di-a-gram rep-re-sen-ta-tion of the sta-tis-ti-cal fil-ter-ing prob- 
+ [][] [][]\OT1/pplx/m/n/12 Block di-a-gram rep-re-sen-ta-tion of the sta-tis-ti-cal fil-ter-ing prob- 
  []
 
 
@@ -1576,7 +1573,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Chapter 1.
 
 Overfull \hbox (1.49678pt too wide) in paragraph at lines 6--7
-[]\OT1/pplj/m/n/12 Unobtrusive wear-able sen-sors mit-i-gate the afore-men-tioned lim-i-ta-tions.
+[]\OT1/pplx/m/n/12 Unobtrusive wear-able sen-sors mit-i-gate the afore-men-tioned lim-i-ta-tions.
  []
 
 
@@ -1587,9 +1584,9 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 ]
-LaTeX Font Info:    Try loading font information for TS1+pplj on input line 16.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplj.fd
-File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
+LaTeX Font Info:    Try loading font information for TS1+pplx on input line 16.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplx.fd
+File: ts1pplx.fd 2004/09/06 font definitions for TS1/pplx.
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
@@ -1701,12 +1698,12 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [17]
-Overfull \hbox (8.59056pt too wide) in paragraph at lines 293--293
- |[]\OT1/pplj/m/sc/12 p r o -j e c -t i o n o f t h e g r a v -i t y v e c -t o r a n d e a r t h ' s m a g -n e t i c
+Overfull \hbox (8.59056pt too wide) in paragraph at lines 295--295
+ |[]\OT1/pplx/m/sc/12 p r o -j e c -t i o n o f t h e g r a v -i t y v e c -t o r a n d e a r t h ' s m a g -n e t i c
  []
 
 
-Overfull \hbox (14.05562pt too wide) in paragraph at lines 341--342
+Overfull \hbox (14.05562pt too wide) in paragraph at lines 343--344
 [][] 
  []
 
@@ -1791,7 +1788,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 ]
 Chapter 5.
-<images/sensors_on_leg.pdf, id=974, 125.55606pt x 277.95004pt>
+<images/sensors_on_leg.pdf, id=975, 125.55606pt x 277.95004pt>
 File: images/sensors_on_leg.pdf Graphic file (type pdf)
  <use images/sensors_on_leg.pdf>
 Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 15.
@@ -1812,6 +1809,9 @@ Missing character: There is no ; in font nullfont!
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [37]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [38 <./images/sensors_on_leg.pdf>]
@@ -1823,11 +1823,11 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [40]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 183.
+(amsmath)                trying to recover with `aligned' on input line 188.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 187.
+(amsmath)                trying to recover with `aligned' on input line 192.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1836,9 +1836,19 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [42]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [43]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [44
+
+
+
+]
 Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1846,84 +1856,80 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [43
-
-
-
-])
+ [45])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [44] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
+ [46] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
 Underfull \hbox (badness 1048) in paragraph at lines 10--18
-\OT1/pplj/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
+\OT1/pplx/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 32--36
-[]$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplj/m/n/12 .
+[]$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplx/m/n/12 .
  []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [45
+ [47
 
 
 
 ]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [46]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [47]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
  [48]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [49]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [50]
 Underfull \hbox (badness 2547) in paragraph at lines 299--304
-[]\OT1/pplj/m/n/12 eMarketer.  2 Bil-lion Con-sumers World-wide to Get Smart-
+[]\OT1/pplx/m/n/12 eMarketer.  2 Bil-lion Con-sumers World-wide to Get Smart-
  []
 
 
 Underfull \hbox (badness 3884) in paragraph at lines 299--304
-\OT1/pplj/m/n/12 phones by 2016.  URL []$\OT1/cmtt/m/n/12 http : / / www . emarketer . com / Article /
+\OT1/pplx/m/n/12 phones by 2016.  URL []$\OT1/cmtt/m/n/12 http : / / www . emarketer . com / Article /
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 299--304
-\OT1/cmtt/m/n/12 2-[]Billion-[]Consumers-[]Worldwide-[]Smartphones-[]by-[]2016 / 1011694$[]\OT1/pplj/m/n/12 .
+\OT1/cmtt/m/n/12 2-[]Billion-[]Consumers-[]Worldwide-[]Smartphones-[]by-[]2016 / 1011694$[]\OT1/pplx/m/n/12 .
  []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [49]
+ [51]
 Underfull \hbox (badness 2564) in paragraph at lines 352--358
-\OT1/pplj/m/it/12 celerom-e-ter\OT1/pplj/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
+\OT1/pplx/m/it/12 celerom-e-ter\OT1/pplx/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
 
 
 Underfull \hbox (badness 2503) in paragraph at lines 352--358
-\OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
+\OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
 
 Underfull \hbox (badness 1742) in paragraph at lines 360--366
-[]\OT1/pplj/m/n/12 Analog De-vices.  \OT1/pplj/m/it/12 ADXL345: 3-Axis, \TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 2g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 4g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 8g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 16g Dig-i-tal
+[]\OT1/pplx/m/n/12 Analog De-vices.  \OT1/pplx/m/it/12 ADXL345: 3-Axis, \TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 2g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 4g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 8g/\TS1/pplx/m/it/12 ±\OT1/pplx/m/it/12 16g Dig-i-tal
  []
 
 
 Underfull \hbox (badness 2503) in paragraph at lines 360--366
-\OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
+\OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplx/m/n/12 .  [Ac-
  []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [50])
+ [52])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51] [52
+ [53] [54
 
 ]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 192.
@@ -1939,18 +1945,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35123 strings out of 493117
- 664652 string characters out of 6135432
- 851993 words of memory out of 5000000
- 37464 multiletter control sequences out of 15000+600000
- 63878 words of font info for 159 fonts, out of 8000000 for 9000
+ 35111 strings out of 493117
+ 664502 string characters out of 6135432
+ 852966 words of memory out of 5000000
+ 37456 multiletter control sequences out of 15000+600000
+ 59800 words of font info for 152 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,77p,1942b,1052s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (70 pages, 518938 bytes).
+{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (72 pages, 512144 bytes).
 PDF statistics:
- 1263 PDF objects out of 1440 (max. 8388607)
- 1118 compressed objects within 12 object streams
- 318 named destinations out of 1000 (max. 500000)
+ 1271 PDF objects out of 1440 (max. 8388607)
+ 1125 compressed objects within 12 object streams
+ 320 named destinations out of 1000 (max. 500000)
  451 words of extra memory for PDF output out of 10000 (max. 10000000)
 

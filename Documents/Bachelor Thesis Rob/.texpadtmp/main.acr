@@ -24,7 +24,7 @@
 \glsgroupheading{M}\relax \glsresetentrylist %
 \glossentry{MARG}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{43}}}%
+		\setentrycounter[]{page}\glsnumberformat{45}}}%
 \glossentry{MEMS}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
 		\setentrycounter[]{page}\glsnumberformat{7\delimR 9}}}%
@@ -34,7 +34,7 @@
 \glsgroupheading{P}\relax \glsresetentrylist %
 \glossentry{pendubot}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1}\delimN 
-		\setentrycounter[]{page}\glsnumberformat{37}}}\glsgroupskip
+		\setentrycounter[]{page}\glsnumberformat{38}}}\glsgroupskip
 \glsgroupheading{R}\relax \glsresetentrylist %
 \glossentry{RMSE}{\glossaryentrynumbers{\relax 
 		\setentrycounter[]{page}\glsnumberformat{1\delimN 2}\delimN 

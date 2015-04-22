@@ -1,11 +1,11 @@
 \chapter{Orientation Estimation}
 \label{ch:orientation_estimation}
 
-This chapter covers fundamentals of orientation estimation that are necessary for the implementation of the aforementioned system. In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as attitude, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Beforehand, two main mathematical constructs used to express attitude -- Euler angles and quaternions -- are described.
+This chapter covers fundamentals of orientation estimation that are necessary for the implementation of the aforementioned system. In the motion monitoring field and especially in aircraft navigation the position of the coordinate frame of the body, with respect to a reference coordinate frame, is known as \emph{attitude}, which is used as a synonym of orientation. There are different approaches to compute attitude estimates from magnetic and inertial data. This chapter explains their pros and cons and introduces sensor fusion as a means to mitigate the drawbacks of each approach. Beforehand, two main mathematical constructs used to express attitude -- Euler angles and quaternions -- are described.
 
 \section{Euler Angles}
 
-Euler angles are one of several ways to describe the orientation of an object and its associated body frame in three-dimensional Euclidean space, with respect to a reference frame. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
+Euler angles are one of several ways to describe the orientation of an object and its associated \emph{body frame} in three-dimensional Euclidean space, with respect to a \emph{reference frame}. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
 
 \begin{itemize}
 \item The \emph{roll} angle $\phi$ determines the rotation around the $x$-axis.
@@ -14,7 +14,7 @@ Euler angles are one of several ways to describe the orientation of an object an
 \end{itemize}
 
 \noindent
-Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation before and the colour red the orientation after the rotation. In contrast to extrinsic rotations, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are intrinsic rotations that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
+Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation before and the colour red the orientation after the rotation. In contrast to \emph{extrinsic rotations}, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are \emph{intrinsic rotations} that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
 
 \begin{figure}
 \centering
@@ -34,7 +34,7 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by 
 \node [] at (-1.5,2.05) {$Y$};
 \node [] at (-2.0,-1.7) {$Z$};
 \end{tikzpicture}
-\caption{Representation of the body frame (red) with respect to the navigation frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
+\caption{Representation of the body frame (red) with respect to the world frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
 Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$, $n \in \mathbb{Z}$. At these points a rotation about the $x$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}. The usage of \emph{quaternions} instead of Euler angles avoids the problem of gimbal locks.
@@ -48,9 +48,9 @@ Coordinates representing a point in one coordinate system can be transformed to 
 \end{equation}
 
 \noindent
-where $\mathbf{T}$ is the transformation matrix.
+where $\mathbf{T}$ is the \emph{transformation matrix}.
 
-To transform the coordinate vector from the navigation frame to the body frame, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $\mathbf{C}_{nb}$ is given by
+To transform the coordinate vector from the \emph{world frame}, i.\,e. the reference frame, to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $\mathbf{C}_{nb}$ is given by
 
 \begin{equation}\label{eq:transformation_matrices}
 \begin{split}
@@ -85,7 +85,7 @@ To transform the coordinate vector from the navigation frame to the body frame, 
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{nb}$) the left multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the navigation frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bn}$ for transforming the coordinate vector from the body frame to the navigation frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{nb}$) the left multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bn}$ for transforming the coordinate vector from the body frame to the world frame is given by
 
 \begin{figure}
 \centering
@@ -192,6 +192,7 @@ The \emph{adjoint}, \emph{norm} and \emph{inverse} of a quaternion are defined a
 	\mathbf{q}^{-1} = \frac{\bar{\mathbf{q}}}{||\mathbf{q}||}
 \end{equation}
 
+\noindent
 The sum of two quaternions is defined as
 
 \begin{equation}
@@ -200,6 +201,7 @@ The sum of two quaternions is defined as
   \end{bmatrix}\,.
 \end{equation}
 
+\noindent
 Quaternion multiplication is defined as
 
 \begin{equation}
@@ -242,7 +244,7 @@ and the \emph{conjugate quaternion matrix function}, $\bar{Q} : \mathbb{H} \righ
 
 
 
-Unit quaternions, i.\,e. quaternions with unity norm, can be used to represent rotations in three dimensional space. Let $\mathbf{z} \in \mathbb{R}^3$ be an arbitrary vector in the navigation frame and let $\mathbf{z}' \in \mathbb{R}^3$ be the same vector in the body frame. Furthermore, let $\mathbf{r}$ be a quaternion with $||\mathbf{r}|| = 1$. Then the following relations hold:
+Unit quaternions, i.\,e. quaternions with unity norm, can be used to represent rotations in three dimensional space. Let $\mathbf{z} \in \mathbb{R}^3$ be an arbitrary vector in the world frame and let $\mathbf{z}' \in \mathbb{R}^3$ be the same vector in the body frame. Furthermore, let $\mathbf{r}$ be a quaternion with $||\mathbf{r}|| = 1$. Then the following relations hold:
 
 \begin{equation}
   \begin{bmatrix}

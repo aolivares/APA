@@ -39,12 +39,12 @@
 \contentsline {section}{\numberline {5.2}Theoretical Design}{37}{section.5.2}
 \contentsline {subsection}{\numberline {5.2.1}Kinematic model}{37}{subsection.5.2.1}
 \contentsline {subsection}{\numberline {5.2.2}Extended Kalman Filter Model}{40}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Implementation}{42}{section.5.3}
+\contentsline {section}{\numberline {5.3}Software Implementation}{42}{section.5.3}
 \contentsline {section}{\numberline {5.4}Experiments}{42}{section.5.4}
 \contentsline {subsection}{\numberline {5.4.1}Test Sequence}{42}{subsection.5.4.1}
-\contentsline {section}{\numberline {5.5}Results}{42}{section.5.5}
-\contentsline {section}{\numberline {5.6}Discussion}{42}{section.5.6}
-\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{43}{chapter.6}
-\contentsline {section}{\numberline {6.1}Conclusions}{43}{section.6.1}
-\contentsline {section}{\numberline {6.2}Future Work}{44}{section.6.2}
-\contentsline {chapter}{Bibliography}{45}{section*.28}
+\contentsline {section}{\numberline {5.5}Results}{43}{section.5.5}
+\contentsline {section}{\numberline {5.6}Discussion}{43}{section.5.6}
+\contentsline {chapter}{\numberline {6}Conclusion and Future Work}{45}{chapter.6}
+\contentsline {section}{\numberline {6.1}Conclusions}{45}{section.6.1}
+\contentsline {section}{\numberline {6.2}Future Work}{46}{section.6.2}
+\contentsline {chapter}{Bibliography}{47}{section*.28}
