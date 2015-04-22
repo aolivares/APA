@@ -20,5 +20,6 @@
 \contentsline {figure}{\numberline {4.8}{\ignorespaces Operation cycle of the Kalman filter algorithm illustrating `predict and correct' behaviour.\relax }}{32}{figure.caption.24}
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.\relax }}{35}{figure.caption.25}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces (a) Kinematic model of the human leg, from \cite {bennett_motion_2014}, and (b) , from \cite {tao_gait_2012}.\relax }}{38}{figure.caption.26}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Human leg with optical markers, from \cite {tao_gait_2012}.\relax }}{38}{figure.caption.26}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Kinematic model of the human leg, from \cite {bennett_motion_2014}.\relax }}{39}{figure.caption.27}
 \addvspace {10\p@ }

@@ -284,7 +284,7 @@ Observing the form of Equation \ref{eq:gain_kalman} the reasonableness of the fi
 \noindent
 That means that in the limit of absolutely no confidence in the system model output, solely the new measurement is taken as the optimal estimate. Finally, if you are absolutely sure of your estimate before $z_3$ comes available, $\sigma^2_x(t^-_3)$ would become zero, and so would $K(t_3)$, which means that the measurements would be left disregarded. 
 
-Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman} and \ref{eq:gain_kalman} to the vector case and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations.
+Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman}, \ref{eq:variance_kalman}, and \ref{eq:gain_kalman} to the vector case, and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations. A complete mathematical derivation is found in \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}.
 
 \subsection{Formulation of the Kalman Filter Equations} \label{sec:Kalman_equations}
 
@@ -464,19 +464,6 @@ which requires that $\bm{\phi}$ and $\mathbf{h}$ are differentiable at $\mathbf{
 
 Through a \emph{linearisation} of the state-space model of Equations \ref{eq:time_dynamical_system_plant_extended} and \ref{eq:time_dynamical_system_measurement_extended} at each time instant around the most recent state estimate, the standard Kalman filter equation from Section \ref{sec:Kalman_equations} can be applied. The filter resulting from a \emph{linear approximation} of the state transitions and the relation of the measurement to the respective state is referred to as the \emph{extended Kalman filter} (EKF).
 
-The Jacobian matrices of the functionals $\bm{\phi}$ and $\mathbf{h}$, which are employed in the linearisation, are given by  
-
-\begin{equation}\label{eq:Phi_first_order}
-  \bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x}, \mathbf{u})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u}_{k}} \,,
-\end{equation}
-and
-\begin{equation}\label{eq:Phi_first_order}
-  \mathbf{H}^{[1]}_{k} = \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k}} \,.
-\end{equation}
-
-\noindent
-The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{H}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. The superscript $^{[1]}$ denotes the \emph{first-order} approximation.
-
 Similar to Equation \ref{eq:apriori_estimate}, the predicted state estimate is given by
 
 \begin{equation}\label{eq:apriori_estimate_extended}
@@ -497,6 +484,7 @@ The \emph{a posteriori} estimate is then, conditioned on the actual measurement,
   \hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\hat{\mathbf{z}}_k]\,.
 \end{equation}
 
+\noindent
 The corresponding \emph{a priori} covariance matrix $\mathbf{P}^-_{k}$, the Kalman gain $\mathbf{K}_{k}$, and the \emph{a posteriori} covariance matrix $\mathbf{P}_{k}$ are equal to Equations \ref{eq:Kalman_gain}, \ref{eq:apriori_error_cov}, and \ref{eq:aposteriori_error_cov} in Section \ref{sec:Kalman_equations}. They are reproduced here with the linearised state transition and measurement matrices for convenience of presentation:
 
 \begin{equation}\label{eq:apriori_error_cov_extended}
@@ -511,7 +499,21 @@ The corresponding \emph{a priori} covariance matrix $\mathbf{P}^-_{k}$, the Kalm
   \mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}\,.
 \end{equation}
 
-Figure \ref{fig:extended_kalman_filter_cycle} illustrates the `predict and correct' behaviour of the extended Kalman filter algorithm. Likewise, after an initialisation of the parameters, the \emph{time update} and \emph{measurement update} steps are repeated recursively every time step. Additionally, for the linearisation of the state-space model the Jacobian matrices have to be computed.
+\noindent
+The Jacobian matrices of the functionals $\bm{\phi}$ and $\mathbf{h}$ are given by  
+
+\begin{equation}\label{eq:Phi_first_order}
+  \bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x}, \mathbf{u})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u}_{k}} \,,
+\end{equation}
+and
+\begin{equation}\label{eq:Phi_first_order}
+  \mathbf{H}^{[1]}_{k} = \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k}} \,.
+\end{equation}
+
+\noindent
+The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{H}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. The superscript $^{[1]}$ denotes the \emph{first-order} approximation.
+
+Figure \ref{fig:extended_kalman_filter_cycle} illustrates the `predict and correct' behaviour of the extended Kalman filter algorithm. Likewise, after an initialisation of the parameters, the \emph{time update} and \emph{measurement update} steps are repeated recursively every time step. In addition to the standard Kalman filter equations, the Jacobian matrices have to be computed, in order to linearise the state-space model at each time instant around the most recent state estimate.
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=8cm]
@@ -538,5 +540,5 @@ Figure \ref{fig:extended_kalman_filter_cycle} illustrates the `predict and corre
 \caption{Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.} \label{fig:extended_kalman_filter_cycle}
 \end{figure}
 
-Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is wrong.
+Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is wrong. However, since very little in this world is truly linear, 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  22 APR 2015 00:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  22 APR 2015 14:48
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1281,7 +1281,11 @@ Package glossaries Info: Writing glossary file main.ntn on input line 124.
 
 LaTeX Warning: Label `eq:Phi_first_order' multiply defined.
 
-) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
+) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux
+
+LaTeX Warning: Label `fig:robot' multiply defined.
+
+) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 134.
@@ -1576,9 +1580,6 @@ Overfull \hbox (1.49678pt too wide) in paragraph at lines 6--7
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [1
@@ -1596,9 +1597,6 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [3]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [4]
@@ -1619,7 +1617,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 
-] <images/accelerometer.pdf, id=600, 341.4504pt x 109.71089pt>
+] <images/accelerometer.pdf, id=601, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
 Package pdftex.def Info: images/accelerometer.pdf used on input line 13.
@@ -1645,7 +1643,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [9]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [10] <images/GaitWatch_placement.pdf, id=650, 340.75517pt x 292.43323pt>
+ [10] <images/GaitWatch_placement.pdf, id=651, 340.75517pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 136.
@@ -1673,7 +1671,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  (./Orientation_estimation.tex
 Chapter 3.
-<Images/taitbryan.pdf, id=737, 546.04pt x 533.995pt>
+<Images/taitbryan.pdf, id=738, 546.04pt x 533.995pt>
 File: Images/taitbryan.pdf Graphic file (type pdf)
  <use Images/taitbryan.pdf>
 Package pdftex.def Info: Images/taitbryan.pdf used on input line 23.
@@ -1793,10 +1791,10 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 ]
 Chapter 5.
-<images/sensors_on_leg.pdf, id=976, 125.55606pt x 277.95004pt>
+<images/sensors_on_leg.pdf, id=974, 125.55606pt x 277.95004pt>
 File: images/sensors_on_leg.pdf Graphic file (type pdf)
  <use images/sensors_on_leg.pdf>
-Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 53.
+Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 15.
 (pdftex.def)             Requested size: 99.58464pt x 220.45604pt.
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
@@ -1811,11 +1809,6 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no ) in font nullfont!
 Missing character: There is no ; in font nullfont!
 
-Overfull \hbox (71.54895pt too wide) in paragraph at lines 57--58
- [][] 
- []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [37]
@@ -1825,18 +1818,18 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [39]
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 184.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 188.
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [40]
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 183.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 187.
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [41])
@@ -1946,18 +1939,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35122 strings out of 493117
- 664635 string characters out of 6135432
- 853130 words of memory out of 5000000
+ 35123 strings out of 493117
+ 664652 string characters out of 6135432
+ 851993 words of memory out of 5000000
  37464 multiletter control sequences out of 15000+600000
  63878 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,77p,1942b,1052s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (70 pages, 518439 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (70 pages, 518938 bytes).
 PDF statistics:
- 1260 PDF objects out of 1440 (max. 8388607)
- 1115 compressed objects within 12 object streams
- 317 named destinations out of 1000 (max. 500000)
+ 1263 PDF objects out of 1440 (max. 8388607)
+ 1118 compressed objects within 12 object streams
+ 318 named destinations out of 1000 (max. 500000)
  451 words of extra memory for PDF output out of 10000 (max. 10000000)
 

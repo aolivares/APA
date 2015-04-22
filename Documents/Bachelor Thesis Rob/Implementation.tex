@@ -1,11 +1,24 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the theoretical design of the system and the implementation, based on the fundamentals acquired in the previous the chapters. Subsequently, the experiments and its results are presented.
+This chapter describes the theoretical design of the system and the implementation, based on the fundamentals acquired in the previous chapters. Subsequently, the experiments and its results are presented.
 
 \section{Initial Situation}
 
- (Any algorithms that are already implemented for comparison that I can cite or state and describe how they differ from the one that I will implement??)
+There were already a variety of Kalman filter algorithms implemented. They served as a reference, in tandem with an orientation estimation based on a motion capture system using cameras in combination with optical markers.
+
+(Any algorithms that are already implemented for comparison that I can cite or state and describe how they differ from the one that I will implement??)
+
+\begin{figure}
+\centering
+	\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
+    \pgftext{\includegraphics[width=3.5cm]{images/sensors_on_leg}} at (0pt,0pt);
+    \node [] (a) at (-4.4, -2) {};
+    \node [] (b) at (-4.5, 0.1) {};
+    \node [] (c) at (4.45, 3.3) {};
+\end{tikzpicture}
+\caption{Human leg with optical markers, from \cite{tao_gait_2012}.} \label{fig:robot}
+\end{figure} 
 
 \section{Theoretical Design}\label{sec:theoretical_design}
 
@@ -13,12 +26,9 @@ This section maps the theoretical design of the system proposed by \citeauthor{b
 
 \subsection{Kinematic model}
 
-The kinematic model related the angles of the thigh and shank about the hip and knee joint, respectively. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot} (a), the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1. 
+The kinematic model related the angles of the thigh and shank about the hip and knee joint, respectively. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial navigation frame is located at the base of link 1, the upper of both links. The angle $\psi_1$ is measured with respect to the $x$-axis, and the angle $\psi_2$ of link 2, with respect to link 1. 
 
 \begin{figure}
-\centering
-\begin{subfigure}[]{0.49\textwidth}
-\caption{}
 \centering
 \begin{tikzpicture}[auto, thick,>=latex']
 	\node [draw, rectangle, minimum height=1.6cm, minimum width=1.6cm, pattern=north west lines] at (0,0) (solid) {};
@@ -45,21 +55,10 @@ The kinematic model related the angles of the thigh and shank about the hip and 
     \node at (1.3, -0.4) (angle1) {$\psi_1$};
     \node at (1.5, -3.7) (angle1) {$\psi_2$};
 \end{tikzpicture}
-\end{subfigure}
-\begin{subfigure}[]{0.49\textwidth}
-\caption{}
-\centering
-	\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
-    \pgftext{\includegraphics[width=3.5cm]{images/sensors_on_leg}} at (0pt,0pt);
-    \node [] (a) at (-4.4, -2) {};
-    \node [] (b) at (-4.5, 0.1) {};
-    \node [] (c) at (4.45, 3.3) {};
-\end{tikzpicture}
-\end{subfigure}
-\caption{(a) Kinematic model of the human leg, from \cite{bennett_motion_2014}, and (b) , from \cite{tao_gait_2012}.} \label{fig:robot}
+\caption{Kinematic model of the human leg, from \cite{bennett_motion_2014}.} \label{fig:robot}
 \end{figure} 
 
-The \glspl{IMU} placed on the thighs and shanks, as illustrated in Figure \ref{fig:robot} (b) measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
+The \glspl{IMU} placed on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and the related derivatives in the world frame are
 
 \begin{align}
   x &= a_1 \cos \psi_1 + a_2 \cos(\psi_1 + \psi_2) \\
