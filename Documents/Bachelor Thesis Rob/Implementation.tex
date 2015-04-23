@@ -78,7 +78,7 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \end{align}
 
 \noindent
-in which $a_1$ and $a_2$ are the lengths of the two links, respectively.
+in which $a_1$ and $a_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimate of the angles $\theta_1$ and $\theta_2$ from the accelerometers we can 
 
 The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. To transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is seen in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} with $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, which yields
 
@@ -91,12 +91,20 @@ The orientation of the sensor frames at rest are different from the world frame 
 \end{equation}
 
 \noindent
-The rotated tangential and radial components of the motion based acceleration estimates, $A_{tan}$ and $A_{rad}$ are found using $\mathbf{T}_z(\theta)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
+The rotated tangential and radial components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$ are found using $\mathbf{T}_y(\theta)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
+
+\begin{equation}
+  A_{rad} = \mathbf{T}_y(\theta) \ddot{x}
+\end{equation}
+
+\begin{equation}
+  A_{tan} = \mathbf{T}_y(\theta) \ddot{y}
+\end{equation}
 
 Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
-\begin{bmatrix}
+\mathbf{g} = \begin{bmatrix}
     g_x \\
     g_y 
     \end{bmatrix} = 
@@ -122,7 +130,7 @@ This angle can be used to reduce the estimation error due to gyroscope drift.
 
 \subsection{Extended Kalman Filter Model}
 
-The state space model of the extended Kalman filter is given by the state vector
+The state-space model of the extended Kalman filter is given by the state vector
 
 \begin{equation} \label{eq:state_vector}
   \mathbf{x} = \begin{bmatrix}
@@ -237,6 +245,8 @@ The process and measurement covariance matrices $\mathbf{R} \in \mathbb{R}^{3 \t
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
 \end{bmatrix}\,.
 \end{equation}
+
+\subsection{Flow Diagramm}
 
 \section{Software Implementation}
 
