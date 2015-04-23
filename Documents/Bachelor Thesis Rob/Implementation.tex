@@ -22,11 +22,11 @@ There were already a variety of Kalman filter algorithms implemented. They serve
 
 \section{Theoretical Design}\label{sec:theoretical_design}
 
-This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to the existing GaitWatch system. It states the associated conventions with respect to axes definitions and rotation about them. Furthermore, it describes the kinematic model and the extended Kalman filter in detail.
+This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to the existing GaitWatch system. It states the assigned coordinate frames and the conventions with respect to rotation about them. Furthermore, it describes the kinematic model and the extended Kalman filter in detail.
 
 \subsection{Kinematic model}
 
-The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points right of the subject, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral or the left leg from medial, the $y$-axis points towards you. The angle $\theta_1$ is measured with respect to the $x$-axis, and the angle $\theta_2$ of link 2, with respect to link 1. 
+The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral, the $y$-axis points out of the page. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The angle $\theta_1$ is measured with respect to the $x$-axis, and the angle $\theta_2$ of link 2, with respect to link 1. 
 
 \begin{figure}
 \centering
@@ -63,7 +63,7 @@ The \emph{kinematic model} relates the respective angles of the thigh and shank 
 \caption{Kinematic model of the human leg, from \cite{bennett_motion_2014}.} \label{fig:robot}
 \end{figure} 
 
-The \glspl{IMU} placed on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $y$ displacement and its derivatives in the world frame are as follows:
+The \glspl{IMU} placed on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
 
 \begin{align}
   x &= a_1 \cos \theta_1 + a_2 \cos(\theta_1 + \theta_2) \\
@@ -71,34 +71,34 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
   \ddot{x} {}&= -a_1 [\dot{\theta}^2_1 \cos \theta_1 + \ddot{\theta}_1 \sin \theta_1] - a_2 [(\dot{\theta}_1 + \dot{\theta}_2)^2 \cos(\theta_1 + \theta_2) \nonumber \\ 
   &\mathrel{\phantom{=}} + (\ddot{\theta}_1 + \ddot{\theta}_2) \sin(\theta_1 + \theta_2)] \label{eq:acc_x} \\
   \nonumber \\
-  y &= a_1 \sin \theta_1 + a_2 \sin(\theta_1 + \theta_2) \\
-  \dot{y} &= a_1 \dot{\theta}_1 \cos \theta_1  + a_2 (\dot{\theta}_1 + \dot{\theta}_2) \cos(\theta_1 + \theta_2) \\
-  \ddot{y} {}&= a_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] + a_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \nonumber \\ 
-  &\mathrel{\phantom{=}} - (\dot{\theta}_1 + \dot{\theta}_2)^2 \sin(\theta_1 + \theta_2)] \label{eq:acc_y}
+  z &= -a_1 \sin \theta_1 - a_2 \sin(\theta_1 + \theta_2) \\
+  \dot{z} &= -a_1 \dot{\theta}_1 \cos \theta_1  - a_2 (\dot{\theta}_1 + \dot{\theta}_2) \cos(\theta_1 + \theta_2) \\
+  \ddot{z} {}&= -a_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] - a_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} + (\dot{\theta}_1 + \dot{\theta}_2)^2 \sin(\theta_1 + \theta_2)] \label{eq:acc_y}
 \end{align}
 
 \noindent
 in which $a_1$ and $a_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimate of the angles $\theta_1$ and $\theta_2$ from the accelerometers we can 
 
-The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. To transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is seen in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} with $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, which yields
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is seen in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
 
 \begin{equation}
-\mathbf{T}_y(\theta_1 + \theta_2 - \frac{\pi}{2}) = \begin{bmatrix}
-    \cos (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & -\sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \\
+\mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) = \begin{bmatrix}
+    \cos (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & \sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \\
     0 \; & 1 \; & 0 \\
-    \sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & \cos (\theta_1 + \theta_2 - \frac{\pi}{2})
+    -\sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & \cos (\theta_1 + \theta_2 - \frac{\pi}{2})
     \end{bmatrix}\,.
 \end{equation}
 
 \noindent
-The rotated tangential and radial components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$ are found using $\mathbf{T}_y(\theta)$ to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
+The rotated tangential and radial components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$ are found using the tranformation matrix to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
 
 \begin{equation}
-  A_{rad} = \mathbf{T}_y(\theta) \ddot{x}
+  A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}
 \end{equation}
 
 \begin{equation}
-  A_{tan} = \mathbf{T}_y(\theta) \ddot{y}
+  A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}
 \end{equation}
 
 Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
@@ -134,24 +134,24 @@ The state-space model of the extended Kalman filter is given by the state vector
 
 \begin{equation} \label{eq:state_vector}
   \mathbf{x} = \begin{bmatrix}
-  	x, & y, & \theta_1, & \omega_1, & \alpha_1, & \theta_2, & \omega_2, & \alpha_2, & \beta_1, & \beta_2
+  	x, & z, & \theta_1, & \omega_1, & \alpha_1, & \theta_2, & \omega_2, & \alpha_2, & \beta_1, & \beta_2
   \end{bmatrix}^T
 \end{equation}
 
-where $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
+where $x$ and $y$ correspond to the horizontal and vertical position of the end of link 2 with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
 
-The measurement matrix $\mathbf{y}$ is given by
+The measurement matrix $\mathbf{z}$ is given by
 
 \begin{equation} \label{eq:measurement_vector}
-  \mathbf{y} = \begin{bmatrix}
+  \mathbf{z} = \begin{bmatrix} z_1 \\ z_2 \\ z_3 \end{bmatrix} = \begin{bmatrix}
   	\omega_1 + \beta_1, & \omega_1 + \omega_2 + \beta_2, & \theta_1 + \theta_2
-  \end{bmatrix}^T\,.
+  \end{bmatrix}^T + \mathbf{v}\,.
 \end{equation}
  
 \noindent
-The element $y_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $y_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $y_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
+where $\mathbf{v}$ is the random measurement noise process. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-The derivative of the state vector is
+As outlined in {20} the state equations at each iterations can be linearised as follow. The derivative of the state vector is
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = f(\mathbf{x}) = \left[\begin{smallmatrix}
@@ -211,7 +211,7 @@ The linear approximation of the state equations at each iteration yields the sta
 \noindent
 where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix.
 
-The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ relates the states to the measurements according to Equation \ref{eq:time_dynamical_system_measurement_extended} and is given by 
+The relation between the states and the measurements is linear. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ according to Equation \ref{eq:time_dynamical_system_measurement} is given by 
 
 \begin{equation}
 \mathbf{H} = \begin{bmatrix}

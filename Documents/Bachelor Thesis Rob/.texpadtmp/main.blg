@@ -52,45 +52,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 49 entries,
+You've used 50 entries,
             2481 wiz_defined-function locations,
-            912 strings with 16286 characters,
-and the built_in function-call counts, 20504 in all, are:
-= -- 1812
-> -- 984
-< -- 38
-+ -- 392
-- -- 290
-* -- 1603
-:= -- 3213
-add.period$ -- 220
-call.type$ -- 49
-change.case$ -- 87
-chr.to.int$ -- 45
-cite$ -- 65
-duplicate$ -- 1043
-empty$ -- 1810
-format.name$ -- 348
-if$ -- 4444
+            917 strings with 16440 characters,
+and the built_in function-call counts, 20830 in all, are:
+= -- 1841
+> -- 999
+< -- 39
++ -- 398
+- -- 294
+* -- 1623
+:= -- 3267
+add.period$ -- 225
+call.type$ -- 50
+change.case$ -- 88
+chr.to.int$ -- 46
+cite$ -- 66
+duplicate$ -- 1062
+empty$ -- 1840
+format.name$ -- 355
+if$ -- 4515
 int.to.chr$ -- 5
-int.to.str$ -- 50
-missing$ -- 38
-newline$ -- 322
-num.names$ -- 152
-pop$ -- 418
+int.to.str$ -- 51
+missing$ -- 40
+newline$ -- 329
+num.names$ -- 155
+pop$ -- 428
 preamble$ -- 1
-purify$ -- 49
+purify$ -- 50
 quote$ -- 0
-skip$ -- 630
+skip$ -- 641
 stack$ -- 0
-substring$ -- 845
-swap$ -- 273
+substring$ -- 847
+swap$ -- 275
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 331
+type$ -- 335
 warning$ -- 15
-while$ -- 153
+while$ -- 155
 width$ -- 0
-write$ -- 764
+write$ -- 780
 (There were 5 error messages)

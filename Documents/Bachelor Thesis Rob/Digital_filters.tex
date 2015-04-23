@@ -391,7 +391,7 @@ Figure \ref{fig:kalman_filter_model} illustrates the relation of the Kalman filt
     \draw [->] (H1) -| node[pos=0.89] {$-$} (sum3);
     \draw [->] (K) -- node[label={below:$+$}, pos=0.77] {} (sum4);
     \draw [->] (phi1) -- node[pos=0.27, name=h-phi] {} node[] {$\hat{\mathbf{x}}^-_k$} (H1);
-    \draw [->] (delay1) -- node[] {$\hat{\mathbf{x}}^-_{k-1}$} node[] {} (phi1);
+    \draw [->] (delay1) -- node[] {$\hat{\mathbf{x}}_{k-1}$} node[] {} (phi1);
      \draw [->] (h-phi) -- node[pos=0.90] {$+$} (sum4);
      \draw [->] (sum4) -- node[pos=0.77, name=xk_hat] {$\hat{\mathbf{x}}_k$} (out);
      \draw [->] (xk_hat) -- (delay1);
@@ -540,5 +540,6 @@ Figure \ref{fig:extended_kalman_filter_cycle} illustrates the `predict and corre
 \caption{Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.} \label{fig:extended_kalman_filter_cycle}
 \end{figure}
 
-Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is wrong. However, since very little in this world is truly linear, 
+Extended Kalman filtering is commonly used. In fact, it was the first successful application of the Kalman filter \cite{grewal2008kalman}. Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is wrong.
+
 

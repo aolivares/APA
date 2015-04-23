@@ -1,4 +1,4 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{50}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -410,6 +410,13 @@ Gregory~F. Welch.
 \newblock ISBN 978-0-387-30771-8.
 \newblock \doi{10.1007/978-0-387-31439-6_716}.
 \newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
+
+\bibitem[Grewal and Andrews(2008)]{grewal2008kalman}
+M.S. Grewal and A.P. Andrews.
+\newblock \emph{Kalman Filtering: Theory and Practice Using MATLAB}.
+\newblock Wiley, 2008.
+\newblock ISBN 9780470377802.
+\newblock URL \url{http://books.google.es/books?id=J\_fqMHOCzB8C}.
 
 \bibitem[Spong and Hutchinson(2005)]{spong2005robot}
 M.W. Spong and S.~Hutchinson.
