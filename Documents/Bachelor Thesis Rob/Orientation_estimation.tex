@@ -292,7 +292,9 @@ The reverse mapping from quaternions to Euler angles is given by
 
 Quaternions are less intuitive than Euler angles. Nevertheless, they are very popular in attitude representation, since they are mathematically elegant and don't suffer from singularities.
 
-\section{Projection of the Gravity Vector and Earth's Magnetic Field Vector}
+\section{Projection of the Gravity Vector}
+
+% and Earth's Magnetic Field Vector
 
 As described in Chapter \ref{ch:MARG}, accelerometers measure the linear acceleration they experience. Under static or quasi-static (steady, linear motion) conditions, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. Be means of simple trigonometric functions estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
 

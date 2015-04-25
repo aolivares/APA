@@ -23,7 +23,7 @@
 \BOOKMARK [1][-]{section.3.1}{Euler Angles}{chapter.3}% 23
 \BOOKMARK [2][-]{subsection.3.1.1}{Transformation Matrix}{section.3.1}% 24
 \BOOKMARK [1][-]{section.3.2}{Quaternions}{chapter.3}% 25
-\BOOKMARK [1][-]{section.3.3}{Projection of the Gravity Vector and Earth's Magnetic Field Vector}{chapter.3}% 26
+\BOOKMARK [1][-]{section.3.3}{Projection of the Gravity Vector}{chapter.3}% 26
 \BOOKMARK [1][-]{section.3.4}{Integration of Angular Rate}{chapter.3}% 27
 \BOOKMARK [1][-]{section.3.5}{Sensor Fusion}{chapter.3}% 28
 \BOOKMARK [0][-]{chapter.4}{Digital Filters}{}% 29
@@ -39,13 +39,15 @@
 \BOOKMARK [1][-]{section.5.2}{Theoretical Design}{chapter.5}% 39
 \BOOKMARK [2][-]{subsection.5.2.1}{Kinematic model}{section.5.2}% 40
 \BOOKMARK [2][-]{subsection.5.2.2}{Extended Kalman Filter Model}{section.5.2}% 41
-\BOOKMARK [2][-]{subsection.5.2.3}{Flow Diagram of Entire Filter Algorithm}{section.5.2}% 42
+\BOOKMARK [2][-]{subsection.5.2.3}{Summary of the Entire Filter Algorithm}{section.5.2}% 42
 \BOOKMARK [1][-]{section.5.3}{Software Implementation}{chapter.5}% 43
 \BOOKMARK [1][-]{section.5.4}{Experiments}{chapter.5}% 44
 \BOOKMARK [2][-]{subsection.5.4.1}{Test Sequence}{section.5.4}% 45
-\BOOKMARK [1][-]{section.5.5}{Results}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.6}{Discussion}{chapter.5}% 47
-\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 48
-\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 49
-\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 50
-\BOOKMARK [0][-]{section*.28}{Bibliography}{}% 51
+\BOOKMARK [2][-]{subsection.5.4.2}{Initial Conditions}{section.5.4}% 46
+\BOOKMARK [2][-]{subsection.5.4.3}{Parameterisation}{section.5.4}% 47
+\BOOKMARK [1][-]{section.5.5}{Results}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.6}{Discussion}{chapter.5}% 49
+\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 50
+\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 51
+\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 52
+\BOOKMARK [0][-]{section*.29}{Bibliography}{}% 53

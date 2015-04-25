@@ -78,7 +78,7 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \end{align}
 
 \noindent
-in which $a_1$ and $a_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimate of the angles $\theta_1$ and $\theta_2$ from the accelerometers we can 
+in which $a_1$ and $a_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives obtained with the EKF described in Section \ref{sec:EKF_model} we can estimate the motion based acceleration in $x$ and $z$ direction that sensor 2 will see in the world coordinate frame.
 
 The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is seen in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
 
@@ -101,7 +101,7 @@ The rotated tangential and radial components of the motion based acceleration es
   A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}
 \end{equation}
 
-Then, the tangential and radial acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
+Then, the radial and tangential acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
 \mathbf{g} = \begin{bmatrix}
@@ -119,16 +119,16 @@ Then, the tangential and radial acceleration estimates are subtracted from the s
 \end{equation}
 
 \noindent
-According to Equation \ref{eq:projection_gravity} the improved angle estimate is
+According to Equation \ref{eq:projection_gravity} the angle estimate is
 
 \begin{equation}
   \theta = \mbox{atan}2(g_y, g_x)\,.
 \end{equation}
 
 \noindent
-This angle can be used to reduce the estimation error due to gyroscope drift.
+This improved angle estimate is then fused with the estimate based on the integration of the angular rate measured with the gyroscope, in order to reduce the estimation error due to gyroscope drift.
 
-\subsection{Extended Kalman Filter Model}
+\subsection{Extended Kalman Filter Model}\label{sec:EKF_model}
 
 The state-space model of the extended Kalman filter is given by the state vector $\mathbf{x} \in \mathbb{R}^{n=10}$
 
@@ -175,10 +175,10 @@ where the system dynamics matrix $\mathbf{F}$ is the Jacobian of $\mathbf{f}(\ma
 
 \begin{equation}
 \begin{split}
-\mathbf{F} = \mathbf{J}_{\mathbf{f}} &= \begin{bmatrix}
+\mathbf{F} = \mathbf{J}_{\mathbf{f}} |_{\mathbf{x}=\hat{\mathbf{x}}_{k-1}} &= \begin{bmatrix}
     \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_{n}}\\
     \vdots & \ddots & \vdots\\
-    \dfrac{\partial f_{n}}{\partial x_1} & \cdots & \dfrac{\partial f_{n}}{\partial x_{n}} \end{bmatrix} \\
+    \dfrac{\partial f_{n}}{\partial x_1} & \cdots & \dfrac{\partial f_{n}}{\partial x_{n}} \end{bmatrix}_{\mathbf{x}=\hat{\mathbf{x}}_{k-1}} \\
 &=\begin{bmatrix}
   0 & 0 & 0 & A & 0 & 0 & B & 0 & 0 & 0\\
   0 & 0 & 0 & C & 0 & 0 & D & 0 & 0 & 0\\
@@ -256,14 +256,14 @@ The process and measurement covariance matrices $\mathbf{Q} \in \mathbb{R}^{10 \
 \mathbf{Q} = \begin{bmatrix}
   \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^9_{\theta 1}}{9} & \frac{\sigma^4_{\theta 1}}{4} & \frac{\sigma^5_{\theta 1}}{5} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^4_{\theta 1}}{4} & \frac{\sigma^3_{\theta 1}}{3} & \frac{\sigma^2_{\theta 1}}{2} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^5_{\theta 1}}{5} & \frac{\sigma^2_{\theta 1}}{2} & \sigma_{\theta 1} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^9_{\theta 2}}{9} & \frac{\sigma^4_{\theta 2}}{4} & \frac{\sigma^5_{\theta 2}}{5} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^4_{\theta 2}}{4} & \frac{\sigma^3_{\theta 2}}{3} & \frac{\sigma^2_{\theta 2}}{2} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^5_{\theta 2}}{5} & \frac{\sigma^2_{\theta 2}}{2} & \sigma_{\theta 2} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma_{\beta} & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma_{\beta}\\
 \end{bmatrix}\,.
 \end{equation}
 
@@ -276,7 +276,7 @@ The process and measurement covariance matrices $\mathbf{Q} \in \mathbb{R}^{10 \
 \end{equation}
 
 \noindent
-The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
+The process noise matrix $\mathbf{Q}$ is constant. The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ are determined by tuning for the best performance. The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
 
 \begin{equation}
   \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{i=1}^n x_i\,.
@@ -294,9 +294,43 @@ The standard deviation $\sigma_3$ is set dynamically based on the motion intensi
 
 In order to determine the motion intensity we used the \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}. The \gls{LTSD} computes the long term spectral envelope of the signal.
 
-\subsection{Flow Diagram of Entire Filter Algorithm}
+\subsection{Summary of the Entire Filter Algorithm}
 
-The flow diagram in Figure summarises the recursive steps carried out in the filter algorithm.
+The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_estimate_extended}, \ref{eq:apriori_error_cov_extended} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate_extended}, \ref{eq:Kalman_gain_extended}, and \ref{eq:aposteriori_error_cov_extended}. The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the non-linear differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
+
+\begin{equation}\label{eq:apriori_estimate_extended}
+\begin{split}
+	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, 0) \\
+	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s
+\end{split}  
+\end{equation}
+
+\noindent
+where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs.
+
+The flow diagram in Figure \ref{fig:entire_filter_algorithm} summarises the entire computation steps of the recursive filter algorithm.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[auto, rounded corners=1pt, node distance=5cm,>=latex']
+    
+\node [block, align=center] (init) {Initialisation of parameters \\[3mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}^{[1]}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=4cm] (predict) {\emph{Time update} \\[3mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})$ \\ Compute Jacobian matrix: \\ $\bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x}, \mathbf{u})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u}_{k-1}}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict, node distance=5.8cm] (update) {\emph{Measurement update} \\[3mm] Compute Jacobian matrix: \\ $\mathbf{H}^{[1]}_{k} = \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k}}$ \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{h}_{k}(\hat{\mathbf{x}}^-_k)]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}$};
+\node [output, below of=update, node distance=3.8cm, name=output] {Output};
+\node [output, below of=update, node distance=3.35cm, name=help1] {};
+\node [output, right of=help1, node distance=4.7cm, name=help2] {};
+\node [output, below of=init, node distance=1.23cm, name=help4] {};
+\node [output, right of=help4, node distance=4.7cm, name=help3] {};
+
+\draw [draw,-stealth, thick, align=left] (init) -- (predict);
+\draw [draw,-stealth, thick, align=left] (predict) -- (update);
+\draw [draw,-stealth, thick, align=left] (update) -- node [label={left:Output}]{} (output);
+\draw [draw,-stealth, thick] (help1) -- (help2) -- (help3) -- (help4);
+\end{tikzpicture}
+\caption{Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.} \label{fig:entire_filter_algorithm}
+\end{figure}
+
 
 \section{Software Implementation}
 
@@ -309,6 +343,36 @@ The movement data was gathered at the Department of Neurology of the Klinikum Gr
 \subsection{Test Sequence}
 
 The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch and force plate record was started and the subject made a step onto the force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of it again. This sequence was repeated ten times.
+
+\subsection{Initial Conditions}
+
+Each trial began with the subject standing still and it was assumed that the subjects legs were fully stretched. This leads to the following initial state estimates:
+
+\begin{equation}
+\begin{matrix}
+	\begin{split}
+	  x &= 0\,m\,, \\
+	  z &= -(a_1+a_2)\,m\,, \\
+	  \omega_1 &= 0\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
+	  \omega_2 &= 0\,\frac{\mbox{rad}}{\mbox{s}}\,,
+\end{split} \qquad \quad
+    \begin{split}
+	  \theta_1 &= -\frac{\pi}{2}\,\mbox{rad}\,, \\
+	  \theta_2 &= 0\,\mbox{rad}\,, \\
+	  \beta_1 &= \mu_1\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
+	  \beta_2 &= \mu_2\,\frac{\mbox{rad}}{\mbox{s}}\,,  
+\end{split}
+\end{matrix}
+\end{equation}
+
+\noindent
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first 2 seconds of the rest period before the subject started moving.
+
+\subsection{Parameterisation}
+
+The above-mentioned parameters were The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ in the process noise covariance matrix $\mathbf{Q}$ were determined by tuning for the best performance:
+
+
 
 \section{Results}
 
