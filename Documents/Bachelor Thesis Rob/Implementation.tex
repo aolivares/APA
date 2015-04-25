@@ -130,7 +130,7 @@ This angle can be used to reduce the estimation error due to gyroscope drift.
 
 \subsection{Extended Kalman Filter Model}
 
-The state-space model of the extended Kalman filter is given by the state vector
+The state-space model of the extended Kalman filter is given by the state vector $\mathbf{x} \in \mathbb{R}^{n=10}$
 
 \begin{equation} \label{eq:state_vector}
   \mathbf{x} = \begin{bmatrix}
@@ -141,7 +141,7 @@ The state-space model of the extended Kalman filter is given by the state vector
 \noindent
 where $x$ and $y$ correspond to the horizontal and vertical position of the end of link 2 with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
 
-The measurement vector $\mathbf{z}$ is given by
+The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 
 \begin{equation} \label{eq:measurement_vector}
   \mathbf{z} = \begin{bmatrix} z_1 \\ z_2 \\ z_3 \end{bmatrix} = \begin{bmatrix}
@@ -150,36 +150,35 @@ The measurement vector $\mathbf{z}$ is given by
 \end{equation}
  
 \noindent
-where $\mathbf{v}$ is the random measurement noise process. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
+where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-The modelled system is governed by the \emph{non-linear} differential equation
+The plant dynamics of the modelled system can be expressed as a set of $n$ coupled first-order ordinary differential equations \cite{rowell2002state}, in which the time derivative of each state variable is expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. These equations are known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
 
 \begin{equation} \label{eq:state_vector_derivative}
-  \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}) + \mathbf{w} = \left[\begin{smallmatrix}
+  \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
   -a_1 [\dot{\theta}^2_1 \cos \theta_1 + \ddot{\theta}_1 \sin \theta_1] - a_2 [(\dot{\theta}_1 + \dot{\theta}_2)^2 \cos(\theta_1 + \theta_2) \\
-  a_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] + a_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ ... \\ \omega_2 \\ \alpha_2 \\ ... \\ 0 \\ 0
+  a_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] + a_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
   \end{smallmatrix}\right] + \mathbf{w}\,,
 \end{equation}
 
 \noindent
-where $\mathbf{f}(\mathbf{x})$ is the component-wise time derivative of the state vector $\mathbf{x}$.
+where the components of $\mathbf{f}(\mathbf{x},t)$, that is $f_i(\mathbf{x})$ are the component-wise time derivatives $\dot{x}_i = \frac{dx_i}{dt}$, $i = 1, \dots, n$ of the state vector $\mathbf{x}$. Given this notation, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space.
 
-\noindent
-As outlined in \cite{zarchan2009fundamentals}, this differential equation can be linearised and thus written in state-space form as 
+The state equation can be written in state-space form as 
 
 \begin{equation}
   \dot{\mathbf{x}} = \mathbf{F} \mathbf{x} + \mathbf{w}\,,
 \end{equation}
 
 \noindent
-where the system dynamics matrix $\mathbf{F}$ is the Jacobian of $\mathbf{f}(\mathbf{x})$, given by
+where the system dynamics matrix $\mathbf{F}$ is the Jacobian of $\mathbf{f}(\mathbf{x},t)$, given by
 
 \begin{equation}
 \begin{split}
 \mathbf{F} = \mathbf{J}_{\mathbf{f}} &= \begin{bmatrix}
-    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_{10}}\\
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_{n}}\\
     \vdots & \ddots & \vdots\\
-    \dfrac{\partial f_{10}}{\partial x_1} & \cdots & \dfrac{\partial f_{10}}{\partial x_{10}} \end{bmatrix} \\
+    \dfrac{\partial f_{n}}{\partial x_1} & \cdots & \dfrac{\partial f_{n}}{\partial x_{n}} \end{bmatrix} \\
 &=\begin{bmatrix}
   0 & 0 & 0 & A & 0 & 0 & B & 0 & 0 & 0\\
   0 & 0 & 0 & C & 0 & 0 & D & 0 & 0 & 0\\
@@ -191,7 +190,7 @@ where the system dynamics matrix $\mathbf{F}$ is the Jacobian of $\mathbf{f}(\ma
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-\end{bmatrix}\,,
+\end{bmatrix}_{\mathbf{x}=\hat{\mathbf{x}}_{k-1}}\,,
 \end{split}
 \end{equation}
 
@@ -211,14 +210,27 @@ and
 \end{array}
 \end{equation*}
 
+\noindent
+The partial derivatives are evaluated at the current state estimates $\hat{\mathbf{x}}_{k-1}$.
 
-
-
-
-yields the state transition matrix
+As outlined in \cite{zarchan2009fundamentals}, the \emph{fundamental matrix} $\bm{\Phi}(t)$ that propagates the state of the system forward from any time $t_0$ to a time $t$ can be found by a Taylor-series expansion 
 
 \begin{equation}
-  \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{10} + \mathbf{F} T_s\,.
+  \bm{\Phi}(t-t_0) = \mathbf{I} + \mathbf{F} (t-t_0) + \frac{\mathbf{F}^2 (t-t_0)^2}{2!} +\frac{\mathbf{F}^{3} (t-t_0)^3}{3!} + \cdots.
+\end{equation}
+ 
+\noindent
+The linear approximation of the fundamental matrix yields
+
+\begin{equation}
+  \bm{\Phi}^{[1]}(t-t_0) \approx \mathbf{I}_n + \mathbf{F} (t-t_0)\,.
+\end{equation}
+
+\noindent
+Therefore, the discrete fundamental matrix can be found by substituting $T_s$ for $t-t_0$
+
+\begin{equation}
+  \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s\,.
 \end{equation}
 
 \noindent
@@ -264,12 +276,13 @@ The process and measurement covariance matrices $\mathbf{Q} \in \mathbb{R}^{10 \
 \end{equation}
 
 \noindent
-The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage while the subject stands still. The standard deviation of a finite data set with n samples $x_1, x_2, \dots, x_n$ is
+The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
 
 \begin{equation}
   \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{i=1}^n x_i\,.
 \end{equation}
 
+\noindent
 The standard deviation $\sigma_3$ is set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
 
 \begin{equation}
@@ -279,9 +292,11 @@ The standard deviation $\sigma_3$ is set dynamically based on the motion intensi
   \end{pmatrix}
 \end{equation}
 
-The motion intensity is detected by... 
+In order to determine the motion intensity we used the \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}. The \gls{LTSD} computes the long term spectral envelope of the signal.
 
-\subsection{Flow Diagramm of Entire Filter Algorithm}
+\subsection{Flow Diagram of Entire Filter Algorithm}
+
+The flow diagram in Figure summarises the recursive steps carried out in the filter algorithm.
 
 \section{Software Implementation}
 

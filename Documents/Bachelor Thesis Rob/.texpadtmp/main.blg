@@ -27,12 +27,12 @@ I was expecting a `,' or a `}'---line 506 of file ../Bibliography.bib
  :   month={October},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 601 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 608 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 606 of file ../Bibliography.bib
+Illegal end of database file---line 613 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -52,45 +52,46 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 51 entries,
+Warning--empty journal in rowell2002state
+You've used 52 entries,
             2481 wiz_defined-function locations,
-            925 strings with 16670 characters,
-and the built_in function-call counts, 21168 in all, are:
-= -- 1874
-> -- 1014
-< -- 40
-+ -- 404
-- -- 298
-* -- 1644
-:= -- 3324
-add.period$ -- 231
-call.type$ -- 51
-change.case$ -- 89
-chr.to.int$ -- 47
-cite$ -- 67
-duplicate$ -- 1081
-empty$ -- 1870
-format.name$ -- 362
-if$ -- 4590
+            929 strings with 16792 characters,
+and the built_in function-call counts, 21439 in all, are:
+= -- 1898
+> -- 1021
+< -- 41
++ -- 408
+- -- 300
+* -- 1657
+:= -- 3369
+add.period$ -- 235
+call.type$ -- 52
+change.case$ -- 91
+chr.to.int$ -- 48
+cite$ -- 69
+duplicate$ -- 1099
+empty$ -- 1898
+format.name$ -- 365
+if$ -- 4647
 int.to.chr$ -- 5
-int.to.str$ -- 52
-missing$ -- 42
-newline$ -- 336
-num.names$ -- 158
-pop$ -- 436
+int.to.str$ -- 53
+missing$ -- 43
+newline$ -- 342
+num.names$ -- 161
+pop$ -- 446
 preamble$ -- 1
-purify$ -- 51
+purify$ -- 52
 quote$ -- 0
-skip$ -- 652
+skip$ -- 663
 stack$ -- 0
-substring$ -- 849
-swap$ -- 277
+substring$ -- 851
+swap$ -- 278
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 339
-warning$ -- 15
-while$ -- 157
+type$ -- 346
+warning$ -- 16
+while$ -- 159
 width$ -- 0
-write$ -- 797
+write$ -- 810
 (There were 5 error messages)

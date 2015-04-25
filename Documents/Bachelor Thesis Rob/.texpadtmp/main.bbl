@@ -1,4 +1,4 @@
-\begin{thebibliography}{51}
+\begin{thebibliography}{52}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -431,5 +431,11 @@ M.W. Spong and S.~Hutchinson.
 \newblock Wiley, 2005.
 \newblock ISBN 9780471649908.
 \newblock URL \url{http://books.google.de/books?id=wGapQAAACAAJ}.
+
+\bibitem[Rowell(2002)]{rowell2002state}
+Derek Rowell.
+\newblock State-space representation of {LTI} systems.
+\newblock 2002.
+\newblock URL \url{http://web.mit.edu/2.14/www/Handouts/StateSpace.pdf}.
 
 \end{thebibliography}
