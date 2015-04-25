@@ -236,9 +236,17 @@ Therefore, the discrete fundamental matrix can be found by substituting $T_s$ fo
 \noindent
 where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix. 
 
+The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the non-linear differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
 
+\begin{equation}\label{eq:apriori_estimate_extended_model}
+\begin{split}
+	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, 0) \\
+	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s
+\end{split}  
+\end{equation}
 
-
+\noindent
+where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs.
 
 The relation between the states and the measurements is linear. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ according to Equation \ref{eq:time_dynamical_system_measurement} is given by 
 
@@ -286,9 +294,9 @@ The process noise matrix $\mathbf{Q}$ is constant. The parameters $\sigma_d, \si
 The standard deviation $\sigma_3$ is set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
 
 \begin{equation}
-  \delta_3 = \begin{pmatrix}
-  	\delta_s & < \delta\\
-  	\delta_f & \mbox{else}
+  \sigma_3 = \begin{pmatrix}
+  	\sigma_s & < \delta\\
+  	\sigma_f & \mbox{else}
   \end{pmatrix}
 \end{equation}
 
@@ -296,27 +304,15 @@ In order to determine the motion intensity we used the \gls{LTSD} developed in \
 
 \subsection{Summary of the Entire Filter Algorithm}
 
-The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_estimate_extended}, \ref{eq:apriori_error_cov_extended} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate_extended}, \ref{eq:Kalman_gain_extended}, and \ref{eq:aposteriori_error_cov_extended}. The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the non-linear differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
+The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}.
 
-\begin{equation}\label{eq:apriori_estimate_extended}
-\begin{split}
-	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, 0) \\
-	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s
-\end{split}  
-\end{equation}
-
-\noindent
-where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs.
-
-The flow diagram in Figure \ref{fig:entire_filter_algorithm} summarises the entire computation steps of the recursive filter algorithm.
-
-\begin{figure}[t]
+\begin{figure}
 \centering
 \begin{tikzpicture}[auto, rounded corners=1pt, node distance=5cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\[3mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}^{[1]}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}_{0}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=4cm] (predict) {\emph{Time update} \\[3mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, \mathbf{u}_{k-1})$ \\ Compute Jacobian matrix: \\ $\bm{\Phi}^{[1]}_{k-1} =  \left. \frac{\partial \bm{\phi}_{k-1}(\mathbf{x}, \mathbf{u})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u}_{k-1}}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=center, below of=predict, node distance=5.8cm] (update) {\emph{Measurement update} \\[3mm] Compute Jacobian matrix: \\ $\mathbf{H}^{[1]}_{k} = \left. \frac{\partial \mathbf{h}_{k}(\mathbf{x})}{\partial \mathbf{x}} \right|_{\mathbf{x}=\hat{\mathbf{x}}^-_{k}}$ \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{h}_{k}(\hat{\mathbf{x}}^-_k)]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}$};
+\node [block, align=center] (init) {Initialisation of parameters \\[3mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=4cm] (predict) {\emph{Time update} \\[3mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict, node distance=5.8cm] (update) {\emph{Measurement update} \\[3mm] \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{h}_{k}(\hat{\mathbf{x}}^-_k)]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3.8cm, name=output] {Output};
 \node [output, below of=update, node distance=3.35cm, name=help1] {};
 \node [output, right of=help1, node distance=4.7cm, name=help2] {};
@@ -372,7 +368,23 @@ where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during
 
 The above-mentioned parameters were The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ in the process noise covariance matrix $\mathbf{Q}$ were determined by tuning for the best performance:
 
-
+\begin{equation}
+\begin{matrix}
+	\begin{split}
+	  \sigma_d &= \,, \\
+	  \sigma_{\theta 1} &= \,, \\
+	  \sigma_{\theta 2} &= \,, \\
+	  \sigma_{\beta} &= \,, \\
+	  \delta &= \,,
+\end{split} \qquad \quad
+    \begin{split}
+	  \sigma_1 &= \,, \\
+	  \sigma_2 &= \,, \\
+	  \sigma_s &= \,, \\
+	  \sigma_f &= \,,  
+\end{split}
+\end{matrix}
+\end{equation}
 
 \section{Results}
 
