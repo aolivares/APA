@@ -1,4 +1,4 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{51}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -410,6 +410,13 @@ Gregory~F. Welch.
 \newblock ISBN 978-0-387-30771-8.
 \newblock \doi{10.1007/978-0-387-31439-6_716}.
 \newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
+
+\bibitem[Zarchan and Musoff(2009)]{zarchan2009fundamentals}
+Paul Zarchan and Howard Musoff.
+\newblock \emph{Fundamentals of Kalman Filtering: A Practical Approach}.
+\newblock Progress in astronautics and aeronautics. Academic Press, 2009.
+\newblock ISBN 9781600867187.
+\newblock URL \url{https://books.google.es/books?id=LUDKrQEACAAJ}.
 
 \bibitem[Grewal and Andrews(2008)]{grewal2008kalman}
 M.S. Grewal and A.P. Andrews.

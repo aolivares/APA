@@ -79,7 +79,7 @@ Due to the fact that the parameters of an adaptive filter are updated each itera
 
 The \emph{Kalman filter} is a set of recursive mathematical equations that provides an efficient means to estimate the state of a linear dynamic system perturbed by additive white Gaussian noise, even when the precise nature of the modelled system is unknown. It incorporates knowledge of the system and measurement device dynamics, the statistical description of the system errors and measurement noise, and available information about initial conditions of the variables of interest, in order to produce an estimate of these variables, in a way that the mean of the squared error is minimised \cite{Maybeck79}. 
 
-The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}. It finds applications in radar tracking, navigation, and orientation estimation, among others.
+The filter is named after Rudolf E. Kalman who 1960 published his famous paper describing a recursive solution to the discrete-data linear filtering problem \cite{kalman_1960}. Since that time, the Kalman filter has been the subject of extensive research, due, to a large extent, to the advances in digital computing \cite{welch2014}. It finds applications in radar tracking, navigation, and orientation estimation, among others. \citeauthor{zarchan2009fundamentals} \cite{zarchan2009fundamentals} stated: ``With the possible exception of the fast Fourier transform, Kalman filtering is probably the most important algorithmic technique ever devised.''
 
 \subsection{An Introductory Example}
 
@@ -213,7 +213,7 @@ To incorporate dynamics into the model, suppose you travel for some time before 
 \end{equation}
 
 \noindent
-where $u$ is a nominal velocity and $w$ is a noise term, representing the uncertainty in your knowledge of the actual velocity due to disturbances and effects not accounted for in the simple first order equation. It will be modeled as white Gaussian noise with a mean of zero and variance of $\sigma^2_w$.
+where $u$ is a nominal velocity and $w$ is a noise term, representing the uncertainty in your knowledge of the actual velocity due to disturbances and effects not accounted for in the simple first order equation. It will be modelled as white Gaussian noise with a mean of zero and variance of $\sigma^2_w$.
 
 \begin{figure}
 \centering
@@ -313,7 +313,18 @@ where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sam
 \end{equation}
  
 \noindent
-with the the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. The noise processes are assumed to be uncorrelated. The $n\times n$ transition matrix $\bm{\Phi}_{k-1}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k-1}$ relates the known, optional control input $\mathbf{u}_{k-1} \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$.
+with the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. The $n\times n$ transition matrix $\bm{\Phi}_{k-1}$ in \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k-1}$ relates the known, optional control input $\mathbf{u}_{k-1} \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$. Both noise processes are assumed to be uncorrelated. The process noise might not always have a physical meaning. However, it represents the fact that the model of the real world is not precise. The process and measurement noise covariance matrices are related to the respective noise vectors according to
+
+\begin{equation}
+  \mathbf{Q}_k = \mbox{E}[\mathbf{w}_{k},\mathbf{w}^T_{k}]\,,
+\end{equation}
+
+\begin{equation}
+  \mathbf{R}_k = \mbox{E}[\mathbf{v}_{k},\mathbf{v}^T_{k}]\,,
+\end{equation}
+
+\noindent
+where E denotes the expected value.
 
 The Kalman filter solves the problem of estimating the state $\mathbf{x}_k$ of the given linear stochastic system, minimising the weighted mean-squarred error. The state estimate is denoted with $\hat{\mathbf{x}}_k$, which is also a linear function of the measurement $\mathbf{z}_k$. This problem is called the \emph{linear quadratic Gaussian} estimation problem; the dynamic system is linear, the performance cost function is quadratic, and the random process is Gaussian.
 

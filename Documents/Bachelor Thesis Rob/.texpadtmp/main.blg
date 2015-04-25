@@ -13,26 +13,26 @@ A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 233 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 245 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 293 of file ../Bibliography.bib
+Repeated entry---line 305 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 494 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 506 of file ../Bibliography.bib
  :   
  :   month={October},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 589 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 601 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 594 of file ../Bibliography.bib
+Illegal end of database file---line 606 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -52,45 +52,45 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
-You've used 50 entries,
+You've used 51 entries,
             2481 wiz_defined-function locations,
-            917 strings with 16440 characters,
-and the built_in function-call counts, 20830 in all, are:
-= -- 1841
-> -- 999
-< -- 39
-+ -- 398
-- -- 294
-* -- 1623
-:= -- 3267
-add.period$ -- 225
-call.type$ -- 50
-change.case$ -- 88
-chr.to.int$ -- 46
-cite$ -- 66
-duplicate$ -- 1062
-empty$ -- 1840
-format.name$ -- 355
-if$ -- 4515
+            925 strings with 16670 characters,
+and the built_in function-call counts, 21168 in all, are:
+= -- 1874
+> -- 1014
+< -- 40
++ -- 404
+- -- 298
+* -- 1644
+:= -- 3324
+add.period$ -- 231
+call.type$ -- 51
+change.case$ -- 89
+chr.to.int$ -- 47
+cite$ -- 67
+duplicate$ -- 1081
+empty$ -- 1870
+format.name$ -- 362
+if$ -- 4590
 int.to.chr$ -- 5
-int.to.str$ -- 51
-missing$ -- 40
-newline$ -- 329
-num.names$ -- 155
-pop$ -- 428
+int.to.str$ -- 52
+missing$ -- 42
+newline$ -- 336
+num.names$ -- 158
+pop$ -- 436
 preamble$ -- 1
-purify$ -- 50
+purify$ -- 51
 quote$ -- 0
-skip$ -- 641
+skip$ -- 652
 stack$ -- 0
-substring$ -- 847
-swap$ -- 275
+substring$ -- 849
+swap$ -- 277
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 335
+type$ -- 339
 warning$ -- 15
-while$ -- 155
+while$ -- 157
 width$ -- 0
-write$ -- 780
+write$ -- 797
 (There were 5 error messages)
