@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  25 APR 2015 22:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  26 APR 2015 14:42
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1618,7 +1618,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 
-] <images/accelerometer.pdf, id=618, 341.4504pt x 109.71089pt>
+] <images/accelerometer.pdf, id=617, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
 Package pdftex.def Info: images/accelerometer.pdf used on input line 13.
@@ -1644,7 +1644,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [9]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [10] <images/GaitWatch_placement.pdf, id=668, 340.75517pt x 292.43323pt>
+ [10] <images/GaitWatch_placement.pdf, id=667, 340.75517pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 136.
@@ -1672,7 +1672,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  (./Orientation_estimation.tex
 Chapter 3.
-<Images/taitbryan.pdf, id=755, 546.04pt x 533.995pt>
+<Images/taitbryan.pdf, id=754, 546.04pt x 533.995pt>
 File: Images/taitbryan.pdf Graphic file (type pdf)
  <use Images/taitbryan.pdf>
 Package pdftex.def Info: Images/taitbryan.pdf used on input line 23.
@@ -1787,7 +1787,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 ]
 Chapter 5.
-<images/sensors_on_leg.pdf, id=999, 125.55606pt x 277.95004pt>
+<images/sensors_on_leg.pdf, id=1001, 125.55606pt x 277.95004pt>
 File: images/sensors_on_leg.pdf Graphic file (type pdf)
  <use images/sensors_on_leg.pdf>
 Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 15.
@@ -1808,7 +1808,7 @@ Missing character: There is no ; in font nullfont!
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [37]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4048) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1838,6 +1838,10 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [43]
+
+LaTeX Warning: Float too large for page by 2.44943pt on input line 345.
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
@@ -1846,19 +1850,19 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [45]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 354.
+(amsmath)                trying to recover with `aligned' on input line 371.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 360.
+(amsmath)                trying to recover with `aligned' on input line 377.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 379.
+(amsmath)                trying to recover with `aligned' on input line 396.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 385.
+(amsmath)                trying to recover with `aligned' on input line 402.
 
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1973,18 +1977,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 35195 strings out of 493117
- 665932 string characters out of 6135432
- 853432 words of memory out of 5000000
- 37512 multiletter control sequences out of 15000+600000
+ 35204 strings out of 493117
+ 666120 string characters out of 6135432
+ 853339 words of memory out of 5000000
+ 37521 multiletter control sequences out of 15000+600000
  63878 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,77p,1942b,1052s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (76 pages, 545561 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (76 pages, 547375 bytes).
 PDF statistics:
- 1356 PDF objects out of 1440 (max. 8388607)
- 1203 compressed objects within 13 object streams
+ 1358 PDF objects out of 1440 (max. 8388607)
+ 1205 compressed objects within 13 object streams
  342 named destinations out of 1000 (max. 500000)
  475 words of extra memory for PDF output out of 10000 (max. 10000000)
 

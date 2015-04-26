@@ -1,11 +1,11 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the theoretical design of the filter algorithm and its implementation, based on the fundamentals acquired in the previous chapters. Subsequently, the experiments and its results are presented.
+This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014}, as well as its implementation, based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
 
 \section{Initial Situation}
 
-There were already a variety of Kalman filter algorithms implemented. They served as a reference, in tandem with an orientation estimation based on a Qualisys motion capture system using cameras in combination with optical markers. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system computed the orientation angles of the thighs and shanks.
+There were already a variety of Kalman filter algorithms implemented. In tandem with an orientation estimation based on a Qualisys motion capture system using cameras in combination with optical markers, they served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system computed the orientation angles of the thighs and shanks.
 
 (Any algorithms that are already implemented for comparison that I can cite or state and describe how they differ from the one that I will implement??)
 
@@ -110,7 +110,7 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
     \end{bmatrix} = 
     \begin{bmatrix}
     A_x \\
-    A_y 
+    A_z 
     \end{bmatrix} -
     \begin{bmatrix}
     A_{rad} \\
@@ -122,7 +122,7 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 According to Equation \ref{eq:projection_gravity} the angle estimate is
 
 \begin{equation}
-  \theta = \mbox{atan}2(g_y, g_x)\,.
+  \theta_1 + \theta_2 = \mbox{atan}2(g_y, g_x)\,.
 \end{equation}
 
 \noindent
@@ -306,25 +306,42 @@ In order to determine the motion intensity we used the \gls{LTSD} developed in \
 
 The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}.
 
+\tikzstyle{block} = [draw, rectangle, thick, 
+    minimum height=1.5cm, minimum width=9cm]
+\tikzstyle{output} = [coordinate]
+
 \begin{figure}
 \centering
-\begin{tikzpicture}[auto, rounded corners=1pt, node distance=5cm,>=latex']
+\begin{tikzpicture}[scale=0.95, every node/.style={transform shape}, auto, rounded corners=1pt, node distance=5cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\[3mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=4cm] (predict) {\emph{Time update} \\[3mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=center, below of=predict, node distance=5.8cm] (update) {\emph{Measurement update} \\[3mm] \\ Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^{[1]T}_k[\mathbf{H}^{[1]}_k \mathbf{P}^-_k \mathbf{H}^{[1]T}_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{h}_{k}(\hat{\mathbf{x}}^-_k)]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}^{[1]}_{k}]\mathbf{P}^-_{k}$};
-\node [output, below of=update, node distance=3.8cm, name=output] {Output};
-\node [output, below of=update, node distance=3.35cm, name=help1] {};
-\node [output, right of=help1, node distance=4.7cm, name=help2] {};
-\node [output, below of=init, node distance=1.23cm, name=help4] {};
-\node [output, right of=help4, node distance=4.7cm, name=help3] {};
+\node [block, align=center] (init) {Initialisation of parameters \\[2mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -a_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - a_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -a_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - a_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{=}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
+    g_x \\
+    g_y 
+    \end{bmatrix} = 
+    \begin{bmatrix}
+    A_x \\
+    A_z 
+    \end{bmatrix} -
+    \begin{bmatrix}
+    A_{rad} \\
+    A_{tan} 
+    \end{bmatrix}$ \\ Compute corrected angle estimate: \\ $\theta_1 + \theta_2 = \mbox{atan}2(g_y, g_x)$};
+\node [block, align=center, below of=measurement, node distance=6.6cm] (update) {\emph{Measurement update} \\[3mm] Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
+\node [output, below of=update, node distance=3.2cm, name=output] {Output};
+\node [output, below of=update, node distance=2.68cm, name=help1] {};
+\node [output, right of=help1, node distance=5.1cm, name=help2] {};
+\node [output, below of=init, node distance=1.18cm, name=help4] {};
+\node [output, right of=help4, node distance=5.1cm, name=help3] {};
 
 \draw [draw,-stealth, thick, align=left] (init) -- (predict);
-\draw [draw,-stealth, thick, align=left] (predict) -- (update);
+\draw [draw,-stealth, thick, align=left] (predict) -- (measurement);
+\draw [draw,-stealth, thick, align=left] (measurement) -- (update);
 \draw [draw,-stealth, thick, align=left] (update) -- node [label={left:Output}]{} (output);
 \draw [draw,-stealth, thick] (help1) -- (help2) -- (help3) -- (help4);
 \end{tikzpicture}
-\caption{Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.} \label{fig:entire_filter_algorithm}
+\caption{Entire computation steps of the recursive filter algorithm.} \label{fig:entire_filter_algorithm}
 \end{figure}
 
 
