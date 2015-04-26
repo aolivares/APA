@@ -12,6 +12,7 @@ A level-1 auxiliary file: Digital_filters.aux
 A level-1 auxiliary file: Implementation.aux
 A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
+A level-1 auxiliary file: Appendix.aux
 Database file #1: ../Bibliography.bib
 I was expecting a `,' or a `}'---line 245 of file ../Bibliography.bib
  : 
@@ -55,7 +56,7 @@ Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
 You've used 52 entries,
             2481 wiz_defined-function locations,
-            929 strings with 16792 characters,
+            930 strings with 16804 characters,
 and the built_in function-call counts, 21439 in all, are:
 = -- 1898
 > -- 1021

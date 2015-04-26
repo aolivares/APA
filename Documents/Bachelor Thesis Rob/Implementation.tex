@@ -156,8 +156,8 @@ The plant dynamics of the modelled system can be expressed as a set of $n$ coupl
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
-  -a_1 [\dot{\theta}^2_1 \cos \theta_1 + \ddot{\theta}_1 \sin \theta_1] - a_2 [(\dot{\theta}_1 + \dot{\theta}_2)^2 \cos(\theta_1 + \theta_2) \\
-  a_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] + a_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
+  -a_1 \omega_1 \sin \theta_1  - a_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2) \\
+  -a_1 \omega_1 \cos \theta_1  - a_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
   \end{smallmatrix}\right] + \mathbf{w}\,,
 \end{equation}
 
@@ -314,8 +314,8 @@ The state estimates are computed recursively according to the \emph{time update}
 \centering
 \begin{tikzpicture}[scale=0.95, every node/.style={transform shape}, auto, rounded corners=1pt, node distance=5cm,>=latex']
     
-\node [block, align=center] (init) {Initialisation of parameters \\[2mm] $\mathbf{P}_{0}, \mathbf{x}_{0}, \mathbf{H}_{0}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center] (init) {Initialisation of parameters \\[2mm]  $\mathbf{x}_{0}, \mathbf{P}_{0}, \mathbf{H}, \bm{\Phi}^{[1]}_{0}, \mathbf{Q}, \mathbf{R}_{0},$};
+\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
 \node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -a_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - a_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -a_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - a_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{=}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
     g_x \\
     g_y 
@@ -345,9 +345,9 @@ The state estimates are computed recursively according to the \emph{time update}
 \end{figure}
 
 
-\section{Software Implementation}
+\section{\textsc{Matlab}\textsuperscript{\textregistered} Implementation}
 
-The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}.
+The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} shows the source code.
 
 \section{Experiments}
 
@@ -365,21 +365,38 @@ Each trial began with the subject standing still and it was assumed that the sub
 \begin{matrix}
 	\begin{split}
 	  x &= 0\,m\,, \\
-	  z &= -(a_1+a_2)\,m\,, \\
+	  \theta_1 &= -\frac{\pi}{2}\,\mbox{rad}\,, \\
 	  \omega_1 &= 0\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
-	  \omega_2 &= 0\,\frac{\mbox{rad}}{\mbox{s}}\,,
+	  \beta_1 &= \mu_1\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
+	  \alpha_1 &= 0\,\frac{\mbox{rad}}{\mbox{s}^2}\,,
 \end{split} \qquad \quad
     \begin{split}
-	  \theta_1 &= -\frac{\pi}{2}\,\mbox{rad}\,, \\
-	  \theta_2 &= 0\,\mbox{rad}\,, \\
-	  \beta_1 &= \mu_1\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
-	  \beta_2 &= \mu_2\,\frac{\mbox{rad}}{\mbox{s}}\,,  
+   	  z &= -(a_1+a_2)\,m\,, \\
+	  \theta_2 &= 0\,\mbox{rad}\,, \mathrel{\phantom{\frac{\pi}{2}}}\\
+	  \omega_2 &= 0\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
+	  \beta_2 &= \mu_2\,\frac{\mbox{rad}}{\mbox{s}}\,, \\
+	  \alpha_2 &= 0\,\frac{\mbox{rad}}{\mbox{s}^2}\,,  
 \end{split}
 \end{matrix}
 \end{equation}
 
 \noindent
-where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first 2 seconds of the rest period before the subject started moving.
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first 2 seconds of the rest period before the subject started moving. The initial covariance matrix $\mathbf{P}_{0}$ was given by
+
+\begin{equation}
+\mathbf{P}_0 = \begin{bmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+\end{bmatrix}\,.
+\end{equation}
 
 \subsection{Parameterisation}
 
