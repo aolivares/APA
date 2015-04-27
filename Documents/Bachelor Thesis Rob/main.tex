@@ -101,10 +101,11 @@
 \usepackage{listings}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{myviolette}{rgb}{160,32,240}
 \lstset{
-	basicstyle=\ttfamily
+	basicstyle=\small \ttfamily,
   breaklines=false,
-  commentstyle=\color{mygreen},      % comment style
+  commentstyle=\color{mygreen},    % comment style
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
   keywordstyle=\color{blue},       % keyword style
   language=Matlab,                 % the language of the code
@@ -207,6 +208,8 @@
 	\clearemptydoublepage
 	
 	\appendix
+	\clearpage
+	\markboth{\MakeUppercase{Appendix}}{\MakeUppercase{Appendix}}
 	\phantomsection
 	\addcontentsline{toc}{chapter}{Appendix}
 	\include{Appendix}
