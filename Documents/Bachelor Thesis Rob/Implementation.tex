@@ -24,7 +24,7 @@ There were already a variety of Kalman filter algorithms implemented. In tandem 
 
 This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to the existing GaitWatch system. It states the assigned coordinate frames and the conventions with respect to rotation about them. Furthermore, it describes the kinematic model and the extended Kalman filter in detail.
 
-\subsection{Kinematic model}
+\subsection{Kinematic Model}
 
 The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral, the $y$-axis points out of the page. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link 2, with respect to link 1. 
 
@@ -375,7 +375,7 @@ Each trial began with the subject standing still and it was assumed that the sub
 \end{equation}
 
 \noindent
-where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first 2 seconds of the rest period before the subject started moving. The initial covariance matrix $\mathbf{P}_{0}$ was given by
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first two seconds of the rest period before the subject started moving. The initial covariance matrix $\mathbf{P}_{0}$ was given by
 
 \begin{equation}
 \mathbf{P}_0 = \begin{bmatrix}

@@ -37,7 +37,7 @@
 \BOOKMARK [0][-]{chapter.5}{Implementation}{}% 37
 \BOOKMARK [1][-]{section.5.1}{Initial Situation}{chapter.5}% 38
 \BOOKMARK [1][-]{section.5.2}{Theoretical Design}{chapter.5}% 39
-\BOOKMARK [2][-]{subsection.5.2.1}{Kinematic model}{section.5.2}% 40
+\BOOKMARK [2][-]{subsection.5.2.1}{Kinematic Model}{section.5.2}% 40
 \BOOKMARK [2][-]{subsection.5.2.2}{Extended Kalman Filter Model}{section.5.2}% 41
 \BOOKMARK [2][-]{subsection.5.2.3}{Summary of the Entire Filter Algorithm}{section.5.2}% 42
 \BOOKMARK [1][-]{section.5.3}{Matlab\256 Implementation}{chapter.5}% 43
