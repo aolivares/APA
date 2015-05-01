@@ -152,7 +152,7 @@ The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 \noindent
 where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-The plant dynamics of the modelled system can be expressed as a set of $n$ coupled first-order ordinary differential equations \cite{rowell2002state}, in which the time derivative of each state variable is expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. These equations are known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
+The plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations \cite{rowell2002state}, in which the time derivative of each state variable is expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. These equations are known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
@@ -162,7 +162,7 @@ The plant dynamics of the modelled system can be expressed as a set of $n$ coupl
 \end{equation}
 
 \noindent
-where the components of $\mathbf{f}(\mathbf{x},t)$, that is $f_i(\mathbf{x})$ are the component-wise time derivatives $\dot{x}_i = \frac{dx_i}{dt}$, $i = 1, \dots, n$ of the state vector $\mathbf{x}$. Given this notation, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space.
+where the components of $\mathbf{f}(\mathbf{x},t)$, that is $f_i(\mathbf{x})$ are the component-wise time derivatives $\dot{x}_i = \frac{dx_i}{dt}$, $i = 1, \dots, n$ of the state vector $\mathbf{x}$. Given this notation, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is time-invariant since it does not depend explicitly on time.
 
 The state equation can be written in state-space form as 
 
@@ -171,10 +171,10 @@ The state equation can be written in state-space form as
 \end{equation}
 
 \noindent
-where the system dynamics matrix $\mathbf{F}_k$ is given by
+where the \emph{system dynamics matrix} $\mathbf{F}$ is given by
 
 \begin{equation}
-\mathbf{F}_k = \begin{bmatrix}
+\mathbf{F}(\mathbf{x}) = \begin{bmatrix}
   0 & 0 & 0 & A & 0 & 0 & B & 0 & 0 & 0\\
   0 & 0 & 0 & C & 0 & 0 & D & 0 & 0 & 0\\
   0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -185,7 +185,7 @@ where the system dynamics matrix $\mathbf{F}_k$ is given by
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-\end{bmatrix}_{\mathbf{x}=\hat{\mathbf{x}}_{k}}\,,
+\end{bmatrix}\,,
 \end{equation}
 
 \noindent
@@ -204,27 +204,34 @@ with
 \end{array}
 \end{equation*}
 
-\noindent
-The partial derivatives are evaluated at the current state estimates $\hat{\mathbf{x}}_{k-1}$.
-
-As outlined in \cite{zarchan2009fundamentals}, the \emph{fundamental matrix} $\bm{\Phi}(t)$ that propagates the state of the system forward from any time $t_0$ to a time $t$ can be found by a Taylor-series expansion 
+As outlined in \cite{zarchan2009fundamentals}, if the system dynamics matrix is time-invariant, then there is a \emph{fundamental matrix} $\bm{\Phi}(\mathbf{x}, t-t_0)$ that propagates the state of the system forward from any time $t_0$ to a time $t$ and can be found by a Taylor-series expansion 
 
 \begin{equation}
-  \bm{\Phi}(t-t_0) = \mathbf{I} + \mathbf{F} (t-t_0) + \frac{\mathbf{F}^2 (t-t_0)^2}{2!} +\frac{\mathbf{F}^{3} (t-t_0)^3}{3!} + \cdots.
+\begin{split}
+  \bm{\Phi}(\mathbf{x}, t-t_0) = \mathbf{I} &+ \mathbf{F}(\mathbf{x}) [t-t_0] \\
+  		&+ \frac{\mathbf{F}(\mathbf{x})^2 [t-t_0]^2}{2!} +\frac{\mathbf{F}(\mathbf{x})^{3} [t-t_0]^3}{3!} + \cdots.
+\end{split}
 \end{equation}
  
 \noindent
 The linear approximation of the fundamental matrix yields
 
 \begin{equation}
-  \bm{\Phi}^{[1]}(t-t_0) \approx \mathbf{I}_n + \mathbf{F} (t-t_0)\,.
+  \bm{\Phi}^{[1]}(\mathbf{x}, t-t_0) \approx \mathbf{I}_n + \mathbf{F}(\mathbf{x}) [t-t_0]\,.
 \end{equation}
 
 \noindent
-Therefore, the discrete fundamental matrix can be found by substituting $T_s$ for $t-t_0$
+The discrete-time fundamental matrix can be found by substituting $T_s$ for $t-t_0$, which yields
 
 \begin{equation}
-  \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F}_k T_s\,.
+  \bm{\Phi}^{[1]}_{k} = \bm{\Phi}^{[1]}(\mathbf{x}(k T_s), T_s) \approx \mathbf{I}_{n} + \mathbf{F}_k T_s\,,
+\end{equation}
+
+\noindent
+with 
+
+\begin{equation}
+  \mathbf{F}_k = \mathbf{F}(\mathbf{x}(k T_s))\,,
 \end{equation}
 
 \noindent
@@ -234,13 +241,16 @@ The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a p
 
 \begin{equation}\label{eq:apriori_estimate_extended_model}
 \begin{split}
-	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\mathbf{x}_{k-1}, 0) \\
-	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s
-\end{split}  
+	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\hat{\mathbf{x}}_{k-1}, 0) \\
+	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, [k-1]T_s)T_s \\
+	&= \hat{\mathbf{x}}_{k-1} + \mathbf{F}_{k-1} \hat{\mathbf{x}}_{k-1} T_s \\
+	&= [\mathbf{I}_{n} + \mathbf{F}_{k-1} T_s] \hat{\mathbf{x}}_{k-1} \\
+	&= \bm{\Phi}^{[1]}_{k-1} \hat{\mathbf{x}}_{k-1}
+\end{split}\,,  
 \end{equation}
 
 \noindent
-where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs.
+where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs. A higher-order numerical integration procedure would not improve the \emph{a priori} estimate since the function $\mathbf{f}(\mathbf{x}, t)$ is constant over time.
 
 The relation between the states and the measurements is linear. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ according to Equation \ref{eq:time_dynamical_system_measurement} is given by 
 
@@ -309,7 +319,7 @@ The state estimates are computed recursively according to the \emph{time update}
 \begin{tikzpicture}[scale=0.95, every node/.style={transform shape}, auto, rounded corners=1pt, node distance=5cm,>=latex']
     
 \node [block, align=center] (init) {Initialisation of parameters \\[2mm]  $\mathbf{x}_{0}, \mathbf{P}_{0}, \mathbf{H}, \mathbf{Q}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k-1} \approx \mathbf{I}_{n} + \mathbf{F}_{k-1} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, kT_s)T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k-1} \approx \mathbf{I}_{n} + \mathbf{F}_{k-1} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\Phi}^{[1]}_{k-1} \hat{\mathbf{x}}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
 \node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -l_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - l_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -l_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - l_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{==i}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
     g_x \\
     g_y 
@@ -375,7 +385,16 @@ Each trial began with the subject standing still and it was assumed that the sub
 \end{equation}
 
 \noindent
-where $\mu_1$ and $\mu_2$ are the mean values of the gyroscopes collected during the first two seconds of the rest period before the subject started moving. The initial covariance matrix $\mathbf{P}_{0}$ was given by
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected during the first $t_{init}=2\,\mbox{s}$ of the rest period before the subject started moving. The mean value is given by
+
+\begin{equation}
+  \mu = \frac{1}{n} \sum_{i=1}^{n}{\omega_i}\,, \quad n = t_{init} f_s\,,
+\end{equation}
+
+\noindent
+where $f_s$ is the sampling frequency.
+
+The initial covariance matrix $\mathbf{P}_{0}$ was given by
 
 \begin{equation}
 \mathbf{P}_0 = \begin{bmatrix}
