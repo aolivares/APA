@@ -8,22 +8,22 @@ function [theta1, theta2] = fusion_EKF(gyro_thigh_y, ...
 % the thighs and shanks.
 %
 % Input arguments:
-% |_ 'gyro_thigh_y':  Vector containing the angular 
+% |_ 'gyro_thigh_y':  Row vector containing the angular 
 %                     rate of the thigh about the 
 %                     y-axis in radians per second.
-% |_ 'gyro_shank_y':  Vector containing the angular 
+% |_ 'gyro_shank_y':  Row vector containing the angular 
 %                     rate of the shank about the 
 %                     y-axis in radians per second.
-% |_ 'acc_thigh_x':   Vector containing the linear
+% |_ 'acc_thigh_x':   Row vector containing the linear
 %                     acceleration of the thigh along
 %                     the x-axis in g.
-% |_ 'acc_thigh_z':   Vector containing the linear
+% |_ 'acc_thigh_z':   Row vector containing the linear
 %                     acceleration of the thigh along
 %                     the z-axis in g.
-% |_ 'acc_shank_x':   Vector containing the linear
+% |_ 'acc_shank_x':   Row vector containing the linear
 %                     acceleration of the shank along
 %                     the x-axis in g.
-% |_ 'acc_shank_z':   Vector containing the linear
+% |_ 'acc_shank_z':   Row vector containing the linear
 %                     acceleration of the shank along
 %                     the z-axis in g.
 % |_ 'frec':          Sampling frecuency in Hertz. Must
@@ -34,11 +34,12 @@ function [theta1, theta2] = fusion_EKF(gyro_thigh_y, ...
 %                     real positive.
 %
 % Output:
-% |_ 'theta1':        Thigh angle with respect to the
-%                     x-axis of the world frame in
-%                     radians.
-% |_ 'theta2':        Shank angle with respect to the
-%                     thigh in radians.
+% |_ 'theta1':        Row vector containing the thigh 
+%                     angle with respect to the x-axis 
+%                     of the world frame in radians.
+% |_ 'theta2':        Row vector containing the shank 
+%                     angle with respect to the thigh
+%                     in radians.
 %
 % IMPORTANT NOTE:     gyro_thigh_y, gyro_shank_y, 
 %                     acc_thigh_x, acc_thigh_z, 
@@ -54,9 +55,12 @@ function [theta1, theta2] = fusion_EKF(gyro_thigh_y, ...
 % -----------------------------------------------------
 
 % 1) Check input arguments.
-if ~(length(gyro_thigh_y) == length(gyro_shank_y) == ...
-     length(acc_thigh_x)  == length(acc_thigh_z) == ...
-     length(acc_shank_x)  == length(acc_shank_z))
+if ~isequal(length(gyro_thigh_y), ...
+            length(gyro_shank_y), ...
+            length(acc_thigh_x), ...
+            length(acc_thigh_z), ...
+            length(acc_shank_x), ...
+            length(acc_shank_z))
     error(['Input arguments ''gyro_thigh_y'', ', ... 
            '''acc_thigh_x'', ''acc_thigh_z'', ', ...
            '''acc_shank_x'', ''acc_shank_z'', ', ...
@@ -87,26 +91,20 @@ gw = gwLibrary;
 %    signal vectors.
 Ts = 1 / fs;
 len = length(gyro_thigh_y);
-
-% 4) Define rotation matrix function.
-syms Tz(theta)
-Tz(theta) = [cos(theta),  0, sin(theta); ...
-                  0,      1,      0;     ...
-             -sin(theta), 0; cos(theta)];
          
-% 5) Compute intensity level.
-lwin_fsd = 20;    
-threshold_fsd = 3;    
-shift_fsd = 19;    
-lambda = 30;
-[V_fsd,T_fsd] = gw.fsd(acc_shank_x, lwin_fsd, ...
-                       shift_fsd, 512, threshold_fsd);
-                   
-% Determine marker signal.
-[marker,T_fsd_expanded] = gw.compEstMark(V_fsd, ...
-                                T_fsd, acc_shank_x, ...
-                                lwin_fsd, shift_fsd);
-
+% % 5) Compute intensity level.
+% lwin_fsd = 20;    
+% threshold_fsd = 3;    
+% shift_fsd = 19;
+% input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
+% [V_fsd, T_fsd] = gw.fsd(input_signal, lwin_fsd, ...
+%                        shift_fsd, 512, threshold_fsd);
+%                    
+% % Determine marker signal.
+% [marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
+%                              input_signal, lwin_fsd, ...
+%                              shift_fsd);
+marker = ones(1, len);
                             
 % INITIALISATION OF PARAMETERS %
                             
@@ -116,7 +114,7 @@ mu1 = mean(gyro_thigh_y(1:2*fs));
 mu2 = mean(gyro_shank_y(1:2*fs));
 
 % 7) Initialise the state vector.
-x = [0, -(l1+l2), -pi/2, 0, 0, 0, 0, 0, 0, mu1, mu2]';
+x = [0, -(l1+l2), -pi/2, 0, 0, 0, 0, 0, mu1, mu2]';
 
 % 8) Map gyroscope signals to measurement vector. 
 z = [gyro_thigh_y; gyro_shank_y; zeros(1, len)];
@@ -130,6 +128,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 11) Define process noise covariance matrix.
+sigma_d = 1;
+sigma_t1 = 1;
+sigma_t2 = 1;
+sigma_b = 1;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -142,20 +144,25 @@ sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 0 0 0 0       0             0          0 sigma_b 0; ...
 0 0 0 0 0       0             0          0 0 sigma_b];
 
+% 12) Compute sample standard deviation of the first
+% two seconds of the gyroscope signals.
+sigma_1 = std(gyro_thigh_y(1:2*fs));
+sigma_2 = std(gyro_thigh_y(1:2*fs));
+
 % 12) Define measurement noise covariance matrix.
 sigma_f = 1;
 sigma_s = 1;
-R = [1 0 0; ...
-     0 1 0; ...
-     0 0 sigma_s];
-         
+R = [sigma_1    0       0; ...
+        0    sigma_2    0; ...
+        0       0    sigma_s];
+
 % 13) Define matrix function F.
-syms F(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10)
-F(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10) = ...
-[0, 0, 0, -l2 * sin(x3) - l2 * sin(x3+x6), 0, 0, ...
- - l2 * sin(x3+x6); ...
- 0, 0, 0, l1 * cos(x3) + l2 * cos(x3+x6), 0, 0, ...
- + l2 * cos(x3+x6); ...
+    function F_k = F
+        F_k = ...
+[0, 0, 0, -l2 * sin(x(3)) - l2 * sin(x(3) + x(6)), ...
+ 0, 0, -l2 * sin(x(3) + x(6)), 0, 0, 0; ...
+ 0, 0, 0, l1 * cos(x(3)) + l2 * cos(x(3) + x(6)), ...
+ 0, 0, l2 * cos(x(3) + x(6)), 0, 0, 0; ...
  0, 0, 0, 1, 0, 0, 0, 0, 0, 0; ...
  0, 0, 0, 0, 1, 0, 0, 0, 0, 0; ...
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
@@ -164,6 +171,7 @@ F(x1, x2, x3, x4, x5, x6, x7, x8, x9, x10) = ...
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
  0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    end
 
 % 14) Initialise output vectors.
 theta1 = zeros(1, len);
@@ -185,7 +193,7 @@ for i=1:1:len
     % TIME UPDATE %
     
     % Compute fundamental matrix.
-    Phi = eye(10) * F(x) * Ts;
+    Phi = eye(10) + F * Ts;
     
     % Compute a priori state estimate.
     x = Phi * x;
@@ -196,23 +204,29 @@ for i=1:1:len
     % CORRECT SENSOR READINGS %
     
     % Compute acceleration due to motion.
-    ax = -l1 (x(4)^2 * cos(x(3)) + x(5) sin(x(3)) ...
-         - l2 ((x(4) + x(7))^2 * cos(x(3) + x(6)) ...
-         + (x(5) + x(8)) sin(x(3) + x(6)));
-    az = -l1 (x(5) * cos(x(3)) - x(4)^2 sin(x(3)) ...
-         - l2 (x(5) + x(8)) * cos(x(3) + x(6)) ...
-         + ((x(4) + x(7))^2 sin(x(3) + x(6)));
+    ax = -l1 * (x(4)^2 * cos(x(3)) + x(5) * sin(x(3))) ...
+         - l2 * ((x(4) + x(7))^2 * cos(x(3) + x(6)) ...
+         + (x(5) + x(8)) * sin(x(3) + x(6)));
+    az = -l1 * (x(5) * cos(x(3)) - x(4)^2 * sin(x(3))) ...
+         - l2 * (x(5) + x(8)) * cos(x(3) + x(6)) ...
+         + ((x(4) + x(7))^2 * sin(x(3) + x(6)));
+    
+    % Compute transformation matrix
+    Tz = [cos(x(3) + x(6) - 2 * pi), 0, ...
+          sin(x(3) + x(6) - 2 * pi); 0, 1, 0; ...
+         -sin(x(3) + x(6) - 2 * pi), 0, ...
+          cos(x(3) + x(6) - 2 * pi)];
      
     % Rotate acceleration to body frame.
-    a_rad = Tz(theta1 + theta2 - 2 * pi) * ax;
-    a_tan = Tz(theta1 + theta2 - 2 * pi) * az;
+    a = Tz * [ax; 0; az];
 
     % Compute gravity estimate.
-    g = acc_shank(i) - [a_rad; a_tan];
+    g = [acc_shank_x(i); 0; acc_shank_z(i)] ...
+         - a;
     
     % Compute corrected angle estimate and update 
     % measurement vector.
-    z(3, i) = atan2(g(1), g(2));
+    z(3, i) = atan2(g(1), g(3));
     
     % MEASUREMENT UPDATE %
     
@@ -220,7 +234,7 @@ for i=1:1:len
     K = P * H' / (H * P * H' + R);
     
     % Compute a posteriori estimate.
-    x = x + K * (z - H * x);
+    x = x + K * (z(:, i) - H * x);
     
     % Update error covariance matrix.
     P = (eye(10) - K * H) / P;

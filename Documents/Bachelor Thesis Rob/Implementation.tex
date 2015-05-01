@@ -94,11 +94,15 @@ The orientation of the sensor frames at rest are different from the world frame 
 The rotated tangential and radial components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$ are found using the tranformation matrix to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
 
 \begin{equation}
-  A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}
-\end{equation}
-
-\begin{equation}
-  A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}
+  \begin{bmatrix}
+  	A_{rad} \\
+  	0 \\
+  	A_{tan}
+  \end{bmatrix} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \begin{bmatrix}
+  	\ddot{x} \\
+  	0 \\
+	\ddot{z}
+  \end{bmatrix}
 \end{equation}
 
 Then, the radial and tangential acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
@@ -106,14 +110,17 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 \begin{equation}
 \mathbf{g} = \begin{bmatrix}
     g_x \\
-    g_y 
+    g_y \\
+    g_z 
     \end{bmatrix} = 
     \begin{bmatrix}
     A_x \\
+    0 \\
     A_z 
     \end{bmatrix} -
     \begin{bmatrix}
     A_{rad} \\
+    0 \\
     A_{tan} 
     \end{bmatrix}\,.
 \end{equation}
@@ -122,7 +129,7 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 According to Equation \ref{eq:projection_gravity} the angle estimate is
 
 \begin{equation}
-  \theta_1 + \theta_2 = \mbox{atan}2(g_y, g_x)\,.
+  \theta_1 + \theta_2 = \mbox{atan}2(g_y, g_z)\,.
 \end{equation}
 
 \noindent
