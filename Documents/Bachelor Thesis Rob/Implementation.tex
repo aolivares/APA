@@ -176,21 +176,67 @@ where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the 
 \end{equation}
 
 \noindent
-expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Given this \emph{state-space representation}, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is \emph{time-invariant} since it does not depend explicitly on time. 
+expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Given this \emph{state-space representation}, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is \emph{time-invariant} since it does not depend explicitly on time. Thus, we may leave out the $t$ and write from now on $\mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}, t)$.
 
-The state equation can be written in state-space form as 
+For a \emph{linear} system in state space form given by
 
-\begin{equation}
-  \dot{\mathbf{x}} = \mathbf{F} \mathbf{x} + \mathbf{w}\,,
+\begin{equation}\label{eq:linear_continuous}
+  \dot{\mathbf{x}} = \mathbf{F} \mathbf{x}\,,
 \end{equation}
 
 \noindent
-where the \emph{system dynamics matrix} $\mathbf{F}$ is given by
+with a time-invariant \emph{system dynamics matrix} $\mathbf{F}$ there is a \emph{state transition matrix} $\bm{\Phi}(t-t_0)$ that propagates the state of the system forward from any time $t_0$ to a time $t$, according to
 
 \begin{equation}
-\mathbf{F}(\mathbf{x}) = \begin{bmatrix}
-  0 & 0 & 0 & A & 0 & 0 & B & 0 & 0 & 0\\
-  0 & 0 & 0 & C & 0 & 0 & D & 0 & 0 & 0\\
+  \mathbf{x}(t) = \bm{\Phi}(t-t_0) \mathbf{x}(t_0)\,.
+\end{equation}
+
+\noindent
+The solution to the system described by Equation \ref{eq:linear_continuous} is 
+
+\begin{equation}
+  \mathbf{x}(t) = e^{\mathbf{F}(t-t_0)} \mathbf{x}(t_0)\,.
+\end{equation}
+
+\noindent
+As outlined in \cite{zarchan2009fundamentals}, the state transition matrix can be found by a Taylor-series expansion of $e^{\mathbf{F}(t-t_0)}$
+
+\begin{equation}
+\begin{split}
+  \bm{\Phi}(t-t_0) = e^{\mathbf{F}(t-t_0)} &= \sum_{k=0} ^ {\infty} \frac {\mathbf{F}^{n} [t-t_0]^n}{k!} \\
+  &= \mathbf{I}_n + \mathbf{F}[t-t_0] \\ 
+  & \mathrel{\phantom{= \mathbf{I}_n}} + \frac{\mathbf{F}^2 [t-t_0]^2}{2!} +\frac{\mathbf{F}^{3} [t-t_0]^3}{3!} + \cdots\,,
+\end{split}
+\end{equation}
+ 
+\noindent
+where $\mathbf{I}_n \in \mathbb{R}^{n \times n}$ is the identity matrix. Truncating the Taylor series after the first order terms yields the linear approximation of the fundamental matrix:
+
+\begin{equation}
+  \bm{\Phi}(t-t_0) \approx \mathbf{I}_n + \mathbf{F}[t-t_0]\,.
+\end{equation}
+
+\noindent
+The discrete fundamental matrix that propagates the state from time stem $k$ to $k+1$ can be found by substituting $T_s$ for $t-t_0$, which yields
+
+\begin{equation}
+  \bm{\Phi}_{k \rightarrow k+1} = \bm{\Phi}(T_s) \approx \mathbf{I}_{n} + \mathbf{F} T_s\,,
+\end{equation}
+
+\noindent
+where $T_s$ is the sampling period.
+
+Because the state equations of our system are \emph{non-linear}, a first-order approximation of the system dynamics matrix $\mathbf{F}$ is used, given by the Jacobian of $\mathbf{f}(\mathbf{x})$
+
+\begin{equation}
+\begin{split}
+\mathbf{F}^{[1]}_k = \mathbf{J}_{\mathbf{f}} &= \begin{bmatrix}
+    \dfrac{\partial f_1}{\partial x_1} & \cdots & \dfrac{\partial f_1}{\partial x_{n}}\\
+    \vdots & \ddots & \vdots\\
+    \dfrac{\partial f_{n}}{\partial x_1} & \cdots & \dfrac{\partial f_{n}}{\partial x_{n}} \end{bmatrix} \\
+&=\begin{bmatrix}
+  0 & 0 & A & C & 0 & E & G & 0 & 0 & 0\\
+  0 & 0 & B & D & 0 & F & H & 0 & 0 & 0\\
   0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
@@ -199,68 +245,40 @@ where the \emph{system dynamics matrix} $\mathbf{F}$ is given by
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-\end{bmatrix}\,,
+\end{bmatrix}_{\mathbf{x}=\hat{\mathbf{x}}_{k}}\,,
+\end{split}
 \end{equation}
 
 \noindent
 with
 
 \begin{equation*}
-  \begin{array}{cc}
   \begin{split}
-  	A &= -l_1 \sin \theta_1 -l_2 \sin (\theta_1 + \theta_2)\,, \quad \\
-  	C &=l_1 \cos \theta_1 + l_2 \cos (\theta_1 + \theta_2)\,,
-  \end{split} &
-  \begin{split}
-  B &= -l_2 \sin (\theta_1 + \theta_2)\,, \\
-  C &= l_2 \cos (\theta_1 + \theta_2)\,.
+  	A &= -l_1 \omega_1 \cos(\theta_1) -l_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2)\,, \\
+  	B &= +l_1 \omega_1 \sin(\theta_1) +l_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2)\,, \\
+  	C &= -l_1 \sin(\theta_1) -l_2 \sin (\theta_1 + \theta_2)\,, \\
+  	D &= -l_1 \cos(\theta_1) - l_2 \cos (\theta_1 + \theta_2)\,, \\
+  	E &= -l_2 (\omega_1 + \omega_2) \cos(\theta_1+ \theta_2)\,, \\
+  	F &= +l_2 (\omega_1 + \omega_2) \sin(\theta_1+ \theta_2)\,, \\
+    G &= -a_2 \sin (\theta_1 + \theta_2)\,, \\
+    H &= +a_2 \cos (\theta_1 + \theta_2)\,.
   \end{split}
-\end{array}
 \end{equation*}
 
-As outlined in \cite{zarchan2009fundamentals}, if the system dynamics matrix is time-invariant, then there is a \emph{fundamental matrix} $\bm{\Phi}(\mathbf{x}, t-t_0)$ that propagates the state of the system forward from any time $t_0$ to a time $t$ and can be found by a Taylor-series expansion 
+\noindent
+The partial derivatives are evaluated at the state estimate $\hat{\mathbf{x}}_{k}$. The discrete state transition matrix must be recomputed every time step $k$. It is given by 
 
 \begin{equation}
-\begin{split}
-  \bm{\Phi}(\mathbf{x}, t-t_0) = \mathbf{I} &+ \mathbf{F}(\mathbf{x}) [t-t_0] \\
-  		&+ \frac{\mathbf{F}(\mathbf{x})^2 [t-t_0]^2}{2!} +\frac{\mathbf{F}(\mathbf{x})^{3} [t-t_0]^3}{3!} + \cdots.
-\end{split}
+  \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F}^{[1]}_k T_s\,.
 \end{equation}
- 
-\noindent
-Truncating the Taylor series after the first order terms yields the linear approximation of the fundamental matrix:
-
-\begin{equation}
-  \bm{\Phi}^{[1]}(\mathbf{x}, t-t_0) \approx \mathbf{I}_n + \mathbf{F}(\mathbf{x}) [t-t_0]\,.
-\end{equation}
-
-\noindent
-The discrete-time fundamental matrix can be found by substituting $T_s$ for $t-t_0$, which yields
-
-\begin{equation}
-  \bm{\Phi}^{[1]}_{k} = \bm{\Phi}^{[1]}(\mathbf{x}(k T_s), T_s) \approx \mathbf{I}_{n} + \mathbf{F}_k T_s\,,
-\end{equation}
-
-\noindent
-with 
-
-\begin{equation}
-  \mathbf{F}_k = \mathbf{F}(\mathbf{x}(k T_s))\,,
-\end{equation}
-
-\noindent
-where $T_s$ is the sampling period and $\mathbf{I} \in \mathbb{R}^{10 \times 10}$ the identity matrix. 
 
 The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the non-linear differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
 
 \begin{equation}\label{eq:apriori_estimate_extended_model}
 \begin{split}
 	\hat{\mathbf{x}}^{-}_k &= \bm{\phi}_{k-1}(\hat{\mathbf{x}}_{k-1}, 0) \\
-	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1}, [k-1]T_s)T_s \\
-	&= \hat{\mathbf{x}}_{k-1} + \mathbf{F}_{k-1} \hat{\mathbf{x}}_{k-1} T_s \\
-	&= [\mathbf{I}_{n} + \mathbf{F}_{k-1} T_s] \hat{\mathbf{x}}_{k-1} \\
-	&= \bm{\Phi}^{[1]}_{k-1} \hat{\mathbf{x}}_{k-1}
-\end{split}\,,  
+	&= \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1})T_s\,, 
+\end{split} 
 \end{equation}
 
 \noindent
@@ -365,7 +383,7 @@ The state estimates are computed recursively according to the \emph{time update}
 
 \section{\textsc{Matlab}\textsuperscript{\textregistered} Implementation}
 
-The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} shows the source code.
+The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} shows the source code of the filter function. Listing \ref{lis:experiments} shows the script used to run the experiments.
 
 \section{Experiments}
 

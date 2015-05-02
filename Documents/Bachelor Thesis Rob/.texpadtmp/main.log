@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  2 MAY 2015 19:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  2 MAY 2015 22:55
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1823,55 +1823,34 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [41]
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 213.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 217.
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [42]
-Underfull \vbox (badness 2285) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [43]
-
-LaTeX Warning: Float too large for page by 1.62555pt on input line 363.
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
 
+LaTeX Warning: Float too large for page by 1.62555pt on input line 381.
+
+
 LaTeX Font Warning: Font shape `TS1/pplj/m/sc' undefined
 (Font)              using `TS1/pplj/m/n' instead
-(Font)              for symbol `textregistered' on input line 366.
+(Font)              for symbol `textregistered' on input line 384.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 366.
+(hyperref)                removing `\mathsurround' on input line 384.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 366.
+(hyperref)                removing `\z@' on input line 384.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 366.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 390.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 397.
+(hyperref)                removing `superscript' on input line 384.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1882,26 +1861,31 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [46]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 440.
+(amsmath)                trying to recover with `aligned' on input line 408.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 446.
+(amsmath)                trying to recover with `aligned' on input line 415.
+
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [47]
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 458.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 464.
 
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [47]
+ [48]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [48
-
-
-
-]
 Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1909,7 +1893,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [49])
+ [49
+
+
+
+])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [50] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
@@ -2109,18 +2097,20 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36460 strings out of 493117
- 680810 string characters out of 6135432
- 887283 words of memory out of 5000000
- 38460 multiletter control sequences out of 15000+600000
+ 36464 strings out of 493117
+ 680876 string characters out of 6135432
+ 887344 words of memory out of 5000000
+ 38461 multiletter control sequences out of 15000+600000
  67700 words of font info for 167 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,22n,81p,1942b,2341s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 55i,23n,81p,1942b,2341s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{lstnumber.2.33} has been referenced but does not exist, replaced by a fixed one
+
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (84 pages, 590397 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (84 pages, 592244 bytes).
 PDF statistics:
- 1748 PDF objects out of 2073 (max. 8388607)
- 1583 compressed objects within 16 object streams
- 636 named destinations out of 1000 (max. 500000)
+ 1754 PDF objects out of 2073 (max. 8388607)
+ 1589 compressed objects within 16 object streams
+ 639 named destinations out of 1000 (max. 500000)
  483 words of extra memory for PDF output out of 10000 (max. 10000000)
 
