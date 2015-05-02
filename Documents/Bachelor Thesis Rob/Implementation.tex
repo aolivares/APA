@@ -1,7 +1,7 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014}, as well as its implementation, based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
+This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014}, as well as its implementation based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
 
 \section{Initial Situation}
 
@@ -26,7 +26,7 @@ This section maps the theoretical design of the system proposed by \citeauthor{b
 
 \subsection{Kinematic Model}
 
-The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral, the $y$-axis points out of the page. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link 2, with respect to link 1. 
+The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral, the $y$-axis points out of the page. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link 2 with respect to link 1. 
 
 \begin{figure}
 \centering
@@ -80,7 +80,7 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \noindent
 in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives obtained with the EKF described in Section \ref{sec:EKF_model} we can estimate the motion based acceleration in $x$ and $z$ direction that sensor 2 will see in the world coordinate frame.
 
-The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is seen in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
 
 \begin{equation}
 \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) = \begin{bmatrix}
@@ -129,7 +129,7 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 According to Equation \ref{eq:projection_gravity} the angle estimate is
 
 \begin{equation}
-  \theta_1 + \theta_2 = \mbox{atan}2(g_y, g_z)\,.
+  \theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)\,.
 \end{equation}
 
 \noindent
@@ -159,17 +159,24 @@ The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 \noindent
 where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-The plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations \cite{rowell2002state}, in which the time derivative of each state variable is expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. These equations are known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
+According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations, known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
   -l_1 \omega_1 \sin \theta_1  - l_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2) \\
   -l_1 \omega_1 \cos \theta_1  - l_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
-  \end{smallmatrix}\right] + \mathbf{w}\,,
+  \end{smallmatrix}\right] + \mathbf{w}\,.
 \end{equation}
 
 \noindent
-where the components of $\mathbf{f}(\mathbf{x},t)$, that is $f_i(\mathbf{x})$ are the component-wise time derivatives $\dot{x}_i = \frac{dx_i}{dt}$, $i = 1, \dots, n$ of the state vector $\mathbf{x}$. Given this notation, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is time-invariant since it does not depend explicitly on time.
+where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the state vector $\mathbf{x}$, 
+
+\begin{equation}
+  \dot{x}_i = f_i(\mathbf{x}, t) = \frac{dx_i}{dt}\,, \quad i = 1, \dots, n\,,
+\end{equation}
+
+\noindent
+expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Given this \emph{state-space representation}, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is \emph{time-invariant} since it does not depend explicitly on time. 
 
 The state equation can be written in state-space form as 
 
@@ -221,7 +228,7 @@ As outlined in \cite{zarchan2009fundamentals}, if the system dynamics matrix is 
 \end{equation}
  
 \noindent
-The linear approximation of the fundamental matrix yields
+Truncating the Taylor series after the first order terms yields the linear approximation of the fundamental matrix:
 
 \begin{equation}
   \bm{\Phi}^{[1]}(\mathbf{x}, t-t_0) \approx \mathbf{I}_n + \mathbf{F}(\mathbf{x}) [t-t_0]\,.

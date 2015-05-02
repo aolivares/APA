@@ -14,26 +14,26 @@ A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 A level-1 auxiliary file: Appendix.aux
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 245 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 246 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 305 of file ../Bibliography.bib
+Repeated entry---line 306 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 506 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 507 of file ../Bibliography.bib
  :   
  :   month={October},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 608 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 609 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 613 of file ../Bibliography.bib
+Illegal end of database file---line 614 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -56,7 +56,7 @@ Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
 You've used 52 entries,
             2481 wiz_defined-function locations,
-            930 strings with 16804 characters,
+            931 strings with 16809 characters,
 and the built_in function-call counts, 21439 in all, are:
 = -- 1898
 > -- 1021

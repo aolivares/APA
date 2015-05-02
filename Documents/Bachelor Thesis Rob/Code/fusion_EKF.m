@@ -117,10 +117,12 @@ mu2 = mean(gyro_shank_y(1:2*fs));
 x = [0, -(l1+l2), -pi/2, 0, 0, 0, 0, 0, mu1, mu2]';
 
 % 8) Map gyroscope signals to measurement vector. 
+%    Column k represents the measurement vector at time
+%    step k.
 z = [gyro_thigh_y; gyro_shank_y; zeros(1, len)];
 
 % 9) Initialise the error covariance matrix.
-P = diag(ones(1, 10));
+P = diag(ones(1, 10)/3);
 
 % 10) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
@@ -128,10 +130,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 11) Define process noise covariance matrix.
-sigma_d = 1;
-sigma_t1 = 1;
-sigma_t2 = 1;
-sigma_b = 1;
+sigma_d = 0.9;
+sigma_t1 = 0.9;
+sigma_t2 = 0.9;
+sigma_b = 0.9;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -144,14 +146,14 @@ sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 0 0 0 0       0             0          0 sigma_b 0; ...
 0 0 0 0 0       0             0          0 0 sigma_b];
 
-% 12) Compute sample standard deviation of the first
+% 12) Compute sample variance of the first
 % two seconds of the gyroscope signals.
-sigma_1 = std(gyro_thigh_y(1:2*fs));
-sigma_2 = std(gyro_thigh_y(1:2*fs));
+sigma_1 = var(gyro_thigh_y(1:2*fs));
+sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 1;
-sigma_s = 1;
+sigma_f = 0.9;
+sigma_s = 0.9;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
@@ -226,7 +228,7 @@ for i=1:1:len
     
     % Compute corrected angle estimate and update 
     % measurement vector.
-    z(3, i) = atan2(g(1), g(3));
+    z(3, i) = atan2(g(3), g(1));
     
     % MEASUREMENT UPDATE %
     

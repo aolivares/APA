@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  1 MAY 2015 22:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  2 MAY 2015 19:31
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1618,7 +1618,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 
-] <images/accelerometer.pdf, id=622, 341.4504pt x 109.71089pt>
+] <images/accelerometer.pdf, id=621, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
 Package pdftex.def Info: images/accelerometer.pdf used on input line 13.
@@ -1644,7 +1644,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [9]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [10] <images/GaitWatch_placement.pdf, id=672, 340.75517pt x 292.43323pt>
+ [10] <images/GaitWatch_placement.pdf, id=671, 340.75517pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 136.
@@ -1672,7 +1672,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  (./Orientation_estimation.tex
 Chapter 3.
-<Images/taitbryan.pdf, id=759, 546.04pt x 533.995pt>
+<Images/taitbryan.pdf, id=758, 546.04pt x 533.995pt>
 File: Images/taitbryan.pdf Graphic file (type pdf)
  <use Images/taitbryan.pdf>
 Package pdftex.def Info: Images/taitbryan.pdf used on input line 23.
@@ -1787,7 +1787,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 ]
 Chapter 5.
-<images/sensors_on_leg.pdf, id=1006, 125.55606pt x 277.95004pt>
+<images/sensors_on_leg.pdf, id=1005, 125.55606pt x 277.95004pt>
 File: images/sensors_on_leg.pdf Graphic file (type pdf)
  <use images/sensors_on_leg.pdf>
 Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 15.
@@ -1825,24 +1825,24 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [41]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 206.
+(amsmath)                trying to recover with `aligned' on input line 213.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 210.
+(amsmath)                trying to recover with `aligned' on input line 217.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [42]
-Underfull \vbox (badness 5504) has occurred while \output is active []
+Underfull \vbox (badness 2285) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [43]
 
-LaTeX Warning: Float too large for page by 1.62555pt on input line 356.
+LaTeX Warning: Float too large for page by 1.62555pt on input line 363.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1851,27 +1851,27 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 LaTeX Font Warning: Font shape `TS1/pplj/m/sc' undefined
 (Font)              using `TS1/pplj/m/n' instead
-(Font)              for symbol `textregistered' on input line 359.
+(Font)              for symbol `textregistered' on input line 366.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 359.
+(hyperref)                removing `\mathsurround' on input line 366.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 359.
+(hyperref)                removing `\z@' on input line 366.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 359.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 383.
+(hyperref)                removing `superscript' on input line 366.
 
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 390.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 397.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1882,11 +1882,11 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [46]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 433.
+(amsmath)                trying to recover with `aligned' on input line 440.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 439.
+(amsmath)                trying to recover with `aligned' on input line 446.
 
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2014,28 +2014,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [61]
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 136--137
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 137--138
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 138--139
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 139--140
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 140--141
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
@@ -2045,16 +2035,26 @@ Overfull \hbox (3.21442pt too wide) in paragraph at lines 141--142
 
 
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 142--143
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 143--144
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 143--144
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 144--145
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 145--146
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 146--147
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2071,12 +2071,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [63]
-Overfull \hbox (10.11292pt too wide) in paragraph at lines 207--208
+Overfull \hbox (10.11292pt too wide) in paragraph at lines 209--210
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (10.11292pt too wide) in paragraph at lines 210--211
+Overfull \hbox (10.11292pt too wide) in paragraph at lines 212--213
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2109,18 +2109,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36453 strings out of 493117
- 680723 string characters out of 6135432
- 887319 words of memory out of 5000000
- 38458 multiletter control sequences out of 15000+600000
+ 36460 strings out of 493117
+ 680810 string characters out of 6135432
+ 887283 words of memory out of 5000000
+ 38460 multiletter control sequences out of 15000+600000
  67700 words of font info for 167 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,22n,81p,1942b,2341s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (84 pages, 589785 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (84 pages, 590397 bytes).
 PDF statistics:
- 1743 PDF objects out of 2073 (max. 8388607)
- 1578 compressed objects within 16 object streams
- 631 named destinations out of 1000 (max. 500000)
+ 1748 PDF objects out of 2073 (max. 8388607)
+ 1583 compressed objects within 16 object streams
+ 636 named destinations out of 1000 (max. 500000)
  483 words of extra memory for PDF output out of 10000 (max. 10000000)
 
