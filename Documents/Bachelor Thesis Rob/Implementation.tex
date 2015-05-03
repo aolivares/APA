@@ -138,7 +138,7 @@ According to Equation \ref{eq:projection_gravity} the angle estimate is
 \noindent
 This improved angle estimate is then fused with the estimate based on the integration of the angular rate measured with the gyroscope, in order to reduce the estimation error due to gyroscope drift.
 
-\subsection{Extended Kalman Filter Model}\label{sec:EKF_model}
+ \label{sec:EKF_model}
 
 The state-space model of the extended Kalman filter is given by the state vector $\mathbf{x} \in \mathbb{R}^{n=10}$
 
@@ -263,8 +263,8 @@ with
   	D &= -l_1 \cos(\theta_1) - l_2 \cos (\theta_1 + \theta_2)\,, \\
   	E &= -l_2 (\omega_1 + \omega_2) \cos(\theta_1+ \theta_2)\,, \\
   	F &= +l_2 (\omega_1 + \omega_2) \sin(\theta_1+ \theta_2)\,, \\
-    G &= -a_2 \sin (\theta_1 + \theta_2)\,, \\
-    H &= +a_2 \cos (\theta_1 + \theta_2)\,.
+    G &= -l_2 \sin (\theta_1 + \theta_2)\,, \\
+    H &= +l_2 \cos (\theta_1 + \theta_2)\,.
   \end{split}
 \end{equation*}
 
@@ -491,6 +491,15 @@ This section presents the results obtained by the experiments. Figures \ref{fig:
 	\includegraphics[width=\textwidth]{images/experiment_2.tikz}
 	\caption{Pitch angle of the right shank - Comparison}
 	\label{fig:experiment_2}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\includegraphics[width=\textwidth]{images/experiment_3.tikz}
+	\caption{Pitch angle of the right shank - Comparison}
+	\label{fig:experiment_4}
 \end{figure}
 
 \section{Discussion}

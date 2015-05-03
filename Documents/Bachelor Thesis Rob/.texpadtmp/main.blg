@@ -38,9 +38,6 @@ Illegal end of database file---line 614 of file ../Bibliography.bib
  : 
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Warning--empty year in olivares_vicente_gaitwatch_2013
-Warning--empty year in Wiki_taitbryan
-Warning--empty author in Maybeck79
 Warning--empty booktitle in bennett_extended_2013
 Warning--empty year in emarketer_smartphones
 Warning--empty year in Intel_2013
@@ -53,6 +50,9 @@ Warning--empty year in ADXL345
 Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
+Warning--empty year in olivares_vicente_gaitwatch_2013
+Warning--empty year in Wiki_taitbryan
+Warning--empty author in Maybeck79
 Warning--empty journal in rowell2002state
 You've used 52 entries,
             2481 wiz_defined-function locations,

@@ -114,15 +114,10 @@ mu1 = mean(gyro_thigh_y(1:2*fs));
 mu2 = mean(gyro_shank_y(1:2*fs));
 
 % 7) Initialise the state vector.
-x = [0, -(l1+l2), -pi/2, 0, 0, 0, 0, 0, mu1, mu2]';
-
-% 8) Map gyroscope signals to measurement vector. 
-%    Column k represents the measurement vector at time
-%    step k.
-z = [gyro_thigh_y; gyro_shank_y; zeros(1, len)];
+x = [0, -(l1+l2), -90, 0, 0, 0, 0, 0, mu1, mu2]';
 
 % 9) Initialise the error covariance matrix.
-P = diag(ones(1, 10)/3);
+P = diag(ones(1, 10) * 0.1);
 
 % 10) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
@@ -130,10 +125,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 11) Define process noise covariance matrix.
-sigma_d = 0.9;
-sigma_t1 = 0.9;
-sigma_t2 = 0.9;
-sigma_b = 0.9;
+sigma_d = 3;
+sigma_t1 = 4;
+sigma_t2 = 4;
+sigma_b = 4;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -152,28 +147,56 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 0.9;
-sigma_s = 0.9;
+sigma_f = 1;
+sigma_s = 1;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
+    
+% 13) Define matrix function f.
+function f_k = f
+    
+	f_k = [- l1 * x(4) * sin(x(3)) ...
+           - l2 * (x(4) + x(7)) * sin(x(3) + x(6)); ...
+           - l1 * x(4) * cos(x(3)) ...
+           - l2 * (x(4) + x(7)) * cos(x(3) + x(6)); ...
+           x(4);
+           x(5);
+           0;
+           x(7);
+           x(8);
+           0;
+           0;
+           0];
 
-% 13) Define matrix function F.
-    function F_k = F
-        F_k = ...
-[0, 0, 0, -l2 * sin(x(3)) - l2 * sin(x(3) + x(6)), ...
- 0, 0, -l2 * sin(x(3) + x(6)), 0, 0, 0; ...
- 0, 0, 0, l1 * cos(x(3)) + l2 * cos(x(3) + x(6)), ...
- 0, 0, l2 * cos(x(3) + x(6)), 0, 0, 0; ...
- 0, 0, 0, 1, 0, 0, 0, 0, 0, 0; ...
- 0, 0, 0, 0, 1, 0, 0, 0, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 1, 0, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 0, 1, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
- 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    end
+end
+
+% 13) Define Jacobian of F.
+function F_k = F
+
+    A = - l1 * x(4) * cos(x(3)) ...
+        - l2 * (x(4) + x(7)) * cos(x(3) + x(6));
+    B = + l1 * x(4) * sin(x(3)) ...
+        + l2 * (x(4) + x(7)) * sin(x(3) + x(6));
+    C = - l1 * sin(x(3)) - l2 * sin(x(3) + x(6));
+    D = - l1 * cos(x(3)) - l2 * cos(x(3) + x(6));
+    E = - l2 * (x(4) + x(7)) * cos(x(3) + x(6));
+    F = + l2 * (x(4) + x(7)) * sin(x(3) + x(6));
+    G = - l2 * sin(x(3) + x(6));
+    h = + l2 * cos(x(3) + x(6));
+
+    F_k = [0, 0, A, C, 0, E, G, 0, 0, 0; ...
+           0, 0, B, D, 0, F, h, 0, 0, 0; ...
+           0, 0, 0, 1, 0, 0, 0, 0, 0, 0; ...
+           0, 0, 0, 0, 1, 0, 0, 0, 0, 0; ...
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
+           0, 0, 0, 0, 0, 0, 1, 0, 0, 0; ...
+           0, 0, 0, 0, 0, 0, 0, 1, 0, 0; ...
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...  
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0; ...
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+end
 
 % 14) Initialise output vectors.
 theta1 = zeros(1, len);
@@ -194,11 +217,11 @@ for i=1:1:len
     
     % TIME UPDATE %
     
-    % Compute fundamental matrix.
+    % Compute state transition matrix.
     Phi = eye(10) + F * Ts;
     
     % Compute a priori state estimate.
-    x = Phi * x;
+    x = x + f * Ts;
     
     % Compute a priori error covariance matrix.
     P = Phi * P * Phi' + Q;
@@ -223,12 +246,13 @@ for i=1:1:len
     a = Tz * [ax; 0; az];
 
     % Compute gravity estimate.
-    g = [acc_shank_x(i); 0; acc_shank_z(i)] ...
-         - a;
+    g = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
     
-    % Compute corrected angle estimate and update 
-    % measurement vector.
-    z(3, i) = atan2(g(3), g(1));
+    % Constitute the measurement vector from the
+    % gyroscope signals and the corrected angle
+    % estimate theta_1 + theta_2.
+    z = [gyro_thigh_y(i); gyro_shank_y(i); 0];
+    z(3) = atan2d(g(3), g(1));
     
     % MEASUREMENT UPDATE %
     
@@ -236,7 +260,7 @@ for i=1:1:len
     K = P * H' / (H * P * H' + R);
     
     % Compute a posteriori estimate.
-    x = x + K * (z(:, i) - H * x);
+    x = x + K * (z - H * x);
     
     % Update error covariance matrix.
     P = (eye(10) - K * H) / P;
