@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  2 MAY 2015 22:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.11.11)  3 MAY 2015 16:47
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -616,10 +616,270 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary3d.code.tex
 File: tikzlibrary3d.code.tex 2013/07/17 v3.0.0 (rcs-revision 1.2)
 ))
-(/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/epsfig.sty
+(/usr/local/texlive/2014/texmf-dist/tex/latex/tikzscale/tikzscale.sty
+Package: tikzscale 2013/05/22 v0.2.6 tikzscale LaTeX package
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty
+Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
+\et@xins=\count129
+)
+\etb@tempcnta=\count130
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/l3packages/xparse/xparse.sty (/usr/local/texlive/2014/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2014/05/20 v4814 L3 programming layer (loader) 
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2014/05/20 v4814 L3 programming layer (code) 
+L3 Module: l3bootstrap 2014/05/16 v4782 L3 Bootstrap code
+L3 Module: l3names 2014/05/04 v4728 L3 Namespace for primitives
+L3 Module: l3basics 2014/05/04 v4728 L3 Basic definitions
+L3 Module: l3expan 2014/04/30 v4712 L3 Argument expansion
+L3 Module: l3tl 2014/05/04 v4728 L3 Token lists
+L3 Module: l3seq 2014/04/30 v4712 L3 Sequences and stacks
+L3 Module: l3int 2014/05/16 v4776 L3 Integers
+\c_max_int=\count131
+\l_tmpa_int=\count132
+\l_tmpb_int=\count133
+\g_tmpa_int=\count134
+\g_tmpb_int=\count135
+L3 Module: l3quark 2014/05/04 v4728 L3 Quarks
+L3 Module: l3prg 2014/05/04 v4728 L3 Control structures
+\g__prg_map_int=\count136
+L3 Module: l3clist 2014/05/04 v4728 L3 Comma separated lists
+L3 Module: l3token 2014/05/04 v4728 L3 Experimental token manipulation
+L3 Module: l3prop 2014/04/30 v4712 L3 Property lists
+L3 Module: l3msg 2014/05/04 v4728 L3 Messages
+L3 Module: l3file 2014/05/05 v4737 L3 File and I/O operations
+\l_iow_line_count_int=\count137
+\l__iow_target_count_int=\count138
+\l__iow_current_line_int=\count139
+\l__iow_current_word_int=\count140
+\l__iow_current_indentation_int=\count141
+L3 Module: l3skip 2014/05/05 v4738 L3 Dimensions and skips
+\c_zero_dim=\dimen167
+\c_max_dim=\dimen168
+\l_tmpa_dim=\dimen169
+\l_tmpb_dim=\dimen170
+\g_tmpa_dim=\dimen171
+\g_tmpb_dim=\dimen172
+\c_zero_skip=\skip80
+\c_max_skip=\skip81
+\l_tmpa_skip=\skip82
+\l_tmpb_skip=\skip83
+\g_tmpa_skip=\skip84
+\g_tmpb_skip=\skip85
+\c_zero_muskip=\muskip10
+\c_max_muskip=\muskip11
+\l_tmpa_muskip=\muskip12
+\l_tmpb_muskip=\muskip13
+\g_tmpa_muskip=\muskip14
+\g_tmpb_muskip=\muskip15
+L3 Module: l3keys 2014/05/08 v4753 L3 Key-value interfaces
+\g__keyval_level_int=\count142
+\l_keys_choice_int=\count143
+L3 Module: l3fp 2014/04/30 v4712 L3 Floating points
+\c__fp_leading_shift_int=\count144
+\c__fp_middle_shift_int=\count145
+\c__fp_trailing_shift_int=\count146
+\c__fp_big_leading_shift_int=\count147
+\c__fp_big_middle_shift_int=\count148
+\c__fp_big_trailing_shift_int=\count149
+\c__fp_Bigg_leading_shift_int=\count150
+\c__fp_Bigg_middle_shift_int=\count151
+\c__fp_Bigg_trailing_shift_int=\count152
+L3 Module: l3box 2014/05/04 v4728 L3 Experimental boxes
+\c_empty_box=\box59
+\l_tmpa_box=\box60
+\l_tmpb_box=\box61
+\g_tmpa_box=\box62
+\g_tmpb_box=\box63
+L3 Module: l3coffins 2014/05/04 v4728 L3 Coffin code layer
+\l__coffin_internal_box=\box64
+\l__coffin_internal_dim=\dimen173
+\l__coffin_offset_x_dim=\dimen174
+\l__coffin_offset_y_dim=\dimen175
+\l__coffin_x_dim=\dimen176
+\l__coffin_y_dim=\dimen177
+\l__coffin_x_prime_dim=\dimen178
+\l__coffin_y_prime_dim=\dimen179
+\c_empty_coffin=\box65
+\l__coffin_aligned_coffin=\box66
+\l__coffin_aligned_internal_coffin=\box67
+\l_tmpa_coffin=\box68
+\l_tmpb_coffin=\box69
+\l__coffin_display_coffin=\box70
+\l__coffin_display_coord_coffin=\box71
+\l__coffin_display_pole_coffin=\box72
+\l__coffin_display_offset_dim=\dimen180
+\l__coffin_display_x_dim=\dimen181
+\l__coffin_display_y_dim=\dimen182
+L3 Module: l3color 2014/04/30 v4712 L3 Experimental color support
+L3 Module: l3luatex 2014/04/30 v4712 L3 Experimental LuaTeX-specific functions
+\g__cctab_allocate_int=\count153
+\g__cctab_stack_int=\count154
+L3 Module: l3candidates 2014/05/04 v4734 L3 Experimental additions to l3kernel
+\l__box_top_dim=\dimen183
+\l__box_bottom_dim=\dimen184
+\l__box_left_dim=\dimen185
+\l__box_right_dim=\dimen186
+\l__box_top_new_dim=\dimen187
+\l__box_bottom_new_dim=\dimen188
+\l__box_left_new_dim=\dimen189
+\l__box_right_new_dim=\dimen190
+\l__box_internal_box=\box73
+\l__coffin_bounding_shift_dim=\dimen191
+\l__coffin_left_corner_dim=\dimen192
+\l__coffin_right_corner_dim=\dimen193
+\l__coffin_bottom_corner_dim=\dimen194
+\l__coffin_top_corner_dim=\dimen195
+\l__coffin_scaled_total_height_dim=\dimen196
+\l__coffin_scaled_width_dim=\dimen197
+))
+Package: xparse 2014/05/05 v4740 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count155
+\l__xparse_m_args_int=\count156
+\l__xparse_mandatory_args_int=\count157
+\l__xparse_processor_int=\count158
+\l__xparse_v_nesting_int=\count159
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/letltxmacro.sty
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/xstring/xstring.sty (/usr/local/texlive/2014/texmf-dist/tex/generic/xstring/xstring.tex
+\@xs@message=\write4
+\integerpart=\count160
+\decimalpart=\count161
+)
+Package: xstring 2013/10/13  v1.7c  String manipulations (C Tellechea)
+)
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@forGroupListElement with arg. spec.
+. 'mgu{\tikzscale@endList }' on line 65.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \elseif with arg. spec. 'mm' on line 88.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \elseif@optional with arg. spec. 'gg' on line 102.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \elseif@absorb with arg. spec. 'g' on line 107.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \IfNoValueOrSplitEmptyTF with arg. spec. 'mmm' on
+. line 115.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@includegraphics with arg. spec. 'O{}m'
+. on line 186.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@findExactFileName with arg. spec. 'mm'
+. on line 232.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@setGraphicsPath with arg. spec. '' on
+. line 250.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@isTikzFile with arg. spec. 'mm' on line
+. 260.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@includetikzWithExternalization with
+. arg. spec. 'm' on line 314.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@checkRequestedSizeChanges with arg.
+. spec. '' on line 350.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@preparePlot with arg. spec. '' on line
+. 353.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@prepareTikzpicture with arg. spec. ''
+. on line 356.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@includeNormalTikzpicture with arg.
+. spec. 'm' on line 368.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@invalidKeyError with arg. spec. 'm' on
+. line 371.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@includeAxisRatio with arg. spec. 'm' on
+. line 387.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@scaleTikzpictureTo with arg. spec.
+. 'mmm' on line 419.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@resizePlotTo with arg. spec. 'm' on
+. line 475.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@resizePlotWithAxesRatioTo with arg.
+. spec. 'mmmm' on line 517.
+.................................................
+\tikzscale@measuredSize=\box74
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@conditionalDisableExternalization with
+. arg. spec. '' on line 552.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining document command \tikzscale@conditionalEnableExternalization with
+. arg. spec. 'm' on line 564.
+.................................................
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/graphics/epsfig.sty
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
-\epsfxsize=\dimen167
-\epsfysize=\dimen168
+\epsfxsize=\dimen198
+\epsfysize=\dimen199
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2010/02/09 v2.5 Conversion with epstopdf on the fly (HO)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
@@ -644,10 +904,6 @@ Package etexcmds Info: Could not find \expanded.
 (etexcmds)             In the latter case, load this package earlier.
 ))) (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO)
- (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
-Package ifpdf Info: pdfTeX in PDF mode is detected.
-)
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
@@ -663,44 +919,45 @@ Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2013/05/02 v1.6-88 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 57.
-\captionmargin=\dimen169
-\captionmargin@=\dimen170
-\captionwidth=\dimen171
-\caption@tempdima=\dimen172
-\caption@indent=\dimen173
-\caption@parindent=\dimen174
-\caption@hangindent=\dimen175
+\captionmargin=\dimen200
+\captionmargin@=\dimen201
+Normal \dimen register pool exhausted, switching to extended pool.
+\captionwidth=\dimen256
+\caption@tempdima=\dimen257
+\caption@indent=\dimen258
+\caption@parindent=\dimen259
+\caption@hangindent=\dimen260
 )
-\c@ContinuedFloat=\count129
+\c@ContinuedFloat=\count162
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
-\c@subfigure=\count130
-\c@subtable=\count131
+\c@subfigure=\count163
+\c@subtable=\count164
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count132
+\c@float@type=\count165
 \float@exts=\toks35
-\float@box=\box59
+\float@box=\box75
 \@float@everytoks=\toks36
-\@floatcapt=\box60
+\@floatcapt=\box76
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count133
-\lst@gtempboxa=\box61
+\lst@mode=\count166
+\lst@gtempboxa=\box77
 \lst@token=\toks37
-\lst@length=\count134
-\lst@currlwidth=\dimen176
-\lst@column=\count135
-\lst@pos=\count136
-\lst@lostspace=\dimen177
-\lst@width=\dimen178
-\lst@newlines=\count137
-\lst@lineno=\count138
-\lst@maxwidth=\dimen179
+\lst@length=\count167
+\lst@currlwidth=\dimen261
+\lst@column=\count168
+\lst@pos=\count169
+\lst@lostspace=\dimen262
+\lst@width=\dimen263
+\lst@newlines=\count170
+\lst@lineno=\count171
+\lst@maxwidth=\dimen264
  (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2014/03/04 1.5c (Carsten Heinz)
-\c@lstnumber=\count139
-\lst@skipnumbers=\count140
-\lst@framebox=\box62
+\c@lstnumber=\count172
+\lst@skipnumbers=\count173
+\lst@framebox=\box78
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2014/03/04 1.5c listings configuration
 ))
@@ -719,7 +976,8 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             Family '?' is the default used for unknown fonts.
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 71.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.def
+
+(/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
@@ -858,111 +1116,104 @@ Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 339.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2013/09/10 v2.59 Date Time Package
- (/usr/local/texlive/2014/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2011/01/03 v2.1 e-TeX tools for LaTeX
- (/usr/local/texlive/2014/texmf-dist/tex/latex/etex-pkg/etex.sty
-Package: etex 1998/03/26 v2.0 eTeX basic definition package (PEB)
-\et@xins=\count141
-)
-\etb@tempcnta=\count142
-) (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fmtcount.sty
 Package: fmtcount 2013/08/17 v2.03
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fcprefix.sty
 Package: fcprefix 2012/09/28
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2012/09/28
-\fc@digit@counter=\count143
+\fc@digit@counter=\count174
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0
 \@emptytoks=\toks38
-\ex@=\dimen180
+\ex@=\dimen265
 )
-\c@padzeroesN=\count144
-\fc@tmpcatcode=\count145
-\@DT@modctr=\count146
-\@ordinalctr=\count147
-\@orgargctr=\count148
-\@strctr=\count149
-\@tmpstrctr=\count150
-\@DT@loopN=\count151
-\@DT@X=\count152
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fc-english.def
+\c@padzeroesN=\count175
+\fc@tmpcatcode=\count176
+\@DT@modctr=\count177
+\@ordinalctr=\count178
+\@orgargctr=\count179
+\@strctr=\count180
+\@tmpstrctr=\count181
+\@DT@loopN=\count182
+\@DT@X=\count183
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2013/08/17
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count153
-\@month=\count154
-\@year=\count155
-\c@HOUR=\count156
-\c@HOURXII=\count157
-\c@MINUTE=\count158
-\c@TOHOUR=\count159
-\c@TOMINUTE=\count160
-\c@SECOND=\count161
-\currenthour=\count162
-\currentminute=\count163
-\currentsecond=\count164
+\@day=\count184
+\@month=\count185
+\@year=\count186
+\c@HOUR=\count187
+\c@HOURXII=\count188
+\c@MINUTE=\count189
+\c@TOHOUR=\count190
+\c@TOMINUTE=\count191
+\c@SECOND=\count192
+\currenthour=\count193
+\currentminute=\count194
+\currentsecond=\count195
 Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
-\@dtctr=\count165
-\dayofyear=\count166
-\dayofweek=\count167
+\@dtctr=\count196
+\dayofyear=\count197
+\dayofweek=\count198
 LaTeX Info: Redefining \today on input line 736.
 \dt@a=\toks39
 \dt@b=\toks40
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip80
-\bibsep=\skip81
+\bibhang=\skip86
+\bibsep=\skip87
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count168
+\c@NAT@ctr=\count199
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/subeqnarray/subeqnarray.sty
 Package: subeqnarray 2004/04/15 v2.1c subeqnarray package
-\c@subequation=\count169
+\c@subequation=\count200
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2004/02/01 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip82
-\LTright=\skip83
-\LTpre=\skip84
-\LTpost=\skip85
-\LTchunksize=\count170
-\LTcapwidth=\dimen181
-\LT@head=\box63
-\LT@firsthead=\box64
-\LT@foot=\box65
-\LT@lastfoot=\box66
-\LT@cols=\count171
-\LT@rows=\count172
-\c@LT@tables=\count173
-\c@LT@chunks=\count174
+\LTleft=\skip88
+\LTright=\skip89
+\LTpre=\skip90
+\LTpost=\skip91
+\LTchunksize=\count201
+\LTcapwidth=\dimen266
+\LT@head=\box79
+\LT@firsthead=\box80
+\LT@foot=\box81
+\LT@lastfoot=\box82
+Normal \count register pool exhausted, switching to extended pool.
+\LT@cols=\count277
+\LT@rows=\count278
+\c@LT@tables=\count279
+\c@LT@chunks=\count280
 \LT@p@ftn=\toks41
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2005/04/14 v1.61803 publication quality tables
-\heavyrulewidth=\dimen182
-\lightrulewidth=\dimen183
-\cmidrulewidth=\dimen184
-\belowrulesep=\dimen185
-\belowbottomsep=\dimen186
-\aboverulesep=\dimen187
-\abovetopsep=\dimen188
-\cmidrulesep=\dimen189
-\cmidrulekern=\dimen190
-\defaultaddspace=\dimen191
-\@cmidla=\count175
-\@cmidlb=\count176
-\@aboverulesep=\dimen192
-\@belowrulesep=\dimen193
-\@thisruleclass=\count177
-\@lastruleclass=\count178
-\@thisrulewidth=\dimen194
+\heavyrulewidth=\dimen267
+\lightrulewidth=\dimen268
+\cmidrulewidth=\dimen269
+\belowrulesep=\dimen270
+\belowbottomsep=\dimen271
+\aboverulesep=\dimen272
+\abovetopsep=\dimen273
+\cmidrulesep=\dimen274
+\cmidrulekern=\dimen275
+\defaultaddspace=\dimen276
+\@cmidla=\count281
+\@cmidlb=\count282
+\@aboverulesep=\dimen277
+\@belowrulesep=\dimen278
+\@thisruleclass=\count283
+\@lastruleclass=\count284
+\@thisrulewidth=\dimen279
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen195
-\extrarowheight=\dimen196
+\col@sep=\dimen280
+\extrarowheight=\dimen281
 \NC@list=\toks42
-\extratabsurround=\skip86
-\backup@length=\skip87
+\extratabsurround=\skip92
+\backup@length=\skip93
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/bm.sty
 Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup5
@@ -973,7 +1224,7 @@ LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 137.
 LaTeX Info: Redefining \bm on input line 203.
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
-\@mathmargin=\skip88
+\@mathmargin=\skip94
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amstext.sty
@@ -981,44 +1232,44 @@ Package: amstext 2000/06/29 v2.01
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d
 LaTeX Info: Redefining \boldsymbol on input line 39.
-\pmbraise@=\dimen197
+\pmbraise@=\dimen282
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 1999/12/14 v2.01 operator names
 )
-\inf@bad=\count179
+\inf@bad=\count285
 LaTeX Info: Redefining \frac on input line 210.
-\uproot@=\count180
-\leftroot@=\count181
+\uproot@=\count286
+\leftroot@=\count287
 LaTeX Info: Redefining \overline on input line 306.
-\classnum@=\count182
-\DOTSCASE@=\count183
+\classnum@=\count288
+\DOTSCASE@=\count289
 LaTeX Info: Redefining \ldots on input line 378.
 LaTeX Info: Redefining \dots on input line 381.
 LaTeX Info: Redefining \cdots on input line 466.
-\Mathstrutbox@=\box67
-\strutbox@=\box68
-\big@size=\dimen198
+\Mathstrutbox@=\box83
+\strutbox@=\box84
+\big@size=\dimen283
 LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
-\macc@depth=\count184
-\c@MaxMatrixCols=\count185
-\dotsspace@=\muskip10
-\c@parentequation=\count186
-\dspbrk@lvl=\count187
+\macc@depth=\count290
+\c@MaxMatrixCols=\count291
+\dotsspace@=\muskip16
+\c@parentequation=\count292
+\dspbrk@lvl=\count293
 \tag@help=\toks43
-\row@=\count188
-\column@=\count189
-\maxfields@=\count190
+\row@=\count294
+\column@=\count295
+\maxfields@=\count296
 \andhelp@=\toks44
-\eqnshift@=\dimen199
-\alignsep@=\dimen200
-\tagshift@=\dimen201
-\tagwidth@=\dimen202
-\totwidth@=\dimen203
-\lineht@=\dimen204
+\eqnshift@=\dimen284
+\alignsep@=\dimen285
+\tagshift@=\dimen286
+\tagwidth@=\dimen287
+\totwidth@=\dimen288
+\lineht@=\dimen289
 \@envbody=\toks45
-\multlinegap=\skip89
-\multlinetaggap=\skip90
+\multlinegap=\skip95
+\multlinetaggap=\skip96
 \mathdisplay@stack=\toks46
 LaTeX Info: Redefining \[ on input line 2665.
 LaTeX Info: Redefining \] on input line 2666.
@@ -1034,31 +1285,60 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 Package: mathtools 2014/05/21 v1.14 mathematical typesetting tools
  (/usr/local/texlive/2014/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count191
-\calc@Bcount=\count192
-\calc@Adimen=\dimen205
-\calc@Bdimen=\dimen206
-\calc@Askip=\skip91
-\calc@Bskip=\skip92
+\calc@Acount=\count297
+\calc@Bcount=\count298
+\calc@Adimen=\dimen290
+\calc@Bdimen=\dimen291
+\calc@Askip=\skip97
+\calc@Bskip=\skip98
 LaTeX Info: Redefining \setlength on input line 75.
 LaTeX Info: Redefining \addtolength on input line 76.
-\calc@Ccount=\count193
-\calc@Cskip=\skip93
+\calc@Ccount=\count299
+\calc@Cskip=\skip99
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/mh/mhsetup.sty
 Package: mhsetup 2010/01/21 v1.2a programming setup (MH)
 )
 LaTeX Info: Thecontrolsequence`\['isalreadyrobust on input line 129.
 LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
-\g_MT_multlinerow_int=\count194
-\l_MT_multwidth_dim=\dimen207
-\origjot=\skip94
-\l_MT_shortvdotswithinadjustabove_dim=\dimen208
-\l_MT_shortvdotswithinadjustbelow_dim=\dimen209
-\l_MT_above_intertext_sep=\dimen210
-\l_MT_below_intertext_sep=\dimen211
-\l_MT_above_shortintertext_sep=\dimen212
-\l_MT_below_shortintertext_sep=\dimen213
-) (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+\g_MT_multlinerow_int=\count300
+\l_MT_multwidth_dim=\dimen292
+\origjot=\skip100
+\l_MT_shortvdotswithinadjustabove_dim=\dimen293
+\l_MT_shortvdotswithinadjustbelow_dim=\dimen294
+\l_MT_above_intertext_sep=\dimen295
+\l_MT_below_intertext_sep=\dimen296
+\l_MT_above_shortintertext_sep=\dimen297
+\l_MT_below_shortintertext_sep=\dimen298
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+Package: pgfplots 2014/02/28 v1.10 Data Visualization (1.10-2-gb39fe75)
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
+\t@pgfplots@toka=\toks47
+\t@pgfplots@tokb=\toks48
+\t@pgfplots@tokc=\toks49
+\pgfplots@tmpa=\dimen299
+\c@pgfplots@coordindex=\count301
+\c@pgfplots@scanlineindex=\count302
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldpgfsupp_loader.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructure.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsliststructureext.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray.code.tex
+\c@pgfplotsarray@tmp=\count303
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
+\c@pgfplotstable@counta=\count304
+\t@pgfplotstable@a=\toks50
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+\c@pgfplotslibrarysurf@no=\count305
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex))
+\pgfplots@numplots=\count306
+\pgfplots@xmin@reg=\dimen300
+\pgfplots@xmax@reg=\dimen301
+\pgfplots@ymin@reg=\dimen302
+\pgfplots@ymax@reg=\dimen303
+\pgfplots@zmin@reg=\dimen304
+\pgfplots@zmax@reg=\dimen305
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryplotmarks.code.tex
+File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
+ (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
+File: pgflibraryplotmarks.code.tex 2013/07/20 v3.0.0 (rcs-revision 1.13)
+))) (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -1082,27 +1362,28 @@ Package: bitset 2011/01/30 v1.1 Handle bit-vector datatype (HO)
 Package: uniquecounter 2011/01/30 v1.2 Provide unlimited unique counter (HO)
 )
 Package hobsub Info: Skipping package `hobsub' (already loaded).
-Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package hobsub Info: Skipping package `letltxmacro' (already loaded).
 Package: hopatch 2012/05/28 v1.2 Wrapper for package hooks (HO)
 Package: xcolor-patch 2011/01/30 xcolor patch
 Package: atveryend 2011/06/30 v1.8 Hooks at the very end of document (HO)
 Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
-) (/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen214
-\Hy@linkcounter=\count195
-\Hy@pagecounter=\count196
+\@linkdim=\dimen306
+\Hy@linkcounter=\count307
+\Hy@pagecounter=\count308
  (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count197
+\Hy@SavedSpaceFactor=\count309
  (/usr/local/texlive/2014/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
@@ -1118,16 +1399,16 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count198
+\c@Hy@tempcnt=\count310
 (/usr/local/texlive/2014/texmf-dist/tex/latex/url/url.sty
-\Urlmuskip=\muskip11
+\Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
-\XeTeXLinkMargin=\dimen215
-\Fld@menulength=\count199
-\Field@Width=\dimen216
-\Fld@charsize=\dimen217
+\XeTeXLinkMargin=\dimen307
+\Fld@menulength=\count311
+\Field@Width=\dimen308
+\Fld@charsize=\dimen309
 Package hyperref Info: Hyper figures OFF on input line 6295.
 Package hyperref Info: Link nesting OFF on input line 6300.
 Package hyperref Info: Hyper index ON on input line 6303.
@@ -1137,60 +1418,60 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count200
-\c@Item=\count201
-\c@Hfootnote=\count202
+\Hy@abspage=\count312
+\c@Item=\count313
+\c@Hfootnote=\count314
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count203
-\c@bookmark@seq@number=\count204
+\Fld@listcount=\count315
+\c@bookmark@seq@number=\count316
  (/usr/local/texlive/2014/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
-\Hy@SectionHShift=\skip95
+\Hy@SectionHShift=\skip101
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2014/04/04 v4.07 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/05/09 v2.6d package option processing (HA)
  (/usr/local/texlive/2014/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-\XKV@toks=\toks47
-\XKV@tempa@toks=\toks48
-\XKV@depth=\count205
+\XKV@toks=\toks51
+\XKV@tempa@toks=\toks52
+\XKV@depth=\count317
 File: xkeyval.tex 2014/05/09 v2.6d key=value parser (HA)
 )) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/mfirstuc.sty
 Package: mfirstuc 2013/11/04 v1.08 (NLCT)
-\@glsmfirst=\toks49
-\@glsmrest=\toks50
+\@glsmfirst=\toks53
+\@glsmrest=\toks54
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/xfor/xfor.sty
 Package: xfor 2009/02/05 v1.05 (NLCT)
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-base.sty
 Package: datatool-base 2013/09/06 v2.18 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/substr/substr.sty
 Package: substr 2009/10/20 v1.2 Handle substrings
-\c@su@anzahl=\count206
+\c@su@anzahl=\count318
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/datatool/datatool-fp.sty
 Package: datatool-fp 2013/08/29 v2.17 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp.sty
 Package: fp 1995/04/02
  `Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/defpattern.sty
 Package: defpattern 1994/10/12
-\actioncount=\count207
+\actioncount=\count319
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-basic.sty
 Package: fp-basic 1996/05/13
-\FP@xs=\count208
-\FP@xia=\count209
-\FP@xib=\count210
-\FP@xfa=\count211
-\FP@xfb=\count212
-\FP@rega=\count213
-\FP@regb=\count214
-\FP@regs=\count215
-\FP@times=\count216
+\FP@xs=\count320
+\FP@xia=\count321
+\FP@xib=\count322
+\FP@xfa=\count323
+\FP@xfb=\count324
+\FP@rega=\count325
+\FP@regb=\count326
+\FP@regs=\count327
+\FP@times=\count328
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-addons.sty
 Package: fp-addons 1995/03/15
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-snap.sty
@@ -1203,7 +1484,7 @@ Package: fp-trigo 1995/04/14
 Package: fp-pas 1994/08/29
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-random.sty
 Package: fp-random 1995/02/23
-\FPseed=\count217
+\FPseed=\count329
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eqn.sty
 Package: fp-eqn 1995/04/03
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-upn.sty
@@ -1211,115 +1492,121 @@ Package: fp-upn 1996/10/21
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/fp/fp-eval.sty
 Package: fp-eval 1995/04/03
 )))
-\@dtl@toks=\toks51
-\@dtl@tmpcount=\count218
-\dtl@tmplength=\skip96
-\dtl@sortresult=\count219
-\@dtl@numgrpsepcount=\count220
-\@dtl@datatype=\count221
-\dtl@codeA=\count222
-\dtl@codeB=\count223
-\@dtl@foreach@level=\count224
+\@dtl@toks=\toks55
+\@dtl@tmpcount=\count330
+\dtl@tmplength=\skip102
+\dtl@sortresult=\count331
+\@dtl@numgrpsepcount=\count332
+\@dtl@datatype=\count333
+\dtl@codeA=\count334
+\dtl@codeB=\count335
+\@dtl@foreach@level=\count336
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries-compatible-307.sty
 Package: glossaries-compatible-307 2013/11/14 v4.0 (NLCT)
 )
-\gls@level=\count225
-\@gls@tmpb=\toks52
-\gls@tmplen=\skip97
-\glskeylisttok=\toks53
-\glslabeltok=\toks54
-\glsshorttok=\toks55
-\glslongtok=\toks56
+\gls@level=\count337
+\@gls@tmpb=\toks56
+\gls@tmplen=\skip103
+\glskeylisttok=\toks57
+\glslabeltok=\toks58
+\glsshorttok=\toks59
+\glslongtok=\toks60
  (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-hypernav.sty
 Package: glossary-hypernav 2013/11/14 v4.0 (NLCT)
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
 Package: glossary-list 2013/11/14 v4.0 (NLCT)
-\glslistdottedwidth=\skip98
+\glslistdottedwidth=\skip104
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
 Package: glossary-long 2013/11/14 v4.0 (NLCT)
-\glsdescwidth=\skip99
-\glspagelistwidth=\skip100
+\glsdescwidth=\skip105
+\glspagelistwidth=\skip106
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
 Package: glossary-super 2013/11/14 v4.0 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
-\c@tracingst=\count226
-\ST@wd=\dimen218
-\ST@rightskip=\skip101
-\ST@leftskip=\skip102
-\ST@parfillskip=\skip103
-\ST@pageleft=\dimen219
-\ST@headht=\dimen220
-\ST@tailht=\dimen221
-\ST@pagesofar=\dimen222
-\ST@pboxht=\dimen223
-\ST@lineht=\dimen224
-\ST@stretchht=\dimen225
-\ST@prevht=\dimen226
-\ST@toadd=\dimen227
-\ST@dimen=\dimen228
-\ST@pbox=\box69
+\c@tracingst=\count338
+\ST@wd=\dimen310
+\ST@rightskip=\skip107
+\ST@leftskip=\skip108
+\ST@parfillskip=\skip109
+\ST@pageleft=\dimen311
+\ST@headht=\dimen312
+\ST@tailht=\dimen313
+\ST@pagesofar=\dimen314
+\ST@pboxht=\dimen315
+\ST@lineht=\dimen316
+\ST@stretchht=\dimen317
+\ST@prevht=\dimen318
+\ST@toadd=\dimen319
+\ST@dimen=\dimen320
+\ST@pbox=\box85
 ))
 (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
 Package: glossary-tree 2014/03/06 v4.04 (NLCT)
-\glstreeindent=\skip104
+\glstreeindent=\skip110
 ))
-\glswrite=\write4
-\glo@main@file=\write5
-\openout5 = `main.glo'.
+\glswrite=\write5
+\glo@main@file=\write6
+\openout6 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 129.
-\glo@acronym@file=\write6
-\openout6 = `main.acn'.
+Package glossaries Info: Writing glossary file main.glo on input line 131.
+\glo@acronym@file=\write7
+\openout7 = `main.acn'.
 
-Package glossaries Info: Writing glossary file main.acn on input line 129.
-\glo@notation@file=\write7
-\openout7 = `main.ntn'.
+Package glossaries Info: Writing glossary file main.acn on input line 131.
+\glo@notation@file=\write8
+\openout8 = `main.ntn'.
 
-Package glossaries Info: Writing glossary file main.ntn on input line 129.
- (./Acronyms.tex) (./Notation.tex) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux
+Package glossaries Info: Writing glossary file main.ntn on input line 131.
+ (./Acronyms.tex) (./Notation.tex)
+\tikzscale@accuracy=\skip111
+ (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux
 
 LaTeX Warning: Label `eq:Phi_first_order' multiply defined.
 
-) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
+) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux
+
+LaTeX Warning: Label `fig:sphere' multiply defined.
+
+) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 139.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 139.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 141.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 141.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 139.
-LaTeX Font Info:    ... okay on input line 139.
-LaTeX Font Info:    Try loading font information for OT1+pplj on input line 139.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 141.
+LaTeX Font Info:    ... okay on input line 141.
+LaTeX Font Info:    Try loading font information for OT1+pplj on input line 141.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplj.fd
 File: ot1pplj.fd 2004/09/06 font definitions for OT1/pplj.
 ) (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count227
-\scratchdimen=\dimen229
-\scratchbox=\box70
-\nofMPsegments=\count228
-\nofMParguments=\count229
-\everyMPshowfont=\toks57
-\MPscratchCnt=\count230
-\MPscratchDim=\dimen230
-\MPnumerator=\count231
-\makeMPintoPDFobject=\count232
-\everyMPtoPDFconversion=\toks58
+\scratchcounter=\count339
+\scratchdimen=\dimen321
+\scratchbox=\box86
+\nofMPsegments=\count340
+\nofMParguments=\count341
+\everyMPshowfont=\toks61
+\MPscratchCnt=\count342
+\MPscratchDim=\dimen322
+\MPnumerator=\count343
+\makeMPintoPDFobject=\count344
+\everyMPtoPDFconversion=\toks62
 )
 
 Package scrpage2 Warning: seems you are using a constant headheight.
@@ -1340,23 +1627,27 @@ Package: ltcaption 2013/02/03 v1.3-62 longtable captions (AR)
 )
 Package caption Info: supertabular package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count233
-\AtBeginShipoutBox=\box71
-Package hyperref Info: Link coloring OFF on input line 139.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
+\c@lstlisting=\count345
+
+
+Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.10} into your preamble.
+ on input line 141.
+
+\AtBeginShipoutBox=\box87
+Package hyperref Info: Link coloring OFF on input line 141.
+(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-Normal \count register pool exhausted, switching to extended pool.
-\c@section@level=\count277
+\c@section@level=\count346
 )
-LaTeX Info: Redefining \ref on input line 139.
-LaTeX Info: Redefining \pageref on input line 139.
-LaTeX Info: Redefining \nameref on input line 139.
+LaTeX Info: Redefining \ref on input line 141.
+LaTeX Info: Redefining \pageref on input line 141.
+LaTeX Info: Redefining \nameref on input line 141.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out)
-\@outlinefile=\write8
-\openout8 = `main.out'.
+\@outlinefile=\write9
+\openout9 = `main.out'.
 
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.glsdefs)
 \openout2 = `Cover.aux'.
@@ -1371,7 +1662,7 @@ Package epstopdf Info: Source file: <images/universidad_de_granada.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/universidad_de_granada-eps-converted-to.pdf images/universidad_de_granada.eps>
 (epstopdf)             \includegraphics on input line 6.
 Package epstopdf Info: Output file is already uptodate.
- <images/universidad_de_granada-eps-converted-to.pdf, id=224, 414.54875pt x 129.48375pt>
+ <images/universidad_de_granada-eps-converted-to.pdf, id=220, 414.54875pt x 129.48375pt>
 File: images/universidad_de_granada-eps-converted-to.pdf Graphic file (type pdf)
  <use images/universidad_de_granada-eps-converted-to.pdf>
 Package pdftex.def Info: images/universidad_de_granada-eps-converted-to.pdf used on input line 6.
@@ -1385,7 +1676,7 @@ Package epstopdf Info: Source file: <images/fh-muenster.eps>
 (epstopdf)             Command: <epstopdf --outfile=images/fh-muenster-eps-converted-to.pdf images/fh-muenster.eps>
 (epstopdf)             \includegraphics on input line 8.
 Package epstopdf Info: Output file is already uptodate.
- <images/fh-muenster-eps-converted-to.pdf, id=225, 156.585pt x 70.2625pt>
+ <images/fh-muenster-eps-converted-to.pdf, id=221, 156.585pt x 70.2625pt>
 File: images/fh-muenster-eps-converted-to.pdf Graphic file (type pdf)
  <use images/fh-muenster-eps-converted-to.pdf>
 Package pdftex.def Info: images/fh-muenster-eps-converted-to.pdf used on input line 8.
@@ -1424,7 +1715,7 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 7.29405pt on input line 33.
  [1
 
-\openout4 = `main.ist'.
+\openout5 = `main.ist'.
 
 
 
@@ -1438,13 +1729,13 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
  (./Statement.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.151 	\include{Statement}
+l.153 	\include{Statement}
                            [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.152 	\clearemptydoublepage
+l.154 	\clearemptydoublepage
                              [2
 
 
@@ -1453,17 +1744,17 @@ l.152 	\clearemptydoublepage
 
  (./Preface.tex)
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 154.
+(Font)              scaled to size 11.40997pt on input line 156.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 154.
+(Font)              scaled to size 8.33606pt on input line 156.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 154.
+(Font)              scaled to size 6.25204pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 154.
+(Font)              scaled to size 11.40997pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 154.
+(Font)              scaled to size 8.33606pt on input line 156.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 154.
+(Font)              scaled to size 6.25204pt on input line 156.
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
@@ -1493,13 +1784,9 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [7
 
-]
-LaTeX Font Info:    Try loading font information for TS1+pplj on input line 43.
- (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplj.fd
-File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
-))
-\tf@toc=\write9
-\openout9 = `main.toc'.
+])
+\tf@toc=\write10
+\openout10 = `main.toc'.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1526,14 +1813,14 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 ])
-\tf@lof=\write10
-\openout10 = `main.lof'.
+\tf@lof=\write11
+\openout11 = `main.lof'.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [10] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.acr)
-Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--175
+Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--177
 []
  []
 
@@ -1565,7 +1852,7 @@ Overfull \hbox (18.6126pt too wide) in paragraph at lines 37--88
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [14])
-Overfull \hbox (44.68892pt too wide) in paragraph at lines 88--179
+Overfull \hbox (44.68892pt too wide) in paragraph at lines 88--181
 []
  []
 
@@ -1592,6 +1879,10 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 ]
+LaTeX Font Info:    Try loading font information for TS1+pplj on input line 16.
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplj.fd
+File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
+)
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [2]
@@ -1618,7 +1909,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 
 
-] <images/accelerometer.pdf, id=621, 341.4504pt x 109.71089pt>
+] <images/accelerometer.pdf, id=619, 341.4504pt x 109.71089pt>
 File: images/accelerometer.pdf Graphic file (type pdf)
  <use images/accelerometer.pdf>
 Package pdftex.def Info: images/accelerometer.pdf used on input line 13.
@@ -1644,7 +1935,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [9]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [10] <images/GaitWatch_placement.pdf, id=671, 340.75517pt x 292.43323pt>
+ [10] <images/GaitWatch_placement.pdf, id=669, 340.75517pt x 292.43323pt>
 File: images/GaitWatch_placement.pdf Graphic file (type pdf)
  <use images/GaitWatch_placement.pdf>
 Package pdftex.def Info: images/GaitWatch_placement.pdf used on input line 136.
@@ -1672,7 +1963,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  (./Orientation_estimation.tex
 Chapter 3.
-<Images/taitbryan.pdf, id=758, 546.04pt x 533.995pt>
+<Images/taitbryan.pdf, id=756, 546.04pt x 533.995pt>
 File: Images/taitbryan.pdf Graphic file (type pdf)
  <use Images/taitbryan.pdf>
 Package pdftex.def Info: Images/taitbryan.pdf used on input line 23.
@@ -1787,7 +2078,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 ]
 Chapter 5.
-<images/sensors_on_leg.pdf, id=1005, 125.55606pt x 277.95004pt>
+<images/sensors_on_leg.pdf, id=1003, 125.55606pt x 277.95004pt>
 File: images/sensors_on_leg.pdf Graphic file (type pdf)
  <use images/sensors_on_leg.pdf>
 Package pdftex.def Info: images/sensors_on_leg.pdf used on input line 15.
@@ -1808,7 +2099,7 @@ Missing character: There is no ; in font nullfont!
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [37]
-Underfull \vbox (badness 4048) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1829,28 +2120,16 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [43]
+Overfull \hbox (15.57881pt too wide) in paragraph at lines 325--327
+\OT1/pplj/m/n/12 The pro-cess noise co-vari-ance ma-trix $\OT1/pplx/b/n/12 Q$ \OT1/pplj/m/n/12 is con-stant. The pa-ram-e-ters $\OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]$
+ []
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
 
-LaTeX Warning: Float too large for page by 1.62555pt on input line 381.
-
-
-LaTeX Font Warning: Font shape `TS1/pplj/m/sc' undefined
-(Font)              using `TS1/pplj/m/n' instead
-(Font)              for symbol `textregistered' on input line 384.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mathsurround' on input line 384.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\z@' on input line 384.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 384.
+LaTeX Warning: Float too large for page by 1.62555pt on input line 386.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1861,11 +2140,14 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [46]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 408.
+(amsmath)                trying to recover with `aligned' on input line 409.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 415.
+(amsmath)                trying to recover with `aligned' on input line 416.
+
+
+Underfull \vbox (badness 6094) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1873,19 +2155,91 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [47]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 458.
+(amsmath)                trying to recover with `aligned' on input line 462.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 464.
+(amsmath)                trying to recover with `aligned' on input line 468.
 
-)
+\figureheight=\skip112
+\figurewidth=\skip113
+(./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+) (./images/experiment_1.tikz
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [48]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [49]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [50
+
+
+
+]
 Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1893,14 +2247,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [49
-
-
-
-])
+ [51])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [50] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
+ [52] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
 Underfull \hbox (badness 1048) in paragraph at lines 10--18
 \OT1/pplj/m/n/12 96. Springer New York, 2013.  ISBN 978-1-4614-6858-5.  doi:
  []
@@ -1913,20 +2263,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 32--36
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51
+ [53
 
 
 
 ]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [52]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [53]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
  [54]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [55]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [56]
 Underfull \hbox (badness 2547) in paragraph at lines 299--304
 []\OT1/pplj/m/n/12 eMarketer.  2 Bil-lion Con-sumers World-wide to Get Smart-
  []
@@ -1944,7 +2294,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 299--304
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [55]
+ [57]
 Underfull \hbox (badness 2564) in paragraph at lines 352--358
 \OT1/pplj/m/it/12 celerom-e-ter\OT1/pplj/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
@@ -1967,10 +2317,10 @@ Underfull \hbox (badness 2503) in paragraph at lines 360--366
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [56])
+ [58])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [57] [58
+ [59] [60
 
 ]
 \openout2 = `Appendix.aux'.
@@ -1980,7 +2330,7 @@ File: lstlang1.sty 2014/03/04 1.5c listings language file
 ) (./Code/fusion_EKF.m
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [59
+ [61
 
 
 
@@ -1990,7 +2340,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [60]
+ [62]
 Overfull \hbox (10.11292pt too wide) in paragraph at lines 105--106
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2001,7 +2351,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [61]
+ [63]
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 138--139
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2052,13 +2402,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [62]
+ [64]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [63]
+ [65]
 Overfull \hbox (10.11292pt too wide) in paragraph at lines 209--210
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2074,43 +2424,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [64]) (./Code/EKF_test.m
+ [66]) (./Code/EKF_test.m
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [65]))
+ [67]))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [66]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+ [68]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 207.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 207.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/MARG_sensors.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 207.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 207.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-
-
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 36464 strings out of 493117
- 680876 string characters out of 6135432
- 887344 words of memory out of 5000000
- 38461 multiletter control sequences out of 15000+600000
- 67700 words of font info for 167 fonts, out of 8000000 for 9000
+ 50712 strings out of 493117
+ 1144239 string characters out of 6135432
+ 1763142 words of memory out of 5000000
+ 52539 multiletter control sequences out of 15000+600000
+ 66985 words of font info for 165 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,23n,81p,1942b,2341s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{lstnumber.2.33} has been referenced but does not exist, replaced by a fixed one
+ 79i,23n,106p,12786b,2459s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{lstnumber.2.36} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (84 pages, 592244 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 630872 bytes).
 PDF statistics:
- 1754 PDF objects out of 2073 (max. 8388607)
- 1589 compressed objects within 16 object streams
- 639 named destinations out of 1000 (max. 500000)
- 483 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1764 PDF objects out of 2073 (max. 8388607)
+ 1597 compressed objects within 16 object streams
+ 646 named destinations out of 1000 (max. 500000)
+ 475 words of extra memory for PDF output out of 10000 (max. 10000000)
 

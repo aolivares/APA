@@ -1,7 +1,7 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014}, as well as its implementation based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
+This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014} as well as its implementation, based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
 
 \section{Initial Situation}
 
@@ -22,11 +22,11 @@ There were already a variety of Kalman filter algorithms implemented. In tandem 
 
 \section{Theoretical Design}\label{sec:theoretical_design}
 
-This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to the existing GaitWatch system. It states the assigned coordinate frames and the conventions with respect to rotation about them. Furthermore, it describes the kinematic model and the extended Kalman filter in detail.
+This section maps the theoretical design of the system proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} to the existing GaitWatch system. It states the assigned coordinate frames and the conventions with respect to rotations about their axes. Furthermore, it describes the kinematic model and the extended Kalman filter in detail.
 
 \subsection{Kinematic Model}
 
-The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the \gls{pendubot} represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link 1, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. Thus, since the figure depicts the right leg from lateral, the $y$-axis points out of the page. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link 2 with respect to link 1. 
+The \emph{kinematic model} relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$. 
 
 \begin{figure}
 \centering
@@ -34,10 +34,10 @@ The \emph{kinematic model} relates the respective angles of the thigh and shank 
 	\node [draw, rectangle, minimum height=1.6cm, minimum width=1.6cm, pattern=north west lines] at (0,0) (solid) {};
 
     \node [draw,  fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.7cm, minimum width=1cm, align=center, rotate around={30:(0,0)}] at (0.7, -1.25) (link1) {};
-    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={30:(0, 0)}, label={[label distance=0.18cm]335:IMU 1}] at (0.98, -1.7) (sensor1) {};
+    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={30:(0, 0)}, label={[label distance=0.18cm]335:IMU $1$}] at (0.98, -1.7) (sensor1) {};
     
     \node [draw, fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.7cm, minimum width=0.6cm, align=center, rotate around={145:(0,0)}] at (0.6, -3.7) (link2) {};
-    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={145:(0, 0)}, label={right:IMU 2}] at (0, -4.56) (sensor2) {};
+    \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={145:(0, 0)}, label={right:IMU $2$}] at (0, -4.56) (sensor2) {};
     
     \node[coordinate] (X) at (2.5,0) {};
     \node[coordinate] (Y) at (0,-2.5) {};
@@ -78,9 +78,9 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \end{align}
 
 \noindent
-in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives obtained with the EKF described in Section \ref{sec:EKF_model} we can estimate the motion based acceleration in $x$ and $z$ direction that sensor 2 will see in the world coordinate frame.
+in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, respectively, obtained with the EKF described in Section \ref{sec:EKF_model}, we can estimate the motion based acceleration in $x$ and $z$ direction that sensor $2$ will see in the world coordinate frame.
 
-The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} 2, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
 
 \begin{equation}
 \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) = \begin{bmatrix}
@@ -96,7 +96,7 @@ The rotated tangential and radial components of the motion based acceleration es
 \begin{equation}
   \begin{bmatrix}
   	A_{rad} \\
-  	0 \\
+  	A_{axi} \\
   	A_{tan}
   \end{bmatrix} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \begin{bmatrix}
   	\ddot{x} \\
@@ -104,6 +104,9 @@ The rotated tangential and radial components of the motion based acceleration es
 	\ddot{z}
   \end{bmatrix}
 \end{equation}
+
+\noindent
+The axial component is zero, since the leg is assumed to be oriented perpendicular to to the earth's surface and thus perpendicular to the $y$-axis.
 
 Then, the radial and tangential acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
@@ -146,7 +149,7 @@ The state-space model of the extended Kalman filter is given by the state vector
 \end{equation}
 
 \noindent
-where $x$ and $y$ correspond to the horizontal and vertical position of the end of link 2 with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
+where $x$ and $y$ correspond to the horizontal and vertical position of the end of link $2$ with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
 
 The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 
@@ -157,7 +160,7 @@ The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 \end{equation}
  
 \noindent
-where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope 1 bias. Equally, the element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope 2. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
+where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope $1$ bias. The element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope $1$ and gyroscope $2$. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
 According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations, known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
 
@@ -172,7 +175,7 @@ According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dyn
 where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the state vector $\mathbf{x}$, 
 
 \begin{equation}
-  \dot{x}_i = f_i(\mathbf{x}, t) = \frac{dx_i}{dt}\,, \quad i = 1, \dots, n\,,
+  \dot{x}_i = f_i(x_1(t), \dots, x_n(t), t) + w_i = \frac{dx_i}{dt} + w_i\,, \quad i = 1, \dots, n\,,
 \end{equation}
 
 \noindent
@@ -195,11 +198,11 @@ with a time-invariant \emph{system dynamics matrix} $\mathbf{F}$ there is a \emp
 The solution to the system described by Equation \ref{eq:linear_continuous} is 
 
 \begin{equation}
-  \mathbf{x}(t) = e^{\mathbf{F}(t-t_0)} \mathbf{x}(t_0)\,.
+  \mathbf{x}(t) = e^{\mathbf{F}(t-t_0)} \mathbf{x}(t_0)\,,
 \end{equation}
 
 \noindent
-As outlined in \cite{zarchan2009fundamentals}, the state transition matrix can be found by a Taylor-series expansion of $e^{\mathbf{F}(t-t_0)}$
+where $\mathbf{x}(t_0)$ is an integration constant. As outlined in \cite{zarchan2009fundamentals}, the state transition matrix can be found by a Taylor-series expansion of $e^{\mathbf{F}(t-t_0)}$
 
 \begin{equation}
 \begin{split}
@@ -217,14 +220,14 @@ where $\mathbf{I}_n \in \mathbb{R}^{n \times n}$ is the identity matrix. Truncat
 \end{equation}
 
 \noindent
-The discrete fundamental matrix that propagates the state from time stem $k$ to $k+1$ can be found by substituting $T_s$ for $t-t_0$, which yields
+The discrete fundamental matrix that propagates the state of the system forward from the time step $k$ to $k+1$ can be found by substituting $T_s$ for $t-t_0$, which yields
 
 \begin{equation}
-  \bm{\Phi}_{k \rightarrow k+1} = \bm{\Phi}(T_s) \approx \mathbf{I}_{n} + \mathbf{F} T_s\,,
+  \bm{\Phi}_{k} = \bm{\Phi}(T_s) \approx \mathbf{I}_{n} + \mathbf{F} T_s\,,
 \end{equation}
 
 \noindent
-where $T_s$ is the sampling period.
+where $T_s$ is the sampling period. In the \emph{linear} case $\bm{\Phi}_{k}$ is constant. The subscript $k$ denotes here that it propagates the state by one time step.
 
 Because the state equations of our system are \emph{non-linear}, a first-order approximation of the system dynamics matrix $\mathbf{F}$ is used, given by the Jacobian of $\mathbf{f}(\mathbf{x})$
 
@@ -266,13 +269,13 @@ with
 \end{equation*}
 
 \noindent
-The partial derivatives are evaluated at the state estimate $\hat{\mathbf{x}}_{k}$. The discrete state transition matrix must be recomputed every time step $k$. It is given by 
+The partial derivatives are evaluated at the state estimate $\hat{\mathbf{x}}_{k}$. The discrete state transition matrix must be recomputed every time step. Here the subscript $k$ denotes the state transition matrix that propagates the state at time step $k$ to time step $k+1$. It is given by 
 
 \begin{equation}
   \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F}^{[1]}_k T_s\,.
 \end{equation}
 
-The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the non-linear differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
+The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the \emph{non-linear} differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
 
 \begin{equation}\label{eq:apriori_estimate_extended_model}
 \begin{split}
@@ -284,7 +287,7 @@ The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a p
 \noindent
 where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs. A higher-order numerical integration procedure would not improve the \emph{a priori} estimate since the function $\mathbf{f}(\mathbf{x}, t)$ is constant over time.
 
-The relation between the states and the measurements is linear. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ according to Equation \ref{eq:time_dynamical_system_measurement} is given by 
+The relation between the states and the measurements is \emph{linear}, according to Equation \ref{eq:time_dynamical_system_measurement}. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ is given by 
 
 \begin{equation}
 \mathbf{H} = \begin{bmatrix}
@@ -320,14 +323,14 @@ The process and measurement covariance matrices $\mathbf{Q} \in \mathbb{R}^{10 \
 \end{equation}
 
 \noindent
-The process noise matrix $\mathbf{Q}$ is constant. The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ are determined by tuning for the best performance. The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
+The process noise covariance matrix $\mathbf{Q}$ is constant. The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ are determined by tuning for the best performance. The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample variance of the measurement data during an initialisation stage of two seconds, while the subject stands still. The variance of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
 
 \begin{equation}
-  \sigma = \sqrt{\frac{1}{n-1} \sum_{i=1}^n (x_i - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{i=1}^n x_i\,.
+  \sigma = \frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
 \end{equation}
 
 \noindent
-The standard deviation $\sigma_3$ is set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
+The variance $\sigma_3$ is set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
 
 \begin{equation}
   \sigma_3 = \begin{pmatrix}
@@ -336,11 +339,13 @@ The standard deviation $\sigma_3$ is set dynamically based on the motion intensi
   \end{pmatrix}
 \end{equation}
 
-In order to determine the motion intensity we used the \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}. The \gls{LTSD} computes the long term spectral envelope of the signal.
+\noindent
+In order to determine the motion intensity we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal. The algorithm delivers a marker signal that can be used to set the correct variance, according to the motion intensity.
 
 \subsection{Summary of the Entire Filter Algorithm}
 
-The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}.
+The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. The source code is found in the appendix. Listing \ref{lis:filter} shows the source code of the filter function. Listing \ref{lis:experiments} shows the script used to run the experiments.
+
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=9cm]
@@ -381,21 +386,17 @@ The state estimates are computed recursively according to the \emph{time update}
 \end{figure}
 
 
-\section{\textsc{Matlab}\textsuperscript{\textregistered} Implementation}
-
-The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} shows the source code of the filter function. Listing \ref{lis:experiments} shows the script used to run the experiments.
-
 \section{Experiments}
 
-The movement data was gathered at the Department of Neurology of the Klinikum Großhadern, Munich.
+The orientation algorithm was tested with data from real subjects. The movement data was gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subjects performed the following trial.
 
 \subsection{Test Sequence}
 
-The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch and force plate record was started and the subject made a step onto the force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of it again. This sequence was repeated ten times.
+The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch record was started and the subject made a step onto a force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of the force plate again. This sequence was repeated ten times.
 
 \subsection{Initial Conditions}
 
-Each trial began with the subject standing still and it was assumed that the subjects legs were fully stretched. This leads to the following initial state estimates:
+Each trial began with the subject standing still and it was assumed that the subjects legs are fully stretched. This leads to the following initial state estimates:
 
 \begin{equation}
 \begin{matrix}
@@ -417,10 +418,10 @@ Each trial began with the subject standing still and it was assumed that the sub
 \end{equation}
 
 \noindent
-where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected during the first $t_{init}=2\,\mbox{s}$ of the rest period before the subject started moving. The mean value is given by
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected during the initial $T_{in}=2\,\mbox{s}$ of the rest period before the subject started moving. The mean value is given by
 
 \begin{equation}
-  \mu = \frac{1}{n} \sum_{i=1}^{n}{\omega_i}\,, \quad n = t_{init} f_s\,,
+  \mu = \frac{1}{n} \sum_{i=k}^{n}{\omega_k}\,, \quad n = T_{in} f_s\,,
 \end{equation}
 
 \noindent
@@ -443,9 +444,12 @@ The initial covariance matrix $\mathbf{P}_{0}$ was given by
 \end{bmatrix}\,.
 \end{equation}
 
+\noindent
+It represents the confidence in the initial state estimate.
+
 \subsection{Parameterisation}
 
-The above-mentioned parameters were The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ in the process noise covariance matrix $\mathbf{Q}$ were determined by tuning for the best performance:
+The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ in the process noise covariance matrix $\mathbf{Q}$ were determined by tuning for the best performance:
 
 \begin{equation}
 \begin{matrix}
@@ -466,6 +470,28 @@ The above-mentioned parameters were The parameters $\sigma_d, \sigma_{\theta 1},
 \end{equation}
 
 \section{Results}
+
+This section presents the results obtained by the experiments.
+
+\begin{figure}
+	\centering
+	\newlength\figureheight 
+	\newlength\figurewidth 
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	 \includegraphics[width=\textwidth]{images/experiment_1.tikz}
+	\caption{A plot of a sphere}
+	\label{fig:sphere}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	 \includegraphics[width=\textwidth]{images/experiment_1.tikz}
+	\caption{A plot of a sphere}
+	\label{fig:sphere}
+\end{figure}
 
 \section{Discussion}
 

@@ -13,7 +13,9 @@ load('data.mat');
                    
 n = 500;
 
-figure();
+figure1 = figure(1);
+clf;
+set(figure1, 'defaulttextinterpreter', 'latex');
 hold on
 plot(time(1:n), pitch_acc_right_shank(1:n), ...
      time(1:n), pitch_gyro_right_shank(1:n), ...
@@ -22,12 +24,13 @@ plot(time(1:n), pitch_acc_right_shank(1:n), ...
      time(1:n), pitch_EKF_right_shank(1:n));
 title('Pitch angle of the right shank - Comparison');
 xlabel('Time in seconds');
-ylabel('Pitch in degrees');
+ylabel('Pitch angle in degrees');
 legend('Accelerometer-based', ...
        'Integration of angular rate', ...
        'Kalman filter', 'Gated Kalman filter', ...
        'Extended Kalman filter');
    
-   
+matlab2tikz('../images/experiment_1.tikz', 'height', ...
+            '\figureheight', 'width', '\figurewidth');
    
    

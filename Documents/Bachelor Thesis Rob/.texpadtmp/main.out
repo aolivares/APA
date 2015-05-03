@@ -40,15 +40,14 @@
 \BOOKMARK [2][-]{subsection.5.2.1}{Kinematic Model}{section.5.2}% 40
 \BOOKMARK [2][-]{subsection.5.2.2}{Extended Kalman Filter Model}{section.5.2}% 41
 \BOOKMARK [2][-]{subsection.5.2.3}{Summary of the Entire Filter Algorithm}{section.5.2}% 42
-\BOOKMARK [1][-]{section.5.3}{Matlab\256 Implementation}{chapter.5}% 43
-\BOOKMARK [1][-]{section.5.4}{Experiments}{chapter.5}% 44
-\BOOKMARK [2][-]{subsection.5.4.1}{Test Sequence}{section.5.4}% 45
-\BOOKMARK [2][-]{subsection.5.4.2}{Initial Conditions}{section.5.4}% 46
-\BOOKMARK [2][-]{subsection.5.4.3}{Parameterisation}{section.5.4}% 47
-\BOOKMARK [1][-]{section.5.5}{Results}{chapter.5}% 48
-\BOOKMARK [1][-]{section.5.6}{Discussion}{chapter.5}% 49
-\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 50
-\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 51
-\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 52
-\BOOKMARK [0][-]{section*.29}{Bibliography}{}% 53
-\BOOKMARK [0][-]{section*.31}{Appendix}{}% 54
+\BOOKMARK [1][-]{section.5.3}{Experiments}{chapter.5}% 43
+\BOOKMARK [2][-]{subsection.5.3.1}{Test Sequence}{section.5.3}% 44
+\BOOKMARK [2][-]{subsection.5.3.2}{Initial Conditions}{section.5.3}% 45
+\BOOKMARK [2][-]{subsection.5.3.3}{Parameterisation}{section.5.3}% 46
+\BOOKMARK [1][-]{section.5.4}{Results}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.5}{Discussion}{chapter.5}% 48
+\BOOKMARK [0][-]{chapter.6}{Conclusion and Future Work}{}% 49
+\BOOKMARK [1][-]{section.6.1}{Conclusions}{chapter.6}% 50
+\BOOKMARK [1][-]{section.6.2}{Future Work}{chapter.6}% 51
+\BOOKMARK [0][-]{section*.31}{Bibliography}{}% 52
+\BOOKMARK [0][-]{section*.33}{Appendix}{}% 53

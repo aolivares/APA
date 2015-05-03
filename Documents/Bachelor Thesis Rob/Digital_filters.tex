@@ -74,7 +74,6 @@ A possible approach to mitigate the limitations of the Wiener filter for non-sta
 
 Due to the fact that the parameters of an adaptive filter are updated each iteration, they become data dependent. The system does not obey the principles of superposition which therefore makes the adaptive filter in reality a \emph{non-linear} system. However, an adaptive filter is commonly said to be \emph{linear} if its input-output map satisfies the superposition principle, as long as its parameters are held fixed. Otherwise it is said to be \emph{non-linear}.
 
-
 \section{The Kalman Filter}
 
 The \emph{Kalman filter} is a set of recursive mathematical equations that provides an efficient means to estimate the state of a linear dynamic system perturbed by additive white Gaussian noise, even when the precise nature of the modelled system is unknown. It incorporates knowledge of the system and measurement device dynamics, the statistical description of the system errors and measurement noise, and available information about initial conditions of the variables of interest, in order to produce an estimate of these variables, in a way that the mean of the squared error is minimised \cite{Maybeck79}. 
