@@ -92,22 +92,18 @@ gw = gwLibrary;
 Ts = 1 / fs;
 len = length(gyro_thigh_y);
          
-% 5) Compute intensity level.
- lwin_fsd = 20;    
-            threshold_fsd = 3;    
-            shift_fsd = 19;    
-            lambda = 30;
-            input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
-            [V_fsd,T_fsd] = gw.fsd(input_signal',lwin_fsd,shift_fsd,512,...
-                threshold_fsd);
-            [marker_fsd,T_fsd_expanded] = gw.compEstMark(V_fsd,T_fsd,...
-                input_signal,lwin_fsd,shift_fsd);
+% 4) Compute intensity level.
+lwin_fsd = 20;    
+threshold_fsd = 3;    
+shift_fsd = 19;    
+input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
+[V_fsd, T_fsd] = gw.fsd(input_signal', lwin_fsd, ...
+                        shift_fsd, 512, threshold_fsd);
                    
-% % Determine marker signal.
-% [marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
-%                              input_signal, lwin_fsd, ...
-%                              shift_fsd);
-marker = ones(1, len);
+% 5) Determine marker signal.
+[marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
+                             input_signal, lwin_fsd, ...
+                             shift_fsd);
                             
 % INITIALISATION OF PARAMETERS %
                             
@@ -119,15 +115,15 @@ mu2 = mean(gyro_shank_y(1:2*fs));
 % 7) Initialise the state vector.
 x = [0, -(l1+l2), -90, 0, 0, 0, 0, 0, mu1, mu2]';
 
-% 9) Initialise the error covariance matrix.
+% 8) Initialise the error covariance matrix.
 P = diag(ones(1, 10) * 0.1);
 
-% 10) Define the measurement matrix.
+% 9) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 0 1 0 0 1 0 1 1; ...
      0 0 1 0 0 1 0 0 0 0];
 
-% 11) Define process noise covariance matrix.
+% 10) Define process noise covariance matrix.
 sigma_d = 0.1;
 sigma_t1 = 0.1;
 sigma_t2 = 0.1;
@@ -144,13 +140,13 @@ sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 0 0 0 0       0             0          0 sigma_b 0; ...
 0 0 0 0 0       0             0          0 0 sigma_b];
 
-% 12) Compute sample variance of the first
-% two seconds of the gyroscope signals.
+% 11) Compute sample variance of the first two
+%     seconds of the gyroscope signals.
 sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 10;
+sigma_f = 50;
 sigma_s = 10;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
@@ -174,7 +170,7 @@ function f_k = f
 
 end
 
-% 13) Define Jacobian of F.
+% 14) Define Jacobian of F.
 function F_k = F
 
     A = - l1 * x(4) * cos(x(3)) ...
@@ -201,21 +197,23 @@ function F_k = F
 
 end
 
-% 14) Initialise output vectors.
+% 15) Initialise output vectors.
 theta1 = zeros(1, len);
 theta2 = zeros(1, len);
+
+% Extra output vector for testing.
 p = zeros(1, len);
 
-% 15) Filter loop.
+% 16) Filter loop.
 for i=1:1:len
     
-    % Set sigma3 in measurement noise covariance matrix
-    % according to motion intensity.
-    if marker(i)==1
+    % Set sigma_3 in measurement noise covariance
+    % matrix according to motion intensity.
+    if marker(i) == 1
        R(3, 3) = sigma_f;
     end
     
-    if marker(i)==0
+    if marker(i) == 0
        R(3, 3) = sigma_s;
     end
     
@@ -258,6 +256,7 @@ for i=1:1:len
     z = [gyro_thigh_y(i); gyro_shank_y(i); 0];
     z(3) = atan2d(-g(3), g(1));
     
+    % For testing.
     p(i) = z(3);
     
     % MEASUREMENT UPDATE %

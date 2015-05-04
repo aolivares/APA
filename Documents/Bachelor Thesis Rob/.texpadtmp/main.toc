@@ -48,5 +48,5 @@
 \contentsline {chapter}{\numberline {6}Conclusion and Future Work}{51}{chapter.6}
 \contentsline {section}{\numberline {6.1}Conclusions}{51}{section.6.1}
 \contentsline {section}{\numberline {6.2}Future Work}{52}{section.6.2}
-\contentsline {chapter}{Bibliography}{53}{section*.31}
-\contentsline {chapter}{Appendix}{61}{section*.33}
+\contentsline {chapter}{Bibliography}{53}{section*.30}
+\contentsline {chapter}{Appendix}{61}{section*.32}

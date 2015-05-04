@@ -20,7 +20,7 @@ xmax=20,
 xlabel={Time $t$ in s},
 ymin=-120,
 ymax=0,
-ylabel={Pitch angle $\theta_1 + \theta_2$ in $^{\circ}$},
+ylabel={Pitch angle $\theta_2$ in $^{\circ}$},
 axis x line*=bottom,
 axis y line*=left,
 legend style={legend cell align=left,align=left,draw=white!15!black}

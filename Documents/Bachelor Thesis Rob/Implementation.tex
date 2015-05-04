@@ -23,6 +23,8 @@ There was already a variety of algorithms implemented, in order to estimate the 
    \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k} + \omega_{k-1} \right]\,, \quad \theta(0) = \theta_{0}\,.
   \end{equation}
   
+  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started.
+  
   \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the gyroscope measurements from a single sensor in a classic kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}.
   
   \item \textsc{gated kalman filter:} This algorithm extended the aforementioned one by setting the measurement noise covariance according to the motion intensity \cite{olivares_vicente_gaitwatch_2013} and was already mentioned in detail in Section \ref{sec:state_of_the_art_kalman}.
@@ -503,15 +505,6 @@ This section presents the results obtained by the experiments. Figures \ref{fig:
 	\includegraphics[width=\textwidth]{images/experiment_1.tikz}
 	\caption{Pitch angle of the right shank - Comparison}
 	\label{fig:experiment_1}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\includegraphics[width=\textwidth]{images/experiment_2.tikz}
-	\caption{Pitch angle of the right shank - Comparison}
-	\label{fig:experiment_2}
 \end{figure}
 
 
