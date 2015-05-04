@@ -1,4 +1,4 @@
-function [theta1, theta2] = fusion_EKF(gyro_thigh_y, ...
+function [theta1, theta2, p] = fusion_EKF(gyro_thigh_y, ...
           gyro_shank_y, acc_thigh_x, acc_thigh_z, ...
           acc_shank_x, acc_shank_z, fs, l1, l2)
 
@@ -121,14 +121,14 @@ P = diag(ones(1, 10) * 0.1);
 
 % 10) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
-     0 0 0 1 0 0 1 0 0 1; ...
+     0 0 0 1 0 0 1 0 1 1; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 11) Define process noise covariance matrix.
-sigma_d = 3;
-sigma_t1 = 3;
-sigma_t2 = 3;
-sigma_b = 3;
+sigma_d = 2;
+sigma_t1 = 2;
+sigma_t2 = 2;
+sigma_b = 2;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -147,8 +147,8 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 1;
-sigma_s = 1;
+sigma_f = 5000;
+sigma_s = 5000;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
@@ -183,7 +183,7 @@ function F_k = F
     E = - l2 * (x(4) + x(7)) * cos(x(3) + x(6));
     F = + l2 * (x(4) + x(7)) * sin(x(3) + x(6));
     G = - l2 * sin(x(3) + x(6));
-    h = + l2 * cos(x(3) + x(6));
+    h = - l2 * cos(x(3) + x(6));
 
     F_k = [0, 0, A, C, 0, E, G, 0, 0, 0; ...
            0, 0, B, D, 0, F, h, 0, 0, 0; ...
@@ -201,6 +201,7 @@ end
 % 14) Initialise output vectors.
 theta1 = zeros(1, len);
 theta2 = zeros(1, len);
+p = zeros(1, len);
 
 % 15) Filter loop.
 for i=1:1:len
@@ -229,12 +230,12 @@ for i=1:1:len
     % CORRECT SENSOR READINGS %
     
     % Compute acceleration due to motion.
-    ax = -l1 * (x(4)^2 * cos(x(3)) + x(5) * sin(x(3))) ...
+    ax = - l1 * (x(4)^2 * cos(x(3)) + x(5) * sin(x(3))) ...
          - l2 * ((x(4) + x(7))^2 * cos(x(3) + x(6)) ...
          + (x(5) + x(8)) * sin(x(3) + x(6)));
-    az = -l1 * (x(5) * cos(x(3)) - x(4)^2 * sin(x(3))) ...
-         - l2 * (x(5) + x(8)) * cos(x(3) + x(6)) ...
-         + ((x(4) + x(7))^2 * sin(x(3) + x(6)));
+    az = - l1 * (x(5) * cos(x(3)) - x(4)^2 * sin(x(3))) ...
+         - l2 * ((x(5) + x(8)) * cos(x(3) + x(6)) ...
+         - (x(4) + x(7))^2 * sin(x(3) + x(6)));
     
     % Compute transformation matrix
     Tz = [cos(x(3) + x(6) - 2 * pi), 0, ...
@@ -246,13 +247,15 @@ for i=1:1:len
     a = Tz * [ax; 0; az];
 
     % Compute gravity estimate.
-    g = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
-    
+    g = [acc_shank_x(i); 0; acc_shank_z(i)]; %- a;
+     
     % Constitute the measurement vector from the
     % gyroscope signals and the corrected angle
     % estimate theta_1 + theta_2.
     z = [gyro_thigh_y(i); gyro_shank_y(i); 0];
-    z(3) = atan2d(g(3), g(1));
+    z(3) = atan2d(-g(3), g(1));
+    
+    p(i) = z(3);
     
     % MEASUREMENT UPDATE %
     
@@ -263,7 +266,7 @@ for i=1:1:len
     x = x + K * (z - H * x);
     
     % Update error covariance matrix.
-    P = (eye(10) - K * H) / P;
+    P = (eye(10) - K * H) * P;
     
     % Map internal states to output vector.
     theta1(i) = x(3);

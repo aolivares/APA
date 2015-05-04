@@ -292,16 +292,16 @@ The reverse mapping from quaternions to Euler angles is given by
 
 Quaternions are less intuitive than Euler angles. Nevertheless, they are very popular in attitude representation, since they are mathematically elegant and don't suffer from singularities.
 
-\section{Projection of the Gravity Vector}
+\section{Projection of the Gravity Vector}\label{sec:projection_gravity}
 
 % and Earth's Magnetic Field Vector
 
-As described in Chapter \ref{ch:MARG}, accelerometers measure the linear acceleration they experience. Under static or quasi-static (steady, linear motion) conditions, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. Be means of simple trigonometric functions estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
+As described in Chapter \ref{ch:MARG}, accelerometers measure the linear acceleration they experience. Under static or quasi-static (steady, linear motion) conditions, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. By means of simple trigonometric functions estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
 
 When the accelerometer is motionless, its measurements will be directly related to the angle of the sensor relative to gravity, as depicted in Figure \ref{fig:acceleration_motion} (a). In that case $\theta$ is given by
 
 \begin{equation} \label{eq:projection_gravity}
-  \theta = \mbox{atan}2(A_y, A_x)\,.
+  \theta = \mbox{atan}2(-A_z, A_x)\,.
 \end{equation}
 
 \noindent
@@ -318,7 +318,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     \node[coordinate] (C) at (0.7, -3.56) {};
     
     \draw[->] (A) -- node[name=x] {$A_x = g \cos \theta$}(B);
-    \draw[->] (B) -- node[name=y] {$A_y = g \sin \theta$}(C);
+    \draw[->] (B) -- node[name=y] {$A_z = g \sin \theta$}(C);
     \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}node [pos=0.35]{$\theta$} (C);
   
  	\draw (0.7,-2.0) arc (270:297:1.4);
@@ -337,7 +337,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     
     \draw[->, red, very thick] (A) -- node[name=d] {} (D);
     \draw[->] (A) -- node[name=x] {$A_x = A_{rad} + g \cos \theta$} node [pos=0.46, label={left:$\theta$}]{} (B);
-    \draw[->] (B) -- node[name=y] {$A_y = A_{tan} + g \sin \theta$} (D);
+    \draw[->] (B) -- node[name=y] {$A_z = A_{tan} + g \sin \theta$} (D);
     \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}(C);
       
     \draw (0.953,-2.2) arc (270:304:0.8);  
@@ -348,7 +348,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
 \caption{Acceleration seen by the sensor (b) with and (a) without motion, from \cite{bennett_motion_2014}.} \label{fig:acceleration_motion}
 \end{figure} 
 
-\section{Integration of Angular Rate}
+\section{Integration of Angular Rate}\label{sec:integration_angular}
 
 Another way to estimate the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Although this would theoretically lead to very accurate orientation estimates, they are impaired by \gls{ARW} and dynamical bias in practice. \gls{ARW} is an effect caused by the integration of high-frequency, thermo-mechanical noise, which leads to a random additive angle in the orientation signal. An even greater impact than AWR has the gyroscopes dynamic bias, which has its origin in low-frequency flicker noise. Both effects cause a dramatical drift in the angle signal over time.
 

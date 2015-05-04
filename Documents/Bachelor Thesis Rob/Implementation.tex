@@ -1,13 +1,34 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014} as well as its implementation, based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and its discussion.
+This chapter describes the theoretical design of the filter algorithm proposed in \cite{bennett_motion_2014} as well as its implementation, based on the fundamentals acquired in the previous chapters. Other than \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014} who tested the filter algorithm by hand, we used movement data from real subjects. After outlining the initial situation, i.\,e. stating existing orientation algorithms, the theoretical design of the filter is described in detail. Subsequently, the software implementation and experiments are given, followed by the results and their discussion.
 
 \section{Initial Situation}
 
-There were already a variety of Kalman filter algorithms implemented. In tandem with an orientation estimation based on a Qualisys motion capture system using cameras in combination with optical markers, they served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system computed the orientation angles of the thighs and shanks.
+There was already a variety of algorithms implemented, in order to estimate the pitch angle of the thighs and shanks based on data gathered with the GaitWatch system. The existing ones are described below.
 
-(Any algorithms that are already implemented for comparison that I can cite or state and describe how they differ from the one that I will implement??)
+\begin{itemize}
+  \item \textsc{projection of the gravity vector:} One way to obtain the pitch angle from the inertial data is using the projection of the gravity vector on the axes of the accelerometer, as described in Section \ref{sec:projection_gravity}. The first algorithm computed the pitch angle according to Equation \ref{eq:projection_gravity}.
+  
+  \item \textsc{integration of the angular rate:} Another way to obtain the pitch angle is the integration of the angular rate, as outlined in Section \ref{sec:integration_angular}. There are many different numerical integration methods that can be used. The existing algorithms used the approximation of the integral according to the trapezoidal rule
+  
+  \begin{equation}
+   \theta(n) = \theta_0 + \int_{0}^{n T_s} \omega(t)\, dt \approx \theta_0 + \frac{T_s}{2} \sum_{k=1}^{n} \left[ \omega_{k} + \omega_{k-1} \right]\,,
+  \end{equation}
+  
+  \noindent
+  where $n, k \in \mathbb{N}$ denote time normalised to the sample period $T_s$, $\omega_k$ the measured angular rate at instant $k$, and $\theta_0$ the angle at $k=0$. The implemented algorithm computed the angle recursively as
+  
+   \begin{equation}
+   \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k} + \omega_{k-1} \right]\,, \quad \theta(0) = \theta_{0}\,.
+  \end{equation}
+  
+  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the gyroscope measurements from a single sensor in a classic kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}.
+  
+  \item \textsc{gated kalman filter:} This algorithm extended the aforementioned one by setting the measurement noise covariance according to the motion intensity \cite{olivares_vicente_gaitwatch_2013} and was already mentioned in detail in Section \ref{sec:state_of_the_art_kalman}.
+  \end{itemize}
+
+In tandem with an orientation estimation based on a Qualisys motion capture system using cameras in combination with optical markers, these orientation algorithms served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system computed the orientation angles of the thighs and shanks.
 
 \begin{figure}
 \centering
@@ -66,15 +87,15 @@ The \emph{kinematic model} relates the respective angles of the thigh and shank 
 The \glspl{IMU} placed on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
 
 \begin{align}
-  x &=l_1 \cos \theta_1 + l_2 \cos(\theta_1 + \theta_2) \\
-  \dot{x} &= -l_1 \dot{\theta}_1 \sin \theta_1  - l_2 (\dot{\theta}_1 + \dot{\theta}_2) \sin(\theta_1 + \theta_2) \\
-  \ddot{x} {}&= -l_1 [\dot{\theta}^2_1 \cos \theta_1 + \ddot{\theta}_1 \sin \theta_1] - l_2 [(\dot{\theta}_1 + \dot{\theta}_2)^2 \cos(\theta_1 + \theta_2) \nonumber \\ 
+  x &= + l_1 \cos(\theta_1) + l_2 \cos(\theta_1 + \theta_2) \\
+  \dot{x} &= -l_1 \dot{\theta}_1 \sin(\theta_1) - l_2 (\dot{\theta}_1 + \dot{\theta}_2) \sin(\theta_1 + \theta_2) \\
+  \ddot{x} &= -l_1 [\dot{\theta}^2_1 \cos(\theta_1) + \ddot{\theta}_1 \sin(\theta_1)] - l_2 [(\dot{\theta}_1 + \dot{\theta}_2)^2 \cos(\theta_1 + \theta_2) \nonumber \\ 
   &\mathrel{\phantom{=}} + (\ddot{\theta}_1 + \ddot{\theta}_2) \sin(\theta_1 + \theta_2)] \label{eq:acc_x} \\
   \nonumber \\
-  z &= -l_1 \sin \theta_1 - l_2 \sin(\theta_1 + \theta_2) \\
-  \dot{z} &= -l_1 \dot{\theta}_1 \cos \theta_1  - l_2 (\dot{\theta}_1 + \dot{\theta}_2) \cos(\theta_1 + \theta_2) \\
-  \ddot{z} {}&= -l_1 [\ddot{\theta}_1 \cos \theta_1 - \dot{\theta}^2_1 \sin \theta_1] - l_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \nonumber \\ 
-  &\mathrel{\phantom{=}} + (\dot{\theta}_1 + \dot{\theta}_2)^2 \sin(\theta_1 + \theta_2)] \label{eq:acc_y}
+  z &= -l_1 \sin(\theta_1) - l_2 \sin(\theta_1 + \theta_2) \\
+  \dot{z} &= -l_1 \dot{\theta}_1 \cos(\theta_1) - l_2 (\dot{\theta}_1 + \dot{\theta}_2) \cos(\theta_1 + \theta_2) \\
+  \ddot{z} {}&= -l_1 [\ddot{\theta}_1 \cos(\theta_1) - \dot{\theta}^2_1 \sin(\theta_1)] - l_2 [(\ddot{\theta}_1 + \ddot{\theta}_2) \cos(\theta_1 + \theta_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} - (\dot{\theta}_1 + \dot{\theta}_2)^2 \sin(\theta_1 + \theta_2)] \label{eq:acc_y}
 \end{align}
 
 \noindent
@@ -129,10 +150,10 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 \end{equation}
 
 \noindent
-According to Equation \ref{eq:projection_gravity} the angle estimate is
+According to Equation \ref{eq:projection_gravity} the angle estimate is then
 
 \begin{equation}
-  \theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)\,.
+  \theta_1 + \theta_2 = \mbox{atan}2(-g_z, g_x)\,.
 \end{equation}
 
 \noindent
@@ -166,8 +187,8 @@ According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dyn
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
-  -l_1 \omega_1 \sin \theta_1  - l_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2) \\
-  -l_1 \omega_1 \cos \theta_1  - l_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
+  -l_1 \omega_1 \sin(\theta_1)  - l_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2) \\
+  -l_1 \omega_1 \cos(\theta_1)  - l_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
   \end{smallmatrix}\right] + \mathbf{w}\,.
 \end{equation}
 
@@ -264,7 +285,7 @@ with
   	E &= -l_2 (\omega_1 + \omega_2) \cos(\theta_1+ \theta_2)\,, \\
   	F &= +l_2 (\omega_1 + \omega_2) \sin(\theta_1+ \theta_2)\,, \\
     G &= -l_2 \sin (\theta_1 + \theta_2)\,, \\
-    H &= +l_2 \cos (\theta_1 + \theta_2)\,.
+    H &= -l_2 \cos (\theta_1 + \theta_2)\,.
   \end{split}
 \end{equation*}
 
@@ -484,23 +505,23 @@ This section presents the results obtained by the experiments. Figures \ref{fig:
 	\label{fig:experiment_1}
 \end{figure}
 
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\includegraphics[width=\textwidth]{images/experiment_2.tikz}
-	\caption{Pitch angle of the right shank - Comparison}
-	\label{fig:experiment_2}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\includegraphics[width=\textwidth]{images/experiment_3.tikz}
-	\caption{Pitch angle of the right shank - Comparison}
-	\label{fig:experiment_4}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\includegraphics[width=\textwidth]{images/experiment_2.tikz}
+%	\caption{Pitch angle of the right shank - Comparison}
+%	\label{fig:experiment_2}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\includegraphics[width=\textwidth]{images/experiment_3.tikz}
+%	\caption{Pitch angle of the right shank - Comparison}
+%	\label{fig:experiment_4}
+%\end{figure}
 
 \section{Discussion}
 
