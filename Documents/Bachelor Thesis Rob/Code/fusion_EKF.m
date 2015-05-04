@@ -51,7 +51,7 @@ function [theta1, theta2, p] = fusion_EKF(gyro_thigh_y, ...
 % Authors:            Robin Weiss
 % Entity:             University of Applied Sciences
 %                     Munster, Munster, Germany
-% Last modification:  01/05/2015
+% Last modification:  05/05/2015
 % -----------------------------------------------------
 
 % 1) Check input arguments.
@@ -92,14 +92,17 @@ gw = gwLibrary;
 Ts = 1 / fs;
 len = length(gyro_thigh_y);
          
-% % 5) Compute intensity level.
-% lwin_fsd = 20;    
-% threshold_fsd = 3;    
-% shift_fsd = 19;
-% input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
-% [V_fsd, T_fsd] = gw.fsd(input_signal, lwin_fsd, ...
-%                        shift_fsd, 512, threshold_fsd);
-%                    
+% 5) Compute intensity level.
+ lwin_fsd = 20;    
+            threshold_fsd = 3;    
+            shift_fsd = 19;    
+            lambda = 30;
+            input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
+            [V_fsd,T_fsd] = gw.fsd(input_signal',lwin_fsd,shift_fsd,512,...
+                threshold_fsd);
+            [marker_fsd,T_fsd_expanded] = gw.compEstMark(V_fsd,T_fsd,...
+                input_signal,lwin_fsd,shift_fsd);
+                   
 % % Determine marker signal.
 % [marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
 %                              input_signal, lwin_fsd, ...
@@ -125,10 +128,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 11) Define process noise covariance matrix.
-sigma_d = 2;
-sigma_t1 = 2;
-sigma_t2 = 2;
-sigma_b = 2;
+sigma_d = 0.1;
+sigma_t1 = 0.1;
+sigma_t2 = 0.1;
+sigma_b = 0.1;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -147,8 +150,8 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 5000;
-sigma_s = 5000;
+sigma_f = 10;
+sigma_s = 10;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
