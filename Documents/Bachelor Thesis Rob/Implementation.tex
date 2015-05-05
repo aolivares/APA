@@ -13,29 +13,61 @@ There was already a variety of algorithms implemented, in order to estimate the 
   \item \textsc{integration of the angular rate:} Another way to obtain the pitch angle is the integration of the angular rate, as outlined in Section \ref{sec:integration_angular}. There are many different numerical integration methods that can be used. The existing algorithms used the approximation of the integral according to the trapezoidal rule
   
   \begin{equation}
-   \theta(n) = \theta_0 + \int_{0}^{n T_s} \omega(t)\, dt \approx \theta_0 + \frac{T_s}{2} \sum_{k=1}^{n} \left[ \omega_{k} + \omega_{k-1} \right]\,,
+   \theta(n) = \theta_0 + \int_{0}^{n T_s} \omega(t)\, dt \approx \theta_0 + \frac{T_s}{2} \sum_{k=1}^{n} \left[ \omega_{k-1} + \omega_{k} \right]\,,
   \end{equation}
   
   \noindent
   where $n, k \in \mathbb{N}$ denote time normalised to the sample period $T_s$, $\omega_k$ the measured angular rate at instant $k$, and $\theta_0$ the angle at $k=0$. The implemented algorithm computed the angle recursively as
   
    \begin{equation}
-   \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k} + \omega_{k-1} \right]\,, \quad \theta(0) = \theta_{0}\,.
+   \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k-1} + \omega_{k} \right]\,, \quad \theta(0) = \theta_{0}\,.
   \end{equation}
   
-  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started.
+  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the comparison of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis. As can be seen, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion. On the other hand, the gyroscope delivers an accurate angle estimate during motion, but suffers from drift, which accounts for an error in the estimate of nearly $500^{\circ}$ in only eighteen seconds.
   
-  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the gyroscope measurements from a single sensor in a classic kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}.
+\begin{figure}
+	\centering
+	\newlength\figureheight 
+	\newlength\figurewidth 
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_1}
+	\includegraphics[width=\textwidth]{Tikz/experiment_1.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector and by integration of the angular rate.}
+	\label{fig:experiment_1}
+\end{figure}
   
-  \item \textsc{gated kalman filter:} This algorithm extended the aforementioned one by setting the measurement noise covariance according to the motion intensity \cite{olivares_vicente_gaitwatch_2013} and was already mentioned in detail in Section \ref{sec:state_of_the_art_kalman}.
+  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the gyroscope measurements from a single sensor in a classic kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}. The result is depicted in Figure \ref{fig:experiment_2}.
+
+  \begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_2}
+	\includegraphics[width=\textwidth]{Tikz/experiment_2.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector and by classical Kalman filtering.}
+	\label{fig:experiment_2}
+\end{figure}
+  
+  \item \textsc{gated kalman filter:} This algorithm extended the aforementioned classic Kalman filter by setting the measurement noise covariance according to the motion intensity \cite{olivares_vicente_gaitwatch_2013} and was already described in detail in Section \ref{sec:state_of_the_art_kalman}. Figure \ref{fig:experiment_3} compares the gated Kalman filter with the classical Kalman filter and the accelerometer-based approach.
   \end{itemize}
+  
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_3}
+	\includegraphics[width=\textwidth]{Tikz/experiment_3.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and gated Kalman filtering.}
+	\label{fig:experiment_3}
+\end{figure}
 
 In tandem with an orientation estimation based on a Qualisys motion capture system using cameras in combination with optical markers, these orientation algorithms served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system computed the orientation angles of the thighs and shanks.
 
 \begin{figure}
 \centering
 	\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
-    \pgftext{\includegraphics[width=3.5cm]{images/sensors_on_leg}} at (0pt,0pt);
+    \pgftext{\includegraphics[width=3.5cm]{Figures/sensors_on_leg}} at (0pt,0pt);
     \node [] (a) at (-4.4, -2) {};
     \node [] (b) at (-4.5, 0.1) {};
     \node [] (c) at (4.45, 3.3) {};
@@ -468,7 +500,7 @@ The initial covariance matrix $\mathbf{P}_{0}$ was given by
 \end{equation}
 
 \noindent
-It represents the confidence in the initial state estimate.
+It represents the confidence in the initial state estimate and determines how fast the filter converges.
 
 \subsection{Parameterisation}
 
@@ -494,19 +526,27 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 
 \section{Results}
 
-This section presents the results obtained by the experiments. Figures \ref{fig:experiment_1} and \ref{fig:experiment_2}
+This section presents the results obtained by the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
 
 \begin{figure}
 	\centering
-	\newlength\figureheight 
-	\newlength\figurewidth 
 	\setlength\figureheight{7cm} 
 	\setlength\figurewidth{\textwidth}
-	\includegraphics[width=\textwidth]{images/experiment_1.tikz}
-	\caption{Pitch angle of the right shank - Comparison}
-	\label{fig:experiment_1}
+	\tikzsetnextfilename{experiment_4}
+	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering.}
+	\label{fig:experiment_4}
 \end{figure}
 
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_5}
+	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering.}
+	\label{fig:experiment_5}
+\end{figure}
 
 \section{Discussion}
 

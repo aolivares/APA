@@ -100,8 +100,12 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage{pgfplots}
+\usetikzlibrary{external}
+\tikzexternalize[prefix=Tikz/]
+\tikzsetexternalprefix{Figures/}
 \pgfplotsset{    tick label style={font=\scriptsize},    label style={font=\small},
 	title style={font=\normalsize\normalfont},    legend style={font=\scriptsize}}
+% \tikzset{external/force remake} % Remake all tikz pictures.
 \usepackage{listings}
 
 \definecolor{mygreen}{rgb}{0,0.6,0}

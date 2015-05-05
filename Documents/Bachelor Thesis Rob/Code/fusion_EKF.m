@@ -113,7 +113,7 @@ mu1 = mean(gyro_thigh_y(1:2*fs));
 mu2 = mean(gyro_shank_y(1:2*fs));
 
 % 7) Initialise the state vector.
-x = [0, -(l1+l2), -90, 0, 0, 0, 0, 0, mu1, mu2]';
+x = [0, -(l1+l2), -90, 0, 0, -10, 0, 0, mu1, mu2]';
 
 % 8) Initialise the error covariance matrix.
 P = diag(ones(1, 10) * 0.1);
@@ -254,7 +254,7 @@ for i=1:1:len
     % gyroscope signals and the corrected angle
     % estimate theta_1 + theta_2.
     z = [gyro_thigh_y(i); gyro_shank_y(i); 0];
-    z(3) = atan2d(-g(3), g(1));
+    z(3) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
     p(i) = z(3);
