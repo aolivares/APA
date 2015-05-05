@@ -151,8 +151,8 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 100;
-sigma_s = 5;
+sigma_f = 1000;
+sigma_s = 1;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
@@ -206,7 +206,7 @@ end
 theta1 = zeros(1, len);
 theta2 = zeros(1, len);
 
-% Extra output vector for testing.
+% Additional output vectors for testing.
 p = zeros(2, len);
 X = zeros(10, len);
 
@@ -267,7 +267,7 @@ for i=1:1:len
     z(3) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
-     p(1, i) = ax_n;
+     p(1, i) = R(3,3);
      p(2, i) = az_n;
     
     % MEASUREMENT UPDATE %

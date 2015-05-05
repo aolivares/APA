@@ -125,7 +125,7 @@ P = diag(ones(1, 10) * 0.1);
 
 % 9) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
-     0 0 0 1 0 0 1 0 1 1; ...
+     0 0 0 1 0 0 1 0 0 1; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 10) Define process noise covariance matrix.
@@ -151,7 +151,7 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 50;
+sigma_f = 1000;
 sigma_s = 10;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
@@ -160,15 +160,15 @@ R = [sigma_1    0       0; ...
 % 13) Define matrix function f.
 function f_k = f
     
-	f_k = [- l1 * x(4) * sin(x(3)) ...
-           - l2 * (x(4) + x(7)) * sin(x(3) + x(6)); ...
-           - l1 * x(4) * cos(x(3)) ...
-           - l2 * (x(4) + x(7)) * cos(x(3) + x(6)); ...
-           x(4);
-           x(5);
+	f_k = [- l1 * c_w * x(4) * sind(x(3)) ...
+           - l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6)); ...
+           - l1 * c_w * x(4) * cosd(x(3)) ...
+           - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6)); ...
+           c_w * x(4);
+           c_w * x(5);
            0;
-           x(7);
-           x(8);
+           c_w * x(7);
+           c_w * x(8);
            0;
            0;
            0];
@@ -178,16 +178,16 @@ end
 % 14) Define Jacobian of F.
 function F_k = F
 
-    A = - l1 * x(4) * cos(x(3)) ...
-        - l2 * (x(4) + x(7)) * cos(x(3) + x(6));
-    B = + l1 * x(4) * sin(x(3)) ...
-        + l2 * (x(4) + x(7)) * sin(x(3) + x(6));
-    C = - l1 * sin(x(3)) - l2 * sin(x(3) + x(6));
-    D = - l1 * cos(x(3)) - l2 * cos(x(3) + x(6));
-    E = - l2 * (x(4) + x(7)) * cos(x(3) + x(6));
-    F = + l2 * (x(4) + x(7)) * sin(x(3) + x(6));
-    G = - l2 * sin(x(3) + x(6));
-    h = - l2 * cos(x(3) + x(6));
+    A = - l1 * c_w * x(4) * cosd(x(3)) ...
+        - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6));
+    B = + l1 * c_w * x(4) * sind(x(3)) ...
+        + l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6));
+    C = - l1 * sind(x(3)) - l2 * sind(x(3) + x(6));
+    D = - l1 * cosd(x(3)) - l2 * cosd(x(3) + x(6));
+    E = - l2 * c_w * (x(4) + x(7)) * cosd(x(3) + x(6));
+    F = + l2 * c_w * (x(4) + x(7)) * sind(x(3) + x(6));
+    G = - l2 * sind(x(3) + x(6));
+    h = - l2 * cosd(x(3) + x(6));
 
     F_k = [0, 0, A, C, 0, E, G, 0, 0, 0; ...
            0, 0, B, D, 0, F, h, 0, 0, 0; ...
@@ -242,7 +242,7 @@ for i=1:1:len
          + (c_w * x(5) + c_w * x(8)) * sind(x(3) + x(6)));
     az = - l1 * (c_w * x(5) * cosd(x(3)) - (c_w * x(4))^2 * sind(x(3))) ...
          - l2 * (c_w * (x(5) + c_w * x(8)) * cosd(x(3) + x(6)) ...
-         - (c_w * x(4) + c_w * x(7))^2 * sin(x(3) + x(6)));
+         - (c_w * x(4) + c_w * x(7))^2 * sind(x(3) + x(6)));
     
     % Normalise acceleration to gravity.
     ax_n = ax / gravity;
@@ -258,7 +258,7 @@ for i=1:1:len
     a = Tz * [ax_n; 0; az_n];
 
     % Compute gravity estimate.
-    g = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
+    g = [acc_shank_x(i); 0; acc_shank_z(i)];% - a;
      
     % Constitute the measurement vector from the
     % gyroscope signals and the corrected angle
@@ -267,8 +267,8 @@ for i=1:1:len
     z(3) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
-     p(1, i) = a(1);
-     p(2, i) = g(2);
+     p(1, i) = ax_n;
+     p(2, i) = az_n;
     
     % MEASUREMENT UPDATE %
     
