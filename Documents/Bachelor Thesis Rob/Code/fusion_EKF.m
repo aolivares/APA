@@ -151,8 +151,8 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 50;
-sigma_s = 10;
+sigma_f = 100;
+sigma_s = 5;
 R = [sigma_1    0       0; ...
         0    sigma_2    0; ...
         0       0    sigma_s];
@@ -160,10 +160,10 @@ R = [sigma_1    0       0; ...
 % 13) Define matrix function f.
 function f_k = f
     
-	f_k = [- l1 * c_w * x(4) * sin(x(3)) ...
-           - l2 * (c_w * x(4) + c_w * x(7)) * sin(x(3) + x(6)); ...
-           - l1 * c_w * x(4) * cos(x(3)) ...
-           - l2 * (c_w * x(4) + c_w * x(7)) * cos(x(3) + x(6)); ...
+	f_k = [- l1 * c_w * x(4) * sind(x(3)) ...
+           - l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6)); ...
+           - l1 * c_w * x(4) * cosd(x(3)) ...
+           - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6)); ...
            c_w * x(4);
            c_w * x(5);
            0;
@@ -178,16 +178,16 @@ end
 % 14) Define Jacobian of F.
 function F_k = F
 
-    A = - l1 * c_w * x(4) * cos(x(3)) ...
-        - l2 * (c_w * x(4) + c_w * x(7)) * cos(x(3) + x(6));
-    B = + l1 * c_w * x(4) * sin(x(3)) ...
-        + l2 * (c_w * x(4) + c_w * x(7)) * sin(x(3) + x(6));
-    C = - l1 * sin(x(3)) - l2 * sin(x(3) + x(6));
-    D = - l1 * cos(x(3)) - l2 * cos(x(3) + x(6));
-    E = - l2 * c_w * (x(4) + x(7)) * cos(x(3) + x(6));
-    F = + l2 * c_w * (x(4) + x(7)) * sin(x(3) + x(6));
-    G = - l2 * sin(x(3) + x(6));
-    h = - l2 * cos(x(3) + x(6));
+    A = - l1 * c_w * x(4) * cosd(x(3)) ...
+        - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6));
+    B = + l1 * c_w * x(4) * sind(x(3)) ...
+        + l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6));
+    C = - l1 * sind(x(3)) - l2 * sind(x(3) + x(6));
+    D = - l1 * cosd(x(3)) - l2 * cosd(x(3) + x(6));
+    E = - l2 * c_w * (x(4) + x(7)) * cosd(x(3) + x(6));
+    F = + l2 * c_w * (x(4) + x(7)) * sind(x(3) + x(6));
+    G = - l2 * sind(x(3) + x(6));
+    h = - l2 * cosd(x(3) + x(6));
 
     F_k = [0, 0, A, C, 0, E, G, 0, 0, 0; ...
            0, 0, B, D, 0, F, h, 0, 0, 0; ...
@@ -242,7 +242,7 @@ for i=1:1:len
          + (c_w * x(5) + c_w * x(8)) * sind(x(3) + x(6)));
     az = - l1 * (c_w * x(5) * cosd(x(3)) - (c_w * x(4))^2 * sind(x(3))) ...
          - l2 * (c_w * (x(5) + c_w * x(8)) * cosd(x(3) + x(6)) ...
-         - (c_w * x(4) + c_w * x(7))^2 * sin(x(3) + x(6)));
+         - (c_w * x(4) + c_w * x(7))^2 * sind(x(3) + x(6)));
     
     % Normalise acceleration to gravity.
     ax_n = ax / gravity;
@@ -258,7 +258,7 @@ for i=1:1:len
     a = Tz * [ax_n; 0; az_n];
 
     % Compute gravity estimate.
-    g = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
+    g = [acc_shank_x(i); 0; acc_shank_z(i)];% - a;
      
     % Constitute the measurement vector from the
     % gyroscope signals and the corrected angle
