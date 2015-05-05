@@ -10,47 +10,89 @@ A level-1 auxiliary file: MARG_sensors.aux
 A level-1 auxiliary file: Orientation_estimation.aux
 A level-1 auxiliary file: Digital_filters.aux
 A level-1 auxiliary file: Implementation.aux
-I found no \bibdata command---while reading file /Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux
-I found no \bibstyle command---while reading file /Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux
+A level-1 auxiliary file: Conclusion.aux
+The style file: unsrtnat.bst
+A level-1 auxiliary file: Appendix.aux
+Database file #1: ../Bibliography.bib
+I was expecting a `,' or a `}'---line 246 of file ../Bibliography.bib
+ : 
+ : doi={10.1109/TITB.2007.899496},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Repeated entry---line 306 of file ../Bibliography.bib
+ : @article{bonato_advances_2005
+ :                              ,
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 507 of file ../Bibliography.bib
+ :   
+ :   month={October},
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+I was expecting a `,' or a `}'---line 609 of file ../Bibliography.bib
+ : 
+ : @misc{mpower,
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Illegal end of database file---line 614 of file ../Bibliography.bib
+ : 
+ : 
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--empty booktitle in bennett_extended_2013
+Warning--empty year in emarketer_smartphones
+Warning--empty year in Intel_2013
+Warning--empty year in Apple_2015
+Warning--empty year in mpower
+Warning--empty year in IMU5
+Warning--empty year in IDG500
+Warning--empty year in ADXL335
+Warning--empty year in ADXL345
+Warning--empty year in IMU3000
+Warning--empty year in MicroMag3
+Warning--empty year in AVRATxmega
+Warning--empty year in olivares_vicente_gaitwatch_2013
+Warning--empty year in Wiki_taitbryan
+Warning--empty author in Maybeck79
+Warning--empty journal in rowell2002state
 You've used 52 entries,
-            0 wiz_defined-function locations,
-            157 strings with 1833 characters,
-and the built_in function-call counts, 0 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 0
-:= -- 0
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
-chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 0
-format.name$ -- 0
-if$ -- 0
-int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 0
-num.names$ -- 0
-pop$ -- 0
-preamble$ -- 0
-purify$ -- 0
+            2481 wiz_defined-function locations,
+            931 strings with 16809 characters,
+and the built_in function-call counts, 21439 in all, are:
+= -- 1898
+> -- 1021
+< -- 41
++ -- 408
+- -- 300
+* -- 1657
+:= -- 3369
+add.period$ -- 235
+call.type$ -- 52
+change.case$ -- 91
+chr.to.int$ -- 48
+cite$ -- 69
+duplicate$ -- 1099
+empty$ -- 1898
+format.name$ -- 365
+if$ -- 4647
+int.to.chr$ -- 5
+int.to.str$ -- 53
+missing$ -- 43
+newline$ -- 342
+num.names$ -- 161
+pop$ -- 446
+preamble$ -- 1
+purify$ -- 52
 quote$ -- 0
-skip$ -- 0
+skip$ -- 663
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 851
+swap$ -- 278
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 0
-while$ -- 0
+type$ -- 346
+warning$ -- 16
+while$ -- 159
 width$ -- 0
-write$ -- 0
-(There were 2 error messages)
+write$ -- 810
+(There were 5 error messages)
