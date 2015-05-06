@@ -33,7 +33,7 @@ There was already a variety of algorithms implemented, in order to estimate the 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_1}
 	\includegraphics[width=\textwidth]{Tikz/experiment_1.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector and by integration of the angular rate.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by the projection of the gravity vector and by integrating the angular rate.}
 	\label{fig:experiment_1}
 \end{figure}
   
@@ -45,7 +45,7 @@ There was already a variety of algorithms implemented, in order to estimate the 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_2}
 	\includegraphics[width=\textwidth]{Tikz/experiment_2.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector and by classical Kalman filtering.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by the projection of the gravity vector and by classical Kalman filtering.}
 	\label{fig:experiment_2}
 \end{figure}
   
@@ -58,7 +58,7 @@ There was already a variety of algorithms implemented, in order to estimate the 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_3}
 	\includegraphics[width=\textwidth]{Tikz/experiment_3.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and gated Kalman filtering.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by the projection of the gravity vector, classic Kalman filtering, and gated Kalman filtering.}
 	\label{fig:experiment_3}
 \end{figure}
 
@@ -195,6 +195,8 @@ This improved angle estimate is then fused with the estimate based on the integr
 
 \subsection{The Extended Kalman Filter} \label{sec:EKF_model}
 
+\subsubsection{The State-Space Model}
+
 The state-space model of the extended Kalman filter is given by the state vector $\mathbf{x} \in \mathbb{R}^{n=10}$
 
 \begin{equation} \label{eq:state_vector}
@@ -329,6 +331,8 @@ The partial derivatives are evaluated at the state estimate $\hat{\mathbf{x}}_{k
 \begin{equation}
   \bm{\Phi}^{[1]}_{k} \approx \mathbf{I}_{n} + \mathbf{F}^{[1]}_k T_s\,.
 \end{equation}
+
+\subsubsection{The Filter Algorithm} 
 
 The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the \emph{non-linear} differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
 

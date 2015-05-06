@@ -82,10 +82,11 @@ if (l2 <= 0 || ~isreal(l2))
            ' positive.']);
 end
 
-% 2) Import GaitWatch functions library. All existing
-%    functions have to be called using
-%    'gw.functionName'.
+% 2) Import GaitWatch and WaGyroMag functions library.
+%    All existing functions have to be called using
+%    either 'gw.functionName' or 'wag.functionName'.
 gw = gwLibrary;
+wag = wagLibrary;
 
 % 3) Compute the sampling period, the length of the
 %    signal vectors, and the magnitude of the gravity g.
@@ -95,14 +96,15 @@ gravity = 9.81;
 
 % 4) Compute correction factor for conversion from 
 %    degrees to radians
-c_w = 1 / 360;
+c_w = pi / 180;
 
 % 4) Compute intensity level.
+
 lwin_fsd = 20;    
 threshold_fsd = 3;    
 shift_fsd = 19;    
 input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
-[V_fsd, T_fsd] = gw.fsd(input_signal', lwin_fsd, ...
+[V_fsd, T_fsd] = wag.ltsd(input_signal', lwin_fsd, ...
                         shift_fsd, 512, threshold_fsd);
                    
 % 5) Determine marker signal.
@@ -126,13 +128,14 @@ P = diag(ones(1, 10) * 0.1);
 % 9) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 0 1 0 0 1 0 0 1; ...
+     0 0 1 0 0 0 0 0 0 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 10) Define process noise covariance matrix.
-sigma_d = 0.1;
-sigma_t1 = 0.1;
-sigma_t2 = 0.1;
-sigma_b = 0.1;
+sigma_d = 0.0001;
+sigma_t1 = 0.01;
+sigma_t2 = 0.01;
+sigma_b = 0.0001;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -151,11 +154,12 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 1000;
-sigma_s = 1;
-R = [sigma_1    0       0; ...
-        0    sigma_2    0; ...
-        0       0    sigma_s];
+sigma_f = 10;
+sigma_s = 0.1;
+R = [sigma_1    0       0     0; ...
+        0    sigma_2    0     0; ...
+        0       0    sigma_s  0; ...
+        0       0       0   sigma_s];
     
 % 13) Define matrix function f.
 function f_k = f
@@ -164,11 +168,11 @@ function f_k = f
            - l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6)); ...
            - l1 * c_w * x(4) * cosd(x(3)) ...
            - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6)); ...
-           c_w * x(4);
-           c_w * x(5);
+           x(4);
+           x(5);
            0;
-           c_w * x(7);
-           c_w * x(8);
+           x(7);
+           x(8);
            0;
            0;
            0];
@@ -179,9 +183,9 @@ end
 function F_k = F
 
     A = - l1 * c_w * x(4) * cosd(x(3)) ...
-        - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6));
+        - l2 * c_w * (x(4) + x(7)) * cosd(x(3) + x(6));
     B = + l1 * c_w * x(4) * sind(x(3)) ...
-        + l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6));
+        + l2 * c_w * (x(4) + x(7)) * sind(x(3) + x(6));
     C = - l1 * sind(x(3)) - l2 * sind(x(3) + x(6));
     D = - l1 * cosd(x(3)) - l2 * cosd(x(3) + x(6));
     E = - l2 * c_w * (x(4) + x(7)) * cosd(x(3) + x(6));
@@ -217,10 +221,12 @@ for i=1:1:len
     % matrix according to motion intensity.
     if marker(i) == 1
        R(3, 3) = sigma_f;
+       R(4, 4) = sigma_f;
     end
     
     if marker(i) == 0
        R(3, 3) = sigma_s;
+       R(4, 4) = sigma_s;
     end
     
     % TIME UPDATE %
@@ -238,10 +244,10 @@ for i=1:1:len
     
     % Compute acceleration due to motion.
     ax = - l1 * ((c_w * x(4))^2 * cosd(x(3)) + c_w * x(5) * sind(x(3))) ...
-         - l2 * (c_w * (x(4) + c_w * x(7))^2 * cosd(x(3) + x(6)) ...
-         + (c_w * x(5) + c_w * x(8)) * sind(x(3) + x(6)));
+         - l2 * ((c_w * x(4) + c_w * x(7))^2 * cosd(x(3) + x(6)) ...
+         + c_w * (x(5) + x(8)) * sind(x(3) + x(6)));
     az = - l1 * (c_w * x(5) * cosd(x(3)) - (c_w * x(4))^2 * sind(x(3))) ...
-         - l2 * (c_w * (x(5) + c_w * x(8)) * cosd(x(3) + x(6)) ...
+         - l2 * (c_w * (x(5) + x(8)) * cosd(x(3) + x(6)) ...
          - (c_w * x(4) + c_w * x(7))^2 * sind(x(3) + x(6)));
     
     % Normalise acceleration to gravity.
@@ -249,26 +255,27 @@ for i=1:1:len
     az_n = az / gravity;
     
     % Compute transformation matrix
-    Tz = [sind(x(3) + x(6) + 90), 0, ...
-          cosd(x(3) + x(6) + 90); 0, 1, 0; ...
-          cosd(x(3) + x(6) + 90), 0, ...
-         -sind(x(3) + x(6) + 90)];
+    Tz = [cosd(x(3) + x(6) + 90), 0, ...
+          sind(x(3) + x(6) + 90); 0, 1, 0; ...
+         -sind(x(3) + x(6) + 90), 0, ...
+          cosd(x(3) + x(6) + 90)];
      
     % Rotate acceleration to body frame.
     a = Tz * [ax_n; 0; az_n];
 
     % Compute gravity estimate.
-    g = [acc_shank_x(i); 0; acc_shank_z(i)];% - a;
+    g = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
      
     % Constitute the measurement vector from the
     % gyroscope signals and the corrected angle
     % estimate theta_1 + theta_2.
-    z = [gyro_thigh_y(i); gyro_shank_y(i); 0];
-    z(3) = -atan2d(g(1), g(3)) - 90;
+    z = [gyro_thigh_y(i); gyro_shank_y(i); 0; 0];
+    z(3) = -atan2d(acc_thigh_x(i), acc_thigh_z(i)) - 90;
+    z(4) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
-     p(1, i) = R(3,3);
-     p(2, i) = az_n;
+     p(1, i) = a(1);
+     p(2, i) = z(3);
     
     % MEASUREMENT UPDATE %
     

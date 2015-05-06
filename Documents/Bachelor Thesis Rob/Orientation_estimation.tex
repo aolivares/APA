@@ -99,7 +99,7 @@ Usually, vibrating gyroscopes are manufactured using MEMS technology. MEMS gyros
 
     
 \end{tikzpicture}
-\caption{A simple model of a Coriolis vibratory gyroscope: Two degree-of-freedom spring-mass-damper system in a rotating reference frame, from \cite{armenise2010advances}.} \label{fig:gyroscope}
+\caption{A simple model of a Coriolis vibratory gyroscope: A two degree-of-freedom spring-mass-damper system in a rotating reference frame, from \cite{armenise2010advances}.} \label{fig:gyroscope}
 \end{figure} 
  
 
@@ -177,7 +177,7 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by 
 \node [] at (-1.5,2.05) {$Y$};
 \node [] at (-2.0,-1.7) {$Z$};
 \end{tikzpicture}
-\caption{Representation of the body frame (red) with respect to the world frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively. Adapted from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
+\caption{Representation of the body frame (red) with respect to the world frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively, from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
 \end{figure}
 
 Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$, $n \in \mathbb{Z}$. At these points a rotation about the $x$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}. The usage of \emph{quaternions} instead of Euler angles avoids the problem of gimbal locks.
