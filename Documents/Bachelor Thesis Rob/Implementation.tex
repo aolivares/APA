@@ -193,7 +193,7 @@ According to Equation \ref{eq:projection_gravity} the angle estimate is then
 \noindent
 This improved angle estimate is then fused with the estimate based on the integration of the angular rate measured with the gyroscope, in order to reduce the estimation error due to gyroscope drift.
 
-\subsection{Extended Kalman Filter Model} \label{sec:EKF_model}
+\subsection{The Extended Kalman Filter} \label{sec:EKF_model}
 
 The state-space model of the extended Kalman filter is given by the state vector $\mathbf{x} \in \mathbb{R}^{n=10}$
 
@@ -397,7 +397,7 @@ The variance $\sigma_3$ is set dynamically based on the motion intensity. It tog
 \noindent
 In order to determine the motion intensity we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal. The algorithm delivers a marker signal that can be used to set the correct variance, according to the motion intensity.
 
-\subsection{Summary of the Entire Filter Algorithm}
+\subsubsection{Summary of the Entire Filter Algorithm}
 
 The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. The source code is found in the appendix. Listing \ref{lis:filter} shows the source code of the filter function. Listing \ref{lis:experiments} shows the script used to run the experiments.
 

@@ -6,7 +6,6 @@ A level-1 auxiliary file: Statement.aux
 A level-1 auxiliary file: Preface.aux
 A level-1 auxiliary file: Abstract.aux
 A level-1 auxiliary file: Introduction.aux
-A level-1 auxiliary file: MARG_sensors.aux
 A level-1 auxiliary file: Orientation_estimation.aux
 A level-1 auxiliary file: Digital_filters.aux
 A level-1 auxiliary file: Implementation.aux
@@ -56,7 +55,7 @@ Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
 You've used 52 entries,
             2481 wiz_defined-function locations,
-            931 strings with 16809 characters,
+            930 strings with 16793 characters,
 and the built_in function-call counts, 21439 in all, are:
 = -- 1898
 > -- 1021
