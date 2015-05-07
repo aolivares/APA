@@ -7,6 +7,7 @@
 \glossaryentry{EKF?\glossentry{EKF}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{RMSE?\glossentry{RMSE}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{LTSD?\glossentry{LTSD}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{NED?\glossentry{NED}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{CITIC-UGR?\glossentry{CITIC-UGR}|setentrycounter[]{page}\glsnumberformat}{iii}
 \glossaryentry{CITIC-UGR?\glossentry{CITIC-UGR}|setentrycounter[]{page}\glsnumberformat}{iii}
 \glossaryentry{LTSD?\glossentry{LTSD}|setentrycounter[]{page}\glsnumberformat}{4}
@@ -17,9 +18,10 @@
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{10}
 \glossaryentry{MIMU?\glossentry{MIMU}|setentrycounter[]{page}\glsnumberformat}{10}
 \glossaryentry{MIMU?\glossentry{MIMU}|setentrycounter[]{page}\glsnumberformat}{11}
-\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{16}
-\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{16}
-\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{17}
+\glossaryentry{NED?\glossentry{NED}|setentrycounter[]{page}\glsnumberformat}{13}
+\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{14}
+\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{14}
+\glossaryentry{ARW?\glossentry{ARW}|setentrycounter[]{page}\glsnumberformat}{15}
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{39}
 \glossaryentry{IMU?\glossentry{IMU}|setentrycounter[]{page}\glsnumberformat}{40}
-\glossaryentry{LTSD?\glossentry{LTSD}|setentrycounter[]{page}\glsnumberformat}{46}
+\glossaryentry{LTSD?\glossentry{LTSD}|setentrycounter[]{page}\glsnumberformat}{45}

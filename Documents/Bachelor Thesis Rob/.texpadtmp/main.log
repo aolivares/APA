@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  7 MAY 2015 19:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  8 MAY 2015 00:19
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1792,7 +1792,7 @@ Overfull \hbox (7.11273pt too wide) in paragraph at lines 5--5
  []
 
 
-Overfull \hbox (2.9976pt too wide) in paragraph at lines 13--13
+Overfull \hbox (2.9976pt too wide) in paragraph at lines 12--12
  [][] [][]\OT1/pplj/m/n/12 Block di-a-gram rep-re-sen-ta-tion of the sta-tis-ti-cal fil-ter-ing prob- 
  []
 
@@ -1928,121 +1928,103 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [12 <./Figures/main-figure2.pdf>]
 ===== Image 'Figures/main-figure3' is up-to-date. ======
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [13 <./Figures/main-figure3.pdf>]
+ [13]
 ===== Image 'Figures/main-figure4' is up-to-date. ======
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [14]
-
-LaTeX Warning: Reference `ch:MARG' on page 15 undefined on input line 301.
-
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [15 <./Figures/main-figure4.pdf>]
 ===== Image 'Figures/main-figure5' is up-to-date. ======
-===== Image 'Figures/main-figure6' is up-to-date. ======
 
-Overfull \hbox (13.55147pt too wide) in paragraph at lines 333--348
+Overfull \hbox (13.55147pt too wide) in paragraph at lines 297--312
 [][] 
  []
 
 
-Underfull \vbox (badness 2205) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [16 <./Figures/main-figure5.pdf> <./Figures/main-figure6.pdf>])
+ [14 <./Figures/main-figure3.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [17]
+ [15 <./Figures/main-figure4.pdf> <./Figures/main-figure5.pdf>])
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [16]
 \openout2 = `Digital_filters.aux'.
 
  (./Digital_filters.tex
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [18
-
-
-
-]
 Chapter 3.
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [19]
+ [17
+
+
+
+]
+===== Image 'Figures/main-figure6' is up-to-date. ======
 ===== Image 'Figures/main-figure7' is up-to-date. ======
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [18 <./Figures/main-figure6.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [19 <./Figures/main-figure7.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [20]
 ===== Image 'Figures/main-figure8' is up-to-date. ======
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [20 <./Figures/main-figure7.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [21 <./Figures/main-figure8.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [22]
 ===== Image 'Figures/main-figure9' is up-to-date. ======
 ===== Image 'Figures/main-figure10' is up-to-date. ======
-===== Image 'Figures/main-figure11' is up-to-date. ======
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [23 <./Figures/main-figure9.pdf> <./Figures/main-figure10.pdf>]
+ [21 <./Figures/main-figure8.pdf> <./Figures/main-figure9.pdf>]
 Underfull \vbox (badness 1721) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [24 <./Figures/main-figure11.pdf>]
-===== Image 'Figures/main-figure12' is up-to-date. ======
+ [22 <./Figures/main-figure10.pdf>]
+===== Image 'Figures/main-figure11' is up-to-date. ======
 
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [23]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [24 <./Figures/main-figure11.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [25]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [26 <./Figures/main-figure12.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [27]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [28]
+ [26]
+===== Image 'Figures/main-figure12' is up-to-date. ======
 ===== Image 'Figures/main-figure13' is up-to-date. ======
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [27 <./Figures/main-figure12.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [28 <./Figures/main-figure13.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [29]
 ===== Image 'Figures/main-figure14' is up-to-date. ======
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [29 <./Figures/main-figure13.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [30 <./Figures/main-figure14.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [31]
-===== Image 'Figures/main-figure15' is up-to-date. ======
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [32]
+ [30]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [33 <./Figures/main-figure15.pdf>]
+ [31 <./Figures/main-figure14.pdf>]
 \openout2 = `Implementation.aux'.
 
  (./Implementation.tex
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [34
+ [32
 
 
 
@@ -2051,7 +2033,12 @@ Chapter 4.
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [35]
+ [33]
+===== Image 'Figures/main-figure15' is up-to-date. ======
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [34 <./Figures/main-figure15.pdf>]
 \figureheight=\skip112
 \figurewidth=\skip113
  (./Tikz/experiment_1.tikz
@@ -2061,7 +2048,10 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [36 <./Figures/experiment_1.pdf>] (./Tikz/experiment_3.tikz
+ [35]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [36 <./Figures/experiment_1.pdf> <./Figures/experiment_2.pdf>] (./Tikz/experiment_3.tikz
 ===== Image 'Figures/experiment_3' is up-to-date. ======
 )
 ===== Image 'Figures/main-figure16' is up-to-date. ======
@@ -2071,84 +2061,78 @@ Underfull \vbox (badness 4454) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [37 <./Figures/experiment_2.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [38 <./Figures/experiment_3.pdf> <./Figures/main-figure16.pdf>]
+ [37 <./Figures/experiment_3.pdf>]
 ===== Image 'Figures/main-figure17' is up-to-date. ======
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [39]
+ [38 <./Figures/main-figure16.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [40 <./Figures/main-figure17.pdf>]
+ [39 <./Figures/main-figure17.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [40]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [41]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [42]
+Underfull \vbox (badness 1990) has occurred while \output is active []
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [43]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [45]
-Overfull \hbox (15.57881pt too wide) in paragraph at lines 384--386
+Overfull \hbox (15.57881pt too wide) in paragraph at lines 421--423
 \OT1/pplj/m/n/12 The pro-cess noise co-vari-ance ma-trix $\OT1/pplx/b/n/12 Q$ \OT1/pplj/m/n/12 is con-stant. The pa-ram-e-ters $\OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]$
  []
 
 
-LaTeX Warning: Reference `lis:experiments' on page 46 undefined on input line 406.
+LaTeX Warning: Reference `lis:experiments' on page 45 undefined on input line 443.
+
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [45]
+===== Image 'Figures/main-figure18' is up-to-date. ======
+
+LaTeX Warning: Float too large for page by 1.62553pt on input line 482.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 505.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 512.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [46]
-===== Image 'Figures/main-figure18' is up-to-date. ======
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
-LaTeX Warning: Float too large for page by 1.62553pt on input line 445.
+ [47 <./Figures/main-figure18.pdf>]
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 558.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 468.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 475.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(amsmath)                trying to recover with `aligned' on input line 564.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [47]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [48 <./Figures/main-figure18.pdf>]
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 521.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 527.
-
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [49] (./Tikz/experiment_4.tikz
+ [48] (./Tikz/experiment_4.tikz
 ===== Image 'Figures/experiment_4' is up-to-date. ======
 ) (./Tikz/experiment_5.tikz
 ===== Image 'Figures/experiment_5' is up-to-date. ======
@@ -2157,25 +2141,22 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 ))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [50 <./Figures/experiment_4.pdf>]
+ [49 <./Figures/experiment_4.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
+ [50 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [52
-
-
-
-]
 Chapter 5.
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [53] [54
+ [51
+
+
+
+] [52
 
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
@@ -2184,54 +2165,54 @@ Underfull \hbox (badness 1048) in paragraph at lines 10--18
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 32--36
+Underfull \hbox (badness 10000) in paragraph at lines 28--32
 []$\OT1/cmtt/m/n/12 http : / / commons . wikimedia . org / wiki / File : Taitbrianzyx . svg$[]\OT1/pplj/m/n/12 .
  []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [55
+ [53
 
 ]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [54]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [55]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [56]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [57]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [58]
-Underfull \hbox (badness 2564) in paragraph at lines 326--332
+Underfull \hbox (badness 2564) in paragraph at lines 368--374
 \OT1/pplj/m/it/12 celerom-e-ter\OT1/pplj/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 326--332
+Underfull \hbox (badness 2503) in paragraph at lines 368--374
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 334--340
+Underfull \hbox (badness 1742) in paragraph at lines 376--382
 []\OT1/pplj/m/n/12 Analog De-vices.  \OT1/pplj/m/it/12 ADXL345: 3-Axis, \TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 2g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 4g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 8g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 16g Dig-i-tal
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 334--340
+Underfull \hbox (badness 2503) in paragraph at lines 376--382
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
  []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [59]
+ [58])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [60])
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [61] [62
+ [59] [60
 
 ]
 \openout2 = `Appendix.aux'.
@@ -2246,7 +2227,7 @@ Overfull \hbox (37.70691pt too wide) in paragraph at lines 1--2
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [63
+ [61
 
 
 
@@ -2256,13 +2237,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [64]
+ [62]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [65]
+ [63]
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 141--142
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2313,7 +2294,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [66]
+ [64]
 Overfull \hbox (37.70691pt too wide) in paragraph at lines 169--170
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2329,13 +2310,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [67]
+ [65]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [68]
+ [66]
 Overfull \hbox (127.38739pt too wide) in paragraph at lines 247--248
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2366,10 +2347,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [69]))
+ [67]))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [70]
+ [68]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 216.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 216.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
@@ -2383,18 +2364,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 46880 strings out of 493117
- 1003965 string characters out of 6135434
- 6689467 words of memory out of 7000000
- 48702 multiletter control sequences out of 15000+600000
+ 46907 strings out of 493117
+ 1004369 string characters out of 6135434
+ 6689661 words of memory out of 7000000
+ 48730 multiletter control sequences out of 15000+600000
  63363 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (88 pages, 1095808 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 1095355 bytes).
 PDF statistics:
- 2183 PDF objects out of 2487 (max. 8388607)
- 1985 compressed objects within 20 object streams
- 650 named destinations out of 1000 (max. 500000)
+ 2179 PDF objects out of 2487 (max. 8388607)
+ 1983 compressed objects within 20 object streams
+ 649 named destinations out of 1000 (max. 500000)
  548 words of extra memory for PDF output out of 10000 (max. 10000000)
 

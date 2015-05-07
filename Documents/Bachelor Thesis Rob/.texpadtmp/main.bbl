@@ -24,10 +24,6 @@ M.N. Armenise, C.~Ciminelli, F.~Dell'Olio, and V.M.N. Passaro.
 \newblock ISBN 9783642154942.
 \newblock URL \url{https://books.google.de/books?id=lJUiyigJRBgC}.
 
-\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
-Alberto Olivares~Vicente and Kai Bötzel.
-\newblock \emph{{GaitWatch} User Manual}.
-
 \bibitem[{Juansempere}()]{Wiki_taitbryan}
 {Juansempere}.
 \newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
@@ -56,6 +52,10 @@ Chapter 1 introduction.
 \newblock \doi{10.1016/S0076-5392(08)62166-9}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0076539208621669}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock \emph{{GaitWatch} User Manual}.
 
 \bibitem[Tao et~al.(2012)Tao, Liu, Zheng, and Feng]{tao_gait_2012}
 Weijun Tao, Tao Liu, Rencheng Zheng, and Hutian Feng.
@@ -310,6 +310,48 @@ M.J. Thompson, M.~Li, and D.A. Horsley.
   International Conference on}, pages 593--596, Jan 2011.
 \newblock \doi{10.1109/MEMSYS.2011.5734494}.
 
+\bibitem[Diebel(2006)]{diebel2006attitude}
+James Diebel.
+\newblock Representing attitude: Euler angles, unit quaternions, and rotation
+  vectors.
+\newblock Technical report, Stanford University, 2006.
+
+\bibitem[Raol(2009)]{raol2009multi}
+J.R. Raol.
+\newblock \emph{Multi-Sensor Data Fusion with MATLAB{\textregistered}}.
+\newblock CRC Press, 2009.
+\newblock ISBN 9781439800058.
+\newblock URL \url{https://books.google.de/books?id=7s8xpR-5rOUC}.
+
+\bibitem[Kalman(1960)]{kalman_1960}
+Rudolph~Emil Kalman.
+\newblock A new approach to linear filtering and prediction problems.
+\newblock \emph{Transactions of the ASME--Journal of Basic Engineering},
+  82\penalty0 (Series D):\penalty0 35--45, 1960.
+
+\bibitem[Welch(2014)]{welch2014}
+Gregory~F. Welch.
+\newblock Kalman filter.
+\newblock In Katsushi Ikeuchi, editor, \emph{Computer Vision}, pages 435--437.
+  Springer US, 2014.
+\newblock ISBN 978-0-387-30771-8.
+\newblock \doi{10.1007/978-0-387-31439-6_716}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
+
+\bibitem[Zarchan and Musoff(2009)]{zarchan2009fundamentals}
+Paul Zarchan and Howard Musoff.
+\newblock \emph{Fundamentals of Kalman Filtering: A Practical Approach}.
+\newblock Progress in astronautics and aeronautics. Academic Press, 2009.
+\newblock ISBN 9781600867187.
+\newblock URL \url{https://books.google.es/books?id=LUDKrQEACAAJ}.
+
+\bibitem[Grewal and Andrews(2008)]{grewal2008kalman}
+M.S. Grewal and A.P. Andrews.
+\newblock \emph{Kalman Filtering: Theory and Practice Using MATLAB}.
+\newblock Wiley, 2008.
+\newblock ISBN 9780470377802.
+\newblock URL \url{http://books.google.es/books?id=J\_fqMHOCzB8C}.
+
 \bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
 {SparkFun Electronics}.
 \newblock \emph{{IMU Analog Combo Board 5DOF}}, {\natexlab{a}}.
@@ -356,48 +398,6 @@ M.J. Thompson, M.~Li, and D.A. Horsley.
 \newblock \emph{{AVR ATxmega -- Development Module}}.
 \newblock URL \url{http://www.alvidi.de/avr_xmodul_en.html}.
 \newblock [Accessed 17 March 2015].
-
-\bibitem[Diebel(2006)]{diebel2006attitude}
-James Diebel.
-\newblock Representing attitude: Euler angles, unit quaternions, and rotation
-  vectors.
-\newblock Technical report, Stanford University, 2006.
-
-\bibitem[Raol(2009)]{raol2009multi}
-J.R. Raol.
-\newblock \emph{Multi-Sensor Data Fusion with MATLAB{\textregistered}}.
-\newblock CRC Press, 2009.
-\newblock ISBN 9781439800058.
-\newblock URL \url{https://books.google.de/books?id=7s8xpR-5rOUC}.
-
-\bibitem[Kalman(1960)]{kalman_1960}
-Rudolph~Emil Kalman.
-\newblock A new approach to linear filtering and prediction problems.
-\newblock \emph{Transactions of the ASME--Journal of Basic Engineering},
-  82\penalty0 (Series D):\penalty0 35--45, 1960.
-
-\bibitem[Welch(2014)]{welch2014}
-Gregory~F. Welch.
-\newblock Kalman filter.
-\newblock In Katsushi Ikeuchi, editor, \emph{Computer Vision}, pages 435--437.
-  Springer US, 2014.
-\newblock ISBN 978-0-387-30771-8.
-\newblock \doi{10.1007/978-0-387-31439-6_716}.
-\newblock URL \url{http://dx.doi.org/10.1007/978-0-387-31439-6_716}.
-
-\bibitem[Zarchan and Musoff(2009)]{zarchan2009fundamentals}
-Paul Zarchan and Howard Musoff.
-\newblock \emph{Fundamentals of Kalman Filtering: A Practical Approach}.
-\newblock Progress in astronautics and aeronautics. Academic Press, 2009.
-\newblock ISBN 9781600867187.
-\newblock URL \url{https://books.google.es/books?id=LUDKrQEACAAJ}.
-
-\bibitem[Grewal and Andrews(2008)]{grewal2008kalman}
-M.S. Grewal and A.P. Andrews.
-\newblock \emph{Kalman Filtering: Theory and Practice Using MATLAB}.
-\newblock Wiley, 2008.
-\newblock ISBN 9780470377802.
-\newblock URL \url{http://books.google.es/books?id=J\_fqMHOCzB8C}.
 
 \bibitem[Spong and Hutchinson(2005)]{spong2005robot}
 M.W. Spong and S.~Hutchinson.

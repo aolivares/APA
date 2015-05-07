@@ -5,6 +5,43 @@ This chapter describes the theoretical design of the filter algorithm proposed i
 
 \section{Initial Situation}\label{sec:initial_situation}
 
+\subsection{The GaitWatch System}
+
+The GaitWatch system was designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain. The system is composed of a set of magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the sensors embedded in the box, as well as from the external measurement units, and storing them on a memory card. The separate units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
+
+\begin{itemize}
+
+\item \textsc{type a -- thighs and shanks:} 
+
+IMU Analog Combo Board with 5 Degrees of Freedom \cite{IMU5}, containing an IDG500 biaxial gyroscope, from which only y-axis is actually used, with a measurement range of ±500\,°/s \cite{IDG500} and a ±3\,g triaxial accelerometer, ADXL335 \cite{ADXL335}.
+
+\item \textsc{type b -- arms:}
+
+IDG500 biaxial gyroscope with a measurement range of ±500\,°/s \cite{IDG500}.
+
+\item \textsc{type c -- trunk:}
+
+ADXL345 triaxial accelerometer with a programmable measurement range of ±2/±4/±8/±16\,g \cite{ADXL345},
+IMU3000 triaxial gyroscope with a programmable measurement range of ±250/±500/±1000/±3000°/s \cite{IMU3000}, 
+Micromag3 \allowbreak triaxial magnetometer with a measurement range of ±11\,Gauss \cite{MicroMag3}, AL-XAVRB board containing an AVR ATxmega processor \cite{AVRATxmega}.
+
+\end{itemize}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[scale=0.95, auto, thick, node distance=3cm,>=latex']
+    \pgftext{\includegraphics[width=10cm]{Figures/GaitWatch_placement}} at (0pt,0pt);
+    \node [] (a) at (-4.4, -2) {Type A};
+    \node [] (b) at (-4.5, 0.1) {Type B};
+    \node [] (c) at (4.45, 3.25) {Type C};
+\end{tikzpicture}
+\caption{Placement of the GaitWatch components at the body, from \cite{olivares_vicente_gaitwatch_2013}.}
+	\label{fig:GaitWatch_placement}
+\end{figure}
+
+There was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the calibration. Also, some algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. The existing algorithms are described in detail in Section \ref{sec:initial_situation}.
+
+
 There was already a variety of algorithms implemented, in order to estimate the pitch angle of the thighs and shanks based on data gathered with the GaitWatch system. The existing ones are described below.
 
 \begin{itemize}
@@ -184,10 +221,10 @@ Then, the radial and tangential acceleration estimates are subtracted from the s
 \end{equation}
 
 \noindent
-According to Equation \ref{eq:projection_gravity} the angle estimate is then
+According to Equation \ref{eq:projection_gravity}, the angle estimate with respect to the $x$-axis is then
 
 \begin{equation}
-  \theta_1 + \theta_2 = \mbox{atan}2(-g_z, g_x)\,.
+  \theta_1 + \theta_2 = -\mbox{atan}2(g_z, g_x)-90^{\circ}\,.
 \end{equation}
 
 \noindent

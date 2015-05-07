@@ -7,7 +7,7 @@ This chapter covers the working principals of MARG sensors as well as the fundam
 
 MARG sensors is a collective term for magnetic, angular rate, and gravitational sensors, which encompasses inertial sensors, as well as magnetic field sensors, also referred to as magnetometers. Inertial sensors itself generally fall into two categories: instruments sensing linear inertial displacement, i.\,e. accelerometers, and rotational inertial rate sensors, that is gyroscopes. They are applied in various contexts to quantify vibration, motion, and shock \cite{bhattacharyya_inertial_sensors_applications_13}. Particularly, the development of \gls{MEMS} opened up many medical applications as stated in Section \ref{sec:MARG_sensors_medical}. MEMS sensors have low manufacturing costs, small physical size, and low power consumption \cite{bhattacharyya_inertial_sensors_applications_13}. This section compiles the functional principles of different MARG sensors and introduces \glspl{IMU} as a combination of those. At the end of the section the aforementioned GaitWatch system that was used to gather the movement data for the experiments is described in detail.
 
-\subsection{Accelerometers}
+\subsection{Accelerometers}\label{sec:accelerometers}
 
 Accelerometers measure the acceleration of an object relative to an inertial frame. Since acceleration cannot be sensed directly, the force exerted on a reference mass is measured. The resultant acceleration is computed according to Newton's second law $\mathbf{f} = m \cdot \mathbf{a}$, where $\mathbf{f} \in \mathbb{R}^3$ denotes the force vector, $m$ the mass, and $\mathbf{a} \in \mathbb{R}^3$ the acceleration vector. Usually, an accelerometer consists of a small proof mass connected via a spring to the case of the instrument. The proof mass is displaced  by $\Delta x$ with respect to the case, when the instrument experiences a certain acceleration along its sensitive axis. Disregarding drag force, the displacement is directly proportional to the force exerted by the mass and thus to the acceleration. Therefore, by measuring the displacement of the proof mass the acceleration can be obtained. Figure \ref{fig:accelerometer} shows the displacement $\Delta x$ of the mass in respect to the case of the instrument for three different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $ \mathbf{g}$. According to how the mass displacement is sensed, accelerometers can be classified as resistive, capacitive, and piezoelectric. Besides, there are surface acoustic wave, fibre optic, vibrating beam and solid-state \gls{MEMS} accelerometers. To obtain a three-dimensional accelerometer, three single-axis accelerometers are mounted together. Nowadays most accelerometers are manufactured using MEMS technology, which was developed for the military and aerospace markets in the 1970s \cite{bhattacharyya_inertial_sensors_applications_13}. 
 
@@ -111,45 +111,9 @@ Magnetometers measure the strength and the direction of the magnetic field at a 
 
 Devices using a combination of accelerometers and gyroscopes to measure the orientation of a rigid body with up to six degrees of freedom are referred to as \glspl{IMU}. If they include additional magnetometers they are termed \glspl{MIMU}. The number of degrees of freedom states the number of independent motions, with respect to a reference frame, that are allowed to the body in space. \glspl{MIMU} are portable and relatively inexpensive. They can be easily attached to the body and thus allow non-clinical longterm application. Their drawbacks are complex calibration procedures and drift behaviour over time, depending on intensity and duration of the measurement interval. Hence, in order to maintain a satisfactory degree of precision, periodical recomputation of the calibration parameters is required \cite{olivares_vicente_signal_2013}.
 
-\subsection{The GaitWatch System}
-
-The GaitWatch system was designed to monitor the motion of patients while attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain. The system is composed of a set of magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the sensors embedded in the box, as well as from the external measurement units, and storing them on a memory card. The separate units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are described below:
-
-\begin{itemize}
-
-\item \textsc{type a -- thighs and shanks:} 
-
-IMU Analog Combo Board with 5 Degrees of Freedom \cite{IMU5}, containing an IDG500 biaxial gyroscope, from which only y-axis is actually used, with a measurement range of ±500\,°/s \cite{IDG500} and a ±3\,g triaxial accelerometer, ADXL335 \cite{ADXL335}.
-
-\item \textsc{type b -- arms:}
-
-IDG500 biaxial gyroscope with a measurement range of ±500\,°/s \cite{IDG500}.
-
-\item \textsc{type c -- trunk:}
-
-ADXL345 triaxial accelerometer with a programmable measurement range of ±2/±4/±8/±16\,g \cite{ADXL345},
-IMU3000 triaxial gyroscope with a programmable measurement range of ±250/±500/±1000/±3000°/s \cite{IMU3000}, 
-Micromag3 \allowbreak triaxial magnetometer with a measurement range of ±11\,Gauss \cite{MicroMag3}, AL-XAVRB board containing an AVR ATxmega processor \cite{AVRATxmega}.
-
-\end{itemize}
-
-\begin{figure}
-\centering
-\begin{tikzpicture}[scale=0.95, auto, thick, node distance=3cm,>=latex']
-    \pgftext{\includegraphics[width=10cm]{Figures/GaitWatch_placement}} at (0pt,0pt);
-    \node [] (a) at (-4.4, -2) {Type A};
-    \node [] (b) at (-4.5, 0.1) {Type B};
-    \node [] (c) at (4.45, 3.25) {Type C};
-\end{tikzpicture}
-\caption{Placement of the GaitWatch components at the body, from \cite{olivares_vicente_gaitwatch_2013}.}
-	\label{fig:GaitWatch_placement}
-\end{figure}
-
-There was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the calibration. Also, some algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. The existing algorithms are described in detail in Section \ref{sec:initial_situation}.
-
 \section{Euler Angles}
 
-As well as in aircraft navigation, in the motion monitoring field the position of the coordinate frame of the body, that is the \emph{body frame}, with respect to a reference coordinate frame, termed the \emph{world frame}, is known as \emph{attitude}, which is used as a synonym of orientation. \emph{Euler angles} are one of several ways to describe the attitude of an object in three-dimensional Euclidean space. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
+As well as in aircraft navigation, in the motion monitoring field the position of the coordinate frame of the body, that is the \emph{body frame}, with respect to a reference coordinate frame, termed the \emph{world frame}, is known as \emph{attitude}, which is used as a synonym of orientation. \emph{Euler angles} are one of several mathematical ways to describe the attitude of an object in three-dimensional Euclidean space. They represent a sequence of three elemental rotations about the axes of the coordinate system, defined as follows:
 
 \begin{itemize}
 \item The \emph{roll} angle $\phi$ determines the rotation around the $x$-axis.
@@ -158,9 +122,9 @@ As well as in aircraft navigation, in the motion monitoring field the position o
 \end{itemize}
 
 \noindent
-Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the orientation of the body frame before and the colour red the orientation after the rotation. In contrast to \emph{extrinsic rotations}, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are \emph{intrinsic rotations} that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
+Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by $\psi, \theta, \phi$, respectively, according to the Tait-Bryan convention. The colour blue indicates the world frame which is matching with body frame before the rorations. The colour red indicates the orientation of the body frame after the rotations were carried out. In contrast to \emph{extrinsic rotations}, where the three elemental rotations may occur either about the axes of the original coordinate system, the Tait-Bryan rotations are \emph{intrinsic rotations} that occur about the axes of the rotating coordinate system, which changes its orientation after each rotation.
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \begin{tikzpicture}[scale=1.4]
 \node[inner sep=0pt] (tait) at (0,0)
@@ -194,7 +158,7 @@ Coordinates representing a point in one coordinate system can be transformed to 
 \noindent
 where $\mathbf{T}$ is the \emph{transformation matrix}.
 
-To transform the coordinate vector from the \emph{world frame}, i.\,e. the reference frame, to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the North-East-Down system (NED), the transformation matrix $\mathbf{C}_{wb}$ is given by
+In order to transform the coordinate vector from the \emph{world frame} to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the \gls{NED} coordinate system, the transformation matrix $\mathbf{C}_{wb}$ is given by
 
 \begin{equation}\label{eq:transformation_matrices}
 \begin{split}
@@ -229,9 +193,9 @@ To transform the coordinate vector from the \emph{world frame}, i.\,e. the refer
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ for transforming the coordinate vector from the body frame to the world frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 
 \tdplotsetmaincoords{60}{110}
@@ -292,18 +256,18 @@ Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the
 \end{equation}
 
 \noindent
-Note that $\mathbf{C}_{bw} = \mathbf{C}^T_{wb} = \mathbf{C}^{-1}_{wb}$. Thus, $\mathbf{C}^{ }_{bw}$ and $\mathbf{C}_{wb}$ are orthogonal matrices so that $\mathbf{C}^{ }_{bw} \mathbf{C}_{wb} = \mathbf{I_3}$.  
+Note that $\mathbf{C}_{bw} = \mathbf{C}^T_{wb} = \mathbf{C}^{-1}_{wb}$. Thus, $\mathbf{C}^{ }_{bw}$ and $\mathbf{C}_{wb}$ are orthogonal matrices so that $\mathbf{C}^{ }_{bw} \mathbf{C}_{wb} = \mathbf{I_3}$, where $\mathbf{I_3} \in \mathbb{R}^3$ is the identity matrix.
 
 \section{Projection of the Gravity Vector}\label{sec:projection_gravity}
 
 % and Earth's Magnetic Field Vector
 
-As described in Chapter \ref{ch:MARG}, accelerometers measure the linear acceleration they experience. Under static or quasi-static (steady, linear motion) conditions, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. By means of simple trigonometric functions estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
+As described in Section \ref{sec:accelerometers}, accelerometers measure the linear acceleration they experience. Under static or quasi-static conditions, that is the sensor is in steady, linear motion, or at low acceleration it can be assumed that the measured acceleration is mainly that of gravity. By means of simple trigonometric functions estimates for the pitch and the roll angle can be obtained. Since the gravity vector is perpendicular to the $xy$-plane, and thus a rotation around the $z$-axis will not cause any variation in the sensed acceleration, the yaw angle cannot be obtained by this method. To solve this problem a three-dimensional magnetometer is used, which measures the variation of Earth's magnetic field while rotating around the $z$-axis.
 
-When the accelerometer is motionless, its measurements will be directly related to the angle of the sensor relative to gravity, as depicted in Figure \ref{fig:acceleration_motion} (a). In that case $\theta$ is given by
+When the accelerometer is motionless, its measurements will be directly related to the angle of the sensor relative to gravity, as depicted in Figure \ref{fig:acceleration_motion} (a). In that case $\theta$ with respect to the vertical is given by
 
 \begin{equation} \label{eq:projection_gravity}
-  \theta = \mbox{atan}2(-A_z, A_x)\,.
+  \theta = \mbox{atan}2(A_z, A_x)\,.
 \end{equation}
 
 \noindent
@@ -323,7 +287,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     \draw[->] (B) -- node[name=y] {$A_z = g \sin \theta$}(C);
     \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}node [pos=0.35]{$\theta$} (C);
   
- 	\draw (0.7,-2.0) arc (270:297:1.4);
+ 	\draw[-stealth] (0.7,-2.0) arc (270:297:1.4);
       
     \end{tikzpicture}
 \end{subfigure}
@@ -342,7 +306,7 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     \draw[->] (B) -- node[name=y] {$A_z = A_{tan} + g \sin \theta$} (D);
     \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}(C);
       
-    \draw (0.953,-2.2) arc (270:304:0.8);  
+    \draw[-stealth] (0.953,-2.2) arc (270:304:0.8);  
       
     \end{tikzpicture}	
 \end{subfigure}
@@ -362,10 +326,10 @@ Since the projection of the gravity vector is only valid under static or quasi-s
 \item Robust functional and operational performance is given, in case of data loss from one sensor, due to redundancy provided by multiple sensors.
 \item Enhanced confidence in the results inferred from the measurement of one sensor, if they are confirmed by the measurement of another sensor.
 \item With sensor fusion an arbitrary fine time resolution of measurements is possible, whereas single sensors need a finite time to transmit measurements and so limit the frequency of measurements.
-\item One sensor might be, to some extent, better in a certain state of the measured process, e.g. low or high motion intensity in attitude estimation, and thus, by fusing multiple sensor signals, a satisfactory accuracy among all states of the process could be attained.
+\item One sensor might be, to some extent, better in a certain state of the measured process, e.\,g. low or high motion intensity in attitude estimation, and thus, by fusing multiple sensor signals, a satisfactory accuracy among all states of the process could be attained.
 \end{itemize}
 
 \noindent
-Sensor fusion can be realised by the use of a Kalman filter, which is described in detail in the next chapter.
+Sensor fusion can be realised by the use of a Kalman filter. This specific digital filter is described in detail in the next Chapter und applied in Chapter \ref{ch:Implementation} to fuse the sensor signals of accelerometers and gyroscopes.
 
 
