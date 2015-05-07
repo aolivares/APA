@@ -38,6 +38,11 @@
 % -------------------------------------------------------------------------
 clear all; close all; clc;
 
+% Set flags which control the visibility of the figures.
+showPlotsCheck = 'yes';
+showPlotsAPA = 'yes';
+showPlotsCorr = 'yes';
+
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
 % -------------------------------------------------------------------------
@@ -113,7 +118,7 @@ final_second_step = force_sum_complete_ts.time(final_second_step_edge);
 % -------------------------------------------------------------------------
 
 % --------------- Acceleration in shanks and force-------------------------
-
+if strcmpi(showPlotsAPA,'yes')
 figure();
 subplot(3, 1, 1);
 plot(a_shanks_complete_ts.time, reshape(a_shanks_data(2, 1, :), ...
@@ -249,9 +254,11 @@ changedependvar(hx,'x');
 title('ML COP with lines marker when the patient steps with the second time');
 xlabel('Time in s');
 ylabel('COP in mm');
+end
 
 % --------------------Interesting cycles (Zoom)----------------------------
 % ------------------------> 6º cycle
+if strcmpi(showPlotsCheck,'yes')
 figure();
 subplot(5, 1, 1);
 plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
@@ -450,6 +457,7 @@ title('ML COP with lines marker when the patient steps with the second time');
 xlabel('Time in s');
 ylabel('COP in mm');
 axis([190, 210, -200, 150]);
+end
 
 % -------------------------------------------------------------------------
 % 3) Differences when the patient starts with left or right foot in the 
@@ -571,6 +579,7 @@ axis([190, 210, -200, 150]);
 % 4.2) Find the first 'negative' peak of each cycle in the signal 
 %      of the x-axis of the acceleration of the trunk, that is, the point 
 %      in time when the patient shifted backward. 
+%      It is done the same with the syroscope signal.
 % -------------------------------------------------------------------------
 
 % Determine the initial and end point (in time) of each interval where 
@@ -624,7 +633,7 @@ for k = 1:length(initcross)
                     initcross_trunk:finalcross_trunk)== -max(...
                     neg_peak_values), 1, 'last') + initcross_trunk - 1;
                 
-     % Find all peaks in each interval.
+     % Find all peaks in each interval of the syroscope signal.
     [pos_peak_values, pos_peak_locations] = findpeaks(...
                             g_trunk_data_X(...
                             initcross_trunk:finalcross_trunk));
@@ -634,7 +643,7 @@ for k = 1:length(initcross)
                     initcross_trunk:finalcross_trunk)== max(...
                     pos_peak_values), 1, 'last') + initcross_trunk - 1;
                 
-     % Find all peaks in each interval.
+     % Find all peaks in each interval of AP COP signal.
     [neg_peak_values, neg_peak_locations] = findpeaks(...
                             -AP_COP_data_shanks(...
                             initcross_COP:finalcross_COP));
@@ -647,18 +656,24 @@ for k = 1:length(initcross)
     % Segmentation of the signals with a Win= 0.25s
     fs = 200;
     Win_trunk = 0.25 * fs;
-    Win_COP = 0.25 * 120;
     num_segment = round((finalcross_trunk - initcross_trunk)/Win_trunk);
     Win_COP = (finalcross - initcross)/num_segment;
     
      for l=1:num_segment
+         
+        % Obtain every segment of the interval of trunk acc signal.
         segment_trunk  = a_trunk_data_X(initcross_trunk + (l-1)*Win_trunk:...
             initcross_trunk + l*Win_trunk);
+        
+        % Mean and variance of every segment
         mean_trunk (k,l) = mean(segment_trunk);
         var_trunk (k,l) = var (segment_trunk);
         
+        % Obtain every segment of the interval of COP AP signal.
         segment_COP_AP = AP_COP_data_shanks(initcross_COP + (l-1)*Win_COP:...
                     initcross_COP+ l*Win_COP);
+                
+        % Mean and variance of every segment.
         mean_COP_AP(k,l) = mean(segment_COP_AP);
         var_COP_AP (k,l) = var (segment_COP_AP); 
    
@@ -685,15 +700,16 @@ value_APA_AP_COP_3 = value_APA_AP_COP - value_init_FP_AP;
 [corr_trunk_AP_3, prob_trunk_AP_3] = corr(value_APA_trunk_X',...
                                     value_APA_AP_COP_3');
 
+% This is the most iteresting correlation.                               
 value_APA_trunk_X_1 = abs(value_APA_trunk_X - a_trunk_data_X(initcross_trunk_complete));
 [corr_trunk_AP_4, prob_trunk_AP_4] = corr(value_APA_trunk_X_1',...
                                     value_APA_AP_COP_2');
                                 
-% Calculate the correlation between the Gyro trunk signal peaks and AP COP
+% Calculate the correlation between the Gyro trunk signal peaks and AP COP.
 % peaks.
 value_APA_trunk_Gyro_X_1 = abs(value_APA_trunk_Gyro_X - g_trunk_data_X(initcross_trunk_complete));
 [corr_trunk_AP_Gyro, prob_trunk_AP_Gyro] = corr(value_APA_trunk_Gyro_X_1',...
-                                            value_APA_AP_COP_3');
+                                            value_APA_AP_COP_2');
                                         
 % Calculate the linear correlation between the patter that characterise the
 % patient. This correlation shows the similitudes between the trunk and
@@ -702,14 +718,15 @@ value_APA_trunk_Gyro_X_1 = abs(value_APA_trunk_Gyro_X - g_trunk_data_X(initcross
 mean_mean_trunk = mean(mean_trunk);
 mean_mean_COP_AP = mean(mean_COP_AP);
 [corr_mean, prob_mean] = corr(mean_trunk', mean_COP_AP');
-corr_mean_mean= mean(corr_mean(:,1))
-prob_mean_mean = mean(prob_mean(:,1))
+corr_mean_mean= mean(corr_mean(:,1));
+prob_mean_mean = mean(prob_mean(:,1));
                                 
 %--------------------------------------------------------------------------
 % Plots
 %--------------------------------------------------------------------------
 
 %-------------Peaks of APA in trunk acceleration and AP COP----------------
+if strcmpi(showPlotsAPA,'yes')
 figure ();
 subplot(2,1,1)
 plot(a_trunk_complete_ts.time, a_trunk_data_X, 'g');
@@ -750,14 +767,17 @@ title(['AP COP with lines marker when the' ...
        'patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('AP COP (mm)');
+end
 
 % -------------Correlation between peak AP_COP and peak Acc trunk----------
+if strcmpi(showPlotsCorr,'yes')
 figure ()
 
-plot(value_APA_trunk_X, value_APA_AP_COP, '.r');
+plot(value_APA_trunk_X_1, value_APA_AP_COP_2, '.r');
 title('Linear correlation between peak AP_COP and peak Acc trunk');
 xlabel('Acceleration (g)');
 ylabel('AP_COP (mmm)');
+end
 
 % figure ()
 % 
@@ -767,7 +787,7 @@ ylabel('AP_COP (mmm)');
 % ylabel('AP_COP (mmm)');
 
 % -------------------------------------------------------------------------
-% 2.3) Determine when th second step (when patient goes down from
+% 4.3) Determine when th second step (when patient goes down from
 % plateform) starts with left or right foot.
 % -------------------------------------------------------------------------
 % When the patient starts to step with left foot, last value of the cycle
@@ -784,7 +804,7 @@ cycle_start_right = find(ML_COP_data_shanks(final_second_step_edge) < 0);
 
 
 % -------------------------------------------------------------------------
-% 2.4) Find the APA peaks of ML COP and trunk acceleration of Y-axis.
+% 4.4) Find the APA peaks of ML COP and trunk acceleration of Y-axis.
 % -------------------------------------------------------------------------
 
 % If the patient starts to walk with the left foot, the APA peak is negative
@@ -905,6 +925,7 @@ value_APA_trunk_Gyro_Y_1 = abs(value_APA_trunk_Gyro_Y - g_trunk_data_Y(initcross
 %------------------------------- Plots-------------------------------------
 
 %-------------Peaks of APA in trunk acceleration and ML COP----------------
+if strcmpi(showPlotsAPA,'yes')
 figure ();
 subplot(2,1,1)
 plot(a_trunk_complete_ts.time, a_trunk_data_Y, 'g');
@@ -945,9 +966,10 @@ title(['ML COP with lines marker when the' ...
        'patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('ML COP (mm)');
+end
 
 % -------------Correlation between peak ML_COP and peak Acc trunk----------
-
+if strcmpi(showPlotsCorr,'yes')
 figure ()
 
 plot(value_APA_trunk_Y_1,value_APA_ML_COP_c_2, '.r');
@@ -961,14 +983,10 @@ ylabel('ML_COP (mmm)');
 % title('Linear correlation between peak ML_COP and peak Acc trunk (height of the peak)');
 % xlabel('Acceleration (g)');
 % ylabel('ML_COP (mmm)');
+end
 
-
-% -------------------------------------------------------------------------
-% 3) Detect APA in trunk signal of the gyroscope.
-% -------------------------------------------------------------------------
-
-% --------------------Angular Velocity in trunk and COP------------------------
-
+% --------------------Angular Velocity in trunk and COP--------------------
+if strcmpi(showPlotsAPA,'yes')
 figure()
 subplot(4, 1, 1);
 plot(g_trunk_complete_ts.time, g_trunk_data_X )
@@ -1059,10 +1077,10 @@ changedependvar(hx,'x');
 hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
     'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
+title(['Angular Velocity of the X-axis of the trunk with lines marker when the' ...
        'patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
-ylabel('Acceleration (g)');
+ylabel('Angular Velocity (º/s)');
 
 
 subplot(2,1,2)
@@ -1085,5 +1103,46 @@ title(['AP COP with lines marker when the' ...
 xlabel('Time in s');
 ylabel('AP COP (mm)');
 
+figure ();
+subplot(2,1,1)
+plot(g_trunk_complete_ts.time, g_trunk_data_Y, 'g');
+hold on;
+plot(g_trunk_complete_ts.time(peaks_APA_trunk_Y),value_APA_trunk_Y, 'r.');
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+title(['Angular Velocity of the Y-axis of the trunk with lines marker when the' ...
+       'patient steps with the second time and the APA peak' ]);
+xlabel('Time in s');
+ylabel('Angular Velocity (º/s)');
+
+
+subplot(2,1,2)
+plot(ML_COP_complete_ts.time, ML_COP_data_shanks, 'g');
+hold on;
+plot(AP_COP_complete_ts.time(peaks_APA_ML_COP), value_APA_ML_COP , 'r.');
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['ML COP with lines marker when the' ...
+       'patient steps with the second time and the APA peak' ]);
+xlabel('Time in s');
+ylabel('ML COP (mm)');
+end
 
 
