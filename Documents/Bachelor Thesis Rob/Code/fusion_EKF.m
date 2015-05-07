@@ -275,8 +275,8 @@ for i=1:1:len
     z(4) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
-     p(1, i) = z(3);
-     p(2, i) = z(4);
+     p(1, i) = a(1);
+     p(2, i) = a(3);
     
     % MEASUREMENT UPDATE %
     

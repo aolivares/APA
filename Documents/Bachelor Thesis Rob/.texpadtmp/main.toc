@@ -50,5 +50,5 @@
 \contentsline {chapter}{\numberline {5}Conclusion and Future Work}{53}{chapter.5}
 \contentsline {section}{\numberline {5.1}Conclusions}{53}{section.5.1}
 \contentsline {section}{\numberline {5.2}Future Work}{53}{section.5.2}
-\contentsline {chapter}{Bibliography}{55}{section*.37}
-\contentsline {chapter}{Appendix}{63}{section*.39}
+\contentsline {chapter}{Bibliography}{55}{section*.38}
+\contentsline {chapter}{Appendix}{63}{section*.40}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  7 MAY 2015 09:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  7 MAY 2015 16:58
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1563,11 +1563,7 @@ Package glossaries Info: Writing glossary file main.acn on input line 141.
 Package glossaries Info: Writing glossary file main.ntn on input line 141.
  (./Acronyms.tex) (./Notation.tex)
 \tikzscale@accuracy=\skip111
- (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux
-
-LaTeX Warning: Label `eq:Phi_first_order' multiply defined.
-
-) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
+ (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
@@ -1882,10 +1878,6 @@ LaTeX Font Info:    Try loading font information for TS1+pplj on input line 16.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ts1pplj.fd
 File: ts1pplj.fd 2004/09/06 font definitions for TS1/pplj.
 )
-
-LaTeX Warning: Reference `ch:MARG' on page 2 undefined on input line 16.
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [2]
@@ -1951,7 +1943,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [14]
 
-LaTeX Warning: Reference `ch:MARG' on page 15 undefined on input line 300.
+LaTeX Warning: Reference `ch:MARG' on page 15 undefined on input line 301.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -1960,12 +1952,9 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 ===== Image 'Figures/main-figure5' is up-to-date. ======
 ===== Image 'Figures/main-figure6' is up-to-date. ======
 
-Overfull \hbox (13.55147pt too wide) in paragraph at lines 332--347
+Overfull \hbox (13.55147pt too wide) in paragraph at lines 333--348
 [][] 
  []
-
-
-Underfull \vbox (badness 2205) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2163,13 +2152,15 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 ===== Image 'Figures/experiment_4' is up-to-date. ======
 ) (./Tikz/experiment_5.tikz
 ===== Image 'Figures/experiment_5' is up-to-date. ======
+) (./Tikz/experiment_6.tikz
+===== Image 'Figures/experiment_6' is up-to-date. ======
 ))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [50 <./Figures/experiment_4.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51 <./Figures/experiment_5.pdf>]
+ [51 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
@@ -2405,23 +2396,20 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 46900 strings out of 493117
- 1004398 string characters out of 6135434
- 5679410 words of memory out of 7000000
- 48721 multiletter control sequences out of 15000+600000
+ 46897 strings out of 493117
+ 1004280 string characters out of 6135434
+ 6689559 words of memory out of 7000000
+ 48714 multiletter control sequences out of 15000+600000
  63363 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (88 pages, 1134022 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (88 pages, 1100769 bytes).
 PDF statistics:
- 2184 PDF objects out of 2487 (max. 8388607)
- 1987 compressed objects within 20 object streams
- 654 named destinations out of 1000 (max. 500000)
- 551 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2206 PDF objects out of 2487 (max. 8388607)
+ 2007 compressed objects within 21 object streams
+ 655 named destinations out of 1000 (max. 500000)
+ 556 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -74,6 +74,16 @@ Paolo Bonato.
 \newblock \doi{10.1186/1743-0003-2-2}.
 \newblock URL \url{http://www.ncbi.nlm.nih.gov/pmc/articles/PMC552335/}.
 
+\bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
+  Waluyo]{wee_soon_ambulatory_2008}
+Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
+\newblock Ambulatory monitoring of human posture and walking speed using
+  wearable accelerometer sensors.
+\newblock In \emph{Engineering in Medicine and Biology Society, 2008. EMBS
+  2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
+  Aug 2008.
+\newblock \doi{10.1109/IEMBS.2008.4650382}.
+
 \bibitem[Godfrey et~al.(2008)Godfrey, Conway, Meagher, and
   ÓLaighin]{godfrey_direct_2008}
 A.~Godfrey, R.~Conway, D.~Meagher, and G.~ÓLaighin.
@@ -84,16 +94,6 @@ A.~Godfrey, R.~Conway, D.~Meagher, and G.~ÓLaighin.
 \newblock \doi{10.1016/j.medengphy.2008.09.005}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S1350453308001653}.
-
-\bibitem[Yeoh et~al.(2008)Yeoh, Pek, Yong, Chen, and
-  Waluyo]{wee_soon_ambulatory_2008}
-Wee-Soon Yeoh, I.~Pek, Yi-Han Yong, Xiang Chen, and A.B. Waluyo.
-\newblock Ambulatory monitoring of human posture and walking speed using
-  wearable accelerometer sensors.
-\newblock In \emph{Engineering in Medicine and Biology Society, 2008. EMBS
-  2008. 30th Annual International Conference of the IEEE}, pages 5184--5187,
-  Aug 2008.
-\newblock \doi{10.1109/IEMBS.2008.4650382}.
 
 \bibitem[Bennett et~al.(2013{\natexlab{a}})Bennett, Jafari, and
   Gans]{bennett_extended_2013}
