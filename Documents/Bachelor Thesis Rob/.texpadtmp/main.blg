@@ -41,10 +41,6 @@ Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty year in Wiki_taitbryan
 Warning--empty author in Maybeck79
 Warning--empty booktitle in bennett_extended_2013
-Warning--empty year in emarketer_smartphones
-Warning--empty year in Intel_2013
-Warning--empty year in Apple_2015
-Warning--empty year in mpower
 Warning--empty year in IMU5
 Warning--empty year in IDG500
 Warning--empty year in ADXL335
@@ -53,45 +49,45 @@ Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
-You've used 52 entries,
+You've used 48 entries,
             2481 wiz_defined-function locations,
-            930 strings with 16793 characters,
-and the built_in function-call counts, 21439 in all, are:
-= -- 1898
-> -- 1021
-< -- 41
-+ -- 408
-- -- 300
-* -- 1657
-:= -- 3369
-add.period$ -- 235
-call.type$ -- 52
-change.case$ -- 91
-chr.to.int$ -- 48
-cite$ -- 69
-duplicate$ -- 1099
-empty$ -- 1898
-format.name$ -- 365
-if$ -- 4647
+            909 strings with 16121 characters,
+and the built_in function-call counts, 20347 in all, are:
+= -- 1805
+> -- 985
+< -- 37
++ -- 390
+- -- 290
+* -- 1607
+:= -- 3205
+add.period$ -- 220
+call.type$ -- 48
+change.case$ -- 83
+chr.to.int$ -- 44
+cite$ -- 61
+duplicate$ -- 1043
+empty$ -- 1778
+format.name$ -- 349
+if$ -- 4408
 int.to.chr$ -- 5
-int.to.str$ -- 53
+int.to.str$ -- 49
 missing$ -- 43
-newline$ -- 342
-num.names$ -- 161
-pop$ -- 446
+newline$ -- 319
+num.names$ -- 149
+pop$ -- 389
 preamble$ -- 1
-purify$ -- 52
+purify$ -- 48
 quote$ -- 0
-skip$ -- 663
+skip$ -- 622
 stack$ -- 0
-substring$ -- 851
-swap$ -- 278
+substring$ -- 843
+swap$ -- 270
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 346
-warning$ -- 16
-while$ -- 159
+type$ -- 318
+warning$ -- 12
+while$ -- 151
 width$ -- 0
-write$ -- 810
+write$ -- 760
 (There were 5 error messages)

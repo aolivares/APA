@@ -1,4 +1,4 @@
-\begin{thebibliography}{52}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -207,6 +207,35 @@ T.~Bennett, R.~Jafari, and N.~Gans.
   June 2013{\natexlab{b}}.
 \newblock \doi{10.1109/ACC.2013.6579926}.
 
+\bibitem[Bourke and Lyons(2008)]{bourke_threshold-based_2008}
+A.~K. Bourke and G.~M. Lyons.
+\newblock A threshold-based fall-detection algorithm using a bi-axial gyroscope
+  sensor.
+\newblock \emph{Medical Engineering \& Physics}, 30\penalty0 (1):\penalty0
+  84--90, January 2008.
+\newblock ISSN 1350-4533.
+\newblock \doi{10.1016/j.medengphy.2006.12.001}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S1350453306002657}.
+
+\bibitem[Bourke et~al.(2010)Bourke, van~de Ven, Gamble, O'Connor, Murphy,
+  Bogan, McQuade, Finucane, OLaighin, and Nelson]{bourke_assessment-waist_2010}
+A.K. Bourke, P.~van~de Ven, M.~Gamble, R.~O'Connor, K.~Murphy, E.~Bogan,
+  E.~McQuade, P.~Finucane, G.~OLaighin, and J.~Nelson.
+\newblock Assessment of waist-worn tri-axial accelerometer based fall-detection
+  algorithms using continuous unsupervised activities.
+\newblock In \emph{Engineering in Medicine and Biology Society (EMBC), 2010
+  Annual International Conference of the IEEE}, pages 2782--2785, Aug 2010.
+\newblock \doi{10.1109/IEMBS.2010.5626364}.
+
+\bibitem[Bourke et~al.(2008)Bourke, van~de Ven, Chaya, Olaighin, and
+  Nelson]{bourke_fall_detection_2008}
+A.K. Bourke, P.W.J. van~de Ven, A.~Chaya, G.~Olaighin, and J.~Nelson.
+\newblock Design and test of a long-term fall detection system incorporated
+  into a custom vest for the elderly.
+\newblock In \emph{Signals and Systems Conference, 208. (ISSC 2008). IET
+  Irish}, pages 307--312, June 2008.
+
 \bibitem[Mancini et~al.(2009)Mancini, Zampieri, Carlson-Kuhta, Chiari, and
   Horak]{mancini_anticipatory_2009}
 M.~Mancini, C.~Zampieri, P.~Carlson-Kuhta, L.~Chiari, and F.~B. Horak.
@@ -265,61 +294,6 @@ Joe Verghese, Richard~B. Lipton, Charles~B. Hall, Gail Kuslansky, Mindy~J.
 \newblock \doi{10.1056/NEJMoa020441}.
 \newblock URL \url{http://dx.doi.org/10.1056/NEJMoa020441}.
 \newblock PMID: 12456852.
-
-\bibitem[Bourke and Lyons(2008)]{bourke_threshold-based_2008}
-A.~K. Bourke and G.~M. Lyons.
-\newblock A threshold-based fall-detection algorithm using a bi-axial gyroscope
-  sensor.
-\newblock \emph{Medical Engineering \& Physics}, 30\penalty0 (1):\penalty0
-  84--90, January 2008.
-\newblock ISSN 1350-4533.
-\newblock \doi{10.1016/j.medengphy.2006.12.001}.
-\newblock URL
-  \url{http://www.sciencedirect.com/science/article/pii/S1350453306002657}.
-
-\bibitem[Bourke et~al.(2010)Bourke, van~de Ven, Gamble, O'Connor, Murphy,
-  Bogan, McQuade, Finucane, OLaighin, and Nelson]{bourke_assessment-waist_2010}
-A.K. Bourke, P.~van~de Ven, M.~Gamble, R.~O'Connor, K.~Murphy, E.~Bogan,
-  E.~McQuade, P.~Finucane, G.~OLaighin, and J.~Nelson.
-\newblock Assessment of waist-worn tri-axial accelerometer based fall-detection
-  algorithms using continuous unsupervised activities.
-\newblock In \emph{Engineering in Medicine and Biology Society (EMBC), 2010
-  Annual International Conference of the IEEE}, pages 2782--2785, Aug 2010.
-\newblock \doi{10.1109/IEMBS.2010.5626364}.
-
-\bibitem[Bourke et~al.(2008)Bourke, van~de Ven, Chaya, Olaighin, and
-  Nelson]{bourke_fall_detection_2008}
-A.K. Bourke, P.W.J. van~de Ven, A.~Chaya, G.~Olaighin, and J.~Nelson.
-\newblock Design and test of a long-term fall detection system incorporated
-  into a custom vest for the elderly.
-\newblock In \emph{Signals and Systems Conference, 208. (ISSC 2008). IET
-  Irish}, pages 307--312, June 2008.
-
-\bibitem[{eMarketer}()]{emarketer_smartphones}
-{eMarketer}.
-\newblock {2 Billion Consumers Worldwide to Get Smartphones by 2016}.
-\newblock URL
-  \url{http://www.emarketer.com/Article/2-Billion-Consumers-Worldwide-Smartphones-by-2016/1011694}.
-\newblock [Accessed 5 April, 2015].
-
-\bibitem[for Parkinson's Research~(MJFF) and Corporation()]{Intel_2013}
-The Michael J. Fox~Foundation for Parkinson's Research~(MJFF) and Intel
-  Corporation.
-\newblock {The Michael J. Fox Foundation and Intel Join Forces to Improve
-  Parkinson's Disease Monitoring and Treatment through Advanced Technologies}.
-\newblock URL \url{http://goo.gl/PxQAof}.
-\newblock [Accessed 20 March, 2015].
-
-\bibitem[{Apple Inc.}()]{Apple_2015}
-{Apple Inc.}
-\newblock {ResearchKit}.
-\newblock URL \url{http://www.apple.com/researchkit}.
-\newblock [Accessed 20 March, 2015].
-
-\bibitem[{Sage Bionetworks}()]{mpower}
-{Sage Bionetworks}.
-\newblock {mPower: Mobile Parkinson Disease Study}.
-\newblock URL \url{http://parkinsonmpower.org}.
 
 \bibitem[Lenz and Edelstein(2006)]{lenz_magnetic_2006}
 J.~Lenz and Alan~S. Edelstein.

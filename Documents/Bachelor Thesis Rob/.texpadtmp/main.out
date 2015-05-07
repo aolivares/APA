@@ -10,42 +10,41 @@
 \BOOKMARK [1][-]{section.1.2}{Goals}{chapter.1}% 10
 \BOOKMARK [1][-]{section.1.3}{Methodology}{chapter.1}% 11
 \BOOKMARK [1][-]{section.1.4}{State of the Art}{chapter.1}% 12
-\BOOKMARK [2][-]{subsection.1.4.1}{Kalman Filtering in Orientation Estimation}{section.1.4}% 13
+\BOOKMARK [2][-]{subsection.1.4.1}{Kalman Filtering Applied to Orientation Estimation}{section.1.4}% 13
 \BOOKMARK [2][-]{subsection.1.4.2}{Wearable Sensors in Health Care}{section.1.4}% 14
-\BOOKMARK [2][-]{subsection.1.4.3}{The Impact of Wearable Sensors on Medical Research}{section.1.4}% 15
-\BOOKMARK [0][-]{chapter.2}{Orientation Estimation using MARG Sensors}{}% 16
-\BOOKMARK [1][-]{section.2.1}{MARG Sensors}{chapter.2}% 17
-\BOOKMARK [2][-]{subsection.2.1.1}{Accelerometers}{section.2.1}% 18
-\BOOKMARK [2][-]{subsection.2.1.2}{Gyroscopes}{section.2.1}% 19
-\BOOKMARK [2][-]{subsection.2.1.3}{Magnetometers}{section.2.1}% 20
-\BOOKMARK [1][-]{section.2.2}{Inertial Measurement Units}{chapter.2}% 21
-\BOOKMARK [2][-]{subsection.2.2.1}{The GaitWatch System}{section.2.2}% 22
-\BOOKMARK [1][-]{section.2.3}{Euler Angles}{chapter.2}% 23
-\BOOKMARK [2][-]{subsection.2.3.1}{Transformation Matrix}{section.2.3}% 24
-\BOOKMARK [1][-]{section.2.4}{Projection of the Gravity Vector}{chapter.2}% 25
-\BOOKMARK [1][-]{section.2.5}{Integration of the Angular Rate}{chapter.2}% 26
-\BOOKMARK [1][-]{section.2.6}{Sensor Fusion}{chapter.2}% 27
-\BOOKMARK [0][-]{chapter.3}{Digital Filters}{}% 28
-\BOOKMARK [1][-]{section.3.1}{The Filtering Problem}{chapter.3}% 29
-\BOOKMARK [1][-]{section.3.2}{The Wiener Filter}{chapter.3}% 30
-\BOOKMARK [1][-]{section.3.3}{Adaptive Filters}{chapter.3}% 31
-\BOOKMARK [1][-]{section.3.4}{The Kalman Filter}{chapter.3}% 32
-\BOOKMARK [2][-]{subsection.3.4.1}{An Introductory Example}{section.3.4}% 33
-\BOOKMARK [2][-]{subsection.3.4.2}{Formulation of the Kalman Filter Equations}{section.3.4}% 34
-\BOOKMARK [2][-]{subsection.3.4.3}{The Extended Kalman Filter}{section.3.4}% 35
-\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 36
-\BOOKMARK [1][-]{section.4.1}{Initial Situation}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.2}{Theoretical Design}{chapter.4}% 38
-\BOOKMARK [2][-]{subsection.4.2.1}{Kinematic Model}{section.4.2}% 39
-\BOOKMARK [2][-]{subsection.4.2.2}{The Extended Kalman Filter}{section.4.2}% 40
-\BOOKMARK [1][-]{section.4.3}{Experiments}{chapter.4}% 41
-\BOOKMARK [2][-]{subsection.4.3.1}{Test Sequence}{section.4.3}% 42
-\BOOKMARK [2][-]{subsection.4.3.2}{Initial Conditions}{section.4.3}% 43
-\BOOKMARK [2][-]{subsection.4.3.3}{Parameterisation}{section.4.3}% 44
-\BOOKMARK [1][-]{section.4.4}{Results}{chapter.4}% 45
-\BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}% 46
-\BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 47
-\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}% 48
-\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 49
-\BOOKMARK [0][-]{section*.38}{Bibliography}{}% 50
-\BOOKMARK [0][-]{section*.40}{Appendix}{}% 51
+\BOOKMARK [0][-]{chapter.2}{Orientation Estimation using MARG Sensors}{}% 15
+\BOOKMARK [1][-]{section.2.1}{MARG Sensors}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.1.1}{Accelerometers}{section.2.1}% 17
+\BOOKMARK [2][-]{subsection.2.1.2}{Gyroscopes}{section.2.1}% 18
+\BOOKMARK [2][-]{subsection.2.1.3}{Magnetometers}{section.2.1}% 19
+\BOOKMARK [1][-]{section.2.2}{Inertial Measurement Units}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.2.1}{The GaitWatch System}{section.2.2}% 21
+\BOOKMARK [1][-]{section.2.3}{Euler Angles}{chapter.2}% 22
+\BOOKMARK [2][-]{subsection.2.3.1}{Transformation Matrix}{section.2.3}% 23
+\BOOKMARK [1][-]{section.2.4}{Projection of the Gravity Vector}{chapter.2}% 24
+\BOOKMARK [1][-]{section.2.5}{Integration of the Angular Rate}{chapter.2}% 25
+\BOOKMARK [1][-]{section.2.6}{Sensor Fusion}{chapter.2}% 26
+\BOOKMARK [0][-]{chapter.3}{Digital Filters}{}% 27
+\BOOKMARK [1][-]{section.3.1}{The Filtering Problem}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.2}{The Wiener Filter}{chapter.3}% 29
+\BOOKMARK [1][-]{section.3.3}{Adaptive Filters}{chapter.3}% 30
+\BOOKMARK [1][-]{section.3.4}{The Kalman Filter}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.4.1}{An Introductory Example}{section.3.4}% 32
+\BOOKMARK [2][-]{subsection.3.4.2}{Formulation of the Kalman Filter Equations}{section.3.4}% 33
+\BOOKMARK [2][-]{subsection.3.4.3}{The Extended Kalman Filter}{section.3.4}% 34
+\BOOKMARK [0][-]{chapter.4}{Implementation}{}% 35
+\BOOKMARK [1][-]{section.4.1}{Initial Situation}{chapter.4}% 36
+\BOOKMARK [1][-]{section.4.2}{Theoretical Design}{chapter.4}% 37
+\BOOKMARK [2][-]{subsection.4.2.1}{Kinematic Model}{section.4.2}% 38
+\BOOKMARK [2][-]{subsection.4.2.2}{The Extended Kalman Filter}{section.4.2}% 39
+\BOOKMARK [1][-]{section.4.3}{Experiments}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.3.1}{Test Sequence}{section.4.3}% 41
+\BOOKMARK [2][-]{subsection.4.3.2}{Initial Conditions}{section.4.3}% 42
+\BOOKMARK [2][-]{subsection.4.3.3}{Parameterisation}{section.4.3}% 43
+\BOOKMARK [1][-]{section.4.4}{Results}{chapter.4}% 44
+\BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 46
+\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 48
+\BOOKMARK [0][-]{section*.38}{Bibliography}{}% 49
+\BOOKMARK [0][-]{section*.40}{Appendix}{}% 50
