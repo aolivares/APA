@@ -38,49 +38,60 @@
 % -------------------------------------------------------------------------
 clear all; close all; clc;
 
+% -------------------------------------------------------------------------
+% 1) Select the .mat file and extrat the data form timeseries.
+% -------------------------------------------------------------------------
+
+% Selection and load of the synchronised file.
 [filename, filepath] = uigetfile('*.mat', ...
     'Select the data file from the patient (.mat)', '../../data/Synchronised/');
 
 load(fullfile(filepath,filename));
 
-% -------------------------------------------------------------------------
-% 1) Determine APA characteristics in trunk signals, COP and the
-% correlation between them.
-% -------------------------------------------------------------------------
-
-% -------------------------------------------------------------------------
-% 1.1) Determine when the second step ocurred
-% -------------------------------------------------------------------------
-
-% Determine when the second step ocurred. We extract the part of the signal
-% when the patient carried out the step. It happens between the beginning of
-% activity period of each cycle and the end of FP data.
-% We use the edges of the activity detection in the right shank because
-% usually used to be clearer. But the difference between edges of the right
-% and left shank is very small.
-
 % Extract data from timeseries for plot.
+
+% Sum of force of all force plate cells.
 force_sum_complete_ts = append(force_sum_ts{1, :});
 force_sum_data = force_sum_complete_ts.data;
 
+% Force of right-left and front-back feet (four signals).
 force_sensors_complete_ts = append(force_sensors_ts{1, :});
 fs_data = force_sensors_complete_ts.data;
 
+% Antereo-Posterior center of pressure.
 AP_COP_complete_ts = append(AP_COP_ts{1, :});
 AP_COP_data = AP_COP_complete_ts.data;
 
+% Medio-Lateral center of pressure.
 ML_COP_complete_ts = append(ML_COP_ts{1, :});
 ML_COP_data = ML_COP_complete_ts.data;
 
+% Acceleration of the shanks (X-Z axes and left-right direction).
 a_shanks_complete_ts = append(a_shanks{1, :});
 a_shanks_data = a_shanks_complete_ts.data;
 
+% Acceleration of the trunk (X, Y, Z axes).
 a_trunk_complete_ts = append(a_trunk{1, :});
 a_trunk_data = a_trunk_complete_ts.data;
 
+% Angular Velocity of trunk (x, Y, Z axes).
 g_trunk_complete_ts = append(g_trunk{1, :});
 g_trunk_data = g_trunk_complete_ts.data;
 
+% -------------------------------------------------------------------------
+% 2) Determine when the second step occurred.
+% -------------------------------------------------------------------------
+
+% -------------------------------------------------------------------------
+% 2.1) Determine the edges (interval) for the second step.
+% -------------------------------------------------------------------------
+
+% Determine when the second step occurred. We extract the part of the signal
+% when the patient carried out the step. It happens between the beginning of
+% activity period of each cycle and the end of FP data.
+% We use the edges of the activity detection in the left shank because
+% usually used to be clearer. But the difference between edges of the right
+% and left shank is very small.
 
 % We consider the second step starts in the beginning of the second period
 % of activity of each cycle.
@@ -98,7 +109,7 @@ final_second_step = force_sum_complete_ts.time(final_second_step_edge);
 
 
 % -------------------------------------------------------------------------
-% 1.2) Plots
+% 2.2) Plots
 % -------------------------------------------------------------------------
 
 % --------------- Acceleration in shanks and force-------------------------
@@ -441,7 +452,7 @@ ylabel('COP in mm');
 axis([190, 210, -200, 150]);
 
 % -------------------------------------------------------------------------
-% 1.3) Differences when the patient starts with left or right foot in the 
+% 3) Differences when the patient starts with left or right foot in the 
 % first step to see the differences.
 % -------------------------------------------------------------------------
 
@@ -511,11 +522,11 @@ axis([190, 210, -200, 150]);
 % axis([0, 2000, 0, 1]);
 
 % -------------------------------------------------------------------------
-% 2) Detect APA in trunk signal.
+% 4) Detect APA in trunk signal.
 % -------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
-% 2.1) Application of Activity detectors in trunk signal
+% 4.1) Application of Activity detectors in trunk signal
 % -------------------------------------------------------------------------
 % wag = wagLibrary;    
 % 
@@ -557,7 +568,7 @@ axis([190, 210, -200, 150]);
 % finalcross = edges(4:4:length(edges));
 
 % -------------------------------------------------------------------------
-% 2.2) Find the first 'negative' peak of each cycle in the signal 
+% 4.2) Find the first 'negative' peak of each cycle in the signal 
 %      of the x-axis of the acceleration of the trunk, that is, the point 
 %      in time when the patient shifted backward. 
 % -------------------------------------------------------------------------
