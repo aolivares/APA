@@ -135,25 +135,25 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \noindent
 in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, respectively, obtained with the EKF described in Section \ref{sec:EKF_model}, we can estimate the motion based acceleration in $x$ and $z$ direction that sensor $2$ will see in the world coordinate frame.
 
-The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $-\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 - \frac{\pi}{2}$, this yields
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 + \frac{\pi}{2}$, this yields
 
 \begin{equation}
-\mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) = \begin{bmatrix}
-    \cos (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & \sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \\
+\mathbf{T}_y(\theta_1 + \theta_2 + \frac{\pi}{2}) = \begin{bmatrix}
+    \cos (\theta_1 + \theta_2 + \frac{\pi}{2}) \; & 0 \; & -\sin (\theta_1 + \theta_2 + \frac{\pi}{2}) \\
     0 \; & 1 \; & 0 \\
-    -\sin (\theta_1 + \theta_2 - \frac{\pi}{2}) \; & 0 \; & \cos (\theta_1 + \theta_2 - \frac{\pi}{2})
+    \sin (\theta_1 + \theta_2 + \frac{\pi}{2}) \; & 0 \; & \cos (\theta_1 + \theta_2 + \frac{\pi}{2})
     \end{bmatrix}\,.
 \end{equation}
 
 \noindent
-The rotated tangential and radial components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$ are found using the tranformation matrix to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
+The rotated radial and tangential components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$, are found using the tranformation matrix to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
 
 \begin{equation}
   \begin{bmatrix}
   	A_{rad} \\
   	A_{axi} \\
   	A_{tan}
-  \end{bmatrix} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \begin{bmatrix}
+  \end{bmatrix} = \mathbf{T}_y(\theta_1 + \theta_2 + \frac{\pi}{2}) \begin{bmatrix}
   	\ddot{x} \\
   	0 \\
 	\ddot{z}

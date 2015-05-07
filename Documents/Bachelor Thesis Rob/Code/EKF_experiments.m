@@ -11,7 +11,7 @@ load('data.mat');
                        a_Z_right_thigh_1_C', ...
                        a_X_right_shank_1_C', ...
                        a_Z_right_shank_1_C', ...
-                       f, 0.4, 0.3);
+                       f, 0.3, 0.25);
 
 % % Plot: Acceleration-based estimate vs. integration of 
 % %       the angular rate.
@@ -89,8 +89,8 @@ set(l,'Interpreter','Latex');
 
 % Plot: Acceleration based angle estimate and marker
 %       signal.
-n1 = 60 * f;
-n2 = 80 * f;
+n1 = 62 * f;
+n2 = 76 * f;
 figure5 = figure(5);
 hold on;
 %plot(time(n1:n2), pitch_GKF_right_shank(n1:n2)-90);
@@ -111,8 +111,8 @@ legend('Gated Kalman filter', ...
 
 % Plot: Acceleration based angle estimate and marker
 %       signal.
-n1 = 60 * f;
-n2 = 80 * f;
+n1 = 62 * f;
+n2 = 76 * f;
 figure6 = figure(6);
 hold on;
 %plot(time(n1:n2), pitch_GKF_right_shank(n1:n2)-90);

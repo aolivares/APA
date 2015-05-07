@@ -193,7 +193,7 @@ Coordinates representing a point in one coordinate system can be transformed to 
 \noindent
 where $\mathbf{T}$ is the \emph{transformation matrix}.
 
-To transform the coordinate vector from the \emph{world frame}, i.\,e. the reference frame, to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the Nort-East-Down system (NED), the transformation matrix $\mathbf{C}_{wb}$ is given by
+To transform the coordinate vector from the \emph{world frame}, i.\,e. the reference frame, to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the North-East-Down system (NED), the transformation matrix $\mathbf{C}_{wb}$ is given by
 
 \begin{equation}\label{eq:transformation_matrices}
 \begin{split}
@@ -228,7 +228,7 @@ To transform the coordinate vector from the \emph{world frame}, i.\,e. the refer
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the left multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ for transforming the coordinate vector from the body frame to the world frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ for transforming the coordinate vector from the body frame to the world frame is given by
 
 \begin{figure}
 \centering

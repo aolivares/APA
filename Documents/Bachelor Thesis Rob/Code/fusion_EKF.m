@@ -94,8 +94,9 @@ Ts = 1 / fs;
 len = length(gyro_thigh_y);
 gravity = 9.81;
 
-% 4) Compute correction factor for conversion from 
-%    degrees to radians
+% 4) Compute correction factor. This factor will be used 
+%    throughout the entire code in order to convert 
+%    degrees into radians.
 c_w = pi / 180;
 
 % 4) Compute intensity level.
@@ -127,15 +128,15 @@ P = diag(ones(1, 10) * 0.1);
 
 % 9) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
-     0 0 0 1 0 0 1 0 0 1; ...
+     0 0 0 1 0 0 1 0 1 1; ...
      0 0 1 0 0 0 0 0 0 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 10) Define process noise covariance matrix.
 sigma_d = 0.0001;
-sigma_t1 = 0.01;
-sigma_t2 = 0.01;
-sigma_b = 0.0001;
+sigma_t1 = 0.03;
+sigma_t2 = 0.03;
+sigma_b = 0.00000000001;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -154,8 +155,8 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 12) Define measurement noise covariance matrix.
-sigma_f = 10;
-sigma_s = 0.1;
+sigma_f = 1;
+sigma_s = 0.01;
 R = [sigma_1    0       0     0; ...
         0    sigma_2    0     0; ...
         0       0    sigma_s  0; ...
@@ -165,9 +166,9 @@ R = [sigma_1    0       0     0; ...
 function f_k = f
     
 	f_k = [- l1 * c_w * x(4) * sind(x(3)) ...
-           - l2 * (c_w * x(4) + c_w * x(7)) * sind(x(3) + x(6)); ...
+           - l2 * c_w * (x(4) + x(7)) * sind(x(3) + x(6)); ...
            - l1 * c_w * x(4) * cosd(x(3)) ...
-           - l2 * (c_w * x(4) + c_w * x(7)) * cosd(x(3) + x(6)); ...
+           - l2 * c_w * (x(4) + x(7)) * cosd(x(3) + x(6)); ...
            x(4);
            x(5);
            0;
@@ -256,8 +257,8 @@ for i=1:1:len
     
     % Compute transformation matrix
     Tz = [cosd(x(3) + x(6) + 90), 0, ...
-          sind(x(3) + x(6) + 90); 0, 1, 0; ...
-         -sind(x(3) + x(6) + 90), 0, ...
+         -sind(x(3) + x(6) + 90); 0, 1, 0; ...
+          sind(x(3) + x(6) + 90), 0, ...
           cosd(x(3) + x(6) + 90)];
      
     % Rotate acceleration to body frame.
@@ -274,8 +275,8 @@ for i=1:1:len
     z(4) = -atan2d(g(1), g(3)) - 90;
     
     % For testing.
-     p(1, i) = a(1);
-     p(2, i) = z(3);
+     p(1, i) = z(3);
+     p(2, i) = z(4);
     
     % MEASUREMENT UPDATE %
     
