@@ -39,9 +39,9 @@
 clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
-showPlotsCheck = 'yes';
+showPlotsCheck = 'no';
 showPlotsAPA = 'yes';
-showPlotsCorr = 'yes';
+showPlotsCorr = 'no';
 
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
@@ -118,7 +118,7 @@ final_second_step = force_sum_complete_ts.time(final_second_step_edge);
 % -------------------------------------------------------------------------
 
 % --------------- Acceleration in shanks and force-------------------------
-if strcmpi(showPlotsAPA,'yes')
+if strcmpi(showPlotsCheck,'yes')
 figure();
 subplot(3, 1, 1);
 plot(a_shanks_complete_ts.time, reshape(a_shanks_data(2, 1, :), ...
@@ -986,7 +986,7 @@ ylabel('ML_COP (mmm)');
 end
 
 % --------------------Angular Velocity in trunk and COP--------------------
-if strcmpi(showPlotsAPA,'yes')
+if strcmpi(showPlotsCheck,'yes')
 figure()
 subplot(4, 1, 1);
 plot(g_trunk_complete_ts.time, g_trunk_data_X )
@@ -1060,8 +1060,9 @@ changedependvar(hx,'x');
 title('ML COP with lines marker when the patient steps with the second time');
 xlabel('Time in s');
 ylabel('COP in mm');
-
+end
 % peaks--------------------------------------------------------------------
+if strcmpi(showPlotsAPA,'yes')
 figure ();
 subplot(2,1,1)
 plot(g_trunk_complete_ts.time, g_trunk_data_X, 'g');
@@ -1107,7 +1108,7 @@ figure ();
 subplot(2,1,1)
 plot(g_trunk_complete_ts.time, g_trunk_data_Y, 'g');
 hold on;
-plot(g_trunk_complete_ts.time(peaks_APA_trunk_Y),value_APA_trunk_Y, 'r.');
+plot(g_trunk_complete_ts.time(peaks_APA_trunk_Gyro_Y),value_APA_trunk_Gyro_Y, 'r.');
 
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
