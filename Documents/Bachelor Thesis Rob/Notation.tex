@@ -17,16 +17,16 @@
   type=notation,  name={$\mu$},  description={Mean value of conditional probability density},  sort={sigma}}
   
 \newglossaryentry{not:n}{
-  type=notation,  name={$n$},  description={Discrete time},  sort={n}}
+  type=notation,  name={$n$},  description={Fixed discrete time, non-dimensional number, or number of iterations, applied to recursive algorithms},  sort={n}}
   
 \newglossaryentry{not:a}{
   type=notation,  name={$\mathbf{a}$},  description={Acceleration vector, $\mathbf{a} \in \mathbb{R}^3$},  sort={a}}
   
 \newglossaryentry{not:impulse}{
-  type=notation,  name={$w_0, w_1, w_2, \dots$},  description={Impulse response of a linear discrete-time filter},  sort={wa}}
+  type=notation,  name={$h_0, h_1, h_2, \dots$},  description={Impulse response of a linear discrete-time filter},  sort={h}}
   
 \newglossaryentry{not:input}{
-  type=notation,  name={$y(0), y(1), y(2), \dots$},  description={Time series that serves as input to a linear discrete-time filter},  sort={yaa}}
+  type=notation,  name={$z(0), z(1), z(2), \dots$},  description={Time series that serves as input to a linear discrete-time filter},  sort={yaa}}
   
 \newglossaryentry{not:desired_response}{
   type=notation,  name={$d$},  description={Desired filter response of a linear discrete-time filter},  sort={d}}
@@ -42,6 +42,9 @@
   
 \newglossaryentry{not:x}{
   type=notation,  name={$x$},  description={One-dimensional location},  sort={x}}
+  
+\newglossaryentry{not:displacement}{
+  type=notation,  name={$\Delta x$},  description={One-dimensional displacement in $x$-direction},  sort={x}}
   
 \newglossaryentry{not:x_hat}{
   type=notation,  name={$\hat{x}$},  description={Estimate of $x$},  sort={xa}}
@@ -64,11 +67,8 @@
 \newglossaryentry{not:x_hat_minus}{
   type=notation,  name={$\hat{\mathbf{x}}^-_k$},  description={A priori estimate of $\hat{\mathbf{x}}$, conditioned on all prior measurements except the one at time $t_k$},  sort={xe}}
   
-\newglossaryentry{not:y}{
-  type=notation,  name={$\mathbf{y}$},  description={Observation vector of a dynamical system},  sort={y}}
-  
 \newglossaryentry{not:z}{
-  type=notation,  name={$\mathbf{z}$},  description={Vector of measured values},  sort={zaa}}
+  type=notation,  name={$\mathbf{z}$},  description={Observation or measurement vector of a dynamical system},  sort={zaa}}
   
 \newglossaryentry{not:H}{
   type=notation,  name={$\mathbf{H}$},  description={Measurement sensitivity matrix defining the linear relationship between the state of the dynamical system and the measurements that can be made},  sort={Ha}}
@@ -80,7 +80,7 @@
   type=notation,  name={$K$},  description={Weighting factor},  sort={Ka}}
   
  \newglossaryentry{not:k}{
-  type=notation,  name={$k$},  description={Discrete time normalised to sampling interval (sample number), $k \in \mathbb{N}^0$},  sort={k}}
+  type=notation,  name={$k$},  description={Discrete time normalised to sampling interval, that is sample number, $k \in \mathbb{N}^0$},  sort={k}}
   
 \newglossaryentry{not:P}{
   type=notation,  name={$\mathbf{P}$},  description={Covariance matrix of state estimation uncertainty},  sort={P}}
@@ -125,7 +125,7 @@
   type=notation,  name={$\mathbf{C}_{wb}$},  description={Transformation matrix transforming a position vector from the world frame to the body frame},  sort={Cnb}}
   
 \newglossaryentry{not:omega}{
-  type=notation,  name={$\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}}$},  description={Function that transforms a position vector $\mathbf{b}$ in the vector space $\mathbf{E}$ into the vector $\mathbf{b}^{'}$ in the vector space $\mathbf{E}^{'}$},  sort={Om}}
+  type=notation,  name={$\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$},  description={Function that transforms a position vector $\mathbf{p}$ in the vector space $\mathbf{E}$ into the vector $\mathbf{p}^{'}$ in the vector space $\mathbf{E}^{'}$},  sort={Om}}
   
 \newglossaryentry{not:position_vector}{
   type=notation,  name={$\mathbf{p}$},  description={Position vector in a three-dimensional vector space},  sort={p}}
@@ -136,5 +136,43 @@
 \newglossaryentry{not:h_vec}{
   type=notation,  name={$\mathbf{h}$},  description={Functional denoting the \emph{non-linear} measurement matrix function of a discrete dynamical system},  sort={h}}
 
-
+\newglossaryentry{not:resonance_freq}{
+  type=notation,  name={$\Omega$},  description={Resonance frequency},  sort={Omega}}
   
+\newglossaryentry{not:force_one_d}{
+  type=notation,  name={$F$},  description={One-dimensional force},  sort={f}}
+  
+\newglossaryentry{not:damping_c}{
+  type=notation,  name={$D$},  description={Damping coefficient},  sort={D}}
+  
+\newglossaryentry{not:amplitude}{
+  type=notation,  name={$a$},  description={Amplitude of an oscillating mode},  sort={a}}
+  
+\newglossaryentry{not:angular_v_scalar}{
+  type=notation,  name={$\omega$},  description={Scalar angular velocity},  sort={omega}}
+  
+\newglossaryentry{not:spring_constant}{
+  type=notation,  name={$k_x$},  description={Spring constant along the $x$-axis},  sort={kx}}
+  
+\newglossaryentry{not:gravity}{
+  type=notation,  name={$\mathbf{g}$},  description={Gravity vector},  sort={g}}
+  
+\newglossaryentry{not:angular_velocity}{
+  type=notation,  name={$\bm{\omega}$},  description={Angular velocity, $\bm{\omega} \in \mathbb{R}^3$},  sort={omega}}
+
+\newglossaryentry{not:mass_velocity}{
+  type=notation,  name={$\mathbf{v}$},  description={Mass velocity, $\mathbf{v} \in \mathbb{R}^3$},  sort={va}}  
+  
+\newglossaryentry{not:orthonormal_basis}{
+  type=notation,  name={$\mathbf{E}$},  description={Orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$},  sort={E}}  
+  
+\newglossaryentry{not:identity_matrix}{
+  type=notation,  name={$\mathbf{I}_n$},  description={Identity matrix $\mathbf{I}_n \in \mathbb{R}^n$},  sort={I}}  
+
+\newglossaryentry{not:magnitude_gravity}{
+  type=notation,  name={$\|\mathbf{g}\|$},  description={Magnitude of the gravity vector},  sort={ga}}    
+  
+\newglossaryentry{not:sampling interval}{
+  type=notation,  name={$T_s$},  description={Sampling period},  sort={T}}    
+  
+    

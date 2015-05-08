@@ -156,7 +156,7 @@ Coordinates representing a point in one coordinate system can be transformed to 
 \end{equation}
 
 \noindent
-where $\mathbf{T}$ is the \emph{transformation matrix}.
+where $\mathbf{T}$ is the \emph{transformation matrix}, which is a function of the rotation angles between the two coordinate systems.
 
 In order to transform the coordinate vector from the \emph{world frame} to the \emph{body frame}, according to the common aerospace rotation sequence mentioned above and the \gls{NED} coordinate system, the transformation matrix $\mathbf{C}_{wb}$ is given by
 
@@ -193,7 +193,7 @@ In order to transform the coordinate vector from the \emph{world frame} to the \
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$, is computed. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$), the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the function $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$ maps the vector $\mathbf{p}$ to its orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
 
 \begin{figure}[t]
 \centering
@@ -256,7 +256,7 @@ Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$) the
 \end{equation}
 
 \noindent
-Note that $\mathbf{C}_{bw} = \mathbf{C}^T_{wb} = \mathbf{C}^{-1}_{wb}$. Thus, $\mathbf{C}^{ }_{bw}$ and $\mathbf{C}_{wb}$ are orthogonal matrices so that $\mathbf{C}^{ }_{bw} \mathbf{C}_{wb} = \mathbf{I_3}$, where $\mathbf{I_3} \in \mathbb{R}^3$ is the identity matrix.
+Note that $\mathbf{C}_{bw} = \mathbf{C}^T_{wb} = \mathbf{C}^{-1}_{wb}$. Thus, $\mathbf{C}^{ }_{bw}$ and $\mathbf{C}_{wb}$ are orthogonal matrices so that $\mathbf{C}^{ }_{bw} \mathbf{C}_{wb} = \mathbf{I}_3$, where $\mathbf{I}_3 \in \mathbb{R}^3$ is the identity matrix.
 
 \section{Projection of the Gravity Vector}\label{sec:projection_gravity}
 
@@ -267,11 +267,11 @@ As described in Section \ref{sec:accelerometers}, accelerometers measure the lin
 When the accelerometer is motionless, its measurements will be directly related to the angle of the sensor relative to gravity, as depicted in Figure \ref{fig:acceleration_motion} (a). In that case $\theta$ with respect to the vertical is given by
 
 \begin{equation} \label{eq:projection_gravity}
-  \theta = \mbox{atan}2(A_z, A_x)\,.
+  \theta = \mbox{atan}2(A_z, A_x)\,,
 \end{equation}
 
 \noindent
-However, when the sensor is in motion, in addition to the gravity, there are radial and tangential acceleration components due to motion, as depicted in Figure \ref{fig:acceleration_motion} (b). Ignoring these components will cause incorrect angle estimates.
+where $A_x$ and $A_z$ are the components of the acceleration vector in $x$ and $z$ direction, respectively. However, when the sensor is in motion, in addition to the gravity, there are radial and tangential acceleration components due to motion, as depicted in Figure \ref{fig:acceleration_motion} (b). The magnitude of the gravity vector $\mathbf{g}$ is denoted with $\|\mathbf{g}\|$. Ignoring these components will cause incorrect angle estimates.
 
 \begin{figure}
 \centering
@@ -283,9 +283,9 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     \node[coordinate] (B) at (1.95, -3) {};
     \node[coordinate] (C) at (0.7, -3.56) {};
     
-    \draw[->] (A) -- node[name=x] {$A_x = g \cos \theta$}(B);
-    \draw[->] (B) -- node[name=y] {$A_z = g \sin \theta$}(C);
-    \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}node [pos=0.35]{$\theta$} (C);
+    \draw[->] (A) -- node[name=x] {$A_x = \|\mathbf{g}\| \cos \theta$}(B);
+    \draw[->] (B) -- node[name=y] {$A_z = \|\mathbf{g}\| \sin \theta$}(C);
+    \draw[->, very thick] (A) -- node[name=g, label={left:$\mathbf{g}$}] {}node [pos=0.35]{$\theta$} (C);
   
  	\draw[-stealth] (0.7,-2.0) arc (270:297:1.4);
       
@@ -302,9 +302,9 @@ However, when the sensor is in motion, in addition to the gravity, there are rad
     \node[coordinate] (D) at (1.2, -4) {};
     
     \draw[->, red, very thick] (A) -- node[name=d] {} (D);
-    \draw[->] (A) -- node[name=x] {$A_x = A_{rad} + g \cos \theta$} node [pos=0.46, label={left:$\theta$}]{} (B);
-    \draw[->] (B) -- node[name=y] {$A_z = A_{tan} + g \sin \theta$} (D);
-    \draw[->, very thick] (A) -- node[name=g, label={left:$g$}] {}(C);
+    \draw[->] (A) -- node[name=x] {$A_x = A_{rad} + \|\mathbf{g}\| \cos \theta$} node [pos=0.46, label={left:$\theta$}]{} (B);
+    \draw[->] (B) -- node[name=y] {$A_z = A_{tan} + \|\mathbf{g}\| \sin \theta$} (D);
+    \draw[->, very thick] (A) -- node[name=g, label={left:$\mathbf{g}$}] {}(C);
       
     \draw[-stealth] (0.953,-2.2) arc (270:304:0.8);  
       

@@ -9,7 +9,7 @@ Digital filters can be classified as \emph{linear} and \emph{non-linear}. If the
 
 \section{The Filtering Problem}
 
-Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, $\mathbf{x}(t)$, is usually hidden and can only be observed by indirect measurements $\mathbf{y}(t)$ that are a function of $\mathbf{x}(t)$ and subject to noise. Equally, the equation describing the evolution of the state $\mathbf{x}(t)$ is usually subject to system errors. These could be caused by, for instance, effects not accounted for in the model. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector $\mathbf{y}(t)$ over an interval $[0, T]$. The requirement of the filter is to deliver a reliable estimate $\hat{\mathbf{x}}(t)$ of the actual state, by taking the measurement as well as prior information into account.
+Consider, as an example involving filter theory, the continuous-time dynamical system depicted in Figure \ref{fig:state_estimation}. The desired state vector of the system, $\mathbf{x}(t)$, is usually hidden and can only be observed by indirect measurements $\mathbf{z}(t)$ that are a function of $\mathbf{x}(t)$ and subject to noise. Equally, the equation describing the evolution of the state $\mathbf{x}(t)$ is usually subject to system errors. These could be caused by, for instance, effects not accounted for in the model. The dynamical system may be an aircraft in flight, in which case the elements of the state vector are constituted by its position and velocity. The measuring system may be a tracking radar producing the observation vector $\mathbf{z}(t)$ over an interval $[0, T]$. The requirement of the filter is to deliver a reliable \emph{estimate} $\hat{\mathbf{x}}(t)$ of the actual state, by taking the measurement as well as a prior information into account.
 
 \tikzstyle{block} = [draw, rectangle, minimum height=3em, minimum width=6em]
 \tikzstyle{output} = [coordinate]
@@ -26,7 +26,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
     \node [output, right of=estimator] (output) {};
     
     \draw [->, align=center] (dynamical) -- node[name=x] {State \\ $\mathbf{x}(t)$} (measuring);
-    \draw [->, align=center] (measuring) -- node[name=y] {Observation \\ $\mathbf{y}(t)$} (estimator);
+    \draw [->, align=center] (measuring) -- node[name=y] {Observation \\ $\mathbf{z}(t)$} (estimator);
     \draw [->, align=center] (estimator) -- node[name=y] {Estimate \\ of state \\ $\hat{\mathbf{x}}(t)$} (output);
 \end{tikzpicture}
 \caption{Block diagram depicting the components involved in state estimation, from \cite{haykin2002adaptive}.} \label{fig:state_estimation}
@@ -34,9 +34,9 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{The Wiener Filter}
 
-A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $w_0, w_1, w_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $n$ it produces an output designated by $\hat{x}(n)$, which provides an estimate of a desired response denoted by $d(n)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive} the essence of the filtering problem and the resulting requirement is summarised with the following statement:
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $h_0, h_1, h_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $k$ it produces an output designated by $\hat{x}(k)$, which provides an estimate of a desired response denoted by $d(k)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}, the essence of the filtering problem and the resulting requirement is summarised with the following statement:
 
-\begin{quote}``Design a linear discrete-time filter whose output $\hat{x}(n)$ provides an estimate of the desired response $d(n)$, given a set of input samples $y(0), y(1), y(2), \dots$, such that the mean-square value of the estimation error $e(n)$, defined as the difference between the desired response $d(n)$ and the actual response $\hat{x}(n)$, is minimized.''
+\begin{quote}``Design a linear discrete-time filter whose output $\hat{x}(k)$ provides an estimate of the desired response $d(k)$, given a set of input samples $z(0), z(1), z(2), \dots$, such that the mean-square value of the estimation error $e(k)$, defined as the difference between the desired response $d(k)$ and the actual response $\hat{x}(k)$, is minimized.''
 \end{quote}
 
 \tikzstyle{block} = [draw, rectangle, 
@@ -52,15 +52,15 @@ A statistical criterion, according to which the performance of a filter can be m
 \begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
     
 \node [input, name=input] {};
-\node [block, rounded corners=1pt, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $w_0, w_1, w_2, \dots$};
+\node [block, rounded corners=1pt, align=left, right of=input, node distance=4.4cm] (filter) {Linear \\ discrete-time \\ filter \\ $h_0, h_1, h_2, \dots$};
 \node [sum, right of=filter, node distance=4.4cm] (sum) {$\sum$};	
 \node [output, right of=sum, node distance=2.8cm, name=output] {};
 \node [error, below of=sum, node distance=2.8cm, name=error] {};
 
-\draw [draw,->, align=left] (input) -- node [pos=0.29]{Input \\ $y(0), y(1), y(2), \dots$} (filter);
-\draw [draw,->, align=left] (filter) -- node {Output \\ $\hat{x}(n)$} node[pos=0.9, label={below:$-$}] {} (sum);
-\draw [draw,->, align=left] (output) -- node [label={above:Desired \\ response \\ $d(n)$}] {} node[pos=0.9] {$+$} (sum);
-\draw [draw,->, align=left] (sum) -- node {Estimation \\ error \\ $e(n)$} (error);
+\draw [draw,->, align=left] (input) -- node [pos=0.29]{Input \\ $z(0), z(1), z(2), \dots$} (filter);
+\draw [draw,->, align=left] (filter) -- node {Output \\ $\hat{x}(k)$} node[pos=0.9, label={below:$-$}] {} (sum);
+\draw [draw,->, align=left] (output) -- node [label={above:Desired \\ response \\ $d(k)$}] {} node[pos=0.9] {$+$} (sum);
+\draw [draw,->, align=left] (sum) -- node {Estimation \\ error \\ $e(k)$} (error);
 
 \end{tikzpicture}
 \caption{Block diagram representation of the statistical filtering problem, from \cite{haykin2002adaptive}.} \label{fig:filtering_problem}

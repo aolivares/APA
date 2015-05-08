@@ -6,13 +6,14 @@
 \glossaryentry{sigma?\glossentry{not:mu}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{n?\glossentry{not:n}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{a?\glossentry{not:a}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{wa?\glossentry{not:impulse}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{h?\glossentry{not:impulse}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{yaa?\glossentry{not:input}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{d?\glossentry{not:desired_response}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{e?\glossentry{not:error_signal}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{t?\glossentry{not:t}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xb?\glossentry{not:x_v}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{x?\glossentry{not:x}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{x?\glossentry{not:displacement}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xa?\glossentry{not:x_hat}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{wa?\glossentry{not:w_v}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{v?\glossentry{not:v}|setentrycounter[]{page}\glsnumberformat}{1}
@@ -20,7 +21,6 @@
 \glossaryentry{w?\glossentry{not:w}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xd?\glossentry{not:x_hat_v}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{xe?\glossentry{not:x_hat_minus}|setentrycounter[]{page}\glsnumberformat}{1}
-\glossaryentry{y?\glossentry{not:y}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{zaa?\glossentry{not:z}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Ha?\glossentry{not:H}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{Kaa?\glossentry{not:K_v}|setentrycounter[]{page}\glsnumberformat}{1}
@@ -44,3 +44,16 @@
 \glossaryentry{p?\glossentry{not:position_vector}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{phia?\glossentry{not:phi_vec}|setentrycounter[]{page}\glsnumberformat}{1}
 \glossaryentry{h?\glossentry{not:h_vec}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{Omega?\glossentry{not:resonance_freq}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{f?\glossentry{not:force_one_d}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{D?\glossentry{not:damping_c}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{a?\glossentry{not:amplitude}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{omega?\glossentry{not:angular_v_scalar}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{kx?\glossentry{not:spring_constant}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{g?\glossentry{not:gravity}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{omega?\glossentry{not:angular_velocity}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{va?\glossentry{not:mass_velocity}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{E?\glossentry{not:orthonormal_basis}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{I?\glossentry{not:identity_matrix}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{ga?\glossentry{not:magnitude_gravity}|setentrycounter[]{page}\glsnumberformat}{1}
+\glossaryentry{T?\glossentry{not:sampling interval}|setentrycounter[]{page}\glsnumberformat}{1}

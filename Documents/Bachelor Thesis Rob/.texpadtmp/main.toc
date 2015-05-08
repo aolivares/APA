@@ -4,7 +4,7 @@
 \contentsline {chapter}{Contents}{vii}{section*.4}
 \contentsline {chapter}{List of Figures}{x}{chapter*.6}
 \contentsline {chapter}{Abbreviations}{xi}{chapter*.8}
-\contentsline {chapter}{Notation}{xv}{chapter*.10}
+\contentsline {chapter}{Notation}{xvi}{chapter*.10}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -21,7 +21,7 @@
 \contentsline {section}{\numberline {2.3}Euler Angles}{11}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Transformation Matrix}{12}{subsection.2.3.1}
 \contentsline {section}{\numberline {2.4}Projection of the Gravity Vector}{13}{section.2.4}
-\contentsline {section}{\numberline {2.5}Integration of the Angular Rate}{14}{section.2.5}
+\contentsline {section}{\numberline {2.5}Integration of the Angular Rate}{15}{section.2.5}
 \contentsline {section}{\numberline {2.6}Sensor Fusion}{15}{section.2.6}
 \contentsline {chapter}{\numberline {3}Digital Filters}{17}{chapter.3}
 \contentsline {section}{\numberline {3.1}The Filtering Problem}{17}{section.3.1}
