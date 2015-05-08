@@ -582,7 +582,7 @@ end
 %      It is done the same with the syroscope signal.
 % -------------------------------------------------------------------------
 
-% Determine the initial and end point (in time) of each interval where 
+% Determine the initial and end point (time) of each interval where 
 % we need to find the peaks, i.e, the second activity period of each cycle.
 initcross = time_GW(init_second_step);
 finalcross = final_second_step';
@@ -607,8 +607,10 @@ for k = 1:length(initcross)
     % To find a noninteger value, we use a tolerance value based on our data.
     % Otherwise, the result is sometimes an empty matrix due to 
     % floating-point roundoff error.
-    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k)) < 0.001);
-    initcross_COP = find(abs(AP_COP_complete_ts.time - initcross(k)) < 0.001);
+    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k)) ...
+                        < 0.001);
+    initcross_COP = find(abs(AP_COP_complete_ts.time - initcross(k))...
+                        < 0.001);
     
     
     % Calculate the value of the first point of the second step to obtain 
@@ -620,8 +622,10 @@ for k = 1:length(initcross)
     value_initcross_AP(k) = AP_COP_data_shanks(initcross_COP);
     value_init_FP_AP(k) = AP_COP_data_shanks(init_FP + 1);
     
-    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k)) < 0.001);
-    finalcross_COP = find(abs(AP_COP_complete_ts.time - finalcross(k)) < 0.001);
+    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k))...
+                        < 0.001);
+    finalcross_COP = find(abs(AP_COP_complete_ts.time - finalcross(k))...
+                    < 0.001);
     
     % Find all peaks in each interval.
     [neg_peak_values, neg_peak_locations] = findpeaks(...
@@ -646,14 +650,7 @@ for k = 1:length(initcross)
      [pos_peak_values, pos_peak_locations] = findpeaks(...
                             g_trunk_data_X(...
                             initcross_trunk:peaks_APA_trunk_Gyro_X_neg));
-                        
-%      % Check if there are negative peaks detected.
-%      if isnan(pos_peak_values)else
-%     [pos_peak_values, pos_peak_locations] = findpeaks(...
-%                             g_trunk_data_X(...
-%                             initcross_trunk:finalcross_trunk));
-%      end  
-                        
+                                       
     % Store the index of the last positive peak in the gyroscope signal.                                    
     peaks_APA_trunk_Gyro_X(k) = find(g_trunk_data_X(...
                     initcross_trunk:finalcross_trunk)== max(...
@@ -795,12 +792,6 @@ xlabel('Acceleration (g)');
 ylabel('AP_COP (mmm)');
 end
 
-% figure ()
-% 
-% plot(value_APA_trunk_X, value_APA_AP_COP_2, '.r');
-% title('Linear correlation between peak AP_COP and peak Acc trunk (height of the peak)');
-% xlabel('Acceleration (g)');
-% ylabel('AP_COP (mmm)');
 
 % -------------------------------------------------------------------------
 % 4.3) Determine when th second step (when patient goes down from
@@ -816,8 +807,6 @@ ML_COP_data_shanks =  reshape(ML_COP_data(3, 1, :), ...
                 [1, max(size(ML_COP_data))]);
 
 cycle_start_right = find(ML_COP_data_shanks(final_second_step_edge) < 0);
-%cycle_start_left = find(ML_COP_data_shanks(final_second_step_edge) > 0);
-
 
 % -------------------------------------------------------------------------
 % 4.4) Find the APA peaks of ML COP and trunk acceleration of Y-axis.
@@ -840,15 +829,19 @@ for k = 1:length(initcross)
     % To find a noninteger value, we use a tolerance value based on our data.
     % Otherwise, the result is sometimes an empty matrix due to 
     % floating-point roundoff error.
-    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k)) < 0.001);
-    initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k)) < 0.001);
+    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k))...
+                        < 0.001);
+    initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k))...
+                        < 0.001);
     
     % Calculate the value of the first point to obtain afterwards the
     % height of the COP peak.
     value_initcross_ML(k) = ML_COP_data_shanks(initcross_COP);
 
-    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k)) < 0.001);
-    finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k)) < 0.001);
+    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k))...
+                        < 0.001);
+    finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
+                        < 0.001);
     
     % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
@@ -941,7 +934,7 @@ for k = 1:length(initcross)
                     initcross_trunk:finalcross_trunk)== max(...
                     pos_peak_values), 1) + initcross_trunk - 1;
                 
-         [neg_peak_values, neg_peak_locations] = findpeaks(...
+        [neg_peak_values, neg_peak_locations] = findpeaks(...
                                 -g_trunk_data_Y(...
                                 initcross_trunk:peaks_APA_trunk_Gyro_Y_pos));
                             
@@ -980,12 +973,14 @@ value_APA_ML_COP_c_2 = value_APA_ML_COP_c - abs(value_initcross_ML);
 [corr_trunk_ML_2, prob_trunk_ML_2] = corr(value_APA_trunk_Y_c',...
                                     value_APA_ML_COP_c_2');
                                 
-value_APA_trunk_Y_1 = abs(value_APA_trunk_Y_c - a_trunk_data_Y(initcross_trunk_complete));
+value_APA_trunk_Y_1 = abs(value_APA_trunk_Y_c - a_trunk_data_Y(...
+                        initcross_trunk_complete));
 [corr_trunk_ML_3, prob_trunk_ML_3] = corr(value_APA_trunk_Y_1',...
                                     value_APA_ML_COP_c_2');
 
 % Correlation gyroscope signal.
-value_APA_trunk_Gyro_Y_1 = abs(value_APA_trunk_Gyro_Y - g_trunk_data_Y(initcross_trunk_complete));
+value_APA_trunk_Gyro_Y_1 = abs(value_APA_trunk_Gyro_Y - g_trunk_data_Y(...
+                            initcross_trunk_complete));
 [corr_trunk_ML_Gyro, prob_trunk_ML_Gyro] = corr(abs(value_APA_trunk_Gyro_Y_1)',...
                                     value_APA_ML_COP_c_2');
                                 
@@ -1045,12 +1040,6 @@ title('Linear correlation between peak ML_COP and peak Acc trunk');
 xlabel('Acceleration (g)');
 ylabel('ML_COP (mmm)');
 
-% figure ()
-% 
-% plot(value_APA_trunk_Y_c, value_APA_ML_COP_c_2, '.r');
-% title('Linear correlation between peak ML_COP and peak Acc trunk (height of the peak)');
-% xlabel('Acceleration (g)');
-% ylabel('ML_COP (mmm)');
 end
 
 % --------------------Angular Velocity in trunk and COP--------------------
