@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  8 MAY 2015 13:29
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  9 MAY 2015 18:06
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1833,7 +1833,7 @@ LaTeX Font Info:    Try loading font information for U+fplmbb on input line 7.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 )
-Overfull \hbox (10.98094pt too wide) in paragraph at lines 2--42
+Overfull \hbox (10.98094pt too wide) in paragraph at lines 2--43
 [] 
  []
 
@@ -1847,7 +1847,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [14]
-Overfull \hbox (42.67293pt too wide) in paragraph at lines 88--145
+Overfull \hbox (42.67293pt too wide) in paragraph at lines 91--141
 [] 
  []
 
@@ -2004,6 +2004,11 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [25]
+Overfull \hbox (15.95201pt too wide) in paragraph at lines 328--329
+\OT1/pplj/m/n/12 lem; the dy-namic sys-tem is lin-ear, the per-for-mance cost func-tion is quadratic,
+ []
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [26]
@@ -2195,22 +2200,22 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [57]
-Underfull \hbox (badness 2564) in paragraph at lines 368--374
+Underfull \hbox (badness 2564) in paragraph at lines 369--375
 \OT1/pplj/m/it/12 celerom-e-ter\OT1/pplj/m/n/12 , .  URL []$\OT1/cmtt/m/n/12 http : / / www . analog . com / en / mems-[]sensors /
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 368--374
+Underfull \hbox (badness 2503) in paragraph at lines 369--375
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl335 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 376--382
+Underfull \hbox (badness 1742) in paragraph at lines 377--383
 []\OT1/pplj/m/n/12 Analog De-vices.  \OT1/pplj/m/it/12 ADXL345: 3-Axis, \TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 2g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 4g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 8g/\TS1/pplj/m/it/12 ±\OT1/pplj/m/it/12 16g Dig-i-tal
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 376--382
+Underfull \hbox (badness 2503) in paragraph at lines 377--383
 \OT1/cmtt/m/n/12 mems-[]inertial-[]sensors / adxl345 / products / product . html$[]\OT1/pplj/m/n/12 .  [Ac-
  []
 
@@ -2372,18 +2377,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 47310 strings out of 493117
- 1016227 string characters out of 6135434
- 6692426 words of memory out of 7000000
- 49120 multiletter control sequences out of 15000+600000
+ 47372 strings out of 493117
+ 1017624 string characters out of 6135434
+ 6693715 words of memory out of 7000000
+ 49180 multiletter control sequences out of 15000+600000
  63363 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 1097064 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 1097693 bytes).
 PDF statistics:
- 2207 PDF objects out of 2487 (max. 8388607)
- 2010 compressed objects within 21 object streams
- 662 named destinations out of 1000 (max. 500000)
+ 2209 PDF objects out of 2487 (max. 8388607)
+ 2012 compressed objects within 21 object streams
+ 664 named destinations out of 1000 (max. 500000)
  548 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -13,32 +13,31 @@ A level-1 auxiliary file: Conclusion.aux
 The style file: unsrtnat.bst
 A level-1 auxiliary file: Appendix.aux
 Database file #1: ../Bibliography.bib
-I was expecting a `,' or a `}'---line 246 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 247 of file ../Bibliography.bib
  : 
  : doi={10.1109/TITB.2007.899496},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Repeated entry---line 306 of file ../Bibliography.bib
+Repeated entry---line 307 of file ../Bibliography.bib
  : @article{bonato_advances_2005
  :                              ,
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 507 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 508 of file ../Bibliography.bib
  :   
  :   month={October},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 609 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 610 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 614 of file ../Bibliography.bib
+Illegal end of database file---line 615 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
 Warning--empty year in Wiki_taitbryan
-Warning--empty author in Maybeck79
 Warning--empty year in olivares_vicente_gaitwatch_2013
 Warning--empty booktitle in bennett_extended_2013
 Warning--empty year in IMU5
@@ -51,43 +50,43 @@ Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
 You've used 48 entries,
             2481 wiz_defined-function locations,
-            909 strings with 16121 characters,
-and the built_in function-call counts, 20347 in all, are:
-= -- 1805
-> -- 985
-< -- 37
-+ -- 390
-- -- 290
-* -- 1607
-:= -- 3205
-add.period$ -- 220
+            910 strings with 16129 characters,
+and the built_in function-call counts, 20384 in all, are:
+= -- 1807
+> -- 992
+< -- 38
++ -- 392
+- -- 292
+* -- 1603
+:= -- 3223
+add.period$ -- 221
 call.type$ -- 48
 change.case$ -- 83
 chr.to.int$ -- 44
-cite$ -- 61
+cite$ -- 59
 duplicate$ -- 1043
-empty$ -- 1778
-format.name$ -- 349
-if$ -- 4408
+empty$ -- 1776
+format.name$ -- 352
+if$ -- 4412
 int.to.chr$ -- 5
 int.to.str$ -- 49
 missing$ -- 43
-newline$ -- 319
-num.names$ -- 149
-pop$ -- 389
+newline$ -- 320
+num.names$ -- 152
+pop$ -- 388
 preamble$ -- 1
 purify$ -- 48
 quote$ -- 0
 skip$ -- 622
 stack$ -- 0
-substring$ -- 843
+substring$ -- 842
 swap$ -- 270
 text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 318
-warning$ -- 12
-while$ -- 151
+warning$ -- 11
+while$ -- 153
 width$ -- 0
-write$ -- 760
+write$ -- 762
 (There were 5 error messages)

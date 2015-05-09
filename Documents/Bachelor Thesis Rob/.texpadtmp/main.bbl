@@ -44,8 +44,9 @@ Simon Haykin.
 \newblock Prentice Hall, Upper Saddle River, N.J, 2002.
 \newblock ISBN 9780130484345.
 
-\bibitem[May(1979)]{Maybeck79}
-Chapter 1 introduction.
+\bibitem[Maybeck(1979)]{Maybeck79}
+Maybeck.
+\newblock Chapter 1 introduction.
 \newblock In Peter~S. Maybeck, editor, \emph{Stochastic Models, Estimation and
   Control: Volume 1}, Mathematics in Science and Engineering, pages 1 -- 24.
   Elsevier, 1979.

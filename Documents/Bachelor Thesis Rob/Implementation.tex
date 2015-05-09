@@ -371,7 +371,7 @@ The partial derivatives are evaluated at the state estimate $\hat{\mathbf{x}}_{k
 
 \subsubsection{The Filter Algorithm} 
 
-The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the \emph{non-linear} differential equation at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
+The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a priori} estimate $\hat{\mathbf{x}}^{-}_k$ by integrating the \emph{non-linear} differential equations at each sampling interval. Applying Euler integration Equation \ref{eq:apriori_estimate_extended} yields
 
 \begin{equation}\label{eq:apriori_estimate_extended_model}
 \begin{split}
@@ -541,7 +541,7 @@ The initial covariance matrix $\mathbf{P}_{0}$ was given by
 \end{equation}
 
 \noindent
-It represents the confidence in the initial state estimate and determines how fast the filter converges.
+It represents the confidence in the initial state estimate and determines how fast the filter converges. Unlike the matrix of the classical KF it may cause the filter to diverge..
 
 \subsection{Parameterisation}
 

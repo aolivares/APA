@@ -8,16 +8,16 @@
   type=notation,  name={$m$},  description={Mass},  sort={m}}
   
 \newglossaryentry{not:sigma}{
-  type=notation,  name={$\sigma$},  description={Standard deviation},  sort={sigma}}
+  type=notation,  name={$\sigma$},  description={Standard deviation of a random variable},  sort={sigma}}
   
 \newglossaryentry{not:sigma_2}{
-  type=notation,  name={$\sigma^2$},  description={Variance},  sort={sigma}}
+  type=notation,  name={$\sigma^2$},  description={Variance of a random variable},  sort={sigmaa}}
   
 \newglossaryentry{not:mu}{
-  type=notation,  name={$\mu$},  description={Mean value of conditional probability density},  sort={sigma}}
+  type=notation,  name={$\mu$},  description={Mean value of a conditional probability density},  sort={mu}}
   
 \newglossaryentry{not:n}{
-  type=notation,  name={$n$},  description={Fixed discrete time, non-dimensional number, or number of iterations, applied to recursive algorithms},  sort={n}}
+  type=notation,  name={$n$},  description={Fixed discrete time, non-dimensional number, or number of iterations applied to recursive algorithms},  sort={n}}
   
 \newglossaryentry{not:a}{
   type=notation,  name={$\mathbf{a}$},  description={Acceleration vector, $\mathbf{a} \in \mathbb{R}^3$},  sort={a}}
@@ -44,7 +44,7 @@
   type=notation,  name={$x$},  description={One-dimensional location},  sort={x}}
   
 \newglossaryentry{not:displacement}{
-  type=notation,  name={$\Delta x$},  description={One-dimensional displacement in $x$-direction},  sort={x}}
+  type=notation,  name={$\Delta x$},  description={One-dimensional displacement in $x$-direction},  sort={xaa}}
   
 \newglossaryentry{not:x_hat}{
   type=notation,  name={$\hat{x}$},  description={Estimate of $x$},  sort={xa}}
@@ -53,16 +53,19 @@
   type=notation,  name={$\mathbf{w}$},  description={Process noise vector},  sort={wa}}
   
 \newglossaryentry{not:v}{
-  type=notation,  name={$\mathbf{v}$},  description={Measurement noise vector},  sort={v}}
+  type=notation,  name={$\mathbf{v}$},  description={Measurement noise vector, $\mathbf{v} \in \mathbb{R}^m$; or mass velocity, $\mathbf{v} \in \mathbb{R}^3$},  sort={v}}
   
 \newglossaryentry{not:u}{
-  type=notation,  name={$u$},  description={Nominal velocity},  sort={u}}
+  type=notation,  name={$u$},  description={Scalar nominal velocity},  sort={u}}
   
 \newglossaryentry{not:w}{
-  type=notation,  name={$w$},  description={Noise term},  sort={w}}
+  type=notation,  name={$w$},  description={Scalar noise term},  sort={w}}
 
 \newglossaryentry{not:x_hat_v}{
   type=notation,  name={$\hat{\mathbf{x}}$},  description={Estimate of the state vector of a linear dynamical system},  sort={xd}}
+  
+\newglossaryentry{not:prediction_measurement}{
+  type=notation,  name={$\hat{\mathbf{z}}$},  description={Prediction of the measurement vector},  sort={zaaa}}
   
 \newglossaryentry{not:x_hat_minus}{
   type=notation,  name={$\hat{\mathbf{x}}^-_k$},  description={A priori estimate of $\hat{\mathbf{x}}$, conditioned on all prior measurements except the one at time $t_k$},  sort={xe}}
@@ -71,28 +74,34 @@
   type=notation,  name={$\mathbf{z}$},  description={Observation or measurement vector of a dynamical system},  sort={zaa}}
   
 \newglossaryentry{not:H}{
-  type=notation,  name={$\mathbf{H}$},  description={Measurement sensitivity matrix defining the linear relationship between the state of the dynamical system and the measurements that can be made},  sort={Ha}}
+  type=notation,  name={$\mathbf{H}$},  description={Measurement sensitivity matrix defining the linear relationship between the state of the dynamical system and the measurements that can be made},  sort={Haa}}
+  
+\newglossaryentry{not:H1}{
+  type=notation,  name={$\mathbf{H}^{[1]}$},  description={Linear approximation of the measurement sensitivity matrix},  sort={Haaa}}
   
 \newglossaryentry{not:K_v}{
-  type=notation,  name={$\mathbf{K}$},  description={Kalman gain matrix},  sort={Kaa}}
+  type=notation,  name={$\mathbf{K}$},  description={Kalman gain matrix},  sort={kaaa}}
   
 \newglossaryentry{not:K}{
-  type=notation,  name={$K$},  description={Weighting factor},  sort={Ka}}
+  type=notation,  name={$K$},  description={Weighting factor},  sort={kaa}}
   
  \newglossaryentry{not:k}{
   type=notation,  name={$k$},  description={Discrete time normalised to sampling interval, that is sample number, $k \in \mathbb{N}^0$},  sort={k}}
   
 \newglossaryentry{not:P}{
-  type=notation,  name={$\mathbf{P}$},  description={Covariance matrix of state estimation uncertainty},  sort={P}}
+  type=notation,  name={$\mathbf{P}$},  description={Covariance matrix of state estimation uncertainty},  sort={paa}}
   
 \newglossaryentry{not:Q}{
   type=notation,  name={$\mathbf{Q}$},  description={Covariance matrix of process noise in the system state dynamics},  sort={Q}}
   
 \newglossaryentry{not:R}{
-  type=notation,  name={$\mathbf{R}$},  description={Covariance matrix of observational (measurement) uncertainty},  sort={R}}
+  type=notation,  name={$\mathbf{R}$},  description={Covariance matrix of measurement noise},  sort={R}}
+  
+\newglossaryentry{not:phi1}{
+  type=notation,  name={$\bm{\Phi}$},  description={State transition matrix of a discrete linear dynamical system},  sort={phiaa}}
   
 \newglossaryentry{not:phi}{
-  type=notation,  name={$\bm{\Phi}$},  description={State transition matrix of a discrete linear dynamical system},  sort={phiaa}}
+  type=notation,  name={$\bm{\Phi}^{[1]}$},  description={Linear approximation of the state transition matrix of a discrete linear dynamical system},  sort={phiaaa}}
   
 \newglossaryentry{not:x_k}{
   type=notation,  name={$\mathbf{x}_k$},  description={The $k$th element of a sequence $\dots$, $\mathbf{x}_{k-1}$, $\mathbf{x}_k$, $\mathbf{x}_{k+1}, \dots$ of vectors},  sort={xc}}
@@ -125,7 +134,7 @@
   type=notation,  name={$\mathbf{C}_{wb}$},  description={Transformation matrix transforming a position vector from the world frame to the body frame},  sort={Cnb}}
   
 \newglossaryentry{not:omega}{
-  type=notation,  name={$\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$},  description={Function that transforms a position vector $\mathbf{p}$ in the vector space $\mathbf{E}$ into the vector $\mathbf{p}^{'}$ in the vector space $\mathbf{E}^{'}$},  sort={Om}}
+  type=notation,  name={$\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$},  description={Function that transforms a position vector $\mathbf{p}$ in the vector space $\mathbf{E}$ into the vector $\mathbf{p}^{'}$ in the vector space $\mathbf{E}^{'}$},  sort={omegaaaa}}
   
 \newglossaryentry{not:position_vector}{
   type=notation,  name={$\mathbf{p}$},  description={Position vector in a three-dimensional vector space},  sort={p}}
@@ -134,16 +143,16 @@
   type=notation,  name={$\bm{\phi}$},  description={Functional denoting the \emph{non-linear} transition matrix function of a discrete dynamical system},  sort={phia}}
   
 \newglossaryentry{not:h_vec}{
-  type=notation,  name={$\mathbf{h}$},  description={Functional denoting the \emph{non-linear} measurement matrix function of a discrete dynamical system},  sort={h}}
+  type=notation,  name={$\mathbf{h}$},  description={Functional denoting the \emph{non-linear} measurement matrix function of a discrete dynamical system},  sort={ha}}
 
 \newglossaryentry{not:resonance_freq}{
-  type=notation,  name={$\Omega$},  description={Resonance frequency},  sort={Omega}}
+  type=notation,  name={$\Omega$},  description={Resonance frequency},  sort={omega}}
   
 \newglossaryentry{not:force_one_d}{
   type=notation,  name={$F$},  description={One-dimensional force},  sort={f}}
   
 \newglossaryentry{not:damping_c}{
-  type=notation,  name={$D$},  description={Damping coefficient},  sort={D}}
+  type=notation,  name={$D$},  description={Damping coefficient},  sort={Da}}
   
 \newglossaryentry{not:amplitude}{
   type=notation,  name={$a$},  description={Amplitude of an oscillating mode},  sort={a}}
@@ -152,19 +161,16 @@
   type=notation,  name={$\omega$},  description={Scalar angular velocity},  sort={omega}}
   
 \newglossaryentry{not:spring_constant}{
-  type=notation,  name={$k_x$},  description={Spring constant along the $x$-axis},  sort={kx}}
+  type=notation,  name={$k_x$},  description={Spring constant along the $x$-axis},  sort={ka}}
   
 \newglossaryentry{not:gravity}{
   type=notation,  name={$\mathbf{g}$},  description={Gravity vector},  sort={g}}
   
 \newglossaryentry{not:angular_velocity}{
   type=notation,  name={$\bm{\omega}$},  description={Angular velocity, $\bm{\omega} \in \mathbb{R}^3$},  sort={omega}}
-
-\newglossaryentry{not:mass_velocity}{
-  type=notation,  name={$\mathbf{v}$},  description={Mass velocity, $\mathbf{v} \in \mathbb{R}^3$},  sort={va}}  
   
 \newglossaryentry{not:orthonormal_basis}{
-  type=notation,  name={$\mathbf{E}$},  description={Orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$},  sort={E}}  
+  type=notation,  name={$\mathbf{E}$},  description={Orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$},  sort={Ea}}  
   
 \newglossaryentry{not:identity_matrix}{
   type=notation,  name={$\mathbf{I}_n$},  description={Identity matrix $\mathbf{I}_n \in \mathbb{R}^n$},  sort={I}}  
@@ -173,6 +179,7 @@
   type=notation,  name={$\|\mathbf{g}\|$},  description={Magnitude of the gravity vector},  sort={ga}}    
   
 \newglossaryentry{not:sampling interval}{
-  type=notation,  name={$T_s$},  description={Sampling period},  sort={T}}    
+  type=notation,  name={$\mathbf{w} \sim \mathcal{N}(\mu, \sigma^2)$},  description={The random variable $\mathbf{w}$ is distributed normally with mean $\mu$ and variance $\sigma^2$},  sort={waaa}}    
   
-    
+
+  
