@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  9 MAY 2015 18:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  10 MAY 2015 01:57
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1802,12 +1802,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [9
 
 
-]
-Overfull \hbox (0.84956pt too wide) in paragraph at lines 24--24
- \OT1/pplj/m/n/12 tained by the pro-jec-tion of the grav-ity vec-tor, clas-sic Kalman 
- []
-
-)
+])
 \tf@lof=\write11
 \openout11 = `main.lof'.
 
@@ -2051,38 +2046,36 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [34 <./Figures/main-figure15.pdf>]
+ [34]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [35 <./Figures/main-figure15.pdf>]
 \figureheight=\skip112
 \figurewidth=\skip113
  (./Tikz/experiment_1.tikz
 ===== Image 'Figures/experiment_1' is up-to-date. ======
 ) (./Tikz/experiment_2.tikz
 ===== Image 'Figures/experiment_2' is up-to-date. ======
-)
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [35]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [36 <./Figures/experiment_1.pdf> <./Figures/experiment_2.pdf>] (./Tikz/experiment_3.tikz
+) (./Tikz/experiment_3.tikz
 ===== Image 'Figures/experiment_3' is up-to-date. ======
 )
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [36 <./Figures/experiment_1.pdf>]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [37 <./Figures/experiment_2.pdf> <./Figures/experiment_3.pdf>]
 ===== Image 'Figures/main-figure16' is up-to-date. ======
 
-Underfull \vbox (badness 4454) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [37 <./Figures/experiment_3.pdf>]
-===== Image 'Figures/main-figure17' is up-to-date. ======
-
+ [38]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [38 <./Figures/main-figure16.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [39 <./Figures/main-figure17.pdf>]
+ [39 <./Figures/main-figure16.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [40]
@@ -2092,7 +2085,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [42]
-Underfull \vbox (badness 1990) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2101,28 +2094,28 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
-Overfull \hbox (15.57881pt too wide) in paragraph at lines 421--423
+Overfull \hbox (15.57881pt too wide) in paragraph at lines 424--426
 \OT1/pplj/m/n/12 The pro-cess noise co-vari-ance ma-trix $\OT1/pplx/b/n/12 Q$ \OT1/pplj/m/n/12 is con-stant. The pa-ram-e-ters $\OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]\OT1/pplx/m/n/12 , \OML/zplm/m/it/12 ^^[[]$
  []
 
 
-LaTeX Warning: Reference `lis:experiments' on page 45 undefined on input line 443.
+LaTeX Warning: Reference `lis:experiments' on page 45 undefined on input line 446.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [45]
-===== Image 'Figures/main-figure18' is up-to-date. ======
+===== Image 'Figures/main-figure17' is up-to-date. ======
 
-LaTeX Warning: Float too large for page by 1.62553pt on input line 482.
-
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 505.
+LaTeX Warning: Float too large for page by 1.62553pt on input line 485.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 512.
+(amsmath)                trying to recover with `aligned' on input line 508.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 515.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2133,14 +2126,14 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [46]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [47 <./Figures/main-figure18.pdf>]
+ [47 <./Figures/main-figure17.pdf>]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 558.
+(amsmath)                trying to recover with `aligned' on input line 561.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 564.
+(amsmath)                trying to recover with `aligned' on input line 567.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2377,18 +2370,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 47372 strings out of 493117
- 1017624 string characters out of 6135434
- 6693715 words of memory out of 7000000
- 49180 multiletter control sequences out of 15000+600000
+ 47370 strings out of 493117
+ 1017592 string characters out of 6135434
+ 6694730 words of memory out of 7000000
+ 49178 multiletter control sequences out of 15000+600000
  63363 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 1097693 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (86 pages, 1090699 bytes).
 PDF statistics:
- 2209 PDF objects out of 2487 (max. 8388607)
- 2012 compressed objects within 21 object streams
- 664 named destinations out of 1000 (max. 500000)
- 548 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 2199 PDF objects out of 2487 (max. 8388607)
+ 2006 compressed objects within 21 object streams
+ 665 named destinations out of 1000 (max. 500000)
+ 543 words of extra memory for PDF output out of 10000 (max. 10000000)
 
