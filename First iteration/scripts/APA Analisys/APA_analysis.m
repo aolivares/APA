@@ -40,7 +40,7 @@ clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'no';
-showPlotsAPA = 'yes';
+showPlotsAPA = 'no';
 showPlotsCorr = 'no';
 
 % -------------------------------------------------------------------------
@@ -657,6 +657,11 @@ for k = 1:length(initcross)
                     initcross_COP:finalcross_COP)== -max(...
                     neg_peak_values), 1) + initcross_COP - 1;
                 
+    % Find the peaks before and after the APA peak to calculate the height
+    % peak.
+    maximuns_peaks_first (k)= max(AP_COP_data_shanks(initcross_COP:peaks_APA_AP_COP (k) ));
+    maximuns_peaks_last (k) = max(AP_COP_data_shanks(peaks_APA_AP_COP(k) :finalcross_COP));
+%   
     % Segmentation of the signals with a Win= 0.25s
     fs = 200;
     Win_trunk = 0.25 * fs;
@@ -690,29 +695,38 @@ end
 value_APA_trunk_X = a_trunk_data_X(peaks_APA_trunk_X);
 value_APA_trunk_Gyro_X = g_trunk_data_X(peaks_APA_trunk_Gyro_X);
 value_APA_AP_COP = AP_COP_data_shanks(peaks_APA_AP_COP);
-
-% Calculate the linear correlation between the peaks detected with the 
-% acceleration signal of the trunk and AP COP.
-[corr_trunk_AP, prob_trunk_AP] = corr(value_APA_trunk_X', value_APA_AP_COP');
-
-% Calculate the correlation between the height of the AP COP peaks.
-value_APA_AP_COP_2 = abs(value_APA_AP_COP - value_initcross_AP);
-[corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X',...
-                                    value_APA_AP_COP_2');
-                                
-value_APA_AP_COP_3 = value_APA_AP_COP - value_init_FP_AP;
-[corr_trunk_AP_3, prob_trunk_AP_3] = corr(value_APA_trunk_X',...
-                                    value_APA_AP_COP_3');
+% 
+% % Calculate the linear correlation between the peaks detected with the 
+% % acceleration signal of the trunk and AP COP.
+% [corr_trunk_AP, prob_trunk_AP] = corr(value_APA_trunk_X', value_APA_AP_COP');
+% 
+% % Calculate the correlation between the height of the AP COP peaks.
+value_APA_AP_COP_1 = abs(value_APA_AP_COP - value_initcross_AP);
+% [corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X',...
+%                                     value_APA_AP_COP_2');
+%                                 
+% value_APA_AP_COP_3 = value_APA_AP_COP - value_init_FP_AP;
+% [corr_trunk_AP_3, prob_trunk_AP_3] = corr(value_APA_trunk_X',...
+%                                     value_APA_AP_COP_3');
 
 % This is the most iteresting correlation.                               
 value_APA_trunk_X_1 = abs(value_APA_trunk_X - a_trunk_data_X(initcross_trunk_complete));
-[corr_trunk_AP_4, prob_trunk_AP_4] = corr(value_APA_trunk_X_1',...
+[corr_trunk_AP_1, prob_trunk_AP_1] = corr(value_APA_trunk_X_1',...
+                                    value_APA_AP_COP_1');
+
+value_APA_trunk_X_2 = abs(value_APA_trunk_X - mode(a_trunk_data_X));
+value_APA_AP_COP_2 = abs(value_APA_AP_COP - maximuns_peaks_first);
+[corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X_2',...
                                     value_APA_AP_COP_2');
                                 
 % Calculate the correlation between the Gyro trunk signal peaks and AP COP.
 % peaks.
 value_APA_trunk_Gyro_X_1 = abs(value_APA_trunk_Gyro_X - g_trunk_data_X(initcross_trunk_complete));
-[corr_trunk_AP_Gyro, prob_trunk_AP_Gyro] = corr(value_APA_trunk_Gyro_X_1',...
+[corr_trunk_AP_Gyro_1, prob_trunk_AP_Gyro_1] = corr(value_APA_trunk_Gyro_X_1',...
+                                            value_APA_AP_COP_1');
+                                        
+value_APA_trunk_Gyro_X_2 = abs(value_APA_trunk_Gyro_X - mode(g_trunk_data_X));                                        
+[corr_trunk_AP_Gyro_2, prob_trunk_AP_Gyro_2] = corr(value_APA_trunk_Gyro_X_2',...
                                             value_APA_AP_COP_2');
                                         
 % Calculate the linear correlation between the patter that characterise the
