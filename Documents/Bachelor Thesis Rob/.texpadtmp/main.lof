@@ -23,8 +23,13 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis, obtained by the projection of the gravity vector and by sensor fusion of accelerometer and gyroscope data in a classical Kalman filter.\relax }}{37}{figure.caption.29}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by the projection of the gravity vector, classical Kalman filtering, and gated Kalman filtering.\relax }}{37}{figure.caption.30}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Kinematic model of the human leg, from \cite {bennett_motion_2014}.\relax }}{39}{figure.caption.31}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Entire computation steps of the recursive filter algorithm.\relax }}{48}{figure.caption.35}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Entire computation steps of the recursive filter algorithm.\relax }}{47}{figure.caption.35}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering.\relax }}{50}{figure.caption.36}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering.\relax }}{50}{figure.caption.37}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.\relax }}{50}{figure.caption.37}
 \contentsline {figure}{\numberline {4.9}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering.\relax }}{51}{figure.caption.38}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.\relax }}{51}{figure.caption.39}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{52}{figure.caption.40}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.\relax }}{52}{figure.caption.41}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.\relax }}{53}{figure.caption.42}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.\relax }}{53}{figure.caption.43}
 \addvspace {10\p@ }

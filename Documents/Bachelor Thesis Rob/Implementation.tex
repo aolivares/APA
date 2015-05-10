@@ -194,13 +194,13 @@ The orientation of the sensor frames at rest are different from the world frame 
 \end{equation}
 
 \noindent
-According to Equation \ref{eq:transformation}, the rotated radial and tangential components of the motion-based acceleration estimates in the body frame of accelerometer that is $2$, $A_{X2}$ and $A_{Z2}$, are found by pre-multiplying the transformation matrix with the acceleration vector in the world frame, constituted of the results of Equations \ref{eq:acc_x_state} and \ref{eq:acc_y_state}.
+According to Equation \ref{eq:transformation}, the rotated radial and tangential components of the motion-based acceleration estimates in the body frame of accelerometer $2$, $A_{X_2}$ and $A_{Z_2}$, are found by pre-multiplying the transformation matrix with the acceleration vector in the world frame, constituted of the results of Equations \ref{eq:acc_x_state} and \ref{eq:acc_y_state}.
 
 \begin{equation}
-  \begin{bmatrix}
-  	A_{X2} \\
-  	A_{Y2} \\
-  	A_{Z2}
+  \mathbf{a} = \begin{bmatrix}
+  	a_{X_2} \\
+  	a_{Y_2} \\
+  	a_{Z_2}
   \end{bmatrix} = \mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) \begin{bmatrix}
   	a_x \\
   	0 \\
@@ -209,9 +209,9 @@ According to Equation \ref{eq:transformation}, the rotated radial and tangential
 \end{equation}
 
 \noindent
-The axial component $A_{Y2}$ is zero, since the leg is assumed to be oriented perpendicular to the earth's surface and thus the gravity vector $\mathbf{g}$ is perpendicular to the $y$-axis. The term $\|\mathbf{g}\|^{-1}$ normalises the rotated motion-based acceleration estimate to gravity, where $\|\mathbf{g}\|$ denotes the magnitude of gravity. 
+The axial component $A_{Y_2}$ is zero, since the leg is assumed to be oriented perpendicular to the earth's surface and thus the gravity vector $\mathbf{g}$ is perpendicular to the $y$-axis. The term $\|\mathbf{g}\|^{-1}$ normalises the rotated motion-based acceleration estimate to gravity, where $\|\mathbf{g}\|$ denotes the magnitude of gravity. 
 
-Then, the motion based radial and tangential acceleration components are subtracted from the sensor readings $A_{X1m}$ and $A_{Z1m}$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
+Then, the motion based radial and tangential acceleration components are subtracted from the sensor readings $A_{X_1m}$ and $A_{Z_1m}$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
 \mathbf{g} = \begin{bmatrix}
@@ -220,14 +220,14 @@ Then, the motion based radial and tangential acceleration components are subtrac
     g_z 
     \end{bmatrix} \approx 
     \begin{bmatrix}
-    A_{X2m} \\
+    a_{X_2m} \\
     0 \\
-    A_{Z2m} 
+    a_{Z_2m} 
     \end{bmatrix} -
     \begin{bmatrix}
-    A_{X2} \\
+    a_{X_2} \\
     0 \\
-    A_{Z2} 
+    a_{Z_2} 
     \end{bmatrix}\,.
 \end{equation}
 
@@ -444,7 +444,7 @@ The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{3 \times 3}$
 \end{bmatrix}\,,
 \end{equation}
 
-The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
+The parameters $\sigma_1$ and $\sigma_2$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
 
 \begin{equation}
   \sigma = \sqrt{\frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
@@ -463,18 +463,17 @@ The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based ang
 
 \begin{equation}
   \sigma^2_3 = \sigma^2_4 = \begin{cases}
-  	\sigma_s & \qquad m_k = 1 \\
-  	\sigma_f & \qquad {else}
+  	\sigma_s & \quad m_k = 0 \\
+  	\sigma_f & \quad m_k = 1
   \end{cases}
 \end{equation}
 
 \noindent
-where $m_k$ is the value of a marker signal, which toggles between $1$ and $0$. In order to determine the motion intensity we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal. The algorithm delivers a marker signal that can be used to set the correct variance, according to the motion intensity.
+where $m_k$ is the value of a marker signal, which toggles between $1$ and $0$. In order to determine the marker signal we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal.
 
 \subsubsection{Summary of the Entire Filter Algorithm}
 
-The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. The source code is found in the appendix. Listing \ref{lis:filter} shows the source code of the filter function. Listing \ref{lis:experiments} shows the script used to run the experiments.
-
+The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. The source code is found in the appendix. Listing \ref{lis:filter} shows the source code of the filter function. 
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=9cm]
@@ -485,19 +484,21 @@ The state estimates are computed recursively according to the \emph{time update}
 \begin{tikzpicture}[scale=0.95, every node/.style={transform shape}, auto, rounded corners=1pt, node distance=5cm,>=latex']
     
 \node [block, align=center] (init) {Initialisation of parameters \\[2mm]  $\mathbf{x}_{0}, \mathbf{P}_{0}, \mathbf{H}, \mathbf{Q}, \mathbf{R}_{0},$};
-\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k-1} \approx \mathbf{I}_{n} + \mathbf{F}_{k-1} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\Phi}^{[1]}_{k-1} \hat{\mathbf{x}}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -l_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - l_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -l_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - l_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{==i}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - 90^{\circ}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - 90^{\circ}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
-    g_x \\
-    g_y 
-    \end{bmatrix} = 
-    \begin{bmatrix}
-    A_x \\
-    A_z 
-    \end{bmatrix} -
-    \begin{bmatrix}
-    A_{rad} \\
-    A_{tan} 
-    \end{bmatrix}$ \\ Compute corrected angle estimate: \\ $\theta_1 + \theta_2 = \mbox{atan}2(g_y, g_x)$};
+\node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k-1} \approx \mathbf{I}_{n} + \mathbf{F}_{k-1} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \hat{\mathbf{x}}_{k-1} + \mathbf{f}(\hat{\mathbf{x}}_{k-1})T_s$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
+\node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $a_x = -l_1 [\omega^2_1 \cos(\theta_1) + \alpha_1 \sin(\theta_1)] - l_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $a_z = -l_1 [\alpha_1 \cos(\theta_1) - \omega^2_1 \sin(\theta_1)] - l_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{=ii}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Compute gravity estimate: \\ $\mathbf{g} \approx 
+    \left[ \begin{smallmatrix}
+    a_{X_2m} \\
+    0 \\
+    a_{Z_2m} 
+    \end{smallmatrix} \right] -
+    \mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) \left[ \begin{smallmatrix}
+  	a_x \\
+  	0 \\
+	a_z
+  \end{smallmatrix} \right] \|\mathbf{g}\|^{-1}$ \\ Compute corrected angle estimate: \\ $\theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)-180^{\circ}$ \\ Set measurement covariances \\ $\sigma^2_3 = \sigma^2_4 = \begin{cases}
+  	\sigma_s & \quad m_k = 0 \\
+  	\sigma_f & \quad m_k = 1
+  \end{cases}$};
 \node [block, align=center, below of=measurement, node distance=6.6cm] (update) {\emph{Measurement update} \\[3mm] Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3.2cm, name=output] {Output};
 \node [output, below of=update, node distance=2.68cm, name=help1] {};
@@ -521,7 +522,7 @@ The orientation algorithm was tested with data from real subjects. The movement 
 
 \subsection{Test Sequence}
 
-The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood in front of the force plate. Then, the GaitWatch record was started and the subject made a step onto a force plate. After standing upright for a variable time of two to ten seconds the subject left the force plate, made a few steps, turned left, and stopped in front of the force plate again. This sequence was repeated ten times.
+The subject wore the GaitWatch system on its body. Then, the following sequence was carried out by the patient: The subject stood still in front of a force measuring platform. Then, the GaitWatch record was started and shortly afterwards the subject made a step onto the force measuring platform. After standing upright for a variable time of two to ten seconds, the subject left the force measuring platform, made a few steps, turned left, and stopped in front of the force measuring platform again. This sequence was repeated ten times.
 
 \subsection{Initial Conditions}
 
@@ -530,14 +531,14 @@ Each trial began with the subject standing still and it was assumed that the sub
 \begin{equation}
 \begin{matrix}
 	\begin{split}
-	  x &= 0\,m\,, \\
+	  x &= 0\,\mbox{m}\,, \\
 	  \theta_1 &= -90^{\circ}\,, \\
 	  \omega_1 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_1 &= \mu_1\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,
 \end{split} \qquad \quad
     \begin{split}
-   	  z &= -(l_1+l_2)\,m\,, \\
+   	  z &= -(l_1+l_2)\,\mbox{m}\,, \\
 	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
 	  \omega_2 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
@@ -556,7 +557,7 @@ where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected
 \noindent
 where $f_s$ is the sampling frequency.
 
-The initial covariance matrix $\mathbf{P}_{0}$ was given by
+The initial error covariance matrix $\mathbf{P}_{0}$ was given by
 
 \begin{equation}
 \mathbf{P}_0 = \begin{bmatrix}
@@ -574,7 +575,7 @@ The initial covariance matrix $\mathbf{P}_{0}$ was given by
 \end{equation}
 
 \noindent
-It represents the confidence in the initial state estimate and determines how fast the filter converges. Unlike the matrix of the classical KF it may cause the filter to diverge..
+Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge of the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
 
 \subsection{Parameterisation}
 
@@ -583,24 +584,24 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 \begin{equation}
 \begin{matrix}
 	\begin{split}
-	  \sigma_d &= \,, \\
-	  \sigma_{\theta 1} &= \,, \\
-	  \sigma_{\theta 2} &= \,, \\
-	  \sigma_{\beta} &= \,, \\
-	  \delta &= \,,
+	  \sigma_d &= 10^{-4}\,\mbox{m}\,, \\
+	  \sigma_{\theta_1} &= 3 \times 10^{-4}\,^{\circ} \,, \\
+	  \sigma_{\theta_2} &= 3 \times 10^{-4}\,^{\circ} \,, \\
+	  \sigma_{\beta} &= 10^{-11} \, \frac{^{\circ}}{\mbox{s}} \,, \\
+	  m_0 &= 0\,,
 \end{split} \qquad \quad
     \begin{split}
 	  \sigma_1 &= \,, \\
 	  \sigma_2 &= \,, \\
-	  \sigma_s &= \,, \\
-	  \sigma_f &= \,,  
+	  \sigma_s &= 1\,^{\circ} \,, \\
+	  \sigma_f &= 0.01^{\circ} \,,  
 \end{split}
 \end{matrix}
 \end{equation}
 
 \section{Results}
 
-This section presents the results obtained by the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
+This section presents the results obtained by the experiments. Listing \ref{lis:experiments} the script used to run the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
 
 \begin{figure}
 	\centering
@@ -618,7 +619,7 @@ This section presents the results obtained by the experiments. Figures \ref{fig:
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_5}
 	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering.}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.}
 	\label{fig:experiment_5}
 \end{figure}
 
@@ -630,6 +631,56 @@ This section presents the results obtained by the experiments. Figures \ref{fig:
 	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
 	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering.}
 	\label{fig:experiment_6}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_7}
+	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.}
+	\label{fig:experiment_7}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_8}
+	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter.}
+	\label{fig:experiment_8}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_9}
+	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.}
+	\label{fig:experiment_8}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_10}
+	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
+	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.}
+	\label{fig:experiment_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_11}
+	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
+	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.}
+	\label{fig:experiment_11}
 \end{figure}
 
 \section{Discussion}
