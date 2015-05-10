@@ -656,12 +656,12 @@ for k = 1:length(initcross)
     peaks_APA_AP_COP(k) = find(AP_COP_data_shanks(...
                     initcross_COP:finalcross_COP)== -max(...
                     neg_peak_values), 1) + initcross_COP - 1;
-                
+   
     % Find the peaks before and after the APA peak to calculate the height
     % peak.
     maximuns_peaks_first (k)= max(AP_COP_data_shanks(initcross_COP:peaks_APA_AP_COP (k) ));
     maximuns_peaks_last (k) = max(AP_COP_data_shanks(peaks_APA_AP_COP(k) :finalcross_COP));
-%   
+  
     % Segmentation of the signals with a Win= 0.25s
     fs = 200;
     Win_trunk = 0.25 * fs;
