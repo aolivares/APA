@@ -134,8 +134,8 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
 
 % 10) Define process noise covariance matrix.
 sigma_d = 0.0001;
-sigma_t1 = 0.03;
-sigma_t2 = 0.03;
+sigma_t1 = 0.003;
+sigma_t2 = 0.003;
 sigma_b = 0.00000000001;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
@@ -271,8 +271,8 @@ for i=1:1:len
     % gyroscope signals and the corrected angle
     % estimate theta_1 + theta_2.
     z = [gyro_thigh_y(i); gyro_shank_y(i); 0; 0];
-    z(3) = -atan2d(acc_thigh_x(i), acc_thigh_z(i)) - 90;
-    z(4) = -atan2d(g(1), g(3)) - 90;
+    z(3) = atan2d(acc_thigh_z(i), acc_thigh_x(i)) - 180;
+    z(4) = atan2d(g(3), g(1)) - 180;
     
     % For testing.
      p(1, i) = a(1);

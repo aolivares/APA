@@ -1,4 +1,4 @@
-\begin{thebibliography}{48}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -412,5 +412,12 @@ Derek Rowell.
 \newblock State-space representation of {LTI} systems.
 \newblock 2002.
 \newblock URL \url{http://web.mit.edu/2.14/www/Handouts/StateSpace.pdf}.
+
+\bibitem[{Kelly}(1994)]{Kelly_1994_random}
+Alonzo {Kelly}.
+\newblock A 3d state space formulation of a navigation kalman filter for
+  autonomous vehicles.
+\newblock Technical Report CMU-RI-TR-94-19, Robotics Institute, Pittsburgh, PA,
+  May 1994.
 
 \end{thebibliography}

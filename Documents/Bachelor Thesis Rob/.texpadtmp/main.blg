@@ -27,12 +27,12 @@ I was expecting a `,' or a `}'---line 508 of file ../Bibliography.bib
  :   month={October},
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-I was expecting a `,' or a `}'---line 610 of file ../Bibliography.bib
+I was expecting a `,' or a `}'---line 620 of file ../Bibliography.bib
  : 
  : @misc{mpower,
 (Error may have been on previous line)
 I'm skipping whatever remains of this entry
-Illegal end of database file---line 615 of file ../Bibliography.bib
+Illegal end of database file---line 625 of file ../Bibliography.bib
  : 
  : 
 (Error may have been on previous line)
@@ -48,45 +48,45 @@ Warning--empty year in IMU3000
 Warning--empty year in MicroMag3
 Warning--empty year in AVRATxmega
 Warning--empty journal in rowell2002state
-You've used 48 entries,
+You've used 49 entries,
             2481 wiz_defined-function locations,
-            910 strings with 16129 characters,
-and the built_in function-call counts, 20384 in all, are:
-= -- 1807
-> -- 992
-< -- 38
-+ -- 392
-- -- 292
-* -- 1603
-:= -- 3223
-add.period$ -- 221
-call.type$ -- 48
-change.case$ -- 83
-chr.to.int$ -- 44
-cite$ -- 59
-duplicate$ -- 1043
-empty$ -- 1776
-format.name$ -- 352
-if$ -- 4412
+            918 strings with 16310 characters,
+and the built_in function-call counts, 20632 in all, are:
+= -- 1831
+> -- 999
+< -- 40
++ -- 396
+- -- 294
+* -- 1618
+:= -- 3268
+add.period$ -- 224
+call.type$ -- 49
+change.case$ -- 85
+chr.to.int$ -- 45
+cite$ -- 60
+duplicate$ -- 1058
+empty$ -- 1797
+format.name$ -- 355
+if$ -- 4462
 int.to.chr$ -- 5
-int.to.str$ -- 49
+int.to.str$ -- 50
 missing$ -- 43
-newline$ -- 320
-num.names$ -- 152
-pop$ -- 388
+newline$ -- 325
+num.names$ -- 155
+pop$ -- 393
 preamble$ -- 1
-purify$ -- 48
+purify$ -- 49
 quote$ -- 0
-skip$ -- 622
+skip$ -- 630
 stack$ -- 0
-substring$ -- 842
-swap$ -- 270
-text.length$ -- 15
+substring$ -- 844
+swap$ -- 273
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 318
+type$ -- 325
 warning$ -- 11
-while$ -- 153
+while$ -- 155
 width$ -- 0
-write$ -- 762
+write$ -- 776
 (There were 5 error messages)

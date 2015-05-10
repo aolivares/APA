@@ -121,7 +121,7 @@ In this section the theoretical design of the system proposed by \citeauthor{ben
 
 \subsection{Kinematic Model}
 
-The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$. 
+The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
 
 \begin{figure}
 \centering
@@ -131,7 +131,7 @@ The kinematic model relates the respective angles of the thigh and shank about t
     \node [draw,  fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.7cm, minimum width=1cm, align=center, rotate around={30:(0,0)}] at (0.7, -1.25) (link1) {};
     \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={30:(0, 0)}, label={[label distance=0.18cm]335:IMU $1$}] at (0.98, -1.7) (sensor1) {};
     
-    \node [draw, fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.7cm, minimum width=0.6cm, align=center, rotate around={145:(0,0)}] at (0.6, -3.7) (link2) {};
+    \node [draw, fill=white, very thick, rectangle, rounded corners=3pt, minimum height=3.6cm, minimum width=0.6cm, align=center, rotate around={145:(0,0)}] at (0.6, -3.7) (link2) {};
     \node [draw, thick, fill=gray, rounded corners=2pt, rectangle, minimum height=0.8cm, minimum width=0.45cm, align=center, rotate around={145:(0, 0)}, label={right:IMU $2$}] at (0, -4.56) (sensor2) {};
     
     \node[coordinate] (X) at (2.5,0) {};
@@ -141,8 +141,8 @@ The kinematic model relates the respective angles of the thigh and shank about t
     \draw[->] (O) -- node[name=x] {$x$}(X);
     \draw[->] (O) -- node[pos=0.6, name=y, label={left:$z$}] {}(Y);
     
-    \draw[->] (0, -4.56) -- node[name=x_2] {$x_2$}(1.5, -5.6);
-    \draw[->] (0, -4.56) -- node[name=x_2] {$z_2$}(-1.1, -6.1);
+    \draw[->] (0, -4.56) -- node[name=x_2] {$X_2$}(1.5, -5.6);
+    \draw[->] (0, -4.56) -- node[name=x_2] {$Z_2$}(-1.1, -6.1);
    
     \draw[dotted] (O) -- (2.5,-4.3);
     \draw[fill=white] (0,0) circle (4pt);
@@ -158,7 +158,7 @@ The kinematic model relates the respective angles of the thigh and shank about t
 \caption{Kinematic model of the human leg, from \cite{bennett_motion_2014}.} \label{fig:robot}
 \end{figure} 
 
-The \glspl{IMU} placed on the thighs and shanks measured the angular velocity and linear acceleration of the thighs and shanks, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
+The \glspl{IMU} placed on the thighs and shanks measured the angular velocity around the $y$-axis and the linear acceleration along the $x$ and $z$-axis, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
 
 \begin{align}
   x &= + l_1 \cos(\theta_1) + l_2 \cos(\theta_1 + \theta_2) \\
@@ -173,61 +173,69 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity an
 \end{align}
 
 \noindent
-in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Using Equations \ref{eq:acc_x} and \ref{eq:acc_y}, and the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, respectively, obtained with the EKF described in Section \ref{sec:EKF_model}, we can estimate the motion based acceleration in $x$ and $z$ direction that sensor $2$ will see in the world coordinate frame.
+in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Plugging the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, obtained with the EKF described in Section \ref{sec:EKF_model}, into Equations \ref{eq:acc_x} and \ref{eq:acc_y}, we can estimate the respective motion-based acceleration components $a_x$ and $a_z$ in $x$ and $z$ direction that sensor $2$ will see in the world coordinate frame. Written as a function of the state variables of the extended Kalman filter, Equations \ref{eq:acc_x} and \ref{eq:acc_y} yield
 
-The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices} in transposed form. The positive sense of rotation according the right-hand rule is opposite to the mathematically positive sense, which is why we use the transpose of the transformation matrix. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, an offset of $\frac{\pi}{2}$ is necessary. With $\theta = \theta_1 + \theta_2 + \frac{\pi}{2}$, this yields
+\begin{align}
+  a_x &= -l_1 [\omega^2_1 \cos(\theta_1) + \alpha_1 \sin(\theta_1)] - l_2 [(\omega_1 + \omega_2)^2 \cos(\theta_1 + \theta_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)] \label{eq:acc_x_state} \\
+  \nonumber \\
+  a_z {}&= -l_1 [\alpha_1 \cos(\theta_1) - \omega^2_1 \sin(\theta_1)] - l_2 [(\alpha_1 + \alpha_2) \cos(\theta_1 + \theta_2) \nonumber \\ 
+  &\mathrel{\phantom{=}} - (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)] \label{eq:acc_y_state}
+\end{align}
+
+The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices}. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, in order to align both frames, an offset of $90^{\circ}$ is required. With $\theta = \theta_1 + \theta_2 + 90^{\circ}$, this yields
 
 \begin{equation}
-\mathbf{T}_y(\theta_1 + \theta_2 + \frac{\pi}{2}) = \begin{bmatrix}
-    \cos (\theta_1 + \theta_2 + \frac{\pi}{2}) \; & 0 \; & -\sin (\theta_1 + \theta_2 + \frac{\pi}{2}) \\
+\mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) = \left[ \begin{smallmatrix}
+    \cos (\theta_1 + \theta_2 + 90^{\circ}) \; & 0 \; & -\sin (\theta_1 + \theta_2 + 90^{\circ}) \\
     0 \; & 1 \; & 0 \\
-    \sin (\theta_1 + \theta_2 + \frac{\pi}{2}) \; & 0 \; & \cos (\theta_1 + \theta_2 + \frac{\pi}{2})
-    \end{bmatrix}\,.
+    \sin (\theta_1 + \theta_2 + 90^{\circ}) \; & 0 \; & \cos (\theta_1 + \theta_2 + 90^{\circ})
+    \end{smallmatrix} \right] \,.
 \end{equation}
 
 \noindent
-The rotated radial and tangential components of the motion based acceleration estimates, $A_{rad}$ and $A_{tan}$, are found using the tranformation matrix to rotate the results of Equations \ref{eq:acc_x} and \ref{eq:acc_y}, respectively, according to Equation \ref{eq:transformation}.
+According to Equation \ref{eq:transformation}, the rotated radial and tangential components of the motion-based acceleration estimates in the body frame of accelerometer that is $2$, $A_{X2}$ and $A_{Z2}$, are found by pre-multiplying the transformation matrix with the acceleration vector in the world frame, constituted of the results of Equations \ref{eq:acc_x_state} and \ref{eq:acc_y_state}.
 
 \begin{equation}
   \begin{bmatrix}
-  	A_{rad} \\
-  	A_{axi} \\
-  	A_{tan}
-  \end{bmatrix} = \mathbf{T}_y(\theta_1 + \theta_2 + \frac{\pi}{2}) \begin{bmatrix}
-  	\ddot{x} \\
+  	A_{X2} \\
+  	A_{Y2} \\
+  	A_{Z2}
+  \end{bmatrix} = \mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) \begin{bmatrix}
+  	a_x \\
   	0 \\
-	\ddot{z}
-  \end{bmatrix}
+	a_z
+  \end{bmatrix} \|\mathbf{g}\|^{-1}
 \end{equation}
 
 \noindent
-The axial component is zero, since the leg is assumed to be oriented perpendicular to to the earth's surface and thus perpendicular to the $y$-axis.
+The axial component $A_{Y2}$ is zero, since the leg is assumed to be oriented perpendicular to the earth's surface and thus the gravity vector $\mathbf{g}$ is perpendicular to the $y$-axis. The term $\|\mathbf{g}\|^{-1}$ normalises the rotated motion-based acceleration estimate to gravity, where $\|\mathbf{g}\|$ denotes the magnitude of gravity. 
 
-Then, the radial and tangential acceleration estimates are subtracted from the sensor readings $A_x$ and $A_y$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
+Then, the motion based radial and tangential acceleration components are subtracted from the sensor readings $A_{X1m}$ and $A_{Z1m}$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
 \mathbf{g} = \begin{bmatrix}
     g_x \\
     g_y \\
     g_z 
-    \end{bmatrix} = 
+    \end{bmatrix} \approx 
     \begin{bmatrix}
-    A_x \\
+    A_{X2m} \\
     0 \\
-    A_z 
+    A_{Z2m} 
     \end{bmatrix} -
     \begin{bmatrix}
-    A_{rad} \\
+    A_{X2} \\
     0 \\
-    A_{tan} 
+    A_{Z2} 
     \end{bmatrix}\,.
 \end{equation}
 
 \noindent
-According to Equation \ref{eq:projection_gravity}, the angle estimate with respect to the $x$-axis is then
+The angle estimate of the shank with respect to the $x$-axis, based on the projection of the gravity vector on the axes of the accelerometer, is then
 
 \begin{equation}
-  \theta_1 + \theta_2 = -\mbox{atan}2(g_z, g_x)-90^{\circ}\,.
+  \theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)-180^{\circ}\,.
 \end{equation}
 
 \noindent
@@ -252,33 +260,33 @@ The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
 
 \begin{equation} \label{eq:measurement_vector}
   \mathbf{z} = \begin{bmatrix} z_1 \\ z_2 \\ z_3 \end{bmatrix} = \begin{bmatrix}
-  	\omega_1 + \beta_1, & \omega_1 + \omega_2 + \beta_2, & \theta_1 + \theta_2
+  	\omega_1 + \beta_1, & \omega_1 + \omega_2 + \beta_1 + \beta_2, & \theta_1 + \theta_2
   \end{bmatrix}^T + \mathbf{v}\,.
 \end{equation}
  
 \noindent
 where $\mathbf{v}$ is the random measurement noise process, modelled as zero-mean, Gaussian white noise. The element $z_1$ represents the measurement of the first link angular velocity, which is the sum of the first link rotation and the gyroscope $1$ bias. The element $z_2$ represents the measurement of the second link angular velocity, which is the sum of the first and second link rotation and the bias of gyroscope $1$ and gyroscope $2$. Finally, the element $z_3$ is the angle estimate of the second accelerometer, which will see the angular displacement of both links.
 
-According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations, known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} ordinary differential equations
+According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dynamics of a system can be expressed as a set of $n$ coupled first-order ordinary differential equations, known as the \emph{state equations}. The modelled system is governed by the \emph{non-linear} first-order ordinary differential equations
 
 \begin{equation} \label{eq:state_vector_derivative}
   \dot{\mathbf{x}} = \mathbf{f}(\mathbf{x}, t) + \mathbf{w} = \left[\begin{smallmatrix}
   -l_1 \omega_1 \sin(\theta_1)  - l_2 (\omega_1 + \omega_2) \sin(\theta_1 + \theta_2) \\
   -l_1 \omega_1 \cos(\theta_1)  - l_2 (\omega_1 + \omega_2) \cos(\theta_1 + \theta_2) \\ \omega_1 \\ \alpha_1 \\ 0 \\ \omega_2 \\ \alpha_2 \\ 0 \\ 0 \\ 0
-  \end{smallmatrix}\right] + \mathbf{w}\,.
+  \end{smallmatrix}\right] + \mathbf{w}\,,
 \end{equation}
 
 \noindent
-where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the state vector $\mathbf{x}$, 
+where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the state vector $\mathbf{x}$, expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Its elements are given by
 
 \begin{equation}
   \dot{x}_i = f_i(x_1(t), \dots, x_n(t), t) + w_i = \frac{dx_i}{dt} + w_i\,, \quad i = 1, \dots, n\,,
 \end{equation}
 
 \noindent
-expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Given this \emph{state-space representation}, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is \emph{time-invariant} since it does not depend explicitly on time. Thus, we may leave out the $t$ and write from now on $\mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}, t)$.
+The noise term $\mathbf{w}$, modelled as zero-mean, Gaussian white noise again represents the uncertainty in the model. Given this \emph{state-space representation}, the system state at any instant may be interpreted as a point in an $n$-dimensional state space whose axes are the state variables. The dynamic state response $\mathbf{x}(t)$ can be interpreted as a trajectory traced out in the state space. The system described by Equation \ref{eq:state_vector_derivative} is \emph{time-invariant}, since it does not depend explicitly on time. Thus, we may leave out the $t$ and write from now on $\mathbf{f}(\mathbf{x}) = \mathbf{f}(\mathbf{x}, t)$.
 
-For a \emph{linear} system in state space form given by
+For a \emph{linear} system in state-space form given by
 
 \begin{equation}\label{eq:linear_continuous}
   \dot{\mathbf{x}} = \mathbf{F} \mathbf{x}\,,
@@ -299,7 +307,7 @@ The solution to the system described by Equation \ref{eq:linear_continuous} is
 \end{equation}
 
 \noindent
-where $\mathbf{x}(t_0)$ is an integration constant. As outlined in \cite{zarchan2009fundamentals}, the state transition matrix can be found by a Taylor-series expansion of $e^{\mathbf{F}(t-t_0)}$
+where $\mathbf{x}(t_0)$ is an integration constant. As outlined in \cite{zarchan2009fundamentals}, the state transition matrix can be found by a Taylor-series expansion of $e^{\mathbf{F}(t-t_0)}$,
 
 \begin{equation}
 \begin{split}
@@ -310,21 +318,21 @@ where $\mathbf{x}(t_0)$ is an integration constant. As outlined in \cite{zarchan
 \end{equation}
  
 \noindent
-where $\mathbf{I}_n \in \mathbb{R}^{n \times n}$ is the identity matrix. Truncating the Taylor series after the first order terms yields the linear approximation of the fundamental matrix:
+where $\mathbf{I}_n \in \mathbb{R}^{n \times n}$ is the identity matrix. Truncating the Taylor series after the first order terms yields the \emph{linear approximation} of the fundamental matrix:
 
 \begin{equation}
   \bm{\Phi}(t-t_0) \approx \mathbf{I}_n + \mathbf{F}[t-t_0]\,.
 \end{equation}
 
 \noindent
-The discrete fundamental matrix that propagates the state of the system forward from the time step $k$ to $k+1$ can be found by substituting $T_s$ for $t-t_0$, which yields
+The discrete fundamental matrix that propagates the state of the system forward from time step $k$ to $k+1$ can be found by substituting $T_s$ for $t-t_0$, which yields
 
 \begin{equation}
   \bm{\Phi}_{k} = \bm{\Phi}(T_s) \approx \mathbf{I}_{n} + \mathbf{F} T_s\,,
 \end{equation}
 
 \noindent
-where $T_s$ is the sampling period. In the \emph{linear} case $\bm{\Phi}_{k}$ is constant. The subscript $k$ denotes here that it propagates the state by one time step.
+where $T_s$ is the sampling period. In the \emph{linear} case $\bm{\Phi}_{k}$ is constant.
 
 Because the state equations of our system are \emph{non-linear}, a first-order approximation of the system dynamics matrix $\mathbf{F}$ is used, given by the Jacobian of $\mathbf{f}(\mathbf{x})$
 
@@ -384,62 +392,84 @@ The estimate $\hat{\mathbf{x}}_{k-1}$ can be propagated forward to the \emph{a p
 \end{equation}
 
 \noindent
-where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs. A higher-order numerical integration procedure would not improve the \emph{a priori} estimate since the function $\mathbf{f}(\mathbf{x}, t)$ is constant over time.
+where $T_s$ is the integration interval. The control input $\mathbf{u}_k$ is equal to zero since the system does not have any inputs. A higher-order numerical integration procedure would not improve the \emph{a priori} estimate since the function $\mathbf{f}(\mathbf{x})$ is constant over time.
 
 The relation between the states and the measurements is \emph{linear}, according to Equation \ref{eq:time_dynamical_system_measurement}. The measurement matrix $\mathbf{H} \in \mathbb{R}^{3 \times 10}$ is given by 
 
 \begin{equation}
 \mathbf{H} = \begin{bmatrix}
   0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 1 & 0\\
-  0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 1\\
+  0 & 0 & 0 & 1 & 0 & 0 & 1 & 0 & 1 & 1\\
+  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
   0 & 0 & 1 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
 \end{bmatrix}\,.
 \end{equation}
 
-The process and measurement covariance matrices $\mathbf{Q} \in \mathbb{R}^{10 \times 10}$ and $\mathbf{R} \in \mathbb{R}^{3 \times 3}$, respectively, are given by
+The constant process noise covariance matrix $\mathbf{Q} \in \mathbb{R}^{10 \times 10}$ is given by
 
 \begin{equation}
-\mathbf{Q} = \begin{bmatrix}
-  \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & \sigma_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^9_{\theta 1}}{9} & \frac{\sigma^4_{\theta 1}}{4} & \frac{\sigma^5_{\theta 1}}{5} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^4_{\theta 1}}{4} & \frac{\sigma^3_{\theta 1}}{3} & \frac{\sigma^2_{\theta 1}}{2} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^5_{\theta 1}}{5} & \frac{\sigma^2_{\theta 1}}{2} & \sigma_{\theta 1} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^9_{\theta 2}}{9} & \frac{\sigma^4_{\theta 2}}{4} & \frac{\sigma^5_{\theta 2}}{5} & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^4_{\theta 2}}{4} & \frac{\sigma^3_{\theta 2}}{3} & \frac{\sigma^2_{\theta 2}}{2} & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^5_{\theta 2}}{5} & \frac{\sigma^2_{\theta 2}}{2} & \sigma_{\theta 2} & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma_{\beta} & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma_{\beta}\\
+\begin{split}
+\mathbf{Q} &= \begin{bmatrix}
+ \operatorname{Cov}(w_1,w_1) & \operatorname{Cov}(w_1,w_2) & \cdots & \operatorname{Cov}(w_1,w_n) \\ \\
+ \operatorname{Cov}(w_2,w_1) & \operatorname{Cov}(w_2,w_2) & \cdots & \operatorname{Cov}(w_2,w_n) \\ \\
+ \vdots & \vdots & \ddots & \vdots \\ \\
+ \operatorname{Cov}(w_n,w_1) & \operatorname{Cov}(w_n,w_2) & \cdots & \operatorname{Cov}(w_n,w_n)
+\end{bmatrix} \\
+&= \begin{bmatrix}
+  \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^9_{\theta_1}}{9} & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^5_{\theta_1}}{5} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^3_{\theta_1}}{3} & \frac{\sigma^2_{\theta_1}}{2} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^5_{\theta 1}}{5} & \frac{\sigma^2_{\theta_1}}{2} & \sigma_{\theta_1} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^9_{\theta_2}}{9} & \frac{\sigma^4_{\theta_2}}{4} & \frac{\sigma^5_{\theta_2}}{5} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^4_{\theta_2}}{4} & \frac{\sigma^3_{\theta_2}}{3} & \frac{\sigma^2_{\theta_2}}{2} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^5_{\theta_2}}{5} & \frac{\sigma^2_{\theta_2}}{2} & \sigma_{\theta_2} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma^2_{\beta} & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma^2_{\beta}\\
 \end{bmatrix}\,.
+\end{split}
 \end{equation}
+
+\noindent
+The diagonal elements represent the respective variances of the elements $w_1, \dots, w_n$ of the process noise vector $\mathbf{w}$, due to the relation $\operatorname{Cov}(w_i,w_i) = \operatorname{Var}(w_i)$. The other elements are the covariances of all possible pairs of the random variables of the process noise vector. The noise processes interfering with the state variables $x$ and $y$, and $\beta_1$ and $\beta_2$, respectively, were modelled as independent. In contrast, the covariances of the noise components interfering with the state variables $\theta_i, \omega_i, \alpha_i, i \in {1, 2}$, which account for the block-diagonal structure, reflect a random walk process, that is, the integration of a signal perturbed by Gaussian white noise. A detailed derivation of the form of the elements is found in \cite{Kelly_1994_random}. The parameters $\sigma_d, \sigma_{\theta_1}, \sigma_{\theta_2},$ and $\sigma_{\beta}$ were determined by tuning for the best performance.
+
+The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{3 \times 3}$, is given by
 
 \begin{equation}
 \mathbf{R} = \begin{bmatrix}
-  \sigma_1 & 0 & 0\\
-  0 & \sigma_2 & 0\\
-  0 & 0 & \sigma_3
+  \sigma^2_1 & 0 & 0 & 0\\
+  0 & \sigma^2_2 & 0 & 0\\
+  0 & 0 & \sigma^2_3 & 0\\
+  0 & 0 & 0 & \sigma^2_3
 \end{bmatrix}\,,
 \end{equation}
 
-\noindent
-The process noise covariance matrix $\mathbf{Q}$ is constant. The parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ are determined by tuning for the best performance. The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample variance of the measurement data during an initialisation stage of two seconds, while the subject stands still. The variance of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is
+The elements $\sigma_1$ and $\sigma_2$ of $\mathbf{R}$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
 
 \begin{equation}
-  \sigma = \frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
+  \sigma = \sqrt{\frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
 \end{equation}
 
 \noindent
-The variance $\sigma_3$ is set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
+with
 
 \begin{equation}
-  \sigma_3 = \begin{pmatrix}
-  	\sigma_s & < \delta\\
-  	\sigma_f & \mbox{else}
-  \end{pmatrix}
+  n = T_{\text{init}} f_s\,.
+\end{equation}
+
+
+\noindent
+The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based angle estimates are set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
+
+\begin{equation}
+  \sigma^2_3 = \sigma^2_4 = \begin{cases}
+  	\sigma_s & \qquad m_k = 1 \\
+  	\sigma_f & \qquad {else}
+  \end{cases}
 \end{equation}
 
 \noindent
-In order to determine the motion intensity we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal. The algorithm delivers a marker signal that can be used to set the correct variance, according to the motion intensity.
+where $m_k$ is the value of a marker signal, which toggles between $1$ and $0$. In order to determine the motion intensity we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal. The algorithm delivers a marker signal that can be used to set the correct variance, according to the motion intensity.
 
 \subsubsection{Summary of the Entire Filter Algorithm}
 
@@ -456,7 +486,7 @@ The state estimates are computed recursively according to the \emph{time update}
     
 \node [block, align=center] (init) {Initialisation of parameters \\[2mm]  $\mathbf{x}_{0}, \mathbf{P}_{0}, \mathbf{H}, \mathbf{Q}, \mathbf{R}_{0},$};
 \node [block, align=center, below of=init, node distance=3.8cm] (predict) {\emph{Time update} \\[2mm] Compute fundamental matrix: \\ $\bm{\Phi}^{[1]}_{k-1} \approx \mathbf{I}_{n} + \mathbf{F}_{k-1} T_s$ \\ Compute \emph{a priori} estimate: \\ $\hat{\mathbf{x}}^{-}_k = \bm{\Phi}^{[1]}_{k-1} \hat{\mathbf{x}}_{k-1}$ \\ Compute \emph{a priori} error covariance: \\ $\mathbf{P}^-_{k} = \bm{\Phi}^{[1]}_{k-1} \mathbf{P}_{k-1} \bm{\Phi}^{[1]T}_{k-1} + \mathbf{Q}_{k-1}$};
-\node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -l_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - l_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -l_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - l_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{==i}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - \frac{\pi}{2}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
+\node [block, align=center, below of=predict, node distance=6.65cm] (measurement) {\emph{Correct sensor readings} \\[2mm] Compute acceleration due to motion: \\ $\ddot{x} = -l_1 [\omega^2_1 \cos \theta_1 + \alpha_1 \sin \theta_1] - l_2 [(\omega_1 + \omega_2)^2$ \\ $\mathrel{\phantom{=}}\cdot \cos(\theta_1 + \theta_2) + (\alpha_1 + \alpha_2) \sin(\theta_1 + \theta_2)]$ \\ $\ddot{z} = -l_1 [\alpha_1 \cos \theta_1 - \omega^2_1 \sin \theta_1] - l_2 [(\alpha_1 + \alpha_2)$ \\ $\mathrel{\phantom{==i}} \cdot \cos(\theta_1 + \theta_2) + (\omega_1 + \omega_2)^2 \sin(\theta_1 + \theta_2)]$ \\ Rotate acceleration to body frame: \\ $A_{rad} = \mathbf{T}^T_y(\theta_1 + \theta_2 - 90^{\circ}) \ddot{x}$ \\ $A_{tan} = \mathbf{T}^T_y(\theta_1 + \theta_2 - 90^{\circ}) \ddot{z}$ \\ Compute gravity estimate: \\ $\mathbf{g} = \begin{bmatrix}
     g_x \\
     g_y 
     \end{bmatrix} = 
@@ -501,14 +531,14 @@ Each trial began with the subject standing still and it was assumed that the sub
 \begin{matrix}
 	\begin{split}
 	  x &= 0\,m\,, \\
-	  \theta_1 &= -\frac{\pi}{2}\,^{\circ}\,, \\
+	  \theta_1 &= -90^{\circ}\,, \\
 	  \omega_1 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_1 &= \mu_1\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,
 \end{split} \qquad \quad
     \begin{split}
    	  z &= -(l_1+l_2)\,m\,, \\
-	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{\frac{\pi}{2}}}\\
+	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
 	  \omega_2 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_2 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,  
@@ -517,10 +547,10 @@ Each trial began with the subject standing still and it was assumed that the sub
 \end{equation}
 
 \noindent
-where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected during the initial $T_{in}=2\,\mbox{s}$ of the rest period before the subject started moving. The mean value is given by
+where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected during the initial $T_{\text{init}} = 2\,\mbox{s}$ of the rest period before the subject started moving. The mean value is given by
 
 \begin{equation}
-  \mu = \frac{1}{n} \sum_{i=k}^{n}{\omega_k}\,, \quad n = T_{in} f_s\,,
+  \mu = \frac{1}{n} \sum_{k=1}^{n}{\omega_k}\,, \quad n = T_{\text{init}} f_s\,,
 \end{equation}
 
 \noindent
