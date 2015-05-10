@@ -40,7 +40,7 @@ clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'no';
-showPlotsAPA = 'no';
+showPlotsAPA = 'yes';
 showPlotsCorr = 'no';
 
 % -------------------------------------------------------------------------
@@ -982,7 +982,10 @@ value_APA_trunk_Y_1 = abs(value_APA_trunk_Y_c - a_trunk_data_Y(...
                         initcross_trunk_complete));
 [corr_trunk_ML_3, prob_trunk_ML_3] = corr(value_APA_trunk_Y_1',...
                                     value_APA_ML_COP_c_2');
-
+                                
+value_APA_trunk_Y_2 = abs(value_APA_trunk_Y_c - mode(a_trunk_data_Y));
+[corr_trunk_ML_4, prob_trunk_ML_4] = corr(value_APA_trunk_Y_2',...
+                                    value_APA_ML_COP_c');
 % Correlation gyroscope signal.
 value_APA_trunk_Gyro_Y_1 = abs(value_APA_trunk_Gyro_Y - g_trunk_data_Y(...
                             initcross_trunk_complete));
