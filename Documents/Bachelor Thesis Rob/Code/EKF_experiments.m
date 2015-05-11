@@ -1,16 +1,21 @@
 clear all; close all; clc;
 
-% Load data.
-load('GaitWatch data Alberto.mat');
-load('Q_leg_pitch.mat');
+% Load existing angle estimates based on the existing
+% algorithms and the Qualisys motion capture system.
+load('GaitWatch_data.mat');
+load('Qualisys_data.mat');
 
-% Compute length of signal vectors.
+% Compute length of the signal vectors.
 len = length(a_X_right_thigh_1_C);
 
-% Compute pitch angles with EKF and store state vector
-% at each time step in x.
+% Compute pitch angles with extended Kalman filter.
+% Additionally, store the internal state vector at each
+% time step in x, the motion based acceleration in a_m,
+% and the angle estimate theta_1 + theta_2, based on 
+% the corrected acceleration signal in theta12_c.
 [pitch_EKF_right_thigh, pitch_EKF_right_shank, ...
- theta12_c, a_m, x] = fusion_EKF(g_Y_right_thigh_1_C', ...
+ theta12_c, a_m, x] = fusion_EKF( ...
+                            g_Y_right_thigh_1_C', ...
                             g_Y_right_shank_1_C', ...
                             a_X_right_thigh_1_C', ...
                             a_Z_right_thigh_1_C', ...

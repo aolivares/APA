@@ -3,7 +3,7 @@
 % and Kalman filtered GaitWatch data which were produced by progarm main.m
 % -------------------------------------------------------------------------
 
-load('GaitWatch data Alberto.mat')
+load('GaitWatch_data.mat')
 
 KF_leg_pitch = [pitch_KF_right_shank, pitch_KF_right_thigh, pitch_KF_left_shank, pitch_KF_left_thigh];
 
@@ -153,7 +153,7 @@ for n=1:4                                                                       
         [~,~] = ginput(1);
     end
     
-    Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n));                            % position is set to zero during quiet standing
+     Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n));                            % position is set to zero during quiet standing
     KF_leg_pitch(:,n) = KF_leg_pitch(:,n) - mean(KF_leg_pitch(an_en_kf(1):an_en_kf(2),n));                       % position is set to zero during quiet standing
     
     
@@ -215,5 +215,12 @@ end
 
 
 
+pitch_QS_right_shank = Q_leg_pitch(:, 1)';
+pitch_QS_right_thigh = Q_leg_pitch(:, 2)';
+pitch_QS_left_shank = Q_leg_pitch(:, 3)';
+pitch_QS_left_thigh = Q_leg_pitch(:, 4)';
 
+save('Data/Qualisys_data', 'pitch_QS_right_shank', ...
+     'pitch_QS_right_thigh', 'pitch_QS_left_shank', ...
+     'pitch_QS_left_thigh');
 

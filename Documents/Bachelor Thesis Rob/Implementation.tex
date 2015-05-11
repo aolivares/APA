@@ -63,7 +63,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
    \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k-1} + \omega_{k} \right]\,, \quad \theta(0) = \theta_{0}\,.
   \end{equation}
   
-  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the comparison of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of nearly $500^{\circ}$ in only eighteen seconds for this exemplary signal.
+  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the comparison of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of nearly $600^{\circ}$ in only eighteen seconds for this exemplary signal.
   
 \begin{figure}
 	\centering
@@ -73,7 +73,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_1}
 	\includegraphics[width=\textwidth]{Tikz/experiment_1.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis, obtained by the projection of the gravity vector and by integrating the angular rate.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis, obtained by the projection of the gravity vector and by integrating the angular rate, in comparison to the reference.}
 	\label{fig:experiment_1}
 \end{figure}
   
