@@ -1,6 +1,8 @@
-function [theta1, theta2, X, p] = fusion_EKF(gyro_thigh_y, ...
-          gyro_shank_y, acc_thigh_x, acc_thigh_z, ...
-          acc_shank_x, acc_shank_z, fs, l1, l2)
+function [theta1, theta2, theta12_c, a_m, X] = ...
+    fusion_EKF(gyro_thigh_y, gyro_shank_y, ...
+               acc_thigh_x, acc_thigh_z, ...
+               acc_shank_x, acc_shank_z, ...
+               fs, l1, l2)
 
 % FUNCTION fusion_EKF applies an extended Kalman filter
 % in order to fuse the accelerometer and gyroscope data
@@ -40,6 +42,15 @@ function [theta1, theta2, X, p] = fusion_EKF(gyro_thigh_y, ...
 % |_ 'theta2':        Row vector containing the shank 
 %                     angle with respect to the thigh
 %                     in radians.
+% |_ 'theta2':        Row vector containing the shank 
+%                     angle with respect to the thigh
+%                     in radians.
+% |_ 'a_m':           Row vector containing the 
+%                     estimate of the acceleration that
+%                     sensor 2 will see due to motion.
+% |_ 'X':             10 x length(gyro_thigh_y) matrix
+%                     containing the internal state
+%                     vector at each instant as columns.
 %
 % IMPORTANT NOTE:     gyro_thigh_y, gyro_shank_y, 
 %                     acc_thigh_x, acc_thigh_z, 
@@ -94,12 +105,19 @@ Ts = 1 / fs;
 len = length(gyro_thigh_y);
 gravity = 9.81;
 
-% 4) Compute correction factor. This factor will be used 
-%    throughout the entire code in order to convert 
-%    degrees into radians.
+% 4) Compute correction factor. This factor will be 
+%    used throughout the entire code in order to
+%    convert degrees into radians.
 c_w = pi / 180;
 
-% 4) Compute intensity level.
+% 5) Initialise output vectors.
+theta1 = zeros(1, len);
+theta2 = zeros(1, len);
+theta12_c = zeros(1, len);
+a_m = zeros(3, len);
+X = zeros(10, len);
+
+% 6) Compute intensity level.
 
 lwin_fsd = 20;    
 threshold_fsd = 3;    
@@ -108,31 +126,31 @@ input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
 [V_fsd, T_fsd] = wag.ltsd(input_signal', lwin_fsd, ...
                         shift_fsd, 512, threshold_fsd);
                    
-% 5) Determine marker signal.
+% 7) Determine marker signal.
 [marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
                              input_signal, lwin_fsd, ...
                              shift_fsd);
                             
 % INITIALISATION OF PARAMETERS %
                             
-% 6) Compute mean of the first two seconds of the
+% 8) Compute mean of the first two seconds of the
 %    gyroscope signals.
 mu1 = mean(gyro_thigh_y(1:2*fs));
 mu2 = mean(gyro_shank_y(1:2*fs));
 
-% 7) Initialise the state vector.
+% 9) Initialise the state vector.
 x = [0, -(l1+l2), -90, 0, 0, -10, 0, 0, mu1, mu2]';
 
-% 8) Initialise the error covariance matrix.
+% 10) Initialise the error covariance matrix.
 P = diag(ones(1, 10) * 0.1);
 
-% 9) Define the measurement matrix.
+% 11) Define the measurement matrix.
 H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 0 1 0 0 1 0 1 1; ...
      0 0 1 0 0 0 0 0 0 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
-% 10) Define process noise covariance matrix.
+% 12) Define process noise covariance matrix.
 sigma_d = 0.0001;
 sigma_t1 = 0.003;
 sigma_t2 = 0.003;
@@ -149,20 +167,20 @@ sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 0 0 0 0       0             0          0 sigma_b 0; ...
 0 0 0 0 0       0             0          0 0 sigma_b];
 
-% 11) Compute sample variance of the first two
+% 13) Compute sample variance of the first two
 %     seconds of the gyroscope signals.
 sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
-% 12) Define measurement noise covariance matrix.
+% 14) Define measurement noise covariance matrix.
 sigma_f = 1;
 sigma_s = 0.01;
-R = [sigma_1    0       0     0; ...
-        0    sigma_2    0     0; ...
-        0       0    sigma_s  0; ...
-        0       0       0   sigma_s];
+R = [sigma_1    0       0      0; ...
+        0    sigma_2    0      0; ...
+        0       0    sigma_s   0; ...
+        0       0       0    sigma_s];
     
-% 13) Define matrix function f.
+% 15) Define matrix function f.
 function f_k = f
     
 	f_k = [- l1 * c_w * x(4) * sind(x(3)) ...
@@ -182,7 +200,7 @@ function f_k = f
 
 end
 
-% 14) Define Jacobian of F.
+% 16) Define Jacobian of F.
 function F_k = F
 
     A = - l1 * c_w * x(4) * cosd(x(3)) ...
@@ -209,32 +227,12 @@ function F_k = F
 
 end
 
-% 15) Initialise output vectors.
-theta1 = zeros(1, len);
-theta2 = zeros(1, len);
-
-% Additional output vectors for testing.
-p = zeros(4, len);
-X = zeros(10, len);
-
-% 16) Filter loop.
+% 17) Filter loop.
 for i=1:1:len
-    
-    % Set sigma_3 in measurement noise covariance
-    % matrix according to motion intensity.
-    if marker(i) == 1
-       R(3, 3) = sigma_f;
-       R(4, 4) = sigma_f;
-    end
-    
-    if marker(i) == 0
-       R(3, 3) = sigma_s;
-       R(4, 4) = sigma_s;
-    end
     
     % TIME UPDATE %
     
-    % Compute state transition matrix.
+    % Compute fundamental matrix.
     Phi = eye(10) + F * Ts;
     
     % Compute a priori state estimate.
@@ -245,7 +243,8 @@ for i=1:1:len
     
     % CORRECT SENSOR READINGS %
     
-    % Compute acceleration due to motion.
+    % Compute acceleration due to motion, based on 
+    % a priori state estimate.
     ax = - l1 * ((c_w * x(4))^2 * cosd(x(3)) ...
          + c_w * x(5) * sind(x(3))) ...
          - l2 * ((c_w * x(4) + c_w * x(7))^2 ...
@@ -269,21 +268,34 @@ for i=1:1:len
           cosd(x(3) + x(6) + 90)];
      
     % Rotate acceleration to body frame.
-    a = Tz * [ax_n; 0; az_n];
+    a_mb = Tz * [ax_n; 0; az_n];
 
-    % Compute gravity estimate.
-    g_c = [acc_shank_x(i); 0; acc_shank_z(i)] - a;
+    % Compute gravity estimate by subtracting 
+    % motion-based acceleration from sensor readings.
+    g_c = [acc_shank_x(i); 0; acc_shank_z(i)] - a_mb;
      
     % Constitute the measurement vector from the
-    % gyroscope signals and the corrected angle
-    % estimate theta_1 + theta_2.
+    % gyroscope signals, theta_1, and the corrected 
+    % angle estimate theta_1 + theta_2.
     z = [gyro_thigh_y(i); gyro_shank_y(i); 0; 0];
     z(3) = atan2d(acc_thigh_z(i), acc_thigh_x(i)) - 180;
     z(4) = atan2d(g_c(3), g_c(1)) - 180;
     
-    % For testing.
-     p(1, i) = z(3);
-     p(2, i) = z(4);
+    % Output map.
+    theta12_c(i) = z(4);
+    a_m(:, i) = a_mb;
+    
+    % Set sigma_3 in measurement noise covariance
+    % matrix according to motion intensity.
+    if marker(i) == 1
+       R(3, 3) = sigma_f;
+       R(4, 4) = sigma_f;
+    end
+    
+    if marker(i) == 0
+       R(3, 3) = sigma_s;
+       R(4, 4) = sigma_s;
+    end
     
     % MEASUREMENT UPDATE %
     

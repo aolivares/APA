@@ -459,17 +459,17 @@ with
 
 
 \noindent
-The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based angle estimates are set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a threshold $\delta$:
+The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based angle estimates are set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a marker signal $m$:
 
 \begin{equation}
   \sigma^2_3 = \sigma^2_4 = \begin{cases}
   	\sigma_s & \quad m_k = 0 \\
   	\sigma_f & \quad m_k = 1
-  \end{cases}
+  \end{cases}\,.
 \end{equation}
 
 \noindent
-where $m_k$ is the value of a marker signal, which toggles between $1$ and $0$. In order to determine the marker signal we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal.
+The value of a marker signal toggles between $1$ and $0$. In order to determine the marker signal we used the long term spectral detector \gls{LTSD} developed in \cite{olivares_vicente_gaitwatch_2013}, which distinguishes between fast and slow motion by computing the long term spectral envelope of the signal.
 
 \subsubsection{Summary of the Entire Filter Algorithm}
 
@@ -535,7 +535,7 @@ Each trial began with the subject standing still and it was assumed that the sub
 	  \theta_1 &= -90^{\circ}\,, \\
 	  \omega_1 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_1 &= \mu_1\,\frac{^{\circ}}{\mbox{s}}\,, \\
-	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,
+	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,, 
 \end{split} \qquad \quad
     \begin{split}
    	  z &= -(l_1+l_2)\,\mbox{m}\,, \\
@@ -544,7 +544,8 @@ Each trial began with the subject standing still and it was assumed that the sub
 	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_2 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,  
 \end{split}
-\end{matrix}
+\end{matrix} \\
+	  m_0 = 0
 \end{equation}
 
 \noindent
@@ -561,21 +562,21 @@ The initial error covariance matrix $\mathbf{P}_{0}$ was given by
 
 \begin{equation}
 \mathbf{P}_0 = \begin{bmatrix}
-  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1\\
+  0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0\\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1\\
 \end{bmatrix}\,.
 \end{equation}
 
 \noindent
-Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge of the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
+Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge about the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
 
 \subsection{Parameterisation}
 
@@ -584,11 +585,10 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 \begin{equation}
 \begin{matrix}
 	\begin{split}
-	  \sigma_d &= 10^{-4}\,\mbox{m}\,, \\
+	  \sigma^2_d &= 10^{-4}\,\mbox{m}\,, \\
 	  \sigma_{\theta_1} &= 3 \times 10^{-4}\,^{\circ} \,, \\
 	  \sigma_{\theta_2} &= 3 \times 10^{-4}\,^{\circ} \,, \\
-	  \sigma_{\beta} &= 10^{-11} \, \frac{^{\circ}}{\mbox{s}} \,, \\
-	  m_0 &= 0\,,
+	  \sigma^2_{\beta} &= 10^{-11} \, \frac{^{\circ}}{\mbox{s}} \,,
 \end{split} \qquad \quad
     \begin{split}
 	  \sigma_1 &= \,, \\
@@ -681,6 +681,46 @@ This section presents the results obtained by the experiments. Listing \ref{lis:
 	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
 	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.}
 	\label{fig:experiment_11}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_12}
+	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
+	\caption{Acceleration signal in $x$-direction, with and without motion correction}
+	\label{fig:experiment_12}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_13}
+	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
+	\caption{Acceleration signal in $x$-direction, with and without motion correction - higher temporal resolution}
+	\label{fig:experiment_13}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_14}
+	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
+	\caption{Acceleration signal in $z$-direction, with and without motion correction}
+	\label{fig:experiment_14}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_15}
+	\includegraphics[width=\textwidth]{Tikz/experiment_15.tikz}
+	\caption{Acceleration signal in $z$-direction, with and without motion correction - higher temporal resolution}
+	\label{fig:experiment_15}
 \end{figure}
 
 \section{Discussion}
