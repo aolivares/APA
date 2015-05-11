@@ -1,7 +1,8 @@
 clear all; close all; clc;
 
 % Load data.
-load('data.mat');
+load('GaitWatch data Alberto.mat');
+load('Q_leg_pitch.mat');
 
 % Compute length of signal vectors.
 len = length(a_X_right_thigh_1_C);
@@ -23,6 +24,7 @@ n1 = 1;
 n2 = 80 * f;
 figure4 = figure(4);
 hold on;
+plot(time(n1:n2), Q_leg_pitch(n1:n2,2)*180/pi+mean(pitch_acc_right_thigh(300))-90);
 plot(time(n1:n2), pitch_acc_right_thigh(n1:n2)-90);
 plot(time(n1:n2), pitch_GKF_right_thigh(n1:n2)-90, ...
      time(n1:n2), pitch_EKF_right_thigh(n1:n2), ...
@@ -31,13 +33,13 @@ plot(time(n1:n2), pitch_GKF_right_thigh(n1:n2)-90, ...
 xlabel('Time $t$ in s', 'interpreter','latex');
 ylabel(['Pitch angle $\theta_1$ in ', ...
         '$^{\circ}$'], 'interpreter','latex');
-legend('Accelerometer-based', 'Gated Kalman filter', ...
+legend('Qualisys', 'Accelerometer-based', 'Gated Kalman filter', ...
        'Extended Kalman filter');
    
-cleanfigure('minimumPointsDistance', 1);
+%cleanfigure('minimumPointsDistance', 1);
     
-matlab2tikz('../tikz/experiment_4.tikz', 'height', ...
-            '\figureheight', 'width', '\figurewidth');
+%matlab2tikz('../tikz/experiment_4.tikz', 'height', ...
+%            '\figureheight', 'width', '\figurewidth');
 
 % Plot: Thigh angle estimate - acceleration-based,
 %       GKF, and EKF.
@@ -45,6 +47,7 @@ n1 = 62 * f + 1;
 n2 = 76 * f;
 figure5 = figure(5);
 hold on;
+plot(time(n1:n2), Q_leg_pitch(n1:n2,2)*180/pi+mean(pitch_acc_right_thigh(300))-90);
 plot(time(n1:n2), pitch_acc_right_thigh(n1:n2)-90);
 plot(time(n1:n2), pitch_GKF_right_thigh(n1:n2)-90, ...
      time(n1:n2), pitch_EKF_right_thigh(n1:n2), ...
@@ -56,10 +59,10 @@ ylabel(['Pitch angle $\theta_1$ in ', ...
 legend('Accelerometer-based', 'Gated Kalman filter', ...
        'Extended Kalman filter');
    
-cleanfigure('minimumPointsDistance', 1);
+%cleanfigure('minimumPointsDistance', 1);
     
-matlab2tikz('../tikz/experiment_5.tikz', 'height', ...
-            '\figureheight', 'width', '\figurewidth');
+%matlab2tikz('../tikz/experiment_5.tikz', 'height', ...
+%            '\figureheight', 'width', '\figurewidth');
 
 % Plot: Shank angle estimate - acceleration-based,
 %       GKF, and EKF.

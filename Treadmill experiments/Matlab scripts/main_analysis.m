@@ -7,7 +7,7 @@
 % Qualisys optical system. 
 
 % *************************************************************************
-% - Authors: Dr. Prof. med. Kai Bötzel and Dr. Eng. Alberto Olivares.
+% - Authors: Dr. Prof. med. Kai B?tzel and Dr. Eng. Alberto Olivares.
 % - Entities: Ludwig-Maximilian University and University of Granada.
 % - Last revision: 10/03/2014.
 % *************************************************************************
@@ -90,5 +90,48 @@ end
 [Selection,ok] = listdlg('ListString',nan_list,'Name',...
     'Select the marker data you wish to correct','ListSize',[450 400],'SelectionMode',...
     'multiple');
+
+% calculate angular position of each marker trialgle in 2D
+% and put them into data array Q_leg_pitch
+% [pitch_KF_right_shank, pitch_KF_right_thigh, pitch_KF_left_shank, pitch_KF_left_thigh];
+
+Q_leg_pitch = zeros(length(data),4);
+
+
+order = {   'right lo shank','right up shank','right back shank';...
+            'right lo thigh','right up thigh','right back thigh';...
+            'left lo shank','left up shank','left back shank';...
+            'left lo thigh','left up thigh','left back thigh';...
+            'right hip','back hip','left hip'};
+x=1;z=3;lag = zeros(4,1);
+figure(1)
+%  big_ax=axes('position', [0 0 1 1],'visible', 'off');
+
+for n=1:4                                                                       % 4 leg segments
+    m1=0;m2=0;m3=0;
+    
+    for n2=1:3                                                                  % 3 markers
+        ind = 1; %find(strcmp(order{n,n2},data_labels));
+        if isempty(ind)
+            fprintf('Error: cannot find match for %s\n',order{n,n2})
+            beep
+        else
+            switch n2
+                case 1, m1 = ind;
+                case 2, m2 = ind;
+                case 3, m3 = ind;
+            end
+        end
+    end
+    
+    
+    
+    seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:)-data(m2,z,:))));        % marker 1,2: x/z
+    seg_2 = -atan(squeeze((data(m2,z,:)-data(m3,z,:))./(data(m2,x,:)-data(m3,x,:))));        % marker 2,3: z/x
+    seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:)-data(m3,x,:))));        % marker 3,1: x/z
+
+     Q_leg_pitch(:,n) = mean([seg_1 seg_2 seg_3],2);
+     
+end
 
 
