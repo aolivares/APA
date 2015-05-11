@@ -153,8 +153,8 @@ for n=1:4                                                                       
         [~,~] = ginput(1);
     end
     
-     Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n));                            % position is set to zero during quiet standing
-    KF_leg_pitch(:,n) = KF_leg_pitch(:,n) - mean(KF_leg_pitch(an_en_kf(1):an_en_kf(2),n));                       % position is set to zero during quiet standing
+%      Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n));                            % position is set to zero during quiet standing
+%     KF_leg_pitch(:,n) = KF_leg_pitch(:,n) - mean(KF_leg_pitch(an_en_kf(1):an_en_kf(2),n));                       % position is set to zero during quiet standing
     
     
     
