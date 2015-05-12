@@ -2,8 +2,8 @@ clear all; close all; clc;
 
 % Load existing angle estimates based on the existing
 % algorithms and the Qualisys motion capture system.
-load('GaitWatch_data.mat');
-load('Qualisys_data.mat');
+load('GaitWatch_data_2.mat');
+load('Qualisys_data_2.mat');
 
 % Compute length of the signal vectors.
 len = length(a_X_right_thigh_1_C);

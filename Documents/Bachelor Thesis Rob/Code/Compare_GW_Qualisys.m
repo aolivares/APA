@@ -1,18 +1,21 @@
+close all; clear all; clc;
+
 % -------------------------------------------------------------------------
 % 1) Load original GaitWatch data
 % and Kalman filtered GaitWatch data which were produced by progarm main.m
 % -------------------------------------------------------------------------
 
-load('GaitWatch_data.mat')
+load('GaitWatch_data_2.mat')
 
 KF_leg_pitch = [pitch_KF_right_shank, pitch_KF_right_thigh, pitch_KF_left_shank, pitch_KF_left_thigh];
+acc_leg_pitch = [pitch_acc_right_shank, pitch_acc_right_thigh, pitch_acc_left_shank, pitch_acc_left_thigh];
 
 % -------------------------------------------------------------------------
 % 1) Load corresponding Qualisys data
 % -------------------------------------------------------------------------
 
-fn = 'gw_subj5_04';
-load('gw_subj5_04.mat')
+fn = 'gw_subj5_03';
+load('gw_subj5_03.mat')
 
 % eval([fn,'.Trajectories.Labeled.Labels{1}']);
 SampRate = eval([fn,'.FrameRate']);
@@ -101,7 +104,7 @@ for n=1:4                                                                       
     
     
     
-    seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:)-data(m2,z,:))));        % marker 1,2: x/z
+seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:)-data(m2,z,:))));        % marker 1,2: x/z
     seg_2 = -atan(squeeze((data(m2,z,:)-data(m3,z,:))./(data(m2,x,:)-data(m3,x,:))));        % marker 2,3: z/x
     seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:)-data(m3,x,:))));        % marker 3,1: x/z
 
@@ -133,7 +136,7 @@ for n=1:4                                                                       
     title('Mean of 3 segments of one marker triangle')
     
     subplot(5,1,5)
-    plot(KF_leg_pitch(:,n)) %KF_leg_pitch
+    plot(KF_leg_pitch(:,n)) 
     title('KF leg pitch')
     
     
@@ -153,10 +156,9 @@ for n=1:4                                                                       
         [~,~] = ginput(1);
     end
     
-%      Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n));                            % position is set to zero during quiet standing
-%     KF_leg_pitch(:,n) = KF_leg_pitch(:,n) - mean(KF_leg_pitch(an_en_kf(1):an_en_kf(2),n));                       % position is set to zero during quiet standing
-    
-    
+    bias = mean(acc_leg_pitch(an_en_kf(1):an_en_kf(2),n)) * pi / 180;
+    Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - mean(Q_leg_pitch(an_en_q(1):an_en_q(2),n)) + bias;                         % position is set to zero during quiet standing
+    % KF_leg_pitch(:,n) = KF_leg_pitch(:,n) - mean(KF_leg_pitch(an_en_kf(1):an_en_kf(2),n));  
     
      maxlag=round(length(data)/5);
     [c,lags] = xcorr(Q_leg_pitch(:,n),KF_leg_pitch(:,n),maxlag);
@@ -171,8 +173,6 @@ for n=1:4                                                                       
         
         
     [~,~] = ginput(1);    
-
-    
     
 end
         
@@ -215,12 +215,12 @@ end
 
 
 
-pitch_QS_right_shank = Q_leg_pitch(:, 1)';
-pitch_QS_right_thigh = Q_leg_pitch(:, 2)';
-pitch_QS_left_shank = Q_leg_pitch(:, 3)';
-pitch_QS_left_thigh = Q_leg_pitch(:, 4)';
+pitch_QS_right_shank = Q_leg_pitch(:, 1)' * 180/pi;
+pitch_QS_right_thigh = Q_leg_pitch(:, 2)' * 180/pi;
+pitch_QS_left_shank = Q_leg_pitch(:, 3)' * 180/pi;
+pitch_QS_left_thigh = Q_leg_pitch(:, 4)' * 180/pi;
 
-save('Data/Qualisys_data', 'pitch_QS_right_shank', ...
+save('Qualisys_data_2', 'pitch_QS_right_shank', ...
      'pitch_QS_right_thigh', 'pitch_QS_left_shank', ...
      'pitch_QS_left_thigh');
 

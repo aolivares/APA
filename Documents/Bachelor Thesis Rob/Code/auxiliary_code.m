@@ -2,8 +2,8 @@ clear all; close all; clc;
 
 % Load existing angle estimates based on the existing
 % algorithms and the Qualisys motion capture system.
-load('GaitWatch_data.mat');
-load('Qualisys_data.mat');
+load('GaitWatch_data_2.mat');
+load('Qualisys_data_2.mat');
 
 % Compute length of the signal vectors.
 len = length(a_X_right_thigh_1_C);
@@ -29,8 +29,7 @@ n1 = 1;
 n2 = 18 * f;
 figure1 = figure(1);
 hold on
-plot(time(n1:n2), pitch_QS_right_shank(n1:n2) ...
-                  * 180 / pi - 90);
+plot(time(n1:n2), pitch_QS_right_shank(n1:n2) - 90);
 plot(time(n1:n2), pitch_acc_right_shank(n1:n2) - 90, ...
      time(n1:n2), pitch_gyro_right_shank(n1:n2) - 90);
  
@@ -49,8 +48,7 @@ n1 = 1;
 n2 = 18 * f;
 figure2 = figure(2);
 hold on
-plot(time(n1:n2), pitch_QS_right_shank(n1:n2) ...
-                  * 180 / pi - 90);
+plot(time(n1:n2), pitch_QS_right_shank(n1:n2) - 90);
 plot(time(n1:n2), pitch_acc_right_shank(n1:n2) - 90);
 plot(time(n1:n2), pitch_KF_right_shank(n1:n2) - 90, ...
      'linewidth', 1.5);
@@ -70,8 +68,7 @@ n1 = 1;
 n2 = 18 * f;
 figure3 = figure(3);
 hold on
-plot(time(n1:n2), pitch_QS_right_shank(n1:n2) ...
-                  * 180 / pi - 90);
+plot(time(n1:n2), pitch_QS_right_shank(n1:n2) - 90);
 plot(time(n1:n2), pitch_acc_right_shank(n1:n2) - 90);
 plot(time(n1:n2), pitch_GKF_right_shank(n1:n2) - 90, ...
      'linewidth', 1.5);
