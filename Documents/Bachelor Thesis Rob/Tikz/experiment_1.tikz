@@ -25,7 +25,7 @@ ylabel={Pitch angles $\theta_1 + \theta_2$ in $^{\circ}$},
 axis x line*=bottom,
 axis y line*=left,
 legend style={legend cell align=left,align=left,draw=white!15!black, legend pos=south west}]
-\addplot [color=mycolor1,solid]
+\addplot [color=mycolor1,solid,line width=1.0pt]
   table[row sep=crcr]{%
 0	-92.7839438732384\\
 0.005	-92.8022080787734\\
@@ -7235,7 +7235,7 @@ legend style={legend cell align=left,align=left,draw=white!15!black, legend pos=
 };
 \addlegendentry{Accelerometer-based};
 
-\addplot [color=mycolor3,solid]
+\addplot [color=mycolor3,solid,line width=1.0pt]
   table[row sep=crcr]{%
 0	-93.9506178158125\\
 0.005	-94.0619376029047\\

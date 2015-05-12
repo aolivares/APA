@@ -63,7 +63,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
    \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k-1} + \omega_{k} \right]\,, \quad \theta(0) = \theta_{0}\,.
   \end{equation}
   
-  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the result of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion, especially with increasing motion intensity. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of nearly $600^{\circ}$ in only eighteen seconds for this exemplary signal. The reference signal was obtained with the Qualisys\textsuperscript{\textregistered} motion capture system.
+  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the result of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion, especially with increasing motion intensity. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of more than $500^{\circ}$ in only eighteen seconds for this exemplary signal. The reference signal was obtained with the Qualisys\textsuperscript{\textregistered} motion capture system.
   
 \begin{figure}
 	\centering
@@ -607,96 +607,96 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 
 This section presents the results obtained by the experiments. Listing \ref{lis:experiments} the script used to run the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
 
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_4}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
-%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering.}
-%	\label{fig:experiment_4}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_5}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
-%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.}
-%	\label{fig:experiment_5}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_6}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
-%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering.}
-%	\label{fig:experiment_6}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_7}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
-%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, gated Kalman filtering, and extended Kalman filtering - higher temporal resolution.}
-%	\label{fig:experiment_7}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_8}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
-%	\caption{Temporal course of the state vector of the extended Kalman filter.}
-%	\label{fig:experiment_8}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_9}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
-%	\caption{Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.}
-%	\label{fig:experiment_8}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_10}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
-%	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.}
-%	\label{fig:experiment_10}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_11}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
-%	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.}
-%	\label{fig:experiment_11}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_12}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
-%	\caption{Acceleration signal in $x$-direction, with and without motion correction}
-%	\label{fig:experiment_12}
-%\end{figure}
-%
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_4}
+	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.}
+	\label{fig:experiment_4}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_5}
+	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.}
+	\label{fig:experiment_5}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_6}
+	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter.}
+	\label{fig:experiment_6}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_7}
+	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter.}
+	\label{fig:experiment_7}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_8}
+	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter.}
+	\label{fig:experiment_8}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_9}
+	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
+	\caption{Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.}
+	\label{fig:experiment_9}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_10}
+	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
+	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.}
+	\label{fig:experiment_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_11}
+	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
+	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.}
+	\label{fig:experiment_11}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_12}
+	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
+	\caption{Acceleration signal in $x$-direction, with and without motion correction}
+	\label{fig:experiment_12}
+\end{figure}
+
 %\begin{figure}
 %	\centering
 %	\setlength\figureheight{7cm} 
@@ -706,7 +706,7 @@ This section presents the results obtained by the experiments. Listing \ref{lis:
 %	\caption{Acceleration signal in $x$-direction, with and without motion correction - higher temporal resolution}
 %	\label{fig:experiment_13}
 %\end{figure}
-%
+
 %\begin{figure}
 %	\centering
 %	\setlength\figureheight{7cm} 

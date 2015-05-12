@@ -151,9 +151,9 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 12) Define process noise covariance matrix.
-sigma_d = 0.0001;
-sigma_t1 = 0.003;
-sigma_t2 = 0.003;
+sigma_d = 1000;
+sigma_t1 = 0.009;
+sigma_t2 = 0.009;
 sigma_b = 0.00000000001;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
@@ -173,7 +173,7 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 14) Define measurement noise covariance matrix.
-sigma_f = 1;
+sigma_f = 3;
 sigma_s = 0.01;
 R = [sigma_1    0       0      0; ...
         0    sigma_2    0      0; ...
