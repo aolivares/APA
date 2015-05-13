@@ -5,7 +5,7 @@ close all; clear all; clc;
 % and Kalman filtered GaitWatch data which were produced by progarm main.m
 % -------------------------------------------------------------------------
 
-load('GaitWatch_data_2.mat')
+load('GaitWatch_data_1.mat')
 
 KF_leg_pitch = [pitch_KF_right_shank, pitch_KF_right_thigh, pitch_KF_left_shank, pitch_KF_left_thigh];
 acc_leg_pitch = [pitch_acc_right_shank, pitch_acc_right_thigh, pitch_acc_left_shank, pitch_acc_left_thigh];
@@ -14,8 +14,8 @@ acc_leg_pitch = [pitch_acc_right_shank, pitch_acc_right_thigh, pitch_acc_left_sh
 % 1) Load corresponding Qualisys data
 % -------------------------------------------------------------------------
 
-fn = 'gw_subj5_03';
-load('gw_subj5_03.mat')
+fn = 'gw_subj5_04';
+load('gw_subj5_04.mat')
 
 % eval([fn,'.Trajectories.Labeled.Labels{1}']);
 SampRate = eval([fn,'.FrameRate']);

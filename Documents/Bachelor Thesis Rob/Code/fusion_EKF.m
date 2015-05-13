@@ -174,10 +174,10 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 15) Define measurement noise covariance matrix.
-sigma_f_1 = 5;
-sigma_f_2 = 5;
-sigma_s_1 = 5;
-sigma_s_2 = 5;
+sigma_f_1 = 4;
+sigma_f_2 = 4;
+sigma_s_1 = 2;
+sigma_s_2 = 2;
 R = [sigma_1    0       0        0; ...
         0    sigma_2    0        0; ...
         0       0    sigma_s_1   0; ...

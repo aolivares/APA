@@ -21,21 +21,21 @@ xmax=2.2,
 xtick={1,2},
 xticklabels={\empty},
 ymin=0,
-ymax=18.8531749015832,
+ymax=18.8327056300146,
 ytick={ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18},
 ylabel={Root-mean-square error in $^{\circ}$}
 ]
 \addplot[ybar,bar width=0.203769\figurewidth,draw=black,fill=mycolor1] plot table[row sep=crcr] {%
 1	14.4571259740957\\
-2	16.8531749015832\\
+2	16.8327056300146\\
 };
 \node[below, align=center, inner sep=0mm, text=black]
-at (axis cs:1,-0.377063498031664,0) {Accelerometer-based};
+at (axis cs:1,-0.376654112600292,0) {Accelerometer-based};
 \node[below, align=center, inner sep=0mm, text=black]
-at (axis cs:2,-0.377063498031664,0) {Accelerometer based - corrected};
+at (axis cs:2,-0.376654112600292,0) {Accelerometer based - corrected};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:1,15.1571259740957,0) {$14.46$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:2,17.5531749015832,0) {$16.85$};
+at (axis cs:2,17.5327056300146,0) {$16.83$};
 \end{axis}
 \end{tikzpicture}%

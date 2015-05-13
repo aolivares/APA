@@ -98,15 +98,15 @@ disp(RMSE(1, 3) + RMSE(2, 3));
 
 figure(n);
 b = bar(RMSE, 0.3);
-offset = 0.5;
+offset = 0.8;
 yb = cat(1, b.YData); 
 xb = bsxfun(@plus, b(1).XData, [b.XOffset]');
 hold on;
 for i = 1:2  
    for j = 1:3
-        text(xb(j, i),yb(j, i)+offset, num2str(...
-        RMSE(i, j),'$%0.2f$'), 'rotation', 90, ...
-        'interpreter','latex');
+        text(xb(j, i),yb(j, i)+offset, ['\scriptsize ', num2str(...
+        RMSE(i, j),'$%0.2f$')], 'rotation', 0, ...
+        'interpreter','latex', 'HorizontalAlignment','center');
    end
 end
 
@@ -114,8 +114,14 @@ b(1).FaceColor = [0.8500    0.3250    0.0980];
 b(2).FaceColor = [0.9290    0.6940    0.1250];
 b(3).FaceColor = [0.4940    0.1840    0.5560];
 
-text(1,20, ['$RMSE_{thigh} + RMSE_{shank} = ', ...
+text(0.9,20, ['\scriptsize ${RMSE}_{KF_{thigh}} + RMSE_{KF_{shank}} = ', ...
+            num2str(RMSE(1, 2) + RMSE(2, 2),'%0.2f$')], ...
+            'interpreter','latex');
+text(0.9,18, ['\scriptsize $RMSE_{EKF_{thigh}} + RMSE_{EKF_{shank}} = ', ...
             num2str(RMSE(1, 3) + RMSE(2, 3),'%0.2f$')], ...
+            'interpreter','latex');
+text(0.9,16, ['\scriptsize $\frac{RMSE_{EKF_{thigh}} + RMSE_{EKF_{shank}}}{RMSE_{KF_{thigh}} + RMSE_{KF_{shank}}} = ', ...
+            num2str((RMSE(1, 3) + RMSE(2, 3))/(RMSE(1, 2) + RMSE(2, 2)),'%0.2f$')], ...
             'interpreter','latex');
 
 ylim([0, max(max(RMSE)) + 6]);
@@ -218,7 +224,7 @@ labels = {'Accelerometer-based', ...
 format_ticks(gca, labels, [], [], [], 0);
 
 text(1:2, RMSE' + 0.7, num2str(RMSE','$%0.2f$'),... 
-'HorizontalAlignment','center', 'interpreter','latex');
+'HorizontalAlignment', 'center', 'interpreter','latex');
 
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
@@ -229,11 +235,11 @@ n = n + 1;
 % Plot: Acceleration in x-direction that sensor 2 will 
 %       see due to motion.
 n1 = 4 * f + 1;
-n2 = 20 * f;
+n2 = 30 * f;
 figure(n);
 hold on;
 plot(time(n1:n2) - 4, a_X_right_shank_1_C(n1:n2));
-plot(time(n1:n2) - 4, a_m(1, n1:n2), 'linewidth', 1);
+plot(time(n1:n2) - 4, a_m(1, n1:n2) - 2, 'linewidth', 1);
 plot(time(n1:n2) - 4, a_X_right_shank_1_C(n1:n2)' - ...
                       a_m(1, n1:n2), 'linewidth', 1);
  
@@ -253,7 +259,7 @@ n = n + 1;
 % Plot: Acceleration in z-direction that sensor 2 will 
 %       see due to motion.
 n1 = 4 * f + 1;
-n2 = 20 * f;
+n2 = 30 * f;
 figure(n);
 hold on;
 plot(time(n1:n2) - 4, a_Z_right_shank_1_C(n1:n2));
