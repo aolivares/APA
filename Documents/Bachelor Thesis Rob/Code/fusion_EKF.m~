@@ -120,17 +120,17 @@ a_m = zeros(3, len);
 X = zeros(10, len);
 
 % 7) Compute intensity level.
-lwin_ltsd = 20;    
-threshold_ltsd = 3;    
-shift_ltsd = 19;    
+lwin_fsd = 20;    
+threshold_fsd = 3;    
+shift_fsd = 19;    
 input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
-[V_fsd, T_fsd] = wag.ltsd(input_signal', lwin_ltsd, ...
-                      shift_ltsd, 512, threshold_ltsd);
+[V_fsd, T_fsd] = wag.ltsd(input_signal', lwin_fsd, ...
+                        shift_fsd, 512, threshold_fsd);
                    
 % 8) Determine marker signal.
 [marker, ~] = gw.compEstMark(V_fsd, T_fsd, ...
-                           input_signal, lwin_ltsd, ...
-                           shift_ltsd);
+                             input_signal, lwin_fsd, ...
+                             shift_fsd);
                             
 % INITIALISATION OF PARAMETERS %
                             
@@ -151,7 +151,7 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 0 0 0 0 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
-% 13) Define process noise covariance matrix.
+% 12) Define process noise covariance matrix.
 sigma_d = 1000;
 sigma_t1 = 0.009;
 sigma_t2 = 0.009;
@@ -168,22 +168,21 @@ sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 0 0 0 0       0             0          0 sigma_b 0; ...
 0 0 0 0 0       0             0          0 0 sigma_b];
 
-% 14) Compute sample variance of the first two
+% 13) Compute sample variance of the first two
 %     seconds of the gyroscope signals.
 sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
-% 15) Define measurement noise covariance matrix.
-sigma_f_1 = 5;
-sigma_f_2 = 5;
+% 14) Define measurement noise covariance matrix.
+sigma_f = 5;
 sigma_s_1 = 0.01;
-sigma_s_2 = 0.01;
-R = [sigma_1    0       0        0; ...
-        0    sigma_2    0        0; ...
-        0       0    sigma_s_1   0; ...
-        0       0       0    sigma_s_2];
+sigma_s
+R = [sigma_1    0       0      0; ...
+        0    sigma_2    0      0; ...
+        0       0    sigma_s   0; ...
+        0       0       0    sigma_s];
     
-% 16) Define matrix function f.
+% 15) Define matrix function f.
 function f_k = f
     
 	f_k = [- l1 * c_w * x(4) * sind(x(3)) ...
@@ -203,7 +202,7 @@ function f_k = f
 
 end
 
-% 17) Define Jacobian of F.
+% 16) Define Jacobian of F.
 function F_k = F
 
     A = - l1 * c_w * x(4) * cosd(x(3)) ...
@@ -230,7 +229,7 @@ function F_k = F
 
 end
 
-% 18) Filter loop.
+% 17) Filter loop.
 for i=1:1:len
     
     % TIME UPDATE %
@@ -246,9 +245,8 @@ for i=1:1:len
     
     % CORRECT SENSOR READINGS %
     
-    % Compute acceleration in the world frame that
-    % occurs due to motion, based on a priori state
-    % estimate.
+    % Compute acceleration due to motion, based on 
+    % a priori state estimate.
     ax = - l1 * ((c_w * x(4))^2 * cosd(x(3)) ...
          + c_w * x(5) * sind(x(3))) ...
          - l2 * ((c_w * x(4) + c_w * x(7))^2 ...
@@ -292,13 +290,13 @@ for i=1:1:len
     % Set sigma_3 in measurement noise covariance
     % matrix according to motion intensity.
     if marker(i) == 1
-       R(3, 3) = sigma_f_1;
-       R(4, 4) = sigma_f_2;
+       R(3, 3) = sigma_f;
+       R(4, 4) = sigma_f;
     end
     
     if marker(i) == 0
-       R(3, 3) = sigma_s_1;
-       R(4, 4) = sigma_s_2;
+       R(3, 3) = sigma_s;
+       R(4, 4) = sigma_s;
     end
     
     % MEASUREMENT UPDATE %
