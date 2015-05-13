@@ -627,15 +627,29 @@ for k = 1:length(initcross)
     finalcross_COP = find(abs(AP_COP_complete_ts.time - finalcross(k))...
                     < 0.001);
     
-    % Find all peaks in each interval.
+     % Find all peaks in each interval of AP COP signal.
     [neg_peak_values, neg_peak_locations] = findpeaks(...
-                            -a_trunk_data_X(...
-                            initcross_trunk:finalcross_trunk));
+                            -AP_COP_data_shanks(...
+                            initcross_COP:finalcross_COP));
 
-    % Store the index of the last negative peak.                                      
-    peaks_APA_trunk_X(k) = find(a_trunk_data_X(...
-                    initcross_trunk:finalcross_trunk)== -max(...
-                    neg_peak_values), 1) + initcross_trunk - 1;
+    % Store the index of the first negative peak.                                      
+    peaks_APA_AP_COP(k) = find(AP_COP_data_shanks(...
+                    initcross_COP:finalcross_COP)== -max(...
+                    neg_peak_values), 1) + initcross_COP - 1;
+                
+    % Find all peaks in each interval. The APA peak of the trunk
+    % acceleration must be near to the APA AP peak value. We use this to
+    % calculate the APA in signal consideratig a range of 0.3 s (60
+    % samples) before and after the peak obtained. With this consideration
+    % we have more accurate results.
+    peak_position = find(abs(a_trunk_complete_ts.time - ...
+                    AP_COP_complete_ts.time(peaks_APA_AP_COP(k))) < 0.001);
+    [neg_peak_values, neg_peak_locations] = min(...
+                            a_trunk_data_X(...
+                            peak_position - 60:peak_position + 60));
+
+    % Store the index of the value obtained above.                                      
+    peaks_APA_trunk_X(k) = neg_peak_locations + peak_position - 61;
                 
      % Find all peaks in each interval of the gyroscope signal.                     
      [neg_peak_values, neg_peak_locations] = findpeaks(...
@@ -647,15 +661,6 @@ for k = 1:length(initcross)
                     initcross_trunk:finalcross_trunk)== -max(...
                     neg_peak_values), 1) + initcross_trunk - 1;
                 
-     % Find all peaks in each interval of AP COP signal.
-    [neg_peak_values, neg_peak_locations] = findpeaks(...
-                            -AP_COP_data_shanks(...
-                            initcross_COP:finalcross_COP));
-
-    % Store the index of the first negative peak.                                      
-    peaks_APA_AP_COP(k) = find(AP_COP_data_shanks(...
-                    initcross_COP:finalcross_COP)== -max(...
-                    neg_peak_values), 1) + initcross_COP - 1;
    
     % Find the peaks before and after the APA peak to calculate the height
     % peak.
@@ -711,10 +716,10 @@ value_APA_AP_COP_1 = abs(value_APA_AP_COP - value_initcross_AP);
 
 % This is the most iteresting correlation.                               
 value_APA_trunk_X_1 = abs(value_APA_trunk_X - a_trunk_data_X(initcross_trunk_complete));
+value_APA_trunk_X_2 = abs(value_APA_trunk_X - mode(a_trunk_data_X));
 [corr_trunk_AP_1, prob_trunk_AP_1] = corr(value_APA_trunk_X_1',...
                                     value_APA_AP_COP_1');
 
-value_APA_trunk_X_2 = abs(value_APA_trunk_X - mode(a_trunk_data_X));
 value_APA_AP_COP_2 = abs(value_APA_AP_COP - maximuns_peaks_first);
 [corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X_2',...
                                     value_APA_AP_COP_2');
