@@ -71,7 +71,7 @@ gyro_KF = g_Y_right_thigh_1_C';
 
 pitch_KF_right_thigh = gw.fusion_KF(gyro_KF, obs_KF, f, ...
         var(pitch_acc_right_thigh), var(pitch_acc_right_thigh),...
-        var(gyro_KF), opt_alpha_KF, opt_beta_KF, pitch_acc_right_thigh(1));
+        var(gyro_KF), 1000, opt_beta_KF, pitch_acc_right_thigh(1));
 
     %% Shank
 % 2.3.1) Definition of the variables of the optimization process.
@@ -103,11 +103,15 @@ gyro_KF = g_Y_right_shank_1_C';
 %%    
 
 
-pitch_KF_right_shank = gw.fusion_KF(gyro_KF, obs_KF, f, ...
+pitch_KF_right_thigh = gw.fusion_KF(gyro_KF, obs_KF, f, ...
         var(pitch_acc_right_shank), var(pitch_acc_right_shank),...
         var(gyro_KF), opt_alpha_KF, opt_beta_KF, pitch_acc_right_shank(1));
 
 %%
+
+
+
+
 
 % Compute pitch angles with extended Kalman filter.
 % Additionally, store the internal state vector at each

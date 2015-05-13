@@ -41,7 +41,6 @@ gw.plotData = @plotData;
 gw.quat9dofEKF = @quat9dofEKF;
 gw.optimize_KF = @optimize_KF;
 gw.fusion_KF = @fusion_KF;
-gw.optimize_EKF = @optimize_EKF;
 gw.correct_quad_shifts = @correct_quad_shifts;
 gw.correct_yaw_quad_shifts = @correct_yaw_quad_shifts;
 gw.correct_ekf_quad_shifts = @correct_ekf_quad_shifts;
@@ -1743,12 +1742,10 @@ end
 
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function [xmin, fmin, ct] = optimize_EKF(gyro_thigh_y, gyro_shank_y, ...
-                       acc_thigh_x, acc_thigh_z, ...
-                       acc_shank_x, acc_shank_z, ...
-                       fs, l1, l2, ref_angle, p0, rmse_off)
+function [xmin, fmin, ct] = optimize_KF(gyro, acc, frec, obsVar,...
+    accVar, gyroVar, Ini, ref_angle, p0, rmse_off)
 
-% FUNCTION OPTIMIZE_EKF uses the ANMS algorithm to find the optimal 
+% FUNCTION OPTIMIZEKF uses the ANMS algorithm to find the optimal 
 % parameters of the Regular Kalman Filter which minimize the error between
 % the actual orientation angle and the one estimated with KF. 
 % 
@@ -1820,8 +1817,6 @@ global obsVariance;   obsVariance = obsVar;
 global accVariance;   accVariance = accVar;
 global gyroVariance;  gyroVariance = gyroVar;
 global Initial;       Initial = Ini;
-
-optimize_EKF
 
 % 2) Call the minimization routine.
 % -------------------------------------------------------------------------
