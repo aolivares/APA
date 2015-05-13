@@ -94,8 +94,6 @@ RMSE_EKF = sqrt(mean((pitch_QS_right_shank(n1:n2) ...
              - pitch_EKF_right_shank(n1:n2)).^2));
 RMSE = [RMSE; RMSE_acc, RMSE_KF, RMSE_EKF];
 
-disp(RMSE(1, 3) + RMSE(2, 3));
-
 figure(n);
 b = bar(RMSE, 0.3);
 offset = 0.5;
@@ -117,6 +115,8 @@ b(3).FaceColor = [0.4940    0.1840    0.5560];
 text(1,20, ['$RMSE_{thigh} + RMSE_{shank} = ', ...
             num2str(RMSE(1, 3) + RMSE(2, 3),'%0.2f$')], ...
             'interpreter','latex');
+        
+        RMSE(1, 3) + RMSE(2, 3)
 
 ylim([0, max(max(RMSE)) + 6]);
 ylabel('Root-mean-square error in $^{\circ}$', ...
@@ -273,7 +273,5 @@ matlab2tikz(['../tikz/experiment_', num2str(n), ...
              'width', '\figurewidth');
 
 n = n + 1;
-
-
         
         

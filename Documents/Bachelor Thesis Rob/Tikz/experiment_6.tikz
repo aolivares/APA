@@ -41,8 +41,8 @@ legend style={legend cell align=left,align=left,draw=white!15!black}
 \addlegendentry{Kalman filter};
 
 \addplot[ybar,bar width=0.035219\figurewidth,bar shift=0.117398\figurewidth,draw=black,fill=mycolor3] plot table[row sep=crcr] {%
-1	2.26691181735427\\
-2	2.83809582989907\\
+1	2.30873004070982\\
+2	2.74491604766338\\
 };
 \addlegendentry{Extended Kalman filter};
 
@@ -51,15 +51,15 @@ at (axis cs:0.777777777777778,14.2648692682207,0) {$13.76$};
 \node[right, align=left, inner sep=0mm, rotate=90, text=black]
 at (axis cs:1,2.91527301932552,0) {$2.42$};
 \node[right, align=left, inner sep=0mm, rotate=90, text=black]
-at (axis cs:1.22222222222222,2.76691181735427,0) {$2.27$};
+at (axis cs:1.22222222222222,2.80873004070982,0) {$2.31$};
 \node[right, align=left, inner sep=0mm, rotate=90, text=black]
 at (axis cs:1.77777777777778,15.8929060302293,0) {$15.39$};
 \node[right, align=left, inner sep=0mm, rotate=90, text=black]
 at (axis cs:2,4.09176191345938,0) {$3.59$};
 \node[right, align=left, inner sep=0mm, rotate=90, text=black]
-at (axis cs:2.22222222222222,3.33809582989907,0) {$2.84$};
+at (axis cs:2.22222222222222,3.24491604766338,0) {$2.74$};
 \node[right, align=left, inner sep=0mm, text=black]
-at (axis cs:1,20,0) {$RMSE_{thigh} + RMSE_{shank} = 5.25$};
+at (axis cs:1,20,0) {$RMSE_{thigh} + RMSE_{shank} = 5.05$};
 \node[below, align=center, inner sep=0mm, text=black]
 at (axis cs:1,-0.427858120604587,0) {Thigh};
 \node[below, align=center, inner sep=0mm, text=black]

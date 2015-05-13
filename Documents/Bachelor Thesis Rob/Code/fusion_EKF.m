@@ -121,7 +121,7 @@ X = zeros(10, len);
 
 % 7) Compute intensity level.
 lwin_ltsd = 20;    
-threshold_ltsd = 3;    
+threshold_ltsd = 4;    
 shift_ltsd = 19;    
 input_signal = sqrt(acc_shank_x.^2+acc_shank_z.^2);
 [V_fsd, T_fsd] = wag.ltsd(input_signal', lwin_ltsd, ...
@@ -140,7 +140,7 @@ mu1 = mean(gyro_thigh_y(1:2*fs));
 mu2 = mean(gyro_shank_y(1:2*fs));
 
 % 10) Initialise the state vector.
-x = [0, -(l1+l2), -90, 0, 0, -10, 0, 0, mu1, mu2]';
+x = [0, -(l1+l2), -85, 0, 0, -5, 0, 0, mu1, mu2]';
 
 % 11) Initialise the error covariance matrix.
 P = diag(ones(1, 10) * 1);
@@ -153,8 +153,8 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
 
 % 13) Define process noise covariance matrix.
 sigma_d = 1000;
-sigma_t1 = 0.009;
-sigma_t2 = 0.009;
+sigma_t1 = 0.09;
+sigma_t2 = 0.09;
 sigma_b = 0.00000000001;
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
@@ -176,8 +176,8 @@ sigma_2 = var(gyro_shank_y(1:2*fs));
 % 15) Define measurement noise covariance matrix.
 sigma_f_1 = 5;
 sigma_f_2 = 5;
-sigma_s_1 = 0.01;
-sigma_s_2 = 0.01;
+sigma_s_1 = 5;
+sigma_s_2 = 5;
 R = [sigma_1    0       0        0; ...
         0    sigma_2    0        0; ...
         0       0    sigma_s_1   0; ...
