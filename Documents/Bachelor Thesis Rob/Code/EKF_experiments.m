@@ -5,6 +5,64 @@ clear all; close all; clc;
 load('GaitWatch_data_2.mat');
 load('Qualisys_data_2.mat');
 
+tikz = 0;
+
+%% 0) Optimise filter parameters \\\\\\\\\\\\\\\\\\\\\\
+% -----------------------------------------------------
+
+% Load Wagyromag functions library.
+wag = wagLibrary;
+
+% Set value of the magnitude of the gravity vector in the location in which
+% data were gathered. (In our case: Granada, Spain, 37?10'4''N 3?36'3''O, 
+% 738 meters over sea level). 
+g = 9.797024;
+
+% Set RMSE offset. The computation of the RMSE is done from the Xth signal
+% to the Nth signal, where X is an initial offset and N is the length of
+% the signal. This is done to allow slower filters to reach convergence.
+rmse_offset = 300;
+
+% Regular KF algorithm: It has two parameters: 'alpha' and 'beta'.
+opt_alphas_KF = 0;
+opt_betas_KF = 0;
+rmse_KF = 0;
+
+% 2.3.1) Definition of the variables of the optimization process.
+obs_KF = pitch_acc_right_thigh';
+gyro_KF = g_Y_right_thigh_1_C';
+
+% 2.3.2) Parameter optimization.
+    
+    % Set initial value of parameters;
+    p0_KF = [1000 0.001];
+    
+    % Call the optimization routine.
+    [xmin, fmin, ct] = wag.optimizeKF(obs_KF, gyro_KF, f, pitch_QS_right_thigh, ...
+        p0_KF, rmse_offset);
+    
+    fprintf('--------------------KF OPTIMIZATION-----------------------\n')
+    fprintf('The optimization process finished in %d iterations.\n', ct)
+    fprintf('The minimum RMSE found is: %0.4f\n', fmin);
+    fprintf('Optimal parameters are: \n -Alpha: %0.4f\n -Beta: %0.4f\n',...
+        xmin(1), xmin(2))
+    fprintf('----------------------------------------------------------\n')
+
+    % Extract optimal parameters.
+    opt_alpha_KF = xmin(1);
+    opt_beta_KF = xmin(2);
+    
+%%    
+
+alpha_KF = 1000;
+beta_KF = 0.001;
+
+pitch_KF_right_thigh = wag.fusionKF(g_Y_right_thigh_1_C, pitch_acc_right_thigh,...
+                f, alpha_KF, beta_KF);
+
+
+%%
+
 % Initialise number of figure.
 n = 4;
 
@@ -44,10 +102,12 @@ ylabel(['Pitch angle $\theta_1$ in ', ...
         '$^{\circ}$'], 'interpreter','latex');
 legend('Reference', 'Accelerometer-based', ...
        'Kalman filter', 'Extended Kalman filter');
-    
+
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
        
 n = n + 1;
 
@@ -70,9 +130,11 @@ ylabel(['Pitch angle $\theta_1 + \theta_2$ in ', ...
 legend('Reference', 'Accelerometer-based', ...
        'Kalman filter', 'Extended Kalman filter');
     
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
         
 n = n + 1;        
 
@@ -134,9 +196,11 @@ format_ticks(gca, labels, [], [], [], 0);
 legend('Acceleration-based', 'Kalman filter', ...
           'Extended Kalman filter');
 
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
        
 n = n + 1;
 
@@ -156,9 +220,11 @@ set(l, 'Interpreter', 'Latex');
    
 cleanfigure('minimumPointsDistance', 0.5);
     
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
-             'width', '\figurewidth'); 
+             'width', '\figurewidth');
+end
 
 n = n + 1;        
         
@@ -178,10 +244,12 @@ set(l, 'Interpreter', 'Latex');
    
 cleanfigure('minimumPointsDistance', 1);
     
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
-         
+end
+
 n = n + 1;
          
 % Plot: Acceleration-based pitch angle shank - corrected.
@@ -200,9 +268,11 @@ ylabel(['Pitch angle $\theta_1 + \theta_2$ in ', ...
 legend('Reference', 'Accelerometer-based', ...
        'Accelerometer based - corrected');
    
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
          
 n = n + 1;
 
@@ -226,9 +296,11 @@ format_ticks(gca, labels, [], [], [], 0);
 text(1:2, RMSE' + 0.7, num2str(RMSE','$%0.2f$'),... 
 'HorizontalAlignment', 'center', 'interpreter','latex');
 
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
        
 n = n + 1;
 
@@ -250,9 +322,11 @@ legend('Acceleration in x-direction', ...
        'Acceleration in x-direction due to motion', ...
        'Acceleration in x-direction - corrected');
     
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
 
 n = n + 1;
 
@@ -274,9 +348,11 @@ legend('Acceleration in z-direction', ...
        'Acceleration in z-direction due to motion', ...
        'Acceleration in z-direction - corrected');
     
+if tikz   
 matlab2tikz(['../tikz/experiment_', num2str(n), ...
              '.tikz'], 'height', '\figureheight', ...
              'width', '\figurewidth');
+end
 
 n = n + 1;
 
