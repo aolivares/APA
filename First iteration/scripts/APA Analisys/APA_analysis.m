@@ -1257,4 +1257,8 @@ xlabel('Time in s');
 ylabel('ML COP (mm)');
 end
 
-
+% Patient.
+name_file = textscan(filename,'%s','Delimiter','_');
+name_file = name_file{1};
+filename = name_file{1,1};
+fprintf(['\n Patient ',filename,'\n']);
