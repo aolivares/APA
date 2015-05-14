@@ -1746,7 +1746,7 @@ end
 function [xmin, fmin, ct] = optimize_EKF(gyro_thigh_y, gyro_shank_y, ...
                        acc_thigh_x, acc_thigh_z, ...
                        acc_shank_x, acc_shank_z, ...
-                       fs, l1, l2, ref_angle, p0, rmse_off)
+                       fs, l1, l2, ref_angles, p0, rmse_off)
 
 % FUNCTION OPTIMIZE_EKF uses the ANMS algorithm to find the optimal 
 % parameters of the Regular Kalman Filter which minimize the error between
@@ -1811,17 +1811,17 @@ function [xmin, fmin, ct] = optimize_EKF(gyro_thigh_y, gyro_shank_y, ...
 %
 % 1) Set variables.
 % -------------------------------------------------------------------------
-global gyrosc;        gyrosc = gyro;
-global obs;           obs = acc;
-global true_angle;    true_angle = ref_angle;
-global freq;          freq = frec;
+global gyro_thigh_y_g; gyro_thigh_y_g = gyro_thigh_y;
+global gyro_shank_y_g; gyro_shank_y_g = gyro_shank_y;
+global acc_thigh_x_g; acc_thigh_x_g = acc_thigh_x;
+global acc_thigh_z_g; acc_thigh_z_g = acc_thigh_z;
+global acc_shank_x_g; acc_shank_x_g = acc_shank_x;
+global acc_shank_z_g; acc_shank_z_g = acc_shank_z;
+global fs_g; fs_g = fs;
+global l1_g; l1_g = l1;
+global l2_g; l2_g = l2;
+global true_angles;    true_angles = ref_angles;
 global rmse_offset;   rmse_offset = rmse_off;
-global obsVariance;   obsVariance = obsVar;
-global accVariance;   accVariance = accVar;
-global gyroVariance;  gyroVariance = gyroVar;
-global Initial;       Initial = Ini;
-
-optimize_EKF
 
 % 2) Call the minimization routine.
 % -------------------------------------------------------------------------
@@ -1836,14 +1836,14 @@ max_feval = 5000;
 
 % Call ANMS algorithm to perform optimization (find optimal parameters of
 % the QUEST algorithm which minimize the error function).
-[xmin, fmin, ct] = ANMS(@eofKalman, p0, tol, max_feval);
+[xmin, fmin, ct] = ANMS(@eofEKF, p0, tol, max_feval);
 
 end
 % END OF OPTIMIZE_KF FUNCTION
 
 % \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function F = eofKalman(p)
+function F = eofEKF(p)
 
 % FUNCTION EOFKALMAN Computes the error function to be minimized: RMSE
 % between the actual angle and the estiamted orientation angle computed
@@ -1900,28 +1900,30 @@ function F = eofKalman(p)
 
 % 1) Set variables.
 % -------------------------------------------------------------------------
-global gyrosc;
-global obs;
-global freq;
-global true_angle;
+global gyro_thigh_y_g; 
+global gyro_shank_y_g;
+global acc_thigh_x_g;
+global acc_thigh_z_g;
+global acc_shank_x_g;
+global acc_shank_z_g;
+global fs_g;
+global l1_g;
+global l2_g;
+global true_angles;
 global rmse_offset;
-global obsVariance;
-global accVariance;
-global gyroVariance;
-global Initial;
-
-% 2) Extract the first parameter to be minimized (measurement noise 
-% variance gain). 
-alpha = p(1); 
-beta = p(2);
 
 % 3) Estimate the orientation angle using the Kalman Filter.
-angle_KF = fusion_KF(gyrosc, obs, freq, obsVariance, ...
-           accVariance, gyroVariance, alpha, beta, Initial);
+[thigh_angle_EKF, shank_angle_EKF] = fusion_EKF(...
+                       gyro_thigh_y_g, gyro_shank_y_g, ...
+                       acc_thigh_x_g, acc_thigh_z_g, ...
+                       acc_shank_x_g, acc_shank_z_g, ...
+                       fs_g, l1_g, l2_g, p);
 
 % 4) Compute the error function.
-F = sqrt(mean((true_angle(rmse_offset : end) -  ...
-    angle_KF(rmse_offset : end)') .^ 2));
+F = sqrt(mean((true_angles(1, rmse_offset : end) -  ...
+    thigh_angle_EKF(rmse_offset : end)) .^ 2)) + ...
+    sqrt(mean((true_angles(2, rmse_offset : end) -  ...
+    shank_angle_EKF(rmse_offset : end)) .^ 2));
 end
 % END OF EOFKALMAN FUNCTION
 

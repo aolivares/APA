@@ -2,7 +2,7 @@ function [theta1, theta2, theta12_c, a_m, X] = ...
             fusion_EKF(gyro_thigh_y, gyro_shank_y, ...
                        acc_thigh_x, acc_thigh_z, ...
                        acc_shank_x, acc_shank_z, ...
-                       fs, l1, l2)
+                       fs, l1, l2, p)
 
 % FUNCTION fusion_EKF applies an extended Kalman filter
 % in order to fuse the accelerometer and gyroscope data
@@ -152,10 +152,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 13) Define process noise covariance matrix.
-sigma_d = 1000;
-sigma_t1 = 0.09;
-sigma_t2 = 0.09;
-sigma_b = 0.00000000001;
+sigma_d = p(1);
+sigma_t1 = p(2);
+sigma_t2 = p(3);
+sigma_b = p(4);
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -174,10 +174,10 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 15) Define measurement noise covariance matrix.
-sigma_f_1 = 4;
-sigma_f_2 = 4;
-sigma_s_1 = 2;
-sigma_s_2 = 2;
+sigma_f_1 = p(5);
+sigma_f_2 = p(6);
+sigma_s_1 = p(7);
+sigma_s_2 = p(8);
 R = [sigma_1    0       0        0; ...
         0    sigma_2    0        0; ...
         0       0    sigma_s_1   0; ...
