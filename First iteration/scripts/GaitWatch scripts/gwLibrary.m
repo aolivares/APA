@@ -1812,7 +1812,7 @@ global rmse_offset;   rmse_offset = rmse_off;
 
 % 2) Call the minimisation routine.
 % -----------------------------------------------------
-disp('Optimising parameters of Kalman Filter...');
+disp('Optimising parameters of extended Kalman Filter...');
 
 % Set tolerance limit between the minimum values found 
 % in subsequent iterations of the algorithm. 
@@ -1860,11 +1860,14 @@ global rmse_offset;
 
 % 3) Estimate the orientation angle using the extended 
 %    Kalman Filter.
-[thigh_angle_EKF, shank_angle_EKF] = fusion_EKF(...
+[theta1, theta2, ~, ~, ~] = fusion_EKF(...
                    gyro_thigh_y_g, gyro_shank_y_g, ...
                    acc_thigh_x_g, acc_thigh_z_g, ...
                    acc_shank_x_g, acc_shank_z_g, ...
                    fs_g, l1_g, l2_g, p);
+               
+thigh_angle_EKF = theta1;
+shank_angle_EKF = theta1 + theta2;
 
 % 4) Compute the error function.
 F1 = sqrt(mean((true_angles(1, rmse_offset : end) -  ...

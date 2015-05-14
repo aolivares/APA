@@ -8,8 +8,8 @@ tikz = 0;
 
 % Load existing angle estimates based on the existing
 % algorithms and the Qualisys motion capture system.
-load('GaitWatch_data_2.mat');
-load('Qualisys_data_2.mat');
+load('GaitWatch_data_3.mat');
+load('Qualisys_data_3.mat');
 
 % 2) Import GaitWatch and WaGyroMag functions library.
 %    All existing functions have to be called using
@@ -110,11 +110,12 @@ pitch_KF_right_shank = gw.fusion_KF( ...
         var(pitch_acc_right_shank),...
         var(g_Y_right_shank_1_C), opt_alpha_KF, ...
         opt_beta_KF, pitch_acc_right_shank(1));
-
+%%
 % KALMAN FILTER THIGH----------------------------------
 
 % Set initial value of parameters.
-p0 = [0.01, 0.01, 0.0001, 10, 10];
+%p0 = [0.01, 0.01, 0.0001, 5];
+p0 = [3, 5, 30, 15, 0.0001];
 
 %%
  % Call the optimization routine.
@@ -127,7 +128,7 @@ p0 = [0.01, 0.01, 0.0001, 10, 10];
                     a_Z_right_shank_1_C(n1:n2)', ...
                     f, 0.35, 0.25, ...
                     [pitch_QS_right_thigh(n1:n2); ...
-                    pitch_QS_right_shank(n1:n2)], ...
+                     pitch_QS_right_shank(n1:n2)] - 90, ...
                     p0, rmse_offset);
                 
 fprintf('-------------EKF OPTIMISATION------------\n');
@@ -144,7 +145,7 @@ fprintf('----------------------------------------\n')
 %%
 close all;
 n=4;
-pmin = [0.01, 0.01, 0.0001, 5, 10];
+%pmin = p0;
 
 % Compute pitch angles with extended Kalman filter.
 % Additionally, store the internal state vector at each
