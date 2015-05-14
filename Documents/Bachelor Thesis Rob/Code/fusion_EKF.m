@@ -34,6 +34,10 @@ function [theta1, theta2, theta12_c, a_m, X] = ...
 %                     real positive.
 % |_ 'l2':            Length of the shank in m. Must be
 %                     real positive.
+% |_ 'p':             Row vector consisting of the 
+%                     filter parameters sigma_t1, 
+%                     sigma_t2, sigma_b, sigma_f_1, 
+%                     sigma_f_2, sigma_s_1, sigma_s_2.
 %
 % Output:
 % |_ 'theta1':        Row vector containing the thigh 
@@ -152,10 +156,10 @@ H = [0 0 0 1 0 0 0 0 1 0; ...
      0 0 1 0 0 1 0 0 0 0];
 
 % 13) Define process noise covariance matrix.
-sigma_d = p(1);
-sigma_t1 = p(2);
-sigma_t2 = p(3);
-sigma_b = p(4);
+sigma_d = 10;
+sigma_t1 = p(1);
+sigma_t2 = p(2);
+sigma_b = p(3);
 Q = [...
 sigma_d 0 0           0             0      0 0 0 0 0; ...
 0 sigma_d 0           0             0      0 0 0 0 0; ...
@@ -174,10 +178,10 @@ sigma_1 = var(gyro_thigh_y(1:2*fs));
 sigma_2 = var(gyro_shank_y(1:2*fs));
 
 % 15) Define measurement noise covariance matrix.
-sigma_f_1 = p(5);
-sigma_f_2 = p(6);
-sigma_s_1 = p(7);
-sigma_s_2 = p(8);
+sigma_s_1 = p(4);
+sigma_s_2 = p(5);
+sigma_f_1 = 10 * sigma_s_1;
+sigma_f_2 = 10 * sigma_s_2;
 R = [sigma_1    0       0        0; ...
         0    sigma_2    0        0; ...
         0       0    sigma_s_1   0; ...
@@ -316,6 +320,7 @@ for i=1:1:len
     theta1(i) = x(3);
     theta2(i) = x(6);
     
+    % Map the entire state vector to the output.
     X(:, i) = x;
     
 end

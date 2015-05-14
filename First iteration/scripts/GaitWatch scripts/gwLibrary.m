@@ -1741,76 +1741,63 @@ end
 end
 % END OF FUSION_KF FUNCTION
 
-% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-function [xmin, fmin, ct] = optimize_EKF(gyro_thigh_y, gyro_shank_y, ...
-                       acc_thigh_x, acc_thigh_z, ...
-                       acc_shank_x, acc_shank_z, ...
-                       fs, l1, l2, ref_angles, p0, rmse_off)
+function [x_min, f_min, ct] = optimize_EKF( ...
+                        gyro_thigh_y, gyro_shank_y, ...
+                        acc_thigh_x, acc_thigh_z, ...
+                        acc_shank_x, acc_shank_z, ...
+                        fs, l1, l2, ref_angles, p0, ...
+                        rmse_off)
 
-% FUNCTION OPTIMIZE_EKF uses the ANMS algorithm to find the optimal 
-% parameters of the Regular Kalman Filter which minimize the error between
-% the actual orientation angle and the one estimated with KF. 
+% FUNCTION OPTIMIZE_EKF uses an adaptive Nelder-Mead 
+% simplex ANMS algorithm to find the optimal parameters
+% of the Extended Kalman filter. 
 % 
-% - INPUT PARAMETERS:
-%   |_ 'observation': Observation of the Kalman Filter.
-%   |_ 'ang_vel': Angular velocity (measured with the gyroscope).
-%   |_ 'frequency': Sampling frequency.
-%   |_ 'ref_angle': Orientation angle reference measured with the
-%                   mechanical device.
-%   |_ 'p0': Initial value of the parameters to be optimized.
-%   |_ 'rmse_off': Offset in the RMSE computation.
+% Input arguments:
+% |_ 'gyro_thigh_y':  Row vector containing the angular 
+%                     rate of the thigh about the 
+%                     y-axis in radians per second.
+% |_ 'gyro_shank_y':  Row vector containing the angular 
+%                     rate of the shank about the 
+%                     y-axis in radians per second.
+% |_ 'acc_thigh_x':   Row vector containing the linear
+%                     acceleration of the thigh along
+%                     the x-axis in g.
+% |_ 'acc_thigh_z':   Row vector containing the linear
+%                     acceleration of the thigh along
+%                     the z-axis in g.
+% |_ 'acc_shank_x':   Row vector containing the linear
+%                     acceleration of the shank along
+%                     the x-axis in g.
+% |_ 'acc_shank_z':   Row vector containing the linear
+%                     acceleration of the shank along
+%                     the z-axis in g.
+% |_ 'fs':            Sampling frecuency in Hertz. Must
+%                     be real positive.
+% |_ 'l1':            Length of the thigh in m. Must be
+%                     real positive.
+% |_ 'l2':            Length of the shank in m. Must be
+%                     real positive.
+% |_ 'p':             Row vector consisting of the 
+%                     filter parameters sigma_t1, 
+%                     sigma_t2, sigma_b, sigma_f_1, 
+%                     sigma_f_2, sigma_s_1, sigma_s_2.
+% |_ 'ref_angle':     Orientation angle reference.
+% |_ 'p0':            Initial value of the parameters 
+%                     to be optimized.
+% |_ 'rmse_off':      Offset in the RMSE computation.
 %
-% - OUPUT PARAMETERS: 
-%   |_ 'xmin': Value of the parameters which minimize the error function.
-%   |_ 'fmin': Minimum value of the error function (minimum RMSE).+
-%   |_ 'ct': Number of algorithm iterations to find the minimum.
-%
-% -------------------------------------------------------------------------
-% |||||||||||||||||||||| COPYRIGHT AND AUTHORSHIP |||||||||||||||||||||||||
-% -------------------------------------------------------------------------
-% *************************************************************************
-% AUTHOR:
-%   |_ Dr. Alberto Olivares:
-%       * Entity:   Department of Signal Theory, Telematics and
-%                   Communications, University of Granada, Spain.
-%       * Contact:  aolivares@ugr.es
-%
-% LAST MODIFICATION: 
-%   |_ Date: 01/21/2015 (mm/dd/yy). 
-%   |_ Location: Research Centre for Information and Communications 
-%                Technologies of the University of Granada, Spain. 
-%                (CITIC-UGR).
-% *************************************************************************
-%
-%  Copyright (c) 2015, Alberto Olivares. All rights reserved.
-%
-%  Redistribution and use in source and binary forms, with or without 
-%  modification, are permitted provided that the following conditions are 
-%  met:
-%
-%     * Redistributions of source code must retain the above copyright 
-%       notice, this list of conditions and the following disclaimer.
-%     * Redistributions in binary form must reproduce the above copyright 
-%       notice, this list of conditions and the following disclaimer in 
-%       the documentation and/or other materials provided with the 
-%       distribution.
-%      
-%  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
-%  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-%  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
-%  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
-%  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-%  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
-%  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-%  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-%  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-%  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
-%  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-% -------------------------------------------------------------------------
-%
+% % Output:
+% |_ 'xmin':          Value of the parameters that 
+%                     minimize the error function.
+% |_ 'fmin':          Minimum value of the error 
+%                     function.
+% |_ 'ct':            Number of algorithm iterations
+%                     to find the minimum.
+
 % 1) Set variables.
-% -------------------------------------------------------------------------
+% -----------------------------------------------------
 global gyro_thigh_y_g; gyro_thigh_y_g = gyro_thigh_y;
 global gyro_shank_y_g; gyro_shank_y_g = gyro_shank_y;
 global acc_thigh_x_g; acc_thigh_x_g = acc_thigh_x;
@@ -1823,83 +1810,42 @@ global l2_g; l2_g = l2;
 global true_angles;    true_angles = ref_angles;
 global rmse_offset;   rmse_offset = rmse_off;
 
-% 2) Call the minimization routine.
-% -------------------------------------------------------------------------
-disp('Optimizing parameters of Kalman Filter (it may take a while) ...');
+% 2) Call the minimisation routine.
+% -----------------------------------------------------
+disp('Optimising parameters of Kalman Filter...');
 
-% Set tolerance limit between the minimum values found in subsequent
-% iterations of the algorithm. 
+% Set tolerance limit between the minimum values found 
+% in subsequent iterations of the algorithm. 
 tol = 10^-6;
 
-% Set maximum number of evaluations of the error function.
+% Set maximum number of evaluations of the error
+% function.
 max_feval = 5000;
 
-% Call ANMS algorithm to perform optimization (find optimal parameters of
-% the QUEST algorithm which minimize the error function).
-[xmin, fmin, ct] = ANMS(@eofEKF, p0, tol, max_feval);
+% Call ANMS algorithm which minimises the error function.
+[x_min, f_min, ct] = ANMS(@eofEKF, p0, tol, max_feval);
 
 end
-% END OF OPTIMIZE_KF FUNCTION
+% END OF OPTIMIZE_EKF FUNCTION
 
-% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 function F = eofEKF(p)
 
-% FUNCTION EOFKALMAN Computes the error function to be minimized: RMSE
-% between the actual angle and the estiamted orientation angle computed
-% with the Kalman Filter. 
+% FUNCTION EOFKALMAN is the error function to be 
+% minimised: That is, the sum of the RMSE between the 
+% actual angle and the estiamted orientation angle 
+% computed with the extended Kalman filter. 
 %
-% - INPUT PARAMETERS:
-%   |_ 'p': Vector of initial value of the parameters to be optimized.
+% Input arguments:
+% |_ 'p':   Vector of initial value of the parameters 
+%           to be optimized.
 %
-% - OUTPUT PARAMETERS:
-%   |_ 'F': Value of the error function.
-% 
-% -------------------------------------------------------------------------
-% |||||||||||||||||||||| COPYRIGHT AND AUTHORSHIP |||||||||||||||||||||||||
-% -------------------------------------------------------------------------
-% *************************************************************************
-% AUTHOR:
-%   |_ Dr. Alberto Olivares:
-%       * Entity:   Department of Signal Theory, Telematics and
-%                   Communications, University of Granada, Spain.
-%       * Contact:  aolivares@ugr.es
-%
-% LAST MODIFICATION: 
-%   |_ Date: 01/21/2015 (mm/dd/yy). 
-%   |_ Location: Research Centre for Information and Communications 
-%                Technologies of the University of Granada, Spain. 
-%                (CITIC-UGR).
-% *************************************************************************
-%
-%  Copyright (c) 2015, Alberto Olivares. All rights reserved.
-%
-%  Redistribution and use in source and binary forms, with or without 
-%  modification, are permitted provided that the following conditions are 
-%  met:
-%
-%     * Redistributions of source code must retain the above copyright 
-%       notice, this list of conditions and the following disclaimer.
-%     * Redistributions in binary form must reproduce the above copyright 
-%       notice, this list of conditions and the following disclaimer in 
-%       the documentation and/or other materials provided with the 
-%       distribution.
-%      
-%  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 
-%  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT 
-%  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
-%  PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER
-%  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-%  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, 
-%  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
-%  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF 
-%  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING 
-%  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS 
-%  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-% -------------------------------------------------------------------------
+% Output:
+% |_ 'F':   Value of the error function.
 
 % 1) Set variables.
-% -------------------------------------------------------------------------
+% -----------------------------------------------------
 global gyro_thigh_y_g; 
 global gyro_shank_y_g;
 global acc_thigh_x_g;
@@ -1912,22 +1858,25 @@ global l2_g;
 global true_angles;
 global rmse_offset;
 
-% 3) Estimate the orientation angle using the Kalman Filter.
+% 3) Estimate the orientation angle using the extended 
+%    Kalman Filter.
 [thigh_angle_EKF, shank_angle_EKF] = fusion_EKF(...
-                       gyro_thigh_y_g, gyro_shank_y_g, ...
-                       acc_thigh_x_g, acc_thigh_z_g, ...
-                       acc_shank_x_g, acc_shank_z_g, ...
-                       fs_g, l1_g, l2_g, p);
+                   gyro_thigh_y_g, gyro_shank_y_g, ...
+                   acc_thigh_x_g, acc_thigh_z_g, ...
+                   acc_shank_x_g, acc_shank_z_g, ...
+                   fs_g, l1_g, l2_g, p);
 
 % 4) Compute the error function.
-F = sqrt(mean((true_angles(1, rmse_offset : end) -  ...
-    thigh_angle_EKF(rmse_offset : end)) .^ 2)) + ...
-    sqrt(mean((true_angles(2, rmse_offset : end) -  ...
-    shank_angle_EKF(rmse_offset : end)) .^ 2));
-end
-% END OF EOFKALMAN FUNCTION
+F1 = sqrt(mean((true_angles(1, rmse_offset : end) -  ...
+     thigh_angle_EKF(rmse_offset : end)) .^ 2));
+F2 = sqrt(mean((true_angles(2, rmse_offset : end) -  ...
+     shank_angle_EKF(rmse_offset : end)) .^ 2));
 
-% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+F = F1 + F2;
+end
+% END OF EOEKF FUNCTION
+
+% \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 
 function corrected_angle = correct_quad_shifts(angle,units)

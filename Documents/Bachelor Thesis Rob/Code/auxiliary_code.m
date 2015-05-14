@@ -65,26 +65,26 @@ legend('Reference', 'Accelerometer-based', ...
 matlab2tikz('../tikz/experiment_2.tikz', 'height', ...
             '\figureheight', 'width', '\figurewidth');
         
-% Plot: Acceleration-based estimate vs. classic Kalman
-%       filter.
-n1 = 1;
-n2 = 18 * f;
-figure3 = figure(3);
-hold on
-plot(time(n1:n2), pitch_QS_right_shank(n1:n2) - 90, ...
-     'linewidth', 1);
-plot(time(n1:n2), pitch_acc_right_shank(n1:n2) - 90);
-plot(time(n1:n2), pitch_GKF_right_shank(n1:n2) - 90, ...
-     'linewidth', 1);
- 
-xlabel('Time $t$ in s', 'interpreter','latex');
-ylabel(['Pitch angles $\theta_1 + \theta_2$ in ', ...
-        '$^{\circ}$'], 'interpreter', 'latex');
-legend('Reference', 'Accelerometer-based', ...
-       'Gated Kalman filter');
-  
-matlab2tikz('../tikz/experiment_3.tikz', 'height', ...
-            '\figureheight', 'width', '\figurewidth');
+% % Plot: Acceleration-based estimate vs. classic Kalman
+% %       filter.
+% n1 = 1;
+% n2 = 18 * f;
+% figure3 = figure(3);
+% hold on
+% plot(time(n1:n2), pitch_QS_right_shank(n1:n2) - 90, ...
+%      'linewidth', 1);
+% plot(time(n1:n2), pitch_acc_right_shank(n1:n2) - 90);
+% plot(time(n1:n2), pitch_GKF_right_shank(n1:n2) - 90, ...
+%      'linewidth', 1);
+%  
+% xlabel('Time $t$ in s', 'interpreter','latex');
+% ylabel(['Pitch angles $\theta_1 + \theta_2$ in ', ...
+%         '$^{\circ}$'], 'interpreter', 'latex');
+% legend('Reference', 'Accelerometer-based', ...
+%        'Gated Kalman filter');
+%   
+% matlab2tikz('../tikz/experiment_3.tikz', 'height', ...
+%             '\figureheight', 'width', '\figurewidth');
         
 
         
