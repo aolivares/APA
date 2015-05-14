@@ -8,8 +8,8 @@ tikz = 0;
 
 % Load existing angle estimates based on the existing
 % algorithms and the Qualisys motion capture system.
-load('GaitWatch_data_2.mat');
-load('Qualisys_data_2.mat');
+load('GaitWatch_data_3.mat');
+load('Qualisys_data_3.mat');
 
 % 2) Import GaitWatch and WaGyroMag functions library.
 %    All existing functions have to be called using
@@ -23,13 +23,16 @@ n = 4;
 % Compute length of the signal vectors.
 len = length(a_X_right_thigh_1_C);
 
-% Set value of the magnitude of the gravity vector. 
-g = 9.81;
+% Set value of the magnitude of the gravity vector in the location in which
+% data were gathered. (In our case: Granada, Spain, 37?10'4''N 3?36'3''O, 
+% 738 meters over sea level). 
+g = 9.797024;
 
 % Set start and stop time, that is, the interval of the
 % signal that is used for the following computations.
 n1 = 1;
 n2 = 24 * f;
+
 
 %% 1) Optimise filter parameters \\\\\\\\\\\\\\\\\\\\\\
 % -----------------------------------------------------
@@ -112,8 +115,7 @@ pitch_KF_right_shank = gw.fusion_KF( ...
 
 % Set initial value of parameters.
 %p0 = [0.01, 0.01, 0.0001, 5];
-%p0 = [3.5, 6, 10, 70, 0.0005, 0.01]; 4.39
-p0 = [3.5, 30, 30, 300, 0.001, 0.05];
+p0 = [3, 6, 10, 6, 0.0001];
 
 %%
  % Call the optimization routine.

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  14 MAY 2015 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  14 MAY 2015 21:05
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1309,7 +1309,14 @@ LaTeX Info: Thecontrolsequence`\]'isalreadyrobust on input line 129.
 \l_MT_below_intertext_sep=\dimen296
 \l_MT_above_shortintertext_sep=\dimen297
 \l_MT_below_shortintertext_sep=\dimen298
-) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
+) (/usr/local/texlive/2014/texmf-dist/tex/latex/units/units.sty
+Package: units 1998/08/04 v0.9b Typesetting units
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/units/nicefrac.sty
+Package: nicefrac 1998/08/04 v0.9b Nice fractions
+\L@UnitsRaiseDisplaystyle=\skip101
+\L@UnitsRaiseTextstyle=\skip102
+\L@UnitsRaiseScriptstyle=\skip103
+)) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgfplots/pgfplots.sty (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
 Package: pgfplots 2014/02/28 v1.10 Data Visualization (1.10-2-gb39fe75)
  (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
 \t@pgfplots@toka=\toks47
@@ -1323,8 +1330,8 @@ Package: pgfplots 2014/02/28 v1.10 Data Visualization (1.10-2-gb39fe75)
 ) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatrix.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshared.code.tex
 \c@pgfplotstable@counta=\count304
 \t@pgfplotstable@a=\toks50
-) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex
-(/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
+) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque.code.tex)
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.surfshading.code.tex
 \c@pgfplotslibrarysurf@no=\count305
  (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surfshading.pgfsys-pdftex.def))) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.code.tex)) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex) (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathreplacing.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathreplacing.code.tex))
 \pgfplots@numplots=\count306
@@ -1338,11 +1345,11 @@ Package: pgfplots 2014/02/28 v1.10 Data Visualization (1.10-2-gb39fe75)
 File: tikzlibraryplotmarks.code.tex 2008/01/09 v3.0.0 (rcs-revision 1.1)
  (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2013/07/20 v3.0.0 (rcs-revision 1.13)
-))) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/frontendlayer/libraries/tikzlibraryexternal.code.tex (/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzexternalshared.code.tex))
+))) (/usr/local/texlive/2014/texmf-dist/tex/latex/pgf/frontendlayer/libraries/tikzlibraryexternal.code.tex
+(/usr/local/texlive/2014/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzexternalshared.code.tex))
 \openout3 = `main.auxlock'.
 
-
-(/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
+ (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
@@ -1436,7 +1443,7 @@ File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
-\Hy@SectionHShift=\skip101
+\Hy@SectionHShift=\skip104
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/base/glossaries.sty
 Package: glossaries 2014/04/04 v4.07 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/xkeyval/xkeyval.sty
@@ -1497,7 +1504,7 @@ Package: fp-eval 1995/04/03
 )))
 \@dtl@toks=\toks55
 \@dtl@tmpcount=\count330
-\dtl@tmplength=\skip102
+\dtl@tmplength=\skip105
 \dtl@sortresult=\count331
 \@dtl@numgrpsepcount=\count332
 \@dtl@datatype=\count333
@@ -1509,7 +1516,7 @@ Package: glossaries-compatible-307 2013/11/14 v4.0 (NLCT)
 )
 \gls@level=\count337
 \@gls@tmpb=\toks56
-\gls@tmplen=\skip103
+\gls@tmplen=\skip106
 \glskeylisttok=\toks57
 \glslabeltok=\toks58
 \glsshorttok=\toks59
@@ -1518,20 +1525,20 @@ Package: glossaries-compatible-307 2013/11/14 v4.0 (NLCT)
 Package: glossary-hypernav 2013/11/14 v4.0 (NLCT)
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
 Package: glossary-list 2013/11/14 v4.0 (NLCT)
-\glslistdottedwidth=\skip104
+\glslistdottedwidth=\skip107
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-long.sty
 Package: glossary-long 2013/11/14 v4.0 (NLCT)
-\glsdescwidth=\skip105
-\glspagelistwidth=\skip106
+\glsdescwidth=\skip108
+\glspagelistwidth=\skip109
 ) (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-super.sty
 Package: glossary-super 2013/11/14 v4.0 (NLCT)
  (/usr/local/texlive/2014/texmf-dist/tex/latex/supertabular/supertabular.sty
 Package: supertabular 2004/02/20 v4.1e the supertabular environment
 \c@tracingst=\count338
 \ST@wd=\dimen310
-\ST@rightskip=\skip107
-\ST@leftskip=\skip108
-\ST@parfillskip=\skip109
+\ST@rightskip=\skip110
+\ST@leftskip=\skip111
+\ST@parfillskip=\skip112
 \ST@pageleft=\dimen311
 \ST@headht=\dimen312
 \ST@tailht=\dimen313
@@ -1546,47 +1553,47 @@ Package: supertabular 2004/02/20 v4.1e the supertabular environment
 ))
 (/usr/local/texlive/2014/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty
 Package: glossary-tree 2014/03/06 v4.04 (NLCT)
-\glstreeindent=\skip110
+\glstreeindent=\skip113
 ))
 \glswrite=\write5
 \glo@main@file=\write6
 \openout6 = `main.glo'.
 
-Package glossaries Info: Writing glossary file main.glo on input line 141.
+Package glossaries Info: Writing glossary file main.glo on input line 142.
 \glo@acronym@file=\write7
 \openout7 = `main.acn'.
 
-Package glossaries Info: Writing glossary file main.acn on input line 141.
+Package glossaries Info: Writing glossary file main.acn on input line 142.
 \glo@notation@file=\write8
 \openout8 = `main.ntn'.
 
-Package glossaries Info: Writing glossary file main.ntn on input line 141.
+Package glossaries Info: Writing glossary file main.ntn on input line 142.
  (./Acronyms.tex) (./Notation.tex)
-\tikzscale@accuracy=\skip111
+\tikzscale@accuracy=\skip114
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 151.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 151.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 152.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 152.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 151.
-LaTeX Font Info:    ... okay on input line 151.
-LaTeX Font Info:    Try loading font information for OT1+pplj on input line 151.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Try loading font information for OT1+pplj on input line 152.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pplj.fd
 File: ot1pplj.fd 2004/09/06 font definitions for OT1/pplj.
 ) (/usr/local/texlive/2014/texmf-dist/tex/context/base/supp-pdf.mkii
@@ -1626,10 +1633,10 @@ Package caption Info: End \AtBeginDocument code.
 
 
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable tick labels; missing features). Consider writing \pgfplotsset{compat=1.10} into your preamble.
- on input line 151.
+ on input line 152.
 
 \AtBeginShipoutBox=\box87
-Package hyperref Info: Link coloring OFF on input line 151.
+Package hyperref Info: Link coloring OFF on input line 152.
 (/usr/local/texlive/2014/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2014/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1637,9 +1644,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count346
 )
-LaTeX Info: Redefining \ref on input line 151.
-LaTeX Info: Redefining \pageref on input line 151.
-LaTeX Info: Redefining \nameref on input line 151.
+LaTeX Info: Redefining \ref on input line 152.
+LaTeX Info: Redefining \pageref on input line 152.
+LaTeX Info: Redefining \nameref on input line 152.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.out)
 \@outlinefile=\write9
 \openout9 = `main.out'.
@@ -1724,13 +1731,13 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
  (./Statement.tex)pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.163 	\include{Statement}
+l.164 	\include{Statement}
                            [1
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.164 	\clearemptydoublepage
+l.165 	\clearemptydoublepage
                              [2
 
 
@@ -1739,17 +1746,17 @@ l.164 	\clearemptydoublepage
 
  (./Preface.tex)
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 166.
+(Font)              scaled to size 11.40997pt on input line 167.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 166.
+(Font)              scaled to size 8.33606pt on input line 167.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 166.
+(Font)              scaled to size 6.25204pt on input line 167.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 11.40997pt on input line 166.
+(Font)              scaled to size 11.40997pt on input line 167.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 8.33606pt on input line 166.
+(Font)              scaled to size 8.33606pt on input line 167.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 166.
+(Font)              scaled to size 6.25204pt on input line 167.
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
@@ -1815,7 +1822,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [11] [12
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.acr)
-Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--187
+Overfull \hbox (26.64116pt too wide) in paragraph at lines 2--188
 []
  []
 
@@ -2054,8 +2061,8 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [35 <./Figures/main-figure15.pdf>]
-\figureheight=\skip112
-\figurewidth=\skip113
+\figureheight=\skip115
+\figurewidth=\skip116
  (./Tikz/experiment_1.tikz
 ===== Image 'Figures/experiment_1' is up-to-date. ======
 ) (./Tikz/experiment_2.tikz
@@ -2111,7 +2118,7 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [45]
 ===== Image 'Figures/main-figure18' is up-to-date. ======
 
-LaTeX Warning: Float too large for page by 1.62553pt on input line 523.
+LaTeX Warning: Float too large for page by 1.62553pt on input line 530.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2119,17 +2126,17 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [46]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [47 <./Figures/main-figure18.pdf>]
+ [47]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [48]
-
-Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 560.
-
+ [48 <./Figures/main-figure18.pdf>]
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 567.
+
+
+Package amsmath Warning: Cannot use `split' here;
+(amsmath)                trying to recover with `aligned' on input line 574.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2137,15 +2144,21 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [49]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 613.
+(amsmath)                trying to recover with `aligned' on input line 620.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 619.
+(amsmath)                trying to recover with `aligned' on input line 626.
 
 (./Tikz/experiment_4.tikz
 ===== Image 'Figures/experiment_4' is up-to-date. ======
-) (./Tikz/experiment_5.tikz
+)
+Underfull \vbox (badness 2409) has occurred while \output is active []
+
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [50] (./Tikz/experiment_5.tikz
 ===== Image 'Figures/experiment_5' is up-to-date. ======
 ) (./Tikz/experiment_6.tikz
 ===== Image 'Figures/experiment_6' is up-to-date. ======
@@ -2164,22 +2177,19 @@ Package amsmath Warning: Cannot use `split' here;
 ))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [50 <./Figures/experiment_4.pdf>]
+ [51 <./Figures/experiment_4.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
+ [52 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [52 <./Figures/experiment_7.pdf> <./Figures/experiment_8.pdf>]
+ [53 <./Figures/experiment_7.pdf> <./Figures/experiment_8.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [53 <./Figures/experiment_9.pdf> <./Figures/experiment_10.pdf>]
+ [54 <./Figures/experiment_9.pdf> <./Figures/experiment_10.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [54 <./Figures/experiment_11.pdf> <./Figures/experiment_12.pdf>]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [55]
+ [55 <./Figures/experiment_11.pdf> <./Figures/experiment_12.pdf>]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
@@ -2361,6 +2371,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [76]
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 1815--1817
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 1825--1826
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2372,16 +2387,6 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [78]
-Overfull \hbox (127.38739pt too wide) in paragraph at lines 26--27
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (113.5904pt too wide) in paragraph at lines 27--28
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2394,13 +2399,18 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [80]
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 129--130
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [81]
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 175.
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 174.
  (/usr/local/texlive/2014/texmf-dist/tex/latex/base/ts1cmtt.fd
 File: ts1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
@@ -2416,42 +2426,42 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [83]
-Overfull \hbox (72.1994pt too wide) in paragraph at lines 240--241
+Overfull \hbox (72.1994pt too wide) in paragraph at lines 239--240
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (44.60541pt too wide) in paragraph at lines 242--243
+Overfull \hbox (44.60541pt too wide) in paragraph at lines 241--242
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (134.28589pt too wide) in paragraph at lines 250--251
+Overfull \hbox (134.28589pt too wide) in paragraph at lines 249--250
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (17.01141pt too wide) in paragraph at lines 251--252
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 250--251
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (134.28589pt too wide) in paragraph at lines 253--254
+Overfull \hbox (134.28589pt too wide) in paragraph at lines 252--253
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (17.01141pt too wide) in paragraph at lines 254--255
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 253--254
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (451.61682pt too wide) in paragraph at lines 256--257
+Overfull \hbox (451.61682pt too wide) in paragraph at lines 255--256
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (210.16937pt too wide) in paragraph at lines 257--258
+Overfull \hbox (210.16937pt too wide) in paragraph at lines 256--257
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2468,17 +2478,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [85]
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 324--325
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 323--324
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (17.01141pt too wide) in paragraph at lines 329--330
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 328--329
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 331--332
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 330--331
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2489,12 +2499,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [86]
-Overfull \hbox (10.11292pt too wide) in paragraph at lines 351--352
+Overfull \hbox (10.11292pt too wide) in paragraph at lines 350--351
 [][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 381--382
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 380--381
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
@@ -2508,31 +2518,29 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [88]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 216.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 216.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 217.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 217.
  (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.aux (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Cover.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Statement.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Preface.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Abstract.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Introduction.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Orientation_estimation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Digital_filters.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Implementation.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Conclusion.aux) (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/Appendix.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 216.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 216.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 217.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 217.
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 48156 strings out of 493117
- 1029726 string characters out of 6135434
- 6795951 words of memory out of 7000000
- 49319 multiletter control sequences out of 15000+600000
+ 48195 strings out of 493117
+ 1030452 string characters out of 6135434
+ 6796068 words of memory out of 7000000
+ 49350 multiletter control sequences out of 15000+600000
  63043 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
-pdfTeX warning (dest): name{lstnumber.4.426} has been referenced but does not exist, replaced by a fixed one
-
-pdfTeX warning (dest): name{lstnumber.3.46} has been referenced but does not exist, replaced by a fixed one
+pdfTeX warning (dest): name{lstnumber.4.425} has been referenced but does not exist, replaced by a fixed one
 
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (108 pages, 1889757 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (108 pages, 1890435 bytes).
 PDF statistics:
- 3108 PDF objects out of 3580 (max. 8388607)
- 2876 compressed objects within 29 object streams
- 1282 named destinations out of 1440 (max. 500000)
+ 3109 PDF objects out of 3580 (max. 8388607)
+ 2877 compressed objects within 29 object streams
+ 1283 named destinations out of 1440 (max. 500000)
  581 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -425,7 +425,7 @@ The constant process noise covariance matrix $\mathbf{Q} \in \mathbb{R}^{10 \tim
 &= \begin{bmatrix}
   \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^9_{\theta_1}}{9} & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^5_{\theta_1}}{5} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^_{\theta_1}}{9} & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^5_{\theta_1}}{5} & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^3_{\theta_1}}{3} & \frac{\sigma^2_{\theta_1}}{2} & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & \frac{\sigma^5_{\theta 1}}{5} & \frac{\sigma^2_{\theta_1}}{2} & \sigma_{\theta_1} & 0 & 0 & 0 & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & \frac{\sigma^9_{\theta_2}}{9} & \frac{\sigma^4_{\theta_2}}{4} & \frac{\sigma^5_{\theta_2}}{5} & 0 & 0\\
@@ -447,7 +447,7 @@ The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{3 \times 3}$
   \sigma^2_1 & 0 & 0 & 0\\
   0 & \sigma^2_2 & 0 & 0\\
   0 & 0 & \sigma^2_3 & 0\\
-  0 & 0 & 0 & \sigma^2_3
+  0 & 0 & 0 & \sigma^2_4
 \end{bmatrix}\,,
 \end{equation}
 
@@ -469,9 +469,16 @@ with
 The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based angle estimates are set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a marker signal $m$:
 
 \begin{equation}
-  \sigma^2_3 = \sigma^2_4 = \begin{cases}
-  	\sigma_s & \quad m_k = 0 \\
-  	\sigma_f & \quad m_k = 1
+  \sigma^2_3 = \begin{cases}
+  	\sigma^2_{3s} & \quad m_k = 0 \\
+  	\sigma^2_{3f} & \quad m_k = 1
+  \end{cases}\,.
+\end{equation}
+
+\begin{equation}
+  \sigma^2_4 = \begin{cases}
+  	\sigma^2_{4s} & \quad m_k = 0 \\
+  	\sigma^2_{4f} & \quad m_k = 1
   \end{cases}\,.
 \end{equation}
 
@@ -620,6 +627,14 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 \end{matrix}
 \end{equation}
 
+
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule$v$ & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
+\midrule$\sigma^2_d / \unit[]{m}$ & 0.0790 & 0.1692 & 0.2945 \\$\sigma^2_{\theta_1} / \unit[]{^\circ}$ & -0.8651& 50.0476& 5.9384 \\$\sigma^2_{\theta_2} / \unit[]{^\circ}$ & 124.2756& -50.9612& -14.2721 \\$\sigma^2_{\beta} / \unit[]{^\circ s^{-1}}$ & 0.0357& 1.2473& 0.2119 \\$\sigma^2_1 / \unit[]{^\circ s^{-1}}$ & -17.9048& -37.1111& 8.8591 \\$\sigma^2_2 / \unit[]{^\circ s^{-1}}$ & 105.5518& 232.1160& -94.7351 \\
+$\sigma^2_{3s} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
+$\sigma^2_{3f} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
+$\sigma^2_{4s} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
+$\sigma^2_{4f} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
+\bottomrule\end{tabular}\caption{Caption}\end{table*}
 
 
 \section{Results}
