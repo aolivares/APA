@@ -213,8 +213,6 @@ for n=1:4
 end
 
 
-
-
 pitch_QS_right_shank = Q_leg_pitch(:, 1)' * 180/pi;
 pitch_QS_right_thigh = Q_leg_pitch(:, 2)' * 180/pi;
 pitch_QS_left_shank = Q_leg_pitch(:, 3)' * 180/pi;

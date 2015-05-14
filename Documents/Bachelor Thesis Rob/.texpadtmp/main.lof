@@ -24,13 +24,13 @@
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Human leg with optical markers, from \cite {tao_gait_2012}.\relax }}{37}{figure.caption.30}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Kinematic model of the human leg, from \cite {bennett_motion_2014}.\relax }}{39}{figure.caption.31}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Entire computation steps of the recursive filter algorithm.\relax }}{48}{figure.caption.35}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.\relax }}{51}{figure.caption.37}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.\relax }}{52}{figure.caption.38}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{52}{figure.caption.39}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{53}{figure.caption.40}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{53}{figure.caption.41}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.\relax }}{54}{figure.caption.42}
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.\relax }}{54}{figure.caption.43}
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.\relax }}{55}{figure.caption.44}
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Acceleration signal in $x$-direction, with and without motion correction\relax }}{55}{figure.caption.45}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.\relax }}{52}{figure.caption.38}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.\relax }}{52}{figure.caption.39}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{53}{figure.caption.40}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{53}{figure.caption.41}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces Temporal course of the state vector of the extended Kalman filter.\relax }}{54}{figure.caption.42}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.\relax }}{54}{figure.caption.43}
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.\relax }}{55}{figure.caption.44}
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.\relax }}{55}{figure.caption.45}
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Acceleration signal in $x$-direction, with and without motion correction\relax }}{56}{figure.caption.46}
 \addvspace {10\p@ }

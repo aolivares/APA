@@ -425,12 +425,12 @@ The constant process noise covariance matrix $\mathbf{Q} \in \mathbb{R}^{10 \tim
 &= \begin{bmatrix}
   \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
   0 & \sigma^2_d & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^_{\theta_1}}{9} & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^5_{\theta_1}}{5} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^4_{\theta_1}}{4} & \frac{\sigma^3_{\theta_1}}{3} & \frac{\sigma^2_{\theta_1}}{2} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & \frac{\sigma^5_{\theta 1}}{5} & \frac{\sigma^2_{\theta_1}}{2} & \sigma_{\theta_1} & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^9_{\theta_2}}{9} & \frac{\sigma^4_{\theta_2}}{4} & \frac{\sigma^5_{\theta_2}}{5} & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^4_{\theta_2}}{4} & \frac{\sigma^3_{\theta_2}}{3} & \frac{\sigma^2_{\theta_2}}{2} & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & \frac{\sigma^5_{\theta_2}}{5} & \frac{\sigma^2_{\theta_2}}{2} & \sigma_{\theta_2} & 0 & 0\\
+  0 & 0 & \frac{\sigma^{18}_{\theta_1}}{9} & \frac{\sigma^8_{\theta_1}}{4} & \frac{\sigma^{10}_{\theta_1}}{5} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^8_{\theta_1}}{4} & \frac{\sigma^6_{\theta_1}}{3} & \frac{\sigma^4_{\theta_1}}{2} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & \frac{\sigma^{10}_{\theta 1}}{5} & \frac{\sigma^4_{\theta_1}}{2} & \sigma^2_{\theta_1} & 0 & 0 & 0 & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^{18}_{\theta_2}}{9} & \frac{\sigma^8_{\theta_2}}{4} & \frac{\sigma^{10}_{\theta_2}}{5} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^8_{\theta_2}}{4} & \frac{\sigma^6_{\theta_2}}{3} & \frac{\sigma^4_{\theta_2}}{2} & 0 & 0\\
+  0 & 0 & 0 & 0 & 0 & \frac{\sigma^{10}_{\theta_2}}{5} & \frac{\sigma^4_{\theta_2}}{2} & \sigma^2_{\theta_2} & 0 & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma^2_{\beta} & 0\\
   0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \sigma^2_{\beta}\\
 \end{bmatrix}\,.
@@ -628,13 +628,15 @@ The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ 
 \end{equation}
 
 
-\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule$v$ & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
-\midrule$\sigma^2_d / \unit[]{m}$ & 0.0790 & 0.1692 & 0.2945 \\$\sigma^2_{\theta_1} / \unit[]{^\circ}$ & -0.8651& 50.0476& 5.9384 \\$\sigma^2_{\theta_2} / \unit[]{^\circ}$ & 124.2756& -50.9612& -14.2721 \\$\sigma^2_{\beta} / \unit[]{^\circ s^{-1}}$ & 0.0357& 1.2473& 0.2119 \\$\sigma^2_1 / \unit[]{^\circ s^{-1}}$ & -17.9048& -37.1111& 8.8591 \\$\sigma^2_2 / \unit[]{^\circ s^{-1}}$ & 105.5518& 232.1160& -94.7351 \\
-$\sigma^2_{3s} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
-$\sigma^2_{3f} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
-$\sigma^2_{4s} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
-$\sigma^2_{4f} / \unit[]{^\circ}$ & 105.5518& 232.1160& -94.7351 \\
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
+\midrule$\sigma^2_d$ & 10.0000 & 0.1692 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.4314 & 50.0476& 0.4314 \\$\sigma^2_{\theta_2}$ & 0.4314 & -50.9612& 0.4314 \\$\sigma^2_{\beta}$ & 0.0008 & 1.2473& 0.0008 \\$\sigma^2_1$ & 2.7102 & -37.1111& 2.7102 \\$\sigma^2_2$ & 1.7409 & 232.1160& 1.7409 \\
+$\sigma^2_{3s}$ & 5.2650 & 232.1160& 5.2650 \\
+$\sigma^2_{3f}$ & 62.8998 & 232.1160& 62.8998 \\
+$\sigma^2_{4s}$ & 72.5493 & 232.1160& 72.5493 \\
+$\sigma^2_{4f}$ & 232.8577 & 232.1160& 232.8577 \\
 \bottomrule\end{tabular}\caption{Caption}\end{table*}
+
+\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_1}$ & 0.0790 & 0.1692 && 0.3670 & 0.7187 && 6.64 & 6.59 \\$\operatorname{RMSE}_{\hat{\theta}_2}$ & -0.8651 & 50.0476 && -9.0714 & 46.2143 && 14.13 & 8.60\\$SUM$ & 124.2756 & -14.2721 && 128.2265 & -381.0930 && 20.77 & 15.20 \\ \bottomrule\end{tabular}\caption{Caption}\end{table*}
 
 
 \section{Results}
