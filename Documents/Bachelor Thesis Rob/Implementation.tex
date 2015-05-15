@@ -538,20 +538,6 @@ The orientation algorithm was tested with data from real subjects. The movement 
 
 The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time depending on the treadmill speed and the walking distance, first the treadmill was switched off, then the GaitWatch records. The experiments were carried out at $2$\,km/h, $4$\,km/h, and $6$\,km/h.
 
-\subsection{Test Execution}
-
-After the implementation of the filter algorithm, I implemented a parameter optimiser. Based on the optimal set of parameters for a given signal, we compared the newly implemented filter algorithm against the classical Kalman filter. The parameter optimisation function given by Listing \ref{lis:optimiser} called an adaptive Nelder-Mead simplex algorithm, which minimised the error function $\operatorname{E}$. Since we are interested in an accurate angle estimate of both angles and thus need parameters that optimise both angle estimates, we scalarise this multi-objective optimisation problem. Using linear scalarisation yields
-
-\begin{equation}
-\begin{split}
-  \operatorname{E}(\hat{\theta}_1, \hat{\theta}_2) &= \operatorname{RMSE}_{\hat{\theta}_1} + \operatorname{RMSE}_{\hat{\theta}_2} \\
-  &= \sqrt{\frac{\sum_{k=1}^n (\hat{\theta}_{1, k} - \theta_{1, k})^2}{n}} + \sqrt{\frac{\sum_{k=1}^n (\hat{\theta}_{2, k} - \theta_{2, k})^2}{n}}\,,
-\end{split}
-\end{equation}
-
-\noindent
-where $\hat{\theta}_{1,k}$ and $\hat{\theta}_{2,k}$ denote the angle estimates of the extended Kalman filter, and $\theta_{1, k}$ and $\theta_{2, k}$ the reference angles at instant $k$, respectively. The subscript $1$ and $2$ denotes the thigh and shank angle, respectively. The implementation of the error function is shown in Listing \ref{lis:error_function}. The optimiser returned the parameters that minimise the error function.
-
 \subsection{Initial Conditions}
 
 Each trial began with the subject standing still and it was assumed that the subjects legs are fully stretched. This leads to the following initial state estimates:
@@ -606,162 +592,163 @@ The initial error covariance matrix $\mathbf{P}_{0}$ was given by
 \noindent
 Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge about the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
 
-\subsection{Parameterisation}
+\subsection{Test Preparation}
 
-The above-mentioned parameters $\sigma_d, \sigma_{\theta 1}, \sigma_{\theta 2}$ and $\sigma_{\beta}$ in the process noise covariance matrix $\mathbf{Q}$ were determined by tuning for the best performance:
+After the implementation of the filter algorithm, I implemented a parameter optimiser. Based on the optimal set of parameters for a given signal, we compared the newly implemented filter algorithm against the classical Kalman filter. The parameter optimisation function given by Listing \ref{lis:optimiser} called an adaptive Nelder-Mead simplex algorithm, which minimised the error function $\operatorname{E}$. Since we are interested in an accurate angle estimate of both angles and thus need parameters that optimise both angle estimates, we scalarise this multi-objective optimisation problem. Using linear scalarisation yields
 
 \begin{equation}
-\begin{matrix}
-	\begin{split}
-	  \sigma^2_d &= 10^{-4}\,\mbox{m}\,, \\
-	  \sigma_{\theta_1} &= 3 \times 10^{-4}\,^{\circ} \,, \\
-	  \sigma_{\theta_2} &= 3 \times 10^{-4}\,^{\circ} \,, \\
-	  \sigma^2_{\beta} &= 10^{-11} \, \frac{^{\circ}}{\mbox{s}} \,,
-\end{split} \qquad \quad
-    \begin{split}
-	  \sigma_1 &= \,, \\
-	  \sigma_2 &= \,, \\
-	  \sigma_s &= 1\,^{\circ} \,, \\
-	  \sigma_f &= 0.01^{\circ} \,,  
+\begin{split}
+  \operatorname{E}(\hat{\theta}_t, \hat{\theta}_s) &= \operatorname{RMSE}_{\hat{\theta}_{t}} + \operatorname{RMSE}_{\hat{\theta}_s} \\
+  &= \sqrt{\frac{\sum_{k=1}^n (\hat{\theta}_{t, k} - \theta_{t, k})^2}{n}} + \sqrt{\frac{\sum_{k=1}^n (\hat{\theta}_{s, k} - \theta_{s, k})^2}{n}}\,,
 \end{split}
-\end{matrix}
 \end{equation}
 
+\noindent
+where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank angle at instant $k$, estimated by the extended Kalman filter, and $\theta_{t, k}$ and $\theta_{s, k}$ the reference angles at instant $k$, respectively. The implementation of the error function is shown in Listing \ref{lis:error_function}. The optimiser returned the parameters that minimise the error function.
+
+\subsubsection{Parameterisation}
+
+The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
 
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
-\midrule$\sigma^2_d$ & 10.0000 & 0.1692 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.4314 & 50.0476& 0.4314 \\$\sigma^2_{\theta_2}$ & 0.4314 & -50.9612& 0.4314 \\$\sigma^2_{\beta}$ & 0.0008 & 1.2473& 0.0008 \\$\sigma^2_1$ & 2.7102 & -37.1111& 2.7102 \\$\sigma^2_2$ & 1.7409 & 232.1160& 1.7409 \\
-$\sigma^2_{3s}$ & 5.2650 & 232.1160& 5.2650 \\
-$\sigma^2_{3f}$ & 62.8998 & 232.1160& 62.8998 \\
-$\sigma^2_{4s}$ & 72.5493 & 232.1160& 72.5493 \\
-$\sigma^2_{4f}$ & 232.8577 & 232.1160& 232.8577 \\
-\bottomrule\end{tabular}\caption{Caption}\end{table*}
+\midrule$\sigma^2_d$ & 10.0000 & 10.0000 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\theta_2}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\beta}$ & 0.0011 & 0.0001 & 0.0008 \\$\sigma^2_1$ & 2.1767 & 3.6758 & 2.7102 \\$\sigma^2_2$ & 2.9788 & 3.2287 & 1.7409 \\
+$\sigma^2_{3s}$ & 3.6014 & 2.9168 & 5.2650 \\
+$\sigma^2_{3f}$ & 29.4645 & 125.4298 & 62.8998 \\
+$\sigma^2_{4s}$ & 27.5862 & 18.0040 & 72.5493 \\
+$\sigma^2_{4f}$ & 312.8627 & 227.0883 & 232.8577 \\
+\bottomrule\end{tabular}\caption{Filter parameters.}
+\label{tab:parameters}\end{table*}
 
-\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_1}$ & 0.0790 & 0.1692 && 0.3670 & 0.7187 && 6.64 & 6.59 \\$\operatorname{RMSE}_{\hat{\theta}_2}$ & -0.8651 & 50.0476 && -9.0714 & 46.2143 && 14.13 & 8.60\\$SUM$ & 124.2756 & -14.2721 && 128.2265 & -381.0930 && 20.77 & 15.20 \\ \bottomrule\end{tabular}\caption{Caption}\end{table*}
+\subsection{Test Execution}
+
 
 
 \section{Results}
 
 This section presents the results obtained by the experiments. Listing \ref{lis:experiments} the script used to run the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
 
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_4}
-	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
-	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.}
-	\label{fig:experiment_4}
-\end{figure}
+\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 1.0767 && 2.3658 & 1.9455 && 10.1907 & 8.2013 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.3153 && 3.3271 & 2.4269 && 14.5714 & 9.3883 \\$\operatorname{SUM}$ & 5.9784 & 4.3920 && 5.6928 & 4.3724 && 24.7621 & 17.5895 \\ \bottomrule\end{tabular}\caption{Root-mean-square errors of the Kalman filter and the extended Kalman filter.}
+\label{tab:rmse}\end{table*}
 
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_5}
-	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference.}
-	\label{fig:experiment_5}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_6}
-	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
-	\caption{Temporal course of the state vector of the extended Kalman filter.}
-	\label{fig:experiment_6}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_7}
-	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
-	\caption{Temporal course of the state vector of the extended Kalman filter.}
-	\label{fig:experiment_7}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_8}
-	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
-	\caption{Temporal course of the state vector of the extended Kalman filter.}
-	\label{fig:experiment_8}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_9}
-	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
-	\caption{Temporal course of the state vector of the extended Kalman filter - higher temporal resolution.}
-	\label{fig:experiment_9}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_10}
-	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
-	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal.}
-	\label{fig:experiment_10}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_11}
-	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
-	\caption{Temporal course of the accelerometer-based shank angle with respect to the $x$-axis based on the corrected acceleration signal - higher temporal resolution.}
-	\label{fig:experiment_11}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_12}
-	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
-	\caption{Acceleration signal in $x$-direction, with and without motion correction}
-	\label{fig:experiment_12}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_13}
-	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
-	\caption{Acceleration signal in $x$-direction, with and without motion correction - higher temporal resolution}
-	\label{fig:experiment_13}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_14}
-	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
-	\caption{Acceleration signal in $z$-direction, with and without motion correction}
-	\label{fig:experiment_14}
-\end{figure}
-
-\begin{figure}
-	\centering
-	\setlength\figureheight{7cm} 
-	\setlength\figurewidth{\textwidth}
-	\tikzsetnextfilename{experiment_15}
-	\includegraphics[width=\textwidth]{Tikz/experiment_15.tikz}
-	\caption{Acceleration signal in $z$-direction, with and without motion correction - higher temporal resolution}
-	\label{fig:experiment_15}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_4}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
+%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+%	\label{fig:experiment_4}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_5}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
+%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+%	\label{fig:experiment_5}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_6}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
+%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[2]{km}{h}$.}
+%	\label{fig:experiment_6}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_7}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
+%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[2]{km}{h}$.}
+%	\label{fig:experiment_7}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_8}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
+%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+%	\label{fig:experiment_8}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_9}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
+%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+%	\label{fig:experiment_9}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_10}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
+%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[4]{km}{h}$.}
+%	\label{fig:experiment_10}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_11}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
+%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[4]{km}{h}$.}
+%	\label{fig:experiment_11}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_12}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
+%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+%	\label{fig:experiment_12}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_13}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
+%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+%	\label{fig:experiment_13}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_14}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
+%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[6]{km}{h}$.}
+%	\label{fig:experiment_14}
+%\end{figure}
+%
+%\begin{figure}
+%	\centering
+%	\setlength\figureheight{7cm} 
+%	\setlength\figurewidth{\textwidth}
+%	\tikzsetnextfilename{experiment_15}
+%	\includegraphics[width=\textwidth]{Tikz/experiment_15.tikz}
+%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[6]{km}{h}$.}
+%	\label{fig:experiment_15}
+%\end{figure}
 
 \section{Discussion}
 

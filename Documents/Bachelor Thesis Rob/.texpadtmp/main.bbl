@@ -5,59 +5,6 @@
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
 
-\bibitem[Collin et~al.(2013)Collin, Davidson, Kirkko-Jaakkola, and
-  Leppäkoski]{bhattacharyya_inertial_sensors_applications_13}
-Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
-\newblock Inertial sensors and their applications.
-\newblock In Shuvra~S. Bhattacharyya, Ed~F. Deprettere, Rainer Leupers, and
-  Jarmo Takala, editors, \emph{Handbook of Signal Processing Systems}, pages
-  69--96. Springer New York, 2013.
-\newblock ISBN 978-1-4614-6858-5.
-\newblock \doi{10.1007/978-1-4614-6859-2_3}.
-\newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
-
-\bibitem[Armenise et~al.(2010)Armenise, Ciminelli, Dell'Olio, and
-  Passaro]{armenise2010advances}
-M.N. Armenise, C.~Ciminelli, F.~Dell'Olio, and V.M.N. Passaro.
-\newblock \emph{Advances in Gyroscope Technologies}.
-\newblock Springer, 2010.
-\newblock ISBN 9783642154942.
-\newblock URL \url{https://books.google.de/books?id=lJUiyigJRBgC}.
-
-\bibitem[{Juansempere}()]{Wiki_taitbryan}
-{Juansempere}.
-\newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
-\newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
-\newblock [Accessed 31 March, 2015].
-
-\bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
-T.R. Bennett, R.~Jafari, and N.~Gans.
-\newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
-  {Orientation} {Estimates}.
-\newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
-  {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
-\newblock \doi{10.1109/BSN.2014.17}.
-
-\bibitem[Haykin(2002)]{haykin2002adaptive}
-Simon Haykin.
-\newblock \emph{Adaptive filter theory}.
-\newblock Prentice Hall, Upper Saddle River, N.J, 2002.
-\newblock ISBN 9780130484345.
-
-\bibitem[Maybeck(1979)]{Maybeck79}
-Maybeck.
-\newblock Chapter 1 introduction.
-\newblock In Peter~S. Maybeck, editor, \emph{Stochastic Models, Estimation and
-  Control: Volume 1}, Mathematics in Science and Engineering, pages 1 -- 24.
-  Elsevier, 1979.
-\newblock \doi{10.1016/S0076-5392(08)62166-9}.
-\newblock URL
-  \url{http://www.sciencedirect.com/science/article/pii/S0076539208621669}.
-
-\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
-Alberto Olivares~Vicente and Kai Bötzel.
-\newblock \emph{{GaitWatch} User Manual}.
-
 \bibitem[Tao et~al.(2012)Tao, Liu, Zheng, and Feng]{tao_gait_2012}
 Weijun Tao, Tao Liu, Rencheng Zheng, and Hutian Feng.
 \newblock Gait analysis using wearable sensors.
@@ -114,6 +61,14 @@ Wai~Yin Wong, Man~Sang Wong, and Kam~Ho Lo.
 \newblock ISSN 0309-3646, 1746-1553.
 \newblock \doi{10.1080/03093640600983949}.
 \newblock URL \url{http://poi.sagepub.com/content/31/1/62}.
+
+\bibitem[Bennett et~al.(2014)Bennett, Jafari, and Gans]{bennett_motion_2014}
+T.R. Bennett, R.~Jafari, and N.~Gans.
+\newblock Motion {Based} {Acceleration} {Correction} for {Improved} {Sensor}
+  {Orientation} {Estimates}.
+\newblock In \emph{2014 11th {International} {Conference} on {Wearable} and
+  {Implantable} {Body} {Sensor} {Networks} ({BSN})}, pages 109--114, June 2014.
+\newblock \doi{10.1109/BSN.2014.17}.
 
 \bibitem[Luinge et~al.(1999)Luinge, Veltink, and
   Baten]{Luinge_orientation_acc_gyro_99}
@@ -296,6 +251,25 @@ Joe Verghese, Richard~B. Lipton, Charles~B. Hall, Gail Kuslansky, Mindy~J.
 \newblock URL \url{http://dx.doi.org/10.1056/NEJMoa020441}.
 \newblock PMID: 12456852.
 
+\bibitem[Collin et~al.(2013)Collin, Davidson, Kirkko-Jaakkola, and
+  Leppäkoski]{bhattacharyya_inertial_sensors_applications_13}
+Jussi Collin, Pavel Davidson, Martti Kirkko-Jaakkola, and Helena Leppäkoski.
+\newblock Inertial sensors and their applications.
+\newblock In Shuvra~S. Bhattacharyya, Ed~F. Deprettere, Rainer Leupers, and
+  Jarmo Takala, editors, \emph{Handbook of Signal Processing Systems}, pages
+  69--96. Springer New York, 2013.
+\newblock ISBN 978-1-4614-6858-5.
+\newblock \doi{10.1007/978-1-4614-6859-2_3}.
+\newblock URL \url{http://dx.doi.org/10.1007/978-1-4614-6859-2_3}.
+
+\bibitem[Armenise et~al.(2010)Armenise, Ciminelli, Dell'Olio, and
+  Passaro]{armenise2010advances}
+M.N. Armenise, C.~Ciminelli, F.~Dell'Olio, and V.M.N. Passaro.
+\newblock \emph{Advances in Gyroscope Technologies}.
+\newblock Springer, 2010.
+\newblock ISBN 9783642154942.
+\newblock URL \url{https://books.google.de/books?id=lJUiyigJRBgC}.
+
 \bibitem[Lenz and Edelstein(2006)]{lenz_magnetic_2006}
 J.~Lenz and Alan~S. Edelstein.
 \newblock Magnetic sensors and their applications.
@@ -311,6 +285,12 @@ M.J. Thompson, M.~Li, and D.A. Horsley.
   International Conference on}, pages 593--596, Jan 2011.
 \newblock \doi{10.1109/MEMSYS.2011.5734494}.
 
+\bibitem[{Juansempere}()]{Wiki_taitbryan}
+{Juansempere}.
+\newblock {Wikimedia Commons File: Taitbrianzyx.svg}.
+\newblock URL \url{http://commons.wikimedia.org/wiki/File:Taitbrianzyx.svg}.
+\newblock [Accessed 31 March, 2015].
+
 \bibitem[Diebel(2006)]{diebel2006attitude}
 James Diebel.
 \newblock Representing attitude: Euler angles, unit quaternions, and rotation
@@ -323,6 +303,22 @@ J.R. Raol.
 \newblock CRC Press, 2009.
 \newblock ISBN 9781439800058.
 \newblock URL \url{https://books.google.de/books?id=7s8xpR-5rOUC}.
+
+\bibitem[Haykin(2002)]{haykin2002adaptive}
+Simon Haykin.
+\newblock \emph{Adaptive filter theory}.
+\newblock Prentice Hall, Upper Saddle River, N.J, 2002.
+\newblock ISBN 9780130484345.
+
+\bibitem[Maybeck(1979)]{Maybeck79}
+Maybeck.
+\newblock Chapter 1 introduction.
+\newblock In Peter~S. Maybeck, editor, \emph{Stochastic Models, Estimation and
+  Control: Volume 1}, Mathematics in Science and Engineering, pages 1 -- 24.
+  Elsevier, 1979.
+\newblock \doi{10.1016/S0076-5392(08)62166-9}.
+\newblock URL
+  \url{http://www.sciencedirect.com/science/article/pii/S0076539208621669}.
 
 \bibitem[Kalman(1960)]{kalman_1960}
 Rudolph~Emil Kalman.
@@ -352,6 +348,10 @@ M.S. Grewal and A.P. Andrews.
 \newblock Wiley, 2008.
 \newblock ISBN 9780470377802.
 \newblock URL \url{http://books.google.es/books?id=J\_fqMHOCzB8C}.
+
+\bibitem[Olivares~Vicente and Bötzel()]{olivares_vicente_gaitwatch_2013}
+Alberto Olivares~Vicente and Kai Bötzel.
+\newblock \emph{{GaitWatch} User Manual}.
 
 \bibitem[{SparkFun Electronics}({\natexlab{a}})]{IMU5}
 {SparkFun Electronics}.
