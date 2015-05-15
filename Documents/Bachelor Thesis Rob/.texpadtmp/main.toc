@@ -2,9 +2,9 @@
 \contentsline {chapter}{Preface}{iii}{chapter*.2}
 \contentsline {chapter}{Abstract}{v}{chapter*.3}
 \contentsline {chapter}{Contents}{vii}{section*.4}
-\contentsline {chapter}{List of Figures}{x}{chapter*.6}
-\contentsline {chapter}{Abbreviations}{xi}{chapter*.8}
-\contentsline {chapter}{Notation}{xvi}{chapter*.10}
+\contentsline {chapter}{List of Figures}{xi}{chapter*.6}
+\contentsline {chapter}{Abbreviations}{xiii}{chapter*.8}
+\contentsline {chapter}{Notation}{xviii}{chapter*.10}
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}Motivation}{2}{section.1.1}
 \contentsline {section}{\numberline {1.2}Goals}{2}{section.1.2}
@@ -36,8 +36,8 @@
 \contentsline {subsection}{\numberline {4.1.1}The GaitWatch System}{33}{subsection.4.1.1}
 \contentsline {subsubsection}{Hardware}{33}{subsubsection*.25}
 \contentsline {subsubsection}{Software}{34}{subsubsection*.27}
-\contentsline {section}{\numberline {4.2}Theoretical Design}{37}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Kinematic Model}{37}{subsection.4.2.1}
+\contentsline {section}{\numberline {4.2}Theoretical Design}{38}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Kinematic Model}{38}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}The Extended Kalman Filter}{41}{subsection.4.2.2}
 \contentsline {subsubsection}{The State-Space Model}{41}{subsubsection*.32}
 \contentsline {subsubsection}{The Filter Algorithm}{44}{subsubsection*.33}
@@ -49,9 +49,9 @@
 \contentsline {subsubsection}{Parameterisation}{50}{subsubsection*.36}
 \contentsline {subsection}{\numberline {4.3.4}Test Execution}{50}{subsection.4.3.4}
 \contentsline {section}{\numberline {4.4}Results}{50}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discussion}{51}{section.4.5}
-\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{53}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{53}{section.5.1}
-\contentsline {section}{\numberline {5.2}Future Work}{53}{section.5.2}
-\contentsline {chapter}{Bibliography}{55}{section*.39}
-\contentsline {chapter}{Appendix}{63}{section*.41}
+\contentsline {section}{\numberline {4.5}Discussion}{55}{section.4.5}
+\contentsline {chapter}{\numberline {5}Conclusion and Future Work}{57}{chapter.5}
+\contentsline {section}{\numberline {5.1}Conclusions}{57}{section.5.1}
+\contentsline {section}{\numberline {5.2}Future Work}{57}{section.5.2}
+\contentsline {chapter}{Bibliography}{59}{section*.47}
+\contentsline {chapter}{Appendix}{67}{section*.49}

@@ -630,86 +630,86 @@ This section presents the results obtained by the experiments. Listing \ref{lis:
 \begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 1.0767 && 2.3658 & 1.9455 && 10.1907 & 8.2013 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.3153 && 3.3271 & 2.4269 && 14.5714 & 9.3883 \\$\operatorname{SUM}$ & 5.9784 & 4.3920 && 5.6928 & 4.3724 && 24.7621 & 17.5895 \\ \bottomrule\end{tabular}\caption{Root-mean-square errors of the Kalman filter and the extended Kalman filter.}
 \label{tab:rmse}\end{table*}
 
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_4}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
-%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
-%	\label{fig:experiment_4}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_5}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
-%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
-%	\label{fig:experiment_5}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_6}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
-%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[2]{km}{h}$.}
-%	\label{fig:experiment_6}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_7}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
-%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[2]{km}{h}$.}
-%	\label{fig:experiment_7}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_8}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
-%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
-%	\label{fig:experiment_8}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_9}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
-%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
-%	\label{fig:experiment_9}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_10}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
-%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[4]{km}{h}$.}
-%	\label{fig:experiment_10}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_11}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
-%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[4]{km}{h}$.}
-%	\label{fig:experiment_11}
-%\end{figure}
-%
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_4}
+	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\label{fig:experiment_4}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_5}
+	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\label{fig:experiment_5}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_6}
+	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
+	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\label{fig:experiment_6}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_7}
+	\includegraphics[width=\textwidth]{Tikz/experiment_7.tikz}
+	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\label{fig:experiment_7}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_8}
+	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\label{fig:experiment_8}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_9}
+	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\label{fig:experiment_9}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_10}
+	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
+	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\label{fig:experiment_10}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_11}
+	\includegraphics[width=\textwidth]{Tikz/experiment_11.tikz}
+	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\label{fig:experiment_11}
+\end{figure}
+
 %\begin{figure}
 %	\centering
 %	\setlength\figureheight{7cm} 
