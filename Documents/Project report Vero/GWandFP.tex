@@ -34,7 +34,7 @@ It’s important to clarify that the GaitWatch recording contains all these ten 
 
 \subsection{Introduction and chapter's structure}
 One of the most important aspects whether you have data acquired from multiples devices or channels is the synchronisation. If these data are not appropriately correlated or synchronised, the analysis and conclusions from your use will be erroneous. Also, it’s very important doing all automatically when you have a data on a broad scale.
-Therefore, the following sections explain how the information has been obtained and processed automatically, as well as what features have been calculated to characterise the movements of the patients and to carry out the synchronisation between the Force Plate signals and GaitWatch signals. This content is superficially depicted in figure XX.
+Therefore, the following sections explain how the information has been obtained and processed automatically, as well as what features have been calculated to characterise the movements of the patients and to carry out the synchronisation between the Force Plate signals and GaitWatch signals. This content is superficially depicted in \ref{fig:diagramSynchronisation}.
 
 \begin{figure}[H]
 	\centering
@@ -53,19 +53,56 @@ At the end of this fraction of code, we save all file names of both systems (for
 
 \subsubsection{Extraction of the forceplate data}
 As we said before, the  force plate data files are recorded independently each others, that is, there is a *.txt file for each repeat.
-Each file contains the force data of the toes and heels of both feet. It really realises a distribution of the sensors to cover these four segments. Every measure is obtained for each point of time according to the sample frequency. Also, this file contains the force data from each cell that is part of platform in each frame.
+Each file contains the force data of the toes and heels of both feet. It really realises a distribution of the sensors to cover these four segments\ref{fig:Force4signals}. Every measure is obtained for each point of time according to the sample frequency. Also, this file contains the force data from each cell that is part of platform in each frame\ref{fig:pseudocolor}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/Force4signals, width=18cm}
+	\caption{Force in each body segment.}
+	\label{fig:Force4signals}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/pseudocolor, width=18cm}
+	\caption{Pseudocolor with the force in each cell of the platform}
+	\label{fig:pseudocolor}
+\end{figure}
 
 Once we recover this data, some parameters are calculated for the movement characterization carried out over the platform. 
 
 \begin{itemize}
 	\item \textbf{Midline}: it represents the midline between both feet. This is important to find the gap between feet and it gives us a idea of their position in the platform. Thus, we carry out the sum of cells force in the anterior-posterior direction. So, this line is in the minimum between two maximum corresponding to the position of both feet. We use this parameter to calculate the center of pressure.
+	\begin{figure}[H]
+		\centering
+		\epsfig{file=figures/Synchronisation/midlineForceplate, width=18cm}
+		\caption{Midline between both feet in platform.}
+		\label{fig:midlineForceplate}
+	\end{figure}
 	
 	\item \textbf{The total force in the platform for each point of time}: This signal is useful to do the synchronisation due to we can determine clearer when the patient touches the plate.
+		\begin{figure}[H]
+			\centering
+			\epsfig{file=figures/Synchronisation/forceFP, width=18cm}
+			\caption{Total force in the platform of the right, left and both feet.}
+			\label{fig:forceFP}
+		\end{figure}
 	
-	\item \textbf{Antero-posterior COP}: center of pressure forward-backward direction.
+	\item \textbf{Antero-posterior COP}: center of pressure in forward-backward direction.
+		\begin{figure}[H]
+			\centering
+			\epsfig{file=figures/Synchronisation/APCOP, width=18cm}
+			\caption{Center of Pressure in Antero-Posterior direction.}
+			\label{fig:APCOP}
+		\end{figure}	
 	
 	\item \textbf{Medio-lateral  COP}: center of pressure  in right and left direction.
-	
+			\begin{figure}[H]
+				\centering
+				\epsfig{file=figures/Synchronisation/MLCOP, width=18cm}
+				\caption{Center of Pressure in Medio-Lateral direction.}
+				\label{fig:MLCOP}
+			\end{figure}
 	
 \end{itemize}
 
