@@ -490,7 +490,7 @@ The value of a marker signal toggles between $1$ and $0$. In order to determine 
 The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} in the appendix shows the source code of the filter function.
 
 \tikzstyle{block} = [draw, rectangle, thick, 
-    minimum height=1.5cm, minimum width=9cm]
+    minimum height=1.5cm, minimum width=10cm]
 \tikzstyle{output} = [coordinate]
 
 \begin{figure}
@@ -509,16 +509,19 @@ The state estimates are computed recursively according to the \emph{time update}
   	a_x \\
   	0 \\
 	a_z
-  \end{smallmatrix} \right] \|\mathbf{g}\|^{-1}$ \\ Compute corrected angle estimate: \\ $\theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)-180^{\circ}$ \\ Set measurement covariances \\ $\sigma^2_3 = \sigma^2_4 = \begin{cases}
-  	\sigma_s & \quad m_k = 0 \\
-  	\sigma_f & \quad m_k = 1
+  \end{smallmatrix} \right] \|\mathbf{g}\|^{-1}$ \\ Compute corrected angle estimate: \\ $\theta_1 + \theta_2 = \mbox{atan}2(g_z, g_x)-180^{\circ}$ \\ Set measurement covariances \\ $\sigma^2_3 = \begin{cases}
+  	\sigma^2_{3s} & \quad m_k = 0 \\
+  	\sigma^2_{3f} & \quad m_k = 1
+  \end{cases}\,, \quad \sigma^2_4 = \begin{cases}
+  	\sigma^2_{4s} & \quad m_k = 0 \\
+  	\sigma^2_{4f} & \quad m_k = 1
   \end{cases}$};
 \node [block, align=center, below of=measurement, node distance=6.6cm] (update) {\emph{Measurement update} \\[3mm] Compute Kalman gain: \\ $\mathbf{K}_{k} = \mathbf{P}^-_k \mathbf{H}^T_k[\mathbf{H}_k \mathbf{P}^-_k \mathbf{H}^T_k + \mathbf{R}_k]^{-1}$ \\ Compute \emph{a posteriori} estimate: \\ $\hat{\mathbf{x}}_k = \hat{\mathbf{x}}^-_k + \mathbf{K}_{k}[\mathbf{z}_k-\mathbf{H}_{k}\hat{\mathbf{x}}^-_k]$ \\ Update error covariance: \\ $\mathbf{P}_{k} = [\mathbf{I} - \mathbf{K}_{k}\mathbf{H}_{k}]\mathbf{P}^-_{k}$};
 \node [output, below of=update, node distance=3.2cm, name=output] {Output};
 \node [output, below of=update, node distance=2.68cm, name=help1] {};
-\node [output, right of=help1, node distance=5.1cm, name=help2] {};
+\node [output, right of=help1, node distance=5.6cm, name=help2] {};
 \node [output, below of=init, node distance=1.18cm, name=help4] {};
-\node [output, right of=help4, node distance=5.1cm, name=help3] {};
+\node [output, right of=help4, node distance=5.6cm, name=help3] {};
 
 \draw [draw,-stealth, thick, align=left] (init) -- (predict);
 \draw [draw,-stealth, thick, align=left] (predict) -- (measurement);
@@ -538,9 +541,9 @@ The orientation algorithm was tested with data from real subjects. The movement 
 
 The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time depending on the treadmill speed and the walking distance, first the treadmill was switched off, then the GaitWatch records. The experiments were carried out at $2$\,km/h, $4$\,km/h, and $6$\,km/h.
 
-\subsection{Initial Conditions}
+\subsection{Initial Conditions}\label{sec:initial_cond}
 
-Each trial began with the subject standing still and it was assumed that the subjects legs are fully stretched. This leads to the following initial state estimates:
+Each trial began with the subject standing still and it was assumed that the subject's legs are not fully stretched, but rather the shank has a slight pitch to the back. This leads to the following initial state estimates:
 
 \begin{equation}
 \begin{matrix}
@@ -553,13 +556,12 @@ Each trial began with the subject standing still and it was assumed that the sub
 \end{split} \qquad \quad
     \begin{split}
    	  z &= -(l_1+l_2)\,\mbox{m}\,, \\
-	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
+	  \theta_2 &= -10\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
 	  \omega_2 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_2 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,  
 \end{split}
 \end{matrix} \\
-	  m_0 = 0
 \end{equation}
 
 \noindent
@@ -608,7 +610,7 @@ where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank a
 
 \subsubsection{Parameterisation}
 
-The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
+The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector given in Section \ref{sec:initial_cond}. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
 
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
 \midrule$\sigma^2_d$ & 10.0000 & 10.0000 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\theta_2}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\beta}$ & 0.0011 & 0.0001 & 0.0008 \\$\sigma^2_1$ & 2.1767 & 3.6758 & 2.7102 \\$\sigma^2_2$ & 2.9788 & 3.2287 & 1.7409 \\
@@ -710,45 +712,45 @@ This section presents the results obtained by the experiments. Listing \ref{lis:
 	\label{fig:experiment_11}
 \end{figure}
 
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_12}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
-%	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
-%	\label{fig:experiment_12}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_13}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
-%	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
-%	\label{fig:experiment_13}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_14}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
-%	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[6]{km}{h}$.}
-%	\label{fig:experiment_14}
-%\end{figure}
-%
-%\begin{figure}
-%	\centering
-%	\setlength\figureheight{7cm} 
-%	\setlength\figurewidth{\textwidth}
-%	\tikzsetnextfilename{experiment_15}
-%	\includegraphics[width=\textwidth]{Tikz/experiment_15.tikz}
-%	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[6]{km}{h}$.}
-%	\label{fig:experiment_15}
-%\end{figure}
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_12}
+	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\label{fig:experiment_12}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_13}
+	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\label{fig:experiment_13}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_14}
+	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
+	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\label{fig:experiment_14}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\setlength\figureheight{7cm} 
+	\setlength\figurewidth{\textwidth}
+	\tikzsetnextfilename{experiment_15}
+	\includegraphics[width=\textwidth]{Tikz/experiment_15.tikz}
+	\caption{Accelerometer-based shank angle with respect to the $x$-axis with and without correction of acceleration signal. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\label{fig:experiment_15}
+\end{figure}
 
 \section{Discussion}
 
