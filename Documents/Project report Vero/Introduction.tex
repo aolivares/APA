@@ -13,7 +13,12 @@ The center of body mass of a person is situated below the navel and the legs wor
 With this Project, we aim  to contiue the research line initiated by Dr. Alberto Olivares, member of the SIPBA (Signal Processing and Biomedical Applications) research group of the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain, and Prof. Dr. Med. Kai Bötzel, head of the Motion Analysis and Deep Brain Stimulation Laboratory of the Department of Neurology of the Klinikum Grosshadern based in Munich, Germany. In his dissertation ,Dr. Olivares explains in his Ph.D. thesis \cite{A.Olivares2013} different signal processing techniques to analyze information from inertial sensors to monitor human body motion.
 Specifically, our work will be focused on signal processing of data gathered  by a force plate and a wearable motion analysis system based on inertial sensors . Nevertheless, this master thesis is part of a broader project which has many different layers (instrumentation, data gathering, firmware, signal processing) in which other people have been working during the last 5 years .
 
- IMAGE 
+ \begin{figure}[H]
+ 	\centering
+ 	\epsfig{file=imagenes/Layer.pdf, width=16cm}
+ 	\caption{Layer structure of this project. Knowledge inference is highlighted as it includes the core of our work.}
+ 	\label{fig:layer}
+ \end{figure}
 
 \section{Motivation}
 Parkinson’s disease is the second most common neurodegenerative disorder, it is extended globally and affects as much to men as to women. PD is more common among the population over 60 years old. . It is estimated that seven  to ten million people worldwide are living with Parkinson’s disease. To this date, there is no cure to PD, so all efforts are focused on improving or prolonging the functionality of the patient for as long as possible. Therefore, it’s an incentive to work in this field. \cite{ParkinsonDisease}\cite{pdf}
@@ -26,7 +31,7 @@ The goal is tracking the  symptoms and progress of Parkinson’s disease day by 
 	\centering
 	\epsfig{file=imagenes/IntelAndMjf, width=7cm}
 	\caption{Illustration of sensors distribution thought up by Intel and Mjf.\cite{IntelAndMjf}}
-	\label{fig:arte1}
+	\label{fig:IntelAndMjf}
 \end{figure}
 
 Diane Bryant, senior vice president of Intel's Data Center Group, said in a release \cite{IntelAndMjf}.
@@ -72,7 +77,7 @@ In addition, you can combinate it with magnetometers, but in this case, the devi
 	\centering
 	\epsfig{file=imagenes/Captura, width=7cm}
 	\caption{EMG, accelerometers y platform \cite{Gay2011}.}
-	\label{fig:arte1}
+	\label{fig:Captura}
 \end{figure}
 
 There are  infrared-reflective markers that give us a complex posture measurement. They are attached  to the body and can provide information about postural strategies, so we can know if the subject uses the ankle strategy or the hip strategy. For example, figure [2] shows the System.
@@ -81,7 +86,7 @@ There are  infrared-reflective markers that give us a complex posture measuremen
 	\centering
 	\epsfig{file=imagenes/Captura2, width=7cm}
 	\caption{Illustration of the experiment with infrared-reflective markers\cite{Teddy2013}.}
-	\label{fig:arte2}
+	\label{fig:Captura2}
 \end{figure}
 
 As mentioned previously, it's possible to use sensors based in cameras that generally are part of a optical System of movement capture such  as Kinect. \cite{Instr5}.
