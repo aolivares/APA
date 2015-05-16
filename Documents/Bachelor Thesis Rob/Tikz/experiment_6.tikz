@@ -26,7 +26,7 @@ ymin=0,
 ymax=19.9613273428885,
 ytick={ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18},
 ylabel={Root-mean-square error in $^{\circ}$},
-legend style={legend cell align=left,align=left,draw=white!15!black}
+legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=left,draw=white!15!white}
 ]
 \addplot[ybar,bar width=0.021132\figurewidth,bar shift=-0.070439\figurewidth,draw=black,fill=mycolor1] plot table[row sep=crcr] {%
 1	6.60819891578215\\
@@ -43,9 +43,9 @@ legend style={legend cell align=left,align=left,draw=white!15!black}
 \addlegendentry{Kalman filter};
 
 \addplot[ybar,bar width=0.021132\figurewidth,bar shift=0.070439\figurewidth,draw=black,fill=mycolor3] plot table[row sep=crcr] {%
-1	1.01582622170416\\
-2	3.08460617237309\\
-3	4.10043239407725\\
+1	0.947164351549903\\
+2	3.18155248117179\\
+3	4.12871683272169\\
 };
 \addlegendentry{Extended Kalman filter};
 
@@ -54,21 +54,19 @@ at (axis cs:0.777777777777778,7.40819891578215,0) {\scriptsize $6.61$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:1,2.33243171675969,0) {\scriptsize $1.53$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:1.22222222222222,1.81582622170416,0) {\scriptsize $1.02$};
+at (axis cs:1.22222222222222,1.7471643515499,0) {\scriptsize $0.95$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:1.77777777777778,12.1531284271064,0) {\scriptsize $11.35$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:2,5.24596476959782,0) {\scriptsize $4.45$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:2.22222222222222,3.88460617237309,0) {\scriptsize $3.08$};
+at (axis cs:2.22222222222222,3.98155248117179,0) {\scriptsize $3.18$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:2.77777777777778,18.7613273428885,0) {\scriptsize $17.96$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:3,6.77839648635751,0) {\scriptsize $5.98$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:3.22222222222222,4.90043239407725,0) {\scriptsize $4.10$};
-\node[right, align=left, inner sep=0mm, text=black]
-at (axis cs:1.4,18,0) {\scriptsize $\frac{\operatorname{RMSE}_{EKF_{thigh}} + \operatorname{RMSE}_{EKF_{shank}}}{\operatorname{RMSE}_{KF_{thigh}} + \operatorname{RMSE}_{KF_{shank}}} = 0.69$};
+at (axis cs:3.22222222222222,4.92871683272169,0) {\scriptsize $4.13$};
 \node[below, align=center, inner sep=0mm, text=black]
 at (axis cs:1,-0.39922654685777,0) {Thigh};
 \node[below, align=center, inner sep=0mm, text=black]

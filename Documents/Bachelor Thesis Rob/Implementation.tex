@@ -535,11 +535,11 @@ The state estimates are computed recursively according to the \emph{time update}
 
 \section{Experiments}
 
-The orientation algorithm was tested with movement data from real subjects. The data was gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subjects performed the following trial.
+The extended Kalman filter was tested and its results compared to the existing classical Kalman filter and the reference signal. Therefore I computed the RMSE of each estimate and inter-related them. The orientation algorithms were applied to movement data from a real subject. The data was gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subject performed the following trial.
 
 \subsection{Data Collection Protocol}
 
-The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time, depending on the treadmill speed and the walking distance, first the treadmill was switched off, and then the GaitWatch records. The experiments were performed at walking speeds of $\unitfrac[2]{km}{h}$, $\unitfrac[4]{km}{h}$, and $\unitfrac[6]{km}{h}$.
+The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time, depending on the treadmill speed and the walking distance, first the treadmill was switched off, and then the GaitWatch records. The trial was performed at walking speeds of $\unitfrac[2]{km}{h}$, $\unitfrac[4]{km}{h}$, and $\unitfrac[6]{km}{h}$.
 
 \subsection{Initial Conditions}\label{sec:initial_cond}
 
@@ -549,14 +549,14 @@ Each trial began with the subject standing still and it was assumed that the sub
 \begin{matrix}
 	\begin{split}
 	  x &= 0\,\mbox{m}\,, \\
-	  \theta_1 &= -90^{\circ}\,, \\
+	  \theta_1 &= -95^{\circ}\,, \\
 	  \omega_1 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_1 &= \mu_1\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,, 
 \end{split} \qquad \quad
     \begin{split}
    	  z &= -(l_1+l_2)\,\mbox{m}\,, \\
-	  \theta_2 &= -10\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
+	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
 	  \omega_2 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
 	  \alpha_2 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,  
@@ -574,25 +574,7 @@ where $\mu_1$ and $\mu_2$ are the mean values of the gyroscope signals collected
 \noindent
 where $\omega_k$ is the angular velocity at instant $k$ and $f_s$ is the sampling frequency.
 
-The initial error covariance matrix $\mathbf{P}_{0}$ was given by
-
-\begin{equation}
-\mathbf{P}_0 = \begin{bmatrix}
-  0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1 & 0\\
-  0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.1\\
-\end{bmatrix}\,.
-\end{equation}
-
-\noindent
-Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge about the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
+The initial error covariance matrix was the identity matrix, $\mathbf{P}_0 = \mathbf{I}_{10} \in \mathbb{R}^{10\times10}$. Its diagonal elements, that is, the variances of the initial state estimates, represent the confidence in the knowledge about the initial state of the system and is crucial for the convergence of the filter. Unlike the initial error covariance matrix of the classical Kalman filter, it may cause the filter to diverge, in case the confidence in the estimates is too small. Equally, too vague initial state estimates can cause the filter to diverge.
 
 \subsection{Test Preparation}
 
@@ -613,31 +595,41 @@ where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank a
 The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector given in Section \ref{sec:initial_cond}. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
 
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
-\midrule$\sigma^2_d$ & 10.0000 & 10.0000 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\theta_2}$ & 0.0431 & 0.0116 & 0.4314 \\$\sigma^2_{\beta}$ & 0.0011 & 0.0001 & 0.0008 \\$\sigma^2_1$ & 2.1767 & 3.6758 & 2.7102 \\$\sigma^2_2$ & 2.9788 & 3.2287 & 1.7409 \\
-$\sigma^2_{3s}$ & 3.6014 & 2.9168 & 5.2650 \\
-$\sigma^2_{3f}$ & 29.4645 & 125.4298 & 62.8998 \\
-$\sigma^2_{4s}$ & 27.5862 & 18.0040 & 72.5493 \\
-$\sigma^2_{4f}$ & 312.8627 & 227.0883 & 232.8577 \\
+\midrule$\sigma^2_d$ & 10.0000 & 10.0000 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.0514 & 0.0209 & 0.4342 \\$\sigma^2_{\theta_2}$ & 0.0514 & 0.0209 & 0.4342 \\$\sigma^2_{\beta}$ & 0.0011 & 0.0001 & 0.0007 \\$\sigma^2_1$ & 2.1767 & 3.6758 & 2.7102 \\$\sigma^2_2$ & 2.9788 & 3.2287 & 1.7409 \\
+$\sigma^2_{3s}$ & 11.5799 & 7.2881 & 5.6341 \\
+$\sigma^2_{3f}$ & 50.8859 & 117.2099 & 56.9627 \\
+$\sigma^2_{4s}$ & 45.1827 & 24.5344 & 88.4655 \\
+$\sigma^2_{4f}$ & 265.8502 & 224.4809 & 222.4782 \\
 \bottomrule\end{tabular}\caption{Filter parameters.}
 \label{tab:parameters}\end{table*}
 
 \subsection{Test Execution}
 
-
+The testing procedure was as follows: First the movement data of the subject was loaded into the workspace. Next, the parameters of the classical Kalman filter were optimised by an existing optimiser. Then, the parameters of the extended Kalman filter were optimised with the aforementioned EKF-optimiser. After each optimisation process, the respective angle estimation was computed. Subsequently, the absolute RMSEs and the relative RMSE related to the one obtained with the classical Kalman filter were computed. Finally, the results were displayed in the console and depicted in four plots: The thigh and shank angle estimate, respectively, the RMSE comparison, and the acceleration correction. The \textsc{Matlab}\textsuperscript{\textregistered} code for the first data set is given in Listing \ref{lis:experiments_1}. The results are presented in the next section.
 
 \section{Results}
 
-This section presents the results obtained by the experiments. Listing \ref{lis:experiments} the script used to run the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
+The results of the experiments are presented as follows:
 
-\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 1.0767 && 2.3658 & 1.9455 && 10.1907 & 8.2013 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.3153 && 3.3271 & 2.4269 && 14.5714 & 9.3883 \\$\operatorname{SUM}$ & 5.9784 & 4.3920 && 5.6928 & 4.3724 && 24.7621 & 17.5895 \\ \midrule
-$\frac{\operatorname{RMSE}_{Acc-corr}}{\operatorname{RMSE}_{Acc}}$ & \multicolumn{2}{c}{0.69} & \phantom{abc} & \multicolumn{2}{c}{0.77} & \phantom{abc} & \multicolumn{2}{c}{0.71}\\
-$\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{0.69} & \phantom{abc} & \multicolumn{2}{c}{0.77} & \phantom{abc} & \multicolumn{2}{c}{0.71}\\
+\begin{itemize}
+  \item \textsc{thigh angles:} Comparison of the temporal courses of the pitch angles of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference, for the three different walking speeds, depicted in Figures \ref{fig:experiment_4}, \ref{fig:experiment_8}, and \ref{fig:experiment_12}.
+  \item \textsc{shank angles:} Comparison of the temporal courses of the pitch angles of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference, for the three different walking speeds, depicted in Figures \ref{fig:experiment_5}, \ref{fig:experiment_9}, and \ref{fig:experiment_13}.
+  \item \textsc{rmse comparison:} Root-mean-square error comparison of angle estimations by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, for the three different walking speeds, depicted in Figures \ref{fig:experiment_6}, \ref{fig:experiment_10}, and \ref{fig:experiment_14}.
+  \item \textsc{acceleration correction:} Comparison of the accelerometer-based shank angles with respect to the $x$-axis with and without correction of the acceleration signal, for the three different walking speeds, depicted in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}.
+\end{itemize}
+
+\noindent
+The entire absolute and relative RMSEs are summarised in Table \ref{tab:rmse}. This leads to an average improvement of the extended Kalman filter output with respect to the classical Kalman filter by a relative RMSE of $28.52\%$.
+
+\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 0.9472 && 2.3658 & 1.8721 && 10.1907 & 8.1939 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.1816 && 3.3271 & 2.3736 && 14.5714 & 9.3381 \\$\operatorname{SUM}$ & 5.9784 & 4.1287 && 5.6928 & 4.2457 && 24.7621 & 17.5321 \\ \midrule
+$\frac{\operatorname{RMSE}_{Acc-corr}}{\operatorname{RMSE}_{Acc}}$ & \multicolumn{2}{c}{1.0182} & \phantom{abc} & \multicolumn{2}{c}{0.9687} & \phantom{abc} & \multicolumn{2}{c}{0.7444}\\
+$\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{0.6906} & \phantom{abc} & \multicolumn{2}{c}{0.7458} & \phantom{abc} & \multicolumn{2}{c}{0.7080}\\
 \bottomrule\end{tabular}\caption{Root-mean-square errors of the Kalman filter and the extended Kalman filter.}
 \label{tab:rmse}\end{table*}
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_4}
 	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
@@ -647,7 +639,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_5}
 	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
@@ -677,7 +669,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_8}
 	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
@@ -687,7 +679,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_9}
 	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
@@ -717,7 +709,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_12}
 	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
@@ -727,7 +719,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \begin{figure}
 	\centering
-	\setlength\figureheight{7cm} 
+	\setlength\figureheight{6.8cm} 
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_13}
 	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
@@ -756,4 +748,9 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 \end{figure}
 
 \section{Discussion}
+
+After the presentation of the results, we now proceed to analysing them in detail. The RMSEs of the motion-corrected acceleration-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw acceleration-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves up the entire body including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. As the trend of the relative RMSEs of the acceleration-based angle estimates shows, the motion correction works better for faster motions. 
+
+ Even though, the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, improvement of the filter output is significant. This improvement could be caused by a better filter tuning. 
+
 
