@@ -42,14 +42,14 @@
 \contentsline {subsubsection}{The State-Space Model}{41}{subsubsection*.32}
 \contentsline {subsubsection}{The Filter Algorithm}{44}{subsubsection*.33}
 \contentsline {subsubsection}{Summary of the Entire Filter Algorithm}{46}{subsubsection*.34}
-\contentsline {section}{\numberline {4.3}Experiments}{47}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Data Collection Protocol}{47}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}Initial Conditions}{47}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.3}Experiments}{48}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Data Collection Protocol}{48}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Initial Conditions}{48}{subsection.4.3.2}
 \contentsline {subsection}{\numberline {4.3.3}Test Preparation}{49}{subsection.4.3.3}
 \contentsline {subsubsection}{Parameterisation}{50}{subsubsection*.36}
-\contentsline {subsection}{\numberline {4.3.4}Test Execution}{51}{subsection.4.3.4}
-\contentsline {section}{\numberline {4.4}Results}{51}{section.4.4}
-\contentsline {section}{\numberline {4.5}Discussion}{51}{section.4.5}
+\contentsline {subsection}{\numberline {4.3.4}Test Execution}{50}{subsection.4.3.4}
+\contentsline {section}{\numberline {4.4}Results}{50}{section.4.4}
+\contentsline {section}{\numberline {4.5}Discussion}{57}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion and Future Work}{59}{chapter.5}
 \contentsline {section}{\numberline {5.1}Conclusions}{59}{section.5.1}
 \contentsline {section}{\numberline {5.2}Future Work}{59}{section.5.2}

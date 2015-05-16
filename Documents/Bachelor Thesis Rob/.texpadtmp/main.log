@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  15 MAY 2015 18:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  15 MAY 2015 19:44
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2124,6 +2124,9 @@ LaTeX Warning: Float too large for page by 1.62553pt on input line 533.
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [46]
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [47 <./Figures/main-figure18.pdf>]
 
 Package amsmath Warning: Cannot use `split' here;
 (amsmath)                trying to recover with `aligned' on input line 556.
@@ -2135,10 +2138,7 @@ Package amsmath Warning: Cannot use `split' here;
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [47]
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [48 <./Figures/main-figure18.pdf>]
+ [48]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [49]
@@ -2146,12 +2146,11 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 LaTeX Warning: Reference `lis:experiments' on page 50 undefined on input line 643.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Overfull \hbox (9.2226pt too wide) in paragraph at lines 647--660
+ [][] 
+ []
 
-
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [50] (./Tikz/experiment_4.tikz
+(./Tikz/experiment_4.tikz
 ===== Image 'Figures/experiment_4' is up-to-date. ======
 ) (./Tikz/experiment_5.tikz
 ===== Image 'Figures/experiment_5' is up-to-date. ======
@@ -2178,40 +2177,43 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 ))
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [51]
+ [50]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [52 <./Figures/experiment_4.pdf>]
+ [51 <./Figures/experiment_4.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [53 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
+ [52 <./Figures/experiment_5.pdf> <./Figures/experiment_6.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [54 <./Figures/experiment_7.pdf> <./Figures/experiment_8.pdf>]
+ [53 <./Figures/experiment_7.pdf> <./Figures/experiment_8.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [55 <./Figures/experiment_9.pdf> <./Figures/experiment_10.pdf>]
+ [54 <./Figures/experiment_9.pdf> <./Figures/experiment_10.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [56 <./Figures/experiment_11.pdf> <./Figures/experiment_12.pdf>]
+ [55 <./Figures/experiment_11.pdf> <./Figures/experiment_12.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [57 <./Figures/experiment_13.pdf> <./Figures/experiment_14.pdf>]
+ [56 <./Figures/experiment_13.pdf> <./Figures/experiment_14.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [58 <./Figures/experiment_15.pdf>]
+ [57 <./Figures/experiment_15.pdf>]
 \openout2 = `Conclusion.aux'.
 
  (./Conclusion.tex
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [58
+
+
+
+]
 Chapter 5.
 )
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [59
-
-
-
-] [60
+ [59] [60
 
 
 ] (/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.bbl
@@ -2323,10 +2325,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [76]) (/Users/Rob/Documents/APA/First iteration/scripts/GaitWatch scripts/gwLibrary.m
+ [76])
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [77]
+ [77] (/Users/Rob/Documents/APA/First iteration/scripts/GaitWatch scripts/gwLibrary.m
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2342,16 +2344,16 @@ Overfull \hbox (3.21442pt too wide) in paragraph at lines 1825--1826
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-) (/Users/Rob/Documents/APA/First iteration/scripts/GaitWatch scripts/gwLibrary.m
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [79])
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [80] (./Code/EKF_experiments_1.m
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [79]) (/Users/Rob/Documents/APA/First iteration/scripts/GaitWatch scripts/gwLibrary.m
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [80]) (./Code/EKF_experiments_1.m
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [81]
@@ -2394,17 +2396,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [86]
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 283--284
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [87]
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 283--284
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 302--303
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2465,6 +2467,12 @@ Overfull \hbox (3.21442pt too wide) in paragraph at lines 283--284
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \vbox (2.39851pt too high) has occurred while \output is active []
+
+ [96]
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 302--303
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2475,13 +2483,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [96]) (./Code/EKF_experiments_3.m
-Overfull \vbox (2.39851pt too high) has occurred while \output is active []
-
- [97]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+ [97]) (./Code/EKF_experiments_3.m
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [98]
@@ -2491,17 +2493,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [99]
-Overfull \hbox (17.01141pt too wide) in paragraph at lines 126--127
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [100]
+Overfull \hbox (17.01141pt too wide) in paragraph at lines 126--127
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2520,17 +2522,17 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [103]
-Overfull \hbox (3.21442pt too wide) in paragraph at lines 283--284
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [104]
+Overfull \hbox (3.21442pt too wide) in paragraph at lines 283--284
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
 Overfull \hbox (3.21442pt too wide) in paragraph at lines 302--303
 [][][][][][][][][][][][][][][][][][][][][][][] 
  []
@@ -2558,18 +2560,18 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 48885 strings out of 493117
- 1040593 string characters out of 6135434
- 5120874 words of memory out of 7000000
- 49373 multiletter control sequences out of 15000+600000
+ 48912 strings out of 493117
+ 1041004 string characters out of 6135434
+ 5122139 words of memory out of 7000000
+ 49372 multiletter control sequences out of 15000+600000
  63661 words of font info for 159 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2340s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (126 pages, 2184001 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (126 pages, 2186438 bytes).
 PDF statistics:
- 4044 PDF objects out of 4296 (max. 8388607)
- 3782 compressed objects within 38 object streams
- 1934 named destinations out of 2073 (max. 500000)
+ 4079 PDF objects out of 4296 (max. 8388607)
+ 3816 compressed objects within 39 object streams
+ 1962 named destinations out of 2073 (max. 500000)
  596 words of extra memory for PDF output out of 10000 (max. 10000000)
 

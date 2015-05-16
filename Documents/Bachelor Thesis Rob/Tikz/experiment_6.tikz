@@ -43,9 +43,9 @@ legend style={legend cell align=left,align=left,draw=white!15!black}
 \addlegendentry{Kalman filter};
 
 \addplot[ybar,bar width=0.021132\figurewidth,bar shift=0.070439\figurewidth,draw=black,fill=mycolor3] plot table[row sep=crcr] {%
-1	1.07671715052028\\
-2	3.31526075560769\\
-3	4.39197790612797\\
+1	1.01582622170416\\
+2	3.08460617237309\\
+3	4.10043239407725\\
 };
 \addlegendentry{Extended Kalman filter};
 
@@ -54,21 +54,21 @@ at (axis cs:0.777777777777778,7.40819891578215,0) {\scriptsize $6.61$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:1,2.33243171675969,0) {\scriptsize $1.53$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:1.22222222222222,1.87671715052028,0) {\scriptsize $1.08$};
+at (axis cs:1.22222222222222,1.81582622170416,0) {\scriptsize $1.02$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:1.77777777777778,12.1531284271064,0) {\scriptsize $11.35$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:2,5.24596476959782,0) {\scriptsize $4.45$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:2.22222222222222,4.11526075560769,0) {\scriptsize $3.32$};
+at (axis cs:2.22222222222222,3.88460617237309,0) {\scriptsize $3.08$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:2.77777777777778,18.7613273428885,0) {\scriptsize $17.96$};
 \node[align=center, inner sep=0mm, text=black]
 at (axis cs:3,6.77839648635751,0) {\scriptsize $5.98$};
 \node[align=center, inner sep=0mm, text=black]
-at (axis cs:3.22222222222222,5.19197790612797,0) {\scriptsize $4.39$};
+at (axis cs:3.22222222222222,4.90043239407725,0) {\scriptsize $4.10$};
 \node[right, align=left, inner sep=0mm, text=black]
-at (axis cs:1.4,18,0) {\scriptsize $\frac{\operatorname{RMSE}_{EKF_{thigh}} + \operatorname{RMSE}_{EKF_{shank}}}{\operatorname{RMSE}_{KF_{thigh}} + \operatorname{RMSE}_{KF_{shank}}} = 0.73$};
+at (axis cs:1.4,18,0) {\scriptsize $\frac{\operatorname{RMSE}_{EKF_{thigh}} + \operatorname{RMSE}_{EKF_{shank}}}{\operatorname{RMSE}_{KF_{thigh}} + \operatorname{RMSE}_{KF_{shank}}} = 0.69$};
 \node[below, align=center, inner sep=0mm, text=black]
 at (axis cs:1,-0.39922654685777,0) {Thigh};
 \node[below, align=center, inner sep=0mm, text=black]

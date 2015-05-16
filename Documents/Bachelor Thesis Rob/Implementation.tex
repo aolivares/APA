@@ -451,10 +451,10 @@ The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{3 \times 3}$
 \end{bmatrix}\,,
 \end{equation}
 
-The parameters $\sigma_1$ and $\sigma_2$ are constant. They are determined by computing the sample standard deviation of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The standard deviation of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
+The parameters $\sigma_1$ and $\sigma_2$ are constant. They are determined by computing the sample variance of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The variance of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
 
 \begin{equation}
-  \sigma = \sqrt{\frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2}, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
+  \sigma^2 = \frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
 \end{equation}
 
 \noindent
@@ -466,7 +466,7 @@ with
 
 
 \noindent
-The standard deviations $\sigma_3$ and $\sigma_4$ of the accelerometer-based angle estimates are set dynamically based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a marker signal $m$:
+The variances $\sigma^2_3$ and $\sigma^2_4$ of the accelerometer-based angle estimates are set dynamically at each time step $k$, based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a marker signal $m_k$:
 
 \begin{equation}
   \sigma^2_3 = \begin{cases}
@@ -487,7 +487,7 @@ The value of a marker signal toggles between $1$ and $0$. In order to determine 
 
 \subsubsection{Summary of the Entire Filter Algorithm}
 
-The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. The filter algorithm was implemented in \textsc{Matlab}\textsuperscript{\textregistered}. Listing \ref{lis:filter} in the appendix shows the source code of the filter function.
+The state estimates are computed recursively according to the \emph{time update} Equations \ref{eq:apriori_error_cov_extended}, \ref{eq:apriori_estimate_extended_model} and the \emph{measurement update} Equations \ref{eq:aposteriori_estimate}, \ref{eq:Kalman_gain}, and \ref{eq:aposteriori_error_cov}. The entire computation steps of the recursive filter algorithm are summarised in Figure \ref{fig:entire_filter_algorithm}. Listing \ref{lis:filter} in the appendix shows the \textsc{Matlab}\textsuperscript{\textregistered} implementation of the filter function.
 
 \tikzstyle{block} = [draw, rectangle, thick, 
     minimum height=1.5cm, minimum width=10cm]
@@ -535,11 +535,11 @@ The state estimates are computed recursively according to the \emph{time update}
 
 \section{Experiments}
 
-The orientation algorithm was tested with data from real subjects. The movement data was gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subjects performed the following trial.
+The orientation algorithm was tested with movement data from real subjects. The data was gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subjects performed the following trial.
 
 \subsection{Data Collection Protocol}
 
-The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time depending on the treadmill speed and the walking distance, first the treadmill was switched off, then the GaitWatch records. The experiments were carried out at $2$\,km/h, $4$\,km/h, and $6$\,km/h.
+The subject stood on a treadmill wearing the GaitWatch system on its body. Then, the GaitWatch record was started and shortly afterwards the treadmill was turned on. After a variable time, depending on the treadmill speed and the walking distance, first the treadmill was switched off, and then the GaitWatch records. The experiments were performed at walking speeds of $\unitfrac[2]{km}{h}$, $\unitfrac[4]{km}{h}$, and $\unitfrac[6]{km}{h}$.
 
 \subsection{Initial Conditions}\label{sec:initial_cond}
 
@@ -629,7 +629,10 @@ $\sigma^2_{4f}$ & 312.8627 & 227.0883 & 232.8577 \\
 
 This section presents the results obtained by the experiments. Listing \ref{lis:experiments} the script used to run the experiments. Figures \ref{fig:experiment_4} and \ref{fig:experiment_5} show.
 
-\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 1.0767 && 2.3658 & 1.9455 && 10.1907 & 8.2013 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.3153 && 3.3271 & 2.4269 && 14.5714 & 9.3883 \\$\operatorname{SUM}$ & 5.9784 & 4.3920 && 5.6928 & 4.3724 && 24.7621 & 17.5895 \\ \bottomrule\end{tabular}\caption{Root-mean-square errors of the Kalman filter and the extended Kalman filter.}
+\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrcrrcrr@{}}\toprule& \multicolumn{2}{c}{$\unitfrac[2]{m}{s}$} & \phantom{abc} & \multicolumn{2}{c}{$\unitfrac[4]{m}{s}$} &\phantom{abc} & \multicolumn{2}{c}{$\unitfrac[6]{m}{s}$}\\ \cmidrule{2-3} \cmidrule{5-6} \cmidrule{8-9}& \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} &&  \multicolumn{1}{c}{KF} & \multicolumn{1}{c}{EKF} \\ \midrule$\operatorname{RMSE}_{\hat{\theta}_t}$ & 1.5324 & 1.0767 && 2.3658 & 1.9455 && 10.1907 & 8.2013 \\$\operatorname{RMSE}_{\hat{\theta}_s}$ & 4.4460 & 3.3153 && 3.3271 & 2.4269 && 14.5714 & 9.3883 \\$\operatorname{SUM}$ & 5.9784 & 4.3920 && 5.6928 & 4.3724 && 24.7621 & 17.5895 \\ \midrule
+$\frac{\operatorname{RMSE}_{Acc-corr}}{\operatorname{RMSE}_{Acc}}$ & \multicolumn{2}{c}{0.69} & \phantom{abc} & \multicolumn{2}{c}{0.77} & \phantom{abc} & \multicolumn{2}{c}{0.71}\\
+$\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{0.69} & \phantom{abc} & \multicolumn{2}{c}{0.77} & \phantom{abc} & \multicolumn{2}{c}{0.71}\\
+\bottomrule\end{tabular}\caption{Root-mean-square errors of the Kalman filter and the extended Kalman filter.}
 \label{tab:rmse}\end{table*}
 
 \begin{figure}
