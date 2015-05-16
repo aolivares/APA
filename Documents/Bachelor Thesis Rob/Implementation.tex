@@ -77,7 +77,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 	\label{fig:experiment_1}
 \end{figure}
   
-  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the orientation angle based on the integration of the angular rate measured with the gyroscope in a classical Kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}. The result in comparison with the projection of the gravity vector alone is depicted in Figure \ref{fig:experiment_2}.
+  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the orientation angle based on the integration of the angular rate measured with the gyroscope in a classical Kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}. Furthermore, the angles of the thigh and shank are estimated independently. The result in comparison with the projection of the gravity vector alone is depicted in Figure \ref{fig:experiment_2}.
 
 \begin{figure}
 	\centering
@@ -107,7 +107,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 
 In tandem with an orientation estimation based on a Qualisys\textsuperscript{\textregistered} motion capture system using high-speed cameras in combination with optical markers, the orientation angles estimated with the above-mentioned algorithms served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system we computed the reference angles of the thighs and shanks, using an existing algorithm.
 
-\begin{figure}
+\begin{figure}[p]
 \centering
 	\begin{tikzpicture}[auto, thick, node distance=3cm,>=latex']
     \pgftext{\includegraphics[width=3.5cm]{Figures/sensors_on_leg}} at (0pt,0pt);
@@ -130,7 +130,7 @@ In this section the theoretical design of the system proposed by \citeauthor{ben
 
 The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
 
-\begin{figure}
+\begin{figure}[p]
 \centering
 \begin{tikzpicture}[auto, thick,>=latex']
 	\node [draw, rectangle, minimum height=1.6cm, minimum width=1.6cm, pattern=north west lines] at (0,0) (solid) {};
@@ -751,6 +751,4 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 After the presentation of the results, we now proceed to analysing them in detail. The RMSEs of the motion-corrected acceleration-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw acceleration-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves up the entire body including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. As the trend of the relative RMSEs of the acceleration-based angle estimates shows, the motion correction works better for faster motions. 
 
- Even though, the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, improvement of the filter output is significant. This improvement could be caused by a better filter tuning. 
-
-
+ Even though, the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, improvement of the filter output is significant. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are still suboptimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, they will always be somewhat less then optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsen it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model, for instance it combines information about both thigh and shank in the same state-space model and thus delivers a more accurate estimate.
