@@ -1,17 +1,17 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the implementation of the filter algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, based on the fundamentals acquired in the previous chapters. Other than in \cite{bennett_motion_2014}, in which the filter algorithm was tested moving a mechanical model of the leg by hand, we used movement data from human subjects. After outlining the initial situation, i.\,e. describing the GaitWatch system in detail, as well as stating orientation algorithms that were already implemented, the theoretical design of the filter is elaborated in detail. Subsequently, the software implementation and experiments are presented, followed by the results and their discussion.
+This chapter describes the implementation of the filter algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, based on the fundamentals acquired in the previous chapters. Other than in \cite{bennett_motion_2014}, in which the filter algorithm was tested moving a mechanical model of the leg by hand, we used movement data from a human subject. After outlining the initial situation, i.\,e. describing the GaitWatch system, including orientation algorithms that were already implemented, the theoretical design of the filter is elaborated in detail. Subsequently, the software implementation and experiments are presented, followed by the results and their discussion.
 
 \section{Initial Situation}\label{sec:initial_situation}
 
 \subsection{The GaitWatch System}
 
-As indicated above, to gather and preprocess movement data from subjects, we used a system called GaitWatch \cite{olivares_vicente_gaitwatch_2013}, which was designed to monitor the motion of patients by means of inertial sensors attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain.
+As indicated above, to gather and preprocess movement data from the subject, we used a system called GaitWatch \cite{olivares_vicente_gaitwatch_2013}, which was designed to monitor the motion of patients by means of inertial sensors attached to the body. It was developed at the Department of Neurology of the Ludwig-Maximilians University in Munich, Germany, in association with the Department of Signal Theory, Telematics and Communications of the University of Granada, Spain.
 
 \subsubsection{Hardware}
 
-From the hardware perspective, the system is composed of a set of magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the sensors embedded in the box, as well as from  external measurement units, and storing them on a memory card. The separate units are placed at the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are listed below:
+From the hardware perspective, the system is composed of a set of magnetic and inertial sensors wired to a box containing a microcontroller. This microcontroller is in charge of collecting data from the sensors embedded in the box, as well as from  external measurement units, and storing them on a memory card. The separate units are placed on the patient's trunk, arms, thighs, and shanks as shown in Figure \ref{fig:GaitWatch_placement}. The components of the three different kinds of subunits are listed below:
 
 \begin{itemize}
 
@@ -45,7 +45,7 @@ Micromag$3$ triaxial magnetometer with a measurement range of $\pm11$\,Gauss \ci
 
 \subsubsection{Software}
 
-In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the necessary calibration. Also, several algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. There were four algorithms implemented that estimate the pitch angle of the thighs and shanks, as described below:
+In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the necessary calibration. Also, several algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. There were four algorithms for estimating the pitch angle of the thighs and shanks, as described below:
 
 \begin{itemize}
   \item \textsc{projection of the gravity vector:} One way to obtain the pitch angle from the inertial data is using the projection of the gravity vector on the axes of the accelerometer, as described in Section \ref{sec:projection_gravity}. The first algorithm computed the pitch angle according to Equation \ref{eq:projection_gravity}.
@@ -63,8 +63,8 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
    \theta(n) \approx \theta(n-1) + \frac{T_s}{2} \left[ \omega_{k-1} + \omega_{k} \right]\,, \quad \theta(0) = \theta_{0}\,.
   \end{equation}
   
-  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the result of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion, especially with increasing motion intensity. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of more than $500^{\circ}$ in only eighteen seconds for this exemplary signal. The reference signal was obtained with the Qualisys\textsuperscript{\textregistered} motion capture system.
-  
+  \noindent The initial value $\theta_{0}$ can be computed from the projection of the gravity vector, assuming that the patient stands still when the records are started. Figure \ref{fig:experiment_1} shows exemplary the result of the first two algorithms applied to estimate the shank angle with respect to the $x$-axis, according to the mechanical model of the leg depicted in Figure \ref{fig:robot}. As can be seen in Figure \ref{fig:experiment_1}, the accelerometer-based approach does not suffer from drift but delivers a very poor angle estimate during periods of motion, especially with increasing motion intensity. On the other hand, integrating the angular rate delivers an accurate angle estimate during motion, but suffers from drift over time, which accounts for an error in the estimate of more than $500^{\circ}$ in only eighteen seconds for this exemplary signal.
+    
 \begin{figure}
 	\centering
 	\newlength\figureheight 
@@ -77,7 +77,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 	\label{fig:experiment_1}
 \end{figure}
   
-  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the orientation angle based on the integration of the angular rate measured with the gyroscope in a classical Kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}. Furthermore, the angles of the thigh and shank are estimated independently. The result in comparison with the projection of the gravity vector alone is depicted in Figure \ref{fig:experiment_2}.
+  \item \textsc{kalman filter:} The third algorithm fused the orientation angle based on the projection of the gravity vector with the angle based on the integration of the angular rate measured with the gyroscope in a classical Kalman filter, without taking the motion intensity into account \cite{olivares_vicente_gaitwatch_2013}. The angles of the thigh and shank are estimated independently. The result in comparison with the projection of the gravity vector alone is depicted in Figure \ref{fig:experiment_2}.
 
 \begin{figure}
 	\centering
@@ -102,10 +102,11 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 %\end{figure}
 
   \end{itemize}
-  
 
+In tandem with the orientation angles estimated with the above-mentioned algorithms, an angle estimate based on a Qualisys\textsuperscript{\textregistered} motion capture system using high-speed cameras in combination with optical markers, served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system I could compute the reference angles of the thighs and shanks, using an existing algorithm.
 
-In tandem with an orientation estimation based on a Qualisys\textsuperscript{\textregistered} motion capture system using high-speed cameras in combination with optical markers, the orientation angles estimated with the above-mentioned algorithms served as a reference. The placement of the markers on the leg are depicted in Figure \ref{fig:marker_placement}. From the recorded motion of the markers in space the motion capture system we computed the reference angles of the thighs and shanks, using an existing algorithm.
+The reference signal was obtained with the Qualisys\textsuperscript{\textregistered} motion capture system.
+
 
 \begin{figure}[p]
 \centering
@@ -749,6 +750,6 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 \section{Discussion}
 
-After the presentation of the results, we now proceed to analysing them in detail. The RMSEs of the motion-corrected acceleration-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw acceleration-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves up the entire body including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. As the trend of the relative RMSEs of the acceleration-based angle estimates shows, the motion correction works better for faster motions. 
+After the presentation of the results, we now proceed to analysing them in detail. The RMSEs of the motion-corrected acceleration-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw acceleration-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves up the entire body including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. Another fact that is not considered in the simple model, is motion beyond the $xz$-plane. Finally, the lengths of the links, i.\,e. the sensor position on the thigh and shank was not exactly known. As the trend of the relative RMSEs of the acceleration-based angle estimates shows, the motion correction works better for faster motions. 
 
  Even though, the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, improvement of the filter output is significant. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are still suboptimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, they will always be somewhat less then optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsen it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model, for instance it combines information about both thigh and shank in the same state-space model and thus delivers a more accurate estimate.
