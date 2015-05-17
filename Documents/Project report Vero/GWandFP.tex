@@ -127,10 +127,16 @@ the information at the sensors  will be a signal composed of integer
 numbers  or real numbers bounded into a range which is determined by the precision of the sensors and converters. These numeric values lack of physical value, so it is absolutely necessary to convert them into a scale that can be measured in physical units.
 
 The sensors present several errors due to some effects like scale factor may not be linear or the triad isn’t perfectly orthogonal. To remove these undesired effects, the software include a model to compensate this before the calibration. 
-To do so, we have used the code made by Dr. Alberto Olivares Vicente in his doctoral thesis, with minor modifications of his work.
+To do so, we have used the code made by Dr. Alberto Olivares Vicente in his doctoral thesis\cite{A.Olivares2013}, with minor modifications of his work.
 
-Besides the unwanted effects mentioned above, the output of magnetometers is distorted by wide band measurement noise appearing several large peaks of noise in the signals. To remove this automatically, we used a threshold considering that these peaks are much greater than the mean of the signal.
+Besides the unwanted effects mentioned above, the output of magnetometers is distorted by wide band measurement noise appearing several large peaks of noise in the signals. To remove this automatically, we used a threshold considering that these peaks are much greater than the mean of the signal \ref{fig:GWErrorDetected}.
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/GWDetectErrorValueAutomatically, width=18cm}
+	\caption{Value erroneous in magnetometer signal detected automatically.}
+	\label{fig:GWErrorDetected}
+	\end{figure}
 
 The erroneus values in the magnetometer signal are removed sustituting these samples by the subsequent value unless the erroneous value is in the last position of the singal, in which case it is substituted by the preceding value.
 
@@ -141,15 +147,37 @@ The first step is to detect when the step happens in both systems. In order to d
 
 The time point when the patient do the step in the platform is exactly when the person touches it, that is, the time point that corresponding with the first sample in the force signal with a value other than zero.
 
-In the acceleration signal case, this fact happens in the first positive peak after a negative peak. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points downwards thus the great negative peak will be when the leg is in the máximum distance from ground. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward.
+In the acceleration signal case, this fact happens in the first positive peak after a negative peak. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points downwards thus the great negative peak will be when the leg is in the maximum distance from ground. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward\ref{fig:pointdetectionAcc}.
 
-Once we understand the signal behaviour in connection with the patient movement we have to differentiate each cycles in the signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure XX shows the result.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/pointdetectionsynchronisation, width=18cm}
+	\caption{Peaks detected to the Synchronisation in the Accelerometer signals.}
+	\label{fig:pointdetectionAcc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/gyrosPointDetection, width=18cm}
+	\caption{Peaks detected to the Synchronisation in the Gyroscope signals.}
+	\label{fig:pointdetectionGyro}
+\end{figure}
+
+
+Once we understand the signal behaviour in connection with the patient movement we have to differentiate each cycles in the signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure \ref{fig:activityDetection} shows the result.
 
 In addition we did a comparative study testing two different methods based on the  computation of the spectrum (Fourier Transform) of the input signal. Also, we tried several input signal to determine which is the best option to do the motion detection in this case.
 
 We will use the Long Term Spectral Detector (LTSD) \cite{Ramirez2004} and a variation of this called Framed Spectrum Detector (FSD). Spectrum-based methods have been used in others kinds of applications like Voice Activity detection \cite{Ramirez2006}\cite{Ramirez2007} and activity sequences detection such as running or sitting-standing up\cite{A.Olivares2013} .
 
-The technical difference between LTSD and FSD is that the first of them compute the Long term spectral Envelope whereas FSD uses the spectrum of each frame  in which the input signal is divided\cite{A.Olivares2013}. What we observe when we use them in our signals is that the results are better when we use LTSD instead of FSD method  in the most of the cases[figure]. 
+The technical difference between LTSD and FSD is that the first of them compute the Long term spectral Envelope whereas FSD uses the spectrum of each frame  in which the input signal is divided\cite{A.Olivares2013}. What we observe when we use them in our signals is that the results are better when we use LTSD instead of FSD method  in the most of the cases\ref{fig:activityDetection}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/activityDetection, width=18cm}
+	\caption{Activity Detection with FSD and LTSD Algorithm.}
+	\label{fig:activityDetection}
+\end{figure} 
 
 The LTSD method has a better decision rate than FSD method because it is designed to work under condition where the SNR is low, i.e the signal present large noise\cite{A.Olivares2013}. In our case, we want detect the differents cycles that corresponding to each repeat so the different peaks of activity inside each period can be a problema to do the detection correctly because really it is interpreted like noise for the detector. Thus, the LTSD method is more interesting for this type of signal.
 
@@ -158,16 +186,38 @@ Once we select the best method for the detection we tested several input signal 
 Furthermore, the motion activity detection was carried out for the right leg as well as left one. It is not necessary in some cases when the patient does the movements or activities quickly since the detected activity interval  include both movements in the same episode. However, when patient waits some time to step again in the same repeat, it is possible that some step is not  include in the interval thus the result would be erroneous. Therefore, to realise a general algorithm useful in whatever case we differentiate between both feet.
 
 
-Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time.
+Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time \ref{fig:startLeftRight}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/startLeftRight, width=18cm}
+	\caption{Accelerometer signals when the patient starts to step with the left and right foot respectively.}
+	\label{fig:startLeftRight}
+\end{figure} 
 
 Other important aspect is to consider the sample frequency. The sample frequency is 120 Hz in force plate signals and 200 Hz in GaitWatch signals. Thus, we have to reshape the Force Plate signals to match other signals.
 
 All the key parameters and signals are saved using “time series”  for adding descriptive information to the fact.
 
-Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is very similar to prior signal however this is clearer to the naked eye.
-Nevertheless, the correlation between the peaks detected with both systems are almost the same. This indicates that it was done correctly and these detected points are suitable to do the synchronisation.
+Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal\ref{fig:pointdetectionGyro}. The behaviour of the gyroscope signal is very similar to prior signal however this is clearer to the naked eye.
+Nevertheless, the correlation between the peaks detected with both systems are almost the same. This indicates that it was done correctly and these detected points are suitable to do the synchronisation. We can see this in the folllowing figures:
 
-In XX table we can see that the mean of the difference between the peaks detected with the accelerometer and gyroscope signals is less than 0.5 second in all cases, so it is very small. Also, the correlation between them is very high and the probability of no correlation is smaller than 0.05 what want to say that the correlation is significantly different from zero.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/corrAccGyroPoints, width=18cm}
+	\caption{Linear Correlation between peak Acc and peak Gyro used for the synchronisation.}
+	\label{fig:corrAccGyroPoints}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/barDiagram, width=18cm}
+	\caption{Comparation between points synchronisation detected with accelerometers and gyroscopes.}
+	\label{fig:barDiagram}
+\end{figure}
+
+
+In \ref{tab:comparationAccGyro} table we can see that the mean of the difference between the peaks detected with the accelerometer and gyroscope signals is less than 0.5 second in all cases, so it is very small. Also, the correlation between them is very high and the probability of no correlation is smaller than 0.05 what want to say that the correlation is significantly different from zero.
 
 \begin{table}[h]
 	\caption{Comparation between the peaks detected with acceletometer and gyroscope}	
