@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  17 MAY 2015 12:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2015.5.5)  17 MAY 2015 15:45
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2072,11 +2072,6 @@ Overfull \hbox (21.58478pt too wide) in paragraph at lines 106--107
 []\OT1/pplj/m/n/12 In tan-dem with the ori-en-ta-tion an-gles es-ti-mated with the above-mentioned
  []
 
-
-Overfull \hbox (5.63997pt too wide) in paragraph at lines 106--107
-\OT1/pplj/m/n/12 tem us-ing high-speed cam-eras in com-bi-na-tion with op-ti-cal mark-ers, served
- []
-
 ===== Image 'Figures/main-figure16' is up-to-date. ======
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2084,19 +2079,16 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [36 <./Figures/experiment_1.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [37 <./Figures/experiment_2.pdf>]
+ [37 <./Figures/experiment_2.pdf> <./Figures/main-figure16.pdf>]
 ===== Image 'Figures/main-figure17' is up-to-date. ======
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [38]
+ [38 <./Figures/main-figure17.pdf>]
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
- [39 <./Figures/main-figure16.pdf> <./Figures/main-figure17.pdf>]
-Overfull \hbox (2.86801pt too wide) in paragraph at lines 204--206
+ [39]
+Overfull \hbox (2.86801pt too wide) in paragraph at lines 203--205
 \OT1/pplj/m/n/12 of the motion-based ac-cel-er-a-tion es-ti-mates in the body frame of ac-celerom-
  []
 
@@ -2104,6 +2096,9 @@ Overfull \hbox (2.86801pt too wide) in paragraph at lines 204--206
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [40]
+Underfull \vbox (badness 2556) has occurred while \output is active []
+
+
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [41]
@@ -2116,15 +2111,12 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [44]
-Underfull \vbox (badness 3861) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [45]
 ===== Image 'Figures/main-figure18' is up-to-date. ======
 
-LaTeX Warning: Float too large for page by 1.62553pt on input line 534.
+LaTeX Warning: Float too large for page by 1.62553pt on input line 533.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2135,11 +2127,11 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  [47 <./Figures/main-figure18.pdf>]
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 557.
+(amsmath)                trying to recover with `aligned' on input line 556.
 
 
 Package amsmath Warning: Cannot use `split' here;
-(amsmath)                trying to recover with `aligned' on input line 564.
+(amsmath)                trying to recover with `aligned' on input line 563.
 
 
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
@@ -2151,12 +2143,12 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [50]
-Overfull \hbox (0.67065pt too wide) in paragraph at lines 632--633
+Overfull \hbox (0.67065pt too wide) in paragraph at lines 631--632
 []\OT1/pplj/m/sc/12 acceleration cor-rec-tion: \OT1/pplj/m/n/12 Com-par-i-son of the accelerometer-based
  []
 
 
-Overfull \hbox (9.2226pt too wide) in paragraph at lines 640--653
+Overfull \hbox (9.2226pt too wide) in paragraph at lines 639--652
  [][] 
  []
 
@@ -2214,9 +2206,6 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
  (./Conclusion.tex
 Chapter 5.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 
  [59
@@ -2226,11 +2215,6 @@ Overfull \vbox (2.39851pt too high) has occurred while \output is active []
 ]
 Overfull \hbox (5.87683pt too wide) in paragraph at lines 16--17
 []\OT1/pplj/m/n/12 Regarding the Gait-Watch sys-tem it-self, the ac-cel-er-a-tion cor-rec-tion could
- []
-
-
-Overfull \hbox (3.588pt too wide) in paragraph at lines 16--17
-\OT1/pplj/m/n/12 ther-more the ac-cel-er-a-tion cor-rec-tion could be ap-plied to the accelerometer-
  []
 
 )
@@ -2450,18 +2434,18 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 48145 strings out of 493117
- 1029787 string characters out of 6135434
- 5122888 words of memory out of 7000000
- 49354 multiletter control sequences out of 15000+600000
+ 48146 strings out of 493117
+ 1029804 string characters out of 6135434
+ 5122935 words of memory out of 7000000
+ 49355 multiletter control sequences out of 15000+600000
  63043 words of font info for 158 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,23n,81p,10403b,2399s stack positions out of 5000i,500n,10000p,7000000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmbi.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmr.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/mathpazo/fplmri.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/fpl/fplrij8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (110 pages, 2127015 bytes).
+Output written on "/Users/Rob/Documents/APA/Documents/Bachelor Thesis Rob/.texpadtmp/main.pdf" (110 pages, 2127048 bytes).
 PDF statistics:
- 3125 PDF objects out of 3580 (max. 8388607)
- 2888 compressed objects within 29 object streams
+ 3126 PDF objects out of 3580 (max. 8388607)
+ 2889 compressed objects within 29 object streams
  1220 named destinations out of 1440 (max. 500000)
  596 words of extra memory for PDF output out of 10000 (max. 10000000)
 
