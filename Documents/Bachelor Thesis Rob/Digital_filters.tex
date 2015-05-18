@@ -1,7 +1,7 @@
 \chapter{Digital Filters}
 \label{ch:digital_filters}
 
-Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field a filter is a system designed to extract information from noisy measurements of a process. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
+Conceived in general terms, a filter is a physical device for removing unwanted components of a mixture. In the technical field, a filter is a system designed to extract information from noisy measurements of a process. That is, the filter delivers an estimate of the variables of principal interest, which is why it may also be called an estimator. Filter theory is applied in diverse fields of science and technology, such as communications, radar, sonar, navigation, and biomedical engineering \cite{haykin2002adaptive}.
 
 In contrast to \emph{analogue filters} that consist of electronic circuits to attenuate unwanted frequencies in continuous-time signals and thus extract the useful signal, a \emph{digital filter} is a set of mathematical operations applied to a discrete-time signal in order to extract information about the hidden quantity of interest. A \emph{discrete-time} signal is a sequence of samples at equidistant time instants that represent the continuous-time signal with no loss, provided the sampling theorem is satisfied, according to which the sample frequency has to be greater than twice the highest frequency component of the continuous-time signal.
 
@@ -34,7 +34,7 @@ Consider, as an example involving filter theory, the continuous-time dynamical s
 
 \section{The Wiener Filter}
 
-A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear dicrete-time filter with the impulse response $h_0, h_1, h_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $k$ it produces an output designated by $\hat{x}(k)$, which provides an estimate of a desired response denoted by $d(k)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}, the essence of the filtering problem and the resulting requirement is summarised with the following statement:
+A statistical criterion, according to which the performance of a filter can be measured, is the mean-squared error. Consider the linear discrete-time filter with the impulse response $h_0, h_1, h_2, \dots$ depicted in Figure \ref{fig:filtering_problem}. At some discrete time $k$ it produces an output designated by $\hat{x}(k)$, which provides an estimate of a desired response denoted by $d(k)$. According to \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}, the essence of the filtering problem and the resulting requirement is summarised with the following statement:
 
 \begin{quote}``Design a linear discrete-time filter whose output $\hat{x}(k)$ provides an estimate of the desired response $d(k)$, given a set of input samples $z(0), z(1), z(2), \dots$, such that the mean-square value of the estimation error $e(k)$, defined as the difference between the desired response $d(k)$ and the actual response $\hat{x}(k)$, is minimized.''
 \end{quote}
@@ -110,7 +110,7 @@ and the variance of the error in the estimate is
 \caption{Conditional probability density of the position based on measurement value $z_1$, from \cite{Maybeck79}.} \label{fig:measurement_z1}
 \end{figure}
 
-Right after you, say a trained navigator friend takes an independent fix at time $t_2 \cong t_1$, so that the true position has not changes at all. He obtains a measurement $z_2$ with a variance $\sigma^2_{z_2}$, which is somewhat smaller than yours, since he has a higher skill. Figure \ref{fig:measurement_z2} depicts the conditional probability density of your position at time $t_2$, based only on the measurement value $z_2$. Combining these data, your position at time $t_2 \cong t_1$, $x(t_2)$, given both $z_1$ and $z_2$, is then a Gaussian density with mean $\mu$ and variance $\sigma^2$, as indicated in Figure \ref{fig:combination}, with
+Right after you, say a trained navigator friend takes an independent fix at time $t_2 \cong t_1$, so that the true position has not changed at all. He obtains a measurement $z_2$ with a variance $\sigma^2_{z_2}$, which is somewhat smaller than yours, since he has a higher skill. Figure \ref{fig:measurement_z2} depicts the conditional probability density of your position at time $t_2$, based only on the measurement value $z_2$. Combining these data, your position at time $t_2 \cong t_1$, $x(t_2)$, given both $z_1$ and $z_2$, is then a Gaussian density with mean $\mu$ and variance $\sigma^2$, as indicated in Figure \ref{fig:combination}, with
 
 \begin{figure}
 \centering
@@ -203,7 +203,7 @@ where
 \end{equation}
 
 \noindent
-These equation represent the `predictor-corrector' structure of the Kalman filter. A prediction of the value that the desired variables and the measurements will have at the next measurement time is made, based on all previous information. Then the difference between the measurement and its predicted value is used to correct the prediction of the desired variables. According to Equation \ref{eq:x2_hat_kalman} the optimal estimate at time $t_2$, that is $\hat{x}(t_2)$, is equal to $\hat{x}(t_1)$, the best prediction of its value before $z_2$ is taken, plus a correction term of an optimal weighting value times the difference between $z_2$ and the best prediction of it before the measurement is actually taken.
+These equations represent the `predictor-corrector' structure of the Kalman filter. A prediction of the value that the desired variables and the measurements will have at the next measurement time is made, based on all previous information. Then the difference between the measurement and its predicted value is used to correct the prediction of the desired variables. According to Equation \ref{eq:x2_hat_kalman} the optimal estimate at time $t_2$, that is $\hat{x}(t_2)$, is equal to $\hat{x}(t_1)$, the best prediction of its value before $z_2$ is taken, plus a correction term of an optimal weighting value times the difference between $z_2$ and the best prediction of it before the measurement is actually taken.
 
 To incorporate dynamics into the model, suppose you travel for some time before taking another measurement. The best model you have for your motion may be of the form
 
@@ -241,7 +241,7 @@ where $u$ is a nominal velocity and $w$ is a noise term, representing the uncert
 \caption{Propagation of conditional probability density, from \cite{Maybeck79}.} \label{fig:propagation}
 \end{figure}
 
-The conditional density of the position at time $t_2$, given $z_1$ and $z_2$, was previously derived. Figure \ref{fig:propagation} shows graphically how the density travels along the $x$-axis as time progresses. It start at the best estimate and moves according to the above mentioned model of dynamics. Due to the constant addition of uncertainty over time it spreads out. Thus, as the variance becomes greater, you become less sure of your position. The Gaussian density $f_{x(t_3)|z(t_1), z(t_2)}(x|z_1, z_2)$ can be expressed mathematically by its mean and variance given by
+The conditional density of the position at time $t_2$, given $z_1$ and $z_2$, was previously derived. Figure \ref{fig:propagation} shows graphically how the density travels along the $x$-axis as time progresses. It starts at the best estimate and moves according to the above mentioned model of dynamics. Due to the constant addition of uncertainty over time it spreads out. Thus, as the variance increases, you become less sure of your position. The Gaussian density $f_{x(t_3)|z(t_1), z(t_2)}(x|z_1, z_2)$ can be expressed mathematically by its mean and variance given by
 
 \begin{equation}\label{eq:system_model}
   \hat{x}^-(t_3)=\hat{x}(t_2)+u[t_3-t_2]\,,
@@ -283,7 +283,7 @@ Observing the form of Equation \ref{eq:gain_kalman} the reasonableness of the fi
 \noindent
 That means that in the limit of absolutely no confidence in the system model output, solely the new measurement is taken as the optimal estimate. Finally, if you are absolutely sure of your estimate before $z_3$ becomes available, $\sigma^{2-}_x(t_3)$ would become zero, and so would $K(t_3)$, which means that the measurements would be left disregarded. 
 
-Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman}, \ref{eq:variance_kalman}, and \ref{eq:gain_kalman} to the vector case, and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations. A complete mathematical derivation is found in \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}.
+Extending Equations \ref{eq:system_model}, \ref{eq:variance_predicted}, \ref{eq:estimation_kalman}, \ref{eq:variance_kalman}, and \ref{eq:gain_kalman} to the vector case, and allowing time varying parameters in the system and noise description leads to the general Kalman filter equations. A complete mathematical derivation can be found in \citeauthor{haykin2002adaptive} \cite{haykin2002adaptive}.
 
 \subsection{Formulation of the Kalman Filter Equations} \label{sec:Kalman_equations}
 
@@ -315,17 +315,17 @@ where the index $k \in \mathbb{N}^0$ denotes discrete time normalised to the sam
 with the process noise covariance matrix $\mathbf{Q}_k$ and the measurement noise covariance matrix $\mathbf{R}_k$. The $n\times n$ state transition matrix $\bm{\Phi}_{k-1}$ in Equation \ref{eq:time_dynamical_system_plant} relates the state at the previous time step $k-1$ to the state at the current step $k$. The $n\times l$ matrix $\mathbf{B}_{k-1}$ relates the known, optional control input $\mathbf{u}_{k-1} \in \mathbb{R}^l$ to the state $\mathbf{x}_k$. Finally, the $m\times n$ measurement matrix $\mathbf{H}_{k}$ in Equation \ref{eq:time_dynamical_system_measurement} relates the state $\mathbf{x}_k$ to the measurement $\mathbf{z}_k$. Both noise processes are assumed to be uncorrelated. The process noise might not always have a physical meaning. However, it represents the fact that the model of the real world is not precise. The process and measurement noise covariance matrices are related to the respective noise vectors according to
 
 \begin{equation}
-  \mathbf{Q}_k = \mbox{E}[\mathbf{w}_{k},\mathbf{w}^T_{k}]\,,
+  \mathbf{Q}_k = \mbox{E}[\mathbf{w}_{k} \mathbf{w}^T_{k}]\,,
 \end{equation}
 
 \begin{equation}
-  \mathbf{R}_k = \mbox{E}[\mathbf{v}_{k},\mathbf{v}^T_{k}]\,,
+  \mathbf{R}_k = \mbox{E}[\mathbf{v}_{k} \mathbf{v}^T_{k}]\,,
 \end{equation}
 
 \noindent
 where E denotes the expected value.
 
-The Kalman filter solves the problem of estimating the state $\mathbf{x}_k$ of the given linear stochastic system, minimising the weighted mean-squarred error. This problem is called the \emph{linear quadratic Gaussian} estimation problem; the dynamic system is linear, the performance cost function is quadratic, and the random process is Gaussian.
+The Kalman filter solves the problem of estimating the state $\mathbf{x}_k$ of the given linear stochastic system, minimising the weighted mean-squared error. This problem is called the \emph{linear quadratic Gaussian} estimation problem; the dynamic system is linear, the performance cost function is quadratic, and the random process is Gaussian.
 
 We define the vector $\hat{\mathbf{x}}^-_k \in \mathbb{R}^n$ as the \emph{a priori} state estimate representing knowledge of the process prior to step $k$ and $\hat{\mathbf{x}}_k \in \mathbb{R}^n$ as the \emph{a posteriori} state estimate at step $k$ given the measurement $\mathbf{z}_k$:
 
@@ -485,7 +485,7 @@ and
 \end{equation}
 
 \noindent
-The $ij$\textsuperscript{th} entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u} = \mathbf{u}_{k-1}$. Likewise, the $ij$\textsuperscript{th} entry of $\mathbf{H}^{[1]}_{k}$ is equal to the partial derivative of the $i$\textsuperscript{th} component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$\textsuperscript{th} component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. The superscript ${[1]}$ denotes the \emph{first-order} approximation.
+The $ij$-th entry of $\bm{\Phi}^{[1]}_{k-1}$ is equal to the partial derivative of the $i$-th component of $\bm{\phi}_{k-1}(\mathbf{x})$ with respect to the $j$-th component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k-1}, \mathbf{u} = \mathbf{u}_{k-1}$. Likewise, the $ij$-th entry of $\mathbf{H}^{[1]}_{k}$ is equal to the partial derivative of the $i$-th component of $\mathbf{h}_{k}(\mathbf{x})$ with respect to the $j$-th component of $\mathbf{x}$. The derivatives are evaluated at $\mathbf{x}=\hat{\mathbf{x}}^-_{k}$. The superscript $^{[1]}$ denotes the \emph{first-order} approximation.
 
 
 Similar to Equation \ref{eq:apriori_estimate}, the predicted state estimate is given by
@@ -550,6 +550,6 @@ Figure \ref{fig:extended_kalman_filter_cycle} illustrates the `predict and corre
 \caption{Operation cycle of the extended Kalman filter algorithm illustrating `predict and correct' behaviour.} \label{fig:extended_kalman_filter_cycle}
 \end{figure}
 
-Extended Kalman filtering is commonly used. In fact, it was the first successful application of the Kalman filter \cite{grewal2008kalman}. Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is wrong.
+Extended Kalman filtering is commonly used. In fact, it was the first successful application of the Kalman filter \cite{grewal2008kalman}. Unlike its linear counterpart, the extended Kalman filter may not necessarily be an optimal estimator. Owing to its linearisation the EKF may quickly diverge, if the process is modelled incorrectly or the initial state estimate is too imprecise.
 
 

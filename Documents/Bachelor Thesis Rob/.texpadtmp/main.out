@@ -12,7 +12,7 @@
 \BOOKMARK [1][-]{section.1.4}{State of the Art}{chapter.1}% 12
 \BOOKMARK [2][-]{subsection.1.4.1}{Kalman Filtering Applied to Orientation Estimation}{section.1.4}% 13
 \BOOKMARK [2][-]{subsection.1.4.2}{Wearable Sensors in Health Care}{section.1.4}% 14
-\BOOKMARK [0][-]{chapter.2}{Orientation Estimation using MARG Sensors}{}% 15
+\BOOKMARK [0][-]{chapter.2}{Orientation Estimation Using MARG Sensors}{}% 15
 \BOOKMARK [1][-]{section.2.1}{MARG Sensors}{chapter.2}% 16
 \BOOKMARK [2][-]{subsection.2.1.1}{Accelerometers}{section.2.1}% 17
 \BOOKMARK [2][-]{subsection.2.1.2}{Gyroscopes}{section.2.1}% 18
@@ -45,7 +45,7 @@
 \BOOKMARK [1][-]{section.4.4}{Results}{chapter.4}% 45
 \BOOKMARK [1][-]{section.4.5}{Discussion}{chapter.4}% 46
 \BOOKMARK [0][-]{chapter.5}{Conclusion and Future Work}{}% 47
-\BOOKMARK [1][-]{section.5.1}{Conclusions}{chapter.5}% 48
+\BOOKMARK [1][-]{section.5.1}{Conclusion}{chapter.5}% 48
 \BOOKMARK [1][-]{section.5.2}{Future Work}{chapter.5}% 49
 \BOOKMARK [0][-]{section*.51}{Bibliography}{}% 50
 \BOOKMARK [0][-]{section*.53}{Appendix}{}% 51

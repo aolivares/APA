@@ -103,7 +103,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 
   \end{itemize}
 
-In tandem with the orientation angles estimated with the above-mentioned algorithms, an angle estimate based on a Qualisys\textsuperscript{\textregistered} motion capture system served as a reference. The Qualisys\textsuperscript{\textregistered} uses high-speed cameras in combination with optical markers placed on the legs, as depicted in Figure \ref{fig:marker_placement}. From the recorded trace of the markers in space I could compute the reference angles of the thighs and shanks by means of an existing algorithm.
+In tandem with the orientation angles estimated with the algorithms mentioned above, an angle estimate based on a Qualisys\textsuperscript{\textregistered} motion capture system served as a reference. The Qualisys\textsuperscript{\textregistered} uses high-speed cameras in combination with optical markers placed on the legs, as depicted in Figure \ref{fig:marker_placement}. From the recorded trace of the markers in space I could compute the reference angles of the thighs and shanks by means of an existing algorithm.
 
 \begin{figure}
 \centering
@@ -162,7 +162,7 @@ This section maps the theoretical design of the system proposed by \citeauthor{b
 \end{figure} 
 
 
-The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip und knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
+The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip and knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
 
 
 The \glspl{IMU} placed on the thighs and shanks measured the angular velocity around the $y$-axis and the linear acceleration along the $x$ and $z$-axis, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
@@ -261,9 +261,9 @@ The state-space model of the extended Kalman filter is given by the state vector
 \end{equation}
 
 \noindent
-where $x$ and $y$ correspond to the horizontal and vertical position of the end of link $2$ with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time varying.
+where $x$ and $y$ correspond to the horizontal and vertical position of the end of link $2$ with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time-varying.
 
-The measurement vector $\mathbf{z} \in \mathbb{R}^{m=3}$ is given by
+The measurement vector $\mathbf{z} \in \mathbb{R}^m$, with $m = 4$, is given by
 
 \begin{equation} \label{eq:measurement_vector}
   \mathbf{z} = \begin{bmatrix} z_1 \\ z_2 \\ z_3 \\ z_4 \end{bmatrix} = \begin{bmatrix}
@@ -440,7 +440,7 @@ The process noise covariance matrix $\mathbf{Q} \in \mathbb{R}^{10 \times 10}$ i
 \noindent
 The diagonal elements represent the respective variances of the elements $w_1, \dots, w_n$ of the process noise vector $\mathbf{w}$, due to the relation $\operatorname{Cov}(w_i,w_i) = \operatorname{Var}(w_i)$. The other elements are the covariances of all possible pairs of the random variables of the process noise vector. The noise processes interfering with the state variables $x$ and $y$, and $\beta_1$ and $\beta_2$, respectively, were modelled as independent. In contrast, the covariances of the noise components interfering with the state variables $\theta_i, \omega_i, \alpha_i, i \in {1, 2}$, which account for the block-diagonal structure, reflect a random walk process, that is, the integration of a signal perturbed by Gaussian white noise. A detailed derivation of the form of the elements is found in \cite{Kelly_1994_random}. The parameters $\sigma_d, \sigma_{\theta_1}, \sigma_{\theta_2},$ and $\sigma_{\beta}$ were found by an optimiser, which is described in Section \ref{sec:preparation}.
 
-The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{3 \times 3}$, is given by
+The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{4 \times 4}$, is given by
 
 \begin{equation}
 \mathbf{R} = \begin{bmatrix}
@@ -543,23 +543,23 @@ The subject stood on a treadmill wearing the GaitWatch system on its body. Then,
 
 \subsection{Initial Conditions}\label{sec:initial_cond}
 
-Each trial began with the subject standing still and it was assumed that the subject's legs are fully stretched. This leads to the following initial state estimates:
+Each trial began with the subject standing still and it was assumed that the subject's legs were fully stretched. This leads to the following initial state estimates:
 
 \begin{equation}
 \begin{matrix}
 	\begin{split}
 	  x &= 0\,\mbox{m}\,, \\
 	  \theta_1 &= -90^{\circ}\,, \\
-	  \omega_1 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
-	  \beta_1 &= \mu_1\,\frac{^{\circ}}{\mbox{s}}\,, \\
-	  \alpha_1 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,, 
+	  \omega_1 &= 0\, ^{\circ}/\mbox{s} \,, \\
+	  \beta_1 &= \mu_1\, ^{\circ}/\mbox{s} \,, \\
+	  \alpha_1 &= 0\, ^{\circ}/\mbox{s}^2\,, 
 \end{split} \qquad \quad
     \begin{split}
    	  z &= -(l_1+l_2)\,\mbox{m}\,, \\
 	  \theta_2 &= 0\,^{\circ}\,, \mathrel{\phantom{90^{\circ}}}\\
-	  \omega_2 &= 0\,\frac{^{\circ}}{\mbox{s}}\,, \\
-	  \beta_2 &= \mu_2\,\frac{^{\circ}}{\mbox{s}}\,, \\
-	  \alpha_2 &= 0\,\frac{^{\circ}}{\mbox{s}^2}\,,  
+	  \omega_2 &= 0\, ^{\circ}/\mbox{s} \,, \\
+	  \beta_2 &= \mu_2\, ^{\circ}/\mbox{s} \,, \\
+	  \alpha_2 &= 0\, ^{\circ}/\mbox{s}^2\,,  
 \end{split}
 \end{matrix} \\
 \end{equation}
@@ -588,7 +588,7 @@ To test the filter algorithm and compare it with the existing classical Kalman f
 \end{equation}
 
 \noindent
-where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank angle at instant $k$, estimated by the extended Kalman filter, and $\theta_{t, k}$ and $\theta_{s, k}$ the reference angles at instant $k$, respectively. The implementation of the error function is shown in Listing \ref{lis:error_function}. The optimiser returned the parameters that minimise the error function.
+where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank angle at instant $k$, estimated by the extended Kalman filter, and $\theta_{t, k}$ and $\theta_{s, k}$ the reference angles at instant $k$, respectively. The implementation of the error function is shown in Listing \ref{lis:error_function}. The optimiser returns the parameters that minimise the error function.
 
 \subsubsection{Parameterisation}
 
@@ -751,4 +751,4 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 After the presentation of the results, we now proceed to analysing them in detail. The RMSEs of the motion-corrected acceleration-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw acceleration-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves the entire body upwards, including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. Another fact that is not considered in the simple model, is motion beyond the $xz$-plane. Finally, the lengths of the links, i.\,e. the sensor position on the thigh and shank was not exactly known. As the trend of the relative RMSEs of the acceleration-based angle estimates shows, the motion correction works better for faster motions. 
 
- Even though, the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, the improvement of the filter output is significant. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are only suboptimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, they will always be somewhat less then optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsen it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model, for instance it combines information about both thigh and shank in the same state-space model which could be one reason why it delivers a more accurate estimate.
+ Even though the acceleration correction does not benefit the RMSE of the acceleration-based angle estimate, the improvement of the filter output is significant. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are only suboptimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, they will always be somewhat less than optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsens it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model, for instance it combines information about both thigh and shank in the same state-space model which could be one reason why it delivers a more accurate estimate.

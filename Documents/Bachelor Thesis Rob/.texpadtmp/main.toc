@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {1.4}State of the Art}{3}{section.1.4}
 \contentsline {subsection}{\numberline {1.4.1}Kalman Filtering Applied to Orientation Estimation}{3}{subsection.1.4.1}
 \contentsline {subsection}{\numberline {1.4.2}Wearable Sensors in Health Care}{4}{subsection.1.4.2}
-\contentsline {chapter}{\numberline {2}Orientation Estimation using MARG Sensors}{7}{chapter.2}
+\contentsline {chapter}{\numberline {2}Orientation Estimation Using MARG Sensors}{7}{chapter.2}
 \contentsline {section}{\numberline {2.1}MARG Sensors}{7}{section.2.1}
 \contentsline {subsection}{\numberline {2.1.1}Accelerometers}{7}{subsection.2.1.1}
 \contentsline {subsection}{\numberline {2.1.2}Gyroscopes}{8}{subsection.2.1.2}
@@ -51,7 +51,7 @@
 \contentsline {section}{\numberline {4.4}Results}{50}{section.4.4}
 \contentsline {section}{\numberline {4.5}Discussion}{58}{section.4.5}
 \contentsline {chapter}{\numberline {5}Conclusion and Future Work}{59}{chapter.5}
-\contentsline {section}{\numberline {5.1}Conclusions}{59}{section.5.1}
+\contentsline {section}{\numberline {5.1}Conclusion}{59}{section.5.1}
 \contentsline {section}{\numberline {5.2}Future Work}{59}{section.5.2}
 \contentsline {chapter}{Bibliography}{61}{section*.51}
 \contentsline {chapter}{Appendix}{69}{section*.53}
