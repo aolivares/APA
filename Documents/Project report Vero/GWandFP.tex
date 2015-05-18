@@ -255,51 +255,134 @@ Technology avaiable for clinicians and researchers to mesure APAs is generally f
 Therefore, along this chapter we will do a comparative study of the measurements obtained of the force plate as well as accelerometers that make up the Gait Watch system. Also, we will compare these measurements with gyroscopes data that form part of this system too, in order to determine what sensors give us the more accurate results.
 
 \subsection{FP and GW Signals}
-As we said in the before chapter, leg acceleration in the Gait Watch System as well as force in the Platform System are the most accurate signals to detect when the step happens. This is very important to do the synchronisation of the all signals system. However, the most interesting signals since a medical point of view are the trunk acceleration and the displacement of the center of pressure.
+As we said in the before chapter, leg acceleration in the Gait Watch System as well as force in the Platform System are the most accurate signals to detect when the step happens. This is very important to do the synchronisation of the all signals of the system. However, the most interesting signals since a medical point of view are the trunk acceleration and the displacement of the center of pressure.
 
 This is because we can observe the Anticipatory Postural Adjustments in these signals, i.e the body movements before stepping. According to prior studies and priori criteria it is thought that could be a good way to characterise the APAs.
 Therefore, the first process to carry out is the analysis of the trunk acceleration and COP to determine if there is some pattern and whether we will be able to use them to obtain information about the patients.
 
-The first step that needs to be carried out is establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the left of the patient, so the positives values indicate a movement toward left with regard to the midline. Comparably, the negatives values are found when the movement is toward the right.
+The first step that needs to be carried out is establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the left of the patient, so the positives values indicate a movement toward left with regard to the midline. Comparably, the negatives values are found when the movement is toward the right\ref{fig:axesFP}.
 
-IMAGEN
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/axesFP.pdf, width=18cm}
+	\caption{Definition of the axes in the Platform.}
+	\label{fig:axesFP}
+\end{figure}
 
-Now, for the GaitWatch System we have to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes . The most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation. \cite{OlivaresBotzel2013Mancini2009}
+Now, for the GaitWatch System we have to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes . The most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation. \cite{OlivaresBotzel2013}
 
-Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the left  of the patient in our case, and the Z axis to the floor. Thus, in our particular , the Y axis points to the left, so it can be like a mirror when we compare with the FP signals.\cite{OlivaresBotzel2013Mancini2009}
+Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the left  of the patient in our case, and the Z axis to the floor. Thus, in our particular , the Y axis points to the left\ref{fig:axesGW}, so it can be like a mirror when we compare with the FP signals.\cite{OlivaresBotzel2013}
 
-IMAGEN
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/axesGW.pdf, width=18cm}
+	\caption{Definition of the axes in the accelerometers ans gyroscopes.}
+	\label{fig:axesGW}
+\end{figure}
 
-Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in figure 2.1, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. However, in this case the rotation is positive toward left. Analogously, the rotation is negative when it is turned to the right \cite{OlivaresBotzel2013Mancini2009}
+Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. This axes configuration is the same as for the accelerometers \ref{fig:axesGW}. By convention, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. However, in this case the rotation is positive toward left\ref{fig:axesGWGyro}. Analogously, the rotation is negative when it is turned to the right \cite{OlivaresBotzel2013Mancini2009}
 
-IMAGEN
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/axesGWGyro.pdf, width=18cm}
+	\caption{Orientation of the axis rotation in gyroscopes.}
+	\label{fig:axesGWGyro}
+\end{figure}
 
 
 We have to differentiate between the front-back movement and the right-left movement. In the first of the case, we have the acceleration in X axis and the Antero-Posterior COP. In the another case, the movement is traced by the acceleration in Y axis and the Medio-Lateral  COP.
-Whether we focus in the Antero-Posterior movement, before stepping the body is displaced toward the opposite direction. Thus, before the step happens, the pressure is always shifted backward [figure]and the acceleration peak appears in the same direction .[figure].
-IMAGEN
+Whether we focus in the Antero-Posterior movement, before stepping the body is displaced toward the opposite direction. Thus, before the step happens, the pressure is always shifted backward and the acceleration peak appears in the same direction\ref{fig:AP_AccXtrunk} .
 
-Also, we can observe a pattern due to all movement before stepping follows a only trace approximately. So, if we observed the trunk signals when the patient starts with the right and left feet, we see the following signals:
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/AP_AccXtrunk, width=18cm}
+	\caption{COP and Acceleration in the Antero-Posterior direction.}
+	\label{fig:AP_AccXtrunk}
+\end{figure}
 
-IMAGEN
+Also, we can observe a pattern due to all movements before stepping follows a only trace approximately. So, if we observed the trunk signals when the patient starts with the right and left feet, we see the following signals:
 
-The pattern of the acceleration in the X-axis (anterior-posterior movement), it’s always the same, also regardless of the leg which the patient starts to walk. The signal makes sense because there is a first ‘negative’ peak, it’s exactly when the APA happens, i.e when patient is shifted backwards, and after that, the patient steps (‘positive’ peak).
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/pattern_AP_acc, width=18cm}
+	\caption{Pattern of the acceleration signal in Antero-Posterior direction.}
+	\label{fig:pattern_AP_acc}
+\end{figure}
 
-Moreover, we discern differences in the Medio-Lateral direction regarding the foot with which the step is done. 
-IMAGES
-If the patient starts to step with the right foot, the center of pressure is shifted toward left. Seeing the signal, the positive direction is toward left. Therefore when patient starts with the right foot, there’ll be a positive peak and after that, other negative when the step is done. [figure]
+The pattern of the acceleration in the X-axis (anterior-posterior movement), it’s always the same, regardless of the leg which the patient starts to walk. The signal makes sense because there is a first ‘negative’ peak, it’s exactly when the APA happens, i.e when patient is shifted backwards, and after that, the patient steps (‘positive’ peak)\ref{pattern_AP_acc}.
 
-If the patient starts to step with the left foot, the center of pressure is shifted toward right, so in this case, there will be a first negative peak and after a positive peak when the step is done, in contrast to the above case. [figure]
+Moreover, we discern differences in the Medio-Lateral direction regarding the foot with which the step is done\ref{patter_ML_acc_right}\ref{patter_ML_acc_left}. 
 
-To sum up, when the patient starts to step with the right foot, the center of pressure  is shifted backward and left ,  so there are a positive peak in the trunk acceleration signal (Y axis), a ‘negative’ peak in the trunk acceleration signal (X axis), a positive peak in the ML COP and negative peak in AP COP [figure]. 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/pattern_ML_acc_right, width=18cm}
+	\caption{Pattern of the acceleration signal in Medio-Lateral direction when patient starts to step with the right foot.}
+	\label{fig:pattern_ML_acc_right}
+\end{figure}
 
-When the patient starts to step with the left foot, the center of pressure is shifted backward and right, so there are a negative peak in the trunk acceleration signal (Y axis), a ‘negative’ peak in the trunk acceleration signal (X axis), a negative peak in the ML COP and negative peak in AP COP[figure].   
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/pattern_ML_acc_left, width=18cm}
+	\caption{Pattern of the acceleration signal in Medio-Lateral direction when patient starts to step with the left foot.}
+	\label{fig:pattern_ML_acc_left}
+\end{figure}
+
+If the patient starts to step with the right foot, the center of pressure is shifted toward left. Seeing the signal, the positive direction is toward left. Therefore when patient starts with the right foot, there’ll be a positive peak and after that, other negative when the step is done. \ref{fig:ML_AccYtrunkNegative}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_AccYtrunkNegative, width=18cm}
+	\caption{COP and Acceleration in the Medio-Lateral direction when patient starts to step with the right foot.}
+	\label{fig:ML_AccYtrunkNegative}
+\end{figure}
+
+If the patient starts to step with the left foot, the center of pressure is shifted toward right, so in this case, there will be a first negative peak and after a positive peak when the step is done, in contrast to the above case. \ref{fig:ML_AccYtrunkPositive}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_AccYtrunkPositive, width=18cm}
+	\caption{COP and Acceleration in the Medio-Lateral direction when patient starts to step with the left foot.}
+\label{fig:ML_AccYtrunkPositive}
+\end{figure}
+
+To sum up, when the patient starts to step with the right foot, the center of pressure  is shifted backward and left ,  so there are a positive peak in the trunk acceleration signal (Y axis), a ‘negative’ peak in the trunk acceleration signal (X axis), a positive peak in the ML COP and negative peak in AP COP \ref{right_trunk_COP}. 
+
+When the patient starts to step with the left foot, the center of pressure is shifted backward and right, so there are a negative peak in the trunk acceleration signal (Y axis), a ‘negative’ peak in the trunk acceleration signal (X axis), a negative peak in the ML COP and negative peak in AP COP\ref{left_trunk_COP}.   
                  
-IMÁGENES
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/right_trunk_COP, width=18cm}
+	\caption{Signals from FP and GW when patient starts to step with the right foot.}
+	\label{fig:right_trunk_COP}
+\end{figure}
 
-The behaviour of the gyroscope signals is very similar to the accelerometer signals. [figures]
-There are a negative peak when patient turns to backward before walking in the Antero -Posterior direction. Besides, it will be a negative peak when patient is shifted toward right and positive in the case that the turn was done to left in the Y axis.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/left_trunk_COP, width=18cm}
+	\caption{Signals from FP and GW when patient starts to step with the left foot.}
+	\label{fig:left_trunk_COP}
+\end{figure}
 
+The behaviour of the gyroscope signals is very similar to the accelerometer signals. There are a negative peak when patient turns to backward before walking in the Antero-Posterior direction\ref{fig:AP_GyroXtrunk}. Besides, it will be a negative peak when patient is shifted toward right\ref{fig:ML_GyrotrunkNegative} and positive in the case that the turn was done to left in the Y axis\ref{fig:ML_GyrotrunkPositive}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/AP_GyroXtrunk, width=18cm}
+	\caption{COP and Angular Velocity in the Antero-Posterior direction.}
+	\label{fig:AP_GyroXtrunk}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_GyroYtrunkNegative, width=18cm}
+	\caption{COP and Angular Velocity in the Medio-Lateral direction when patient starts to step with the right foot.}
+	\label{fig:ML_GyrotrunkNegative}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_GyroYtrunkPositive, width=18cm}
+	\caption{COP and Angular Velocity in the Medio-Lateral direction when patient starts to step with the left foot.}
+	\label{fig:ML_GyrotrunkPositive}
+\end{figure}
 
 
 \subsection{Results discurssion}
