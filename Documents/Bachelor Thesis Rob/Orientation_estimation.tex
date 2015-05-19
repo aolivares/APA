@@ -193,7 +193,7 @@ In order to transform the coordinate vector from the \emph{world frame} to the \
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$), the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y, z$, according to the right hand rule, respectively. That is, the function $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$ maps the vector $\mathbf{p}$ to its orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y, z$. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$), the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y', Z$, according to the right hand rule, respectively. That is, the function $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$ maps the vector $\mathbf{p}$ to its orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y', Z$. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. Note that $\{x', y', z'\}$ denotes the coordinate frame after the first elemental rotation. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
 
 \begin{figure}[t]
 \centering
@@ -271,7 +271,7 @@ When the accelerometer is motionless, its measurements will be directly related 
 \end{equation}
 
 \noindent
-where $A_x$ and $A_z$ are the components of the acceleration vector in $x$ and $z$ direction, respectively. However, when the sensor is in motion, in addition to the gravity, there are radial and tangential acceleration components due to motion, as depicted in Figure \ref{fig:acceleration_motion} (b). The magnitude of the gravity vector $\mathbf{g}$ is denoted with $\|\mathbf{g}\|$. Ignoring these components will cause incorrect angle estimates.
+where $A_x$ and $A_z$ are the components of the acceleration vector in $x$ and $z$-direction, respectively. However, when the sensor is in motion, in addition to the gravity, there are radial and tangential acceleration components due to motion, as depicted in Figure \ref{fig:acceleration_motion} (b). The magnitude of the gravity vector $\mathbf{g}$ is denoted with $\|\mathbf{g}\|$. Ignoring these components will cause incorrect angle estimates.
 
 \begin{figure}
 \centering
@@ -316,7 +316,7 @@ where $A_x$ and $A_z$ are the components of the acceleration vector in $x$ and $
 
 \section{Integration of the Angular Rate}\label{sec:integration_angular}
 
-Another way to estimate the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Although this would theoretically lead to very accurate orientation estimates, they are impaired by \gls{ARW} and dynamical bias in practice. \gls{ARW} is an effect caused by the integration of high-frequency, thermo-mechanical noise, which leads to a random additive angle in the orientation signal. An even greater impact than AWR has the gyroscopes dynamic bias, which has its origin in low-frequency flicker noise. Both effects cause a dramatical drift in the angle signal over time.
+Another way to estimate the attitude of an object is the integration of the angular rate around the $x, y$ and $z$-axis, respectively. Although this would theoretically lead to very accurate orientation estimates, they are impaired by \gls{ARW} and dynamical bias in practice. \gls{ARW} is an effect caused by the integration of high-frequency, thermo-mechanical noise, which leads to a random additive angle in the orientation signal. An even greater impact than AWR has the gyroscope's dynamic bias, which has its origin in low-frequency flicker noise. Both effects cause a dramatical drift in the angle signal over time.
 
 \section{Sensor Fusion}
 

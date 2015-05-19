@@ -25,7 +25,7 @@ IDG$500$ biaxial gyroscope with a measurement range of $\pm500^{\circ}/$s \cite{
 
 \item \textsc{type c -- trunk:}
 
-ADXL$345$ triaxial accelerometer with a programmable measurement range of $\pm2/\pm4/\pm8/\pm16$\,g \cite{ADXL345},
+ADXL$345$ triaxial accelerometer with a programmable measurement range of $\pm 2/\pm 4/\pm 8/\pm 16$\,g \cite{ADXL345},
 IMU$3000$ triaxial gyroscope with a programmable measurement range of $\pm250/\pm500/\pm1000/$ $\pm3000^{\circ}/$s \cite{IMU3000}, 
 Micromag$3$ triaxial magnetometer with a measurement range of $\pm11$\,Gauss \cite{MicroMag3}, AL-XAVRB board containing an AVR ATxmega processor \cite{AVRATxmega}.
 
@@ -45,7 +45,7 @@ Micromag$3$ triaxial magnetometer with a measurement range of $\pm11$\,Gauss \ci
 
 \subsubsection{Software}
 
-In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the necessary calibration. Also, several algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. There were four algorithms for estimating the pitch angle of the thighs and shanks, as described below:
+In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscript{\textregistered} toolbox consisting of routines for reading the data and carrying out the necessary calibration. Also, several algorithms that determine the motion intensity and compute the orientation of the human body from the movement data were already implemented. There were three algorithms for estimating the pitch angle of the thighs and shanks, as described below:
 
 \begin{itemize}
   \item \textsc{projection of the gravity vector:} One way to obtain the pitch angle from the inertial data is using the projection of the gravity vector on the axes of the accelerometer, as described in Section \ref{sec:projection_gravity}. The first algorithm computed the pitch angle according to Equation \ref{eq:projection_gravity}.
@@ -103,7 +103,7 @@ In addition to the hardware, there was an existing \textsc{Matlab}\textsuperscri
 
   \end{itemize}
 
-In tandem with the orientation angles estimated with the algorithms mentioned above, an angle estimate based on a Qualisys\textsuperscript{\textregistered} motion capture system served as a reference. The Qualisys\textsuperscript{\textregistered} uses high-speed cameras in combination with optical markers placed on the legs, as depicted in Figure \ref{fig:marker_placement}. From the recorded trace of the markers in space I could compute the reference angles of the thighs and shanks by means of an existing algorithm.
+In tandem with the orientation angles estimated with the algorithms mentioned above, an angle estimate based on a Qualisys\textsuperscript{\textregistered} motion capture system served as a reference. The Qualisys\textsuperscript{\textregistered} uses high-speed cameras in combination with optical markers placed on the legs, as depicted in Figure \ref{fig:marker_placement}. From the recorded trace of the markers in space the reference angles of the thighs and shanks could be computed using an existing algorithm.
 
 \begin{figure}
 \centering
@@ -162,10 +162,10 @@ This section maps the theoretical design of the system proposed by \citeauthor{b
 \end{figure} 
 
 
-The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip and knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
+The kinematic model relates the respective angles of the thigh and shank about the hip and knee joint to the acceleration seen by the wearable sensors. When walking in a straight line, the human leg can be modelled as a two-link planar revolute robot \cite{bennett_motion_2014}. Then, thighs and shanks remain in a single plane, which is approximately parallel to the direction of motion. As depicted in Figure \ref{fig:robot}, the revolute joints of the pendulum robot represent the hip and knee joint, and the two links the thigh and shank, respectively. The origin of the inertial world frame is located at the base of link $1$, the upper of both links. The $x$-axis points forward, the $y$-axis points out from the hip to the right, and the $z$-axis points down. This configuration follows the right-hand rule, which can also be used to determine the sense of rotation around the axes. The pitch angle $\theta_1$ is measured with respect to the $x$-axis, and the pitch angle $\theta_2$ of link $2$ with respect to link $1$.
 
 
-The \glspl{IMU} placed on the thighs and shanks measured the angular velocity around the $y$-axis and the linear acceleration along the $x$ and $z$-axis, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$ displacement and its derivatives in the world frame are as follows:
+The \glspl{IMU} placed on the thighs and shanks measured the angular velocity around the $y$-axis and the linear acceleration along the $x$ and $z$-axis, respectively. According to \citeauthor{spong2005robot} \cite{spong2005robot}, the $x$ and $z$-displacement and its derivatives in the world frame are as follows:
 
 \begin{align}
   x &= + l_1 \cos(\theta_1) + l_2 \cos(\theta_1 + \theta_2) \\
@@ -180,7 +180,7 @@ The \glspl{IMU} placed on the thighs and shanks measured the angular velocity ar
 \end{align}
 
 \noindent
-in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Plugging the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, obtained with the EKF described in Section \ref{sec:EKF_model}, into Equations \ref{eq:acc_x} and \ref{eq:acc_y}, we can estimate the respective motion-based acceleration components $a_x$ and $a_z$ in $x$ and $z$ direction that sensor $2$ will see in the world coordinate frame. Written as a function of the state variables of the extended Kalman filter, Equations \ref{eq:acc_x} and \ref{eq:acc_y} yield
+in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Plugging the \emph{a priori} estimates of the angles $\theta_1$ and $\theta_2$ and their derivatives, i.\,e. the angular rates $\omega_1$ and $\omega_2$, and the angular accelerations $\alpha_1$ and $\alpha_2$, obtained with the EKF described in Section \ref{sec:EKF_model}, into Equations \ref{eq:acc_x} and \ref{eq:acc_y}, we can estimate the respective motion-based acceleration components $a_x$ and $a_z$ in $x$ and $z$-direction that sensor $2$ will see in the world coordinate frame. Written as a function of the state variables of the extended Kalman filter, Equations \ref{eq:acc_x} and \ref{eq:acc_y} yield
 
 \begin{align}
   a_x &= -l_1 [\omega^2_1 \cos(\theta_1) + \alpha_1 \sin(\theta_1)] - l_2 [(\omega_1 + \omega_2)^2 \cos(\theta_1 + \theta_2) \nonumber \\ 
@@ -193,11 +193,18 @@ in which $l_1$ and $l_2$ are the lengths of the two links, respectively. Pluggin
 The orientation of the sensor frames at rest are different from the world frame and dynamic when the pendulum is in motion. In order to transform the values from the world frame to the dynamic body frame of \gls{IMU} $2$, which is depicted in Figure \ref{fig:robot}, we used the transformation matrix $\mathbf{T}_y(\theta)$ from Equation \ref{eq:transformation_matrices}. The body frame of sensor two is not aligned with the world frame for $\theta_1 = \theta_2 = 0$. Thus, in order to align both frames, an offset of $90^{\circ}$ is required. With $\theta = \theta_1 + \theta_2 + 90^{\circ}$, this yields
 
 \begin{equation}
-\mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) = \left[ \begin{smallmatrix}
+\begin{split}
+\mathbf{T}_y(\theta_1 + \theta_2 + 90^{\circ}) &= \left[ \begin{smallmatrix}
     \cos (\theta_1 + \theta_2 + 90^{\circ}) \; & 0 \; & -\sin (\theta_1 + \theta_2 + 90^{\circ}) \\
     0 \; & 1 \; & 0 \\
     \sin (\theta_1 + \theta_2 + 90^{\circ}) \; & 0 \; & \cos (\theta_1 + \theta_2 + 90^{\circ})
+    \end{smallmatrix} \right] \\
+    &= \left[ \begin{smallmatrix}
+    -\sin (\theta_1 + \theta_2) \; & 0 \; & -\cos (\theta_1 + \theta_2) \\
+    0 \; & 1 \; & 0 \\
+    \cos (\theta_1 + \theta_2) \; & 0 \; & -\sin (\theta_1 + \theta_2)
     \end{smallmatrix} \right] \,.
+\end{split}
 \end{equation}
 
 \noindent
@@ -216,9 +223,9 @@ According to Equation \ref{eq:transformation}, the rotated radial and tangential
 \end{equation}
 
 \noindent
-The axial component $A_{Y_2}$ is zero, since the leg is assumed to be oriented perpendicular to the earth's surface and thus the gravity vector $\mathbf{g}$ is perpendicular to the $y$-axis. The term $\|\mathbf{g}\|^{-1}$ normalises the rotated motion-based acceleration estimate to gravity, where $\|\mathbf{g}\|$ denotes the magnitude of gravity. 
+The axial component $A_{Y_2}$ is zero, since the leg is assumed to be oriented perpendicular to the earth's surface and thus the gravity vector $\mathbf{g}$ is perpendicular to the $y$-axis. The term $\|\mathbf{g}\|^{-1}$ normalises the motion-based acceleration estimate to gravity, where $\|\mathbf{g}\|$ denotes the magnitude of gravity. 
 
-Then, the motion based radial and tangential acceleration components are subtracted from the sensor readings $A_{X_1m}$ and $A_{Z_1m}$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
+Then, the motion based radial and tangential acceleration components are subtracted from the sensor readings $a_{X_1m}$ and $a_{Z_1m}$, which leaves an estimate of the gravity based acceleration $\mathbf{g}$ that acts on the sensor:
 
 \begin{equation}
 \mathbf{g} = \begin{bmatrix}
@@ -261,7 +268,7 @@ The state-space model of the extended Kalman filter is given by the state vector
 \end{equation}
 
 \noindent
-where $x$ and $y$ correspond to the horizontal and vertical position of the end of link $2$ with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases from the gyroscope on the first and second sensor are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time-varying.
+where $x$ and $y$ correspond to the horizontal and vertical position of the end of link $2$ with respect to the origin of the world frame, i.\,e. the hip joint. $\theta_1$ is the angle, $\omega_1$ the angular velocity, and $\alpha_1$ the angular acceleration of the first joint, respectively. The corresponding values for the second link are $\theta_2$, $\omega_2$, and $\alpha_2$. The biases of the gyroscopes in the first and the second IMU are $\beta_1$ and $\beta_2$, respectively. They are assumed to be constant or slowly time-varying.
 
 The measurement vector $\mathbf{z} \in \mathbb{R}^m$, with $m = 4$, is given by
 
@@ -287,7 +294,7 @@ According to  \citeauthor{rowell2002state} \cite{rowell2002state}, the plant dyn
 where $\dot{\mathbf{x}}$ consists of the component-wise time derivatives of the state vector $\mathbf{x}$, expressed in terms of the state variables $x_1(t), \dots, x_n(t)$. Its elements are given by
 
 \begin{equation}
-  \dot{x}_i = f_i(x_1(t), \dots, x_n(t), t) + w_i = \frac{dx_i}{dt} + w_i\,, \quad i = 1, \dots, n\,,
+  \dot{x}_i = f_i(x_1(t), \dots, x_n(t), t) + w_i = \frac{dx_i}{dt} + w_i\,, \quad i = 1, \dots, n\,.
 \end{equation}
 
 \noindent
@@ -466,7 +473,7 @@ with
 
 
 \noindent
-The variances $\sigma^2_3$ and $\sigma^2_4$ of the accelerometer-based angle estimates were found by the optimiser and were set dynamically at each time step $k$, based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$ according to slow or fast motion, distinguished by a marker signal $m_k$:
+The variances $\sigma^2_3$ and $\sigma^2_4$ of the accelerometer-based angle estimates were found by the optimiser and were set dynamically at each time step $k$, based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$, according to slow or fast motion, distinguished by a marker signal $m_k$:
 
 \begin{equation}
   \sigma^2_3 = \begin{cases}
@@ -535,7 +542,7 @@ The state estimates are computed recursively according to the \emph{time update}
 
 \section{Experiments}
 
-The extended Kalman filter was tested and its results compared to the existing classical Kalman filter and the reference signal, by interrelating the RMSE of each method. The orientation algorithms were applied to movement data from a real subject. These data were gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subject performed the following trial.
+The extended Kalman filter was tested and its results were compared to the existing classical Kalman filter and the reference signal, by interrelating the RMSE of each method. The orientation algorithms were applied to movement data from a real subject. These data were gathered at the Department of Neurology of the Klinikum Großhadern in Munich, while the subject performed the following trial.
 
 \subsection{Data Collection Protocol}
 
@@ -578,7 +585,7 @@ The initial error covariance matrix was the identity matrix, $\mathbf{P}_0 = \ma
 
 \subsection{Test Preparation}\label{sec:preparation}
 
-To test the filter algorithm and compare it with the existing classical Kalman filter, I implemented a parameter optimiser. Based on the optimal set of parameters for a given signal, we compared the newly implemented filter algorithm against the classical Kalman filter. The parameter optimisation function given by Listing \ref{lis:optimiser} called an adaptive Nelder-Mead simplex algorithm, which minimised the error function $\operatorname{E}$. Since we are interested in an accurate angle estimate of both angles and thus need parameters that optimise both angle estimates, we scalarise this multi-objective optimisation problem. Using linear scalarisation yields
+To test the filter algorithm and compare it with the existing classical Kalman filter, a parameter optimiser was implemente. Based on the optimal set of parameters for a given signal, we compared the newly implemented filter algorithm against the classical Kalman filter. The parameter optimisation function given by Listing \ref{lis:optimiser} called an adaptive Nelder-Mead simplex algorithm, which minimised the error function $\operatorname{E}$. Since we are interested in an accurate angle estimate of both angles and thus need parameters that optimise both angle estimates, we scalarise this multi-objective optimisation problem. Using linear scalarisation yields
 
 \begin{equation}
 \begin{split}
@@ -592,7 +599,7 @@ where $\hat{\theta}_{t,k}$ and $\hat{\theta}_{s,k}$ denote the thigh and shank a
 
 \subsubsection{Parameterisation}
 
-The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector given in Section \ref{sec:initial_cond}. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
+The parameters for the three different walking speeds in Table \ref{tab:parameters} were determined by the optimisation routines. In order to improve the legibility, all parameters are normalised to their respective units. That is, since the variance is the square of the standard deviation, they are normalised to the square of the unit of the corresponding element of the state vector as stated in Section \ref{sec:initial_cond}. For instance, the variance $\sigma^2_d$ of the displacement is normalised to $\unit[]{m^2}$.
 
 \newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}\begin{table*}\centering\ra{1.3}\begin{tabular}{@{}lrrr@{}}\toprule & $\unitfrac[2]{m}{s}$ & $\unitfrac[4]{m}{s}$ & $\unitfrac[6]{m}{s}$ \\
 \midrule$\sigma^2_d$ & 10.0000 & 10.0000 & 10.0000 \\$\sigma^2_{\theta_1}$ & 0.0514 & 0.0209 & 0.4342 \\$\sigma^2_{\theta_2}$ & 0.0514 & 0.0209 & 0.4342 \\$\sigma^2_{\beta}$ & 0.0011 & 0.0001 & 0.0007 \\$\sigma^2_1$ & 2.1767 & 3.6758 & 2.7102 \\$\sigma^2_2$ & 2.9788 & 3.2287 & 1.7409 \\
@@ -605,7 +612,7 @@ $\sigma^2_{4f}$ & 265.8502 & 224.4809 & 222.4782 \\
 
 \subsection{Test Execution}
 
-The testing procedure was as follows: First, the movement data of the subject were loaded into the workspace. Next, the parameters of the classical Kalman filter were optimised by an existing optimiser. Then, the parameters of the extended Kalman filter were optimised with the aforementioned EKF-optimiser. After each optimisation process the respective angle estimation was computed. Subsequently, the absolute RMSEs and the relative RMSE related to the one obtained with the classical Kalman filter were computed. Finally, the results were displayed in the console and depicted in four plots: The thigh and shank angle estimate, respectively, the RMSE comparison, and the acceleration correction. The \textsc{Matlab}\textsuperscript{\textregistered} code for the first data set is given in Listing \ref{lis:experiments_1}. The results are presented in the next section.
+The testing procedure was as follows: First, the movement data of the subject were loaded into the workspace. Next, the parameters of the classical Kalman filter were optimised by an existing optimiser. Then, the parameters of the extended Kalman filter were optimised with the aforementioned EKF-optimiser. After each optimisation process the respective angle estimation was computed. Subsequently, the absolute RMSEs and the relative RMSE related to the one obtained with the classical Kalman filter were computed. Finally, the results were displayed in the console and depicted in four plots: The thigh and shank angle estimate, respectively, the RMSE comparison, and the acceleration correction. The \mbox{\textsc{Matlab}\textsuperscript{\textregistered}} code for the first data set is given in Listing \ref{lis:experiments_1}. The results are presented in the next section.
 
 \section{Results}
 
