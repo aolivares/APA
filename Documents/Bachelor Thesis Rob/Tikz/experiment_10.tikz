@@ -33,7 +33,7 @@ legend style={at={(0.03,0.97)},anchor=north west,legend cell align=left,align=le
 2	15.3930680826383\\
 3	29.1610555267552\\
 };
-\addlegendentry{Acceleration-based};
+\addlegendentry{Accelerometer-based};
 
 \addplot[ybar,bar width=0.021132\figurewidth,draw=black,fill=mycolor2] plot table[row sep=crcr] {%
 1	2.36576440534261\\
