@@ -45,11 +45,10 @@ Simon Haykin.
 \newblock ISBN 9780130484345.
 
 \bibitem[Maybeck(1979)]{Maybeck79}
-Maybeck.
+Peter~S. Maybeck.
 \newblock Chapter 1 introduction.
-\newblock In Peter~S. Maybeck, editor, \emph{Stochastic Models, Estimation and
-  Control: Volume 1}, Mathematics in Science and Engineering, pages 1 -- 24.
-  Elsevier, 1979.
+\newblock In \emph{Stochastic Models, Estimation and Control: Volume 1},
+  Mathematics in Science and Engineering, pages 1 -- 24. Elsevier, 1979.
 \newblock \doi{10.1016/S0076-5392(08)62166-9}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0076539208621669}.
@@ -119,9 +118,9 @@ Wai~Yin Wong, Man~Sang Wong, and Kam~Ho Lo.
   Baten]{Luinge_orientation_acc_gyro_99}
 H.J. Luinge, P.H. Veltink, and C.T.M. Baten.
 \newblock Estimation of orientation with gyroscopes and accelerometers.
-\newblock In \emph{[Engineering in Medicine and Biology, 1999. 21st Annual
+\newblock In \emph{Engineering in Medicine and Biology, 1999. 21st Annual
   Conference and the 1999 Annual Fall Meetring of the Biomedical Engineering
-  Society] BMES/EMBS Conference, 1999. Proceedings of the First Joint},
+  Society, BMES/EMBS Conference, 1999. Proceedings of the First Joint},
   volume~2, pages 844 vol.2--, Oct 1999.
 \newblock \doi{10.1109/IEMBS.1999.803999}.
 
@@ -410,7 +409,7 @@ M.W. Spong and S.~Hutchinson.
 \bibitem[Rowell(2002)]{rowell2002state}
 Derek Rowell.
 \newblock State-space representation of {LTI} systems.
-\newblock 2002.
+\newblock Technical report, 2002.
 \newblock URL \url{http://web.mit.edu/2.14/www/Handouts/StateSpace.pdf}.
 
 \bibitem[{Kelly}(1994)]{Kelly_1994_random}
