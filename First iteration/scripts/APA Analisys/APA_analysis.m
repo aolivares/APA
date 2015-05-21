@@ -39,7 +39,7 @@
 clear all; close all; clc;
 
 % Set flags which control the visibility of the figures.
-showPlotsCheck = 'no';
+showPlotsCheck = 'yes';
 showPlotsAPA = 'yes';
 showPlotsCorr = 'no';
 
