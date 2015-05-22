@@ -162,7 +162,8 @@ for k = 1:length(initcross)
                     < 0.001);
      finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
                     < 0.001);
-                
+     value_initcross_AP(k) = AP_COP_data(initcross_COP);
+     
      % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
         
@@ -179,18 +180,34 @@ for k = 1:length(initcross)
           peaks_APA_ML_COP(k) =  peaks_index;
                            
     end
+    
+   % Find longest negative peak around the peak calculated above because 
+   % this happens almost at the same time and it is most accurate in the 
+   % lateral direction. 
+  [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_ML_COP(k)-30,...
+                peaks_APA_ML_COP(k)+30,2);
+            
+  peaks_APA_AP_COP(k) =  peaks_index;
+  
+  % Find the next longest positive peak to determine the height of the peak. 
+  [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_AP_COP(k),...
+                peaks_APA_AP_COP(k)+100,1);
+  peaks_APA_AP_COP_2(k) = peaks_index;
+  
 end
 
 % We calculate the value of the APA peaks.
 value_APA_ML_COP = ML_COP_data(peaks_APA_ML_COP);
-value_APA_AP_COP = AP_COP_data(peaks_APA_ML_COP);
+value_APA_AP_COP = AP_COP_data(peaks_APA_AP_COP);
+value_APA_AP_COP_2 = AP_COP_data(peaks_APA_AP_COP_2);
 
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsCheck,'yes')
 subplot(2,1,1)
 plot(AP_COP_complete_ts.time, AP_COP_data, 'g');
 hold on;
-plot(AP_COP_complete_ts.time(peaks_APA_ML_COP), value_APA_AP_COP , 'r.');
+plot(AP_COP_complete_ts.time(peaks_APA_AP_COP), value_APA_AP_COP , 'r.');
+plot(AP_COP_complete_ts.time(peaks_APA_AP_COP_2), value_APA_AP_COP_2 , 'y.');
 
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
@@ -292,31 +309,34 @@ for k = 1:length(initcross)
   finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross_acc_time(k))...
                     < 0.001);
                 
-  % We ontain the value of the peak in the AP direction. The position of
-  % the peak is the same in the ML direction as well.
-  
-  % Find the longest negative peak.  
-  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
-                        finalcross_acc, 2);
-  peaks_APA_acc_X(k) = peaks_index;                  
-  
+  % We ontain the value of the Acc peak in the ML direction. To do that, we 
+  % use a small interval around the limit calculated before (e.i, the second
+  % period of the APA).
+                
    % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
         
       % Find the longest positive peak.
-      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                        finalcross_acc,1);
+      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc-30,...
+                        finalcross_acc+30,1);
       peaks_APA_acc_Y(k) =  peaks_index;
       
     else % Look for a negative peak.
         
          % Find longest negative peak. 
-          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                            finalcross_acc,2);
+          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc-30,...
+                            finalcross_acc+30,2);
           peaks_APA_acc_Y(k) =  peaks_index;
-                           
+                         
     end
-                           
+      
+  % Find the longest negative peak in AP direction. We use like a reference
+  % to difine the interval the position of the peaks calculated laterally
+  % beause it must happen almost at the same time.
+  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, peaks_APA_acc_Y(k)-10,...
+                        peaks_APA_acc_Y(k)+50, 2);
+  peaks_APA_acc_X(k) = peaks_index;   
+  
  end
 
 
@@ -343,7 +363,7 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
 changedependvar(hx,'x');
 
 title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peaks']);
+       ' patient steps with the second time and the APA peaks']);
 xlabel('Time in s');
 ylabel('Acceleration (g)');
 
@@ -362,8 +382,8 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
     'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
+title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
+       ' patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('Acceleration in (g)');
 end
@@ -375,6 +395,71 @@ g_trunk_data_X = reshape(g_trunk_data(1, 1, :), ...
                 [1, max(size(g_trunk_data))]);
 g_trunk_data_Y = reshape(g_trunk_data(2, 1, :), ...
                 [1, max(size(g_trunk_data))]);
-            
-            
-            
+
+ %-------------------------------------------------------------------------
+ % 4) Correlations
+ %-------------------------------------------------------------------------
+ 
+ % Correlation in AP direction.
+ value_APA_AP_COP_1 = abs(value_APA_AP_COP - value_initcross_AP);
+ value_APA_acc_X_1 = abs(value_APA_acc_X- mode(a_trunk_data_X));
+ 
+ [corr_trunk_AP_1, prob_trunk_AP_1] = corr(value_APA_acc_X_1',...
+                                    value_APA_AP_COP_1');
+
+ value_APA_AP_COP_2 = abs( value_APA_AP_COP - value_APA_AP_COP_2);
+ [corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_acc_X_1',...
+                                    value_APA_AP_COP_2');
+% Correlation in ML direction.
+value_APA_ML_COP_1 = abs(value_APA_ML_COP);
+value_APA_acc_Y_1 = abs(value_APA_acc_Y) - mode(a_trunk_data_Y);
+
+[corr_trunk_ML_1, prob_trunk_ML_1] = corr(value_APA_acc_Y_1',...
+                                    value_APA_ML_COP_1');
+                                
+ %-------------------------------------------------------------------------
+ % 5) Trajectory during a cycle of APA.
+ %-------------------------------------------------------------------------                               
+ 
+ %-------------------------------------------------------------------------
+ % 5.1) Center of Pressure (COP) Trajectory.
+ %-------------------------------------------------------------------------
+ % We are goint to show the trajectory of the APA in the seventh cycle.
+   initcross_7 = find(abs(AP_COP_complete_ts.time - initcross(7))...
+                    < 0.001);
+   finalcross_7 = find(abs(AP_COP_complete_ts.time - finalcross(7))...
+                    < 0.001);
+ % Plot the figure.
+  figure()
+  plot3(ML_COP_data(initcross_7:finalcross_7),...
+                     AP_COP_data(initcross_7:finalcross_7),...
+                     AP_COP_complete_ts.time(initcross_7:finalcross_7));
+                 
+  title('Trajectory of the COP during APA ' );
+  xlabel('ML COP (mm)');
+  ylabel('AP COP (mm)');
+  zlabel('Time (s)');
+  grid on
+  axis square
+ %-------------------------------------------------------------------------
+ % 5.2) Acceleration (Acc) Trajectory.
+ %-------------------------------------------------------------------------
+ % We are goint to show the trajectory of the APA in the second cycle.
+  initcross_7 = find(abs(a_trunk_complete_ts.time - initcross(7))...
+                    < 0.001)+50;
+  finalcross_7 = find(abs(a_trunk_complete_ts.time - finalcross(7))...
+                    < 0.001);
+  % Plot the figure.
+  figure()
+  plot3(a_trunk_data_Y(initcross_7:finalcross_7),...
+                     a_trunk_data_X(initcross_7:finalcross_7),...
+                     a_trunk_complete_ts.time(initcross_7:finalcross_7));
+                 
+  title('Trajectory of the Acceleration during APA ' );
+  xlabel('Acc Y (g)');
+  ylabel('Acc X (g)');
+  zlabel('Time (s)');
+  grid on
+  axis square
+  
+  
