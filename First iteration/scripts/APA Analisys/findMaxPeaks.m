@@ -1,3 +1,4 @@
+function [ peaks_index ] = findMaxPeaks( signal, initcross, finalcross, sing)
 %FINDMAXPEAKS find the maximum peak (negative or positive) in a 
 %interval specified. If any peak is found, it will be calculated the
 %maximum orminimum value in each case.
@@ -43,8 +44,10 @@
 
          % Find all peaks in each interval.
         [pos_peak_values, pos_peak_locations] = findpeaks(...
+                                                signal(initcross:finalcross));
 
          % Check if there are positive peaks detected.
+         if isempty(pos_peak_values)
                 [pos_peak_values, pos_peak_locations] = max( signal(...
                                                     initcross:finalcross)); 
                 peaks_index = pos_peak_locations + initcross - 1;
@@ -59,9 +62,12 @@
         
         % Find all peaks in each interval.
         [neg_peak_values, neg_peak_locations] = findpeaks(...
+                                                -signal(initcross:finalcross));
 
          % Check if there are negative peaks detected.
+         if isempty(neg_peak_values)
            [neg_peak_values, neg_peak_locations] = min(...
+                                            signal(initcross:finalcross));
            peaks_index = neg_peak_locations + initcross -1;
                                         
          else
@@ -73,5 +79,4 @@
 
      end
 end
-
 
