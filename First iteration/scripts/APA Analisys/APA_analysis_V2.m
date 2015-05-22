@@ -154,38 +154,29 @@ finalcross = final_second_step';
 
 % Calculate the peaks in each interval.
 for k = 1:length(initcross)
-    % To find a noninteger value, we use a tolerance value based on our data.
-    % Otherwise, the result is sometimes an empty matrix due to 
-    % floating-point roundoff error.
-    initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k))...
+    
+     % To find a noninteger value, we use a tolerance value based on our data.
+     % Otherwise, the result is sometimes an empty matrix due to 
+     % floating-point roundoff error.
+     initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k))...
                     < 0.001);
-    finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
+     finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
                     < 0.001);
                 
      % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
         
-         % Find all peaks in each interval.
-        [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                ML_COP_data(...
-                                initcross_COP:finalcross_COP));
-
-        % Store the index of the longest positive peak.                                      
-        peaks_APA_ML_COP(k) = find(ML_COP_data(...
-                        initcross_COP:finalcross_COP)== max(...
-                        pos_peak_values), 1) + initcross_COP - 1;
-                    
+      % Find the longest positive peak.
+      [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP,...
+                        finalcross_COP,1);
+      peaks_APA_ML_COP(k) =  peaks_index;
+      
     else % Look for a negative peak.
         
-         % Find all peaks in each interval.    
-        [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -ML_COP_data(...
-                                initcross_COP:finalcross_COP));
-
-        % Store the index of the longest negative peak.                                      
-        peaks_APA_ML_COP(k) = find(ML_COP_data(...
-                        initcross_COP:finalcross_COP)== -max(...
-                        neg_peak_values), 1) + initcross_COP - 1;
+         % Find longest negative peak. 
+          [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP,...
+                        finalcross_COP,2);
+          peaks_APA_ML_COP(k) =  peaks_index;
                            
     end
 end
@@ -303,21 +294,35 @@ for k = 1:length(initcross)
                 
   % We ontain the value of the peak in the AP direction. The position of
   % the peak is the same in the ML direction as well.
-  % Find all peaks in each interval.    
-    [neg_peak_values, neg_peak_locations] = findpeaks(...
-                            -a_trunk_data_X(...
-                            initcross_acc:finalcross_acc));
-
-   % Store the index of the longest negative peak.                                      
-    peaks_APA_acc_X(k) = find(a_trunk_data_X(...
-                    initcross_acc:finalcross_acc)== -max(...
-                    neg_peak_values), 1) + initcross_acc - 1;
   
-end
+  % Find the longest negative peak.  
+  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
+                        finalcross_acc, 2);
+  peaks_APA_acc_X(k) = peaks_index;                  
+  
+   % Differenciate when the patient starts with left or right foot.
+    if (find(cycle_start_right == k))% Look for a positive peak.
+        
+      % Find the longest positive peak.
+      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
+                        finalcross_acc,1);
+      peaks_APA_acc_Y(k) =  peaks_index;
+      
+    else % Look for a negative peak.
+        
+         % Find longest negative peak. 
+          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
+                            finalcross_acc,2);
+          peaks_APA_acc_Y(k) =  peaks_index;
+                           
+    end
+                           
+ end
+
 
 % We calculate the value of the APA peaks.
 value_APA_acc_X = a_trunk_data_X(peaks_APA_acc_X);
-value_APA_acc_Y = a_trunk_data_Y(peaks_APA_acc_X);
+value_APA_acc_Y = a_trunk_data_Y(peaks_APA_acc_Y);
 
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsCheck,'yes')
@@ -345,7 +350,7 @@ ylabel('Acceleration (g)');
 subplot(2,1,2)
 plot(a_trunk_complete_ts.time, a_trunk_data_Y, 'g');
 hold on;
-plot(a_trunk_complete_ts.time(peaks_APA_acc_X), value_APA_acc_Y , 'r.');
+plot(a_trunk_complete_ts.time(peaks_APA_acc_Y), value_APA_acc_Y , 'r.');
 
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
