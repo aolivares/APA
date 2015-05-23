@@ -41,7 +41,7 @@ clear all; close all; clc;
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'yes';
 showPlotsAPA = 'yes';
-showPlotsCorr = 'no';
+showPlotsCorr = 'yes';
 
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
@@ -344,7 +344,7 @@ for k = 1:length(initcross)
 value_APA_acc_X = a_trunk_data_X(peaks_APA_acc_X);
 value_APA_acc_Y = a_trunk_data_Y(peaks_APA_acc_Y);
 
-%------------------------------- Plots-------------------------------------
+%------------------------------- Plots figure------------------------------
 if strcmpi(showPlotsCheck,'yes')
 figure ()
 subplot(2,1,1)
@@ -395,6 +395,53 @@ g_trunk_data_X = reshape(g_trunk_data(1, 1, :), ...
                 [1, max(size(g_trunk_data))]);
 g_trunk_data_Y = reshape(g_trunk_data(2, 1, :), ...
                 [1, max(size(g_trunk_data))]);
+            
+%------------------------------- Plots-------------------------------------
+% Plot to check the gyroscope signal
+if strcmpi(showPlotsCheck,'yes')
+figure ()
+subplot(2,1,1)
+plot(g_trunk_complete_ts.time, g_trunk_data_X, 'g');
+% hold on;
+% plot(a_trunk_complete_ts.time(peaks_APA_acc_X), value_APA_acc_X , 'r.');
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Angular Velocity of the X-axis of the trunk with lines marker when the' ...
+       ' patient steps with the second time and the APA peaks']);
+xlabel('Time in s');
+ylabel('Angular Velocity (º/s)');
+axis([170, 210, -100, 100]);
+
+subplot(2,1,2)
+plot(g_trunk_complete_ts.time, g_trunk_data_Y, 'g');
+% hold on;
+% plot(a_trunk_complete_ts.time(peaks_APA_acc_Y), value_APA_acc_Y , 'r.');
+
+% Vertical line init.
+hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
+    'LineWidth', 2 , 'Color', 'r');
+changedependvar(hx,'x');
+
+% Vertical line final.
+hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
+    'LineWidth', 2 , 'Color', 'm');
+changedependvar(hx,'x');
+
+title(['Angular Velocity of the Y-axis of the trunk with lines marker when the' ...
+       ' patient steps with the second time and the APA peak' ]);
+xlabel('Time in s');
+ylabel('Angular Velocity (º/s)');
+axis([170, 210, -40, 40]);
+end
 
  %-------------------------------------------------------------------------
  % 4) Correlations
@@ -416,10 +463,28 @@ value_APA_acc_Y_1 = abs(value_APA_acc_Y) - mode(a_trunk_data_Y);
 
 [corr_trunk_ML_1, prob_trunk_ML_1] = corr(value_APA_acc_Y_1',...
                                     value_APA_ML_COP_1');
-                                
- %-------------------------------------------------------------------------
- % 5) Trajectory during a cycle of APA.
- %-------------------------------------------------------------------------                               
+ 
+% -------------------------- Correlations Plots----------------------------
+if strcmpi(showPlotsCorr,'yes')
+figure ()
+
+plot(value_APA_acc_X_1, value_APA_AP_COP_2, '.r');
+title('Linear correlation between peak AP_COP and peak Acc trunk');
+xlabel('Acceleration (g)');
+ylabel('AP_COP (mmm)');
+
+figure ()
+
+plot(value_APA_acc_Y_1, value_APA_ML_COP_1, '.r');
+title('Linear correlation between peak ML_COP and peak Acc trunk');
+xlabel('Acceleration (g)');
+ylabel('AP_COP (mmm)');
+
+end
+
+%-------------------------------------------------------------------------
+% 5) Trajectory during a cycle of APA.
+%-------------------------------------------------------------------------                               
  
  %-------------------------------------------------------------------------
  % 5.1) Center of Pressure (COP) Trajectory.
@@ -429,27 +494,53 @@ value_APA_acc_Y_1 = abs(value_APA_acc_Y) - mode(a_trunk_data_Y);
                     < 0.001);
    finalcross_7 = find(abs(AP_COP_complete_ts.time - finalcross(7))...
                     < 0.001);
- % Plot the figure.
+                
+ %--------------------------- Plot figure----------------------------------
+  if strcmpi(showPlotsAPA,'yes')
   figure()
   plot3(ML_COP_data(initcross_7:finalcross_7),...
                      AP_COP_data(initcross_7:finalcross_7),...
                      AP_COP_complete_ts.time(initcross_7:finalcross_7));
                  
-  title('Trajectory of the COP during APA ' );
+  title('Trajectory of the COP during APA (7th cycle) ' );
   xlabel('ML COP (mm)');
   ylabel('AP COP (mm)');
   zlabel('Time (s)');
   grid on
   axis square
+  end
+   % We are going to show the trajectory of the APA in the eithth cycle.
+   initcross_8 = find(abs(AP_COP_complete_ts.time - initcross(8))...
+                    < 0.001);
+   finalcross_8 = find(abs(AP_COP_complete_ts.time - finalcross(8))...
+                    < 0.001);
+                
+ % --------------------------- Plot figure --------------------------------
+  if strcmpi(showPlotsAPA,'yes')
+  figure()
+  plot3(ML_COP_data(initcross_8:finalcross_8),...
+                     AP_COP_data(initcross_8:finalcross_8),...
+                     AP_COP_complete_ts.time(initcross_8:finalcross_8));
+                 
+  title('Trajectory of the COP during APA (8th cycle) ' );
+  xlabel('ML COP (mm)');
+  ylabel('AP COP (mm)');
+  zlabel('Time (s)');
+  grid on
+  axis square
+  end
+  
  %-------------------------------------------------------------------------
  % 5.2) Acceleration (Acc) Trajectory.
  %-------------------------------------------------------------------------
  % We are goint to show the trajectory of the APA in the second cycle.
   initcross_7 = find(abs(a_trunk_complete_ts.time - initcross(7))...
-                    < 0.001)+50;
+                    < 0.001);
   finalcross_7 = find(abs(a_trunk_complete_ts.time - finalcross(7))...
                     < 0.001);
-  % Plot the figure.
+                
+  % -------------------------- Plot figure---------------------------------
+  if strcmpi(showPlotsAPA,'yes')
   figure()
   plot3(a_trunk_data_Y(initcross_7:finalcross_7),...
                      a_trunk_data_X(initcross_7:finalcross_7),...
@@ -461,5 +552,5 @@ value_APA_acc_Y_1 = abs(value_APA_acc_Y) - mode(a_trunk_data_Y);
   zlabel('Time (s)');
   grid on
   axis square
-  
+  end
   
