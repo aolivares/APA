@@ -38,7 +38,7 @@
 \contentsline {subsubsection}{Software}{34}{subsubsection*.27}
 \contentsline {section}{\numberline {4.2}Theoretical Design}{38}{section.4.2}
 \contentsline {subsection}{\numberline {4.2.1}Kinematic Model}{38}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}The Extended Kalman Filter}{41}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.2}Extended Kalman Filter}{41}{subsection.4.2.2}
 \contentsline {subsubsection}{The State-Space Model}{41}{subsubsection*.32}
 \contentsline {subsubsection}{The Filter Algorithm}{44}{subsubsection*.33}
 \contentsline {subsubsection}{Summary of the Entire Filter Algorithm}{46}{subsubsection*.34}

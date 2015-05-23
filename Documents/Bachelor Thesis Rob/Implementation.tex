@@ -1,7 +1,7 @@
 \chapter{Implementation}
 \label{ch:Implementation}
 
-This chapter describes the implementation of the filter algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, based on the fundamentals acquired in the previous chapters. Other than in \cite{bennett_motion_2014}, in which the filter algorithm was tested moving a mechanical model of the leg by hand, we used movement data from a human subject. After outlining the initial situation, i.\,e. describing the GaitWatch system, including orientation algorithms that were already implemented, the theoretical design of the filter is elaborated in detail. Subsequently, the software implementation and experiments are presented, followed by the results and their discussion.
+This chapter describes the implementation of the filter algorithm proposed by \citeauthor{bennett_motion_2014} in \cite{bennett_motion_2014}, based on the fundamentals acquired in the previous chapters. Other than in \cite{bennett_motion_2014}, in which the filter algorithm was tested moving a mechanical model of the leg by hand, we used movement data from a human subject. After outlining the initial situation, i.\,e. \mbox{describing} the GaitWatch system, including orientation algorithms that were already implemented, the theoretical design of the filter is elaborated in detail. Subsequently, the software implementation and experiments are presented, followed by the results and their discussion.
 
 \section{Initial Situation}\label{sec:initial_situation}
 
@@ -255,7 +255,7 @@ The angle estimate of the shank with respect to the $x$-axis, based on the proje
 \noindent
 This improved angle estimate is then fused with the estimate based on the integration of the angular rate measured with the gyroscope, in order to reduce the estimation error due to gyroscope drift.
 
-\subsection{The Extended Kalman Filter} \label{sec:EKF_model}
+\subsection{Extended Kalman Filter} \label{sec:EKF_model}
 
 \subsubsection{The State-Space Model}
 
@@ -640,7 +640,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_4}
 	\includegraphics[width=\textwidth]{Tikz/experiment_4.tikz}
-	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
 	\label{fig:experiment_4}
 \end{figure}
 
@@ -650,7 +650,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_5}
 	\includegraphics[width=\textwidth]{Tikz/experiment_5.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[2]{km}{h}$.}
 	\label{fig:experiment_5}
 \end{figure}
 
@@ -660,7 +660,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_6}
 	\includegraphics[width=\textwidth]{Tikz/experiment_6.tikz}
-	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[2]{km}{h}$.}
+	\caption{Root-mean-square error comparison of angle estimation, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[2]{km}{h}$.}
 	\label{fig:experiment_6}
 \end{figure}
 
@@ -680,7 +680,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_8}
 	\includegraphics[width=\textwidth]{Tikz/experiment_8.tikz}
-	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
 	\label{fig:experiment_8}
 \end{figure}
 
@@ -690,7 +690,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_9}
 	\includegraphics[width=\textwidth]{Tikz/experiment_9.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[4]{km}{h}$.}
 	\label{fig:experiment_9}
 \end{figure}
 
@@ -700,7 +700,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_10}
 	\includegraphics[width=\textwidth]{Tikz/experiment_10.tikz}
-	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[4]{km}{h}$.}
+	\caption{Root-mean-square error comparison of angle estimation, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[4]{km}{h}$.}
 	\label{fig:experiment_10}
 \end{figure}
 
@@ -720,7 +720,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_12}
 	\includegraphics[width=\textwidth]{Tikz/experiment_12.tikz}
-	\caption{Pitch angle of the right thigh with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\caption{Pitch angle of the right thigh with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
 	\label{fig:experiment_12}
 \end{figure}
 
@@ -730,7 +730,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_13}
 	\includegraphics[width=\textwidth]{Tikz/experiment_13.tikz}
-	\caption{Pitch angle of the right shank with respect to the $x$-axis obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\caption{Pitch angle of the right shank with respect to the $x$-axis, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering, in comparison to the reference. Walking speed: $\unitfrac[6]{km}{h}$.}
 	\label{fig:experiment_13}
 \end{figure}
 
@@ -740,7 +740,7 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 	\setlength\figurewidth{\textwidth}
 	\tikzsetnextfilename{experiment_14}
 	\includegraphics[width=\textwidth]{Tikz/experiment_14.tikz}
-	\caption{Root-mean-square error comparison of angle estimation by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[6]{km}{h}$.}
+	\caption{Root-mean-square error comparison of angle estimation, obtained by projection of the gravity vector, classical Kalman filtering, and extended Kalman filtering. Walking speed: $\unitfrac[6]{km}{h}$.}
 	\label{fig:experiment_14}
 \end{figure}
 
@@ -758,4 +758,4 @@ $\frac{\operatorname{SUM}_{EKF}}{\operatorname{SUM}_{KF}}$ & \multicolumn{2}{c}{
 
 After the presentation of the results, we now proceed to analysing them in detail. According to Table \ref{tab:rmse} and Figures \ref{fig:experiment_7} and \ref{fig:experiment_11}, the RMSEs of the motion-corrected accelerometer-based angle estimates while walking at $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$ were only slightly different from the raw accelerometer-based angle estimates. This could be explained by the simple kinematic model of the leg. Even though it considers the motion of the leg in $x$ and $z$-direction with respect to the origin of the world coordinate frame, that is the hip joint, it does not consider motion of the entire system itself. However, while walking, the human body rotates about the hip joint, which causes motion of the respective opposite hip joint. Additionally, the tension of the calf muscles and the resulting stretching of the foot moves the entire body upwards, including the hip joint. That means that the origin of the world coordinate frame of the kinematic model moves, contrary to the assumption made in the model. This movement causes not only an additional acceleration component in the sensor signal while moving the leg in the air, but also a quite severe impact on the acceleration signal when touching the ground with the foot. Another fact that is not considered in the simple model is motion beyond the $xz$-plane. Moreover, the lengths of the links was unknown and thus only estimated. Finally, the sensor position on the thigh and shank was not exactly known because the sensors were attached to the leg with elastic straps while the subject wore cloths, but it was assumed that they are perfectly aligned with the thighs and shanks. As the trend of the relative RMSEs of the accelerometer-based angle estimates in the fourth row of Table \ref{tab:rmse} shows, the motion correction works better for faster motions, which indicates the importance of the correction at higher walking speeds. 
 
- Even though the acceleration correction does not benefit the RMSE of the accelerometer-based angle estimate for walking speeds of $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$, the improvement of the filter output is significant for all three walking speeds, as stated in the fifth row of Table \ref{tab:rmse}. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are not necessarily optimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, but instead finds local minima of the error function, the parameters may still be somewhat less than optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsens it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model. For instance, it combines information about both thigh and shank in the same state-space model, whereas the classical Kalman filter estimates both angles independently. This could explain a more accurate estimate, compared to the classical Kalman filter, for intervals in which the acceleration correction does not decrease the RMSE of the accelerometer-based angle estimate.
+ Even though the acceleration correction does not benefit the RMSE of the accelerometer-based angle estimate for walking speeds of $\unitfrac[2]{km}{h}$ and $\unitfrac[4]{km}{h}$, the improvement of the filter output is significant for all three walking speeds, as stated in the fifth row of Table \ref{tab:rmse}. This improvement could be caused by a better filter tuning. The parameters found in an optimisation process, are not necessarily optimal. Due to the fact that the optimiser does not consider all possible combinations of the parameters, but instead finds local minima of the error function, the parameters may still be somewhat less than optimal and are strongly dependent on the initial guess. As one can see in Figures \ref{fig:experiment_7}, \ref{fig:experiment_11}, and \ref{fig:experiment_15}, the motion-based acceleration correction improves the angle estimate in some intervals, but even worsens it in others. The Kalman filter compensates those deviations trusting on the state-space model. The newly implemented filter algorithm is based on a more complete state-space model. For instance, it combines information about both thigh and shank in the same state-space model, whereas the classical Kalman filter estimates the thigh and shank angle independently. This could explain a more accurate estimate, compared to the classical Kalman filter, for intervals in which the acceleration correction does not decrease the RMSE of the accelerometer-based angle estimate.

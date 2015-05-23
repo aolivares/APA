@@ -36,7 +36,7 @@
 \BOOKMARK [2][-]{subsection.4.1.1}{The GaitWatch System}{section.4.1}% 36
 \BOOKMARK [1][-]{section.4.2}{Theoretical Design}{chapter.4}% 37
 \BOOKMARK [2][-]{subsection.4.2.1}{Kinematic Model}{section.4.2}% 38
-\BOOKMARK [2][-]{subsection.4.2.2}{The Extended Kalman Filter}{section.4.2}% 39
+\BOOKMARK [2][-]{subsection.4.2.2}{Extended Kalman Filter}{section.4.2}% 39
 \BOOKMARK [1][-]{section.4.3}{Experiments}{chapter.4}% 40
 \BOOKMARK [2][-]{subsection.4.3.1}{Data Collection Protocol}{section.4.3}% 41
 \BOOKMARK [2][-]{subsection.4.3.2}{Initial Conditions}{section.4.3}% 42
