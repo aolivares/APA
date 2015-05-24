@@ -143,28 +143,9 @@ The erroneus values in the magnetometer signal are removed sustituting these sam
 \subsubsection{Synchronisation}	
 In this section we will explain how we carried through the synchronisation of the Force Plate and GaitWatch signals and the considerations adopted to do it properly.
 
-The first step is to detect when the step happens in both systems. In order to do this, we’ll use the completed force from force plate system and shank acceleration from the Gait Watch accelerometer. We chose these signals because it’s easy to see in them the point when the patients step.
+The first step is to detect when the step happens in both systems. In order to do this, we’ll use the completed force from Force Plate system and shank acceleration from the Gait Watch accelerometer. We chose these signals because it’s easy to see in them the point when the patients step.
 
-The time point when the patient do the step in the platform is exactly when the person touches it, that is, the time point that corresponding with the first sample in the force signal with a value other than zero.
-
-In the acceleration signal case, this fact happens in the second positive peak. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points upwards thus the great positive peak will be when the leg is in the máximum distance from ground.Then, there is a change of direction and it appears a negative peak in this trace. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward again.\ref{fig:sinchronisedSignals}.
-
-\begin{figure}[H]
-	\centering
-	\epsfig{file=figures/Synchronisation/pointdetectionsynchronisation, width=18cm}
-	\caption{Peaks detected to the Synchronisation in the Accelerometer signals.}
-	\label{fig:pointdetectionAcc}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\epsfig{file=figures/Synchronisation/gyrosPointDetection, width=18cm}
-	\caption{Peaks detected to the Synchronisation in the Gyroscope signals.}
-	\label{fig:pointdetectionGyro}
-\end{figure}
-
-
-Once we understand the signal behaviour in connection with the patient movement we have to differentiate each cycles in the signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure \ref{fig:activityDetection} shows the result.
+Once we have selected the right signals to do the synchronisation we have to differentiate each cycles in the acceleration signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure \ref{fig:activityDetection} shows the result.
 
 In addition we did a comparative study testing two different methods based on the  computation of the spectrum (Fourier Transform) of the input signal. Also, we tried several input signal to determine which is the best option to do the motion detection in this case.
 
@@ -185,6 +166,11 @@ Once we select the best method for the detection we tested several input signal 
 
 Furthermore, the motion activity detection was carried out for the right leg as well as left one. It is not necessary in some cases when the patient does the movements or activities quickly since the detected activity interval  include both movements in the same episode. However, when patient waits some time to step again in the same repeat, it is possible that some step is not  include in the interval thus the result would be erroneous. Therefore, to realise a general algorithm useful in whatever case we differentiate between both feet.
 
+Once the cycles have been separated, we are going to detect the key points in the signals to do the synchronisation. 
+
+On the one hand, the time point when the patient does the step in the platform is exactly when the person touches it, that is, the time point that corresponding with the first sample in the force signal with a value other than zero.
+
+On the other hand, in the acceleration signal case, this fact happens in the second positive peak\ref{fig:pointdetectionAcc}. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points upwards thus the great positive peak will be when the leg is in the máximum distance from ground.Then, there is a change of direction and it appears a negative peak in this trace. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward again.\ref{fig:sinchronisedSignals}.
 
 Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time \ref{fig:startLeftRight}.
 
@@ -199,8 +185,26 @@ Other important aspect is to consider the sample frequency. The sample frequency
 
 All the key parameters and signals are saved using “time series”  for adding descriptive information to the fact.
 
-Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal\ref{fig:pointdetectionGyro}. The behaviour of the gyroscope signal is very similar to prior signal however this is clearer to the naked eye.
-Nevertheless, the correlation between the peaks detected with both systems are almost the same. This indicates that it was done correctly and these detected points are suitable to do the synchronisation. We can see this in the folllowing figures:
+Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is clearer to the naked eye. We can sense there are a negative peak when the patient raises his leg to step. This is negative because the movement is upwards and the Z axes is pointing to the floor so the Angular Velocity is negative. The next positive peak of happends when the person touches the platform so this is the key point to use in the synchronisation\ref{fig:pointdetectionGyro}.
+
+If we compare the behaviour of both signal, it makes sense because a peak of acceleration have to appear when there is a strong growth (or decrement) of the velocity, and this happends when the person go up or down the limbs\ref{fig:pointdetectionAcc}\ref{fig:pointdetectionGyro}.
+
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/pointdetectionsynchronisation, width=18cm, height=10cm}
+	\caption{Peaks detected for the Synchronisation in the Accelerometer signals.}
+	\label{fig:pointdetectionAcc}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Synchronisation/gyrosPointDetection, width=18cm,height=10cm}
+	\caption{Peaks detected for the Synchronisation in the Gyroscope signals.}
+	\label{fig:pointdetectionGyro}
+\end{figure}
+
+The correlation between the peaks detected with both systems is very high and the difference between the locations of the peaks are very small as well. This indicates that it was done correctly and these detected points are suitable to do the synchronisation. We can see this in the folllowing figures:
 
 \begin{figure}[H]
 	\centering
@@ -241,7 +245,7 @@ Finally, the result of the synchronisation can be seen in following figure:
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/sinchronisedSignals, width=18cm}
+	\epsfig{file=figures/Synchronisation/sinchronisedSignals, width=18cm, height=10cm}
 	\caption{Synchronisation of the Force from the FP and Acceleration from the GW System .}
 	\label{fig:sinchronisedSignals}
 \end{figure}
