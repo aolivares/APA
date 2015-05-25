@@ -194,12 +194,19 @@ for k = 1:length(initcross)
                 peaks_APA_AP_COP(k)+100,1);
   peaks_APA_AP_COP_2(k) = peaks_index;
   
+  % Find the longest negative peak( this is when the COP is in the stance
+  % foot).
+  [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_AP_COP_2(k),...
+                finalcross_COP,2);
+            
+  peaks_APA_AP_COP_3(k) = peaks_index;  
 end
 
 % We calculate the value of the APA peaks.
 value_APA_ML_COP = ML_COP_data(peaks_APA_ML_COP);
 value_APA_AP_COP = AP_COP_data(peaks_APA_AP_COP);
 value_APA_AP_COP_2 = AP_COP_data(peaks_APA_AP_COP_2);
+value_APA_AP_COP_3 = AP_COP_data(peaks_APA_AP_COP_3);
 
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsCheck,'yes')
@@ -208,7 +215,7 @@ plot(AP_COP_complete_ts.time, AP_COP_data, 'g');
 hold on;
 plot(AP_COP_complete_ts.time(peaks_APA_AP_COP), value_APA_AP_COP , 'r.');
 plot(AP_COP_complete_ts.time(peaks_APA_AP_COP_2), value_APA_AP_COP_2 , 'y.');
-
+plot(AP_COP_complete_ts.time(peaks_APA_AP_COP_3), value_APA_AP_COP_3 , 'b.');
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
     'LineWidth', 2 , 'Color', 'r');
@@ -245,47 +252,47 @@ xlabel('Time in s');
 ylabel('ML COP (mm)');
 end
 
-%--------------------------------------------------------------------------
-% 3.3) Determine the next peak after the APA peaks detected in ML direction. 
-% This point will indicate the interval to find the APA peaks in the 
-% acceleration signals 
-%--------------------------------------------------------------------------
-initcross_COP = peaks_APA_ML_COP;
-
-% Calculate the peaks in each interval.
-for k = 1:length(initcross)
-    % To find a noninteger value, we use a tolerance value based on our data.
-    % Otherwise, the result is sometimes an empty matrix due to 
-    % floating-point round off error.
-    finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
-                    < 0.001);
-                
-     % Differenciate when the patient starts with left or right foot.
-    if (find(cycle_start_right == k))% Look for a negative peak.
-        
-         % Find all peaks in each interval.
-        [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -ML_COP_data(...
-                                initcross_COP(k):finalcross_COP));
-
-        % Store the index of the first negative peak.
-        neg_peak_locations = sort(neg_peak_locations);
-        finalcross_acc(k) = neg_peak_locations(1) + initcross_COP(k) -1;
-
-                    
-    else % Look for a positive peak.
-        
-         % Find all peaks in each interval.
-        [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                ML_COP_data(...
-                                initcross_COP(k):finalcross_COP));
-
-        % Store the index of the first negative peak.
-        pos_peak_locations = sort(pos_peak_locations);
-        finalcross_acc(k) = pos_peak_locations(1) + initcross_COP(k) -1;
-                           
-    end
-end
+% %--------------------------------------------------------------------------
+% % 3.3) Determine the next peak after the APA peaks detected in ML direction. 
+% % This point will indicate the interval to find the APA peaks in the 
+% % acceleration signals 
+% %--------------------------------------------------------------------------
+% initcross_COP = peaks_APA_ML_COP;
+% 
+% % Calculate the peaks in each interval.
+% for k = 1:length(initcross)
+%     % To find a noninteger value, we use a tolerance value based on our data.
+%     % Otherwise, the result is sometimes an empty matrix due to 
+%     % floating-point round off error.
+%     finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
+%                     < 0.001);
+%                 
+%      % Differenciate when the patient starts with left or right foot.
+%     if (find(cycle_start_right == k))% Look for a negative peak.
+%         
+%          % Find all peaks in each interval.
+%         [neg_peak_values, neg_peak_locations] = findpeaks(...
+%                                 -ML_COP_data(...
+%                                 initcross_COP(k):finalcross_COP));
+% 
+%         % Store the index of the first negative peak.
+%         neg_peak_locations = sort(neg_peak_locations);
+%         finalcross_acc(k) = neg_peak_locations(1) + initcross_COP(k) -1;
+% 
+%                     
+%     else % Look for a positive peak.
+%         
+%          % Find all peaks in each interval.
+%         [pos_peak_values, pos_peak_locations] = findpeaks(...
+%                                 ML_COP_data(...
+%                                 initcross_COP(k):finalcross_COP));
+% 
+%         % Store the index of the first negative peak.
+%         pos_peak_locations = sort(pos_peak_locations);
+%         finalcross_acc(k) = pos_peak_locations(1) + initcross_COP(k) -1;
+%                            
+%     end
+% end
 
                     
 %--------------------------------------------------------------------------
@@ -293,21 +300,34 @@ end
 %--------------------------------------------------------------------------
 % Calculate the indexes to be able to use them for the accelerations
 % signals.
-initcross_acc_time = ML_COP_complete_ts.time (initcross_COP);
-finalcross_acc_time = ML_COP_complete_ts.time (finalcross_acc);
+% initcross_acc_time = ML_COP_complete_ts.time (initcross_COP);
+% finalcross_acc_time = ML_COP_complete_ts.time (finalcross_acc);
 
 a_trunk_data_X = reshape(a_trunk_data(1, 1, :), ...
                 [1, max(size(a_trunk_data))]);
 a_trunk_data_Y = reshape(a_trunk_data(2, 1, :), ...
                 [1, max(size(a_trunk_data))]);
             
+% Apply a lowpass filter to the accelerameter signals.
+% Definition of the filter's parameters.
+Fs = 200;
+fc = 2;
+
+% Desing of FIR filter. The first parameter is the order of the filter. The
+% next one represents the cutoff frecuency. This can be a value between 0
+% and 1, where 1 is the Nyquist frecuency (sample rate/2).
+b=fir1(30,fc/(Fs/2));
+
+a_trunk_data_X = filter(b,1,a_trunk_data_X);
+a_trunk_data_Y = filter(b,1,a_trunk_data_Y); 
+
 for k = 1:length(initcross)
     
   % We obtain the interval where the APA peaks in the Acc signals appear.
-  initcross_acc = find(abs( a_trunk_complete_ts.time- initcross_acc_time(k))...
+  initcross_acc = find(abs( a_trunk_complete_ts.time- initcross(k))...
                     < 0.001);
-  finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross_acc_time(k))...
-                    < 0.001);
+  finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross(k))...
+                    < 0.001) - 20;
                 
   % We ontain the value of the Acc peak in the ML direction. To do that, we 
   % use a small interval around the limit calculated before (e.i, the second
@@ -317,24 +337,32 @@ for k = 1:length(initcross)
     if (find(cycle_start_right == k))% Look for a positive peak.
         
       % Find the longest positive peak.
-      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc-30,...
-                        finalcross_acc+30,1);
+      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
+                        finalcross_acc,1);
       peaks_APA_acc_Y(k) =  peaks_index;
+      
+      % Find the lext negative peak.
+      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
+                        finalcross_acc,2);
+      peaks_APA_acc_Y_2(k) =  peaks_index;     
       
     else % Look for a negative peak.
         
          % Find longest negative peak. 
-          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc-30,...
-                            finalcross_acc+30,2);
+          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
+                            finalcross_acc,2);
           peaks_APA_acc_Y(k) =  peaks_index;
-                         
+          
+         % Find the next positive peak.
+          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
+                            finalcross_acc,1);
+          peaks_APA_acc_Y_2(k) =  peaks_index;
+          
     end
       
-  % Find the longest negative peak in AP direction. We use like a reference
-  % to difine the interval the position of the peaks calculated laterally
-  % beause it must happen almost at the same time.
-  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, peaks_APA_acc_Y(k)-10,...
-                        peaks_APA_acc_Y(k)+50, 2);
+  % Find the longest negative peak in AP direction.
+  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
+                        finalcross_acc, 2);
   peaks_APA_acc_X(k) = peaks_index;   
   
  end
@@ -343,7 +371,7 @@ for k = 1:length(initcross)
 % We calculate the value of the APA peaks.
 value_APA_acc_X = a_trunk_data_X(peaks_APA_acc_X);
 value_APA_acc_Y = a_trunk_data_Y(peaks_APA_acc_Y);
-
+value_APA_acc_Y_2 = a_trunk_data_Y(peaks_APA_acc_Y_2);
 %------------------------------- Plots figure------------------------------
 if strcmpi(showPlotsCheck,'yes')
 figure ()
@@ -371,6 +399,7 @@ subplot(2,1,2)
 plot(a_trunk_complete_ts.time, a_trunk_data_Y, 'g');
 hold on;
 plot(a_trunk_complete_ts.time(peaks_APA_acc_Y), value_APA_acc_Y , 'r.');
+plot(a_trunk_complete_ts.time(peaks_APA_acc_Y_2), value_APA_acc_Y_2 , 'y.');
 
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
