@@ -4,7 +4,7 @@
 
 % -------------------------------------------------------------------------
 % * Project name: Comparison of Posturographic Body-sway Measurements with 
-%                 Accele,rometric Data.
+%                 Accelerometric Data.
 %
 % * Authors:      - Prof. Dr. Med. Kai Boetzel (1): 
 %                   |_ kai.boetzel@med.uni-muenchen.de 
@@ -27,10 +27,10 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 06/05/2015
+% * Last modification: 26/05/2015
 
 % INFORMATION: This file contains the routine to detect when the second
-% step happens, determine the APAs of the FP and GW signals in this case 
+% step happens, determine the APAs of the FP and GW signals
 % and the correlation between them. 
 
 % -------------------------------------------------------------------------
@@ -41,7 +41,7 @@ clear all; close all; clc;
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'no';
 showPlotsAPA = 'yes';
-showPlotsCorr = 'no';
+showPlotsCorr = 'yes';
 
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
@@ -158,48 +158,49 @@ for k = 1:length(initcross)
      % To find a noninteger value, we use a tolerance value based on our data.
      % Otherwise, the result is sometimes an empty matrix due to 
      % floating-point roundoff error.
-     initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k))...
+     initcross_COP (k) = find(abs(ML_COP_complete_ts.time - initcross(k))...
                     < 0.001);
-     finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
+     finalcross_COP(k) = find(abs(ML_COP_complete_ts.time - finalcross(k))...
                     < 0.001);
-     value_initcross_AP(k) = AP_COP_data(initcross_COP);
+     value_initcross_AP(k) = AP_COP_data(initcross_COP(k));
      
      % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
         
       % Find the longest positive peak.
-      [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP,...
-                        finalcross_COP,1);
-      peaks_APA_ML_COP(k) =  peaks_index;
+      [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP(k),...
+                        finalcross_COP(k), 1);
+      peaks_APA_ML_COP(k) = peaks_index;
       
     else % Look for a negative peak.
         
          % Find longest negative peak. 
-          [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP,...
-                        finalcross_COP,2);
-          peaks_APA_ML_COP(k) =  peaks_index;
+          [ peaks_index ] = findMaxPeaks(ML_COP_data, initcross_COP(k),...
+                        finalcross_COP(k), 2);
+          peaks_APA_ML_COP(k) = peaks_index;
                            
     end
     
    % Find longest negative peak around the peak calculated above because 
    % this happens almost at the same time and it is most accurate in the 
    % lateral direction. 
-  [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_ML_COP(k)-30,...
-                peaks_APA_ML_COP(k)+30,2);
+  [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_ML_COP(k) - 30,...
+                peaks_APA_ML_COP(k) + 30, 2);
             
-  peaks_APA_AP_COP(k) =  peaks_index;
+  peaks_APA_AP_COP(k) = peaks_index;
   
   % Find the next longest positive peak to determine the height of the peak. 
   [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_AP_COP(k),...
-                peaks_APA_AP_COP(k)+100,1);
+                peaks_APA_AP_COP(k) + 100, 1);
   peaks_APA_AP_COP_2(k) = peaks_index;
   
   % Find the longest negative peak( this is when the COP is in the stance
   % foot).
   [ peaks_index ] = findMaxPeaks(AP_COP_data, peaks_APA_AP_COP_2(k),...
-                finalcross_COP,2);
+                finalcross_COP(k), 2);
             
   peaks_APA_AP_COP_3(k) = peaks_index;  
+  
 end
 
 % We calculate the value of the APA peaks.
@@ -207,6 +208,12 @@ value_APA_ML_COP = ML_COP_data(peaks_APA_ML_COP);
 value_APA_AP_COP = AP_COP_data(peaks_APA_AP_COP);
 value_APA_AP_COP_2 = AP_COP_data(peaks_APA_AP_COP_2);
 value_APA_AP_COP_3 = AP_COP_data(peaks_APA_AP_COP_3);
+
+% Calculate the APA duration. The onset of data is considered as the first 
+% measurable change in the AP COP signal, this it is the first negative peak.
+% We consider the end when there aren't values in FP signal, i.e when the
+% patient goes down from the platform.
+duration_APA_COP = (finalcross_COP - peaks_APA_AP_COP)./120;
 
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsAPA,'yes')
@@ -216,6 +223,7 @@ hold on;
 plot(AP_COP_complete_ts.time(peaks_APA_AP_COP), value_APA_AP_COP , 'r.');
 plot(AP_COP_complete_ts.time(peaks_APA_AP_COP_2), value_APA_AP_COP_2 , 'y.');
 plot(AP_COP_complete_ts.time(peaks_APA_AP_COP_3), value_APA_AP_COP_3 , 'b.');
+
 % Vertical line init.
 hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
     'LineWidth', 2 , 'Color', 'r');
@@ -227,7 +235,7 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
 changedependvar(hx,'x');
 
 title(['AP COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
+       ' patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('AP COP (mm)');
 
@@ -247,61 +255,16 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
 changedependvar(hx,'x');
 
 title(['ML COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
+       ' patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('ML COP (mm)');
 end
-
-% %--------------------------------------------------------------------------
-% % 3.3) Determine the next peak after the APA peaks detected in ML direction. 
-% % This point will indicate the interval to find the APA peaks in the 
-% % acceleration signals 
-% %--------------------------------------------------------------------------
-% initcross_COP = peaks_APA_ML_COP;
-% 
-% % Calculate the peaks in each interval.
-% for k = 1:length(initcross)
-%     % To find a noninteger value, we use a tolerance value based on our data.
-%     % Otherwise, the result is sometimes an empty matrix due to 
-%     % floating-point round off error.
-%     finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
-%                     < 0.001);
-%                 
-%      % Differenciate when the patient starts with left or right foot.
-%     if (find(cycle_start_right == k))% Look for a negative peak.
-%         
-%          % Find all peaks in each interval.
-%         [neg_peak_values, neg_peak_locations] = findpeaks(...
-%                                 -ML_COP_data(...
-%                                 initcross_COP(k):finalcross_COP));
-% 
-%         % Store the index of the first negative peak.
-%         neg_peak_locations = sort(neg_peak_locations);
-%         finalcross_acc(k) = neg_peak_locations(1) + initcross_COP(k) -1;
-% 
-%                     
-%     else % Look for a positive peak.
-%         
-%          % Find all peaks in each interval.
-%         [pos_peak_values, pos_peak_locations] = findpeaks(...
-%                                 ML_COP_data(...
-%                                 initcross_COP(k):finalcross_COP));
-% 
-%         % Store the index of the first negative peak.
-%         pos_peak_locations = sort(pos_peak_locations);
-%         finalcross_acc(k) = pos_peak_locations(1) + initcross_COP(k) -1;
-%                            
-%     end
-% end
-
-                    
+                  
 %--------------------------------------------------------------------------
-% 3.4) Determine the APA peaks in the Acceleration and Gyroscope Signals.
+% 3.3) Determine the APA peaks in the Acceleration and Gyroscope Signals.
 %--------------------------------------------------------------------------
-% Calculate the indexes to be able to use them for the accelerations
+% Calculate the indexes to be able to use them for the Gait Watch
 % signals.
-% initcross_acc_time = ML_COP_complete_ts.time (initcross_COP);
-% finalcross_acc_time = ML_COP_complete_ts.time (finalcross_acc);
 
 a_trunk_data_X = reshape(a_trunk_data(1, 1, :), ...
                 [1, max(size(a_trunk_data))]);
@@ -313,7 +276,7 @@ g_trunk_data_X = reshape(g_trunk_data(1, 1, :), ...
 g_trunk_data_Y = reshape(g_trunk_data(2, 1, :), ...
                 [1, max(size(g_trunk_data))]);
             
-% Apply a lowpass filter to the accelerameter signals.
+% Apply a lowpass filter to the accelerameter  and gyroscope signals.
 % Definition of the filter's parameters.
 Fs = 200;
 fc = 2;
@@ -321,13 +284,13 @@ fc = 2;
 % FFT to check.
 L =length(a_trunk_data_X);
 NFFT = 2^nextpow2(L); % Next power of 2 from length of y
-Y = fft(a_trunk_data_X,NFFT)/L;
-f = Fs/2*linspace(0,1,NFFT/2+1);
+Y = fft(a_trunk_data_X, NFFT)/L;
+f = Fs/2*linspace(0, 1, NFFT/2 + 1);
 
 % Plot single-sided amplitude spectrum.
 if strcmpi(showPlotsCheck,'yes')
 figure()
-stem(f,2*abs(Y(1:NFFT/2+1)));
+stem(f, 2*abs(Y(1:NFFT/2 + 1)));
 title('Fast Fourier transform before the filtering');
 xlabel('Frequency (Hz)')
 ylabel('|Y(f)|')
@@ -336,7 +299,7 @@ end
 % Desing of FIR filter. The first parameter is the order of the filter. The
 % next one represents the cutoff frecuency. This can be a value between 0
 % and 1, where 1 is the Nyquist frecuency (sample rate/2).
-b=fir1(30,fc/(Fs/2));
+b=fir1(30, fc/(Fs/2));
 
 if strcmpi(showPlotsCheck,'yes')
 figure()
@@ -352,13 +315,13 @@ g_trunk_data_X = filter(b,1,g_trunk_data_X);
 g_trunk_data_Y = filter(b,1,g_trunk_data_Y);
 
 % Show the fft of the signals after the filtering.
-Y = fft(a_trunk_data_X,NFFT)/L;
-f = Fs/2*linspace(0,1,NFFT/2+1);
+Y = fft(a_trunk_data_X, NFFT)/L;
+f = Fs/2*linspace(0, 1, NFFT/2 + 1);
 
 % Plot single-sided amplitude spectrum.
 if strcmpi(showPlotsCheck,'yes')
 figure()
-stem(f,2*abs(Y(1:NFFT/2+1)));
+stem(f, 2*abs(Y(1:NFFT/2 + 1)));
 title('Fast Fourier transform after the filtering');
 xlabel('Frequency (Hz)')
 ylabel('|Y(f)|')
@@ -367,67 +330,66 @@ end
 for k = 1:length(initcross)
     
   % We obtain the interval where the APA peaks in the Acc signals appear.
+  % We adjust these values to obtain a more accurate interval.
   initcross_acc = find(abs( a_trunk_complete_ts.time- initcross(k))...
                     < 0.001) + 20;
   finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross(k))...
                     < 0.001) - 15;
                 
-  % We ontain the value of the Acc  and Gyro peak in the ML direction.
+  % We ontain the value of the Acc and Gyro peak in the ML direction.
                 
    % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.
         
       % Find the longest positive peak.
       [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                        finalcross_acc,1);
+                        finalcross_acc, 1);
       peaks_APA_acc_Y(k) =  peaks_index;
       
      [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc,...
-                        finalcross_acc,1);
+                        finalcross_acc, 1);
       peaks_APA_gyro_Y(k) =  peaks_index;
       
-      % Find the lext negative peak.
+      % Find the next negative peak.
       [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
-                        finalcross_acc,2);
+                        finalcross_acc, 2);
       peaks_APA_acc_Y_2(k) =  peaks_index; 
       
       [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, peaks_APA_acc_Y(k),...
-                        finalcross_acc,2);
+                        finalcross_acc, 2);
       peaks_APA_gyro_Y_2(k) =  peaks_index;
       
     else % Look for a negative peak.
         
          % Find longest negative peak. 
           [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                            finalcross_acc,2);
+                            finalcross_acc, 2);
           peaks_APA_acc_Y(k) =  peaks_index;
           
           [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc,...
-                            finalcross_acc,2);
+                            finalcross_acc, 2);
           peaks_APA_gyro_Y(k) =  peaks_index;
           
          % Find the next positive peak.
           [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
-                            finalcross_acc,1);
+                            finalcross_acc, 1);
           peaks_APA_acc_Y_2(k) =  peaks_index;
           
           [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, peaks_APA_acc_Y(k),...
-                            finalcross_acc,1);
+                            finalcross_acc, 1);
           peaks_APA_gyro_Y_2(k) =  peaks_index;         
     end
       
-  % Find the longest negative peak in AP direction.
-%   [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
-%                         finalcross_acc, 2);
-%   peaks_APA_acc_X(k) = peaks_index; 
+  % Find minimum value in AP direction.
 
    [neg_peak_values, neg_peak_locations] = min(...
-                                    a_trunk_data_X(initcross_acc:finalcross_acc));
+                            a_trunk_data_X(initcross_acc:finalcross_acc));
    peaks_APA_acc_X(k) = neg_peak_locations + initcross_acc -1;
    
    [neg_peak_values, neg_peak_locations] = min(...
-                                    g_trunk_data_X(initcross_acc:finalcross_acc));
+                            g_trunk_data_X(initcross_acc:finalcross_acc));
    peaks_APA_gyro_X(k) = neg_peak_locations + initcross_acc -1;
+   
  end
 
 
@@ -440,7 +402,14 @@ value_APA_gyro_X = g_trunk_data_X(peaks_APA_gyro_X);
 value_APA_gyro_Y = g_trunk_data_Y(peaks_APA_gyro_Y);
 value_APA_gyro_Y_2 = g_trunk_data_Y(peaks_APA_gyro_Y_2);
 
-%------------------------------- Plots figure------------------------------
+% Calculate the APA duration. We calculate this for the accelerometer
+% signal and gyroscope signal in medio-lateral direction. We consider
+% the onset of APA is the first positive peak and the end is the next
+% peak detected.
+duration_APA_acc = (peaks_APA_acc_Y_2 - peaks_APA_acc_Y)./Fs;
+duration_APA_gyro = (peaks_APA_gyro_Y_2 -peaks_APA_gyro_Y)./Fs;
+
+%------------------------------- Plots Acc --------------------------------
 if strcmpi(showPlotsAPA,'yes')
 figure ()
 subplot(2,1,1)
@@ -485,13 +454,8 @@ xlabel('Time in s');
 ylabel('Acceleration in (g)');
 end
 
-%--------------------------------------------------------------------------
-% 3.5) Determine the APA peaks in the Gyroscope Signals.
-%--------------------------------------------------------------------------
- 
             
 %------------------------------- Plots Gyro--------------------------------
-% Plot to check the gyroscope signal
 if strcmpi(showPlotsAPA,'yes')
 figure ()
 subplot(2,1,1)
@@ -509,11 +473,10 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
     'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title(['Angular Velocity of the X-axis of the trunk with lines marker when the' ...
-       ' patient steps with the second time and the APA peaks']);
+title(['Angular Velocity of the X-axis of the trunk with lines marker when' ...
+       'the patient steps with the second time and the APA peaks']);
 xlabel('Time in s');
 ylabel('Angular Velocity (º/s)');
-%axis([170, 210, -100, 100]);
 
 subplot(2,1,2)
 plot(g_trunk_complete_ts.time, g_trunk_data_Y, 'g');
@@ -531,19 +494,20 @@ hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
     'LineWidth', 2 , 'Color', 'm');
 changedependvar(hx,'x');
 
-title(['Angular Velocity of the Y-axis of the trunk with lines marker when the' ...
-       ' patient steps with the second time and the APA peak' ]);
+title(['Angular Velocity of the Y-axis of the trunk with lines marker when' ...
+       ' the patient steps with the second time and the APA peak' ]);
 xlabel('Time in s');
 ylabel('Angular Velocity (º/s)');
-%axis([170, 210, -40, 40]);
+
 end
 
  %-------------------------------------------------------------------------
  % 4) Correlations
  %-------------------------------------------------------------------------
  
- % -------------------Correlation in AP direction--------------------------
- 
+ %-------------------------------------------------------------------------
+ % 4.1) Correlation in AP direction.
+ %-------------------------------------------------------------------------
  value_APA_AP_COP_1 = abs(value_APA_AP_COP - value_initcross_AP);
  value_APA_acc_X_1 = abs(value_APA_acc_X- mode(a_trunk_data_X));
  
@@ -563,7 +527,10 @@ end
  [corr_trunk_AP_3, prob_trunk_AP_3] = corr(value_APA_acc_X_1',...
                                     value_APA_AP_COP_3');
                                 
- % -------------------Correlation in ML direction--------------------------
+ %-------------------------------------------------------------------------                               
+ % 4.2) Correlation in ML direction.
+ %-------------------------------------------------------------------------
+ 
  value_APA_ML_COP_1 = abs(value_APA_ML_COP);
  value_APA_acc_Y_1 = abs(value_APA_acc_Y) - mode(a_trunk_data_Y);
 
@@ -581,9 +548,45 @@ end
  value_APA_acc_Y_3 = abs(value_APA_acc_Y_1 - value_APA_acc_Y_2);
  [corr_trunk_ML_3, prob_trunk_ML_3] = corr(value_APA_acc_Y_3',...
                                     value_APA_ML_COP_1'); 
+
+% -------------------------------------------------------------------------                                
+% 4.3) Correlations of the APA duration.
+% -------------------------------------------------------------------------
+
+% Correlation of the APA duration between COP and Acc signals.
+ [corr_dur_COP_acc, prob_dur_COP_acc] = corr(duration_APA_COP',...
+                                    duration_APA_acc'); 
+                                
+% Correlation of the APA duration between COP and Gyro signals.
+ [corr_dur_COP_gyro, prob_dur_COP_gyro] = corr(duration_APA_COP',...
+                                    duration_APA_gyro'); 
+                                
+% Correlation of the APA duration between Acc and Gyro signals.
+ [corr_dur_acc_gyro, prob_dur_acc_gyro] = corr(duration_APA_acc',...
+                                    duration_APA_gyro');  
+% -------------------------------------------------------------------------                                
+% 4.4) Save all values of correlation in a variable.
+% -------------------------------------------------------------------------
+correlations = [corr_trunk_AP_1, corr_trunk_AP_2, corr_trunk_AP_3,...
+    corr_trunk_ML_1, corr_trunk_ML_2, corr_trunk_ML_2,...
+    corr_dur_COP_acc, corr_dur_COP_gyro, corr_dur_acc_gyro];
                                 
 % -------------------------- Correlations Plots----------------------------
 if strcmpi(showPlotsCorr,'yes')
+    
+figure()
+x_axes={'Acc-COP_AP1','Acc-COP_AP2','Acc-COP_AP3',...
+    'Acc-COP_ML1','Acc-COP_ML2','Acc-COP_ML3',...
+    'Dur_COP-Acc','Dur_COP-Gyro','Dur_Acc-Gyro'};
+
+bar (correlations);
+set(gca,'XtickL',x_axes)
+
+%axis([0, length(sync_peaks_mean)+1, 0.8, 1.005]);
+%legend ('Acc','Mean' , 'Gyro', 'Location', 'NorthEastOutside');
+
+title('Differents Correlations between measures of APAs'); 
+
 figure ()
 
 plot(value_APA_acc_X_1, value_APA_AP_COP_2, '.r');
@@ -613,7 +616,7 @@ end
    finalcross_7 = find(abs(AP_COP_complete_ts.time - finalcross(7))...
                     < 0.001);
                 
- %--------------------------- Plot figures-----------------------
+ % Plot a 3D graphic to show this.
   if strcmpi(showPlotsAPA,'yes')
   figure()
   plot3(ML_COP_data(initcross_7:finalcross_7),...
@@ -627,13 +630,14 @@ end
   grid on
   axis square
   end
-   % We are going to show the trajectory of the APA in the eithth cycle.
+  
+  % We are going to show the trajectory of the APA in the eighth cycle.
    initcross_8 = find(abs(AP_COP_complete_ts.time - initcross(8))...
                     < 0.001);
    finalcross_8 = find(abs(AP_COP_complete_ts.time - finalcross(8))...
                     < 0.001);
                 
- % --------------------------- Plot figure --------------------------------
+ % Plot a 3D graphic to show this.
   if strcmpi(showPlotsAPA,'yes')
   figure()
   plot3(ML_COP_data(initcross_8:finalcross_8),...
@@ -652,17 +656,17 @@ end
  % 5.2) Acceleration (Acc) Trajectory.
  %-------------------------------------------------------------------------
  % We are goint to show the trajectory of the APA in the second cycle.
-  initcross_7 = find(abs(a_trunk_complete_ts.time - initcross(7))...
+  initcross_2 = find(abs(a_trunk_complete_ts.time - initcross(2))...
                     < 0.001);
-  finalcross_7 = find(abs(a_trunk_complete_ts.time - finalcross(7))...
+  finalcross_2 = find(abs(a_trunk_complete_ts.time - finalcross(2))...
                     < 0.001);
                 
-  % -------------------------- Plot figure---------------------------------
+ % Plot a 3D graphic to show this.
   if strcmpi(showPlotsAPA,'yes')
   figure()
-  plot3(a_trunk_data_Y(initcross_7:finalcross_7),...
-                     a_trunk_data_X(initcross_7:finalcross_7),...
-                     a_trunk_complete_ts.time(initcross_7:finalcross_7));
+  plot3(a_trunk_data_Y(initcross_2:finalcross_2),...
+                     a_trunk_data_X(initcross_2:finalcross_2),...
+                     a_trunk_complete_ts.time(initcross_2:finalcross_2));
                  
   title('Trajectory of the Acceleration during APA ' );
   xlabel('Acc Y (g)');
@@ -672,3 +676,27 @@ end
   axis square
   end
   
+%-------------------------------------------------------------------------
+% 5.3) Angular Velocity (Gyro) Trajectory.
+%-------------------------------------------------------------------------
+% Plot a 3D graphic to show this.
+if strcmpi(showPlotsAPA,'yes')
+figure()
+plot3(g_trunk_data_Y(initcross_2:finalcross_2),...
+                 g_trunk_data_X(initcross_2:finalcross_2),...
+                 g_trunk_complete_ts.time(initcross_2:finalcross_2));
+
+title('Trajectory of the Angular Velocity of Gyroscope during APA ' );
+xlabel('Ang Velocity Y (º/m)');
+ylabel('Ang Velocity X (º/m)');
+zlabel('Time (s)');
+grid on
+axis square
+end  
+
+% Show completion message.
+name_file = textscan(filename,'%s','Delimiter','_');
+name_file = name_file{1};
+filename = name_file{1,1};
+fprintf(['\n Patient ',filename,' has been analysed !!! \n']);
+
