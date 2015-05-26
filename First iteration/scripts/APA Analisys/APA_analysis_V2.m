@@ -313,21 +313,42 @@ a_trunk_data_Y = reshape(a_trunk_data(2, 1, :), ...
 Fs = 200;
 fc = 2;
 
+% FFT to check.
+L =length(a_trunk_data_X);
+NFFT = 2^nextpow2(L); % Next power of 2 from length of y
+Y = fft(a_trunk_data_X,NFFT)/L;
+f = Fs/2*linspace(0,1,NFFT/2+1);
+
+% Plot single-sided amplitude spectrum.
+figure()
+stem(f,2*abs(Y(1:NFFT/2+1)));
+
 % Desing of FIR filter. The first parameter is the order of the filter. The
 % next one represents the cutoff frecuency. This can be a value between 0
 % and 1, where 1 is the Nyquist frecuency (sample rate/2).
 b=fir1(30,fc/(Fs/2));
+figure()
+freqz(b);
 
 a_trunk_data_X = filter(b,1,a_trunk_data_X);
 a_trunk_data_Y = filter(b,1,a_trunk_data_Y); 
+
+% Show the fft of the signals after the filtering.
+Y = fft(a_trunk_data_X,NFFT)/L;
+f = Fs/2*linspace(0,1,NFFT/2+1);
+
+% Plot single-sided amplitude spectrum.
+figure()
+stem(f,2*abs(Y(1:NFFT/2+1)));
+
 
 for k = 1:length(initcross)
     
   % We obtain the interval where the APA peaks in the Acc signals appear.
   initcross_acc = find(abs( a_trunk_complete_ts.time- initcross(k))...
-                    < 0.001);
+                    < 0.001)+20;
   finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross(k))...
-                    < 0.001) - 20;
+                    < 0.001) - 15;
                 
   % We ontain the value of the Acc peak in the ML direction. To do that, we 
   % use a small interval around the limit calculated before (e.i, the second
@@ -361,9 +382,13 @@ for k = 1:length(initcross)
     end
       
   % Find the longest negative peak in AP direction.
-  [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
-                        finalcross_acc, 2);
-  peaks_APA_acc_X(k) = peaks_index;   
+%   [ peaks_index ] = findMaxPeaks(a_trunk_data_X, initcross_acc,...
+%                         finalcross_acc, 2);
+%   peaks_APA_acc_X(k) = peaks_index; 
+
+   [neg_peak_values, neg_peak_locations] = min(...
+                                    a_trunk_data_X(initcross_acc:finalcross_acc));
+   peaks_APA_acc_X(k) = neg_peak_locations + initcross_acc -1;
   
  end
 
