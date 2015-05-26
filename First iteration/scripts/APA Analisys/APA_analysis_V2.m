@@ -32,6 +32,18 @@
 % INFORMATION: This file contains the routine to detect when the second
 % step happens, determine the APAs of the FP and GW signals
 % and the correlation between them. 
+% The file is structured as follows:
+% 
+% * 1) Extract synchronised data.
+% 
+% * 2) Determine the interval of the second step.
+% 
+% * 3) Detect APAs in COP, Acceleration and Gyroscope signals
+% 
+% * 4) Correlations.
+%
+% * 5) Trajectory of the APAs.
+%--------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
 % 0) Clear workspace.
