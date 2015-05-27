@@ -38,9 +38,9 @@
 % 
 % * 2) Calculate pitch in GW System.
 % 
-% * 3) Calculate pitch in QS System
+% * 3) Calculate pitch in QS System.
 % 
-% * 4) Comparation
+% * 4) Comparation.
 %
 %--------------------------------------------------------------------------
 
@@ -51,6 +51,9 @@ clear all; close all; clc;
 
 comparation ='yes';
 
+% Suppress warnings if no peak is detected during the calibration.
+  warning('off', 'signal:findpeaks:largeMinPeakHeight')
+  
 % -------------------------------------------------------------------------
 % 1) Extract data.
 % -------------------------------------------------------------------------
@@ -107,9 +110,9 @@ size_data_struct=size(data_struct);
 % -------------------------------------------------------------------------
 
 % Select and load data from the hard drive.
-[filename, filepath] = uigetfile('*.mat', ...
-    'Select the GW data file (.mat)', '../../../Treadmill experiments/GW data');
-load(fullfile(filepath ,char(filename)));
+[filename_GW, filepath] = uigetfile('*.mat', ...
+    'Select the GW data file (.mat)', '../../../Treadmill experiments/GW data/last recording treadmill');
+load(fullfile(filepath ,char(filename_GW)));
 
 % Build vector containing time samples.
 [f, date, start_time, end_time, file_id] = gw.getFHinfo(FileHeader);
@@ -1009,7 +1012,7 @@ end
 % 2.9) Clear variables.
 % ---------------------------------------------------------------------
 
-clearvars -except filename pitch_KF_right_shank pitch_KF_left_shank ...
+clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
     pitch_KF_right_thigh pitch_KF_left_thigh
 
 %--------------------------------------------------------------------------
@@ -1021,14 +1024,36 @@ clearvars -except filename pitch_KF_right_shank pitch_KF_left_shank ...
 % -------------------------------------------------------------------------
 
 % Prompt to select the data file which is to be analyzed. 
-[filename, filepath] = uigetfile('*.mat', ...
-    'Select the QS data file(.mat)', '../../../Treadmill experiments/QS data');
+% [filename, filepath] = uigetfile('*.mat', ...
+%     'Select the QS data file(.mat)', '../../../Treadmill experiments/QS data');
+
+% Search the appropiate QS file. To do that, we check the excel with the
+% correspondences, so we can find the QS file from the GW file selected
+% above.
+
+% Read data from *.xlsx where are stored all filenames.
+[~,file_excel] = xlsread( 'RecordingsGWandQSdata');
+[rows,columns] = size(file_excel);
+
+for i = 4:rows
+    % Check if the cell is empty.
+    if  isempty( char(strtrim(file_excel(i,9))) ) == 0  
+        
+        % We extract the GW name and find in the excel file.
+        filename = strtrim(file_excel(i,9));
+
+        if(filename{1,1} == filename_GW)
+            filename_QS = strtrim(file_excel(i,6));
+        end   
+    end
+end
 
 % Load data.
-load(fullfile(filepath, filename));
+load(fullfile('../../../Treadmill experiments/QS data/last recordings treadmill/',char( filename_QS)));
 
 % Remove the '.mat' extension from the file name.
-filename = filename(1:end-4);
+filename_QS = char(filename_QS);
+filename = filename_QS(1:end-4);
 
 % -------------------------------------------------------------------------
 % 3.2) Read data.
@@ -1039,7 +1064,7 @@ filename = filename(1:end-4);
 SampRate = eval([filename, '.FrameRate']);
 
 % Read markers data. Data are stored in the 'Trajectories.Labeled.Data'
-% field
+% field.
 data = eval([filename, '.Trajectories.Labeled.Data']);
 
 % Remove the marker error information which is also stored by the Qualisys
@@ -1107,10 +1132,10 @@ x=1;z=3;lag = zeros(4,1);
 % figure(1)
 %  big_ax=axes('position', [0 0 1 1],'visible', 'off');
 
-for n=1:4                                                                       % 4 leg segments
+for n=1:4                                         % 4 leg segments
     m1=0;m2=0;m3=0;
     
-    for n2=1:3                                                                  % 3 markers
+    for n2=1:3                                       % 3 markers
         ind = 1; %find(strcmp(order{n,n2},data_labels));
         if isempty(ind)
             fprintf('Error: cannot find match for %s\n',order{n,n2})
