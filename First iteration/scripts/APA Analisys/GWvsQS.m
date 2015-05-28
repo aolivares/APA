@@ -49,7 +49,8 @@
 % -------------------------------------------------------------------------
 clear all; close all; clc;
 
-comparation ='yes';
+comparation = 'no';
+showPlots = 'yes';
 
 % Suppress warnings if no peak is detected during the calibration.
   warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -570,13 +571,13 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman Filter')              
-            else
-                figure
-                plot(time,pitch_KF_right_shank ,'black')
-                title('Pitch angle of right shank')
-                xlabel('Time (s)')
-                ylabel('Pitch (deg)')
-                legend('Kalman filter')
+%             else
+%                 figure
+%                 plot(time,pitch_KF_right_shank ,'black')
+%                 title('Pitch angle of right shank')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
             
         case 'left shank'
@@ -634,13 +635,13 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')  
-            else
-                figure
-                plot(time,pitch_KF_left_shank ,'black')
-                title('Pitch angle of left shank')
-                xlabel('Time (s)')
-                ylabel('Pitch (deg)')
-                legend('Kalman filter')
+%             else
+%                 figure
+%                 plot(time,pitch_KF_left_shank ,'black')
+%                 title('Pitch angle of left shank')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
             
         case 'right thigh'
@@ -698,14 +699,14 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')   
-            else
-                figure
-                plot(time,pitch_KF_right_thigh ,'black')
-                title('Pitch angle of right thigh')
-                xlabel('Time (s)')
-                ylabel('Pitch (deg)')
-                legend('Kalman filter')
-            end
+%             else
+%                 figure
+%                 plot(time,pitch_KF_right_thigh ,'black')
+%                 title('Pitch angle of right thigh')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
+             end
             
         case 'left thigh'
             % Define the necessary signals.
@@ -762,14 +763,15 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')   
-            else
-                figure
-                plot(time,pitch_KF_left_thigh ,'black')
-                title('Pitch angle of left thigh')
-                xlabel('Time (s)')
-                ylabel('Pitch (deg)')
-                legend('Kalman filter')
+%             else
+%                 figure
+%                 plot(time,pitch_KF_left_thigh ,'black')
+%                 title('Pitch angle of left thigh')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
+            
             
 %         case 'left arm'
 %             % Define the necessary signals.
@@ -1013,7 +1015,7 @@ end
 % ---------------------------------------------------------------------
 
 clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
-    pitch_KF_right_thigh pitch_KF_left_thigh
+    pitch_KF_right_thigh pitch_KF_left_thigh time Selection showPlots
 
 %--------------------------------------------------------------------------
 % 3) Calculate pitch with Qualisys System.
@@ -1106,37 +1108,40 @@ eval(['clear ' filename]);
 % interpolation to solve this issue.
 
 % We first show how many data are missing for each one of the markers.
-nan_list = cell(1,n_markers);
-for n = 1:n_markers
-    nan_list{n} = [num2str(n),')  ', 'Marker: ',data_labels{n},'. Number of Nan values:', ...
-        num2str(sum(isnan(squeeze(data(n,1,:)))))];
-end
-
-[Selection,ok] = listdlg('ListString',nan_list,'Name',...
-    'Select the marker data you wish to correct','ListSize',[450 400],'SelectionMode',...
-    'multiple');
+% nan_list = cell(1,n_markers);
+% for n = 1:n_markers
+%     nan_list{n} = [num2str(n),')  ', 'Marker: ',data_labels{n},'. Number of Nan values:', ...
+%         num2str(sum(isnan(squeeze(data(n,1,:)))))];
+% end
+% 
+% [Selection_correct,ok] = listdlg('ListString',nan_list,'Name',...
+%     'Select the marker data you wish to correct','ListSize',[450 400],'SelectionMode',...
+%     'multiple');
 
 % calculate angular position of each marker trialgle in 2D
 % and put them into data array Q_leg_pitch
 % [pitch_KF_right_shank, pitch_KF_right_thigh, pitch_KF_left_shank, pitch_KF_left_thigh];
 
-Q_leg_pitch = zeros(length(data),4);
+Q_leg_pitch = zeros(length(data),length(Selection));
+time_vector = 1/200:1/200:length(data)/200;
+if(length(time_vector)>length(time)) time_vector=time;end
 
-
-order = {   'right lo shank','right up shank','right back shank';...
-            'right lo thigh','right up thigh','right back thigh';...
-            'left lo shank','left up shank','left back shank';...
-            'left lo thigh','left up thigh','left back thigh';...
+order = {   'right lower shank','right upper shank','right back shank';...
+            'right lower thigh','right upper thigh','right back thigh';...
+            'left lower shank','left upper shank','left back shank';...
+            'left lower thigh','left upper thigh','left back thigh';...
             'right hip','back hip','left hip'};
-x=1;z=3;lag = zeros(4,1);
-% figure(1)
-%  big_ax=axes('position', [0 0 1 1],'visible', 'off');
 
-for n=1:4                                         % 4 leg segments
+% Calculate the angle in the XZ plane.        
+x=1;z=3;
+
+for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shank, left thigh)
     m1=0;m2=0;m3=0;
     
-    for n2=1:3                                       % 3 markers
-        ind = 1; %find(strcmp(order{n,n2},data_labels));
+    for n2=1:3  % 3 markers (upper, lower and back)
+        
+        % Find the index for data vector.
+        ind = find(strcmp(order{n,n2},data_labels));
         if isempty(ind)
             fprintf('Error: cannot find match for %s\n',order{n,n2})
             beep
@@ -1154,7 +1159,57 @@ for n=1:4                                         % 4 leg segments
     seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:)-data(m2,z,:))));        % marker 1,2: x/z
     seg_2 = -atan(squeeze((data(m2,z,:)-data(m3,z,:))./(data(m2,x,:)-data(m3,x,:))));        % marker 2,3: z/x
     seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:)-data(m3,x,:))));        % marker 3,1: x/z
+    
+    % Calculate the angle in dregree.
+     Q_leg_pitch(:,n) = (mean([seg_1 seg_2 seg_3],2).*180)./pi;   
+end
 
-     Q_leg_pitch(:,n) = mean([seg_1 seg_2 seg_3],2);
-     
+% -------------------------------------------------------------------------
+% 4) Comparation.
+% -------------------------------------------------------------------------
+if strcmpi(showPlots,'yes')
+for i=1:length(Selection)
+    switch i
+        case 1, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),1));
+            hold on
+            plot(time_vector, pitch_KF_right_shank(1:length(time_vector)),'r');
+            title('Pitch angle of right shank with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 2,
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),2));
+            hold on
+            plot(time_vector, pitch_KF_right_thigh(1:length(time_vector)),'r');
+            title('Pitch angle of right thigh with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 3, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),3));
+            hold on
+            plot(time_vector, pitch_KF_left_shank(1:length(time_vector)),'r');
+            title('Pitch angle of left shank with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 4, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),4));
+            hold on
+            plot(time_vector, pitch_KF_left_thigh(1:length(time_vector)),'r');
+            title('Pitch angle of left thigh with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+    end
+end
 end
