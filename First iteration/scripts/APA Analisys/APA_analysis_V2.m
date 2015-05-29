@@ -43,6 +43,9 @@
 % * 4) Correlations.
 %
 % * 5) Trajectory of the APAs.
+%
+% * 6) Detection of APA characteristics with a sigle signal (mean of all
+%       cycles).
 %--------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
@@ -53,7 +56,7 @@ clear all; close all; clc;
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'no';
 showPlotsAPA = 'yes';
-showPlotsCorr = 'yes';
+showPlotsCorr = 'no';
 
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
@@ -227,6 +230,10 @@ value_APA_AP_COP_3 = AP_COP_data(peaks_APA_AP_COP_3);
 % patient goes down from the platform.
 duration_APA_COP = (finalcross_COP - peaks_APA_AP_COP)./120;
 
+% Calculate the average swing and its variability.
+mean_duration_APA_COP = mean(duration_APA_COP);
+var_duration_APA_COP = mean(duration_APA_COP - mean_duration_APA_COP);
+
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsAPA,'yes')
 subplot(2,1,1)
@@ -343,9 +350,9 @@ for k = 1:length(initcross)
     
   % We obtain the interval where the APA peaks in the Acc signals appear.
   % We adjust these values to obtain a more accurate interval.
-  initcross_acc = find(abs( a_trunk_complete_ts.time- initcross(k))...
+  initcross_acc (k)= find(abs( a_trunk_complete_ts.time- initcross(k))...
                     < 0.001) + 20;
-  finalcross_acc = find(abs( a_trunk_complete_ts.time- finalcross(k))...
+  finalcross_acc (k)= find(abs( a_trunk_complete_ts.time- finalcross(k))...
                     < 0.001) - 15;
                 
   % We ontain the value of the Acc and Gyro peak in the ML direction.
@@ -354,53 +361,53 @@ for k = 1:length(initcross)
     if (find(cycle_start_right == k))% Look for a positive peak.
         
       % Find the longest positive peak.
-      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                        finalcross_acc, 1);
+      [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc(k),...
+                        finalcross_acc(k), 1);
       peaks_APA_acc_Y(k) =  peaks_index;
       
-     [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc,...
-                        finalcross_acc, 1);
+     [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc(k),...
+                        finalcross_acc(k), 1);
       peaks_APA_gyro_Y(k) =  peaks_index;
       
       % Find the next negative peak.
       [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
-                        finalcross_acc, 2);
+                        finalcross_acc(k), 2);
       peaks_APA_acc_Y_2(k) =  peaks_index; 
       
       [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, peaks_APA_acc_Y(k),...
-                        finalcross_acc, 2);
+                        finalcross_acc(k), 2);
       peaks_APA_gyro_Y_2(k) =  peaks_index;
       
     else % Look for a negative peak.
         
          % Find longest negative peak. 
-          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc,...
-                            finalcross_acc, 2);
+          [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, initcross_acc(k),...
+                            finalcross_acc(k), 2);
           peaks_APA_acc_Y(k) =  peaks_index;
           
-          [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc,...
-                            finalcross_acc, 2);
+          [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, initcross_acc(k),...
+                            finalcross_acc(k), 2);
           peaks_APA_gyro_Y(k) =  peaks_index;
           
          % Find the next positive peak.
           [ peaks_index ] = findMaxPeaks(a_trunk_data_Y, peaks_APA_acc_Y(k),...
-                            finalcross_acc, 1);
+                            finalcross_acc(k), 1);
           peaks_APA_acc_Y_2(k) =  peaks_index;
           
           [ peaks_index ] = findMaxPeaks(g_trunk_data_Y, peaks_APA_acc_Y(k),...
-                            finalcross_acc, 1);
+                            finalcross_acc(k), 1);
           peaks_APA_gyro_Y_2(k) =  peaks_index;         
     end
       
   % Find minimum value in AP direction.
 
    [neg_peak_values, neg_peak_locations] = min(...
-                            a_trunk_data_X(initcross_acc:finalcross_acc));
-   peaks_APA_acc_X(k) = neg_peak_locations + initcross_acc -1;
+                            a_trunk_data_X(initcross_acc(k):finalcross_acc(k)));
+   peaks_APA_acc_X(k) = neg_peak_locations + initcross_acc(k) -1;
    
    [neg_peak_values, neg_peak_locations] = min(...
-                            g_trunk_data_X(initcross_acc:finalcross_acc));
-   peaks_APA_gyro_X(k) = neg_peak_locations + initcross_acc -1;
+                            g_trunk_data_X(initcross_acc(k):finalcross_acc(k)));
+   peaks_APA_gyro_X(k) = neg_peak_locations + initcross_acc(k) -1;
    
  end
 
@@ -420,6 +427,13 @@ value_APA_gyro_Y_2 = g_trunk_data_Y(peaks_APA_gyro_Y_2);
 % peak detected.
 duration_APA_acc = (peaks_APA_acc_Y_2 - peaks_APA_acc_Y)./Fs;
 duration_APA_gyro = (peaks_APA_gyro_Y_2 -peaks_APA_gyro_Y)./Fs;
+
+% Calculate the average swing and its variability.
+mean_duration_APA_acc = mean(duration_APA_acc);
+var_duration_APA_acc = mean(duration_APA_acc - mean_duration_APA_acc);
+
+mean_duration_APA_gyro = mean(duration_APA_gyro);
+var_duration_APA_gyro = mean(duration_APA_gyro - mean_duration_APA_gyro);
 
 %------------------------------- Plots Acc --------------------------------
 if strcmpi(showPlotsAPA,'yes')
@@ -704,8 +718,62 @@ ylabel('Ang Velocity X (º/m)');
 zlabel('Time (s)');
 grid on
 axis square
-end  
+end 
 
+%--------------------------------------------------------------------------
+% 6) Detection of APA characteristics with a sigle signal.
+%--------------------------------------------------------------------------
+
+% -------------------------------------------------------------------------
+% 6.1) Synchronised all cycles.
+% -------------------------------------------------------------------------
+
+% The goal of this part of the code is to carry out the mean of all cycles
+% where the patient repeated the same protocol. To do this, we use the cross
+% correlation when the patient does the second step.
+
+% First interation to align the signals and carry out the mean between both.
+ML_COP_mean = aligned_signals( ML_COP_data(initcross_COP(1):finalcross_COP(1)),...
+                     ML_COP_data(initcross_COP(2):finalcross_COP(2)));
+  
+%   figure()
+%   subplot(2,1,1)
+%     plot(AP_COP_complete_ts.time(initcross_COP(1):finalcross_COP(1)),...
+%         s1, 'g');
+%   subplot (2,1,2)
+%       plot(AP_COP_complete_ts.time(initcross_COP(2):finalcross_COP(2)),...
+%         s2, 'b');
+%   figure()
+%     subplot(2,1,1)
+%     plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(s1al)-1),...
+%         s2, 'g')
+%     hold on;
+%       plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(s1al)-1),...
+%         s1al, 'b')
+%     subplot(2,1,2)
+%           plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(s1al)-1),...
+%         mean_signals, 'r')
+
+ for k = 3:length(initcross) 
+     
+    % If patient starts with left foot, we invert the signal to carry out
+    % the mean.
+    if (find(cycle_start_right == k))
+    
+     % Align the signals and carry out the mean.
+     ML_COP_mean = aligned_signals( ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
+                ML_COP_mean );
+    else
+     % Align the signals and carry out the mean.
+     ML_COP_mean = aligned_signals(- ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
+                ML_COP_mean );
+    end
+
+    
+   %   initcross_acc 
+
+ end
+ 
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
 name_file = name_file{1};
