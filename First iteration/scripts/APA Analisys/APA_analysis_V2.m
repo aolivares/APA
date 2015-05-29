@@ -52,10 +52,11 @@
 % 0) Clear workspace.
 % -------------------------------------------------------------------------
 clear all; close all; clc;
+gw = gwLibrary;
 
 % Set flags which control the visibility of the figures.
 showPlotsCheck = 'no';
-showPlotsAPA = 'yes';
+showPlotsAPA = 'no';
 showPlotsCorr = 'no';
 
 % -------------------------------------------------------------------------
@@ -725,7 +726,7 @@ end
 %--------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
-% 6.1) Synchronised all cycles.
+% 6.1) Synchronisation of all cycles.
 % -------------------------------------------------------------------------
 
 % The goal of this part of the code is to carry out the mean of all cycles
@@ -733,9 +734,31 @@ end
 % correlation when the patient does the second step.
 
 % First interation to align the signals and carry out the mean between both.
-ML_COP_mean = aligned_signals( ML_COP_data(initcross_COP(1):finalcross_COP(1)),...
-                     ML_COP_data(initcross_COP(2):finalcross_COP(2)));
-  
+% If patient starts with left foot, we invert the signal to carry out
+% the mean.
+if (find(cycle_start_right == 1))sing1=1; else sing1=-1; end
+if (find(cycle_start_right == 2))sing2=1; else sing2=-1; end
+
+% Center of pressure   
+ML_COP_mean = aligned_signals( sing1.*ML_COP_data(initcross_COP(2):finalcross_COP(2)),...
+                     sing2.*ML_COP_data(initcross_COP(1):finalcross_COP(1)));
+AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(2):finalcross_COP(2)),...
+                     AP_COP_data(initcross_COP(1):finalcross_COP(1)));
+                 
+% Acceleration.
+a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+                     a_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
+
+a_trunk_data_Y_mean = aligned_signals(sing1.* a_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                     sing2.*a_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+                  
+% Angular Velocity.
+g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+                     g_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
+                 
+g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                     sing2.*g_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+
 %   figure()
 %   subplot(2,1,1)
 %     plot(AP_COP_complete_ts.time(initcross_COP(1):finalcross_COP(1)),...
@@ -758,22 +781,134 @@ ML_COP_mean = aligned_signals( ML_COP_data(initcross_COP(1):finalcross_COP(1)),.
      
     % If patient starts with left foot, we invert the signal to carry out
     % the mean.
-    if (find(cycle_start_right == k))
+    if (find(cycle_start_right == k))sing=1;else sing=-1;end
     
-     % Align the signals and carry out the mean.
-     ML_COP_mean = aligned_signals( ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
+    % Align the signals and carry out the mean.
+    % We consider the sing in ML direction.
+     ML_COP_mean = aligned_signals(sing* ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
                 ML_COP_mean );
-    else
-     % Align the signals and carry out the mean.
-     ML_COP_mean = aligned_signals(- ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
-                ML_COP_mean );
-    end
+            
+     a_trunk_data_Y_mean = aligned_signals(sing* a_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
+                        a_trunk_data_Y_mean );
+                    
+     g_trunk_data_Y_mean = aligned_signals( sing*g_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
+                        g_trunk_data_Y_mean );
 
-    
-   %   initcross_acc 
 
+  % In AP direcction, there isn't change of sing.
+  AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(k):finalcross_COP(k)),...
+                     AP_COP_mean);
+                 
+  a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
+                     a_trunk_data_X_mean);
+                 
+  g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
+                     g_trunk_data_X_mean);
+                 
  end
  
+ % ------------------------------------ Plots -----------------------------
+ if strcmpi(showPlotsCheck,'yes')
+ % Center of pressure.
+  figure()
+  subplot(2,1,1)
+  plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(AP_COP_mean)-1),...
+        AP_COP_mean, 'g')
+    
+  subplot(2,1,2)
+   plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(ML_COP_mean)-1),...
+        ML_COP_mean, 'b')
+ 
+ % Acceleration.
+   figure()
+  subplot(2,1,1)
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_X_mean)-1),...
+        a_trunk_data_X_mean, 'b')
+    
+  subplot(2,1,2)
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_Y_mean)-1),...
+        a_trunk_data_Y_mean, 'g')
+    
+ % Angular Velocity
+  figure()
+  subplot(2,1,1)
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_X_mean)-1),...
+        g_trunk_data_X_mean, 'b')
+    
+  subplot(2,1,2)
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_Y_mean)-1),...
+        g_trunk_data_Y_mean, 'g')
+ end
+ 
+% % Select the APA points in all signals. It's necessary in this case
+% % because the signals are softs and it's difficult too detect the peaks
+% % automatically.
+% index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
+% close(gcf)
+% 
+% index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point(logest positive)');
+% close(gcf)
+% 
+% index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point(logest negative)');
+% close(gcf)
+% 
+% index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points(positive-negative)');
+% close(gcf)
+% 
+% index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point(longest negative)');
+% close(gcf)
+% 
+% index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points (positive-negative)');
+% close(gcf)
+% 
+% % Calculate the APA Parameters.
+% APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(1));
+% APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(index_APA_AP_COP(2) ));
+% APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(index_APA_AP_COP(3) ));
+% 
+% APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP);
+% 
+% APA_Acc_X_1 =  abs( a_trunk_data_X_mean(index_APA_acc_X) - a_trunk_data_X_mean(1));
+% 
+% APA_Acc_Y_1 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(1));
+% APA_Acc_Y_2 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(index_APA_acc_Y(2)));
+% APA_Acc_Y_3 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(2)) - a_trunk_data_Y_mean(1));
+% 
+% APA_Gyro_X_1 =  abs( g_trunk_data_X_mean(index_APA_gyro_X) - g_trunk_data_X_mean(1));
+% 
+% APA_Gyro_Y_1 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(1)) - g_trunk_data_Y_mean(1));
+% APA_Gyro_Y_2 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(index_APA_gyro_Y(1)));
+% APA_Gyro_Y_3 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(1));
+% 
+% APA_COP_duration = abs(AP_COP_complete_ts.time(index_APA_ML_COP) - ...
+%     AP_COP_complete_ts.time(initcross_COP(1)+length(ML_COP_mean)-1));
+% 
+% APA_Acc_duration = a_trunk_complete_ts.time(index_APA_acc_Y(2)) - ...
+%     a_trunk_complete_ts.time(index_APA_acc_Y(1));
+% 
+% APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y(2)) - ...
+%     a_trunk_complete_ts.time(index_APA_gyro_Y(1));
+% 
+% APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
+%                  APA_Acc_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
+%                  APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
+%                  APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
+
+%--------------------------------------------------------------------------
+% PCA 
+%--------------------------------------------------------------------------
+
+% Interpolation of the signals.
+max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),length(g_trunk_data_Y_mean)]);
+
+ML_COP_mean = interp1(ML_COP_mean,[1:length(ML_COP_mean)],[1:max_length]);
+a_trunk_data_Y_mean = interp1(a_trunk_data_Y_mean,[1:length(a_trunk_data_Y_mean)],[1:max_length]);
+g_trunk_data_Y_mean = interp1(g_trunk_data_Y_mean,[1:length(g_trunk_data_Y_mean)],[1:max_length]);
+
+X = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
+
+[COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
 name_file = name_file{1};

@@ -32,11 +32,11 @@ function [ mean_signals ] = aligned_signals( input_s1,input_s2 )
 % * Last modification: 29/05/2015
 % -------------------------------------------------------------------------
 
-%   % Check the length.
-%     if length(input_s1)>length(input_s2) 
+  % Check the length.
+    if length(input_s1)>length(input_s2) 
         s1 = input_s1; s2 = input_s2;
-%     else s1 = input_s2; s2 = input_s1;
-%     end  
+    else s1 = input_s2; s2 = input_s1;
+    end  
 
   % Cross correlation between both sycles.
   [acor,lag] = xcorr(s1,s2);
@@ -46,13 +46,24 @@ function [ mean_signals ] = aligned_signals( input_s1,input_s2 )
   lagDiff = abs(lag(I));
   
   % Align the signals
-  s1al = s1(lagDiff:end-1);
+  s1al = s1(lagDiff+1:end-1);
   
+  % Check if the cell is empty. In this case, there isn't any correlation 
+  % between signals, so the result won't be modificated, because the 
+  % correlation will be carried out with itself.
+    if  isempty(s1al) == 1 
+        s1al = s2;
+    end
+    
   % Check whether the dimensions are agree. If it's necessary, it will be
   % added samples.
   if(length(s1al)<length(s2))
       s1al=[ s1al s2(length(s1al):length(s2)-1)];
+      
+  elseif(length(s1al)>length(s2))
+      s2 = [ s2 s1al(length(s2):length(s1al)-1)];
   end
+
   % Mean of both signals.
   mean_signals = (s1al + s2)./2;
 
