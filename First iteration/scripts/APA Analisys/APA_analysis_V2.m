@@ -899,15 +899,36 @@ g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):fi
 %--------------------------------------------------------------------------
 
 % Interpolation of the signals.
+max_length = max([length(ML_COP_mean),length(AP_COP_mean)]);
+
+ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
+AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
+time_COP = AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+max_length-1);
+
+
+X = [ AP_COP_mean; ML_COP_mean; time_COP']';
+
+[COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+
+figure();
+biplot(COEFF(:,1:2),'Scores',SCORE(:,1:2));
+% figure; plot(SCORE(:,1)); figure; plot(X(:,1))
+% figure; plot(SCORE(:,2)); figure; plot(X(:,2))
+% figure; plot(SCORE(:,3)); figure; plot(X(:,3))
+
+% Interpolation of the signals.
 max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),length(g_trunk_data_Y_mean)]);
 
 ML_COP_mean = interp1(ML_COP_mean,[1:length(ML_COP_mean)],[1:max_length]);
-a_trunk_data_Y_mean = interp1(a_trunk_data_Y_mean,[1:length(a_trunk_data_Y_mean)],[1:max_length]);
-g_trunk_data_Y_mean = interp1(g_trunk_data_Y_mean,[1:length(g_trunk_data_Y_mean)],[1:max_length]);
+a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],a_trunk_data_Y_mean,[1:max_length]);
+g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],g_trunk_data_Y_mean,[1:max_length]);
 
 X = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
 
 [COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+
+figure()
+biplot(COEFF(:,1:2),'Scores',SCORE(:,1:2));
 
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
