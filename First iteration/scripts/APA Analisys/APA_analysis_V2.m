@@ -59,6 +59,10 @@ showPlotsCheck = 'no';
 showPlotsAPA = 'no';
 showPlotsCorr = 'no';
 
+% Set extra-caculations
+peakManually = 'no';
+PCA = 'no';
+
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
 % -------------------------------------------------------------------------
@@ -840,95 +844,171 @@ g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):fi
         g_trunk_data_Y_mean, 'g')
  end
  
-% % Select the APA points in all signals. It's necessary in this case
-% % because the signals are softs and it's difficult too detect the peaks
-% % automatically.
-% index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
-% close(gcf)
-% 
-% index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point(logest positive)');
-% close(gcf)
-% 
-% index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point(logest negative)');
-% close(gcf)
-% 
-% index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points(positive-negative)');
-% close(gcf)
-% 
-% index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point(longest negative)');
-% close(gcf)
-% 
-% index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points (positive-negative)');
-% close(gcf)
-% 
-% % Calculate the APA Parameters.
-% APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(1));
-% APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(index_APA_AP_COP(2) ));
-% APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(index_APA_AP_COP(3) ));
-% 
-% APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP);
-% 
-% APA_Acc_X_1 =  abs( a_trunk_data_X_mean(index_APA_acc_X) - a_trunk_data_X_mean(1));
-% 
-% APA_Acc_Y_1 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(1));
-% APA_Acc_Y_2 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(index_APA_acc_Y(2)));
-% APA_Acc_Y_3 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(2)) - a_trunk_data_Y_mean(1));
-% 
-% APA_Gyro_X_1 =  abs( g_trunk_data_X_mean(index_APA_gyro_X) - g_trunk_data_X_mean(1));
-% 
-% APA_Gyro_Y_1 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(1)) - g_trunk_data_Y_mean(1));
-% APA_Gyro_Y_2 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(index_APA_gyro_Y(1)));
-% APA_Gyro_Y_3 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(1));
-% 
-% APA_COP_duration = abs(AP_COP_complete_ts.time(index_APA_ML_COP) - ...
-%     AP_COP_complete_ts.time(initcross_COP(1)+length(ML_COP_mean)-1));
-% 
-% APA_Acc_duration = a_trunk_complete_ts.time(index_APA_acc_Y(2)) - ...
-%     a_trunk_complete_ts.time(index_APA_acc_Y(1));
-% 
-% APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y(2)) - ...
-%     a_trunk_complete_ts.time(index_APA_gyro_Y(1));
-% 
-% APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
-%                  APA_Acc_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
-%                  APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
-%                  APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
+% Select the APA points in all signals. It's necessary in this case
+% because the signals are softs and it's difficult too detect the peaks
+% automatically.
+ if strcmpi(peakManually,'yes')
+index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
+close(gcf)
 
+index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point(logest positive)');
+close(gcf)
+
+index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point(logest negative)');
+close(gcf)
+
+index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points(positive-negative)');
+close(gcf)
+
+index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point(longest negative)');
+close(gcf)
+
+index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points (positive-negative)');
+close(gcf)
+
+% Calculate the APA Parameters.
+APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(1));
+APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(index_APA_AP_COP(2) ));
+APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(index_APA_AP_COP(3) ));
+
+APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP);
+
+APA_Acc_X_1 =  abs( a_trunk_data_X_mean(index_APA_acc_X) - a_trunk_data_X_mean(1));
+
+APA_Acc_Y_1 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(1));
+APA_Acc_Y_2 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(index_APA_acc_Y(2)));
+APA_Acc_Y_3 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(2)) - a_trunk_data_Y_mean(1));
+
+APA_Gyro_X_1 =  abs( g_trunk_data_X_mean(index_APA_gyro_X) - g_trunk_data_X_mean(1));
+
+APA_Gyro_Y_1 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(1)) - g_trunk_data_Y_mean(1));
+APA_Gyro_Y_2 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(index_APA_gyro_Y(1)));
+APA_Gyro_Y_3 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(1));
+
+APA_COP_duration = abs(AP_COP_complete_ts.time(index_APA_ML_COP) - ...
+    AP_COP_complete_ts.time(initcross_COP(1)+length(ML_COP_mean)-1));
+
+APA_Acc_duration = a_trunk_complete_ts.time(index_APA_acc_Y(2)) - ...
+    a_trunk_complete_ts.time(index_APA_acc_Y(1));
+
+APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y(2)) - ...
+    a_trunk_complete_ts.time(index_APA_gyro_Y(1));
+
+APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
+                 APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
+                 APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
+                 APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
+ end
+ 
 %--------------------------------------------------------------------------
-% PCA 
+% 7) Principal Component Analysis (PCA).
 %--------------------------------------------------------------------------
 
+% -------------------------------------------------------------------------
+% 7.1) PCA in COP signal.
+% -------------------------------------------------------------------------
+if strcmpi(PCA,'yes')
 % Interpolation of the signals.
 max_length = max([length(ML_COP_mean),length(AP_COP_mean)]);
 
 ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
 AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
-time_COP = AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+max_length-1);
+time_COP = AP_COP_complete_ts.time(initcross_COP(1):...
+                initcross_COP(1) + max_length-1);
 
+% Apply PCA.
+X_COP = [ AP_COP_mean; ML_COP_mean; time_COP']';
 
-X = [ AP_COP_mean; ML_COP_mean; time_COP']';
-
-[COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+[COEFF_COP,SCORE_COP,latent,tsquare] = princomp(X_COP,'econ');
 
 figure();
-biplot(COEFF(:,1:2),'Scores',SCORE(:,1:2));
-% figure; plot(SCORE(:,1)); figure; plot(X(:,1))
-% figure; plot(SCORE(:,2)); figure; plot(X(:,2))
-% figure; plot(SCORE(:,3)); figure; plot(X(:,3))
+biplot(COEFF_COP(:,1:2),'Scores',SCORE_COP(:,1:2),'VarLabels',{'AP-COP' 'ML-COP' 'time'});
 
+% -------------------------------------------------------------------------
+% 7.2) PCA in Acc signal.
+% -------------------------------------------------------------------------
 % Interpolation of the signals.
-max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),length(g_trunk_data_Y_mean)]);
+max_length = max([length(a_trunk_data_X_mean),length(a_trunk_data_Y_mean)]);
 
-ML_COP_mean = interp1(ML_COP_mean,[1:length(ML_COP_mean)],[1:max_length]);
-a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],a_trunk_data_Y_mean,[1:max_length]);
-g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],g_trunk_data_Y_mean,[1:max_length]);
+a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
+                            a_trunk_data_X_mean,[1:max_length]);
+a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
+                        a_trunk_data_Y_mean,[1:max_length]);
+time_Acc = a_trunk_complete_ts.time(initcross_acc(1):...
+                        initcross_acc(1) + max_length-1);
+                    
+% Apply PCA.
+X_Acc = [a_trunk_data_X_mean; a_trunk_data_Y_mean; time_Acc']';
 
-X = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
-
-[COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+[COEFF_Acc,SCORE_Acc,latent,tsquare] = princomp(X_Acc,'econ');
 
 figure()
-biplot(COEFF(:,1:2),'Scores',SCORE(:,1:2));
+biplot(COEFF_Acc(:,1:2),'Scores',SCORE_Acc(:,1:2),'VarLabels',{'X-Acc' 'Y-Acc' 'time'});
+
+% -------------------------------------------------------------------------
+% 7.3) PCA in Gyro signal.
+% -------------------------------------------------------------------------
+% Interpolation of the signals.
+max_length = max([length(g_trunk_data_X_mean),length(g_trunk_data_Y_mean)]);
+
+g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
+                            g_trunk_data_X_mean,[1:max_length]);
+g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
+                        g_trunk_data_Y_mean,[1:max_length]);
+time_Gyro = a_trunk_complete_ts.time(initcross_acc(1):...
+                        initcross_acc(1) + max_length-1);
+                    
+% Apply PCA.
+X_Gyro = [g_trunk_data_X_mean; g_trunk_data_Y_mean; time_Gyro']';
+
+[COEFF_Gyro,SCORE_Gyro,latent,tsquare] = princomp(X_Gyro,'econ');
+
+figure()
+biplot(COEFF_Gyro(:,1:2),'Scores',SCORE_Gyro(:,1:2),'VarLabels',{'X-Gyro' 'Y-Gyro' 'time'});
+
+% -------------------------------------------------------------------------
+% 7.4) PCA in Antero-Posterior Direction.
+% -------------------------------------------------------------------------
+% Interpolation of the signals.
+max_length = max([length(AP_COP_mean),length(a_trunk_data_X_mean),...
+            length(g_trunk_data_X_mean)]);
+
+AP_COP_mean = interp1(AP_COP_mean,[1:length(AP_COP_mean)],[1:max_length]);
+a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
+                        a_trunk_data_X_mean,[1:max_length]);
+g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
+                        g_trunk_data_X_mean,[1:max_length]);
+                    
+% Apply PCA.
+X_x = [AP_COP_mean; a_trunk_data_X_mean; g_trunk_data_X_mean]';
+
+[COEFF_x,SCORE_x,latent,tsquare] = princomp(X_x,'econ');
+
+figure()
+biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-Gyro'});
+
+% -------------------------------------------------------------------------
+% 7.4) PCA in Medio-Lateral Direction.
+% -------------------------------------------------------------------------
+
+% Interpolation of the signals.
+max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),...
+            length(g_trunk_data_Y_mean)]);
+
+ML_COP_mean = interp1(ML_COP_mean,[1:length(ML_COP_mean)],[1:max_length]);
+a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
+                        a_trunk_data_Y_mean,[1:max_length]);
+g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
+                        g_trunk_data_Y_mean,[1:max_length]);
+                    
+% Apply PCA.
+X_y = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
+
+[COEFF_y,SCORE_y,latent,tsquare] = princomp(X_y,'econ');
+
+figure()
+biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-Gyro'});
+end
 
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
