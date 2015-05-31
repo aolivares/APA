@@ -458,10 +458,11 @@ The measurement noise covariance matrix $\mathbf{R} \in \mathbb{R}^{4 \times 4}$
 \end{bmatrix}\,,
 \end{equation}
 
+\noindent
 The parameters $\sigma^2_1$ and $\sigma^2_2$ are constant. They are determined by computing the sample variance of the measurement data during an initialisation stage of $T_{\text{init}} = 2$\,s seconds, while the subject stands still. The variance of a finite data set with $n$ samples $x_1, x_2, \dots, x_n$ is given by
 
 \begin{equation}
-  \sigma^2 = \frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,.
+  \sigma^2 = \frac{1}{n-1} \sum_{k=1}^n (x_k - \mu)^2, {\rm \ \ where\ \ } \mu = \frac{1}{n} \sum_{k=1}^n x_k\,,
 \end{equation}
 
 \noindent
@@ -470,7 +471,6 @@ with
 \begin{equation}
   n = T_{\text{init}} f_s\,.
 \end{equation}
-
 
 \noindent
 The variances $\sigma^2_3$ and $\sigma^2_4$ of the accelerometer-based angle estimates were found by the optimiser and were set dynamically at each time step $k$, based on the motion intensity. It toggles between $\sigma_s$ and $\sigma_f$, according to slow or fast motion, distinguished by a marker signal $m_k$:
