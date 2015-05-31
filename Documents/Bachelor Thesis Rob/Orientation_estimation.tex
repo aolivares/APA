@@ -144,7 +144,7 @@ Figure \ref{fig:Euler_angles} depicts the rotation about the axes $z, y', X$ by 
 \node [] at (-1.5,2.05) {$Y$};
 \node [] at (-2.0,-1.7) {$Z$};
 \end{tikzpicture}
-\caption{Representation of the body frame (red) with respect to the world frame (blue). The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively, from \cite{Wiki_taitbryan}.} \label{fig:Euler_angles}
+\caption{Representation of the body frame, depicted in red, with respect to the world frame, depicted in blue, from \cite{Wiki_taitbryan}. The body frame was rotated, by the Euler angles $\psi, \theta, \phi$ about the axes $z, y', X$, respectively.} \label{fig:Euler_angles}
 \end{figure}
 
 Euler angles are a simple and intuitive means to represent rotations in three-dimensional space. However, for the above mentioned parameterisation they have singularities at values of $\theta = n \pi$, $n \in \mathbb{Z}$. At these points a rotation about the $x$-axis and the $z$-axis constitute the same motion, which results in the loss of one degree of freedom and makes changes in $\phi$ and $\psi$ indistinguishable. This phenomenon is called \emph{gimbal lock}.
@@ -154,7 +154,7 @@ Euler angles are a simple and intuitive means to represent rotations in three-di
 Coordinates representing a point in one coordinate system can be transformed to another. Such a transformation can be expressed as a multiplication of a matrix with the coordinate vector that is to be transformed. Let $\mathbf{E}$ denote the orthonormal basis $\{x, y, z\} \in \mathbb{R}^3$ and let $\mathbf{E}'$ denote the orthonormal basis $\{X, Y, Z\} \in \mathbb{R}^3$. Furthermore, let $\mathbf{p}$ denote the position vector of an arbitrary point in three-dimensional Euclidean space. The coordinate transformation from $\mathbf{E}$ to $\mathbf{E}'$ is denoted $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}: (p_1, p_2, p_3) \mapsto (p'_1, p'_2, p'_3)$. Then, the linear transformation from $\mathbf{p}$ to $\mathbf{p}'$ is given by
 
 \begin{equation}\label{eq:transformation}
-  \mathbf{p'} = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}(\mathbf{p}) = \mathbf{T} \mathbf{p}\,,
+  \mathbf{p}' = \bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}(\mathbf{p}) = \mathbf{T} \mathbf{p}\,,
 \end{equation}
 
 \noindent
@@ -195,7 +195,7 @@ In order to transform the coordinate vector from the \emph{world frame} to the \
 \end{equation}
 
 \noindent
-Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$), the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y', Z$, according to the right hand rule, respectively. That is, the function $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$ maps the vector $\mathbf{p}$ to its orthogonal projection onto the axes of the coordinate system, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y', Z$. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. Note that $\{x', y', z'\}$ denotes the coordinate frame after the first elemental rotation. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
+Plugged in Equation \ref{eq:transformation} ($\mathbf{T} = \mathbf{C}_{wb}$), the pre-multiplications of the matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta), \mathbf{T}_z(\psi)$ to the vector $\mathbf{p}$ represent the coordinate rotations about the single axes $x, y', Z$, according to the right hand rule, respectively. That is, the function $\bm{\Omega}_{\mathbf{E} \rightarrow \mathbf{E}'}$ maps the vector $\mathbf{p}$ to its orthogonal projection onto the axes of the coordinate system, $\mathbf{p}'$, which result from the respective two-dimensional rotation of $\phi, \theta, \psi$ about the axes $x, y', Z$. This is illustrated for a single rotation around the $z$-axis by the angle $\psi$ in Figure \ref{fig:transformation_matrix}. Note that $\{x', y', z'\}$ denotes the coordinate frame after the first elemental rotation. The matrices $\mathbf{T}_x(\phi), \mathbf{T}_y(\theta)$, and $\mathbf{T}_z(\psi)$ are also known as direction cosine matrices, since their elements are the cosines of the unsigned angles between the body-fixed axes and the axes of the world frame, as shown in \cite{diebel2006attitude}. The form stated here is already simplified. The matrix $\mathbf{C}_{bw}$ that transforms a coordinate vector from the body frame to the world frame is given by
 
 \begin{figure}[t]
 \centering

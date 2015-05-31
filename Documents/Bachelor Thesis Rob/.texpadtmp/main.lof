@@ -4,7 +4,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces A mass-and-spring accelerometer under different conditions: (a) at rest or in uniform motion, (b) accelerating, and (c) at rest, being exposed to the gravity $\mathbf {g}$, from \cite {bhattacharyya_inertial_sensors_applications_13}.\relax }}{8}{figure.caption.11}
 \contentsline {figure}{\numberline {2.2}{\ignorespaces A simple model of a Coriolis vibratory gyroscope: A two degree-of-freedom spring-mass-damper system in a rotating reference frame, from \cite {armenise2010advances}.\relax }}{10}{figure.caption.12}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Representation of the body frame (red) with respect to the world frame (blue). The body frame was rotated, by the Euler angles $\psi , \theta , \phi $ about the axes $z, y', X$, respectively, from \cite {Wiki_taitbryan}.\relax }}{12}{figure.caption.13}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Representation of the body frame, depicted in red, with respect to the world frame, depicted in blue, from \cite {Wiki_taitbryan}. The body frame was rotated, by the Euler angles $\psi , \theta , \phi $ about the axes $z, y', X$, respectively.\relax }}{12}{figure.caption.13}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces An exemplary coordinate rotation about the $z$-axis by an angle $\psi $, illustrating the orthogonal projection on the resulting axes $x', y', z'$.\relax }}{14}{figure.caption.14}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces Acceleration seen by the sensor (b) with and (a) without motion, from \cite {bennett_motion_2014}.\relax }}{15}{figure.caption.15}
 \addvspace {10\p@ }
