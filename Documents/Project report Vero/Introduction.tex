@@ -39,13 +39,14 @@ Diane Bryant, senior vice president of Intel's Data Center Group, said in a rele
 
 \section{Goals}
 
-The main goal of this project is to perform a thorough analysis of Anticipatory Postural Adjustments (referred to as APA in the remainder of this document) of both healthy subjects and PD patients. APAs can be used to characterize step initiation deficits in subjects with PD and also as a differentiating factor which may help early diagnosis of the disease.
+The main goal of this project is to perform a thorough analysis of Anticipatory Postural Adjustments (referred to as APA in the remainder of this document) of PD patients. APAs can be used to characterize step initiation deficits in subjects with PD and also as a differentiating factor which may help early diagnosis of the disease.
 
 To this purpose, we will make use of a database gathered by the medical team in Munich. The database contains both data from a force plate and inertial sensors. The patients wear the motion monitoring system containing the inertial sensors while they step on and down the force plate.
 
 Once the measurements are made, the main objective is to determine whether it is possible to use inertial sensors to extract the information provided by the force plate. That is, we will evaluate the correlation between inertial sensor measurements and the force plate measurements in order to study the feasibility of the wearable device to study APAs in an ambulatory way. 
 
-Additionally, we will try observing if APAs are homogeneus in healthy subjects and the differences with  PD patients. If that is the case, we would be able to build a classifier which is able to distinguish healthy subjects from PD patients based on the data measured by the wearable device and/or the force plate.
+Additionally, we will try making a comparative study between the pitch angles calculated in both inertial sensors and Qualisys optical motion tracking system. The precision of this system allows its use as a reference system to evaluate portable
+motion tracking systems such as the GaitWatch. To carry out this comparation, healthy people were walking over a treadmill at differents velocities.
 
 In a nutshell, the ultimate goal is to determine whether doctors can substitute force plates (which strongly limit the range of action of the patients) by the inertial wearable system (which allows ambulatory).
 
@@ -100,7 +101,7 @@ If we analyse the state of the art of APAs, we can find that first investigation
 
 After of this, researchers tried to explain the influence of other variables, such as several exercices that estimulate differents muscles and the reaction of others\cite{Gay2011}; the age influence for generating postural patterns \cite{Bleuse2006} \cite{Estelle2008}; the signal type that initiates the movement ( visual or auditory) due that it affect initial posture \cite{Mcllroy1993}\cite{Antonia2009}\cite{Vicent1999}\cite{Tard2013}; the fear to fall because it can do that patients adopt differents postures[26]; neurodegenerative disease, like Parkinson and Multiple Sclerosis\cite{Mancini2009}\cite{Jebb2008}\cite{Chris2005}\cite{Hall2013}, or cerebral palsy, like hemiplegia and diplegia, \cite{Hall2013}, generate differences in the APAs too.
 
-All these studies are very important in medical applications. For example, As mentioned previously, there are diseases that affect central nervous System, so it affects  the mobility too. Then, it causes falls in many occasions, therefore  the people that suffer the fall have fear of fall again. The fact that fear of fall causes variations in the APAs doing people  fall again, can help us to prevent them.
+All these studies are very important in medical applications. For example, As mentioned previously, there are diseases that affect Central Nervous System, so it affects  the mobility too. Then, it causes falls in many occasions, therefore  the people that suffer the fall have fear of fall again. The fact that fear of fall causes variations in the APAs doing people  fall again can help us to prevent them.
 
 \subsection{Data Analysis}
 
@@ -108,7 +109,6 @@ In the last years, it has carried out a lot of Works about  calibration of accel
 
 There are other methods that try to be more precise, increasing the number of positions where we record the data \cite{Camps2009}. Also, there are others type of calibration techniques like algorithms based in basic algebraic calculation or in FIR filters. \cite{A.Olivares2013}
 
-As for estimation of orientation for human-body monitoring, if we study the works done so far, we can see that almost all  use a Kalman filter. However, the result with lower signals isn’t very accurate.\cite{A.Olivares2013}
+As for estimation of orientation for human-body monitoring, if we study the works done so far, we can see that almost all  use a Kalman Filter. However, the result with lower signals isn’t very accurate.\cite{A.Olivares2013}
 
-Finally, we will analysis the state of the art of movement recognition in human and classifiers. Quickly, we can see a lot of information about classification because there are a lot of articles and books about this. However, there are others type of studies, which we focus on  it \cite{Banos2012}, that explains methods for human activity recognition based on a sensor weighting hierarchical classifier. This study shows different classification forms that we can use depending on the activities, such as walking or running.
-
+Finally, we will analysis the state of the art of movement recognition in human, feature extraction and classifiers. Quickly, we can see a lot of information about classification because there are a lot of articles and books about this. However, there are others type of studies, which we focus on  them \cite{FrenkelToledo} \cite{Jeon}\cite{Banos2012}, that explain methods for obtaining gait features, pattern definition and human activity recognition based on a sensor weighting hierarchical classifier. 

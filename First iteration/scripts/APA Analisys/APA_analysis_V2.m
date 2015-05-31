@@ -61,7 +61,7 @@ showPlotsCorr = 'no';
 
 % Set extra-caculations
 peakManually = 'no';
-PCA = 'no';
+PCA = 'yes';
 
 % -------------------------------------------------------------------------
 % 1) Select the .mat file and extrat the data form timeseries.
@@ -904,67 +904,67 @@ APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
 % 7) Principal Component Analysis (PCA).
 %--------------------------------------------------------------------------
 
-% -------------------------------------------------------------------------
-% 7.1) PCA in COP signal.
-% -------------------------------------------------------------------------
-if strcmpi(PCA,'yes')
-% Interpolation of the signals.
-max_length = max([length(ML_COP_mean),length(AP_COP_mean)]);
-
-ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
-AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
-time_COP = AP_COP_complete_ts.time(initcross_COP(1):...
-                initcross_COP(1) + max_length-1);
-
-% Apply PCA.
-X_COP = [ AP_COP_mean; ML_COP_mean; time_COP']';
-
-[COEFF_COP,SCORE_COP,latent,tsquare] = princomp(X_COP,'econ');
-
-figure();
-biplot(COEFF_COP(:,1:2),'Scores',SCORE_COP(:,1:2),'VarLabels',{'AP-COP' 'ML-COP' 'time'});
-
-% -------------------------------------------------------------------------
-% 7.2) PCA in Acc signal.
-% -------------------------------------------------------------------------
-% Interpolation of the signals.
-max_length = max([length(a_trunk_data_X_mean),length(a_trunk_data_Y_mean)]);
-
-a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
-                            a_trunk_data_X_mean,[1:max_length]);
-a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
-                        a_trunk_data_Y_mean,[1:max_length]);
-time_Acc = a_trunk_complete_ts.time(initcross_acc(1):...
-                        initcross_acc(1) + max_length-1);
-                    
-% Apply PCA.
-X_Acc = [a_trunk_data_X_mean; a_trunk_data_Y_mean; time_Acc']';
-
-[COEFF_Acc,SCORE_Acc,latent,tsquare] = princomp(X_Acc,'econ');
-
-figure()
-biplot(COEFF_Acc(:,1:2),'Scores',SCORE_Acc(:,1:2),'VarLabels',{'X-Acc' 'Y-Acc' 'time'});
-
-% -------------------------------------------------------------------------
-% 7.3) PCA in Gyro signal.
-% -------------------------------------------------------------------------
-% Interpolation of the signals.
-max_length = max([length(g_trunk_data_X_mean),length(g_trunk_data_Y_mean)]);
-
-g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
-                            g_trunk_data_X_mean,[1:max_length]);
-g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
-                        g_trunk_data_Y_mean,[1:max_length]);
-time_Gyro = a_trunk_complete_ts.time(initcross_acc(1):...
-                        initcross_acc(1) + max_length-1);
-                    
-% Apply PCA.
-X_Gyro = [g_trunk_data_X_mean; g_trunk_data_Y_mean; time_Gyro']';
-
-[COEFF_Gyro,SCORE_Gyro,latent,tsquare] = princomp(X_Gyro,'econ');
-
-figure()
-biplot(COEFF_Gyro(:,1:2),'Scores',SCORE_Gyro(:,1:2),'VarLabels',{'X-Gyro' 'Y-Gyro' 'time'});
+% % -------------------------------------------------------------------------
+% % 7.1) PCA in COP signal.
+% % -------------------------------------------------------------------------
+ if strcmpi(PCA,'yes')
+% % Interpolation of the signals.
+% max_length = max([length(ML_COP_mean),length(AP_COP_mean)]);
+% 
+% ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
+% AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
+% time_COP = AP_COP_complete_ts.time(initcross_COP(1):...
+%                 initcross_COP(1) + max_length-1);
+% 
+% % Apply PCA.
+% X_COP = [ AP_COP_mean; ML_COP_mean; time_COP']';
+% 
+% [COEFF_COP,SCORE_COP,latent,tsquare] = princomp(X_COP,'econ');
+% 
+% figure();
+% biplot(COEFF_COP(:,1:2),'Scores',SCORE_COP(:,1:2),'VarLabels',{'AP-COP' 'ML-COP' 'time'});
+% 
+% % -------------------------------------------------------------------------
+% % 7.2) PCA in Acc signal.
+% % -------------------------------------------------------------------------
+% % Interpolation of the signals.
+% max_length = max([length(a_trunk_data_X_mean),length(a_trunk_data_Y_mean)]);
+% 
+% a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
+%                             a_trunk_data_X_mean,[1:max_length]);
+% a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
+%                         a_trunk_data_Y_mean,[1:max_length]);
+% time_Acc = a_trunk_complete_ts.time(initcross_acc(1):...
+%                         initcross_acc(1) + max_length-1);
+%                     
+% % Apply PCA.
+% X_Acc = [a_trunk_data_X_mean; a_trunk_data_Y_mean; time_Acc']';
+% 
+% [COEFF_Acc,SCORE_Acc,latent,tsquare] = princomp(X_Acc,'econ');
+% 
+% figure()
+% biplot(COEFF_Acc(:,1:2),'Scores',SCORE_Acc(:,1:2),'VarLabels',{'X-Acc' 'Y-Acc' 'time'});
+% 
+% % -------------------------------------------------------------------------
+% % 7.3) PCA in Gyro signal.
+% % -------------------------------------------------------------------------
+% % Interpolation of the signals.
+% max_length = max([length(g_trunk_data_X_mean),length(g_trunk_data_Y_mean)]);
+% 
+% g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
+%                             g_trunk_data_X_mean,[1:max_length]);
+% g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
+%                         g_trunk_data_Y_mean,[1:max_length]);
+% time_Gyro = a_trunk_complete_ts.time(initcross_acc(1):...
+%                         initcross_acc(1) + max_length-1);
+%                     
+% % Apply PCA.
+% X_Gyro = [g_trunk_data_X_mean; g_trunk_data_Y_mean; time_Gyro']';
+% 
+% [COEFF_Gyro,SCORE_Gyro,latent,tsquare] = princomp(X_Gyro,'econ');
+% 
+% figure()
+% biplot(COEFF_Gyro(:,1:2),'Scores',SCORE_Gyro(:,1:2),'VarLabels',{'X-Gyro' 'Y-Gyro' 'time'});
 
 % -------------------------------------------------------------------------
 % 7.4) PCA in Antero-Posterior Direction.
@@ -973,7 +973,7 @@ biplot(COEFF_Gyro(:,1:2),'Scores',SCORE_Gyro(:,1:2),'VarLabels',{'X-Gyro' 'Y-Gyr
 max_length = max([length(AP_COP_mean),length(a_trunk_data_X_mean),...
             length(g_trunk_data_X_mean)]);
 
-AP_COP_mean = interp1(AP_COP_mean,[1:length(AP_COP_mean)],[1:max_length]);
+AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
 a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
                         a_trunk_data_X_mean,[1:max_length]);
 g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
@@ -995,7 +995,7 @@ biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-G
 max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),...
             length(g_trunk_data_Y_mean)]);
 
-ML_COP_mean = interp1(ML_COP_mean,[1:length(ML_COP_mean)],[1:max_length]);
+ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
 a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
                         a_trunk_data_Y_mean,[1:max_length]);
 g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
