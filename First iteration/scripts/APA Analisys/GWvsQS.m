@@ -535,6 +535,9 @@ for i = 1:length(Selection)
                 f, var(pitch_acc_right_shank), var(pitch_acc_right_shank),...
                 var(gy), alpha_KF, beta_KF, pitch_acc_right_shank(1));
             
+            % Centre the signal
+            pitch_KF_right_shank = pitch_KF_right_shank - pitch_KF_right_shank(1);
+            
             % Compute intensity level.         
             lwin_fsd = 20;    
             threshold_fsd = 3;    
@@ -598,6 +601,9 @@ for i = 1:length(Selection)
             pitch_KF_left_shank = gw.fusion_KF(gy, pitch_acc_left_shank,...
                 f, var(pitch_acc_left_shank), var(pitch_acc_left_shank),...
                 var(gy), alpha_KF, beta_KF, pitch_acc_left_shank(1));
+            
+            % Centre the signal.
+            pitch_KF_left_shank = pitch_KF_left_shank - pitch_KF_left_shank(1);
             
              % Compute intensity level.         
             lwin_fsd = 20;    
@@ -663,6 +669,9 @@ for i = 1:length(Selection)
                 f, var(pitch_acc_right_thigh), var(pitch_acc_right_thigh),...
                 var(gy), alpha_KF, beta_KF, pitch_acc_right_thigh(1));
             
+            % Centre the signal.
+            pitch_KF_right_thigh = pitch_KF_right_thigh - pitch_KF_right_thigh(1);
+            
             % Compute intensity level.         
             lwin_fsd = 20;    
             threshold_fsd = 3;    
@@ -727,6 +736,9 @@ for i = 1:length(Selection)
                 f, var(pitch_acc_left_thigh) ,var(pitch_acc_left_thigh),...
                 var(gy), alpha_KF, beta_KF, pitch_acc_left_thigh(1));
             
+           % Centre the signal.
+           pitch_KF_left_thigh = pitch_KF_left_thigh - pitch_KF_left_thigh(1);
+           
             % Compute intensity level.         
             lwin_fsd = 20;    
             threshold_fsd = 3;    
@@ -1161,12 +1173,29 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
     seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:)-data(m3,x,:))));        % marker 3,1: x/z
     
     % Calculate the angle in dregree.
-     Q_leg_pitch(:,n) = (mean([seg_1 seg_2 seg_3],2).*180)./pi;   
+     Q_leg_pitch(:,n) = (mean([seg_1 seg_2 seg_3],2).*180)./pi;
+    
+    % Centre the signals.
+    Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - Q_leg_pitch(1,n);
+    
+    % Calculte features to characterise the movement.
+    [value_angle_pos, loc_angle_pos] = findpeaks(Q_leg_pitch(:,n), 'minpeakheight',7, 'minpeakdistance',200);
+    stride_mean_QS (n) = mean(diff(loc_angle_pos));
+    stride_var_QS (n) = mean(diff(loc_angle_pos)-stride_mean_QS (n));
+    
+    [value_angle_neg,loc_angle_neg] = findpeaks(-Q_leg_pitch(:,n), 'minpeakheight',7,'minpeakdistance',200);
+    minimum = min([length(loc_angle_pos),length(loc_angle_neg)]);
+    swing_mean_QS (n) = mean(loc_angle_pos(1:minimum-1) - loc_angle_neg(1:minimum-1));
+    swing_var_QS (n) = mean((loc_angle_pos(1:minimum-1) - loc_angle_neg(1:minimum-1))- swing_mean_QS(n));
+    
+    angle_QS(1,n) = mean(value_angle_pos);
+    angle_QS(2,n) = mean(value_angle_neg);
 end
 
 % -------------------------------------------------------------------------
 % 4) Comparation.
 % -------------------------------------------------------------------------
+
 if strcmpi(showPlots,'yes')
 for i=1:length(Selection)
     switch i
