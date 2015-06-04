@@ -512,8 +512,10 @@ end
 %    angles is done by fusing the acceleration, magnetic field and angular
 %    rate data using a quaternion extended kalman filter based on gradient 
 %    descent.
+    
 
 for i = 1:length(Selection)
+    
     position_segment = S{Selection(i)};
     switch position_segment
         case 'right shank'
@@ -537,6 +539,25 @@ for i = 1:length(Selection)
             
             % Centre the signal
             pitch_KF_right_shank = pitch_KF_right_shank - pitch_KF_right_shank(1);
+
+           % Calculte features to characterise the movement.
+            [value_angle_neg,loc_angle_neg] = findpeaks(-pitch_KF_right_shank,'minpeakheight',7,'minpeakdistance',200);
+
+            [value_angle_pos, loc_angle_pos] = findpeaks(pitch_KF_right_shank(...
+                loc_angle_neg(1):length(pitch_KF_right_shank)), 'minpeakheight',7, 'minpeakdistance',200,...
+                'Npeaks',length(loc_angle_neg));
+
+            loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
+            stride_GW (1,1) = mean(diff(loc_angle_pos));
+            stride_GW (2,1) = abs(mean(diff(loc_angle_pos)-stride_GW (1,1)));
+
+%             swing_GW (1,1) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1));
+%             swing_GW (2,1) = abs(mean((loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_GW(1,1)));
+
+            angle_GW(1,1) = mean(value_angle_pos);
+            angle_GW(2,1) = mean(value_angle_neg);
             
             % Compute intensity level.         
             lwin_fsd = 20;    
@@ -605,6 +626,25 @@ for i = 1:length(Selection)
             % Centre the signal.
             pitch_KF_left_shank = pitch_KF_left_shank - pitch_KF_left_shank(1);
             
+           % Calculte features to characterise the movement.
+            [value_angle_neg,loc_angle_neg] = findpeaks(-pitch_KF_left_shank,'minpeakheight',7,'minpeakdistance',200);
+
+            [value_angle_pos, loc_angle_pos] = findpeaks(pitch_KF_left_shank(...
+                loc_angle_neg(1):length(pitch_KF_left_shank)), 'minpeakheight',7, 'minpeakdistance',200,...
+                'Npeaks',length(loc_angle_neg));
+
+            loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
+            stride_GW (1,3) = mean(diff(loc_angle_pos));
+            stride_GW (2,3) =abs( mean(diff(loc_angle_pos)-stride_GW(1,3)));
+
+%             swing_GW (1,2) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1));
+%             swing_GW (2,2) = abs( mean((loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_GW(1,2)));
+
+            angle_GW(1,3) = mean(value_angle_pos);
+            angle_GW(2,3) = mean(value_angle_neg);
+            
              % Compute intensity level.         
             lwin_fsd = 20;    
             threshold_fsd = 3;    
@@ -672,6 +712,25 @@ for i = 1:length(Selection)
             % Centre the signal.
             pitch_KF_right_thigh = pitch_KF_right_thigh - pitch_KF_right_thigh(1);
             
+           % Calculte features to characterise the movement.
+            [value_angle_neg,loc_angle_neg] = findpeaks(-pitch_KF_right_thigh,'minpeakheight',7,'minpeakdistance',200);
+
+            [value_angle_pos, loc_angle_pos] = findpeaks(pitch_KF_right_thigh(...
+                loc_angle_neg(1):length(pitch_KF_right_thigh)), 'minpeakheight',7, 'minpeakdistance',200,...
+                'Npeaks',length(loc_angle_neg));
+
+            loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
+            stride_GW (1,2) = mean(diff(loc_angle_pos));
+            stride_GW (2,2) = abs( mean(diff(loc_angle_pos)-stride_GW (1,2)));
+
+%             swing_GW (1,3) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1));
+%             swing_GW (2,3) =abs( mean((loc_angle_pos(1:length(loc_angle_pos)-1) ...
+%                 - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_GW(1,3)));
+
+            angle_GW(1,2) = mean(value_angle_pos);
+            angle_GW(2,2) = mean(value_angle_neg);
+            
             % Compute intensity level.         
             lwin_fsd = 20;    
             threshold_fsd = 3;    
@@ -738,6 +797,23 @@ for i = 1:length(Selection)
             
            % Centre the signal.
            pitch_KF_left_thigh = pitch_KF_left_thigh - pitch_KF_left_thigh(1);
+           
+           % Calculte features to characterise the movement.
+            [value_angle_neg,loc_angle_neg] = findpeaks(-pitch_KF_left_thigh,'minpeakheight',7,'minpeakdistance',200);
+
+            [value_angle_pos, loc_angle_pos] = findpeaks(pitch_KF_left_thigh(...
+                loc_angle_neg(1):length(pitch_KF_left_thigh)), 'minpeakheight',0.5, 'minpeakdistance',200,...
+                'Npeaks',length(loc_angle_neg));
+
+            loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
+            stride_GW (1,4) = mean(diff(loc_angle_pos));
+            stride_GW (2,4) = abs(mean(diff(loc_angle_pos)-stride_GW (1,4)));
+% 
+%             swing_GW (1,4) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
+%             swing_GW (2,4) = abs( mean((loc_angle_pos(1:length(loc_angle_pos)-1)  - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_GW(1,4)));
+
+            angle_GW(1,4) = mean(value_angle_pos);
+            angle_GW(2,4) = mean(value_angle_neg);
            
             % Compute intensity level.         
             lwin_fsd = 20;    
@@ -1027,7 +1103,8 @@ end
 % ---------------------------------------------------------------------
 
 clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
-    pitch_KF_right_thigh pitch_KF_left_thigh time Selection showPlots
+    pitch_KF_right_thigh pitch_KF_left_thigh time Selection showPlots ...
+    stride_GW swing_GW angle_GW
 
 %--------------------------------------------------------------------------
 % 3) Calculate pitch with Qualisys System.
@@ -1179,22 +1256,33 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
     Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - Q_leg_pitch(1,n);
     
     % Calculte features to characterise the movement.
-    [value_angle_pos, loc_angle_pos] = findpeaks(Q_leg_pitch(:,n), 'minpeakheight',7, 'minpeakdistance',200);
-    stride_mean_QS (n) = mean(diff(loc_angle_pos));
-    stride_var_QS (n) = mean(diff(loc_angle_pos)-stride_mean_QS (n));
+    [value_angle_neg,loc_angle_neg] = findpeaks(-Q_leg_pitch(:,n),'minpeakheight',7,'minpeakdistance',200);
     
-    [value_angle_neg,loc_angle_neg] = findpeaks(-Q_leg_pitch(:,n), 'minpeakheight',7,'minpeakdistance',200);
-    minimum = min([length(loc_angle_pos),length(loc_angle_neg)]);
-    swing_mean_QS (n) = mean(loc_angle_pos(1:minimum-1) - loc_angle_neg(1:minimum-1));
-    swing_var_QS (n) = mean((loc_angle_pos(1:minimum-1) - loc_angle_neg(1:minimum-1))- swing_mean_QS(n));
+    [value_angle_pos, loc_angle_pos] = findpeaks(Q_leg_pitch(...
+        loc_angle_neg(1):length(Q_leg_pitch),n), 'minpeakheight',7, 'minpeakdistance',200,...
+        'Npeaks',length(loc_angle_neg));
+    
+    loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
+    stride_QS (1,n) = mean(diff(loc_angle_pos));
+    stride_QS (2,n) = abs( mean(diff(loc_angle_pos)-stride_QS (1,n)));
+    
+%     swing_QS (1,n) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
+%     swing_QS (2,n) = abs(mean((loc_angle_pos(1:length(loc_angle_pos)-1)  - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_QS(1,n)));
     
     angle_QS(1,n) = mean(value_angle_pos);
     angle_QS(2,n) = mean(value_angle_neg);
+    
 end
 
 % -------------------------------------------------------------------------
 % 4) Comparation.
 % -------------------------------------------------------------------------
+% Others parameters.
+mean_stride_GW_QS = mean([stride_QS(1,:) stride_GW(1,:)]);
+mean_var_stride_GW = mean(stride_GW(2,:));
+mean_var_stride_QS = mean(stride_QS(2,:));
+mean_diff_angle = mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_GW(1,:) angle_GW(2,:)]));
+mean_diff_stride = mean(stride_QS(1,:) - stride_GW(1,:));
 
 if strcmpi(showPlots,'yes')
 for i=1:length(Selection)
