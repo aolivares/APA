@@ -989,8 +989,8 @@ figure()
 biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-Gyro'});
 
 % Selection of the APA peaks in the orthogonal space.
-peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
-close(gcf)
+% peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
+% close(gcf)
     
 % CHECKING
 U = zeros(3,3);
@@ -1037,8 +1037,8 @@ figure()
 biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-Gyro'});
 
 % Selection of the APA peaks in the orthogonal space.
-peaks_APA_PCA_y = getCoordenates(SCORE_y(:,1) , SCORE_y(:,2), 'Select the intesresting peaks' );
-close(gcf)
+% peaks_APA_PCA_y = getCoordenates(SCORE_y(:,1) , SCORE_y(:,2), 'Select the intesresting peaks' );
+% close(gcf)
  end
 
 
