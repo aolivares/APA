@@ -1,12 +1,15 @@
 function [ mean_signals ] = aligned_signals( input_s1,input_s2 )
+
 %ALIGNED_SIGNALS align two signals in time using cross-correlation and 
 % carry out the mean of both.
+%
 % - Input:
 %    |_ 's1,s2': input signals.
    
 % - Output:
 %    |_ ' mean_signals ': output signal with the same dimention than shortest.
 %    It's the mean of both signals.
+%
 % -------------------------------------------------------------------------
 % * Authors:      - Prof. Dr. Med. Kai Boetzel (1): 
 %                   |_ kai.boetzel@med.uni-muenchen.de 

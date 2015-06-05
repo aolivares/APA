@@ -812,6 +812,7 @@ g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):fi
  end
  
  % ------------------------------------ Plots -----------------------------
+ APA_Parameters =zeros(1,15);
  if strcmpi(showPlotsCheck,'yes')
  % Center of pressure.
   figure()
@@ -987,6 +988,32 @@ X_x = [AP_COP_mean; a_trunk_data_X_mean; g_trunk_data_X_mean]';
 figure()
 biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-Gyro'});
 
+% Selection of the APA peaks in the orthogonal space.
+peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
+close(gcf)
+    
+% CHECKING
+U = zeros(3,3);
+U(:,1:2) = COEFF_x(:,1:2);
+Signals_X = U*SCORE_x';
+
+% 
+% % figure()
+% plot(AP_COP_mean,'b');
+% hold on
+% plot(Signals_X(1,:),'g');
+% 
+% 
+% figure()
+% plot(a_trunk_data_X_mean,'b');
+% hold on
+% plot(Signals_X(2,:),'g');
+% 
+% 
+% figure()
+% plot(g_trunk_data_X_mean,'b');
+% hold on
+% plot(Signals_X(3,:),'g');
 % -------------------------------------------------------------------------
 % 7.4) PCA in Medio-Lateral Direction.
 % -------------------------------------------------------------------------
@@ -1008,7 +1035,35 @@ X_y = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
 
 figure()
 biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-Gyro'});
-end
+
+% Selection of the APA peaks in the orthogonal space.
+peaks_APA_PCA_y = getCoordenates(SCORE_y(:,1) , SCORE_y(:,2), 'Select the intesresting peaks' );
+close(gcf)
+ end
+
+
+% CHECKING
+U = zeros(3,3);
+U(:,1:2) = COEFF_y(:,1:2);
+Signals_Y = U*SCORE_y';
+
+% figure()
+% plot(ML_COP_mean,'b');
+% hold on
+% plot(Signals_Y(1,:),'g');
+% 
+% 
+% figure()
+% plot(a_trunk_data_Y_mean,'b');
+% hold on
+% plot(Signals_Y(2,:),'g');
+% 
+% 
+% figure()
+% plot(g_trunk_data_Y_mean,'b');
+% hold on
+% plot(Signals_Y(3,:),'g');
+
 
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
@@ -1016,3 +1071,6 @@ name_file = name_file{1};
 filename = name_file{1,1};
 fprintf(['\n Patient ',filename,' has been analysed !!! \n']);
 
+% save(['../../data/APA Parameters/FPvsGW/' ...
+%        filename], 'APA_Parameters','peaks_APA_PCA_x', 'peaks_APA_PCA_y');
+%   
