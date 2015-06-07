@@ -324,5 +324,60 @@ To sum up, we have to differentiate between the foot which the step is done (ste
 
 GYROSCOPE
 
+\subsection{PCA}
+One of the most difficulties inherent in multivariate stadistics is the task of the features extraction to obtain the most relevant information from the original data and represent that information in a lower dimensionality space.
+
+PCA is a qualitative rigorous method for achieving this and it has been widely applied in gait analysis both for the reduction of redundant information and the interpretation of multiple gait signals\cite{PCA}.
+
+This method attempts to represent the data efficiently by descomposing a data space into a linear combination of a small collectionof bases collection of bases consisting of orthogonal axes that maximally decorrelate the data\cite{Jeon}.
+
+Given  set of centered N-dimensional training gait samples 
+$ x_{j}, j=1,...,M     x \in$ such that $ R_{N} $ and $ R=\sum_{k=1}^{M}x_{j}=0 $
+	
+Where M represents the number of gait samples and N is the number of input values. The $ x_{j} $ vectors are aligned in the data matrix X.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/PCA.jpg, width=18cm}
+	\caption{Data matrix X with M rows and N colums.}
+	\label{fig:matrixPCA}
+\end{figure}
+
+The projection of the j-th vector $ x_{j} $ onto the vector 'u' can be calculated in the folowing way:
+
+\begin{equation}
+	\label{projections}
+	p_{j}=\overrightarrow{u}^{T}\overrightarrow{x}_{j}=\sum_{i=1}^{N}u_{i}x_{ij}	
+\end{equation}
+
+We want to find a direction 'u' that maximizes the variance of the projections of all input vectors. That funtion to maximize is:
+
+\begin{equation}
+	\label{maxfunction}
+	J^{PCA}(\overrightarrow{u})=\sigma^{2}(p_{j})=\dfrac{1}{M}\sum_{j=1}^{N}(p_{j}-\bar{p})^{2}=...=\overrightarrow{u}^{T}C\overrightarrow{u}	
+\end{equation}
+
+Where C is the covariance matrix of the data matrix X.
+
+$$C=\dfrac{1}{N}\hat{X}\hat{X}^{T}$$
+
+Using the technique of Lagrange multipliers, the solution to the maximization problem is to compute the eigenvectors and eigenvlues of the covariance matrix.
+
+Thus, we have to solve the following eigvector problem:
+\begin{equation}
+	\label{eigenproblem}
+	\Lambda U=C^{'} U
+\end{equation}
+
+In such a way the orthonormal matrix U contains the eigenvectors $u_{1}, u_{2},...u_{N}$ in its colums and the diagonal matrix $\Lambda$ contains the eigenvalues $\lambda_{1}, \lambda_{2},...,\lambda_{N}$ on its diagonal.
+
+The eigenvalues and the eigenvectors are arranged with respect to the descending order of the eigen values, thus $\lambda_{1}\eqslantgtr\lambda_{2}\eqslantgtr...\eqslantgtr\lambda_{N}$
+
+Therefore, the most variability of the input random vector is contained in the first eigenvectors. Hence, the eigrnvectors are called principal vectors.
+
+So U can be used as a linear transformation to project the original data of high dimension into a space of lower dimension.
+
+$$P=U^T\bar{X}$$
+
+In terms of gait feature extration by choosing the first fwo eigenvectors, PCA can directly perform the dimensional reduction\cite{Jeon}.
 
 \subsection{Results discurssion}
