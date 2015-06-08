@@ -31,7 +31,7 @@
 
 % INFORMATION: This file contains the routine to detect when the second
 % step happens, determine the APAs of the FP and GW signals
-% and the correlation between them. 
+% and the correlation between them. This is only for one patient.
 % The file is structured as follows:
 % 
 % * 1) Extract synchronised data.

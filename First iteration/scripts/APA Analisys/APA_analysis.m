@@ -27,7 +27,7 @@
 %                    Applied Sciences of Munster, Munster, Germany, 
 %                    (student).
 %
-% * Last modification: 06/05/2015
+% * Last modification: 08/06/2015
 
 % INFORMATION: This file contains the routine to detect when the second
 % step happens, determine the APAs of the FP and GW signals in this case 
@@ -37,51 +37,63 @@
 % 0) Clear workspace.
 % -------------------------------------------------------------------------
 clear all; close all; clc;
+gw = gwLibrary;
 
-% Set flags which control the visibility of the figures.
-showPlotsCheck = 'yes';
-showPlotsAPA = 'yes';
-showPlotsCorr = 'no';
+% Set extra-caculations
+peakManually = 'no';
+PCA = 'yes';
 
 % -------------------------------------------------------------------------
-% 1) Select the .mat file and extrat the data form timeseries.
+% 1) Select, read and obtain information from the excel file.
 % -------------------------------------------------------------------------
+ 
+% Select only one data files with a dialog box (only .xlsl files).
+[filename_excel, filepath] = uigetfile('*.xlsx', ...
+    'Select the Excel file with the data (.xlsx)');
 
-% Selection and load of the synchronised file.
-[filename, filepath] = uigetfile('*.mat', ...
-    'Select the data file from the patient (.mat)', '../../data/Synchronised/');
+% Read data from *.xlsx where are stored all filenames and other 
+% interesting information.
+[~,file_excel] = xlsread([filepath, filename_excel]);
+[rows,columns] = size(file_excel);
 
-load(fullfile(filepath,filename));
+% The names of the files are in the first column and draw from the forth row.
+for i = 4:rows
+    
+    % Convert the namefile in a char type to be able to read the file.
+    filename = char(file_excel(i));
+    
+    % Data load.
+    load(fullfile('../../data/Synchronised/',filename));
+    
+    % Extract data from timeseries for plot.
 
-% Extract data from timeseries for plot.
+    % Sum of force of all force plate cells.
+    force_sum_complete_ts = append(force_sum_ts{1, :});
+    force_sum_data = force_sum_complete_ts.data;
 
-% Sum of force of all force plate cells.
-force_sum_complete_ts = append(force_sum_ts{1, :});
-force_sum_data = force_sum_complete_ts.data;
+    % Force of right-left and front-back feet (four signals).
+    force_sensors_complete_ts = append(force_sensors_ts{1, :});
+    fs_data = force_sensors_complete_ts.data;
 
-% Force of right-left and front-back feet (four signals).
-force_sensors_complete_ts = append(force_sensors_ts{1, :});
-fs_data = force_sensors_complete_ts.data;
+    % Antereo-Posterior center of pressure.
+    AP_COP_complete_ts = append(AP_COP_ts{1, :});
+    AP_COP_data = AP_COP_complete_ts.data;
 
-% Antereo-Posterior center of pressure.
-AP_COP_complete_ts = append(AP_COP_ts{1, :});
-AP_COP_data = AP_COP_complete_ts.data;
+    % Medio-Lateral center of pressure.
+    ML_COP_complete_ts = append(ML_COP_ts{1, :});
+    ML_COP_data = ML_COP_complete_ts.data;
 
-% Medio-Lateral center of pressure.
-ML_COP_complete_ts = append(ML_COP_ts{1, :});
-ML_COP_data = ML_COP_complete_ts.data;
+    % Acceleration of the shanks (X-Z axes and left-right direction).
+    a_shanks_complete_ts = append(a_shanks{1, :});
+    a_shanks_data = a_shanks_complete_ts.data;
 
-% Acceleration of the shanks (X-Z axes and left-right direction).
-a_shanks_complete_ts = append(a_shanks{1, :});
-a_shanks_data = a_shanks_complete_ts.data;
+    % Acceleration of the trunk (X, Y, Z axes).
+    a_trunk_complete_ts = append(a_trunk{1, :});
+    a_trunk_data = a_trunk_complete_ts.data;
 
-% Acceleration of the trunk (X, Y, Z axes).
-a_trunk_complete_ts = append(a_trunk{1, :});
-a_trunk_data = a_trunk_complete_ts.data;
-
-% Angular Velocity of trunk (x, Y, Z axes).
-g_trunk_complete_ts = append(g_trunk{1, :});
-g_trunk_data = g_trunk_complete_ts.data;
+    % Angular Velocity of trunk (x, Y, Z axes).
+    g_trunk_complete_ts = append(g_trunk{1, :});
+    g_trunk_data = g_trunk_complete_ts.data;
 
 % -------------------------------------------------------------------------
 % 2) Determine when the second step occurred.
@@ -91,1174 +103,239 @@ g_trunk_data = g_trunk_complete_ts.data;
 % 2.1) Determine the edges (interval) for the second step.
 % -------------------------------------------------------------------------
 
-% Determine when the second step occurred. We extract the part of the signal
-% when the patient carried out the step. It happens between the beginning of
-% activity period of each cycle and the end of FP data.
-% We use the edges of the activity detection in the left shank because
-% usually used to be clearer. But the difference between edges of the right
-% and left shank is very small.
-
-% We consider the second step starts in the beginning of the second period
-% of activity of each cycle.
-init_second_step = edges_left(3:4:length(edges_left));
-
-% Determine the time point where there isn't force signal (considerating 
-% both feet) for each cycle.
-force_sum_data = reshape(force_sum_data(3,1,:), 1, ...
-                 length(force_sum_data(3,1,:)));
-
-edges_FP_signal = find(diff(force_sum_data > 100)~=0);
-final_second_step_edge = edges_FP_signal(2:2:...
-                        length(edges_FP_signal));
-final_second_step = force_sum_complete_ts.time(final_second_step_edge);
-
-
-% -------------------------------------------------------------------------
-% 2.2) Plots
-% -------------------------------------------------------------------------
-
-% --------------- Acceleration in shanks and force-------------------------
-if strcmpi(showPlotsCheck,'yes')
-figure();
-subplot(3, 1, 1);
-plot(a_shanks_complete_ts.time, reshape(a_shanks_data(2, 1, :), ...
-     [1, max(size(a_shanks_data))]));
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the z-axis of the left shank with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-subplot(3, 1, 2)
-plot(a_shanks_complete_ts.time, reshape(a_shanks_data(4, 1, :), ...
-     [1, max(size(a_shanks_data))]), 'g');
-
- 
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the z-axis of the right shank with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-subplot(3, 1, 3)
-plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
-     [4, max(size(fs_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('The force in FP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('Force in N');
-
-% --------------------Acceleration in trunk and COP------------------------
-
-figure()
-subplot(4, 1, 1);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(1, 1, :), ...
-     [1, max(size(a_trunk_data))]))
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-
-subplot(4, 1, 2)
-plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
-     [1, max(size(AP_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('AP COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-
-subplot(4, 1, 3);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(2, 1, :), ...
-     [1, max(size(a_trunk_data))]));
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-
-subplot(4, 1, 4)
-plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
-     [1, max(size(ML_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('ML COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-end
-
-% --------------------Interesting cycles (Zoom)----------------------------
-% ------------------------> 6º cycle
-if strcmpi(showPlotsCheck,'yes')
-figure();
-subplot(5, 1, 1);
-plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
-     [4, max(size(fs_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('The force in FP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('Force in N');
-axis([145, 170, 0, 1500]);
-
-subplot(5, 1, 2);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(1, 1, :), ...
-     [1, max(size(a_trunk_data))]))
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-axis([145, 170, 0, 1]);
-
-
-subplot(5, 1, 3)
-plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
-     [1, max(size(AP_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('AP COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-axis([145, 170, 0, 400]);
-
-subplot(5, 1, 4);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(2, 1, :), ...
-     [1, max(size(a_trunk_data))]));
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-axis([145, 170, -1, 1]);
-
-subplot(5, 1, 5)
-plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
-     [1, max(size(ML_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('ML COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-axis([145, 170, -200, 150]);
-
-% ------------------------> 8º cycle
-figure();
-subplot(5, 1, 1);
-plot(force_sensors_complete_ts.time, reshape(fs_data(:, 1, :), ...
-     [4, max(size(fs_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('The force in FP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('Force in N');
-axis([190, 210, 0, 1500]);
-
-subplot(5, 1, 2);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(1, 1, :), ...
-     [1, max(size(a_trunk_data))]))
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-axis([190, 210, 0, 1]);
-
-
-subplot(5, 1, 3)
-plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
-     [1, max(size(AP_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('AP COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-axis([190, 210, 0, 400]);
-
-subplot(5, 1, 4);
-plot(a_trunk_complete_ts.time, reshape(a_trunk_data(2, 1, :), ...
-     [1, max(size(a_trunk_data))]));
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Acceleration in g');
-axis([190, 210, -1, 1]);
-
-subplot(5, 1, 5)
-plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
-     [1, max(size(ML_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('ML COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-axis([190, 210, -200, 150]);
-end
-
-% -------------------------------------------------------------------------
-% 3) Differences when the patient starts with left or right foot in the 
-% first step to see the differences.
-% -------------------------------------------------------------------------
-
-% % Determine the cycles when patient start with left or right foot.
-% 
-% % Beginning the step with the left foot.
-% cycle_start_left = find(sync_peaks_l < sync_peaks_r);
-% a_trunk_left = a_trunk(cycle_start_left);
-% 
-% % Inicialization of the variables
-% a_trunk_left_X = zeros(length(cycle_start_left),5000); 
-% a_trunk_left_Y = zeros(length(cycle_start_left),5000);
-% 
-% % We group the cycles start with the left foot.
-% for i = 1:length(cycle_start_left)
-%     
-%    a_trunk_left_data = a_trunk_left{i}.data;
-%    
-%    a_trunk_left_data_X = reshape(a_trunk_left_data(1, 1, :), ...
-%        [1, max(size(a_trunk_left_data))]);
-%    a_trunk_left_X (i,1:length(a_trunk_left_data_X)) = a_trunk_left_data_X;
-%    
-%    a_trunk_left_data_Y = reshape(a_trunk_left_data(2, 1, :), ...
-%        [1, max(size(a_trunk_left_data))]);
-%    a_trunk_left_Y (i,1:length(a_trunk_left_data_Y)) = a_trunk_left_data_Y;  
-%     
-% end
-% 
-% figure()
-% plot(a_trunk_left_Y(2:3,:)');
-% title('Pattern of the Acceleration signal of the trunk in the Y-axe when step happend with the left foot');
-% axis([0, 2000, -0.5, 0.5]);
-% 
-% 
-% % Beginning with the right foot.
-% cycle_start_right = find(sync_peaks_r < sync_peaks_l);
-% a_trunk_right = a_trunk(cycle_start_right);
-% 
-% 
-% % Inicialization of the variables.
-% a_trunk_right_X = zeros(length(cycle_start_left),5000); 
-% a_trunk_right_Y = zeros(length(cycle_start_left),5000);
-% 
-% % We group the cycles start with the left foot.
-% for i = 1:length(cycle_start_right)
-%     
-%    a_trunk_right_data = a_trunk_right{i}.data;
-%    
-%    a_trunk_right_data_X = reshape(a_trunk_right_data(1, 1, :), ...
-%        [1, max(size(a_trunk_right_data))]);
-%    a_trunk_right_X (i,1:length(a_trunk_right_data_X)) = a_trunk_right_data_X;
-%    
-%    a_trunk_right_data_Y = reshape(a_trunk_right_data(2, 1, :), ...
-%        [1, max(size(a_trunk_right_data))]);
-%    a_trunk_right_Y (i,1:length(a_trunk_right_data_Y)) = a_trunk_right_data_Y;  
-%     
-% end
-% 
-% figure()
-% plot(a_trunk_right_Y(1:2,:)');
-% title('Pattern of the Acceleration signal of the trunk in the Y-axe when step happend with the right foot');
-% axis([0, 2000, -0.5, 0.5]);
-% 
-% figure ()
-% plot(a_trunk_right_X');
-% title('Pattern of the Acceleration signal of the trunk in the X-axe');
-% axis([0, 2000, 0, 1]);
-
-% -------------------------------------------------------------------------
-% 4) Detect APA in trunk signal.
-% -------------------------------------------------------------------------
-
-% -------------------------------------------------------------------------
-% 4.1) Application of Activity detectors in trunk signal
-% -------------------------------------------------------------------------
-% wag = wagLibrary;    
-% 
-% % Define input signal for rigth shank.
-% axC =  reshape(a_trunk_data(1, 1, :), ...
-%      [1, max(size(a_trunk_data))]);
-% ayC =  reshape(a_trunk_data(2, 1, :), ...
-%      [1, max(size(a_trunk_data))]);
-% 
-% input_signal = sqrt(axC .^ 2 + ayC .^ 2)';
-% 
-% % Computation of intensity markers.
-% 
-% % LTSD (window size, decision threshold and overlapping).
-% lwin_ltsd = 100;       threshold_ltsd = 14;   shift_ltsd = 10;
-% 
-% % Get the decision signal of the LTSD algorithm and the marker.
-% [V_ltsd, T_ltsd] = wag.ltsd(input_signal, lwin_ltsd, shift_ltsd, 512, ...
-%     threshold_ltsd);
-% [marker_ltsd, T_ltsd_expanded] = wag.compEstMark(V_ltsd, T_ltsd, ...
-%     input_signal, lwin_ltsd, shift_ltsd);
-%   
-% figure
-% plot(T_ltsd_expanded)
-% hold on
-% plot(threshold_ltsd * ones(1, length(T_ltsd_expanded)), 'r')
-% legend('Detector output (LTSD)', 'Detection threshold')
-% 
-% figure
-% plot(input_signal)
-% hold on
-% plot(marker_ltsd +1, 'r')
-% legend('Input signal','LTSD decision')
-% 
-% % Determinate the initial and end point of each interval where we need to 
-% % find the peaks, i.e, the first activity period of each cycle. 
-% edges = find(diff(marker_ltsd)~=0);
-% initcross = edges(3:4:length(edges));
-% finalcross = edges(4:4:length(edges));
-
-% -------------------------------------------------------------------------
-% 4.2) Find the first 'negative' peak of each cycle in the signal 
-%      of the x-axis of the acceleration of the trunk, that is, the point 
-%      in time when the patient shifted backward. 
-%      It is done the same with the syroscope signal.
-% -------------------------------------------------------------------------
-
-% Determine the initial and end point (time) of each interval where 
-% we need to find the peaks, i.e, the second activity period of each cycle.
-initcross = time_GW(init_second_step);
-finalcross = final_second_step';
-
-% Obtain the trunk signal of X-axis (Antereo-Posterior movement) and AP COP
-% of both feet.
-a_trunk_data_X = reshape(a_trunk_data(1, 1, :), ...
-                [1, max(size(a_trunk_data))]);
-g_trunk_data_X = reshape(g_trunk_data(1, 1, :), ...
-                [1, max(size(g_trunk_data))]);
-AP_COP_data_shanks = reshape(AP_COP_data(3, 1, :), ...
-                [1, max(size(AP_COP_data))]);
-            
-% Obtain the samples when the patient goes up toward the platform.
-init_FP_edge = edges_FP_signal(1:2:...
-                        length(edges_FP_signal));
-init_FP_edge = AP_COP_complete_ts.time (init_FP_edge);
-
-% Calculate the peaks in each interval.
-for k = 1:length(initcross)
+    % Determine when the second step occurred. We extract the part of the signal
+    % when the patient carried out the step. It happens between the beginning of
+    % activity period of each cycle and the end of FP data.
+    % We use the edges of the activity detection in the left shank because
+    % usually used to be clearer. But the difference between edges of the right
+    % and left shank is very small.
+
+    % We consider the second step starts in the beginning of the second period
+    % of activity of each cycle.
+    init_second_step = edges_left(3:4:length(edges_left));
+
+    % Determine the time point where there isn't force signal (considerating 
+    % both feet) for each cycle.
+    force_sum_data = reshape(force_sum_data(3,1,:), 1, ...
+                     length(force_sum_data(3,1,:)));
+
+    edges_FP_signal = find(diff(force_sum_data > 100)~=0);
+    final_second_step_edge = edges_FP_signal(2:2:...
+                            length(edges_FP_signal));
+    final_second_step = force_sum_complete_ts.time(final_second_step_edge);
+
+%--------------------------------------------------------------------------
+% 3) Detect APA in trunk signal.
+%--------------------------------------------------------------------------
+
+%--------------------------------------------------------------------------
+% 3.1) Determine when the second step (when patient goes down from
+% plateform) starts with left or right foot.
+%--------------------------------------------------------------------------
+    % When the patient starts to step with left foot, last value of the cycle
+    % of ML COP is positive because the step finishes the pressure is located
+    % in the right foot.
+    % When the patient starts with right foot, the last value of the ML COP
+    % cycle will be negative.
+    AP_COP_data =  reshape(AP_COP_data(3, 1, :), ...
+                    [1, max(size(AP_COP_data))]);
+
+    ML_COP_data =  reshape(ML_COP_data(3, 1, :), ...
+                    [1, max(size(ML_COP_data))]);
+
+    cycle_start_right = find(ML_COP_data(final_second_step_edge) < 0);
     
-    % To find a noninteger value, we use a tolerance value based on our data.
-    % Otherwise, the result is sometimes an empty matrix due to 
-    % floating-point roundoff error.
-    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k)) ...
-                        < 0.001);
-    initcross_COP = find(abs(AP_COP_complete_ts.time - initcross(k))...
-                        < 0.001);
+    % Determine the initial and end point (time) of each interval where 
+    % we need to find the peaks, i.e, the second activity period of each cycle.
+    initcross = time_GW(init_second_step);
+    finalcross = final_second_step';
     
+    % Determine the initial and end point of each interval for FP and GW.
+    for k = 1:length(initcross)
     
-    % Calculate the value of the first point of the second step to obtain 
-    % afterwards the height of the COP peak.
-    % The same considerating the point when the patient goes up the
-    % plateform.
-    initcross_trunk_complete(k) = initcross_trunk;
-    init_FP = find(abs(AP_COP_complete_ts.time - init_FP_edge(k)) < 0.001);
-    value_initcross_AP(k) = AP_COP_data_shanks(initcross_COP);
-    value_init_FP_AP(k) = AP_COP_data_shanks(init_FP + 1);
-    
-    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k))...
-                        < 0.001);
-    finalcross_COP = find(abs(AP_COP_complete_ts.time - finalcross(k))...
+     % To find a noninteger value, we use a tolerance value based on our data.
+     % Otherwise, the result is sometimes an empty matrix due to 
+     % floating-point roundoff error.
+     initcross_COP (k) = find(abs(ML_COP_complete_ts.time - initcross(k))...
+                    < 0.001);
+     finalcross_COP(k) = find(abs(ML_COP_complete_ts.time - finalcross(k))...
                     < 0.001);
                 
-%      % Find all positive peaks in each interval before APA peak.
-%      [pos_peak_values, pos_peak_locations] = findpeaks(...
-%                         AP_COP_data_shanks(...
-%                         initcross_COP:finalcross_COP));
-%                     
-%      pos_peak_value = find(AP_COP_data_shanks(...
-%                     initcross_COP:finalcross_COP)== max(...
-%                     pos_peak_values), 1) + initcross_COP - 1;
-%                 
-%       % Check if there are positive peaks detected.
-%      if isnan(pos_peak_value)
-%       % Find all peaks in each interval of AP COP signal.
-%      [neg_peak_values, neg_peak_locations] = min(...
-%                             AP_COP_data_shanks(...
-%                             initcross_COP:finalcross_COP));
-%      peaks_APA_AP_COP (k)=neg_peak_locations + initcross_COP - 1;
-%      else
-%     [neg_peak_values, neg_peak_locations] = min(...
-%                             AP_COP_data_shanks(...
-%                             pos_peak_value:finalcross_COP));
-%                         
-%     peaks_APA_AP_COP (k) = neg_peak_locations + pos_peak_value - 1;
-%      end
-
-      % Find all peaks in each interval of AP COP signal.
-     [neg_peak_values, neg_peak_locations] = findpeaks(...
-                            -AP_COP_data_shanks(...
-                            initcross_COP:finalcross_COP));
-                        
-     % Store the index of the first negative peak.                                      
-    peaks_APA_AP_COP(k) = find(AP_COP_data_shanks(...
-                    initcross_COP:finalcross_COP)== -max(...
-                    neg_peak_values), 1) + initcross_COP - 1;
-    
-    
-    % Find all peaks in each interval. The APA peak of the trunk
-    % acceleration must be near to the APA AP peak value. We use this to
-    % calculate the APA in signal consideratig a range of 0.3 s (60
-    % samples) before and after the peak obtained. With this consideration
-    % we have more accurate results.
-    peak_position = find(abs(a_trunk_complete_ts.time - ...
-                    AP_COP_complete_ts.time(peaks_APA_AP_COP(k))) < 0.001);
-    [neg_peak_values, neg_peak_locations] = min(...
-                            a_trunk_data_X(...
-                            peak_position - 60:peak_position + 60));
-
-    % Store the index of the value obtained above.                                      
-    peaks_APA_trunk_X(k) = neg_peak_locations + peak_position - 61;
-                
-%      % Find all peaks in each interval of the gyroscope signal.                     
-%      [neg_peak_values, neg_peak_locations] = findpeaks(...
-%                             -g_trunk_data_X(...
-%                             initcross_trunk:finalcross_trunk));
-%                                        
-%     % Store the index of the last positive peak in the gyroscope signal.                                    
-%     peaks_APA_trunk_Gyro_X(k) = find(g_trunk_data_X(...
-%                     initcross_trunk:finalcross_trunk)== -max(...
-%                     neg_peak_values), 1) + initcross_trunk - 1;
-
-     [neg_peak_values, neg_peak_locations] = min(...
-                            g_trunk_data_X(...
-                            peak_position - 60:peak_position + 60));
-
-    % Store the index of the value obtained above.                                      
-    peaks_APA_trunk_Gyro_X(k) = neg_peak_locations + peak_position - 61;               
-   
-    % Find the peaks before and after the APA peak to calculate the height
-    % peak.
-    maximuns_peaks_first (k)= max(AP_COP_data_shanks(initcross_COP:peaks_APA_AP_COP (k) ));
-    maximuns_peaks_last (k) = max(AP_COP_data_shanks(peaks_APA_AP_COP(k) :finalcross_COP));
-  
-    % Segmentation of the signals with a Win= 0.25s
-    fs = 200;
-    Win_trunk = 0.25 * fs;
-    num_segment = round((finalcross_trunk - initcross_trunk)/Win_trunk);
-    Win_COP = (finalcross - initcross)/num_segment;
-    
-     for l=1:num_segment
-         
-        % Obtain every segment of the interval of trunk acc signal.
-        segment_trunk  = a_trunk_data_X(initcross_trunk + (l-1)*Win_trunk:...
-            initcross_trunk + l*Win_trunk);
-        
-        % Mean and variance of every segment
-        mean_trunk (k,l) = mean(segment_trunk);
-        var_trunk (k,l) = var (segment_trunk);
-        
-        % Obtain every segment of the interval of COP AP signal.
-        segment_COP_AP = AP_COP_data_shanks(round(initcross_COP + (l-1)*Win_COP):...
-                    round(initcross_COP+ l*Win_COP));
-                
-        % Mean and variance of every segment.
-        mean_COP_AP(k,l) = mean(segment_COP_AP);
-        var_COP_AP (k,l) = var (segment_COP_AP); 
-   
-     end
-    
-end
-
-% Calculate the value of the APA peaks in each cycle in the trunk 
-% acceleration and the AP COP. 
-value_APA_trunk_X = a_trunk_data_X(peaks_APA_trunk_X);
-value_APA_trunk_Gyro_X = g_trunk_data_X(peaks_APA_trunk_Gyro_X);
-value_APA_AP_COP = AP_COP_data_shanks(peaks_APA_AP_COP);
-% 
-% % Calculate the linear correlation between the peaks detected with the 
-% % acceleration signal of the trunk and AP COP.
-% [corr_trunk_AP, prob_trunk_AP] = corr(value_APA_trunk_X', value_APA_AP_COP');
-% 
-% % Calculate the correlation between the height of the AP COP peaks.
-value_APA_AP_COP_1 = abs(value_APA_AP_COP - value_initcross_AP);
-% [corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X',...
-%                                     value_APA_AP_COP_2');
-%                                 
-% value_APA_AP_COP_3 = value_APA_AP_COP - value_init_FP_AP;
-% [corr_trunk_AP_3, prob_trunk_AP_3] = corr(value_APA_trunk_X',...
-%                                     value_APA_AP_COP_3');
-
-% This is the most iteresting correlation.                               
-value_APA_trunk_X_1 = abs(value_APA_trunk_X - a_trunk_data_X(initcross_trunk_complete));
-value_APA_trunk_X_2 = abs(value_APA_trunk_X - mode(a_trunk_data_X));
-[corr_trunk_AP_1, prob_trunk_AP_1] = corr(value_APA_trunk_X_1',...
-                                    value_APA_AP_COP_1');
-
-value_APA_AP_COP_2 = abs(value_APA_AP_COP - maximuns_peaks_first);
-[corr_trunk_AP_2, prob_trunk_AP_2] = corr(value_APA_trunk_X_2',...
-                                    value_APA_AP_COP_2');
-                                
-% Calculate the correlation between the Gyro trunk signal peaks and AP COP.
-% peaks.
-value_APA_trunk_Gyro_X_1 = abs(value_APA_trunk_Gyro_X - g_trunk_data_X(initcross_trunk_complete));
-[corr_trunk_AP_Gyro_1, prob_trunk_AP_Gyro_1] = corr(value_APA_trunk_Gyro_X_1',...
-                                            value_APA_AP_COP_1');
-                                        
-value_APA_trunk_Gyro_X_2 = abs(value_APA_trunk_Gyro_X - mode(g_trunk_data_X));                                        
-[corr_trunk_AP_Gyro_2, prob_trunk_AP_Gyro_2] = corr(value_APA_trunk_Gyro_X_2',...
-                                            value_APA_AP_COP_2');
-                                        
-% Calculate the linear correlation between the patter that characterise the
-% patient. This correlation shows the similitudes between the trunk and
-% AP_COP signals.
-
-mean_mean_trunk = mean(mean_trunk);
-mean_mean_COP_AP = mean(mean_COP_AP);
-[corr_mean, prob_mean] = corr(mean_trunk', mean_COP_AP');
-corr_mean_mean= mean(corr_mean(:,1));
-prob_mean_mean = mean(prob_mean(:,1));
-                                
-%--------------------------------------------------------------------------
-% Plots
-%--------------------------------------------------------------------------
-
-%-------------Peaks of APA in trunk acceleration and AP COP----------------
-if strcmpi(showPlotsAPA,'yes')
-figure ();
-subplot(2,1,1)
-plot(a_trunk_complete_ts.time, a_trunk_data_X, 'g');
-hold on;
-plot(a_trunk_complete_ts.time(peaks_APA_trunk_X), value_APA_trunk_X , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-title(['Acceleration of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('Acceleration (g)');
-
-
-subplot(2,1,2)
-plot(AP_COP_complete_ts.time, AP_COP_data_shanks, 'g');
-hold on;
-plot(AP_COP_complete_ts.time(peaks_APA_AP_COP), value_APA_AP_COP , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['AP COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('AP COP (mm)');
-end
-
-% -------------Correlation between peak AP_COP and peak Acc trunk----------
-if strcmpi(showPlotsCorr,'yes')
-figure ()
-
-plot(value_APA_trunk_X_1, value_APA_AP_COP_2, '.r');
-title('Linear correlation between peak AP_COP and peak Acc trunk');
-xlabel('Acceleration (g)');
-ylabel('AP_COP (mmm)');
-end
-
-
-% -------------------------------------------------------------------------
-% 4.3) Determine when th second step (when patient goes down from
-% plateform) starts with left or right foot.
-% -------------------------------------------------------------------------
-% When the patient starts to step with left foot, last value of the cycle
-% of ML COP is positive because the step finishes with the right foot, so
-% the ML COP is shifted toward right (positive value). 
-% When the patient starts with right foot, the last value of the ML COP
-% cycle will be negative.
-
-ML_COP_data_shanks =  reshape(ML_COP_data(3, 1, :), ...
-                [1, max(size(ML_COP_data))]);
-
-cycle_start_right = find(ML_COP_data_shanks(final_second_step_edge) < 0);
-
-% -------------------------------------------------------------------------
-% 4.4) Find the APA peaks of ML COP and trunk acceleration of Y-axis.
-% -------------------------------------------------------------------------
-
-% If the patient starts to walk with the left foot, the APA peak is negative
-% (in ML COP and Acc trunk of the Y-axis). 
-% If the patient starts to walk with the right foot, the APA peak is
-% positive (in ML COP and Acc trunk of the Y-axis).
-
-% Obtain the trunk signal of Y-axis (Medio-Lateral movement). 
-a_trunk_data_Y = reshape(a_trunk_data(2, 1, :), ...
-                [1, max(size(a_trunk_data))]);
-g_trunk_data_Y = reshape(g_trunk_data(2, 1, :), ...
-                [1, max(size(g_trunk_data))]);
-            
-% Calculate the peaks in each interval.
-for k = 1:length(initcross)
-    
-    % To find a noninteger value, we use a tolerance value based on our data.
-    % Otherwise, the result is sometimes an empty matrix due to 
-    % floating-point roundoff error.
-    initcross_trunk = find(abs(a_trunk_complete_ts.time - initcross(k))...
-                        < 0.001);
-    initcross_COP = find(abs(ML_COP_complete_ts.time - initcross(k))...
-                        < 0.001);
-    
-    % Calculate the value of the first point to obtain afterwards the
-    % height of the COP peak.
-    value_initcross_ML(k) = ML_COP_data_shanks(initcross_COP);
-
-    finalcross_trunk = find(abs(a_trunk_complete_ts.time - finalcross(k))...
-                        < 0.001);
-    finalcross_COP = find(abs(ML_COP_complete_ts.time - finalcross(k))...
-                        < 0.001);
-    
-    % Differenciate when the patient starts with left or right foot.
-    if (find(cycle_start_right == k))% Look for a positive peak.
-        
-         % Find all peaks in each interval.
-        [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                ML_COP_data_shanks(...
-                                initcross_COP:finalcross_COP));
-
-        % Store the index of the last positive peak.                                      
-        peaks_APA_ML_COP(k) = find(ML_COP_data_shanks(...
-                        initcross_COP:finalcross_COP)== max(...
-                        pos_peak_values), 1) + initcross_COP - 1;
-                    
-        % Find all peaks in each interval in acc trunk.            
-        peak_position = find(abs(a_trunk_complete_ts.time - ...
-                    ML_COP_complete_ts.time(peaks_APA_ML_COP(k))) < 0.001);
-                
-        [pos_peak_values, pos_peak_locations] = max(...
-                            a_trunk_data_Y(...
-                            peak_position - 60:peak_position + 60));
-
-        % Store the index of the value obtained above.                                      
-        peaks_APA_trunk_Y(k) = pos_peak_locations + peak_position - 61;
-                    
-%         % Find all peaks in each interval before a negative peak.
-%         [neg_peak_values, neg_peak_locations] = findpeaks(...
-%                                 -a_trunk_data_Y(...
-%                                 initcross_trunk:finalcross_trunk));
-%                                    
-%         peaks_APA_trunk_Y_neg = find(a_trunk_data_Y(...
-%                         initcross_trunk:finalcross_trunk)== -max(...
-%                         neg_peak_values), 1) + initcross_trunk - 1;
-%                     
-%         [pos_peak_values, pos_peak_locations] = findpeaks(...
-%                                 a_trunk_data_Y(...
-%                                 initcross_trunk:peaks_APA_trunk_Y_neg));
-% 
-%         % Store the index of the last negative peak.                                      
-%         peaks_APA_trunk_Y(k) = find(a_trunk_data_Y(...
-%                         initcross_trunk:finalcross_trunk)== max(...
-%                         pos_peak_values), 1) + initcross_trunk - 1;
-
-                    
-        % Find positives peaks in gyroscope trunk signal before the largest 
-        % negative peak.
-         [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -g_trunk_data_Y(...
-                                initcross_trunk:finalcross_trunk));
-                            
-         peaks_APA_trunk_Gyro_Y_neg = find(g_trunk_data_Y(...
-                    initcross_trunk:finalcross_trunk)== -max(...
-                    neg_peak_values), 1) + initcross_trunk - 1;     
-    
-         [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                g_trunk_data_Y(...
-                                initcross_trunk:peaks_APA_trunk_Gyro_Y_neg));
-                            
-         % Check if there are positive peaks detected.
-         if isnan(pos_peak_values)
-            [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                g_trunk_data_Y(...
-                                initcross_trunk:finalcross_trunk));
-         end
-                            
-       % Store the index of the last positive peak.                                      
-        peaks_APA_trunk_Gyro_Y(k) = find(g_trunk_data_Y(...
-                    initcross_trunk:finalcross_trunk)== max(...
-                    pos_peak_values), 1) + initcross_trunk - 1;
-        
-    else % Look for a negative peak.
-        
-         % Find all peaks in each interval.    
-        [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -ML_COP_data_shanks(...
-                                initcross_COP:finalcross_COP));
-
-        % Store the index of the last negative peak.                                      
-        peaks_APA_ML_COP(k) = find(ML_COP_data_shanks(...
-                        initcross_COP:finalcross_COP)== -max(...
-                        neg_peak_values), 1) + initcross_COP - 1;
-                    
-        % Find all peaks in each interval.
-        [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -a_trunk_data_Y(...
-                                initcross_trunk:finalcross_trunk));
-
-        % Store the index of the last negative peak.                                      
-        peaks_APA_trunk_Y(k) = find(a_trunk_data_Y(...
-                        initcross_trunk:finalcross_trunk)== -max(...
-                        neg_peak_values), 1, 'last') + initcross_trunk - 1;
-                    
-        % Find negatives peaks in gyroscope trunk signal before the largest
-        % positives peaks.
-        [pos_peak_values, pos_peak_locations] = findpeaks(...
-                                g_trunk_data_Y(...
-                                initcross_trunk:finalcross_trunk));
-                                           
-        peaks_APA_trunk_Gyro_Y_pos = find(g_trunk_data_Y(...
-                    initcross_trunk:finalcross_trunk)== max(...
-                    pos_peak_values), 1) + initcross_trunk - 1;
-                
-        [neg_peak_values, neg_peak_locations] = findpeaks(...
-                                -g_trunk_data_Y(...
-                                initcross_trunk:peaks_APA_trunk_Gyro_Y_pos));
-                            
-         % Check if there are negative peaks detected.
-         if isnan(neg_peak_values)else
-         [neg_peak_values, neg_peak_locations] = findpeaks(...
-                    -g_trunk_data_Y(...
-                    initcross_trunk:finalcross_trunk)); 
-         end
-
-        % Store the index of the last negative peak.                                      
-         peaks_APA_trunk_Gyro_Y(k) = find(g_trunk_data_Y(...
-                    initcross_trunk:finalcross_trunk)== -max(...
-                    neg_peak_values), 1) + initcross_trunk - 1;
-                    
+     initcross_acc (k)= find(abs( a_trunk_complete_ts.time- initcross(k))...
+                    < 0.001);
+     finalcross_acc (k)= find(abs( a_trunk_complete_ts.time- finalcross(k))...
+                    < 0.001);
     end
-                    
+    
+    % Obtaint he signals from GW.
+    a_trunk_data_X = reshape(a_trunk_data(1, 1, :), ...
+                [1, max(size(a_trunk_data))]);
+    a_trunk_data_Y = reshape(a_trunk_data(2, 1, :), ...
+                    [1, max(size(a_trunk_data))]);
+
+    g_trunk_data_X = reshape(g_trunk_data(1, 1, :), ...
+                    [1, max(size(g_trunk_data))]);
+    g_trunk_data_Y = reshape(g_trunk_data(2, 1, :), ...
+                    [1, max(size(g_trunk_data))]);
+                
+%--------------------------------------------------------------------------
+% 3.1) Lowpass Filter.
+%--------------------------------------------------------------------------
+    % Apply a lowpass filter to the accelerameter  and gyroscope signals.
+    % Definition of the filter's parameters.
+    Fs = 200;
+    fc = 2;
+
+    % FFT to check.
+    L =length(a_trunk_data_X);
+    NFFT = 2^nextpow2(L); % Next power of 2 from length of y
+    Y = fft(a_trunk_data_X, NFFT)/L;
+    f = Fs/2*linspace(0, 1, NFFT/2 + 1);
+
+    % Desing of FIR filter. The first parameter is the order of the filter. The
+    % next one represents the cutoff frecuency. This can be a value between 0
+    % and 1, where 1 is the Nyquist frecuency (sample rate/2).
+    b=fir1(30, fc/(Fs/2));
+
+    a_trunk_data_X = filter(b,1,a_trunk_data_X);
+    a_trunk_data_Y = filter(b,1,a_trunk_data_Y); 
+
+    g_trunk_data_X = filter(b,1,g_trunk_data_X);
+    g_trunk_data_Y = filter(b,1,g_trunk_data_Y);
+    
+% -------------------------------------------------------------------------
+% 3.3) Synchronisation of all cycles.
+% -------------------------------------------------------------------------
+
+    % The goal of this part of the code is to carry out the mean of all cycles
+    % where the patient repeated the same protocol. To do this, we use the cross
+    % correlation when the patient does the second step.
+
+    % First interation to align the signals and carry out the mean between both.
+    % If patient starts with left foot, we invert the signal to carry out
+    % the mean.
+    if (find(cycle_start_right == 1))sing1=1; else sing1=-1; end
+    if (find(cycle_start_right == 2))sing2=1; else sing2=-1; end
+
+    % Center of pressure   
+    ML_COP_mean = aligned_signals( sing1.*ML_COP_data(initcross_COP(2):finalcross_COP(2)),...
+                         sing2.*ML_COP_data(initcross_COP(1):finalcross_COP(1)));
+    AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(2):finalcross_COP(2)),...
+                         AP_COP_data(initcross_COP(1):finalcross_COP(1)));
+
+    % Acceleration.
+    a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+                         a_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
+
+    a_trunk_data_Y_mean = aligned_signals(sing1.* a_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                         sing2.*a_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+
+    % Angular Velocity.
+    g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+                         g_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
+
+    g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                         sing2.*g_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+
+
+     for k = 3:length(initcross) 
+
+        % If patient starts with left foot, we invert the signal to carry out
+        % the mean.
+        if (find(cycle_start_right == k))sing=1;else sing=-1;end
+
+        % Align the signals and carry out the mean.
+        % We consider the sing in ML direction.
+         ML_COP_mean = aligned_signals(sing* ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
+                    ML_COP_mean );
+
+         a_trunk_data_Y_mean = aligned_signals(sing* a_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
+                            a_trunk_data_Y_mean );
+
+         g_trunk_data_Y_mean = aligned_signals( sing*g_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
+                            g_trunk_data_Y_mean );
+
+
+         % In AP direcction, there isn't change of sing.
+          AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(k):finalcross_COP(k)),...
+                             AP_COP_mean);
+
+          a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
+                             a_trunk_data_X_mean);
+
+          g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
+                             g_trunk_data_X_mean);
+
+     end
+
+
+    % Select the APA points in all signals. It's necessary in this case
+    % because the signals are softs and it's difficult too detect the peaks
+    % automatically.
+     if strcmpi(peakManually,'yes')
+    index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
+    close(gcf)
+
+    index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point(logest positive)');
+    close(gcf)
+
+    index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point(logest negative)');
+    close(gcf)
+
+    index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points(positive-negative)');
+    close(gcf)
+
+    index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point(longest negative)');
+    close(gcf)
+
+    index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points (positive-negative)');
+    close(gcf)
+
+    % Calculate the APA Parameters.
+    APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(1));
+    APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(index_APA_AP_COP(2) ));
+    APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(index_APA_AP_COP(3) ));
+
+    APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP);
+
+    APA_Acc_X_1 =  abs( a_trunk_data_X_mean(index_APA_acc_X) - a_trunk_data_X_mean(1));
+
+    APA_Acc_Y_1 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(1));
+    APA_Acc_Y_2 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(1)) - a_trunk_data_Y_mean(index_APA_acc_Y(2)));
+    APA_Acc_Y_3 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y(2)) - a_trunk_data_Y_mean(1));
+
+    APA_Gyro_X_1 =  abs( g_trunk_data_X_mean(index_APA_gyro_X) - g_trunk_data_X_mean(1));
+
+    APA_Gyro_Y_1 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(1)) - g_trunk_data_Y_mean(1));
+    APA_Gyro_Y_2 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(index_APA_gyro_Y(1)));
+    APA_Gyro_Y_3 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y(2)) - g_trunk_data_Y_mean(1));
+
+    APA_COP_duration = abs(AP_COP_complete_ts.time(index_APA_ML_COP) - ...
+        AP_COP_complete_ts.time(initcross_COP(1)+length(ML_COP_mean)-1));
+
+    APA_Acc_duration = a_trunk_complete_ts.time(index_APA_acc_Y(2)) - ...
+        a_trunk_complete_ts.time(index_APA_acc_Y(1));
+
+    APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y(2)) - ...
+        a_trunk_complete_ts.time(index_APA_gyro_Y(1));
+
+    APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
+                     APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
+                     APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
+                     APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
+%      else
+%      
+%      % In AP COP signal, we look for the longest negative peak and after
+%      % that the next positive.
+%      [neg_peak_values, neg_peak_locations] = findpeaks(-AP_COP_mean);
+%      
+%      % Store the index of the longest positive peak.                                      
+%      index_APA_AP_COP_1 = find(AP_COP_mean== -max(neg_peak_values), 1);
+%                                   
+%      [pos_peak_values, pos_peak_locations] = findpeaks(AP_COP_mean);
+%      index_APA_AP_COP_2 = find(AP_COP_mean== max(pos_peak_values), 1);
+     
+
+     end
+
 end
-
-% Calculate the value of the APA peaks in each cycle in the trunk 
-% acceleration and the ML COP.
-value_APA_trunk_Y = a_trunk_data_Y(peaks_APA_trunk_Y);
-value_APA_trunk_Gyro_Y = g_trunk_data_Y(peaks_APA_trunk_Gyro_Y);
-value_APA_ML_COP = ML_COP_data_shanks(peaks_APA_ML_COP);
-
-% Calculate the linear correlation between the peaks detected with the 
-% acceleration signal of the trunk and ML COP.
-value_APA_trunk_Y_c = abs(value_APA_trunk_Y);
-value_APA_ML_COP_c = abs( value_APA_ML_COP);
-[corr_trunk_ML, prob_trunk_ML] = corr(value_APA_trunk_Y_c',...
-                                    value_APA_ML_COP_c');
-
-                                
-% Calculate the correlation between the height of the ML COP peaks.
-value_APA_ML_COP_c_2 = value_APA_ML_COP_c - abs(value_initcross_ML);
-[corr_trunk_ML_2, prob_trunk_ML_2] = corr(value_APA_trunk_Y_c',...
-                                    value_APA_ML_COP_c_2');
-                                
-value_APA_trunk_Y_1 = abs(value_APA_trunk_Y_c - a_trunk_data_Y(...
-                        initcross_trunk_complete));
-[corr_trunk_ML_3, prob_trunk_ML_3] = corr(value_APA_trunk_Y_1',...
-                                    value_APA_ML_COP_c_2');
-                                
-value_APA_trunk_Y_2 = abs(value_APA_trunk_Y_c - mode(a_trunk_data_Y));
-[corr_trunk_ML_4, prob_trunk_ML_4] = corr(value_APA_trunk_Y_2',...
-                                    value_APA_ML_COP_c');
-% Correlation gyroscope signal.
-value_APA_trunk_Gyro_Y_1 = abs(value_APA_trunk_Gyro_Y - g_trunk_data_Y(...
-                            initcross_trunk_complete));
-[corr_trunk_ML_Gyro, prob_trunk_ML_Gyro] = corr(abs(value_APA_trunk_Gyro_Y_1)',...
-                                    value_APA_ML_COP_c_2');
-                                
-
-%------------------------------- Plots-------------------------------------
-
-%-------------Peaks of APA in trunk acceleration and ML COP----------------
-if strcmpi(showPlotsAPA,'yes')
-figure ();
-subplot(2,1,1)
-plot(a_trunk_complete_ts.time, a_trunk_data_Y, 'g');
-hold on;
-plot(a_trunk_complete_ts.time(peaks_APA_trunk_Y), value_APA_trunk_Y , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-title(['Acceleration of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('Acceleration (g)');
-
-
-subplot(2,1,2)
-plot(ML_COP_complete_ts.time, ML_COP_data_shanks, 'g');
-hold on;
-plot(ML_COP_complete_ts.time(peaks_APA_ML_COP), value_APA_ML_COP , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['ML COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('ML COP (mm)');
-end
-
-% -------------Correlation between peak ML_COP and peak Acc trunk----------
-if strcmpi(showPlotsCorr,'yes')
-figure ()
-
-plot(value_APA_trunk_Y_1,value_APA_ML_COP_c_2, '.r');
-title('Linear correlation between peak ML_COP and peak Acc trunk');
-xlabel('Acceleration (g)');
-ylabel('ML_COP (mmm)');
-
-end
-
-% --------------------Angular Velocity in trunk and COP--------------------
-if strcmpi(showPlotsCheck,'yes')
-figure()
-subplot(4, 1, 1);
-plot(g_trunk_complete_ts.time, g_trunk_data_X )
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Angular Velocity of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Angular Velocity (º/s)');
-
-
-subplot(4, 1, 2)
-plot(AP_COP_complete_ts.time, reshape(AP_COP_data(3, 1, :), ...
-     [1, max(size(AP_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('AP COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-
-subplot(4, 1, 3);
-plot(g_trunk_complete_ts.time, g_trunk_data_Y);
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['Angular velocity of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time']);
-xlabel('Time in s');
-ylabel('Angular Velocity (º/s)');
-
-subplot(4, 1, 4)
-plot(ML_COP_complete_ts.time, reshape(ML_COP_data(3, 1, :), ...
-     [1, max(size(ML_COP_data))]));
-
-% Vertical line at init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line at final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title('ML COP with lines marker when the patient steps with the second time');
-xlabel('Time in s');
-ylabel('COP in mm');
-end
-% peaks--------------------------------------------------------------------
-if strcmpi(showPlotsAPA,'yes')
-figure ();
-subplot(2,1,1)
-plot(g_trunk_complete_ts.time, g_trunk_data_X, 'g');
-hold on;
-plot(g_trunk_complete_ts.time(peaks_APA_trunk_Gyro_X),value_APA_trunk_Gyro_X, 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-title(['Angular Velocity of the X-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('Angular Velocity (º/s)');
-
-
-subplot(2,1,2)
-plot(AP_COP_complete_ts.time, AP_COP_data_shanks, 'g');
-hold on;
-plot(AP_COP_complete_ts.time(peaks_APA_AP_COP), value_APA_AP_COP , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['AP COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('AP COP (mm)');
-
-figure ();
-subplot(2,1,1)
-plot(g_trunk_complete_ts.time, g_trunk_data_Y, 'g');
-hold on;
-plot(g_trunk_complete_ts.time(peaks_APA_trunk_Gyro_Y),value_APA_trunk_Gyro_Y, 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-title(['Angular Velocity of the Y-axis of the trunk with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('Angular Velocity (º/s)');
-
-
-subplot(2,1,2)
-plot(ML_COP_complete_ts.time, ML_COP_data_shanks, 'g');
-hold on;
-plot(AP_COP_complete_ts.time(peaks_APA_ML_COP), value_APA_ML_COP , 'r.');
-
-% Vertical line init.
-hx = graph2d.constantline(time_GW(init_second_step), 'LineStyle',':',...
-    'LineWidth', 2 , 'Color', 'r');
-changedependvar(hx,'x');
-
-% Vertical line final.
-hx = graph2d.constantline(final_second_step, 'LineStyle',':', ...
-    'LineWidth', 2 , 'Color', 'm');
-changedependvar(hx,'x');
-
-title(['ML COP with lines marker when the' ...
-       'patient steps with the second time and the APA peak' ]);
-xlabel('Time in s');
-ylabel('ML COP (mm)');
-end
-
-% Patient.
-name_file = textscan(filename,'%s','Delimiter','_');
-name_file = name_file{1};
-filename = name_file{1,1};
-fprintf(['\n Patient ',filename,'\n']);
