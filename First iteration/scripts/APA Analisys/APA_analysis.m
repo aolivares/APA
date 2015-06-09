@@ -269,8 +269,7 @@ for i = 4:rows
      end
 
 
-    % Select the APA points in all signals. It's necessary in this case
-    % because the signals are softs and it's difficult too detect the peaks
+    % Select the APA points in all signals. You can do this manually or
     % automatically.
      if strcmpi(peakManually,'yes')
     index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
@@ -323,19 +322,56 @@ for i = 4:rows
                      APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
                      APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
                      APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
-%      else
-%      
-%      % In AP COP signal, we look for the longest negative peak and after
-%      % that the next positive.
-%      [neg_peak_values, neg_peak_locations] = findpeaks(-AP_COP_mean);
-%      
-%      % Store the index of the longest positive peak.                                      
-%      index_APA_AP_COP_1 = find(AP_COP_mean== -max(neg_peak_values), 1);
-%                                   
-%      [pos_peak_values, pos_peak_locations] = findpeaks(AP_COP_mean);
-%      index_APA_AP_COP_2 = find(AP_COP_mean== max(pos_peak_values), 1);
+                 
+     else % The APA peaks are detected automatically.
      
-
+    % ML COP signal.
+    % Detect when there is a strong change of level in the signal.
+     d=diff(ML_COP_mean);
+     [~, neg_peak_locations] = min(d(1:length(d)-50));
+     
+    % Obtain the APA peak in ML direction. This is the maximum value before
+    % this, close to the descent.
+     [~, pos_peak_locations] = max(ML_COP_mean(neg_peak_locations-50:neg_peak_locations));
+     index_APA_ML_COP_1 = pos_peak_locations + neg_peak_locations - 50;
+     
+    % AP COP signal.
+    % Detect when there is a strong change of level in the signal. We have
+    % to detect two changes here.
+    d=diff(AP_COP_mean);
+    [~, neg_peak_locations] = min(d(1:length(d)-50));
+    [~, pos_peak_locations] = max(d(1:neg_peak_locations));
+    
+    % One of the APA peak is between the both crossover calculated above.
+    % The second one is the minimum value after the descent.
+    [~,index_APA_AP_COP_1 ]= max(AP_COP_mean(pos_peak_locations: neg_peak_locations));
+    index_APA_AP_COP_1 = index_APA_AP_COP_1+ pos_peak_locations;
+    
+    [~,index_APA_AP_COP_2] = min(AP_COP_mean(neg_peak_locations:length(AP_COP_mean)));
+    index_APA_AP_COP_2 = index_APA_AP_COP_2 + neg_peak_locations;
+    
+    % ACC and GYRO X signal.
+    % We have to find the minumum of this signals. This is when the patient
+    % goes forward.
+    [~,index_APA_Acc_X]= min(a_trunk_data_X_mean);
+    [~,index_APA_Gyro_X]= min(g_trunk_data_X_mean);
+    
+    % ACC and GYRO Y signal.
+    % We have to find the minumum of this signals and after that the prior
+    % maximum. This is when the patient moves toward left and right.
+    [~,index_APA_Acc_Y_1]= min(a_trunk_data_Y_mean);
+    [~,index_APA_Gyro_Y_1]= min(g_trunk_data_Y_mean); 
+    
+    [~,index_APA_Acc_Y_2 ]= max(a_trunk_data_Y_mean(1:index_APA_Acc_Y_1 ));
+    [~,index_APA_Gyro_Y_2 ]= max(g_trunk_data_Y_mean(1:index_APA_Gyro_Y_1 ));
      end
 
+%     figure()
+%     plot(g_trunk_complete_ts.time(1:length(g_trunk_data_X_mean)), g_trunk_data_X_mean, 'g');
+%     hold on;
+%     plot(a_trunk_complete_ts.time(peaks_APA_gyro_X), value_APA_gyro_X , 'r.');
+%     plot(AP_COP_complete_ts.time(1:length(AP_COP_mean)), AP_COP_mean, 'g');
+%     hold on;
+%     plot(AP_COP_complete_ts.time(index_APA_AP_COP_1), AP_COP_mean(index_APA_AP_COP_1) , 'r.');
+%     plot(AP_COP_complete_ts.time(index_APA_AP_COP_2), AP_COP_mean(index_APA_AP_COP_2) , 'y.');
 end
