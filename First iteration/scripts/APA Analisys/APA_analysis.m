@@ -39,7 +39,8 @@
 clear all; close all; clc;
 gw = gwLibrary;
 
-% Set extra-caculations
+% Set extra-caculations.
+showPlotsCorr = 'yes';
 peakManually = 'no';
 PCA = 'yes';
 
@@ -267,33 +268,35 @@ for i = 4:rows
                              g_trunk_data_X_mean);
 
      end
-
+% -------------------------------------------------------------------------
+% 3.4) Extract features to characterise APAs.
+% -------------------------------------------------------------------------
 
     % Select the APA points in all signals. You can do this manually or
     % automatically.
-     if strcmpi(peakManually,'yes')
-    index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the three APA points (negative-positive-negative)');
+    if strcmpi(peakManually,'yes')
+    index_APA_AP_COP = gw.getDCindexes(AP_COP_mean,'Select the thwo APA points in AP-COP(positive-negative)');
     close(gcf)
 
-    index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point(logest positive)');
+    index_APA_ML_COP = gw.getDCindexes(ML_COP_mean,'Select the APA point in ML-COP(logest positive)');
     close(gcf)
 
-    index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point(logest negative)');
+    index_APA_acc_X = gw.getDCindexes(a_trunk_data_X_mean,'Select the APA point in Acc-X(logest negative)');
     close(gcf)
 
-    index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points(positive-negative)');
+    index_APA_acc_Y = gw.getDCindexes(a_trunk_data_Y_mean,'Select the two APA points in Acc-Y(positive-negative)');
     close(gcf)
 
-    index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point(longest negative)');
+    index_APA_gyro_X = gw.getDCindexes(g_trunk_data_X_mean,'Select the APA point in Gyro-X(longest negative)');
     close(gcf)
 
-    index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points (positive-negative)');
+    index_APA_gyro_Y = gw.getDCindexes(g_trunk_data_Y_mean,'Select the two APA points in Gyro-Y(positive-negative)');
     close(gcf)
 
     % Calculate the APA Parameters.
     APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(1));
     APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP(1) ) - AP_COP_mean(index_APA_AP_COP(2) ));
-    APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(index_APA_AP_COP(3) ));
+    APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP(2) ) - AP_COP_mean(1) );
 
     APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP);
 
@@ -318,12 +321,12 @@ for i = 4:rows
     APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y(2)) - ...
         a_trunk_complete_ts.time(index_APA_gyro_Y(1));
 
-    APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
+    APA_Parameters (i-3,:) = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
                      APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
                      APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
                      APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
                  
-     else % The APA peaks are detected automatically.
+    else % The APA peaks are detected automatically.
      
     % ML COP signal.
     % Detect when there is a strong change of level in the signal.
@@ -353,25 +356,132 @@ for i = 4:rows
     % ACC and GYRO X signal.
     % We have to find the minumum of this signals. This is when the patient
     % goes forward.
-    [~,index_APA_Acc_X]= min(a_trunk_data_X_mean);
-    [~,index_APA_Gyro_X]= min(g_trunk_data_X_mean);
+    [~,index_APA_acc_X]= min(a_trunk_data_X_mean);
+    [~,index_APA_gyro_X]= min(g_trunk_data_X_mean);
     
     % ACC and GYRO Y signal.
     % We have to find the minumum of this signals and after that the prior
     % maximum. This is when the patient moves toward left and right.
-    [~,index_APA_Acc_Y_1]= min(a_trunk_data_Y_mean);
-    [~,index_APA_Gyro_Y_1]= min(g_trunk_data_Y_mean); 
+    [~,index_APA_acc_Y_1]= min(a_trunk_data_Y_mean);
+    [~,index_APA_gyro_Y_1]= min(g_trunk_data_Y_mean); 
     
-    [~,index_APA_Acc_Y_2 ]= max(a_trunk_data_Y_mean(1:index_APA_Acc_Y_1 ));
-    [~,index_APA_Gyro_Y_2 ]= max(g_trunk_data_Y_mean(1:index_APA_Gyro_Y_1 ));
+    [~,index_APA_acc_Y_2 ]= max(a_trunk_data_Y_mean(1:index_APA_acc_Y_1 ));
+    [~,index_APA_gyro_Y_2 ]= max(g_trunk_data_Y_mean(1:index_APA_gyro_Y_1 ));
+    
+    % Calculate the APA Parameters.
+    APA_COP_AP_1 = abs( AP_COP_mean(index_APA_AP_COP_1) - AP_COP_mean(1));
+    APA_COP_AP_2 = abs(AP_COP_mean(index_APA_AP_COP_2) - AP_COP_mean(index_APA_AP_COP_1));
+    APA_COP_AP_3 = abs(AP_COP_mean(index_APA_AP_COP_2) - AP_COP_mean(1));
+
+    APA_COP_ML_1 = ML_COP_mean(index_APA_ML_COP_1);
+
+    APA_Acc_X_1 =  abs( a_trunk_data_X_mean(index_APA_acc_X) - a_trunk_data_X_mean(1));
+
+    APA_Acc_Y_1 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y_1) - a_trunk_data_Y_mean(1));
+    APA_Acc_Y_2 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y_1) - a_trunk_data_Y_mean(index_APA_acc_Y_2));
+    APA_Acc_Y_3 =  abs( a_trunk_data_Y_mean(index_APA_acc_Y_2) - a_trunk_data_Y_mean(1));
+
+    APA_Gyro_X_1 =  abs( g_trunk_data_X_mean(index_APA_gyro_X) - g_trunk_data_X_mean(1));
+
+    APA_Gyro_Y_1 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y_1) - g_trunk_data_Y_mean(1));
+    APA_Gyro_Y_2 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y_2) - g_trunk_data_Y_mean(index_APA_gyro_Y_1));
+    APA_Gyro_Y_3 =  abs( g_trunk_data_Y_mean(index_APA_gyro_Y_2) - g_trunk_data_Y_mean(1));
+
+    APA_COP_duration = abs(AP_COP_complete_ts.time(index_APA_ML_COP_1) - ...
+        AP_COP_complete_ts.time(initcross_COP(1)+length(ML_COP_mean)-1));
+
+    APA_Acc_duration = a_trunk_complete_ts.time(index_APA_acc_Y_2) - ...
+        a_trunk_complete_ts.time(index_APA_acc_Y_1);
+
+    APA_Gyro_duration = a_trunk_complete_ts.time(index_APA_gyro_Y_2) - ...
+        a_trunk_complete_ts.time(index_APA_gyro_Y_1);
+
+    APA_Parameters(i-3,:) = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
+                     APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
+                     APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
+                     APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
      end
 
-%     figure()
-%     plot(g_trunk_complete_ts.time(1:length(g_trunk_data_X_mean)), g_trunk_data_X_mean, 'g');
-%     hold on;
-%     plot(a_trunk_complete_ts.time(peaks_APA_gyro_X), value_APA_gyro_X , 'r.');
-%     plot(AP_COP_complete_ts.time(1:length(AP_COP_mean)), AP_COP_mean, 'g');
-%     hold on;
-%     plot(AP_COP_complete_ts.time(index_APA_AP_COP_1), AP_COP_mean(index_APA_AP_COP_1) , 'r.');
-%     plot(AP_COP_complete_ts.time(index_APA_AP_COP_2), AP_COP_mean(index_APA_AP_COP_2) , 'y.');
 end
+
+%--------------------------------------------------------------------------
+% 4) Correlations.
+%--------------------------------------------------------------------------
+
+% Acc and COP.
+[corr_AP1, ~] = corr(APA_Parameters(:,1),APA_Parameters(:,5)); 
+[corr_AP2, ~] = corr(APA_Parameters(:,2),APA_Parameters(:,5));
+[corr_AP3, ~] = corr(APA_Parameters(:,3),APA_Parameters(:,5));
+
+[corr_ML1,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,6));
+[corr_ML2,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,7));
+[corr_ML3,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,8));
+
+% Gyro and COP.
+[corr_APg1, ~] = corr(APA_Parameters(:,1),APA_Parameters(:,9)); 
+[corr_APg2, ~] = corr(APA_Parameters(:,2),APA_Parameters(:,9));
+[corr_APg3, ~] = corr(APA_Parameters(:,3),APA_Parameters(:,9));
+
+[corr_MLg1,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,10));
+[corr_MLg2,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,11));
+[corr_MLg3,~] =  corr(APA_Parameters(:,4),APA_Parameters(:,12));
+
+% Duration.
+[corr_dur1,~] =  corr(APA_Parameters(:,13),APA_Parameters(:,14));
+[corr_dur2,~] =  corr(APA_Parameters(:,14),APA_Parameters(:,15));
+[corr_dur3,~] =  corr(APA_Parameters(:,13),APA_Parameters(:,15));
+
+% Lump together the diferents features claculated above.
+% In Antero-Posterior direction.
+% 1-Corr between positive peak in AP-COP and the negative peak in the Acc.
+% 2-Corr between the peaks distance in AP-COP and the negative peak in the Acc.
+% 3-Corr between negative peak in AP-COP and the negative peak in the Acc.
+% 4-Corr between positive peak in AP-COP and the negative peak in the Gyro.
+% 5-Corr between the peaks distance in AP-COP and the negative peak in the Gyro.
+% 6-Corr between negative peak in AP-COP and the negative peak in the Gyro.
+correlationsAP = [corr_AP1, corr_AP2, corr_AP3, corr_APg1, corr_APg2,...
+                    corr_APg3];
+                
+% In Medio-Lateral direction.
+% 1-Corr between positive peak in ML-COP and the positive peak in the Acc.
+% 2-Corr between positive peak in ML-COP and the peaks distance in the Acc.
+% 3-Corr between positive peak in ML-COP and the negative peak in the Acc.
+% 4-Corr between positive peak in ML-COP and the positive peak in the Gyro.
+% 5-Corr between positive peak in ML-COP and the peaks distance in the Gyro.
+% 6-Corr between positive peak in ML-COP and the negative peak in the Gyro.
+correlationsML = [corr_ML1, corr_ML2, corr_ML3, corr_MLg1, corr_MLg2,...
+                    corr_MLg3];
+% APA Duration.
+% 1-Corr between AP-COP duration and Acc-duration.
+% 2-Corr between Acc-duration and Gyro duration.
+% 3-Corr between AP-COP duration and Gyro duration.
+correlationsDuration = [corr_dur1,corr_dur2,corr_dur3];
+                
+% -------------------------- Correlations Plots----------------------------
+if strcmpi(showPlotsCorr,'yes')
+    
+figure()              
+x_axes={'Acc-COP_AP1','Acc-COP_AP2','Acc-COP_AP3',...
+    'Gyro-COP_AP1','Gyro-COP_AP2','Gyro-COP_AP3'};
+
+bar (correlationsAP);
+set(gca,'XtickL',x_axes)
+title('Differents Correlations between measures of APAs in AP direction'); 
+
+figure()              
+x_axes={'Acc-COP_ML1','Acc-COP_ML2','Acc-COP_ML3',...
+    'Gyro-COP_ML1','Gyro-COP_ML2','Gyro-COP_ML3'};
+
+bar (correlationsML);
+set(gca,'XtickL',x_axes)
+title('Differents Correlations between measures of APAs in ML direction');
+
+figure()              
+x_axes={'Dur_COP-Acc','Dur_Acc-Gyro','Dur_COP-Gyro'};
+
+bar (correlationsDuration);
+set(gca,'XtickL',x_axes)
+title('Differents Correlations between measures of APAs duration');
+
+end
+fprintf(' Feature extraction completed !!! \n');
