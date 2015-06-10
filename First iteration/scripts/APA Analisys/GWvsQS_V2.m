@@ -48,8 +48,9 @@
 % 0) Clear workspace.
 % -------------------------------------------------------------------------
 clear all; close all; clc;
-showPlots = 'no';
+
 comparation = 'no';
+showPlots = 'yes';
 
 % Suppress warnings if no peak is detected during the calibration.
   warning('off', 'signal:findpeaks:largeMinPeakHeight')
@@ -61,24 +62,6 @@ comparation = 'no';
 % Import GaitWatch functions library.
 gw = gwLibrary;
 
-% Select only one data files with a dialog box (only .xlsl files).
-[filename_excel, filepath] = uigetfile('*.xlsx', ...
-    'Select the Excel file with the data (.xlsx)');
-
-% Read data from *.xlsx where are stored all filenames and other 
-% interesting information.
-[~,file_excel] = xlsread([filepath, filename_excel]);
-[rows,columns] = size(file_excel);
-index = 0;
-
-for k = 4:rows 
-    % Check if the cell is empty.
-    if  isempty( char(strtrim(file_excel(k,9))) ) == 0  
-        
-        % We extract the GW name and find in the excel file.
-        filename_GW = strtrim(file_excel(k,9));
-        filename_QS = strtrim(file_excel(k,6));   
-        index = index + 1;
 % -------------------------------------------------------------------------
 % 1.2) Define structure of data array.
 % -------------------------------------------------------------------------
@@ -128,9 +111,9 @@ size_data_struct=size(data_struct);
 % -------------------------------------------------------------------------
 
 % Select and load data from the hard drive.
-% [filename_GW, filepath] = uigetfile('*.mat', ...
-%     'Select the GW data file (.mat)', '../../../Treadmill experiments/GW data/last recording treadmill');
-load(fullfile('../../../Treadmill experiments/GW data/last recording treadmill' ,char(filename_GW)));
+[filename_GW, filepath] = uigetfile('*.mat', ...
+    'Select the GW data file (.mat)', '../../../Treadmill experiments/GW data/last recording treadmill');
+load(fullfile(filepath ,char(filename_GW)));
 
 % Build vector containing time samples.
 [f, date, start_time, end_time, file_id] = gw.getFHinfo(FileHeader);
@@ -237,6 +220,31 @@ mag_x_interp = interp1(time_mag,mag_x,time,'spline');
 mag_y_interp = interp1(time_mag,mag_y,time,'spline');
 mag_z_interp = interp1(time_mag,mag_z,time,'spline');
 
+% if strcmpi(showMagData,'yes')
+%     figure
+%     subplot(3,1,1)
+%     plot(time_mag,mag_x)
+%     hold on
+%     plot(time,mag_x_interp,'--r')
+%     legend('Original','Interpolated')
+%     xlabel('Time (s)');
+%     ylabel('Magnetic field (raw)')
+%     subplot(3,1,2)
+%     plot(time_mag,mag_y)
+%     hold on
+%     plot(time,mag_y_interp,'--r')
+%     legend('Original','Interpolated')
+%     xlabel('Time (s)');
+%     ylabel('Magnetic field (raw)')
+%     subplot(3,1,3)
+%     plot(time_mag,mag_z)
+%     hold on
+%     plot(time,mag_z_interp,'--r')
+%     legend('Original','Interpolated')
+%     xlabel('Time (s)');
+%     ylabel('Magnetic field (raw)')
+% end
+
 % Remove channel 23 from the data matrix and add three new channels 
 % containing the interpolated magnetometer signals to the data matrix.
 data = [double(data(:,1:22)) mag_x_interp' mag_y_interp' mag_z_interp'];
@@ -251,34 +259,27 @@ data = [double(data(:,1:22)) mag_x_interp' mag_y_interp' mag_z_interp'];
 
 % Show segment selection menu (multiple selection by holding the CTRL key
 % is also possible). 
-% select_ok_flag = 0;
-% while select_ok_flag == 0
-%     
-%     % Define the list of segments which are shown to the user. 
-%     S = cell(1,12);
-%     for i = 1:12 % Only Select shanks and thighs.
-%         S{i} = [data_struct{i,4},' ',data_struct{i,5}];
-%     end
-%     S = unique(S,'stable');
-%     
-%     % Show the selection dialog to the user.
-%     [Selection,ok] = listdlg('ListString',S,'Name',...
-%         'Select the unit you wish to calibrate','ListSize',[160 120],...
-%         'SelectionMode','multiple');
-%     if ~isempty(Selection) 
-%         select_ok_flag = 1;
-%     else
-%         msg = msgbox('Please select at least one segment');
-%         uiwait(msg);
-%     end
-% end
-% Define the list of segments which are shown to the user. 
-S = cell(1,12);
-for i = 1:12 % Only Select shanks and thighs.
-    S{i} = [data_struct{i,4},' ',data_struct{i,5}];
+select_ok_flag = 0;
+while select_ok_flag == 0
+    
+    % Define the list of segments which are shown to the user. 
+    S = cell(1,12);
+    for i = 1:12 % Only Select shanks and thighs.
+        S{i} = [data_struct{i,4},' ',data_struct{i,5}];
+    end
+    S = unique(S,'stable');
+    
+    % Show the selection dialog to the user.
+    [Selection,ok] = listdlg('ListString',S,'Name',...
+        'Select the unit you wish to calibrate','ListSize',[160 120],...
+        'SelectionMode','multiple');
+    if ~isempty(Selection) 
+        select_ok_flag = 1;
+    else
+        msg = msgbox('Please select at least one segment');
+        uiwait(msg);
+    end
 end
-S = unique(S,'stable');
-Selection =[1,2,3,4];
 
 % We now extract all the data channels and dinamically generate the
 % variable name according to the information in 'data_struct' and the
@@ -594,7 +595,13 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman Filter')              
-
+%             else
+%                 figure
+%                 plot(time,pitch_KF_right_shank ,'black')
+%                 title('Pitch angle of right shank')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
             
         case 'left shank'
@@ -674,7 +681,13 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')  
-
+%             else
+%                 figure
+%                 plot(time,pitch_KF_left_shank ,'black')
+%                 title('Pitch angle of left shank')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
             
         case 'right thigh'
@@ -754,7 +767,13 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')   
-
+%             else
+%                 figure
+%                 plot(time,pitch_KF_right_thigh ,'black')
+%                 title('Pitch angle of right thigh')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
              end
             
         case 'left thigh'
@@ -832,9 +851,250 @@ for i = 1:length(Selection)
                 ylabel('Pitch (deg)')
                 legend('Accelerometer-based','Angular rate integration',...
                     'Kalman filter','Gated Kalman filter')   
-
+%             else
+%                 figure
+%                 plot(time,pitch_KF_left_thigh ,'black')
+%                 title('Pitch angle of left thigh')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch (deg)')
+%                 legend('Kalman filter')
             end
-
+            
+            
+%         case 'left arm'
+%             % Define the necessary signals.
+%             gx = g_X_left_arm_1_C;
+%             gy = g_Y_left_arm_1_C;
+%             
+%             % Integrate angular rate to compute pitch and roll.
+%             pitch_gyro_left_arm = gw.integRate(1/f,gy,0);
+%             roll_gyro_left_arm = gw.integRate(1/f,gx,0);
+%             
+%             % Apply high pass filter to partially remove bias.
+%             lower_freq_limit=0.2; 
+%             [b,a]=butter(3,lower_freq_limit*2/(f),'high'); 
+%             pitch_gyro_left_arm_f = filtfilt(b,a,pitch_gyro_left_arm) + ...
+%                 pitch_gyro_left_arm(1);
+%             roll_gyro_left_arm_f  = filtfilt(b,a,roll_gyro_left_arm) + ...
+%                 roll_gyro_left_arm(1);
+            
+%             % Plot results.
+%             figure
+%             plot(time,pitch_gyro_left_arm)
+%             hold on
+%             plot(time,pitch_gyro_left_arm_f,'black')
+%             plot(time,roll_gyro_left_arm,'r')
+%             plot(time,roll_gyro_left_arm_f,'g')
+%             title('Pitch and roll angles of left arm')
+%             legend('Pitch (unfiltered)', 'Pitch (filtered)',...
+%                 'Roll (unfiltered)', 'Roll (filtered)');
+%             
+%         case 'right arm'
+%             % Define the necessary signals.
+%             gx = g_X_right_arm_1_C;
+%             gy = g_Y_right_arm_1_C;
+%             
+%             % Integrate angular rate to compute pitch and roll.
+%             pitch_gyro_right_arm = gw.integRate(1/f,gy,0);
+%             roll_gyro_right_arm = gw.integRate(1/f,gx,0); 
+%             
+%             % Apply high pass filter to partially remove bias.
+%             lower_freq_limit=0.2; 
+%             [b,a]=butter(3,lower_freq_limit*2/(f),'high'); 
+%             pitch_gyro_right_arm_f = filtfilt(b,a,pitch_gyro_right_arm)+...
+%                 pitch_gyro_right_arm(1);
+%             roll_gyro_right_arm_f  = filtfilt(b,a,roll_gyro_right_arm)+...
+%                 roll_gyro_right_arm(1);
+%             
+%             % Plot results.
+%             figure
+%             plot(time,pitch_gyro_right_arm)
+%             hold on
+%             plot(time,pitch_gyro_right_arm_f,'black')
+%             plot(time,roll_gyro_right_arm,'r')
+%             plot(time,roll_gyro_right_arm_f,'g')
+%             title('Pitch and roll angles of right arm')
+%             legend('Pitch (unfiltered)', 'Pitch (filtered)',...
+%                 'Roll (unfiltered)', 'Roll (filtered)');
+%             
+%         case 'center trunk'
+%             % Define the necessary signals.
+%             delay = 1;
+%             ax = a_X_center_trunk_3_C(delay:end);
+%             ay = a_Y_center_trunk_3_C(delay:end);
+%             az = a_Z_center_trunk_3_C(delay:end);
+%             gx = g_X_center_trunk_1_C(delay:end);
+%             gy = g_Y_center_trunk_1_C(delay:end);
+%             gz = g_Z_center_trunk_1_C(delay:end);
+%             hx = h_X_center_trunk_3_C(delay:end);
+%             hy = h_Y_center_trunk_3_C(delay:end);
+%             hz = h_Z_center_trunk_3_C(delay:end);  
+%             
+%             % Compute roll, pitch using accelerometer.
+%             pitch_acc = atan2d(sqrt(ay.^2+az.^2),ax) - 90;
+%             roll_acc = atan2d(ay,az);
+%                 
+%             % Find the projections of hx and hy in the XY plane.
+%             hx_n = -hx.*cosd(pitch_acc) + hy.*sind(pitch_acc).*...
+%                 sind(roll_acc) - hz.*sind(pitch_acc).*cosd(roll_acc);
+%             hy_n = hy.*cosd(roll_acc) + hz.*sind(roll_acc);
+%                        
+%             % Compute yaw.
+%             yaw_mag = atan2d(hx_n,hy_n);
+%             
+%             % Compensate quadrante discontinuities.
+%             yaw_mag = gw.correct_yaw_quad_shifts(yaw_mag,'deg');
+%          
+%             % Compute roll and pitch using non-quaternion Kalman Filter. 
+%             alpha_KF = 100;
+%             beta_KF = 0.01;
+%             pitch_KF_center_trunk = gw.fusion_KF(gy,pitch_acc,f,...
+%                 var(pitch_acc),var(pitch_acc),var(gy),alpha_KF,beta_KF,...
+%                 pitch_acc(1));
+%             roll_KF_center_trunk = gw.fusion_KF(gx,roll_acc,f,...
+%                 var(roll_acc),var(roll_acc),var(gx),alpha_KF,beta_KF,...
+%                 roll_acc(1));
+%             alpha_KF = 1000;
+%             beta_KF = 0.001;
+%             yaw_KF_center_trunk = gw.fusion_KF(gz,yaw_mag,f,...
+%                 var(yaw_mag),var(yaw_mag),var(gz),alpha_KF,beta_KF,...
+%                 yaw_mag(1));
+%             
+%                         
+%             % Find the projections of hx and hy in the XY plane using fused
+%             % pitch and roll.
+%             hx_n_KF = -hx.*cosd(pitch_KF_center_trunk') + hy.*sind(pitch_KF_center_trunk').*...
+%                 sind(roll_KF_center_trunk') - hz.*sind(pitch_KF_center_trunk').*cosd(roll_KF_center_trunk');
+%             hy_n_KF = hy.*cosd(roll_KF_center_trunk') + hz.*sind(roll_KF_center_trunk');
+%             
+%             % Compute yaw.
+%             yaw_mag_kf = atan2d(hx_n_KF,hy_n_KF);
+%             
+%             % Compensate quadrante discontinuities.
+%              yaw_mag_kf = gw.correct_yaw_quad_shifts(yaw_mag_kf,'deg');
+%             correct_again = 1;
+%             limit = 250;
+%             while correct_again == 1
+%                 correct_again = 0;
+%                 for l = 2: length(yaw_mag_kf)
+%                     if abs(yaw_mag_kf(l)-yaw_mag_kf(l-1)) > limit
+%                         correct_again = 1;
+%                     end
+%                 end
+%                 if correct_again == 1
+%                     yaw_mag_kf = gw.correct_yaw_quad_shifts(yaw_mag_kf,'deg');
+%                 end
+%             end          
+%             yaw_2KF_center_trunk = gw.fusion_KF(gz,yaw_mag_kf,f,...
+%                 var(yaw_mag_kf),var(yaw_mag_kf),var(gz),alpha_KF,beta_KF,...
+%                 yaw_mag_kf(1));
+%             
+%             % Compute intensity level.         
+%             lwin_fsd = 20;    
+%             threshold_fsd = 3;    
+%             shift_fsd = 19;    
+%             lambda = 30;
+%             input_signal = sqrt(ax.^2+ay.^2+az.^2)';
+%             [V_fsd,T_fsd] = gw.fsd(input_signal,lwin_fsd,shift_fsd,512,...
+%                 threshold_fsd);
+%             [marker_fsd,T_fsd_expanded] = gw.compEstMark(V_fsd,T_fsd,...
+%                 input_signal,lwin_fsd,shift_fsd);
+%             
+%             % Estimate Euler angles using Gated Kalman filter.
+%             alpha1 = 100;
+%             alpha2 = 10000;
+%             beta1 = 0.001;
+%             beta2 = 0.00001;
+%             pitch_GKF_center_trunk = gw.fusionGKF(gy,pitch_acc,f,...
+%                 var(pitch_acc),var(pitch_acc),var(gy),alpha1,alpha2,...
+%                 beta1,beta2,pitch_acc(1),marker_fsd);
+%             roll_GKF_center_trunk = gw.fusionGKF(gx,roll_acc,f,...
+%                 var(roll_acc),var(roll_acc),var(gx),alpha1,alpha2,beta1,...
+%                 beta2,roll_acc(1),marker_fsd);
+%             yaw_GKF_center_trunk = gw.fusionGKF(gz,yaw_mag,f,var(yaw_mag),...
+%                 var(yaw_mag),var(gz),alpha1,alpha2,beta1,beta2,yaw_mag(1),...
+%                 marker_fsd);
+%             yaw_2GKF_center_trunk = gw.fusionGKF(gz,yaw_mag_kf,f,var(yaw_mag_kf),...
+%                 var(yaw_mag_kf),var(gz),alpha1,alpha2,beta1,beta2,yaw_mag_kf(1),...
+%                 marker_fsd);
+%             
+%             % Compute roll, pitch and yaw using quaternion Extended Kalman 
+%             % Filter.
+%             gyroVarX = 0.1;
+%             gyroVarY = 0.1;
+%             gyroVarZ = 0.1;
+%             mu_gain = 5;
+%             alpha = 5;
+%             q_ini = gw.eulerToQuat(roll_acc(1)/180*pi,pitch_acc(1)/180*pi,...
+%                 yaw_mag(1)/180*pi);
+% 
+%             state_ini = [q_ini(1), q_ini(2), q_ini(3), 0.5]';
+% 
+%             [roll_EKF_center_trunk, pitch_EKF_center_trunk, ...
+%                 yaw_EKF_center_trunk] = gw.quat9dofEKF(ax, ay, az, gx, gy,...
+%                 gz, hx, hy, -hz, gyroVarX, gyroVarY, gyroVarZ, alpha,...
+%                 mu_gain, f, state_ini);           
+%              
+%             if strcmpi(comparation,'yes')
+% 
+%                 pitch_gyro = gw.integRate(1/f,gy,pitch_acc(1));
+%                 roll_gyro = gw.integRate(1/f,gx,roll_acc(1)); 
+%                 yaw_gyro = gw.integRate(1/f,gz,yaw_mag(1)); 
+%                 
+%                 figure
+%                 subplot(3,1,1)
+%                 plot(time,pitch_acc)
+%                 title('Orientation angles of trunk - Comparison')
+%                 hold on
+%                 plot(time,pitch_gyro,'r')
+%                 plot(time,pitch_KF_center_trunk,'black')
+%                 plot(time,pitch_GKF_center_trunk,'cyan')
+%                 % plot(time,180/pi*pitch_EKF_center_trunk,'g')
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch angle (deg)')
+%                 legend('Accelerometer+Magnetometer','Gyroscope',...
+%                     'Kalman filter','Gated Kalmal filter')
+%                 subplot(3,1,2)
+%                 plot(time,roll_acc)
+%                 hold on
+%                 plot(time,roll_gyro,'r')
+%                 plot(time,roll_KF_center_trunk,'black')
+%                 plot(time,roll_GKF_center_trunk,'cyan')
+%                 %plot(time,180/pi*roll_EKF_center_trunk,'g')
+%                 xlabel('Time (s)')
+%                 ylabel('Roll angle (deg)')
+%                 legend('Accelerometer+Magnetometer','Gyroscope',...
+%                     'Kalman filter','Gated Kalman filter')
+%                 subplot(3,1,3)
+%                 plot(time,yaw_mag_kf)
+%                 hold on
+%                 plot(time,yaw_gyro,'r')
+%                 plot(time,yaw_KF_center_trunk,'black')
+%                 plot(time,yaw_GKF_center_trunk,'cyan')
+%                 plot(time,yaw_2KF_center_trunk,'g')
+%                 plot(time,yaw_2GKF_center_trunk,'--black')
+%                 %plot(time,180/pi*yaw_EKF_center_trunk,'g')
+%                 xlabel('Time (s)')
+%                 ylabel('Yaw angle (deg)')
+%                 legend('Accelerometer+Magnetometer','Gyroscope',...
+%                     'Kalman filter','Gated Kalman filter',...
+%                     'Double Kalman Filter','Double Gated Kalman Filter')      
+%             else
+%                 figure
+%                 subplot(3,1,1)
+%                 title('Orientation angles of trunk')
+%                 plot(time,roll_KF_center_trunk)
+%                 xlabel('Time (s)')
+%                 ylabel('Roll angle (deg)')
+%                 subplot(3,1,2)
+%                 plot(time,pitch_KF_center_trunk)
+%                 xlabel('Time (s)')
+%                 ylabel('Pitch angle (deg)')
+%                 subplot(3,1,3)
+%                 plot(time,yaw_KF_center_trunk)
+%                 xlabel('Time (s)')
+%                 ylabel('Yaw angle (deg)')
+%             end
     end
 end
 
@@ -844,9 +1104,7 @@ end
 
 clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
     pitch_KF_right_thigh pitch_KF_left_thigh time Selection showPlots ...
-    stride_GW swing_GW angle_GW filename_QS k file_excel rows columns gw ...
-    comparation index mean_diff_stride mean_diff_angle mean_var_stride_GW ...
-    mean_var_stride_QS mean_stride_GW_QS
+    stride_GW swing_GW angle_GW
 
 %--------------------------------------------------------------------------
 % 3) Calculate pitch with Qualisys System.
@@ -865,10 +1123,25 @@ clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
 % above.
 
 % Read data from *.xlsx where are stored all filenames.
-% [~,file_excel] = xlsread( 'RecordingsGWandQSdata');
+[~,file_excel] = xlsread( 'RecordingsGWandQSdata');
+[rows,columns] = size(file_excel);
+
+for i = 4:rows
+    % Check if the cell is empty.
+    if  isempty( char(strtrim(file_excel(i,9))) ) == 0  
+        
+        % We extract the GW name and find in the excel file.
+        filename = strtrim(file_excel(i,9));
+
+        if(filename{1,1} == filename_GW)
+            filename_QS = strtrim(file_excel(i,6));
+        end   
+    end
+end
 
 % Load data.
-        load(fullfile('../../../Treadmill experiments/QS data/last recordings treadmill/',char( filename_QS)));
+load(fullfile('../../../Treadmill experiments/QS data/last recordings treadmill/',char( filename_QS)));
+
 % Remove the '.mat' extension from the file name.
 filename_QS = char(filename_QS);
 filename = filename_QS(1:end-4);
@@ -1005,16 +1278,58 @@ end
 % 4) Comparation.
 % -------------------------------------------------------------------------
 % Others parameters.
-mean_stride_GW_QS (index) = mean([stride_QS(1,:) stride_GW(1,:)]);
-mean_var_stride_GW (index)= mean(stride_GW(2,:));
-mean_var_stride_QS (index)= mean(stride_QS(2,:));
-mean_diff_angle (index)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
-mean_diff_stride (index) = mean(stride_QS(1,:) - stride_GW(1,:));
+mean_stride_GW_QS = mean([stride_QS(1,:) stride_GW(1,:)]);
+mean_var_stride_GW = mean(stride_GW(2,:));
+mean_var_stride_QS = mean(stride_QS(2,:));
+mean_diff_angle = mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_GW(1,:) angle_GW(2,:)]));
+mean_diff_stride = mean(stride_QS(1,:) - stride_GW(1,:));
 
-
-  end
+if strcmpi(showPlots,'yes')
+for i=1:length(Selection)
+    switch i
+        case 1, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),1));
+            hold on
+            plot(time_vector, pitch_KF_right_shank(1:length(time_vector)),'r');
+            title('Pitch angle of right shank with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 2,
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),2));
+            hold on
+            plot(time_vector, pitch_KF_right_thigh(1:length(time_vector)),'r');
+            title('Pitch angle of right thigh with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 3, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),3));
+            hold on
+            plot(time_vector, pitch_KF_left_shank(1:length(time_vector)),'r');
+            title('Pitch angle of left shank with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+        case 4, 
+            figure()
+            plot(time_vector,Q_leg_pitch(1:length(time_vector),4));
+            hold on
+            plot(time_vector, pitch_KF_left_thigh(1:length(time_vector)),'r');
+            title('Pitch angle of left thigh with Kalman filter')
+            xlabel('Time (s)')
+            ylabel('Pitch (deg)')
+            legend('Qualisys System','Gait Watch')
+            
+    end
 end
-
+end
 
 % save(['../../data/APA Parameters/GWvsQS/' ...
 %        filename],'stride_GW','stride_QS', 'angle_GW','angle_QS',...
