@@ -485,3 +485,4 @@ title('Differents Correlations between measures of APAs duration');
 
 end
 fprintf(' Feature extraction completed !!! \n');
+

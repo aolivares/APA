@@ -69,9 +69,10 @@ gw = gwLibrary;
 % interesting information.
 [~,file_excel] = xlsread([filepath, filename_excel]);
 [rows,columns] = size(file_excel);
-index = 0;
+index = 0; ind2 = 1; ind4 = 1; ind6 = 1;
 
-for k = 4:rows 
+for k = 4:rows
+    
     % Check if the cell is empty.
     if  isempty( char(strtrim(file_excel(k,9))) ) == 0  
         
@@ -547,7 +548,7 @@ for i = 1:length(Selection)
                 'Npeaks',length(loc_angle_neg));
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
-            stride_GW (1,1) = mean(diff(loc_angle_pos));
+            stride_GW (1,1) = mean(diff(loc_angle_pos))./200;
             stride_GW (2,1) = abs(mean(diff(loc_angle_pos)-stride_GW (1,1)));
 
 %             swing_GW (1,1) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
@@ -627,7 +628,7 @@ for i = 1:length(Selection)
                 'Npeaks',length(loc_angle_neg));
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
-            stride_GW (1,3) = mean(diff(loc_angle_pos));
+            stride_GW (1,3) = mean(diff(loc_angle_pos))./200;
             stride_GW (2,3) =abs( mean(diff(loc_angle_pos)-stride_GW(1,3)));
 
 %             swing_GW (1,2) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
@@ -707,7 +708,7 @@ for i = 1:length(Selection)
                 'Npeaks',length(loc_angle_neg));
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
-            stride_GW (1,2) = mean(diff(loc_angle_pos));
+            stride_GW (1,2) = mean(diff(loc_angle_pos))./200;
             stride_GW (2,2) = abs( mean(diff(loc_angle_pos)-stride_GW (1,2)));
 
 %             swing_GW (1,3) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
@@ -787,7 +788,7 @@ for i = 1:length(Selection)
                 'Npeaks',length(loc_angle_neg));
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
-            stride_GW (1,4) = mean(diff(loc_angle_pos));
+            stride_GW (1,4) = mean(diff(loc_angle_pos))./200;
             stride_GW (2,4) = abs(mean(diff(loc_angle_pos)-stride_GW (1,4)));
 % 
 %             swing_GW (1,4) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
@@ -845,8 +846,11 @@ end
 clearvars -except filename_GW pitch_KF_right_shank pitch_KF_left_shank ...
     pitch_KF_right_thigh pitch_KF_left_thigh time Selection showPlots ...
     stride_GW swing_GW angle_GW filename_QS k file_excel rows columns gw ...
-    comparation index mean_diff_stride mean_diff_angle mean_var_stride_GW ...
-    mean_var_stride_QS mean_stride_GW_QS
+    comparation index  ind2 ind4 ind6 ...
+    mean_stride mean_angle mean_var_stride  ...
+    mean_stride_GW_QS2  mean_diff_angle2 mean_diff_stride2 ...
+    mean_stride_GW_QS4  mean_diff_angle4 mean_diff_stride4 ...
+    mean_stride_GW_QS6  mean_diff_angle6 mean_diff_stride6 
 
 %--------------------------------------------------------------------------
 % 3) Calculate pitch with Qualisys System.
@@ -990,7 +994,7 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
         'Npeaks',length(loc_angle_neg));
     
     loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
-    stride_QS (1,n) = mean(diff(loc_angle_pos));
+    stride_QS (1,n) = mean(diff(loc_angle_pos))./200;
     stride_QS (2,n) = abs( mean(diff(loc_angle_pos)-stride_QS (1,n)));
     
 %     swing_QS (1,n) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
@@ -1004,19 +1008,84 @@ end
 % -------------------------------------------------------------------------
 % 4) Comparation.
 % -------------------------------------------------------------------------
-% Others parameters.
-mean_stride_GW_QS (index) = mean([stride_QS(1,:) stride_GW(1,:)]);
-mean_var_stride_GW (index)= mean(stride_GW(2,:));
-mean_var_stride_QS (index)= mean(stride_QS(2,:));
-mean_diff_angle (index)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
-mean_diff_stride (index) = mean(stride_QS(1,:) - stride_GW(1,:));
+% QS and GW
+mean_stride(index,:) = [mean(stride_QS(1,:)); mean(stride_GW(1,:))];
+mean_angle(index,:) = [mean(abs([angle_GW(1,:) angle_GW(2,:)]));mean(abs([angle_QS(1,:) angle_QS(2,:)]))];
+mean_var_stride (index,:) = [mean(stride_GW(2,:));mean(stride_QS(2,:))];
 
+% Diferences between differents speeds.
+speed = strtrim(file_excel(k,3));
+speed = textscan(char(speed{1,1}),'%s','Delimiter',' ');
+speed = char(speed{1,1}{1,1});
+
+    if speed=='2'
+      mean_stride_GW_QS2 (ind2) = mean([stride_QS(1,:) stride_GW(1,:)]);
+      mean_diff_angle2 (ind2)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_stride2 (ind2) = mean(stride_QS(1,:) - stride_GW(1,:));
+      ind2 = ind2 + 1;
+      
+    elseif speed =='4'
+      mean_stride_GW_QS4 (ind4) = mean([stride_QS(1,:) stride_GW(1,:)]);
+      mean_diff_angle4 (ind4)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_stride4 (ind4) = mean(stride_QS(1,:) - stride_GW(1,:));
+      ind4 = ind4 + 1;
+      
+    else % speed ==6
+      mean_stride_GW_QS6 (ind6) = mean([stride_QS(1,:) stride_GW(1,:)]);
+      mean_diff_angle6 (ind6)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_stride6 (ind6) = mean(stride_QS(1,:) - stride_GW(1,:));
+      ind6 = ind6 + 1;
+    end
 
   end
 end
 
+% -------------------------------------------------------------------------
+% 5) Plots
+% -------------------------------------------------------------------------
 
-% save(['../../data/APA Parameters/GWvsQS/' ...
-%        filename],'stride_GW','stride_QS', 'angle_GW','angle_QS',...
-%        'mean_stride_GW_QS', 'mean_var_stride_GW', 'mean_var_stride_QS', ...
-%        'mean_diff_angle', 'mean_diff_stride' );
+% QS and GW
+figure ()
+bar (mean_stride,'group');
+% axis([0, length(sync_peaks_mean)+1, 0.8, 1.005]);
+legend ('QS','GW' , 'Location', 'NorthEastOutside');
+title('Difference between the mean of the stride time'); 
+
+figure ()
+bar (mean_angle,'group');
+% axis([0, length(sync_peaks_mean)+1, 0.8, 1.005]);
+legend ('QS','GW' , 'Location', 'NorthEastOutside');
+title('Difference between the mean of the angle');
+
+figure ()
+bar (mean_var_stride,'group');
+% axis([0, length(sync_peaks_mean)+1, 0.8, 1.005]);
+legend ('QS','GW' , 'Location', 'NorthEastOutside');
+title('Difference between the mean of the variance of stride time'); 
+
+% Speed
+figure()
+plot(mean_stride_GW_QS2, 'b.', 'MarkerSize', 20);
+hold on
+plot(mean_stride_GW_QS4, 'g.', 'MarkerSize', 20);
+hold on
+plot(mean_stride_GW_QS6, 'm.', 'MarkerSize', 20);
+title('Stride time for differents speeds'); 
+
+figure()
+plot(mean_diff_angle2, 'b.', 'MarkerSize', 20);
+hold on
+plot(mean_diff_angle4, 'g.', 'MarkerSize', 20);
+hold on
+plot(mean_diff_angle6, 'm.', 'MarkerSize', 20);
+title('Mean of difference (GW and QS) of angles for differents speeds'); 
+
+figure()
+plot(mean_diff_stride2, 'b.', 'MarkerSize', 20);
+hold on
+plot(mean_diff_stride4, 'g.', 'MarkerSize', 20);
+hold on
+plot(mean_diff_stride6, 'm.', 'MarkerSize', 20);
+title('Mean of difference (GW and QS) of Stride time for differents speeds');
+
+fprintf(' Feature extraction completed !!! \n');
