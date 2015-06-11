@@ -979,9 +979,13 @@ a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
                         a_trunk_data_X_mean,[1:max_length]);
 g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
                         g_trunk_data_X_mean,[1:max_length]);
-                    
+% Center the data.
+AP_COP_mean_c = AP_COP_mean- mean(find(AP_COP_mean~=NaN));
+a_trunk_data_X_mean_c = a_trunk_data_X_mean - mean(find(a_trunk_data_X_mean~=NaN));
+g_trunk_data_X_mean_c = g_trunk_data_X_mean - mean(find(g_trunk_data_X_mean~=NaN));
+
 % Apply PCA.
-X_x = [AP_COP_mean; a_trunk_data_X_mean; g_trunk_data_X_mean]';
+X_x = [AP_COP_mean_c; a_trunk_data_X_mean_c; g_trunk_data_X_mean_c]';
 
 [COEFF_x,SCORE_x,latent,tsquare] = princomp(X_x,'econ');
 
@@ -991,29 +995,12 @@ biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-G
 % Selection of the APA peaks in the orthogonal space.
 % peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
 % close(gcf)
-    
-% CHECKING
-U = zeros(3,3);
-U(:,1:2) = COEFF_x(:,1:2);
-Signals_X = U*SCORE_x';
+figure()
+subplot(2,1,1)
+plot(SCORE_x(:,1));
+subplot(2,1,2)
+plot(SCORE_x(:,2));
 
-% 
-% % figure()
-% plot(AP_COP_mean,'b');
-% hold on
-% plot(Signals_X(1,:),'g');
-% 
-% 
-% figure()
-% plot(a_trunk_data_X_mean,'b');
-% hold on
-% plot(Signals_X(2,:),'g');
-% 
-% 
-% figure()
-% plot(g_trunk_data_X_mean,'b');
-% hold on
-% plot(Signals_X(3,:),'g');
 % -------------------------------------------------------------------------
 % 7.4) PCA in Medio-Lateral Direction.
 % -------------------------------------------------------------------------
@@ -1027,9 +1014,13 @@ a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
                         a_trunk_data_Y_mean,[1:max_length]);
 g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
                         g_trunk_data_Y_mean,[1:max_length]);
-                    
+% Center the data.
+ML_COP_mean_c = ML_COP_mean - mean(find(ML_COP_mean~=NaN));
+a_trunk_data_Y_mean_c = a_trunk_data_Y_mean - mean(find(a_trunk_data_Y_mean~=NaN));
+g_trunk_data_Y_mean_c = g_trunk_data_Y_mean - mean(find(g_trunk_data_Y_mean~=NaN));
+
 % Apply PCA.
-X_y = [ML_COP_mean; a_trunk_data_Y_mean; g_trunk_data_Y_mean]';
+X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
 
 [COEFF_y,SCORE_y,latent,tsquare] = princomp(X_y,'econ');
 
@@ -1039,30 +1030,15 @@ biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-G
 % Selection of the APA peaks in the orthogonal space.
 % peaks_APA_PCA_y = getCoordenates(SCORE_y(:,1) , SCORE_y(:,2), 'Select the intesresting peaks' );
 % close(gcf)
+
+figure()
+subplot(2,1,1)
+plot(SCORE_y(:,1));
+subplot(2,1,2)
+plot(SCORE_y(:,2));
  end
 
 
-% CHECKING
-U = zeros(3,3);
-U(:,1:2) = COEFF_y(:,1:2);
-Signals_Y = U*SCORE_y';
-
-% figure()
-% plot(ML_COP_mean,'b');
-% hold on
-% plot(Signals_Y(1,:),'g');
-% 
-% 
-% figure()
-% plot(a_trunk_data_Y_mean,'b');
-% hold on
-% plot(Signals_Y(2,:),'g');
-% 
-% 
-% figure()
-% plot(g_trunk_data_Y_mean,'b');
-% hold on
-% plot(Signals_Y(3,:),'g');
 
 
 % Show completion message.

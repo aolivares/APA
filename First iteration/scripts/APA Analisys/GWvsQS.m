@@ -1070,6 +1070,7 @@ hold on
 plot(mean_stride_GW_QS4, 'g.', 'MarkerSize', 20);
 hold on
 plot(mean_stride_GW_QS6, 'm.', 'MarkerSize', 20);
+legend ('2Km/h','4Km/h' , '6Km/h','Location', 'NorthEastOutside');
 title('Stride time for differents speeds'); 
 
 figure()
@@ -1078,6 +1079,7 @@ hold on
 plot(mean_diff_angle4, 'g.', 'MarkerSize', 20);
 hold on
 plot(mean_diff_angle6, 'm.', 'MarkerSize', 20);
+legend ('2Km/h','4Km/h' , '6Km/h','Location', 'NorthEastOutside');
 title('Mean of difference (GW and QS) of angles for differents speeds'); 
 
 figure()
@@ -1086,6 +1088,7 @@ hold on
 plot(mean_diff_stride4, 'g.', 'MarkerSize', 20);
 hold on
 plot(mean_diff_stride6, 'm.', 'MarkerSize', 20);
+legend ('2Km/h','4Km/h' , '6Km/h','Location', 'NorthEastOutside');
 title('Mean of difference (GW and QS) of Stride time for differents speeds');
 
 fprintf(' Feature extraction completed !!! \n');
