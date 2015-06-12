@@ -400,14 +400,192 @@ for i = 4:rows
                      APA_Acc_X_1, APA_Acc_Y_1, APA_Acc_Y_2, APA_Acc_Y_3,...
                      APA_Gyro_X_1, APA_Gyro_Y_1, APA_Gyro_Y_2, APA_Gyro_Y_3,...
                      APA_COP_duration, APA_Acc_duration, APA_Gyro_duration];
-     end
+    end
+%--------------------------------------------------------------------------
+% 4) PCA.
+%--------------------------------------------------------------------------
+if strcmpi(PCA,'yes')
+    
+% -------------------------------------------------------------------------
+% 4.1) PCA in Antero-Posterior Direction.
+% -------------------------------------------------------------------------
+    % Interpolation of the signals.
+    max_length = max([length(AP_COP_mean),length(a_trunk_data_X_mean),...
+                length(g_trunk_data_X_mean)]);
 
+    AP_COP_mean = interp1([1:length(AP_COP_mean)],AP_COP_mean,[1:max_length]);
+    a_trunk_data_X_mean = interp1([1:length(a_trunk_data_X_mean)],...
+                            a_trunk_data_X_mean,[1:max_length]);
+    g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
+                            g_trunk_data_X_mean,[1:max_length]);
+    % Center the data.
+    AP_COP_mean_c = AP_COP_mean - mean(find(AP_COP_mean~=NaN));
+    a_trunk_data_X_mean_c = a_trunk_data_X_mean - mean(find(a_trunk_data_X_mean~=NaN));
+    g_trunk_data_X_mean_c = g_trunk_data_X_mean - mean(find(g_trunk_data_X_mean~=NaN));
+
+    % Apply PCA.
+    X_x = [AP_COP_mean_c; a_trunk_data_X_mean_c; g_trunk_data_X_mean_c]';
+    
+    % Using 'primcomp' funtion, we can obtain the projection of PCA. 
+    % COEFF are the eighvectors, SCORE the projections in the ortogonal
+    % space, latent are the eighvalues and tsquare is a measure of
+    % probability.
+    [COEFF_x,SCORE_x,latent,tsquare] = princomp(X_x,'econ');
+    
+    % The first componets of the SCORE are the most variability, so we will
+    % use them to extract features with more accuracity.
+    comp_X_1 = SCORE_x(:,1);
+    comp_X_2 = SCORE_x(:,2);
+    
+    % Feature extration of the componentes in AP direction.
+    % First component.
+    % Detect when there is a strong change of level in the signal. We have
+    % to detect two changes here.
+    d=diff(comp_X_1 );
+    [~, neg_peak_locations] = min(d(1:length(d)-150));
+    [~, pos_peak_locations] = max(d(1:neg_peak_locations));
+    
+    % One of the APA peak is between the both crossover calculated above.
+    % The second one is the minimum value after the descent.
+    [~,index_APA_X_C1_1 ]= max(comp_X_1 (pos_peak_locations: neg_peak_locations));
+    index_APA_X_C1_1 = index_APA_X_C1_1+ pos_peak_locations;
+    
+    [~,index_APA_X_C1_2] = min(comp_X_1(neg_peak_locations:length(comp_X_1)));
+    index_APA_X_C1_2 = index_APA_X_C1_2 + neg_peak_locations;
+    
+    % Second component.
+    % We have to find the minumum of this signals. This is when the patient
+    % goes forward.
+    [~,index_APA_X_C2_1]= min(comp_X_2);
+    
+    % Stores the signals in  single variable ( in a row) to compare after
+    % between patients.
+    Signal_X = reshape(X_x ,[1, 3*max_length]);
+    
+    % Interpotate in each iteration.
+    if(i-3)==1
+        Signals_X (i-3,:) = Signal_X;
+    else
+     % Check what length is larger to interpolate afterwards.
+      if (length(Signal_X)<length(Signals_X(i-4,:))) % If the new signal is smaller, we interpolate this.
+         Signal_X =  interp1([1:length(Signal_X)],Signal_X,[1:length(Signals_X(i-4,:))]);
+         Signals_X (i-3,:) = Signal_X;
+
+      else % If the new signal is higher, we interpolate the rest of the signals.
+          [r,c] = size(Signals_X);
+          Signals_aux = Signals_X;
+          Signals_X = zeros (1,length(Signal_X));
+          
+          for n= 1:r
+              Signals_X (n,:) = interp1([1:c],Signals_aux (n,:),[1:length(Signal_X)]);
+          end
+          Signals_X (i-3,:) = Signal_X;
+      end
+    end
+    
+% -------------------------------------------------------------------------
+% 4.2) PCA in Medio-Lateral Direction.
+% -------------------------------------------------------------------------
+    % Interpolation of the signals.
+    max_length = max([length(ML_COP_mean),length(a_trunk_data_Y_mean),...
+                length(g_trunk_data_Y_mean)]);
+
+    ML_COP_mean = interp1([1:length(ML_COP_mean)],ML_COP_mean,[1:max_length]);
+    a_trunk_data_Y_mean = interp1([1:length(a_trunk_data_Y_mean)],...
+                            a_trunk_data_Y_mean,[1:max_length]);
+    g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
+                            g_trunk_data_Y_mean,[1:max_length]);
+    % Center the data.
+    ML_COP_mean_c = ML_COP_mean - mean(find(ML_COP_mean~=NaN));
+    a_trunk_data_Y_mean_c = a_trunk_data_Y_mean - mean(find(a_trunk_data_Y_mean~=NaN));
+    g_trunk_data_Y_mean_c = g_trunk_data_Y_mean - mean(find(g_trunk_data_Y_mean~=NaN));
+
+    % Apply PCA.
+    X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
+
+    [COEFF_y,SCORE_y,latent,tsquare] = princomp(X_y,'econ');
+    
+    % The first componets of the SCORE are the most variability, so we will
+    % use them to extract features with more accuracity.
+    comp_Y_1 = SCORE_y(:,1);
+    comp_Y_2 = SCORE_y(:,2);
+    
+    % Feature extration of the componentes in ML direction.
+    % First component.
+    % Detect when there is a strong change of level in the signal.
+     d=diff(comp_Y_1);
+     [~, neg_peak_locations] = min(d(1:length(d)-50));
+     
+    % Obtain the APA peak in ML direction. This is the maximum value before
+    % this, close to the descent.
+     [~, pos_peak_locations] = max(comp_Y_1(neg_peak_locations-50:neg_peak_locations));
+     index_APA_Y_C1_1 = pos_peak_locations + neg_peak_locations - 50;
+    
+    % Second component.
+    % We have to find the minumum of this signals and after that the prior
+    % maximum. This is when the patient moves toward left and right.
+    [~,index_APA_Y_C2_1]= min(comp_Y_2);
+    
+    [~,index_APA_Y_C2_2]= max(comp_Y_2(1:index_APA_Y_C2_1));
+    
+    % Stores the signals in  single variable ( in a row) to compare after
+    % between patients.
+    Signal_Y = reshape(X_y,[1, 3*max_length]);
+    
+    % Interpotate in each iteration.
+    if(i-3)==1
+        Signals_Y (i-3,:) = Signal_Y;
+    else
+     % Check what length is larger to interpolate afterwards.
+      if (length(Signal_Y)<length(Signals_Y(i-4,:))) % If the new signal is smaller, we interpolate this.
+         Signal_Y =  interp1([1:length(Signal_Y)],Signal_Y,[1:length(Signals_Y(i-4,:))]);
+         Signals_Y (i-3,:) = Signal_Y;
+
+      else % If the new signal is higher, we interpolate the rest of the signals.
+          [r,c] = size(Signals_Y);
+          Signals_aux = Signals_Y;
+          Signals_Y = zeros (1,length(Signal_Y));
+          
+          for n= 1:r
+              Signals_Y (n,:) = interp1([1:c],Signals_aux (n,:),[1:length(Signal_Y)]);
+          end
+          Signals_Y (i-3,:) = Signal_Y;
+      end
+    end
+
+    % Calculate the APA Parameters for PCA signals.
+    APA_X_C1_1 = abs(comp_X_1(index_APA_X_C1_1) - comp_X_1(1));
+    APA_X_C1_2 = abs(comp_X_1(index_APA_X_C1_2) - comp_X_1(index_APA_X_C1_1));
+    APA_X_C1_3 = abs(comp_X_1(index_APA_X_C1_2) - comp_X_1(1));
+
+    APA_Y_C1_1 = comp_Y_1(index_APA_Y_C1_1);
+
+    APA_X_C2_1 =  abs( comp_X_2(index_APA_X_C2_1) - comp_X_2(1));
+
+    APA_Y_C2_1 =  abs( comp_Y_2(index_APA_Y_C2_1) - comp_Y_2(1));
+    APA_Y_C2_2 =  abs( comp_Y_2(index_APA_Y_C2_1) - comp_Y_2(index_APA_Y_C2_2));
+    APA_Y_C2_3  =  abs( comp_Y_2(index_APA_Y_C2_2) - comp_Y_2(1));
+    
+    APA_C1_duration = abs(AP_COP_complete_ts.time(index_APA_Y_C1_1) - ...
+    AP_COP_complete_ts.time(initcross_COP(1)+length(comp_Y_1)-1));
+
+    APA_C2_duration = a_trunk_complete_ts.time(index_APA_Y_C2_2) - ...
+        a_trunk_complete_ts.time(index_APA_Y_C2_1);
+
+    APA_Parameters_PCA(i-3,:) = [APA_X_C1_1, APA_X_C1_2, APA_X_C1_3, APA_Y_C1_1,...
+                     APA_X_C2_1, APA_Y_C2_1, APA_Y_C2_2, APA_Y_C2_3,...
+                     APA_C1_duration, APA_C2_duration];
+ end
 end
 
+
 %--------------------------------------------------------------------------
-% 4) Correlations.
+% 5) Correlations.
 %--------------------------------------------------------------------------
 
+%--------------------------------------------------------------------------
+% 5.1) Correlations in the original signals.
+%--------------------------------------------------------------------------
 % Acc and COP.
 [corr_AP1, ~] = corr(APA_Parameters(:,1),APA_Parameters(:,5)); 
 [corr_AP2, ~] = corr(APA_Parameters(:,2),APA_Parameters(:,5));
@@ -431,7 +609,7 @@ end
 [corr_dur2,~] =  corr(APA_Parameters(:,14),APA_Parameters(:,15));
 [corr_dur3,~] =  corr(APA_Parameters(:,13),APA_Parameters(:,15));
 
-% Lump together the diferents features claculated above.
+% Lump together the diferents features calculated above.
 % In Antero-Posterior direction.
 % 1-Corr between positive peak in AP-COP and the negative peak in the Acc.
 % 2-Corr between the peaks distance in AP-COP and the negative peak in the Acc.
@@ -486,3 +664,59 @@ title('Differents Correlations between measures of APAs duration');
 end
 fprintf(' Feature extraction completed !!! \n');
 
+%--------------------------------------------------------------------------
+% 5.2) Correlations in the projections of the signals after applying PCA.
+%--------------------------------------------------------------------------
+
+% First component.
+[corr_X1, ~] = corr(APA_Parameters_PCA(:,1),APA_Parameters_PCA(:,5)); 
+[corr_X2, ~] = corr(APA_Parameters_PCA(:,2),APA_Parameters_PCA(:,5));
+[corr_X3, ~] = corr(APA_Parameters_PCA(:,3),APA_Parameters_PCA(:,5));
+
+[corr_Y1,~] =  corr(APA_Parameters_PCA(:,4),APA_Parameters_PCA(:,6));
+[corr_Y2,~] =  corr(APA_Parameters_PCA(:,4),APA_Parameters_PCA(:,7));
+[corr_Y3,~] =  corr(APA_Parameters_PCA(:,4),APA_Parameters_PCA(:,8));
+
+[corr_duration,~] = corr(APA_Parameters_PCA(:,9),APA_Parameters_PCA(:,10));
+
+% Lump together the diferents features calculated above.
+% In Antero-Posterior direction.
+% 1-Corr between positive peak in comp1 and the negative peak in comp2.
+% 2-Corr between the peaks distance in comp1 and the negative peak in the
+% comp2
+% 3-Corr between negative peak in comp1 and the negative peak in comp2.
+% In Medio-Lateral direction.
+% 4-Corr between positive peak in comp1 and the positive peak in comp2.
+% 5-Corr between positive peak in comp1 and the peaks distance in comp2.
+% 6-Corr between positive peak in comp1 and the negative peak in comp2.
+% 7- Corr between comp1-APA duration and comp2-APA duration.
+correlationsPCA = [corr_X1, corr_X2, corr_X3,corr_Y1, corr_Y2, corr_Y3,...
+    corr_duration];
+
+% Plots
+if strcmpi(showPlotsCorr,'yes')   
+figure()              
+x_axes={'Comp_X1','Comp_X2','Comp_X3',...
+    'Comp_Y1','Comp_Y2','Comp_Y3', 'Durat'};
+
+bar (correlationsPCA);
+set(gca,'XtickL',x_axes)
+title('Differents Correlations between components after applying PCA'); 
+end
+%--------------------------------------------------------------------------
+% 6) PCA between patients.
+%--------------------------------------------------------------------------
+% Apply PCA.
+Signals_X = Signals_X - mean(find(Signals_X~=NaN));
+Signals_Y = Signals_Y - mean(find(Signals_Y~=NaN));
+
+[COEFF_X,SCORE_X,latent,tsquare] = princomp(Signals_X','econ');
+[COEFF_Y,SCORE_Y,latent,tsquare] = princomp(Signals_Y','econ');
+
+figure()
+biplot(COEFF_X(:,1:2),'Scores',SCORE_X(:,1:2));
+title('PCA between patients in Antero-Posterior direction')
+
+figure()
+biplot(COEFF_Y(:,1:2),'Scores',SCORE_Y(:,1:2));
+title('PCA between patients in Medio-Lateral direction')

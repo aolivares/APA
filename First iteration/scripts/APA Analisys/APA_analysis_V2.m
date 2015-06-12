@@ -995,11 +995,49 @@ biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-G
 % Selection of the APA peaks in the orthogonal space.
 % peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
 % close(gcf)
-figure()
-subplot(2,1,1)
-plot(SCORE_x(:,1));
-subplot(2,1,2)
-plot(SCORE_x(:,2));
+% figure()
+% subplot(2,1,1)
+% plot(SCORE_x(:,1));
+% subplot(2,1,2)
+% plot(SCORE_x(:,2));
+
+% % The first componets of the SCORE are the most variability, so we will
+%     % use them to extract features with more accuracity.
+%     comp_X_1 = SCORE_x(:,1);
+%     comp_X_2 = SCORE_x(:,2);
+%     
+%     % Feature extration of the componentes in AP direction.
+%     % First component.
+%     % Detect when there is a strong change of level in the signal. We have
+%     % to detect two changes here.
+%     d=diff(comp_X_1 );
+%     [~, neg_peak_locations] = min(d(1:length(d)-50));
+%     [~, pos_peak_locations] = max(d(1:neg_peak_locations));
+%     
+%     % One of the APA peak is between the both crossover calculated above.
+%     % The second one is the minimum value after the descent.
+%     [~,index_APA_X_C1_1 ]= max(comp_X_1 (pos_peak_locations: neg_peak_locations));
+%     index_APA_X_C1_1 = index_APA_X_C1_1+ pos_peak_locations;
+%     
+%     [~,index_APA_X_C1_2] = min(comp_X_1(neg_peak_locations:length(comp_X_1)));
+%     index_APA_X_C1_2 = index_APA_X_C1_2 + neg_peak_locations;
+%     
+%     % Second component.
+%     % We have to find the minumum of this signals. This is when the patient
+%     % goes forward.
+%     [~,index_APA_X_C2_1]= min(comp_X_2);
+% 
+%     figure
+%     subplot(2,1,1)
+%     plot(comp_X_1)
+%     hold on;
+%     plot(index_APA_X_C1_1,comp_X_1(index_APA_X_C1_1),'.r');
+%     plot(index_APA_X_C1_2, comp_X_1(index_APA_X_C1_2),'.g');
+%     
+%     subplot(2,1,2)
+%     plot(comp_X_2)
+%     hold on;
+%     plot(index_APA_X_C2_1,comp_X_2(index_APA_X_C2_1),'.r');
 
 % -------------------------------------------------------------------------
 % 7.4) PCA in Medio-Lateral Direction.
@@ -1027,15 +1065,50 @@ X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
 figure()
 biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-Gyro'});
 
+% % The first componets of the SCORE are the most variability, so we will
+%     % use them to extract features with more accuracity.
+%     comp_Y_1 = SCORE_y(:,1);
+%     comp_Y_2 = SCORE_y(:,2);
+%     
+%     % Feature extration of the componentes in ML direction.
+%     % First component.
+%     % Detect when there is a strong change of level in the signal.
+%      d=diff(comp_Y_1);
+%      [~, neg_peak_locations] = min(d(1:length(d)-50));
+%      
+%     % Obtain the APA peak in ML direction. This is the maximum value before
+%     % this, close to the descent.
+%      [~, pos_peak_locations] = max(comp_Y_1(neg_peak_locations-50:neg_peak_locations));
+%      index_APA_Y_C1_1 = pos_peak_locations + neg_peak_locations - 50;
+%     
+%     % Second component.
+%     % We have to find the minumum of this signals and after that the prior
+%     % maximum. This is when the patient moves toward left and right.
+%     [~,index_APA_Y_C2_1]= min(comp_Y_2);
+%     
+%     [~,index_APA_Y_C2_2]= max(comp_Y_2(1:index_APA_Y_C2_1));
+    
+        % plot
+%     subplot(2,1,1)
+%     plot(comp_Y_1)
+%     hold on;
+%     plot(index_APA_Y_C1_1,comp_Y_1(index_APA_Y_C1_1),'.r');
+%     
+%     subplot(2,1,2)
+%     plot(comp_Y_2)
+%     hold on;
+%     plot(index_APA_Y_C2_1,comp_Y_2(index_APA_Y_C2_1),'.r');
+%     plot(index_APA_Y_C2_2, comp_Y_2(index_APA_Y_C2_2),'.g');
+     
 % Selection of the APA peaks in the orthogonal space.
 % peaks_APA_PCA_y = getCoordenates(SCORE_y(:,1) , SCORE_y(:,2), 'Select the intesresting peaks' );
 % close(gcf)
 
-figure()
-subplot(2,1,1)
-plot(SCORE_y(:,1));
-subplot(2,1,2)
-plot(SCORE_y(:,2));
+% figure()
+% subplot(2,1,1)
+% plot(SCORE_y(:,1));
+% subplot(2,1,2)
+% plot(SCORE_y(:,2));
  end
 
 
