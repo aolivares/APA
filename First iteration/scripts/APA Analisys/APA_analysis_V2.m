@@ -55,9 +55,9 @@ clear all; close all; clc;
 gw = gwLibrary;
 
 % Set flags which control the visibility of the figures.
-showPlotsCheck = 'no';
-showPlotsAPA = 'no';
-showPlotsCorr = 'no';
+showPlotsCheck = 'yes';
+showPlotsAPA = 'yes';
+showPlotsCorr = 'yes';
 
 % Set extra-caculations
 peakManually = 'no';

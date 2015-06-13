@@ -281,9 +281,9 @@ The first step that needs to be carried out is establish the axes in the platfor
 	\label{fig:axesFP}
 \end{figure}
 
-Now, for the GaitWatch System we have to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes. The most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation. \cite{OlivaresBotzel2013}
+Now, for the GaitWatch System we have to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes. The most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation \cite{OlivaresBotzel2013}. 
 
-Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right  of the patient, and the Z axis to the floor\ref{fig:axesGW}.\cite{OlivaresBotzel2013}
+Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right  of the patient, and the Z axis to the floor\ref{fig:axesGW}\cite{OlivaresBotzel2013}.
 
 \begin{figure}[H]
 	\centering
@@ -308,9 +308,7 @@ Whether we focus in the Antero-Posterior movement, the body is displaced forward
 
 Since kinematic point of view, the trunk is moved anteriorly while the patient steps. Therefore, there will be a peak of acceleration in the X axis pointing forward, so we will find a ‘negative’ peak at this moment because the acceleration vector points in the opposite direction to the movement. After that, there is a positive peak that corresponding with the direction change just when the step finishes. 
 
-Also, we can observe a pattern due to all movements before stepping follows a only trace approximately. So, if we observed the trunk signals when the patient starts with the right and left feet, we see the following signals:
-
-The pattern of the acceleration in the X-axis (anterior-posterior movement) is always the same, regardless of the leg which the patient starts to walk. \ref{pattern_AP_acc}.
+Also, we can observe a pattern due to all movements before stepping follows a only trace approximately. The pattern of the acceleration in the X-axis (anterior-posterior movement) is always the same, regardless of the leg which the patient starts to walk.
 
 Moreover, we discern differences in the Medio-Lateral direction regarding the foot with which the step is done\ref{patter_ML_acc_right}\ref{patter_ML_acc_left}. 
 
@@ -322,7 +320,12 @@ To sum up, we have to differentiate between the foot which the step is done (ste
  
                  
 
-GYROSCOPE
+Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period). 
+
+The behaviour of the gyroscope signals is very similar to the accelerometer signals but this case we are measuring a turn forward or backward and toward right or left. 
+
+There are a negative peak when patient turns to backward before walking in the Antero -Posterior direction. Besides, it will be a negative peak when patient is shifted toward right and positive in the case that the turn was done to left in the Y axis.
+
 
 \subsection{PCA}
 One of the most difficulties inherent in multivariate stadistics is the task of the features extraction to obtain the most relevant information from the original data and represent that information in a lower dimensionality space.
@@ -334,7 +337,7 @@ This method attempts to represent the data efficiently by descomposing a data sp
 Given  set of centered N-dimensional training gait samples 
 $ x_{j}, j=1,...,M     x \in$ such that $ R_{N} $ and $ R=\sum_{k=1}^{M}x_{j}=0 $
 	
-Where M represents the number of gait samples and N is the number of input values. The $ x_{j} $ vectors are aligned in the data matrix X.
+Where M represents the number of gait samples and N is the number of input values. The $ x_{j} $ vectors are aligned in the data matrix X. Also, the data have to be center so it's necessary to extract the average of the each set.
 \begin{figure}[H]
 	\centering
 	\epsfig{file=imagenes/PCA.jpg, width=18cm}
@@ -372,12 +375,13 @@ In such a way the orthonormal matrix U contains the eigenvectors $u_{1}, u_{2},.
 
 The eigenvalues and the eigenvectors are arranged with respect to the descending order of the eigen values, thus $\lambda_{1}\eqslantgtr\lambda_{2}\eqslantgtr...\eqslantgtr\lambda_{N}$
 
-Therefore, the most variability of the input random vector is contained in the first eigenvectors. Hence, the eigrnvectors are called principal vectors.
+Therefore, the most variability of the input random vector is contained in the first eigenvectors. Hence, the eigenvectors are called principal vectors.
 
 So U can be used as a linear transformation to project the original data of high dimension into a space of lower dimension.
 
 $$P=U^T\bar{X}$$
 
-In terms of gait feature extration by choosing the first fwo eigenvectors, PCA can directly perform the dimensional reduction\cite{Jeon}.
+In terms of gait feature extration by choosing the first two eigenvectors, PCA can directly perform the dimensional reduction\cite{Jeon}.
+We can use this new information to do a classification. Tha classification can be achieved through a SVM which separates a given set of labelled training data with a hyperplane that is maximally distant from the two classes \cite{Gorriz}.
 
 \subsection{Results discurssion}
