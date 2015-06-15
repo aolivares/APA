@@ -241,6 +241,7 @@ var_duration_APA_COP = mean(duration_APA_COP - mean_duration_APA_COP);
 
 %------------------------------- Plots-------------------------------------
 if strcmpi(showPlotsAPA,'yes')
+figure()
 subplot(2,1,1)
 plot(AP_COP_complete_ts.time, AP_COP_data, 'g');
 hold on;
@@ -360,7 +361,7 @@ for k = 1:length(initcross)
   finalcross_acc (k)= find(abs( a_trunk_complete_ts.time- finalcross(k))...
                     < 0.001) - 15;
                 
-  % We ontain the value of the Acc and Gyro peak in the ML direction.
+  % We obtain the value of the Acc and Gyro peak in the ML direction.
                 
    % Differenciate when the patient starts with left or right foot.
     if (find(cycle_start_right == k))% Look for a positive peak.

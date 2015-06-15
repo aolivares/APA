@@ -276,7 +276,7 @@ The first step that needs to be carried out is establish the axes in the platfor
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesFP.pdf, width=18cm}
+	\epsfig{file=figures/APA_analysis/axesFP.pdf, width=10cm}
 	\caption{Definition of the axes in the Platform.}
 	\label{fig:axesFP}
 \end{figure}
@@ -287,7 +287,7 @@ Since we will be using the GaitWatch device to monitor gait, then we need its X 
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesGW.pdf, width=18cm}
+	\epsfig{file=figures/APA_analysis/axesGW.pdf, width=10cm}
 	\caption{Definition of the axes in the accelerometers ans gyroscopes.}
 	\label{fig:axesGW}
 \end{figure}
@@ -296,7 +296,7 @@ Once we have identified the axes of the accelerometers, we now proceed to identi
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesGWGyro.pdf, width=18cm}
+	\epsfig{file=figures/APA_analysis/axesGWGyro.pdf, width=10cm}
 	\caption{Orientation of the axis rotation in gyroscopes.}
 	\label{fig:axesGWGyro}
 \end{figure}
@@ -304,27 +304,68 @@ Once we have identified the axes of the accelerometers, we now proceed to identi
 
 We have to differentiate between the front-back movement and the right-left movement. In the first of the case, we have the acceleration in X axis and the Antero-Posterior COP. In the another case, the movement is traced by the acceleration in Y axis and the Medio-Lateral  COP.
 
-Whether we focus in the Antero-Posterior movement, the body is displaced forward while the step is being completed. Thus, the center of mass is shifted backward in this period of the movement. In the case of center of pressure, we can find first  movement backward to gain momentum and after that  COP moves forwards under the stance of the foot\ref{fig:AP_AccXtrunk}.
+Whether we focus in the Antero-Posterior movement, the body is displaced forward while the step is being completed. Thus, the center of mass is shifted backward in this period of the movement. In the case of center of pressure, we can find first  movement backward to gain momentum and after that  COP moves forwards under the stance of the foot\ref{fig:AP_AccX}.
 
 Since kinematic point of view, the trunk is moved anteriorly while the patient steps. Therefore, there will be a peak of acceleration in the X axis pointing forward, so we will find a ‘negative’ peak at this moment because the acceleration vector points in the opposite direction to the movement. After that, there is a positive peak that corresponding with the direction change just when the step finishes. 
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/AP_AccX, width=18cm, height=10cm}
+	\caption{COP and acceleration in Antero-Posterior direction.}
+	\label{fig:AP_AccX}
+\end{figure}
+
 Also, we can observe a pattern due to all movements before stepping follows a only trace approximately. The pattern of the acceleration in the X-axis (anterior-posterior movement) is always the same, regardless of the leg which the patient starts to walk.
 
-Moreover, we discern differences in the Medio-Lateral direction regarding the foot with which the step is done\ref{patter_ML_acc_right}\ref{patter_ML_acc_left}. 
+Moreover, we discern differences in the Medio-Lateral direction regarding the foot with which the step is done. 
 
-If the patient starts to step with the right foot, the center of mass is accelerated toward left because the major body heigh is located in the foot over the ground. However, the center of pressure is shifted toward right and then the COP displaces mediolaterally to left, toward the foot is contact with the ground. For the acceleration in the Y axis, there is a negative peak because the movement is towards right and the acceleration vector points in the opposite direction, with negatives values. After this, we find a negative peak due to the change of direction. \ref{fig:ML_AccYtrunkNegative}
+If the patient starts to step with the right foot, the center of mass is accelerated toward left because the major body heigh is located in the foot over the ground. However, the center of pressure is shifted toward right and then the COP displaces mediolaterally to left, toward the foot is contact with the ground. For the acceleration in the Y axis, there is a negative peak because the movement is towards right and the acceleration vector points in the opposite direction, with negatives values. After this, we find a negative peak due to the change of direction\ref{fig:ML_AccY_right}. 
 
-If the patient starts to step with the left foot, the movements are the same than in the prior case unless the movement directions are just the opposite. We can perceive this in \ref{fig:ML_AccYtrunkPositive}
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_AccY_right, width=18cm, height=10cm}
+	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the right foot.}
+	\label{fig:ML_AccY_right}
+\end{figure}
+
+If the patient starts to step with the left foot, the movements are the same than in the prior case unless the movement directions are just the opposite. We can perceive this in \ref{fig:ML_AccY_left}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/ML_AccY_left, width=18cm, height=10cm}
+	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the left foot.}
+	\label{fig:ML_AccY_left}
+\end{figure}
 
 To sum up, we have to differentiate between the foot which the step is done (stepping foot) and the foot over the ground (stance foot) to understand the behaviour of the APAs. The center of mass (COM) is shifted toward the stance foot to maintain the equilibrium during the balance phase. The center of pressure (COP) is divided in differents phases. Firstly, the COP moves toward the stepping foot and backward to generate the momentum to step (S1 period). Hereafter, the COP is displaced toward the stance foot. This happens at time when the other foot is in the air (S2 period). Finally, the COP moves forward and under the stance foot(S3 period). 
- 
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=18cm, height=10cm}
+	\caption{Trajectory of COP when patient steps with the right foot.}
+	\label{fig:trajectoryCOP}
+\end{figure} 
                  
 
 Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period). 
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=18cm, height=10cm}
+	\caption{Trajectory of acceleration when patient steps with the right foot.}
+	\label{fig:trajectoryAcc}
+\end{figure} 
+
 The behaviour of the gyroscope signals is very similar to the accelerometer signals but this case we are measuring a turn forward or backward and toward right or left. 
 
-There are a negative peak when patient turns to backward before walking in the Antero -Posterior direction. Besides, it will be a negative peak when patient is shifted toward right and positive in the case that the turn was done to left in the Y axis.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/APA_analysis/GyroTrunk, width=18cm, height=10cm}
+	\caption{Angular Velocity when patient steps with the right foot.}
+	\label{fig:GyroTrunk}
+\end{figure} 
+
+There are a negative peak when patient turns to backward before walking in the Antero-Posterior direction. Besides, it will be a negative peak when patient is shifted toward right and positive in the case that the turn was done to left in the Y axis.
 
 
 \subsection{PCA}
@@ -340,7 +381,7 @@ $ x_{j}, j=1,...,M     x \in$ such that $ R_{N} $ and $ R=\sum_{k=1}^{M}x_{j}=0 
 Where M represents the number of gait samples and N is the number of input values. The $ x_{j} $ vectors are aligned in the data matrix X. Also, the data have to be center so it's necessary to extract the average of the each set.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=imagenes/PCA.jpg, width=18cm}
+	\epsfig{file=imagenes/PCA.jpg, width=10cm}
 	\caption{Data matrix X with M rows and N colums.}
 	\label{fig:matrixPCA}
 \end{figure}
