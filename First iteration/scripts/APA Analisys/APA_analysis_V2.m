@@ -820,30 +820,31 @@ g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):fi
   subplot(2,1,1)
   plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(AP_COP_mean)-1),...
         AP_COP_mean, 'g')
-    
+  title('AP-COP');  
   subplot(2,1,2)
    plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(ML_COP_mean)-1),...
         ML_COP_mean, 'b')
- 
+  title('ML-COP');  
  % Acceleration.
    figure()
   subplot(2,1,1)
    plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_X_mean)-1),...
         a_trunk_data_X_mean, 'b')
-    
+   title('Acceleration of the X axis of the trunk');   
   subplot(2,1,2)
    plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_Y_mean)-1),...
         a_trunk_data_Y_mean, 'g')
-    
+    title('Accelerationof the Y axis of the trunk');  
  % Angular Velocity
   figure()
   subplot(2,1,1)
    plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_X_mean)-1),...
         g_trunk_data_X_mean, 'b')
-    
+   title('Angular Velocity of the X axis of the trunk'); 
   subplot(2,1,2)
    plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_Y_mean)-1),...
         g_trunk_data_Y_mean, 'g')
+    title('Angular Velocity of the Y axis of the trunk'); 
  end
  
 % Select the APA points in all signals. It's necessary in this case
