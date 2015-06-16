@@ -426,6 +426,140 @@ In terms of gait feature extration by choosing the first two eigenvectors, PCA c
 We can use this new information to do a classification. Tha classification can be achieved through a SVM which separates a given set of labelled training data with a hyperplane that is maximally distant from the two classes \cite{Gorriz}.
 
 \subsection{Feature extraction}
+Automated recognition of gait pattern change is important in medical diagnostic. Thus, in this section we are going to extract and evaluate different gait features as well as methods to obtain them. Feature extraction is a important	to do a good classification of patterns.
+The main goal in this chapter is to obtain the relevant information from the platform and inertial sensors synchronised previously and carry out a study comparative between them.
+
+One the one hand we try to figure out whether there is a correlation between the features of both systems and determine if we can use the inertial sensors to characterise the movement without another measure auxiliar  platform.
+One the other hand we want to extract useful features that we can use to do a classification between patients and therefore it can be used for diagnosis.
+
+o do this, we will use the data obtained after the synchronisation between Force Plate and Gait Watch signals. Using this signals lets us extract the information easily and compare them.
+
+The next step is to determine when the second step happens. We used as a reference the point when the patient touched the platform to do the synchronisation. However, in this case we have to identify when patient carried out the second step to go down from the platform. We need this part of the signals because it is when we can see the displacements of the center of pressure. To obtain these limits of the signals we use the LTSD algorism. This is applied over the acceleration signal so we can determine the beginning of this period for each cycle. The end of the interval is the point when the patient go down and touch the ground ,i.e when there is not pressure signal over the platform.
+Thereupon, we apply a low pass filter to the  Gait Watch signals, i.e signals of the accelerometers and gyroscopes in the trunk. This allows us to delete the low frequencies  of these signals due to the noise of the sensors and get the features properly. Specifically it has been used a low pass filter with a cutoff frequency of 2 Hz.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/lowpassFilter, width=18cm, height=10cm}
+	\caption{Lowpass Filter with a cutoff frequency of 2Hz}
+	\label{fig:lowpassFilter}
+\end{figure} 
+
+One the signals have been filtered, we will do the average of all repeat. Typically, the experiment is repeated several times to do a ratio and obtain a single signal for each patient. As we said before, the protocol is repeated about ten times so we have to synchronise this cycles and realise the mean of all them.  First of all, we need determine when the patient steps with the right of left foot. This is important for the signals in the medio-lateral direction because the sing of the signals is the opposite. Thus, if patient does the step with the left foot, the signal will be invert before doing the mean. This fact is detected seeing the last values of the center of pressure because this gives us information about the locatitation of the feet.
+When the patient starts to step with left foot, last value of the cycle of ML- COP is positive because the step finishes the pressure is located in the right foot. However, if the patient starts with right foot, the last value of the ML-COP cycle will be negative.
+
+To align the signals, we use cross-correlation between them. The cross-correlation is a mesure of similarity fo two signals as a function of the lag of one relative to the other\cite{Cross-corr}. For discrete function as our case, the cross correlation is defined as:
+\begin{equation}
+\label{cross-corr}
+(f*g)[n]=\varSigma_{m=-\infty}^{\infty} f^{*}[m]g[m+n]
+\end{equation}
+Where $ f^{*}$ denote the complex conjugate of f and n is the lag.
+
+Using this method, we can determine the point where the signals are more similar. After this, we can interpolate them and carry out the average between them.
+
+At this point, we have six signals per patient: the center of pressure in the antero-posterior and medio-lateral direction, the acceleration in X and Y axis and the angular velocity in the same axes. Therefore, the next step is extract the features of them. 
+
+We was analysing the Gait Watch and Forceplate signals in the above chapter and determining the most interesting episodes in these signals. So, the first features that we will obtain are the peaks in COP, acceleration and angular velocity. we can see this in the following figures:
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/COP_features, width=18cm}
+	\caption{Peaks in the Center of Pressure signals .}
+	\label{fig:COP_features}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Acc_features, width=18cm}
+	\caption{Peaks in the Acceleration signals .}
+	\label{fig:Acc_features}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Gyro_features, width=18cm}
+	\caption{Peaks in the Gyroscope signals.}
+	\label{fig:Gyro_features}
+\end{figure}
+
+
+Hereafter, we will calculated the APA duration in each system because it would be able to be a appropiate parameter to compare. Also, the majority of these features have been used in others studies \cite{Mancini2009} so it can be a right way to measure the movement.
+
+Now, we are going to apply PCA algorithms to obtain the most significant information about human movement. This method allows us to minimise the redundant information performing the dimensional reduction.
+
+We applied PCA twice: in the signals of the Antero-posterior direction (AP-COP, X-Acc and X-Velocity) and of the Medio-lateral direction (ML-COP, Y-Acc and Y-Velocity). So far, we have the projection in the orthogonal space, three eigenvectors and three eigenvalues. The corresponding eigenvectors are ranked in a descending order of eigen values and by choosing the two first eigenvectors PCA directly performs the dimensional reduction, that is, the class of three dimensional gait data is described by low-dimensional features containing only two principal components.
+
+The two first eigenvalues of the covariance matrix accounts for 98\% of the variance. This indicates that we only need to take the two first eigenvector to have the significant information of the data. Also, if we see \ref{fig:PCA_AP} \ref{fig:PCA_ML}  we can determine that the important information, i.e the information with more variance is defined with the COP and Angular Velocity signals. This is because the acceleration and angular velocity signals are very similar and one of them is not necessary, i.e it does not give us added useful information.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/PCA_AP, width=18cm}
+	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction.}
+	\label{fig:PCA_AP}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/PCA_ML, width=18cm}
+	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Medio-Lateral direction.}
+	\label{fig:PCA_ML}
+\end{figure}
+
+The next step is to obtain the same features of the new signals. Now, we have four signals per patient: two components for AP direction and two ones more for ML direction. The characteristics extracted in this case are the same than with the originals signals.
+
+Finally, we apply PCA between patients. Our data base is reduced because we only have five patient. So, our matrix data has five columns where each one has the COP, Acceleration and Angular Velocity concatenated. As in the above study, the two first components account the most of variability and this representation in the space indicates us the movement relation between patients, i.e whether the movement is similar between them. This allows us to know if it is possible to do a classification afterwards and what components are appropriated to do it.
+In the Antero-Posterior direction, the projections are located in the right part of the orthogonal space. People analysed in this study are patients with different level of the disease. Therefore, the second component would be able to be useful to differentiate patients with parkinson’s disease. Also, it is possible that the first component can be used to differentiate between control subjects and do a classification \ref{fig:PCA_AP_patients}.
+
+In the Medio-Lateral direction the data are more dispersed. This indicate that the movement changes a lot between patients. However, almost all eigenvectors are pointing toward the upper half of the space\ref{fig:PCA_ML_patients}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/PCA_AP_patients, width=18cm}
+	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction between patients.}
+	\label{fig:PCA_AP_patients}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/PCA_ML_patients, width=18cm}
+	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Medio-Lateral direction between patients.}
+	\label{fig:PCA_ML_patients}
+\end{figure}
 
 
 \subsection{Results discurssion}
+One the APA features have been calculated, we will do the correlation between them. Firstly we are going to do a comparative study between FP and GW in the Antero-posterior direction. We calculated the correlation between the APA peaks detected in the COP signal \ref{fig:COP_features}and the the peak calculated in the acceleration and angular velocity signals\ref{fig:Acc_features}\ref{fig:Gyro_features}. The results of this correlation are showed in \ref{fig:Corr_AP}. If we analyse these values of correlation, we can determine that the feature of the gyroscope have a higher correlation with the features of the COP signal. The first peak of the COP and the peak of acceleration and angular velocity signals account a positive correlation with a significant value. Also, in the center of presure, the most interesting feature is the first peak, i.e when patient has momentum to step because the correlation with the acceleration signal as well as the angular velocity achieve the highest values.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Corr_AP, width=18cm}
+	\caption{Correlation between features in the AP direction.}
+	\label{fig:Corr_AP}
+\end{figure}
+
+Then, we will compare these signals in the medio-lateral direction. In this case, all correlations are positives and a lot of them with a considerable value. However, we can identify that the most interesting signals in this directions are the signals from the accelerometers. We did the correlation between the peaks detected in the ML-COP and the rest of the features obtained from the acceleration and angular velocity signals. Therefore, the most interesting features of these signals are the height of the negative peak as well as the distance between both peak int he signals \ref{fig:Corr_ML}. The correlation is higher than 0.8, so this indicate that the accelerometers can give us a useful information as the center of pressure.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Corr_ML, width=18cm}
+	\caption{Correlation between features in the ML direction.}
+	\label{fig:Corr_ML}
+\end{figure}
+
+If we pay attention in the APA duration\ref{fig:Corr_duration}, the correlation between COP and Acceleration and COP and Angular Velocity is negative. This doesn't make sense because it should be positive. Thus, we determine that there is not correlation between them. Even so, there is correlation between the APA duration in accelerometers and gyroscopes.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Corr_duration, width=18cm}
+	\caption{Correlation between APA duration.}
+	\label{fig:Corr_duration}
+\end{figure}
+
+Finally, we are going to see the correlation after using the PCA method. In principle, these features are more accurate because we removed the useful information and we have less and more interesting data.
+Whether we observe \ref{fig:Corr_PCA}, the first three values are the correlation between the three APA peaks detected in the first component (analogous to COP signal) and the APA peak of the second component (analogous to angular velocity or acceleration signal) in the AP direction. The most significant value is the correlation between the negative peak in the first component and the peak of the second component.
+
+In the ML direction, we do the correlation between the APA peak of the first component and the three features of the second component. The higher values is the correlation between the peak of the first component and the distance between both peaks of the second component being this a negative correlation\ref{fig:Corr_PCA}.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/Feature_extraction/Corr_PCA, width=18cm}
+	\caption{Correlation between features after applying PCA.}
+	\label{fig:Corr_PCA}
+\end{figure}
