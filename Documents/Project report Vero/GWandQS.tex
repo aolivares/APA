@@ -74,4 +74,106 @@ Other important aspect is the difference of angle obtained in both systems. We c
 \end{figure}
 
 \section{Results discurssion}
+Once the features have been calculated, we proceeded with the comparison between them. Firstly we are going to see the differences between ‘stride time’ in GW and QS signals \ref{fig:mean_stride_time}. This figure shows the differences between them are minor so we would use the GW in place of QS with regard to this variable.
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/mean_stride_time, width=18cm}
+	\caption{Mean of the stride time for GW and QS signals.}
+	\label{fig:mean_stride_time}
+\end{figure}
+
+‘Stride time’ is a feature used in a lot of experiments to characterise the movement because it is a interesting aspect that represents the time that a specific person needs to step. Also, it can be used for a classification between patients and control subjects, like in others studies \cite{Hausdorff}.
+In our case, the difference between  the ‘stride time’ between both systems is very tiny. If we observe \ref{tab:Stride_time}, we can see that the greatest value of difference between systems is 0.1287 seconds.
+
+\begin{table}[h]
+	\caption{Comparation of the stride time and angle difference between GW and QS}	
+	\centering
+	\begin{tabular}{|c|c|c|}\hline
+		
+		Accomplishments & Difference Stride Time	& Difference Angle	 	\\ \hline
+		1  & 0,006402343	 & 1,62502323 \\
+		2 & 0,00214919	& 2,119358046 \\
+		3 & 0,002432735	& 3,166649918 \\
+		4 & 0,128717949	& 1,983148998 \\
+		5 & 0,004818214	& 2,418373859 \\
+		6 & 0,000302102	& 2,884211822 \\
+		7 & 0,109688664	& 2,000748905 \\
+		8 & 0,000282755	& 2,606004581 \\
+		9 & 0,000604613	 & 0,644265922 \\
+		10 & 0,034118318	& 2,093221696 \\
+		11 & 0,038589012	& 2,597329501 \\
+		12 & 0,022069119	& 0,039397798 \\
+		13 & 0,004924869	& 2,771227548 \\
+		14 & 0,069355008	& 2,87790541 \\
+		15 & 0,059470686	& 2,227618016 \\
+		16 & 0,041612352	& 0,511020994 \\
+		17 & 0,012348426	& 1,834745133 \\
+		18 & 0,039846301	& 1,701994772 \\
+	\hline
+	\end{tabular}
+	\label{tab:Stride_time}
+	
+\end{table}
+
+In addition, it has been obtained the variations between the mean of the variance of the ‘stride time’. This parameter gives us information about the accuracy of both systems to calculate the pitch angle during the experiment.
+
+In the majority of the accomplishments of the experiments, the variance of the GW system is greater than QS\ref{fig:var_stride_time}. It is probably due to the noise of the inertial sensors and the accuracy to calculate the pitch. However, they are very low values so it is not a important aspect that determine the quality against each other. 
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/var_stride_time, width=18cm}
+	\caption{Mean of the stride time variance for GW and QS signals.}
+	\label{fig:var_stride_time}
+\end{figure}
+
+Now, we will compare the mean of the angle in each experiment. The result of this is possible to see in \ref{fig:mean_angle}. It is clear that the differences aren’t too high. The greatest value of difference between angles is 3.16 degrees\ref{table}. If we calculate the percentage with respect to the total average, this is about 12 \% of the angle. This precision might be important depending on the application. In general, it doesn’t a significant value to characterise the movement. Therefore, Gait Watch system may be used to substitute the Qualisys systems as a good alternative regarding the accuracy, price and portability.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/mean_angle, width=18cm}
+	\caption{Mean of the angle for GW and QS signals.}
+	\label{fig:mean_angle}
+\end{figure}
+
+Then, we will see what happens when we analise the signals with regard to differents speeds. In \ref{fig:speed_stride_time}, we can see the mean of stride time for speeds of 2, 4 and 6 Km/h. If we have a look at the points represented in the picture, it seems that the ‘stride time’ is greater for low speeds than high speeds although it depends on the subject. In \ref{tab:speeds} it is shown the mean of all values for each velocity. The average ‘stride time’ is higer for 6Km/h than 4Km/h. However it does not happen in general. Therefore, we would need more measurements to stablish a final conclusion.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/speed_stride_time, width=18cm}
+	\caption{Mean of stride time difference for each speeds.}
+	\label{fig:speed_stride_time}
+\end{figure}
+
+If we scan \ref{fig:speed_var_stride_time}, we can appreciate the differences between the variance of ‘stride time’. Also, the mean of the values for each speed are put in \ref{tab:speeds} and the variance increases as the speed does it as well.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/speed_var_stride_time, width=18cm}
+	\caption{Mean of stride time variance for each speeds.}
+	\label{fig:speed_var_stride_time}
+\end{figure}
+
+It is the same with the difference of the angle between systems\ref{fig:speed_angle}. The difference between angles increases with speed. So, it is a aspect that we have to consider for using theGW in place of QS.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/QSvsGW/speed_angle, width=18cm}
+	\caption{Mean of angle difference for each speeds.}
+	\label{fig:speed_angle}
+\end{figure}
+
+\begin{table}[h]
+	\caption{Features for different speeds}	
+	\centering
+	\begin{tabular}{|c|c|c|c|}\hline
+		
+		Speed & Stride time Diff Average & Stride time var Average & Angle Diff Average	 	\\ \hline
+		2  & 1,6894	 & 0,00086 & 2,36 \\
+		4 & 1,2397	& 0,017 & 4,1521\\
+		6 & 1,4479 & 0,0094	& 4,6219\\
+		\\ \hline
+	\end{tabular}
+	\label{tab:speeds}
+	
+\end{table}
