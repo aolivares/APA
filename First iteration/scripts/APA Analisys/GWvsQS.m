@@ -549,7 +549,7 @@ for i = 1:length(Selection)
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
             stride_GW (1,1) = mean(diff(loc_angle_pos))./200;
-            stride_GW (2,1) = abs(mean(diff(loc_angle_pos)-stride_GW (1,1)));
+            stride_GW (2,1) = abs(mean(diff(loc_angle_pos)./200-stride_GW (1,1)));
 
 %             swing_GW (1,1) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
 %                 - loc_angle_neg(1:length(loc_angle_pos)-1));
@@ -629,7 +629,7 @@ for i = 1:length(Selection)
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
             stride_GW (1,3) = mean(diff(loc_angle_pos))./200;
-            stride_GW (2,3) =abs( mean(diff(loc_angle_pos)-stride_GW(1,3)));
+            stride_GW (2,3) =abs( mean(diff(loc_angle_pos)./200-stride_GW(1,3)));
 
 %             swing_GW (1,2) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
 %                 - loc_angle_neg(1:length(loc_angle_pos)-1));
@@ -709,7 +709,7 @@ for i = 1:length(Selection)
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
             stride_GW (1,2) = mean(diff(loc_angle_pos))./200;
-            stride_GW (2,2) = abs( mean(diff(loc_angle_pos)-stride_GW (1,2)));
+            stride_GW (2,2) = abs( mean(diff(loc_angle_pos)./200-stride_GW (1,2)));
 
 %             swing_GW (1,3) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) ...
 %                 - loc_angle_neg(1:length(loc_angle_pos)-1));
@@ -789,7 +789,7 @@ for i = 1:length(Selection)
 
             loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
             stride_GW (1,4) = mean(diff(loc_angle_pos))./200;
-            stride_GW (2,4) = abs(mean(diff(loc_angle_pos)-stride_GW (1,4)));
+            stride_GW (2,4) = abs(mean(diff(loc_angle_pos)./200-stride_GW (1,4)));
 % 
 %             swing_GW (1,4) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
 %             swing_GW (2,4) = abs( mean((loc_angle_pos(1:length(loc_angle_pos)-1)  - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_GW(1,4)));
@@ -995,7 +995,7 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
     
     loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
     stride_QS (1,n) = mean(diff(loc_angle_pos))./200;
-    stride_QS (2,n) = abs( mean(diff(loc_angle_pos)-stride_QS (1,n)));
+    stride_QS (2,n) = abs( mean(diff(loc_angle_pos)./200-stride_QS (1,n)));
     
 %     swing_QS (1,n) = mean(loc_angle_pos(1:length(loc_angle_pos)-1) - loc_angle_neg(1:length(loc_angle_pos)-1));
 %     swing_QS (2,n) = abs(mean((loc_angle_pos(1:length(loc_angle_pos)-1)  - loc_angle_neg(1:length(loc_angle_pos)-1) )- swing_QS(1,n)));
@@ -1083,11 +1083,11 @@ legend ('2Km/h','4Km/h' , '6Km/h','Location', 'NorthEastOutside');
 title('Mean of difference (GW and QS) of angles for differents speeds'); 
 
 figure()
-plot(mean_diff_stride2, 'b.', 'MarkerSize', 20);
+plot(abs(mean_diff_stride2), 'b.', 'MarkerSize', 20);
 hold on
-plot(mean_diff_stride4, 'g.', 'MarkerSize', 20);
+plot(abs(mean_diff_stride4), 'g.', 'MarkerSize', 20);
 hold on
-plot(mean_diff_stride6, 'm.', 'MarkerSize', 20);
+plot(abs(mean_diff_stride6), 'm.', 'MarkerSize', 20);
 legend ('2Km/h','4Km/h' , '6Km/h','Location', 'NorthEastOutside');
 title('Mean of difference (GW and QS) of Stride time for differents speeds');
 
