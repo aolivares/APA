@@ -39,4 +39,26 @@ Also, we used PCA between patient  being this the first step to do a classificat
 
 -	In addition, we compare both systems in different conditions of speed to determine if the velocity affects in the accuracy of the systems. After the study, we can say that speed influences in the variance of ‘stride time’ and angle, i.e when the speed is higher the difference between system to calculate the ‘stride time’ and angle increases. 
 \end{itemize}
+
 \section{Future Work}
+As we have done for the final conclusions, we proceed to analyze future work for the two main parts of our system.
+
+\begin{itemize}
+\item \textbf{Force Plate and Gait Watch (experiement with Parkinson patients over a plateform)}
+
+- We will increase the data base of the patient for achieving results more accurate. Currently, we have a limited data base with only five patients. This gives us a rough guidance of the information that we can obtain but it is not decisive because to reach a definitive conclusion we have to have at least twenty patients.
+
+-	We will add control subjects to our data base. The fact of having patients of Parkinson’s disease as well as control subjects would allow to do a classification. This is very important because it really would help in medical diagnosis of this disease.
+The classification can be achieved through a SVM which separates a given set labelled training data with a hyperplane that is maximally distant from the two clases, being these classes the patients and control subjects (or patients with different levels of the disease). The objective is to build a function using training data that will correctly classify new examples. Thus, about one-third of the total will be used to train the classification and the rest of thedata to verify it.
+
+- We will test others kinds of algorithm to obtain features of the gait data. One of them is ICA (Independent Component Analysis).  ICA is a statistical technique that represents multidimensional random vector  as a linear combination of nongaussian random variables (independent component) that are as independent as possible. ICA is somewhat similar to PCA to extract features. However, it would be interesting compare both ICA and PCA to determine if we can extract the same information using both methods. 
+
+- In addition, all the work developed in this project could be used in other applications. For example in patients with motor disorders or elderly people and establish if this study can be a widespread procedure to others fields.
+
+\item \textbf{Qualisys system and Gait Watch (treadmill experiment)}
+
+-	As in the above case, we will increase the data base. This not only allows to have more accurate results but also we can do others types of studies for deep in the knowledge of the Posturographic Body-sway  with inertial data.
+
+-	We will analise the movements not only of shanks and thighs but also of trunk and arms carrying out others experiments with Qualisys System and Gait Watch. We will do a more exhaustive study of this.
+	
+\end{itemize}
