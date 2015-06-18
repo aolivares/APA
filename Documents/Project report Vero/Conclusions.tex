@@ -1,4 +1,42 @@
 \chapter{Conclusions and Future Work}
 \label{ch:Conlcusion}
 \section{Conclusion}
+The analysis of posture and human body motion  has gained special relevance within the past years in many medicine fields, as well as in others kinds of applications. Traditionally, this analysis has beed carried out by Force Plates and systems base in cameras of high speed using infrared markers. This fact has restricted the fields of applications due to the price, portability and limitations of visibility. For this reason, it has made a comparative study of these systems in contrast with low cost devices based on magnetic and inertial MEMS microsensors (Gait Watch).
+
+To do that, we have applied different techniques and procedures that we have explained and compared along the project.
+In addition, our work has a direct application, not only in diagnosis of Parkinson’s disease, but also in thers neurological and muscular diseases such as Multiple Sclerosis, Cerebral Palsy and Epilepsy. In theapplication field, we focus in the analysis of posturographic  Body-sway to detect disorders in Parkinson patients as well as falls in elderly people which are becoming increasingly frequent.
+
+Finally, we proceed to analyze the initial objectives that were enumerated in the introductory chapter to determine to what degree they have been fulfilled.
+
+\begin{itemize}
+\item \textbf{Synchronisation}
+
+-	One of the objectives in this section is to carry through the synchronisation between FP and GW signals. We have several signals from both systems: force, AP-COP, ML-COP, … in FP system and acceleration, angular velocity, pitch, roll, … in GW system, having the both system a different simple frequency. Thus, the procedure is: choose the appropriate signals to to the synchronisation, detect a common point between them and interpolate them.
+After a deep analysis if these signals, we concluded that the best signal to do the synchronisation is the acceleration of the shanks and the force over the platform because you can detect in both signals when the patient touch the platform and finally do a appropriate matching.
+In addition, we compare the synchronisation done with the acceleration and angular velocity of the shanks obtaining a similar results that indicates this a good procedure to do the synchronisation.
+
+-	Other goal emerged during the development of the project is the comparison between FSD (Framed Spectrum Detector) and LTSD (Long Term Spectral Detector) algorithm to determine the intensity motion. We determined after doing the comparison that LTSD is a better method for our signals because it is designed to work under condition where the SNR is low, i.e the signal present large noise. In our case, we want detect the differents cycles in the GW signals that corresponding to each repeat so the different peaks of activity inside each period can be a problema to do the detection correctly because really it is interpreted like noise for the detector. Thus, the LTSD method is more interesting for this type of signal.
+
+
+\item \textbf{APA analysis}
+
+-	One of the main goals of this project is to analyse the APAs and determine whether there is a pattern that allows us characterise the movement before gait. The signals used for this were the acceleration and angular velocity of the trunk and the center of pressure obtained from the force measures of the force plate. The conclusion is that we can see a pattern in all this signals and also it cn be detected when the patient starts to step with the right or left foot. This is a great advance because we can obtain information and extract features of these signals.
+
+-	Analysing the state of the art we can find that there are several articles that show what and how the features are extracted. Typically, the features more used to characterise this kind of movement are the peak of acceleration and COP. We used these features  as well as other peaks in these signals that we considered that could be interesting. Also, we calculated the duration of the APA in COP, acceleration signals and gyroscope signals.
+
+-	We focus in PCA method to extract features because it allows us the reduction of redundant information and the interpretation of multiple gait signals. We extract the same features mentioned above before and after applying PCA. We conclude that the acceleration and angular velocity can be subtituted by only one of them because there is not variance between them. This is a important conclusion when we have  a big data base. 
+Also, we used PCA between patient  being this the first step to do a classification in a future work.
+
+-	If we focus in the chapter\ref{ch:GWandFP}, we can determine that there is significant correlation  of some of the features calculated between FP and GW signals. Although  we should expand the data base before drawing a definitive conclusion, we could say  it is probably that devices based on inertial sensors can replace platforms.
+
+
+
+\item \textbf{Qualisys system and Gait Watch (treadmill experiment)}
+
+-	An initial objective was to determine what kinds of features we could extract in this type pf experiment. The signals used to analise this behaviour are the pitch angle of shanks and thighs. Thus, we concluded that the most interesting aspects to consider were ‘stride time’, variance of ‘stride time’  and peaks of angles. ‘stride time’ has been a feature used with success in other similar studies so we though that it could be a significant parameter.
+
+-	Determining the accuracy of the pitch angle obtained with GW and QS systems was another of our targets. To do this, we compare the features calculated from the pitch. The conclusion is that we can use the GW in place of QS in the majority of the cases if we need accuracy in the angle and ‘stride time’ because the difference of both is minimal.
+
+-	In addition, we compare both systems in different conditions of speed to determine if the velocity affects in the accuracy of the systems. After the study, we can say that speed influences in the variance of ‘stride time’ and angle, i.e when the speed is higher the difference between system to calculate the ‘stride time’ and angle increases. 
+\end{itemize}
 \section{Future Work}
