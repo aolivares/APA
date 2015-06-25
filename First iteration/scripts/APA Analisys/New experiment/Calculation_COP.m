@@ -1,6 +1,17 @@
 function [ COP_AP_total, COP_ML_total] = Calculation_COP( folder)
-%UNTITLED Summary of this function goes here
-%   Detailed explanation goes here
+% CALCULATION_COP calculate the center of pressure antero-posterior and 
+% medio-lateral of all of data in a folder.
+%
+% - Input:
+%    |_ 'folder': folder where there are all of data to calculate the COP.
+   
+% - Output:
+%    |_ ' COP_AP_total': Antero-Posterior Center of Pressure  of all data
+%    in the folder.
+%    |_ ' COP_ML_total': Medio-Lateral Center of Pressure  of all data
+%    in the folder.
+%
+% -------------------------------------------------------------------------
 
 % Read all datafiles
 fnames = dir([folder,'*.txt']);
@@ -19,6 +30,7 @@ for n = 1:numfids
     % times. This technique is useful when a format repeats many times. 
     data = textscan(fid,repmat('%n',[1,19]),'CollectOutput',1);
     data = data{1,1};
+    
     % The format of the data is (by columns):
     % 1 : time
     % 2-9 : force of echa sensor (8 sensors) of the left foot (vertical ground
@@ -37,13 +49,13 @@ for n = 1:numfids
     force_right = data (:,19);
     force_total = sum([force_left, force_right]');
 
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 2) Calculate the center of pressure.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
 
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 2.1) Calculate ML-COP.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
 
     % Obtain the force in the ML-direction. (To undertand this, seet he
     % coordenated of each sensors).
@@ -73,9 +85,9 @@ for n = 1:numfids
         COP_ML(i) = sum(force_ML(i,:).*coord_X)/sum(force_ML(i,:));
     end
 
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 2.2) Calculate AP-COP.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
 
     % Obtain the force in the AP-direction. (To undertand this, seet he
     % coordenated of each sensors).
@@ -102,16 +114,16 @@ for n = 1:numfids
         COP_AP(i) = sum(force_AP(i,:).*coord_Y)/sum(force_AP(i,:));
     end
 
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 3) Obtain a single signal to characterise the person.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % We have to detect the differents steps that the person does during the
     % experiment and calculate the mean. Thus, we will a have a single signal
     % of ML and AP COP that define the movement of the person.
 
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 3.1) Determine the bounds of each step.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % We are going to delimit the intervals detecting the point when the person
     % is lifting one of the foot and going down the other. We can detect this
     % choosing one of the signal, for example, right foot and determining the
@@ -121,9 +133,9 @@ for n = 1:numfids
     [peak_values, peak_locations] = findpeaks(d, 'minpeakheight', 20, ...
         'MinPeakDistance',90);
     
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     % 3.2) Align signals and carry out the average.
-    %--------------------------------------------------------------------------
+    %----------------------------------------------------------------------
     COP_AP_mean= aligned_signals( COP_AP(peak_locations(1):peak_locations(2)),...
         COP_AP(peak_locations(2):peak_locations(3)) );
 
@@ -146,11 +158,14 @@ for n = 1:numfids
     COP_ML_total (n,:) = COP_ML_mean;
     
     else
+        
      % Check what length is larger to interpolate afterwards.
      % We check only one of the signals because they have the same length.
       if (length(COP_AP_mean)<length(COP_AP_total(n-1,:))) % If the new signal is smaller, we interpolate this.
-         COP_AP_mean =  interp1([1:length(COP_AP_mean)],COP_AP_mean,[1:length(COP_AP_total(n-1,:))]);
-         COP_ML_mean =  interp1([1:length(COP_ML_mean)],COP_ML_mean,[1:length(COP_ML_total(n-1,:))]);
+         COP_AP_mean =  interp1([1:length(COP_AP_mean)],COP_AP_mean,...
+                        [1:length(COP_AP_total(n-1,:))]);
+         COP_ML_mean =  interp1([1:length(COP_ML_mean)],COP_ML_mean,...
+                        [1:length(COP_ML_total(n-1,:))]);
          
          COP_AP_total (n,:) = COP_AP_mean;
          COP_ML_total (n,:) = COP_ML_mean;
@@ -166,10 +181,12 @@ for n = 1:numfids
           COP_ML_total = zeros (1,length(COP_ML_mean));
           
           for k= 1:r_AP
-              COP_AP_total  (k,:) = interp1([1:c_AP],COP_AP_aux (k,:),[1:length(COP_AP_mean)]);
+              COP_AP_total  (k,:) = interp1([1:c_AP],COP_AP_aux (k,:),...
+                                    [1:length(COP_AP_mean)]);
           end
           for k= 1:r_ML
-              COP_ML_total  (k,:) = interp1([1:c_ML],COP_ML_aux (k,:),[1:length(COP_ML_mean)]);
+              COP_ML_total  (k,:) = interp1([1:c_ML],COP_ML_aux (k,:),...
+                                    [1:length(COP_ML_mean)]);
           end
           
           COP_AP_total (n,:) = COP_AP_mean;

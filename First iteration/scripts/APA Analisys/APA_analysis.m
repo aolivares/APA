@@ -30,8 +30,22 @@
 % * Last modification: 08/06/2015
 
 % INFORMATION: This file contains the routine to detect when the second
-% step happens, determine the APAs of the FP and GW signals in this case 
-% and the correlation between them. 
+% step happens, determine the APAs of the FP and GW signals and the 
+% correlation between them. 
+%
+% * 1) Obtain the data.
+% 
+% * 2) Determine when the second step occurred.
+% 
+% * 3) Detect APA in trunk signal.
+%
+% * 4) Apply PCA.
+%
+% * 5) Correlations.
+%
+% * 6) PCA between patients
+%
+%--------------------------------------------------------------------------
 
 % -------------------------------------------------------------------------
 % 0) Clear workspace.
@@ -49,6 +63,7 @@ PCA = 'yes';
 % -------------------------------------------------------------------------
  
 % Select only one data files with a dialog box (only .xlsl files).
+% 'SynchronisedData'.
 [filename_excel, filepath] = uigetfile('*.xlsx', ...
     'Select the Excel file with the data (.xlsx)');
 

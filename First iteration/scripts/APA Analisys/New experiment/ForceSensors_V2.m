@@ -1,19 +1,59 @@
+% |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+% --------------------- Classification force data -------------------------
+% |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
-%--------------------------------------------------------------------------
-% 1) Obtain the data.
+% -------------------------------------------------------------------------
+% * Project name: Comparison of Posturographic Body-sway Measurements with 
+%                 Accelerometric Data. 
+%
+% * Authors:      
+%                 - Veronica  Torres (1) 
+%                   |_ vts24@correo.ugr.es
+%                 - Dr. Eng. Alberto Olivares (2)
+%                   |_ aolivares@ugr.es
+%                 - Dr. Eng. Juan Manuel Gorriz (3)
+%                   |_ gorriz@ugr.es
+%
+% * Affiliation: (1) Master in Telecommunication Engineering, University of 
+%                    Granada, Granada, Spain, (student).
+%                (2) Signal Processing and Biomedical Applications group,
+%                    Department of Signal Theory, Telematics and
+%                    Communications, University of Granada, Granada, Spain
+%                (3) Signal Processing and Biomedical Applications group,
+%                    Department of Signal Theory, Telematics and
+%                    Communications, University of Granada, Granada, Spain.
+%
+% * Last modification: 25/06/2015
+
+% INFORMATION: This file contains the routine to testing the signals of
+% force and the process to obtain the center of pressure.
+% 
+% * 1) Obtain the data.
+% 
+% * 2) Calculate the center of pressure.
+% 
+% * 3) Obtain a single signal to characterise the person.
+%
 %--------------------------------------------------------------------------
 
+% -------------------------------------------------------------------------
+% 0) Clear workspace.
+% -------------------------------------------------------------------------
 % Delete workspace.
 clear all, close all, clc;
 
 % Set plots.
 showPlotsTest= 'yes';
 
+%--------------------------------------------------------------------------
+% 1) Obtain the data.
+%--------------------------------------------------------------------------
+
 % Select data file with a dialog box (only .txt files).
 [filename, filepath] = uigetfile('*.txt', ...
     'Select Force data file (.txt)', 'gaitpdb/');
 
-% Read formatted data from text file. As always "fid" is a file identifier 
+% Read formated data from text file. As always "fid" is a file identifier 
 % that we obtain with "fopen".
 fid = fopen(fullfile(filepath, filename));
 
@@ -22,6 +62,7 @@ fid = fopen(fullfile(filepath, filename));
 % times. This technique is useful when a format repeats many times. 
 data = textscan(fid,repmat('%n',[1,19]),'CollectOutput',1);
 data = data{1,1};
+
 % The format of the data is (by columns):
 % 1 : time
 % 2-9 : force of echa sensor (8 sensors) of the left foot (vertical ground
@@ -120,6 +161,7 @@ if strcmpi(showPlotsTest,'yes')
     hold on;
     plot(time, force_right,'g');
 end
+
 %--------------------------------------------------------------------------
 % 3) Obtain a single signal to characterise the person.
 %--------------------------------------------------------------------------
