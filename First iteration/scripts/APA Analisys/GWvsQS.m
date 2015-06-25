@@ -955,7 +955,8 @@ order = {   'right lower shank','right upper shank','right back shank';...
 % Calculate the angle in the XZ plane.        
 x=1;z=3;
 
-for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shank, left thigh)
+for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, 
+                                            % left shank, left thigh)
     m1=0;m2=0;m3=0;
     
     for n2=1:3  % 3 markers (upper, lower and back)
@@ -976,9 +977,12 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
     
     
     
-    seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:)-data(m2,z,:))));        % marker 1,2: x/z
-    seg_2 = -atan(squeeze((data(m2,z,:)-data(m3,z,:))./(data(m2,x,:)-data(m3,x,:))));        % marker 2,3: z/x
-    seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:)-data(m3,x,:))));        % marker 3,1: x/z
+    seg_1 = -atan(squeeze((data(m2,x,:)-data(m1,x,:))./(data(m1,z,:) - ...
+            data(m2,z,:))));        % marker 1,2: x/z
+    seg_2 = -atan(squeeze((data(m2,z,:)-data(m3,z,:))./(data(m2,x,:) - ...
+            data(m3,x,:))));        % marker 2,3: z/x
+    seg_3 = -atan(squeeze((data(m1,z,:)-data(m3,z,:))./(data(m1,x,:) - ...
+                data(m3,x,:))));        % marker 3,1: x/z
     
     % Calculate the angle in dregree.
      Q_leg_pitch(:,n) = (mean([seg_1 seg_2 seg_3],2).*180)./pi;
@@ -987,11 +991,13 @@ for n=1:length(Selection)  % 4 leg segments (right shank, right thigh, left shan
     Q_leg_pitch(:,n) = Q_leg_pitch(:,n) - Q_leg_pitch(1,n);
     
     % Calculte features to characterise the movement.
-    [value_angle_neg,loc_angle_neg] = findpeaks(-Q_leg_pitch(:,n),'minpeakheight',7,'minpeakdistance',200);
+    [value_angle_neg,loc_angle_neg] = findpeaks(-Q_leg_pitch(:,n),...
+                                'minpeakheight',7,'minpeakdistance',200);
     
     [value_angle_pos, loc_angle_pos] = findpeaks(Q_leg_pitch(...
-        loc_angle_neg(1):length(Q_leg_pitch),n), 'minpeakheight',7, 'minpeakdistance',200,...
-        'Npeaks',length(loc_angle_neg));
+        loc_angle_neg(1):length(Q_leg_pitch),n), 'minpeakheight',7, ...
+                                'minpeakdistance',200,...
+                                 'Npeaks',length(loc_angle_neg));
     
     loc_angle_pos = loc_angle_pos + loc_angle_neg(1);
     stride_QS (1,n) = mean(diff(loc_angle_pos))./200;
@@ -1010,7 +1016,8 @@ end
 % -------------------------------------------------------------------------
 % QS and GW
 mean_stride(index,:) = [mean(stride_QS(1,:)); mean(stride_GW(1,:))];
-mean_angle(index,:) = [mean(abs([angle_GW(1,:) angle_GW(2,:)]));mean(abs([angle_QS(1,:) angle_QS(2,:)]))];
+mean_angle(index,:) = [mean(abs([angle_GW(1,:) angle_GW(2,:)]));...
+                        mean(abs([angle_QS(1,:) angle_QS(2,:)]))];
 mean_var_stride (index,:) = [mean(stride_GW(2,:));mean(stride_QS(2,:))];
 
 % Diferences between differents speeds.
@@ -1020,19 +1027,22 @@ speed = char(speed{1,1}{1,1});
 
     if speed=='2'
       mean_stride_GW_QS2 (ind2) = mean([stride_QS(1,:) stride_GW(1,:)]);
-      mean_diff_angle2 (ind2)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_angle2 (ind2) = mean(abs([angle_GW(1,:) angle_GW(2,:)] -...
+                                [angle_QS(1,:) angle_QS(2,:)]));
       mean_diff_stride2 (ind2) = mean(stride_QS(1,:) - stride_GW(1,:));
       ind2 = ind2 + 1;
       
     elseif speed =='4'
       mean_stride_GW_QS4 (ind4) = mean([stride_QS(1,:) stride_GW(1,:)]);
-      mean_diff_angle4 (ind4)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_angle4 (ind4) = mean(abs([angle_GW(1,:) angle_GW(2,:)] -...
+                                [angle_QS(1,:) angle_QS(2,:)]));
       mean_diff_stride4 (ind4) = mean(stride_QS(1,:) - stride_GW(1,:));
       ind4 = ind4 + 1;
       
     else % speed ==6
       mean_stride_GW_QS6 (ind6) = mean([stride_QS(1,:) stride_GW(1,:)]);
-      mean_diff_angle6 (ind6)= mean(abs([angle_GW(1,:) angle_GW(2,:)] -[angle_QS(1,:) angle_QS(2,:)]));
+      mean_diff_angle6 (ind6) = mean(abs([angle_GW(1,:) angle_GW(2,:)] - ...
+                                    [angle_QS(1,:) angle_QS(2,:)]));
       mean_diff_stride6 (ind6) = mean(stride_QS(1,:) - stride_GW(1,:));
       ind6 = ind6 + 1;
     end

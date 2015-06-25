@@ -745,24 +745,30 @@ if (find(cycle_start_right == 1))sing1=1; else sing1=-1; end
 if (find(cycle_start_right == 2))sing2=1; else sing2=-1; end
 
 % Center of pressure   
-ML_COP_mean = aligned_signals( sing1.*ML_COP_data(initcross_COP(2):finalcross_COP(2)),...
-                     sing2.*ML_COP_data(initcross_COP(1):finalcross_COP(1)));
-AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(2):finalcross_COP(2)),...
-                     AP_COP_data(initcross_COP(1):finalcross_COP(1)));
+ML_COP_mean = aligned_signals( sing1.*ML_COP_data(...
+                initcross_COP(2):finalcross_COP(2)),...
+                sing2.*ML_COP_data(initcross_COP(1):finalcross_COP(1)));
+AP_COP_mean = aligned_signals( AP_COP_data(...
+                initcross_COP(2):finalcross_COP(2)),...
+                 AP_COP_data(initcross_COP(1):finalcross_COP(1)));
                  
 % Acceleration.
-a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+a_trunk_data_X_mean = aligned_signals( ...
+                    a_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
                      a_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
 
-a_trunk_data_Y_mean = aligned_signals(sing1.* a_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
-                     sing2.*a_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+a_trunk_data_Y_mean = aligned_signals(...
+                    sing1.* a_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                    sing2.*a_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
                   
 % Angular Velocity.
-g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
+g_trunk_data_X_mean = aligned_signals( ...
+                    g_trunk_data_X(initcross_acc(1):finalcross_acc(1)),...
                      g_trunk_data_X(initcross_acc(2):finalcross_acc(2)));
                  
-g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
-                     sing2.*g_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
+g_trunk_data_Y_mean = aligned_signals( ...
+                sing1.*g_trunk_data_Y(initcross_acc(1):finalcross_acc(1)),...
+                sing2.*g_trunk_data_Y(initcross_acc(2):finalcross_acc(2)));
 
 %   figure()
 %   subplot(2,1,1)
@@ -790,60 +796,78 @@ g_trunk_data_Y_mean = aligned_signals( sing1.*g_trunk_data_Y(initcross_acc(1):fi
     
     % Align the signals and carry out the mean.
     % We consider the sing in ML direction.
-     ML_COP_mean = aligned_signals(sing* ML_COP_data(initcross_COP(k):finalcross_COP(k)),...
-                ML_COP_mean );
+     ML_COP_mean = aligned_signals(sing* ML_COP_data(...
+                    initcross_COP(k):finalcross_COP(k)), ML_COP_mean );
             
-     a_trunk_data_Y_mean = aligned_signals(sing* a_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
-                        a_trunk_data_Y_mean );
+     a_trunk_data_Y_mean = aligned_signals(...
+                sing* a_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
+                 a_trunk_data_Y_mean );
                     
-     g_trunk_data_Y_mean = aligned_signals( sing*g_trunk_data_Y(initcross_acc(k):finalcross_acc(k)),...
-                        g_trunk_data_Y_mean );
+     g_trunk_data_Y_mean = aligned_signals( sing*g_trunk_data_Y(....
+         initcross_acc(k):finalcross_acc(k)),g_trunk_data_Y_mean );
 
 
   % In AP direcction, there isn't change of sing.
-  AP_COP_mean = aligned_signals( AP_COP_data(initcross_COP(k):finalcross_COP(k)),...
-                     AP_COP_mean);
+  AP_COP_mean = aligned_signals( AP_COP_data(....
+                initcross_COP(k):finalcross_COP(k)), AP_COP_mean);
                  
-  a_trunk_data_X_mean = aligned_signals( a_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
-                     a_trunk_data_X_mean);
+  a_trunk_data_X_mean = aligned_signals( ...
+      a_trunk_data_X(initcross_acc(k):finalcross_acc(k)), a_trunk_data_X_mean);
                  
-  g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(initcross_acc(k):finalcross_acc(k)),...
-                     g_trunk_data_X_mean);
+  g_trunk_data_X_mean = aligned_signals( g_trunk_data_X(...
+      initcross_acc(k):finalcross_acc(k)),g_trunk_data_X_mean);
                  
  end
  
- % ------------------------------------ Plots -----------------------------
+ % ----------------------------- Plots ------------------------------------
  APA_Parameters =zeros(1,15);
  if strcmpi(showPlotsCheck,'yes')
  % Center of pressure.
   figure()
   subplot(2,1,1)
-  plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(AP_COP_mean)-1),...
-        AP_COP_mean, 'g')
+  plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+...
+      length(AP_COP_mean)-1), AP_COP_mean, 'g')
+  
+  xlabel('COP-AP(mm)');
+  ylabel('Time (s)');
   title('AP-COP');  
+  
   subplot(2,1,2)
-   plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+length(ML_COP_mean)-1),...
-        ML_COP_mean, 'b')
-  title('ML-COP');  
+   plot(AP_COP_complete_ts.time(initcross_COP(1):initcross_COP(1)+...
+       length(ML_COP_mean)-1),ML_COP_mean, 'b')
+  xlabel('COP-ML(mm)');
+  ylabel('Time (s)');
+  title('ML-COP'); 
+  
  % Acceleration.
    figure()
   subplot(2,1,1)
-   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_X_mean)-1),...
-        a_trunk_data_X_mean, 'b')
-   title('Acceleration of the X axis of the trunk');   
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+...
+       length(a_trunk_data_X_mean)-1),a_trunk_data_X_mean, 'b')
+   xlabel('Acceleration(g)');
+   ylabel('Time (s)');
+   title('Acceleration of the X axis of the trunk');
+   
   subplot(2,1,2)
-   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(a_trunk_data_Y_mean)-1),...
-        a_trunk_data_Y_mean, 'g')
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+...
+       length(a_trunk_data_Y_mean)-1),a_trunk_data_Y_mean, 'g')
+    xlabel('Acceleration(g)');
+    ylabel('Time (s)');
     title('Accelerationof the Y axis of the trunk');  
  % Angular Velocity
   figure()
   subplot(2,1,1)
-   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_X_mean)-1),...
-        g_trunk_data_X_mean, 'b')
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+...
+       length(g_trunk_data_X_mean)-1),g_trunk_data_X_mean, 'b')
+   xlabel('Angular Velocity(º/m)');
+   ylabel('Time (s)');
    title('Angular Velocity of the X axis of the trunk'); 
+   
   subplot(2,1,2)
-   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+length(g_trunk_data_Y_mean)-1),...
-        g_trunk_data_Y_mean, 'g')
+   plot(a_trunk_complete_ts.time(initcross_acc(1):initcross_acc(1)+...
+       length(g_trunk_data_Y_mean)-1),g_trunk_data_Y_mean, 'g')
+    xlabel('Angular Velocity(º/m)');
+    ylabel('Time (s)');
     title('Angular Velocity of the Y axis of the trunk'); 
  end
  
@@ -906,10 +930,10 @@ APA_Parameters = [APA_COP_AP_1, APA_COP_AP_2, APA_COP_AP_3, APA_COP_ML_1,...
 %--------------------------------------------------------------------------
 % 7) Principal Component Analysis (PCA).
 %--------------------------------------------------------------------------
-
-% % -------------------------------------------------------------------------
-% % 7.1) PCA in COP signal.
-% % -------------------------------------------------------------------------
+% 
+% -------------------------------------------------------------------------
+% 7.1) PCA in COP signal.
+% -------------------------------------------------------------------------
  if strcmpi(PCA,'yes')
 % % Interpolation of the signals.
 % max_length = max([length(ML_COP_mean),length(AP_COP_mean)]);
@@ -983,8 +1007,10 @@ g_trunk_data_X_mean = interp1([1:length(g_trunk_data_X_mean)],...
                         g_trunk_data_X_mean,[1:max_length]);
 % Center the data.
 AP_COP_mean_c = AP_COP_mean- mean(find(AP_COP_mean~=NaN));
-a_trunk_data_X_mean_c = a_trunk_data_X_mean - mean(find(a_trunk_data_X_mean~=NaN));
-g_trunk_data_X_mean_c = g_trunk_data_X_mean - mean(find(g_trunk_data_X_mean~=NaN));
+a_trunk_data_X_mean_c = a_trunk_data_X_mean - ...
+                                    mean(find(a_trunk_data_X_mean~=NaN));
+g_trunk_data_X_mean_c = g_trunk_data_X_mean - ...
+                                     mean(find(g_trunk_data_X_mean~=NaN));
 
 % Apply PCA.
 X_x = [AP_COP_mean_c; a_trunk_data_X_mean_c; g_trunk_data_X_mean_c]';
@@ -992,7 +1018,8 @@ X_x = [AP_COP_mean_c; a_trunk_data_X_mean_c; g_trunk_data_X_mean_c]';
 [COEFF_x,SCORE_x,latent,tsquare] = princomp(X_x,'econ');
 
 figure()
-biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',{'AP-COP' 'X-Acc' 'X-Gyro'});
+biplot(COEFF_x(:,1:2),'Scores',SCORE_x(:,1:2),'VarLabels',...
+                                              {'AP-COP' 'X-Acc' 'X-Gyro'});
 
 % Selection of the APA peaks in the orthogonal space.
 % peaks_APA_PCA_x = getCoordenates(SCORE_x(:,1) , SCORE_x(:,2), 'Select the intesresting peaks' );
@@ -1056,8 +1083,10 @@ g_trunk_data_Y_mean = interp1([1:length(g_trunk_data_Y_mean)],...
                         g_trunk_data_Y_mean,[1:max_length]);
 % Center the data.
 ML_COP_mean_c = ML_COP_mean - mean(find(ML_COP_mean~=NaN));
-a_trunk_data_Y_mean_c = a_trunk_data_Y_mean - mean(find(a_trunk_data_Y_mean~=NaN));
-g_trunk_data_Y_mean_c = g_trunk_data_Y_mean - mean(find(g_trunk_data_Y_mean~=NaN));
+a_trunk_data_Y_mean_c = a_trunk_data_Y_mean -...
+                        mean(find(a_trunk_data_Y_mean~=NaN));
+g_trunk_data_Y_mean_c = g_trunk_data_Y_mean -...
+                        mean(find(g_trunk_data_Y_mean~=NaN));
 
 % Apply PCA.
 X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
@@ -1065,7 +1094,8 @@ X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
 [COEFF_y,SCORE_y,latent,tsquare] = princomp(X_y,'econ');
 
 figure()
-biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-Gyro'});
+biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',...
+                                            {'ML-COP' 'Y-Acc' 'Y-Gyro'});
 
 % % The first componets of the SCORE are the most variability, so we will
 %     % use them to extract features with more accuracity.
@@ -1112,9 +1142,6 @@ biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',{'ML-COP' 'Y-Acc' 'Y-G
 % subplot(2,1,2)
 % plot(SCORE_y(:,2));
  end
-
-
-
 
 % Show completion message.
 name_file = textscan(filename,'%s','Delimiter','_');
