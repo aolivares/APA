@@ -53,10 +53,10 @@ clear all, close all, clc;
 % ML-COP).
 
 % Calculate a single signal per patient.
-folder_Co = 'database/trainning/Control/';
+folder_Co = 'database/Control/';
 [COP_AP_Co, COP_ML_Co] = Calculation_COP (folder_Co);
 
-folder_Pt = 'database/trainning/Patients/';
+folder_Pt = 'database/Patients/';
 [COP_AP_Pt, COP_ML_Pt] = Calculation_COP (folder_Pt);
 
 % Obtain the lenghts os the signals to interpolate because we need all of
@@ -80,43 +80,16 @@ end
 % 2) Apply PCA to extract features.
 %--------------------------------------------------------------------------
 
-% Apply PCA for control subjects.
 % Match both signals that represents the person and group all together.
 X_Co = [COP_AP_Co_int COP_ML_Co_int]';
-
-% % Center the data
-% for i =1:length(X_Co(1,:))
-%     points_mean = find(abs(X_Co(:,i))>0);
-%     X_Co (:,i) = X_Co(:,i) - mean(X_Co(points_mean,i));
-% 
-% end
-% 
-% % Apply PCA.
-% [COEFF_Co,SCORE_Co,latent,tsquare] = princomp(X_Co,'econ');
-% Comp_Co = SCORE_Co(:,1);
-
-
-% Apply PCA for Patients.
 X_Pt = [COP_AP_Pt COP_ML_Pt]';
-
-% % Center the data
-% for i =1:length(X_Pt(1,:))
-%     points_mean = find(abs(X_Pt(:,i))>0);
-%     X_Pt (:,i) = X_Pt(:,i) - mean(X_Pt(points_mean,i));
-% end
-% 
-% % Apply PCA.
-% [COEFF_Pt,SCORE_Pt,latent,tsquare] = princomp(X_Pt,'econ');
-% Comp_Pt = SCORE_Pt(:,1);
-
-% Plot
-% figure; plot(Comp_Co); hold on; plot(Comp_Pt,'g');
 
 % Apply PCA for all data.
 % Group all data together.
 X = [X_Co X_Pt];
 
-[COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
+[COEFF,SCORE,latent,tsquare, explained] = princomp(X,'econ');
+
 
 %--------------------------------------------------------------------------
 % 3) PLS feature extraction.
@@ -137,10 +110,13 @@ end
 % X : all data.
 % XS : PLs components that are linear combination of the variables in X.
 ncomp=31;
-c = zeros(1,14);
-p = ones(1,19);
+c = zeros(1,length(X_Co(1,:)));
+p = ones(1,length(X_Pt(1,:)));
 labels=[c p]';
-XS = PLS_feature_extraction2(labels,X',ncomp);
+
+for i=1:ncomp
+
+XS = PLS_feature_extraction2(labels,X',i);
 
 %--------------------------------------------------------------------------
 % 4) SVM algorithm for clasification.
@@ -148,219 +124,143 @@ XS = PLS_feature_extraction2(labels,X',ncomp);
 
 % Obtain the parameters to apply the algorithm.
 labels = logical (labels);
-data = XS;
-P = size(data,1);
+[acc, sen, spe] = SVM_LOU(XS,labels);
+acc_pls (i,:) = acc;
+sen_pls (i,:) = sen;
+spe_pls (i,:) = spe;
 
-% Number of time that the experiment is carried out.(Leave-M-Out).
-N = P;  
-
-% Number of patients and control subjects.
-NPat = sum(labels==1);
-NCont = sum(labels~=1);
-
-% Define the kinds of kernel functions.
-kern = {'linear','quadratic','polynomial','rbf'};
-
-% Obtain the stadistics for each kernel
-for k = 1:length(kern)
-    kernel = char(kern(k));
-    Errors = ones(N,1);
-    
-    for n = 1:N
-        
-        % Define the set of trainning and testing for each iteration.
-        % (Leave-M-Out)In this case one them is out.
-        train_set = true(1,P); train_set(n) = false; test_set =~train_set;
-        train_labels = labels(train_set); test_labels = labels(test_set);
-        
-        tr_data = data(train_set,:);
-        te_data = data(test_set,:);
-        
-        % Appy SVM.
-        svmStruct = svmtrain(tr_data, train_labels, 'Kernel_Function', ...
-                    kernel,'Showplot', false);
-        class = svmclassify(svmStruct, te_data)';
-        
-        
-        % Leave-M-Out.
-        class = cast(class,'double');
-        Errors(n) = length(find(class ~= test_labels'));
-        
-    end
-    
-    
-    % Leave-M-Out. Calculate the stadistics.
-    Total_Errors = sum(Errors,1);
-    Total_test = N;
-    
-    % Percentage (%) of data clasified properly.
-    acc(k) = (Total_test - Total_Errors)./Total_test * 100;
-    
-    POS = labels==1;
-    NEG = labels~=1;
-    FP = sum(Errors(POS,:),1); TP = NPat-FP;
-    FN = sum(Errors(NEG,:),1); TN = NCont-FN;
-    
-    % sen : Percentage of patients clasidied properly over the total of errors.
-    % pen : Percentage of CS clasidied properly over the total of errors.
-    sen(k) = (TP./(TP+FN));
-    spe(k) = (TN./(TN+FP));
-    
 end
 
-% oldorder = get(gcf,'DefaultAxesColorOrder');
-% set(gcf,'DefaultAxesColorOrder',jet(33));
-% plot3(repmat(1:33,331,1)',1:331,SCORE');
-% set(gcf,'DefaultAxesColorOrder',oldorder);
-% xlabel('Wavelength Index'); ylabel('Octane'); axis('tight');
-% grid on
+% SVM for row data.
+[acc_row, sen_row, spe_row] = SVM_LOU(X',labels);
+
+% SVM for PCA
+for i= 1:4
+    [acc, sen, spe] = SVM_LOU(SCORE(1:i,:)',labels);
+    acc_pca(i,:) = acc;
+    sen_pca (i,: ) = sen;
+    spe_pca (i,:) = spe;
+end
+
+% Figures
+% Make a scree plot of the percent variability explained by each principal
+% component.
+figure()
+pareto(explained)
+xlabel('Principal Component')
+ylabel('Variance Explained (%)')
+
+% Stadistics parameters for each number of components for PLS algorithm.
+figure()
+subplot(3,1,1)
+plot(acc_pls)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Accuracy(%)')
+title('Accuracity with PLS algorithm')
+
+subplot(3,1,2)
+plot(sen_pls)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Sensitivity')
+title('Sensitivity with PLS algorithm')
+
+subplot(3,1,3)
+plot(spe_pls)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Specificity')
+title('Specificity with PLS algorithm')
+
+% Stadistics parameters for each number of components for PCA algorithm.
+figure()
+subplot(3,1,1)
+plot(acc_pca)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Accuracy(%)')
+title('Accuracity with PCA algorithm')
+
+subplot(3,1,2)
+plot(sen_pca)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Sensitivity')
+title('Sensitivity with PCA algorithm')
+
+subplot(3,1,3)
+plot(spe_pca)
+legend('linear','quadratic','polynomial','rbf')
+xlabel('Number of components')
+ylabel('Specificity')
+title('Specificity with PCA algorithm')
 
 
-% % Determine the threshold using the eclude distance between the components
-% % calculated.
-% % For control subjects:
-% distance_1 = abs(Comp_1 - Comp_Co);
-% distance_1 = mean(distance_1(find(distance_1>0)));
-% distance_2 = abs(Comp_2 - Comp_Co);
-% distance_2 = mean(distance_2(find(distance_2>0)));
-% 
-% threshold_Co = min([distance_1,distance_2]);
-% 
-% % For patients
-% distance_1 = abs(Comp_1 - Comp_Pt);
-% distance_1 = mean(distance_1(find(distance_1>0)));
-% distance_2 = abs(Comp_2 - Comp_Pt);
-% distance_2 = mean(distance_2(find(distance_2>0)));
-% 
-% threshold_Pt = min([distance_1,distance_2]);
+NORMAL = 1:18;
+DTA = 19:45;
+kernel_function='linear';
+% y= draw_dec_surf_svm(XS, NORMAL, DTA, 'linear');
+% Figura con el hiperplano de decisión.
+% Figura con el hiperplano de decisión.
+P = length(NORMAL)+length(DTA);
+labels= ones(P,1);  labels(NORMAL)= -1;
 
-% % Clear variables.
-% clearvars -except threshold_Pt threshold_Co Comp_Pt Comp_Co X_Co X_Pt L_ML ...
-% L_AP
-% 
-% %--------------------------------------------------------------------------
-% % Testing
-% %--------------------------------------------------------------------------
-% % Calculate a single signal per patient.
-% folder_Co = 'database/testing/Control/';
-% [COP_AP_Co, COP_ML_Co] = Calculation_COP (folder_Co);
-% 
-% folder_Pt = 'database/testing/Patients/';
-% [COP_AP_Pt, COP_ML_Pt] = Calculation_COP (folder_Pt);
-% 
-% % Interpolate the control subjects.
-% for i =1: length(COP_AP_Co(:,1))
-%     COP_AP_Co_int(i,:) = interp1([1:length(COP_AP_Co(1,:))],COP_AP_Co(i,:),[1:L_AP]);
-%     
-%     COP_ML_Co_int(i,:) = interp1([1:length(COP_ML_Co(1,:))],COP_ML_Co(i,:),[1:L_ML]);
-%     
-% end
-% 
-% % Interpolate the patients.
-% for i =1: length(COP_AP_Pt(:,1))
-%     COP_AP_Pt_int(i,:) = interp1([1:length(COP_AP_Pt(1,:))],COP_AP_Pt(i,:),[1:L_AP]);
-%     
-%     COP_ML_Pt_int(i,:) = interp1([1:length(COP_ML_Pt(1,:))],COP_ML_Pt(i,:),[1:L_ML]);
-%     
-% end
-% 
-% COP_Co = [COP_AP_Co_int COP_ML_Co_int];
-% COP_Pt = [COP_AP_Pt_int COP_ML_Pt_int];
-% 
-% % For control subject
-% for i = 1:length(COP_Co(:,1))
-%     
-%     % Center the data.
-%     COP_CO = COP_Co(i,:);
-%     points_mean = find(abs(COP_CO)>0);
-%     COP_CO = COP_CO - mean(COP_CO(points_mean));
-%     
-%     % Apply PCA.
-%     X = [X_Co COP_CO'];
-%     [COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
-%     Comp_1  = SCORE(:,1);
-%     
-%     % Calcule the distance.
-%     distance = abs(Comp_1 - Comp_Co);
-%     distance_Co_Co (i) = mean(distance(find(distance>0)));
-%     
-%     % Apply PCA.
-%      X = [X_Pt COP_CO'];
-%     [COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
-%     Comp_2 = SCORE(:,1);
-%     
-%     % Calcule the distance.
-%     distance = abs(Comp_2 - Comp_Pt);
-%     distance_Co_Pt (i) = mean(distance(find(distance>0)));
-%     
-% end
-% 
-% % For patients
-% for i = 1:length(COP_Pt(:,1))
-% 
-%     COP_PT = COP_Pt(i,:);
-%     
-%     % Center the data.
-%     points_mean = find(abs(COP_PT)>0);
-%     COP_PT = COP_PT - mean(COP_PT(points_mean));
-%     
-%     % Apply PCA.
-%     X = [X_Pt COP_PT'];
-%     [COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
-%     Comp_1 = SCORE(:,1);
-%     
-%     % Calcule the distance.
-%     distance = abs(Comp_1 - Comp_Pt);
-%     distance_Pt_Pt (i) = mean(distance(find(distance>0)));
-%     
-%     % Apply PCA.
-%      X = [X_Co COP_PT'];
-%     [COEFF,SCORE,latent,tsquare] = princomp(X,'econ');
-%     Comp_2 = SCORE(:,1);
-%     
-%     % Calcule the distance.
-%     distance = abs(Comp_2 - Comp_Co);
-%     distance_Pt_Co (i) = mean(distance(find(distance>0)));
-%     
-% end
-% 
-% find(distance_Co_Co<distance_Co_Pt)
-% find(distance_Pt_Pt<distance_Pt_Co)
+plot3(XS(NORMAL,1),XS(NORMAL,2),XS(NORMAL,3),'b*'); hold on;
+h= plot3(XS(DTA,1),XS(DTA,2),XS(DTA,3),'rs'); hold off;
+grid;
+hAxis = get(h,'parent');
+lims = axis(hAxis);
 
+N=100;
+[Xc, Yc, Zc]= meshgrid(linspace(lims(1),lims(2),N),linspace(lims(3),lims(4),N),linspace(lims(5),lims(6),N));
 
+output= zeros(N,N,N);
 
+tr_data= XS(:,[ 1 2 3 ]);
+train= 1:P;
+%svmStruct= svmtrain(tr_data(train,:), labels(train),'Kernel_Function','linear');
+%svmStruct= svmtrain(tr_data(train,:), labels(train),'Kernel_Function','quadratic');
+%svmStruct= svmtrain(tr_data(train,:), labels(train),'Kernel_Function','polynomial');
+svmStruct= svmtrain(tr_data(train,:), labels(train),'Kernel_Function',kernel_function);
 
+for xc=1:N
+    for yc=1:N
+        for zc=1:N
+            output(xc,yc,zc)= eval_svmStruct(svmStruct,[Xc(xc,yc,zc) Yc(xc,yc,zc) Zc(xc,yc,zc)]);
+        end
+    end
+end
 
+plot3(XS(NORMAL,1),XS(NORMAL,2),XS(NORMAL,3),'bo','MarkerSize',7); hold on;
+h= plot3(XS(DTA,1),XS(DTA,2),XS(DTA,3),'rs','MarkerSize',7);
+hAxis = get(h,'parent');
+lims = axis(hAxis);
 
-% % Obtain the patter for each people.
-% COP_Co = [COP_AP_Co COP_AP_Co];
-% COP_Pt = [COP_AP_Pt COP_ML_Pt];
-% 
-% % Calcule the distance between every new people
-% % Interpolate the signals from control subject for these have the same
-% % length.
-% for i =1: length(COP_Co(:,1))
-%     COP_Co_int(i,:) = interp1([1:length(COP_Co(1,:))],COP_Co(i,:),[1:length(Comp_Co)]);
-%     
-%     % Calculate the distance.
-%     distance = abs(COP_Co_int(i,:) - Comp_Co');
-%     distance_Co_Co (i) = mean(distance(find(distance>0)));
-%     
-%     distance = abs(COP_Co_int(i,:) - Comp_Pt');
-%     distance_Co_Pt (i) = mean(distance(find(distance>0)));
-% end
-% 
-% for i =1: length(COP_Pt(:,1))
-%     COP_Pt_int(i,:) = interp1([1:length(COP_Pt(1,:))],COP_Pt(i,:),[1:length(Comp_Pt)]);
-%     
-%     % Calculate the distance.
-%     distance = abs(COP_Pt_int(i,:) - Comp_Co');
-%     distance_Pt_Co (i) = mean(distance(find(distance>0)));
-%     
-%     distance = abs(COP_Pt_int(i,:) - Comp_Pt');
-%     distance_Pt_Pt (i) = mean(distance(find(distance>0)));
-% end
-% 
-% % Identify the class of each person.
-% Co_ok = length(find(distance_Co_Co<distance_Co_Pt))/length(distance_Co_Co)*100;
-% Pt_ok = length(find(distance_Pt_Pt<distance_Pt_Co))/length(distance_Pt_Co)*100;
+% Representamos los vectores de soporte.
+hold on;
+sv = svmStruct.SupportVectors;
+% see if we need to unscale the data
+scaleData = svmStruct.ScaleData;
+if ~isempty(scaleData)
+    for c = 1:size(sv, 2)
+        sv(:,c) = (sv(:,c)./scaleData.scaleFactor(c)) - scaleData.shift(c);
+    end
+end
+% plot support vectors
+hSV = plot3(sv(:,1),sv(:,2),sv(:,3),'*k');
+
+hpatch = patch(isosurface(Xc,Yc,Zc,output,0));
+isonormals(Xc,Yc,Zc,output,hpatch)
+set(hpatch,'FaceColor','red','EdgeColor','none')
+view([-126,36]);
+axis tight
+camlight left; 
+set(gcf,'Renderer','zbuffer'); 
+lighting phong;
+grid;
+hold off;
+
+legend('NOR','AD','Support vectors','Decision surface');
+title(['#SVs= ' num2str(size(sv,1))]);
+y= 1;

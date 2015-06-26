@@ -1094,7 +1094,7 @@ X_y = [ML_COP_mean_c; a_trunk_data_Y_mean_c; g_trunk_data_Y_mean_c]';
 [COEFF_y,SCORE_y,latent,tsquare] = princomp(X_y,'econ');
 
 figure()
-biplot(COEFF_y(:,1:2),'Scores',SCORE_y(:,1:2),'VarLabels',...
+biplot(COEFF_y(:,1:2),'Scores',SCORE_y(1:2,:),'VarLabels',...
                                             {'ML-COP' 'Y-Acc' 'Y-Gyro'});
 
 % % The first componets of the SCORE are the most variability, so we will
