@@ -114,20 +114,23 @@ c = zeros(1,length(X_Co(1,:)));
 p = ones(1,length(X_Pt(1,:)));
 labels=[c p]';
 
-for i=1:ncomp
-
-XS = PLS_feature_extraction2(labels,X',i);
-
 %--------------------------------------------------------------------------
 % 4) SVM algorithm for clasification.
 %--------------------------------------------------------------------------
+% Apply PLS for differents components (latents variables) and SVM for each
+% case.
+for i=1:ncomp
 
-% Obtain the parameters to apply the algorithm.
-labels = logical (labels);
-[acc, sen, spe] = SVM_LOU(XS,labels);
-acc_pls (i,:) = acc;
-sen_pls (i,:) = sen;
-spe_pls (i,:) = spe;
+    % Apply PLS.
+    XS = PLS_feature_extraction2(labels,X',i);
+    
+    % Apply SVM for classification.
+    % Obtain the parameters to apply the algorithm.
+    labels = logical (labels);
+    [acc, sen, spe] = SVM_LOU(XS,labels);
+    acc_pls (i,:) = acc;
+    sen_pls (i,:) = sen;
+    spe_pls (i,:) = spe;
 
 end
 
@@ -196,7 +199,7 @@ xlabel('Number of components')
 ylabel('Specificity')
 title('Specificity with PCA algorithm')
 
-
+% Plot 3D of the classification
 NORMAL = 1:18;
 DTA = 19:45;
 kernel_function='linear';
@@ -206,6 +209,7 @@ kernel_function='linear';
 P = length(NORMAL)+length(DTA);
 labels= ones(P,1);  labels(NORMAL)= -1;
 
+figure()
 plot3(XS(NORMAL,1),XS(NORMAL,2),XS(NORMAL,3),'b*'); hold on;
 h= plot3(XS(DTA,1),XS(DTA,2),XS(DTA,3),'rs'); hold off;
 grid;
