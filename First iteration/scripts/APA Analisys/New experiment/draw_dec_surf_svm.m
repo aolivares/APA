@@ -1,6 +1,6 @@
 function y= draw_dec_surf_svm(XS, NORMAL, DTA, kernel_function)
 % Figura con el hiperplano de decisión.
-P = length(NORMAL);%+length(DTA);
+P = length(NORMAL)+length(DTA);
 labels= ones(P,1);  labels(NORMAL)= -1;
 
 plot3(XS(NORMAL,1),XS(NORMAL,2),XS(NORMAL,3),'b*'); hold on;
