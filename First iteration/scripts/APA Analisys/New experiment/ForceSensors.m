@@ -113,7 +113,7 @@ end
 ncomp=31;
 c = zeros(1,length(X_Co(1,:)));
 p = ones(1,length(X_Pt(1,:)));
-labels=[c p]';
+labels=[c p];
 
 %--------------------------------------------------------------------------
 % 4) SVM algorithm for clasification.
@@ -123,7 +123,7 @@ labels=[c p]';
 for i=1:ncomp
 
     % Apply PLS.
-    XS = PLS_feature_extraction2(labels,X',i);
+    XS = PLS_feature_extraction2(labels',X',i);
     
     % Apply SVM for classification.
     % Obtain the parameters to apply the algorithm.
@@ -215,3 +215,22 @@ y= draw_dec_surf_svm(XS, NORMAL, DTA, 'rbf');
 % Classification with PCA (pral comp=4, kern = lineal)
 figure()
 y= draw_dec_surf_svm(SCORE(1:3,:)', NORMAL, DTA, 'linear');
+
+% Apply ROC.
+% ROC curve for linear kernel and seven components.
+ XS = PLS_feature_extraction2(labels',X',7);
+ step = 500;
+ 
+figure();
+[X_PLS7,Y_PLS7,auc_PLS7]=roc(XS,labels,step);
+
+% ROC curve for linear kernel in PCA data.
+figure()
+[X_PCA,Y_PCA,auc_PCA]=roc(SCORE(1:4,:)',labels,step);
+
+% Comparative representation of ROC.
+figure()
+plot(X_PLS7,Y_PLS7,'b');
+hold on;
+plot(X_PCA,Y_PCA,'g');
+
