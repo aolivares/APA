@@ -132,7 +132,7 @@ for i=1:ncomp
     acc_pls (i,:) = acc;
     sen_pls (i,:) = sen;
     spe_pls (i,:) = spe;
-
+    
 end
 
 % SVM for row data.
@@ -203,5 +203,15 @@ title('Specificity with PCA algorithm')
 % Plot 3D of the classification
 NORMAL = 1:18;
 DTA = 19:45;
-kernel_function='linear';
+
+% Classifiction with PLS (kern = lineal).
+figure()
 y= draw_dec_surf_svm(XS, NORMAL, DTA, 'linear');
+
+% Classification with PLS (kern = rbf)
+figure()
+y= draw_dec_surf_svm(XS, NORMAL, DTA, 'rbf');
+
+% Classification with PCA (pral comp=4, kern = lineal)
+figure()
+y= draw_dec_surf_svm(SCORE(1:3,:)', NORMAL, DTA, 'linear');
