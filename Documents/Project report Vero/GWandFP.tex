@@ -4,13 +4,13 @@
 \section{Introduction and chapter's structure}
 Along this chapter we will introduce the protocol used to obtain the Gait Watch and Force Plate signals as well as the developed software to synchronise and analyse the signals that characterise the anticipatory postural adjustments before gait.
 
-On the one hand, we carry out the synchronisation between the signal from inertial sensors (Gait Watch) and the force signals from the platform. It's very important for comparing both devices, determining the differences and similarities and finally resolving if we can obtain the same information from both systems.
+On the one hand, we will carry out the synchronisation between the signal from inertial sensors (Gait Watch) and the force signals from the platform. It's very important for comparing both devices, determining the differences and similarities and finally resolving if we can obtain the same information from both systems.
 
 On the other hand, we’ll analyse the most interesting signals to characterise the APAs, obtaining the parameters of them which may be of interest.
 
 
 \section{Data gathering Protocol}
-Prior to start of data gathering, it’s necessary to set up the protocol for procedure that patients have to carry out while the data are recorded. The establishing this procedure is very important so that the synchronisation works properly because we have to identify a clear movement in both signals to match one signal with the other at the same time.
+Prior to start of data gathering, it’s necessary to set up the protocol for procedure that patients have to carry out while the data are recorded. The establishing of this procedure is very important so that the synchronisation works properly because we have to identify a clear movement in both signals to match one signal with the other at the same time.
 In addition, the realised movements must be representatives to obtain conclusive data which help us to extract characteristics for the purpose of identify differences between patients and control subjects subsequently.
 
 The steps followed by the patients are detailed hereafter:
@@ -33,7 +33,7 @@ It’s important to clarify that the GaitWatch recording contains all these ten 
 \section{Synchronisation}
 
 \subsection{Introduction and chapter's structure}
-One of the most important aspects whether you have data acquired from multiples devices or channels is the synchronisation. If these data are not appropriately correlated or synchronised, the analysis and conclusions from your use will be erroneous. Also, it’s very important doing all automatically when you have a data on a broad scale.
+One of the most important aspects whether you have data acquired from multiples devices or channels is the synchronisation. If these data are not appropriately correlated or synchronised, the analysis and conclusions from your use will be erroneous. Also, it’s very important to do all automatically when you have a data on a broad scale.
 Therefore, the following sections explain how the information has been obtained and processed automatically, as well as what features have been calculated to characterise the movements of the patients and to carry out the synchronisation between the Force Plate signals and GaitWatch signals. This content is superficially depicted in \ref{fig:diagramSynchronisation}.
 
 \begin{figure}[H]
@@ -45,7 +45,7 @@ Therefore, the following sections explain how the information has been obtained 
 
 \subsection{Design of developed code  in Matlab}
 \subsubsection{Selection, reading and obtaining of information from the excel file}
-All patients data , that is, the different files have been generated after the gathering (  of the force plate as well as Gait Watch), gathering date, duration of the experiment and other observations are saved in a Excel file. 
+All patients data, that is, the different files have been generated after the gathering (  of the force plate as well as Gait Watch), gathering date, duration of the experiment and other observations are saved in a Excel file. 
 
 In order to automate all as much as possible, the code is in charge of extraction of the necessary data (files names) to carry out the appropriate calculations for each patient. This is done once the Excel file has been selected, thus, it have to have a specific structure to be able to read the data correctly.
 
@@ -75,7 +75,7 @@ Once we recover this data, some parameters are calculated for the movement chara
 	\item \textbf{Midline}: it represents the midline between both feet. This is important to find the gap between feet and it gives us a idea of their position in the platform. Thus, we carry out the sum of cells force in the anterior-posterior direction. So, this line is in the minimum between two maximum corresponding to the position of both feet. We use this parameter to calculate the center of pressure.
 	\begin{figure}[H]
 		\centering
-		\epsfig{file=figures/Synchronisation/midlineForceplate, width=18cm}
+		\epsfig{file=figures/Synchronisation/midlineForceplate, width=20cm}
 		\caption{Midline between both feet in platform.}
 		\label{fig:midlineForceplate}
 	\end{figure}
@@ -88,7 +88,7 @@ Once we recover this data, some parameters are calculated for the movement chara
 			\label{fig:forceFP}
 		\end{figure}
 	
-	\item \textbf{Antero-posterior COP}: center of pressure in forward-backward direction.
+	\item \textbf{Antero-posterior COP}: Center of Pressure in forward-backward direction.
 		\begin{figure}[H]
 			\centering
 			\epsfig{file=figures/Synchronisation/APCOP, width=18cm}
@@ -96,7 +96,7 @@ Once we recover this data, some parameters are calculated for the movement chara
 			\label{fig:APCOP}
 		\end{figure}	
 	
-	\item \textbf{Medio-lateral  COP}: center of pressure  in right and left direction.
+	\item \textbf{Medio-lateral  COP}: Center of Pressure  in right and left direction.
 			\begin{figure}[H]
 				\centering
 				\epsfig{file=figures/Synchronisation/MLCOP, width=18cm}
@@ -106,7 +106,7 @@ Once we recover this data, some parameters are calculated for the movement chara
 	
 \end{itemize}
 
-Center of pressure can be expressed as follows:
+Center of Pressure can be expressed as follows:
 
 \begin{equation}
 	\label{COP}
@@ -114,7 +114,7 @@ Center of pressure can be expressed as follows:
 \end{equation}
 
 
-Where R is the “Center of pressure”, M is the total force and mi are the force that are located in space with coordinated ri, in this case, in the plane. This location (ri) is calculate with respect to the midline.
+Where \textit{R} is the \textit{“Center of pressure”\textit{}}, \textit{M\textit{}} is the total force and mi are the force that are located in space with coordinated \textit{ri\textit{}}, in this case, in the plane. This location (\textit{ri}) is calculate with respect to the midline.
 
 These signals help us to characterise Anticipatory Postural Adjustments  before gait.  APAs indicate the movement or swinging of body before walk or carry out some movement. Thus, these are the interesting  measures to compare between each repeat as well as each patients to characterise the movement, determine if there is a pattern and figure out the differences and similarities between them.
 
@@ -143,7 +143,7 @@ The erroneus values in the magnetometer signal are removed sustituting these sam
 \subsubsection{Synchronisation}	
 In this section we will explain how we carried through the synchronisation of the Force Plate and GaitWatch signals and the considerations adopted to do it properly.
 
-The first step is to detect when the step happens in both systems. In order to do this, we’ll use the completed force from Force Plate system and shank acceleration from the Gait Watch accelerometer. We chose these signals because it’s easy to see in them the point when the patients step.
+The first step is to detect when the step happens in both systems. In order to do this, we’ll use the completed force from Force Plate system and shank acceleration from the Gait Watch accelerometer. We chose these signals because it is easy to see in them the point when the patients step.
 
 Once we have selected the right signals to do the synchronisation we have to differentiate each cycles in the acceleration signal because we have all repeats together in the same file. To do this, we used activity detection code implemented by Dr. Alberto Olivares Vicente in his Doctoral thesis. Figure \ref{fig:activityDetection} shows the result.
 
@@ -160,19 +160,15 @@ The technical difference between LTSD and FSD is that the first of them compute 
 	\label{fig:activityDetection}
 \end{figure} 
 
-The LTSD method has a better decision rate than FSD method because it is designed to work under condition where the SNR is low, i.e the signal present large noise\cite{A.Olivares2013}. In our case, we want detect the differents cycles that corresponding to each repeat so the different peaks of activity inside each period can be a problema to do the detection correctly because really it is interpreted like noise for the detector. Thus, the LTSD method is more interesting for this type of signal.
+The LTSD method has a better decision rate than FSD method because it is designed to work under condition where the SNR is low, i.e the signal present large noise\cite{A.Olivares2013}. In our case, we want detect the differents cycles that corresponding to each repeat so the different peaks of activity inside each period can be a problem to do the detection correctly because really it is interpreted like noise for the detector. Thus, the LTSD method is more interesting for this type of signal.
 
-Once we select the best method for the detection we tested several input signal for the detector: shank acceleration signal, absolute value of the shank acceleration signal and module of the shank acceleration signal. Finally, the best result was obtained when we used module of the shank acceleration signal because when this input signal is used in the resulting output signal is easier to distinguish the different episodes.
+Once we select the best method for detection we tested several input signal for the detector: shank acceleration signal, absolute value of the shank acceleration signal and module of the shank acceleration signal. Finally, the best result was obtained when we used module of the shank acceleration signal because when this input signal is used in the resulting output signal is easier to distinguish the different episodes.
 
 Furthermore, the motion activity detection was carried out for the right leg as well as left one. It is not necessary in some cases when the patient does the movements or activities quickly since the detected activity interval  include both movements in the same episode. However, when patient waits some time to step again in the same repeat, it is possible that some step is not  include in the interval thus the result would be erroneous. Therefore, to realise a general algorithm useful in whatever case we differentiate between both feet.
 
 Once the cycles have been separated, we are going to detect the key points in the signals to do the synchronisation. 
 
 On the one hand, the time point when the patient does the step in the platform is exactly when the person touches it, that is, the time point that corresponding with the first sample in the force signal with a value other than zero.
-
-On the other hand, in the acceleration signal case, this fact happens in the second positive peak\ref{fig:pointdetectionAcc}. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points upwards thus the great positive peak will be when the leg is in the máximum distance from ground.Then, there is a change of direction and it appears a negative peak in this trace. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward again.\ref{fig:sinchronisedSignals}.
-
-Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time \ref{fig:startLeftRight}.
 
 \begin{figure}[H]
 	\centering
@@ -181,14 +177,13 @@ Now, we have to consider others aspects like the limbs with which the person sta
 	\label{fig:startLeftRight}
 \end{figure} 
 
+On the other hand, in the acceleration signal case, this fact happens in the second positive peak\ref{fig:pointdetectionAcc}. The reason is that when patient does a step, the first movement is to rise the leg, so the acceleration vector points upwards thus the great positive peak will be when the leg is in the maximum distance from ground. Then, there is a change of direction and it appears a negative peak in this trace. The immediate movement is to lower the leg and touch the platform, so when the patient puts his leg in the force plate there is a positive peak due to the acceleration vector is pointing upward again.\ref{fig:sinchronisedSignals}.
+
+Now, we have to consider others aspects like the limbs with which the person start to walk. To do all more comfortable for the patients, it was not specified with which leg they had to do the first step, so we have to determinate automatically this fact. To realise this we calculate all interesting peaks in the right shank acceleration as well as left shank acceleration. Then, we identify first peak in time \ref{fig:startLeftRight}.
+
 Other important aspect is to consider the sample frequency. The sample frequency is 120 Hz in force plate signals and 200 Hz in GaitWatch signals. Thus, we have to reshape the Force Plate signals to match other signals.
 
 All the key parameters and signals are saved using “time series”  for adding descriptive information to the fact.
-
-Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is clearer to the naked eye. We can sense there are a negative peak when the patient raises his leg to step. This is negative because the movement is upwards and the Z axes is pointing to the floor so the Angular Velocity is negative. The next positive peak of happends when the person touches the platform so this is the key point to use in the synchronisation\ref{fig:pointdetectionGyro}.
-
-If we compare the behaviour of both signal, it makes sense because a peak of acceleration have to appear when there is a strong growth (or decrement) of the velocity, and this happends when the person go up or down the limbs\ref{fig:pointdetectionAcc}\ref{fig:pointdetectionGyro}.
-
 
 \begin{figure}[H]
 	\centering
@@ -203,6 +198,10 @@ If we compare the behaviour of both signal, it makes sense because a peak of acc
 	\caption{Peaks detected for the Synchronisation in the Gyroscope signals.}
 	\label{fig:pointdetectionGyro}
 \end{figure}
+
+Finally, we compare the peak detection for the synchronisation between the accelerometers signal and the gyroscopes signal. The behaviour of the gyroscope signal is clearer to the naked eye. We can sense there is a negative peak when the patient raises his leg to step. This is negative because the movement is upwards and the Z axes is pointing to the floor so the Angular Velocity is negative. The next positive peak of happends when the person touches the platform so this is the key point to use in the synchronisation\ref{fig:pointdetectionGyro}.
+
+If we compare the behaviour of both signal, it makes sense because a peak of acceleration have to appear when there is a strong growth (or decrement) of the velocity, and this happends when the person go up or down the limbs\ref{fig:pointdetectionAcc}\ref{fig:pointdetectionGyro}.
 
 The correlation between the peaks detected with both systems is very high and the difference between the locations of the peaks are very small as well. This indicates that it was done correctly and these detected points are suitable to do the synchronisation. We can see this in the folllowing figures:
 
@@ -254,15 +253,15 @@ Finally, the result of the synchronisation can be seen in following figure:
 \section{APA analysis}
 \subsection{Introduction and chapter's structure}
 
-Anticipatory postural adjustments (APAs)  represents balance control that help to stabilise and mobilise the body based on anticipation of forces accompanying voluntary movement such as volitional lifting of the foot during step initiation \cite{Mancini2010} . Step initiation requires a tight proprioceptive coordination between motor commands for postural adjustments and for stepping, so APAs act to accelerate the center of pressure over the stance foot immediately prior to gait \cite{Mancini2009} .
+Anticipatory postural adjustments (APAs)  represents balance control that help to stabilise and mobilise the body based on anticipation of forces accompanying voluntary movement such as volitional lifting of the foot during step initiation \cite{Mancini2010}. Step initiation requires a tight proprioceptive coordination between motor commands for postural adjustments and for stepping, so APAs act to accelerate the center of pressure over the stance foot immediately prior to gait \cite{Mancini2009}.
 
-APAs, before gait initiation, are bradykinetic in advanced Parkinson’s disease and may be one of the factor associated with ‘start hesitation’ \cite{Mancini2009} .
+APAs, before gait initiation, are bradykinetic in advanced Parkinson’s disease and may be one of the factor associated with ‘start hesitation’ \cite{Mancini2009}.
 
-Early identification in patients with PD is important because new neuroprotective medications are being tested to slow the progression of this disease and it is necessary to begin early in the disease, prior to significant loss of neurons \cite{Mancini2012} . 
+Early identification in patients with PD is important because new neuroprotective medications are being tested to slow the progression of this disease and it is necessary to begin early in the disease, prior to significant loss of neurons \cite{Mancini2012}. 
 
 Currently, the most common way to evaluate postural control in the clinic is to use clinical rating scales that are limited by clinician bias, insensitivity to mild impairments and poor reliability. These limitations are serious problems for clinicians and researchers who want to monitor the disease progression, determine intervention efficacy or treat people with mild balance deficits \cite{Mancini2012} .
 
-Technology avaiable for clinicians and researchers to mesure APAs is generally force plate for the analysis of center of pressure. However, force plate is quite large and expensive and requires a proper installation that may not be practical for clinical use. Thus, Body-worn accelerometers have been proposed as a portable, low-cost alternative to a force plate for measurements of postural sway\cite{Mancini2012} .
+Technology avaiable for clinicians and researchers to mesure APAs is generally force plate for the analysis of center of pressure. However, force plate is quite large and expensive and requires a proper installation that may not be practical for clinical use. Thus, Body-worn accelerometers have been proposed as a portable, low-cost alternative to a force plate for measurements of postural sway \cite{Mancini2012} .
  
 Therefore, along this chapter we will do a comparative study of the measurements obtained of the force plate as well as accelerometers that make up the Gait Watch system. Also, we will compare these measurements with gyroscopes data that form part of this system too, in order to determine what sensors give us the more accurate results.
 
@@ -272,18 +271,16 @@ As we said in the before chapter, leg's acceleration in the Gait Watch System as
 This is because we can observe the Anticipatory Postural Adjustments in these signals, i.e the body movements before stepping. According to prior studies and priori criteria it is thought that could be a good way to characterise the APAs.
 Therefore, the first process to carry out is the analysis of the trunk acceleration and COP to determine if there is some pattern and whether we will be able to use them to obtain information about the patients.
 
-The first step that needs to be carried out is establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the right of the patient, so the positives values indicate a movement toward right with regard to the midline. Comparably, the negatives values are found when the movement is toward the left\ref{fig:axesFP}.
-
+The first step that needs to be carried out is establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the right of the patient, so the positives values indicate a movement toward right with regard to the midline. Comparably, the negatives values are found when the movement is toward the left \ref{fig:axesFP}.
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/APA_analysis/axesFP.pdf, width=10cm}
 	\caption{Definition of the axes in the Platform.}
 	\label{fig:axesFP}
 \end{figure}
-
 Now, for the GaitWatch System we have to determine the orientation of the axes of the body frame that we wish to use, as well as the orientation of the rotation around those axes. The most popular configurations is to set the X axis pointing forwards, the Y axis pointing to the right and the Z axis pointing down. This configuration follows the rule of the right hand for the orientation of the axes and the corkscrew rule for the rotation \cite{OlivaresBotzel2013}. 
 
-Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right  of the patient, and the Z axis to the floor\ref{fig:axesGW}\cite{OlivaresBotzel2013}.
+Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right  of the patient, and the Z axis to the floor \ref{fig:axesGW} \cite{OlivaresBotzel2013}.
 
 \begin{figure}[H]
 	\centering
@@ -292,7 +289,7 @@ Since we will be using the GaitWatch device to monitor gait, then we need its X 
 	\label{fig:axesGW}
 \end{figure}
 
-Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in figure 2.1, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. So, in this case the rotation is positive toward right\ref{fig:axesGWGyro}. Analogously, the rotation is negative when it is turned to the left  \cite{OlivaresBotzel2013}
+Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in \ref{fig:axesGW}, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. So, in this case the rotation is positive toward right\ref{fig:axesGWGyro}. Analogously, the rotation is negative when it is turned to the left  \cite{OlivaresBotzel2013}
 
 \begin{figure}[H]
 	\centering
@@ -304,7 +301,7 @@ Once we have identified the axes of the accelerometers, we now proceed to identi
 
 We have to differentiate between the front-back movement and the right-left movement. In the first of the case, we have the acceleration in X axis and the Antero-Posterior COP. In the another case, the movement is traced by the acceleration in Y axis and the Medio-Lateral  COP.
 
-Whether we focus in the Antero-Posterior movement, the body is displaced forward while the step is being completed. Thus, the center of mass is shifted backward in this period of the movement. In the case of center of pressure, we can find first  movement backward to gain momentum and after that  COP moves forwards under the stance of the foot\ref{fig:AP_AccX}.
+Whether we focus in the Antero-Posterior movement, the body is displaced forward while the step is being completed. Thus, the center of mass is shifted backward in this period of the movement. In the case of center of pressure, we can find first  movement backward to gain momentum and after that  COP moves forwards under the stance of the foot \ref{fig:AP_AccX}.
 
 Since kinematic point of view, the trunk is moved anteriorly while the patient steps. Therefore, there will be a peak of acceleration in the X axis pointing forward, so we will find a ‘negative’ peak at this moment because the acceleration vector points in the opposite direction to the movement. After that, there is a positive peak that corresponding with the direction change just when the step finishes. 
 
@@ -323,7 +320,7 @@ If the patient starts to step with the right foot, the center of mass is acceler
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/ML_AccY_right, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/ML_AccY_right, width=18cm, height=12cm}
 	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the right foot.}
 	\label{fig:ML_AccY_right}
 \end{figure}
@@ -332,26 +329,25 @@ If the patient starts to step with the left foot, the movements are the same tha
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/ML_AccY_left, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/ML_AccY_left, width=18cm, height=12cm}
 	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the left foot.}
 	\label{fig:ML_AccY_left}
 \end{figure}
 
-To sum up, we have to differentiate between the foot which the step is done (stepping foot) and the foot over the ground (stance foot) to understand the behaviour of the APAs. The center of mass (COM) is shifted toward the stance foot to maintain the equilibrium during the balance phase. The center of pressure (COP) is divided in differents phases. Firstly, the COP moves toward the stepping foot and backward to generate the momentum to step (S1 period). Hereafter, the COP is displaced toward the stance foot. This happens at time when the other foot is in the air (S2 period). Finally, the COP moves forward and under the stance foot(S3 period). 
+To sum up, we have to differentiate between the foot which the step is done (stepping foot) and the foot over the ground (stance foot) to understand the behaviour of the APAs. The center of mass (COM) is shifted toward the stance foot to maintain the equilibrium during the balance phase. The center of pressure (COP) is divided in differents phases. Firstly, the COP moves toward the stepping foot and backward to generate the momentum to step (S1 period). Hereafter, the COP is displaced toward the stance foot. This happens at time when the other foot is in the air (S2 period). Finally, the COP moves forward and under the stance foot (S3 period) \ref{fig:trajectoryCOP}.
+
+Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period) \ref{fig:trajectoryAcc}.  
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=16cm, height=9.5cm}
 	\caption{Trajectory of COP when patient steps with the right foot.}
 	\label{fig:trajectoryCOP}
 \end{figure} 
                  
-
-Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period). 
-
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=16cm, height=9.5cm}
 	\caption{Trajectory of acceleration when patient steps with the right foot.}
 	\label{fig:trajectoryAcc}
 \end{figure} 
@@ -371,9 +367,9 @@ There are a negative peak when patient turns to backward before walking in the A
 \subsection{PCA}
 One of the most difficulties inherent in multivariate stadistics is the task of the features extraction to obtain the most relevant information from the original data and represent that information in a lower dimensionality space.
 
-PCA is a qualitative rigorous method for achieving this and it has been widely applied in gait analysis both for the reduction of redundant information and the interpretation of multiple gait signals\cite{PCA}.
+PCA is a qualitative rigorous method for achieving this and it has been widely applied in gait analysis both for the reduction of redundant information and the interpretation of multiple gait signals \cite{PCA}.
 
-This method attempts to represent the data efficiently by descomposing a data space into a linear combination of a small collectionof bases collection of bases consisting of orthogonal axes that maximally decorrelate the data\cite{Jeon}.
+This method attempts to represent the data efficiently by descomposing a data space into a linear combination of a small collectionof bases collection of bases consisting of orthogonal axes that maximally decorrelate the data \cite{Jeon}.
 
 Given  set of centered N-dimensional training gait samples 
 $ x_{j}, j=1,...,M     x \in$ such that $ R_{N} $ and $ R=\sum_{k=1}^{M}x_{j}=0 $
@@ -386,14 +382,14 @@ Where M represents the number of gait samples and N is the number of input value
 	\label{fig:matrixPCA}
 \end{figure}
 
-The projection of the j-th vector $ x_{j} $ onto the vector 'u' can be calculated in the folowing way:
+The projection of the \textit{j-th} vector $ x_{j} $ onto the vector \textit{'u'} can be calculated in the folowing way:
 
 \begin{equation}
 	\label{projections}
 	p_{j}=\overrightarrow{u}^{T}\overrightarrow{x}_{j}=\sum_{i=1}^{N}u_{i}x_{ij}	
 \end{equation}
 
-We want to find a direction 'u' that maximizes the variance of the projections of all input vectors. That funtion to maximize is:
+We want to find a direction \textit{'u'} that maximizes the variance of the projections of all input vectors. That funtion to maximize is:
 
 \begin{equation}
 	\label{maxfunction}
@@ -404,7 +400,7 @@ Where C is the covariance matrix of the data matrix X.
 
 $$C=\dfrac{1}{N}\hat{X}\hat{X}^{T}$$
 
-Using the technique of Lagrange multipliers, the solution to the maximization problem is to compute the eigenvectors and eigenvlues of the covariance matrix.
+Using the technique of Lagrange multipliers, the solution to the maximization problem is to compute the eigenvectors and eigenvalues of the covariance matrix.
 
 Thus, we have to solve the following eigvector problem:
 \begin{equation}
@@ -432,7 +428,7 @@ The main goal in this chapter is to obtain the relevant information from the pla
 One the one hand we try to figure out whether there is a correlation between the features of both systems and determine if we can use the inertial sensors to characterise the movement without another measure auxiliar  platform.
 One the other hand we want to extract useful features that we can use to do a classification between patients and therefore it can be used for diagnosis.
 
-o do this, we will use the data obtained after the synchronisation between Force Plate and Gait Watch signals. Using this signals lets us extract the information easily and compare them.
+To do this, we will use the data obtained after the synchronisation between Force Plate and Gait Watch signals. Using this signals lets us extract the information easily and compare them.
 
 The next step is to determine when the second step happens. We used as a reference the point when the patient touched the platform to do the synchronisation. However, in this case we have to identify when patient carried out the second step to go down from the platform. We need this part of the signals because it is when we can see the displacements of the center of pressure. To obtain these limits of the signals we use the LTSD algorism. This is applied over the acceleration signal so we can determine the beginning of this period for each cycle. The end of the interval is the point when the patient go down and touch the ground ,i.e when there is not pressure signal over the platform.
 Thereupon, we apply a low pass filter to the  Gait Watch signals, i.e signals of the accelerometers and gyroscopes in the trunk. This allows us to delete the low frequencies  of these signals due to the noise of the sensors and get the features properly. Specifically it has been used a low pass filter with a cutoff frequency of 2 Hz.
@@ -447,12 +443,12 @@ Thereupon, we apply a low pass filter to the  Gait Watch signals, i.e signals of
 One the signals have been filtered, we will do the average of all repeat. Typically, the experiment is repeated several times to do a ratio and obtain a single signal for each patient. As we said before, the protocol is repeated about ten times so we have to synchronise this cycles and realise the mean of all them.  First of all, we need determine when the patient steps with the right of left foot. This is important for the signals in the medio-lateral direction because the sing of the signals is the opposite. Thus, if patient does the step with the left foot, the signal will be invert before doing the mean. This fact is detected seeing the last values of the center of pressure because this gives us information about the locatitation of the feet.
 When the patient starts to step with left foot, last value of the cycle of ML- COP is positive because the step finishes the pressure is located in the right foot. However, if the patient starts with right foot, the last value of the ML-COP cycle will be negative.
 
-To align the signals, we use cross-correlation between them. The cross-correlation is a mesure of similarity fo two signals as a function of the lag of one relative to the other\cite{Cross-corr}. For discrete function as our case, the cross correlation is defined as:
+To align the signals, we use cross-correlation between them. The cross-correlation is a mesure of similarity fo two signals as a function of the lag of one relative to the other \cite{Cross-corr}. For discrete function as our case, the cross correlation is defined as:
 \begin{equation}
 \label{cross-corr}
 (f*g)[n]=\varSigma_{m=-\infty}^{\infty} f^{*}[m]g[m+n]
 \end{equation}
-Where $ f^{*}$ denote the complex conjugate of f and n is the lag.
+Where $ f^{*}$ denote the complex conjugate of \textit{f} and \textit{n} is the lag.
 
 Using this method, we can determine the point where the signals are more similar. After this, we can interpolate them and carry out the average between them.
 
@@ -526,7 +522,7 @@ In the Medio-Lateral direction the data are more dispersed. This indicate that t
 
 
 \subsection{Results discurssion}
-One the APA features have been calculated, we will do the correlation between them. Firstly we are going to do a comparative study between FP and GW in the Antero-posterior direction. We calculated the correlation between the APA peaks detected in the COP signal \ref{fig:COP_features}and the the peak calculated in the acceleration and angular velocity signals\ref{fig:Acc_features}\ref{fig:Gyro_features}. The results of this correlation are showed in \ref{fig:Corr_AP}. If we analyse these values of correlation, we can determine that the feature of the gyroscope have a higher correlation with the features of the COP signal. The first peak of the COP and the peak of acceleration and angular velocity signals account a positive correlation with a significant value. Also, in the center of presure, the most interesting feature is the first peak, i.e when patient has momentum to step because the correlation with the acceleration signal as well as the angular velocity achieve the highest values.
+One the APA features have been calculated, we will do the correlation between them. Firstly we are going to do a comparative study between FP and GW in the Antero-posterior direction. We calculated the correlation between the APA peaks detected in the COP signal \ref{fig:COP_features} and the the peak calculated in the acceleration and angular velocity signals \ref{fig:Acc_features}\ref{fig:Gyro_features}. The results of this correlation are showed in \ref{fig:Corr_AP}. If we analyse these values of correlation, we can determine that the feature of the gyroscope have a higher correlation with the features of the COP signal. The first peak of the COP and the peak of acceleration and angular velocity signals account a positive correlation with a significant value. Also, in the center of pressure, the most interesting feature is the first peak, i.e when patient has momentum to step because the correlation with the acceleration signal as well as the angular velocity achieve the highest values.
 
 \begin{figure}[H]
 	\centering
@@ -535,14 +531,14 @@ One the APA features have been calculated, we will do the correlation between th
 	\label{fig:Corr_AP}
 \end{figure}
 
-Then, we will compare these signals in the medio-lateral direction. In this case, all correlations are positives and a lot of them with a considerable value. However, we can identify that the most interesting signals in this directions are the signals from the accelerometers. We did the correlation between the peaks detected in the ML-COP and the rest of the features obtained from the acceleration and angular velocity signals. Therefore, the most interesting features of these signals are the height of the negative peak as well as the distance between both peak int he signals \ref{fig:Corr_ML}. The correlation is higher than 0.8, so this indicate that the accelerometers can give us a useful information as the center of pressure.
-
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/Feature_extraction/Corr_ML, width=18cm}
 	\caption{Correlation between features in the ML direction.}
 	\label{fig:Corr_ML}
 \end{figure}
+
+Then, we will compare these signals in the medio-lateral direction. In this case, all correlations are positives and a lot of them with a considerable value. However, we can identify that the most interesting signals in this directions are the signals from the accelerometers. We did the correlation between the peaks detected in the ML-COP and the rest of the features obtained from the acceleration and angular velocity signals. Therefore, the most interesting features of these signals are the height of the negative peak as well as the distance between both peak int he signals \ref{fig:Corr_ML}. The correlation is higher than 0.8, so this indicate that the accelerometers can give us a useful information as the center of pressure.
 
 If we pay attention in the APA duration\ref{fig:Corr_duration}, the correlation between COP and Acceleration and COP and Angular Velocity is negative. This doesn't make sense because it should be positive. Thus, we determine that there is not correlation between them. Even so, there is correlation between the APA duration in accelerometers and gyroscopes.
 \begin{figure}[H]
