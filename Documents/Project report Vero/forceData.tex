@@ -151,3 +151,34 @@ Also, we can see the result of the classification in the following figure:
 	\caption{Classification of PCA data with the 'linear' kernel.}
 	\label{fig:Classification3D_PCA}
 \end{figure}
+
+Finally, we will draw the ROC curve (Receiver Operating Characteristic). It  is a graphical plot that illustrates the performance of a binary classifier system as its discrimination threshold is varied. The curve is created by plotting the true positive rate against the false positive rate\cite{ROC1}.
+
+The true-positive rate (TPR) is also known as sensitivity. The TPR defines how many correct positive results occur among all positive samples available during the test. In our particular case, it measures how many patients are recognised as such.
+
+The false-positive rate (FPR) is also known as the fall-out and can be calculated as 1 - specificity. It defines how many incorrect positive results occur among all negative samples available during the test, in other words, how many patients are identified as heathy people.
+The best possible prediction method would yield a point in the upper left corner or coordinate (0,1) of the ROC space, representing 100\% sensitivity (no false negatives) and 100\% specificity (no false positives). The (0,1) point is also called a \textit{perfect classification}. A completely random guess would give a point along a diagonal line (the so-called line of \textit{no-discrimination}) from the left bottom to the top right corners (regardless of the positive and negative base rates). The diagonal divides the ROC space. Points above the diagonal represent good classification results (better than random), points below the line poor results (worse than random)\cite{ROC1}.
+
+The ROC is used to generate a summary statistic. One of the most common and useful measures is \textit{‘Area Under Curve’} (AUC) that is equal to the probability that a classifier will rank a randomly chosen positive instance higher than a randomly chosen negative one (assuming 'positive' ranks higher than 'negative'). A rough guide for classifying the accuracy of a diagnostic test is the traditional academic point system\cite{ROC2}:
+
+0.90 - 1 = excellent (A)
+
+0.80 - 0.90 = good (B)	
+
+0.70 - 0.80 = fair (C)
+
+0.60 - 0.70 = poor (D)
+
+0.50 - 0.60 = fail (F)
+
+Thus, if we represent the ROC curve using the force data after applying PLS and PCA with a SVM classifier (using a ‘linear’ kernel), we can see that the ROC curve with PLS is over PCA-ROC curve\ref{fig:ROC}.
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/forceData/ROC, width=18cm}
+	\caption{ROC Curve for PLS and PCA with SVM classifier.}
+	\label{fig:ROC}
+\end{figure}
+
+Also, if we calculate the AUC, we obtain that with PLS this value is 0.8344, so the classification is good. However, using PCA data, the AUC has a value of 0.6461, that is tos ay, it is a poor classification.
+
+In a nutshell, from a accuracy viewpoint, PCA works better than PLS. Nevertheless, PLS is better in terms of sensibility, obtaining a great difference with regard to PCA as we can appreciate if we compare the AUC values. Thus, we can conclude that, in general terms, PLS could give us a better results because the difference in accuracy is less than the difference in ROC analysis. 
