@@ -80,7 +80,20 @@ As we explained before, PCA is an unsupervised method\ ref{fig:PCA}, so we will 
 	\label{fig:PCA}
 \end{figure}
 
-\section{Classification and Results discurssion}
+We can represent the mean of the original data as well as the sum of the signal obtained after applying PCA and PLS algorithms.
+
+We calculate the sum of these components because it allows us to see the areas in the signal where there is more variance.
+
+Thus, comparing these signals we appreciate that we can obtain more robust information from them and, therefore the feature extraction will be better when carrying out the classification afterwards. The first peaks correspond exactly with the rise of the COP in the AP direction before doing the step and it is clear that, in PLS and PCA signals, these peaks are more pronounced. The same happens from the 170th sample (figure \ref{fig:OrigPCAPLS}), where the signals represent the ML-COP and every change in the original signal is shown clearer in the new component.
+
+\begin{figure}[H]
+	\centering
+	\epsfig{file=figures/forceData/OrigPCAPLS, width=1\textwidth}
+	\caption{PCA applied for all subjects}
+	\label{fig:OrigPCAPLS}
+\end{figure}
+
+\section{Classification and Results discussion}
 
 Once we used PCA and PLS algorithm for feature extration, we have the relevant information to classify. This classification is carried out using support vector machine classifier (SVM).
 

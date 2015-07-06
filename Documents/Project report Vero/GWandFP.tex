@@ -36,13 +36,6 @@ It’s important to clarify that the GaitWatch recording contains all these ten 
 One of the most important aspects whether you have data acquired from multiples devices or channels is the synchronisation. If these data are not appropriately correlated or synchronised, the analysis and conclusions from your use will be erroneous. Also, it’s very important to do all automatically when you have a data on a broad scale.
 Therefore, the following sections explain how the information has been obtained and processed automatically, as well as what features have been calculated to characterise the movements of the patients and to carry out the synchronisation between the Force Plate signals and GaitWatch signals. This content is superficially depicted in \ref{fig:diagramSynchronisation}.
 
-\begin{figure}[H]
-	\centering
-	\epsfig{file=imagenes/diagramSynchronisation.pdf, width=15cm}
-	\caption{Diagram of the Synchronisation's progress.}
-	\label{fig:diagramSynchronisation}
-\end{figure}
-
 \subsection{Design of developed code  in Matlab}
 \subsubsection{Selection, reading and obtaining of information from the excel file}
 All patients data, that is, the different files have been generated after the gathering (  of the force plate as well as Gait Watch), gathering date, duration of the experiment and other observations are saved in a Excel file. 
@@ -51,20 +44,28 @@ In order to automate all as much as possible, the code is in charge of extractio
 
 At the end of this fraction of code, we save all file names of both systems (force plate and Gait Watch) corresponding to each patient, in order to access and extract them posteriorly.
 
+\begin{figure}[H]
+	\centering
+	\epsfig{file=imagenes/diagramSynchronisation.pdf, width=16cm}
+	\caption{Diagram of the Synchronisation's progress.}
+	\label{fig:diagramSynchronisation}
+\end{figure}
+
+
 \subsubsection{Extraction of the forceplate data}
 As we said before, the  force plate data files are recorded independently each others, that is, there is a *.txt file for each repeat.
 Each file contains the force data of the toes and heels of both feet. It really realises a distribution of the sensors to cover these four segments\ref{fig:Force4signals}. Every measure is obtained for each point of time according to the sample frequency. Also, this file contains the force data from each cell that is part of platform in each frame\ref{fig:pseudocolor}.
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/Force4signals, width=18cm}
+	\epsfig{file=figures/Synchronisation/Force4signals, width=1\textwidth}
 	\caption{Force in each body segment.}
 	\label{fig:Force4signals}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/pseudocolor, width=18cm}
+	\epsfig{file=figures/Synchronisation/pseudocolor, width=1\textwidth}
 	\caption{Pseudocolor with the force in each cell of the platform}
 	\label{fig:pseudocolor}
 \end{figure}
@@ -75,7 +76,7 @@ Once we recover this data, some parameters are calculated for the movement chara
 	\item \textbf{Midline}: it represents the midline between both feet. This is important to find the gap between feet and it gives us a idea of their position in the platform. Thus, we carry out the sum of cells force in the anterior-posterior direction. So, this line is in the minimum between two maximum corresponding to the position of both feet. We use this parameter to calculate the center of pressure.
 	\begin{figure}[H]
 		\centering
-		\epsfig{file=figures/Synchronisation/midlineForceplate, width=20cm}
+		\epsfig{file=figures/Synchronisation/midlineForceplate, width=1\textwidth}
 		\caption{Midline between both feet in platform.}
 		\label{fig:midlineForceplate}
 	\end{figure}
@@ -83,15 +84,15 @@ Once we recover this data, some parameters are calculated for the movement chara
 	\item \textbf{The total force in the platform for each point of time}: This signal is useful to do the synchronisation due to we can determine clearer when the patient touches the plate.
 		\begin{figure}[H]
 			\centering
-			\epsfig{file=figures/Synchronisation/forceFP, width=18cm}
+			\epsfig{file=figures/Synchronisation/forceFP, width=1\textwidth}
 			\caption{Total force in the platform of the right, left and both feet.}
 			\label{fig:forceFP}
 		\end{figure}
-	
+\newpage	
 	\item \textbf{Antero-posterior COP}: Center of Pressure in forward-backward direction.
 		\begin{figure}[H]
 			\centering
-			\epsfig{file=figures/Synchronisation/APCOP, width=18cm}
+			\epsfig{file=figures/Synchronisation/APCOP, width=1\textwidth}
 			\caption{Center of Pressure in Antero-Posterior direction.}
 			\label{fig:APCOP}
 		\end{figure}	
@@ -99,13 +100,13 @@ Once we recover this data, some parameters are calculated for the movement chara
 	\item \textbf{Medio-lateral  COP}: Center of Pressure  in right and left direction.
 			\begin{figure}[H]
 				\centering
-				\epsfig{file=figures/Synchronisation/MLCOP, width=18cm}
+				\epsfig{file=figures/Synchronisation/MLCOP, width=1\textwidth}
 				\caption{Center of Pressure in Medio-Lateral direction.}
 				\label{fig:MLCOP}
 			\end{figure}
 	
 \end{itemize}
-
+\newpage
 Center of Pressure can be expressed as follows:
 
 \begin{equation}
@@ -131,6 +132,8 @@ To do so, we have used the code made by Dr. Alberto Olivares Vicente in his doct
 
 Besides the unwanted effects mentioned above, the output of magnetometers is distorted by wide band measurement noise appearing several large peaks of noise in the signals. To remove this automatically, we used a threshold considering that these peaks are much greater than the mean of the signal \ref{fig:GWErrorDetected}.
 
+The erroneus values in the magnetometer signal are removed sustituting these samples by the subsequent value unless the erroneous value is in the last position of the singal, in which case it is substituted by the preceding value.
+
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/Synchronisation/GWDetectErrorValueAutomatically, width=18cm}
@@ -138,7 +141,7 @@ Besides the unwanted effects mentioned above, the output of magnetometers is dis
 	\label{fig:GWErrorDetected}
 	\end{figure}
 
-The erroneus values in the magnetometer signal are removed sustituting these samples by the subsequent value unless the erroneous value is in the last position of the singal, in which case it is substituted by the preceding value.
+
 
 \subsubsection{Synchronisation}	
 In this section we will explain how we carried through the synchronisation of the Force Plate and GaitWatch signals and the considerations adopted to do it properly.
@@ -155,7 +158,7 @@ The technical difference between LTSD and FSD is that the first of them compute 
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/activityDetection, width=18cm}
+	\epsfig{file=figures/Synchronisation/activityDetection, width=1\textwidth}
 	\caption{Activity Detection with FSD and LTSD Algorithm.}
 	\label{fig:activityDetection}
 \end{figure} 
@@ -172,7 +175,7 @@ On the one hand, the time point when the patient does the step in the platform i
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/startLeftRight, width=18cm}
+	\epsfig{file=figures/Synchronisation/startLeftRight, width=1\textwidth}
 	\caption{Accelerometer signals when the patient starts to step with the left and right foot respectively.}
 	\label{fig:startLeftRight}
 \end{figure} 
@@ -187,14 +190,14 @@ All the key parameters and signals are saved using “time series”  for adding
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/pointdetectionsynchronisation, width=18cm, height=10cm}
+	\epsfig{file=figures/Synchronisation/pointdetectionsynchronisation, width=1\textwidth}
 	\caption{Peaks detected for the Synchronisation in the Accelerometer signals.}
 	\label{fig:pointdetectionAcc}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/gyrosPointDetection, width=18cm,height=10cm}
+	\epsfig{file=figures/Synchronisation/gyrosPointDetection,  width=1\textwidth}
 	\caption{Peaks detected for the Synchronisation in the Gyroscope signals.}
 	\label{fig:pointdetectionGyro}
 \end{figure}
@@ -207,15 +210,15 @@ The correlation between the peaks detected with both systems is very high and th
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/corrAccGyroPoints, width=18cm}
+	\epsfig{file=figures/Synchronisation/corrAccGyroPoints, width=0.9\textwidth}
 	\caption{Linear Correlation between peak Acc and peak Gyro used for the synchronisation.}
 	\label{fig:corrAccGyroPoints}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/barDiagram, width=18cm}
-	\caption{Comparation between points synchronisation detected with accelerometers and gyroscopes.}
+	\epsfig{file=figures/Synchronisation/barDiagram, width=0.9\textwidth}
+	\caption{Comparison between points synchronisation detected with accelerometers and gyroscopes.}
 	\label{fig:barDiagram}
 \end{figure}
 
@@ -223,7 +226,7 @@ The correlation between the peaks detected with both systems is very high and th
 In \ref{tab:comparationAccGyro} table we can see that the mean of the difference between the peaks detected with the accelerometer and gyroscope signals is less than 0.5 second in all cases, so it is very small. Also, the correlation between them is very high and the probability of no correlation is smaller than 0.05 what want to say that the correlation is significantly different from zero.
 
 \begin{table}[h]
-	\caption{Comparation between the peaks detected with acceletometer and gyroscope}	
+	\caption{Comparison between the peaks detected with accelerometer and gyroscope}	
 	\centering
 	\begin{tabular}{|c|c|c|c|}\hline
 		
@@ -274,7 +277,7 @@ Therefore, the first process to carry out is the analysis of the trunk accelerat
 The first step that needs to be carried out is establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the right of the patient, so the positives values indicate a movement toward right with regard to the midline. Comparably, the negatives values are found when the movement is toward the left \ref{fig:axesFP}.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesFP.pdf, width=10cm}
+	\epsfig{file=figures/APA_analysis/axesFP.pdf,  width=0.6\textwidth}
 	\caption{Definition of the axes in the Platform.}
 	\label{fig:axesFP}
 \end{figure}
@@ -282,35 +285,33 @@ Now, for the GaitWatch System we have to determine the orientation of the axes o
 
 Since we will be using the GaitWatch device to monitor gait, then we need its X axis to point to the front of the patient, the Y axis pointing to the right  of the patient, and the Z axis to the floor \ref{fig:axesGW} \cite{OlivaresBotzel2013}.
 
+Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in \ref{fig:axesGW}, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. So, in this case the rotation is positive toward right\ref{fig:axesGW}. Analogously, the rotation is negative when it is turned to the left.
+
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesGW.pdf, width=10cm}
-	\caption{Definition of the axes in the accelerometers ans gyroscopes.}
+	\epsfig{file=figures/APA_analysis/axesGW.pdf, width=0.2\textwidth}
+	\epsfig{file=figures/APA_analysis/axesGWGyro.pdf, width=0.25\textwidth}
+	\caption{Definition of the axes in the accelerometers ans gyroscopes (left). Orientation of the axis rotation in gyroscopes (right).}
 	\label{fig:axesGW}
 \end{figure}
 
-Once we have identified the axes of the accelerometers, we now proceed to identify the axes of the gyroscopes and their orientation. By convention, as it is depicted in \ref{fig:axesGW}, the sense of the rotation around a given axis is positive when the axis is pointing forwards (from the perspective of the user) and it is turned to the right. So, in this case the rotation is positive toward right\ref{fig:axesGWGyro}. Analogously, the rotation is negative when it is turned to the left  \cite{OlivaresBotzel2013}
-
-\begin{figure}[H]
-	\centering
-	\epsfig{file=figures/APA_analysis/axesGWGyro.pdf, width=10cm}
-	\caption{Orientation of the axis rotation in gyroscopes.}
-	\label{fig:axesGWGyro}
-\end{figure}
-
-
 We have to differentiate between the front-back movement and the right-left movement. In the first of the case, we have the acceleration in X axis and the Antero-Posterior COP. In the another case, the movement is traced by the acceleration in Y axis and the Medio-Lateral  COP.
+
+
+
 
 Whether we focus in the Antero-Posterior movement, the body is displaced forward while the step is being completed. Thus, the center of mass is shifted backward in this period of the movement. In the case of center of pressure, we can find first  movement backward to gain momentum and after that  COP moves forwards under the stance of the foot \ref{fig:AP_AccX}.
 
-Since kinematic point of view, the trunk is moved anteriorly while the patient steps. Therefore, there will be a peak of acceleration in the X axis pointing forward, so we will find a ‘negative’ peak at this moment because the acceleration vector points in the opposite direction to the movement. After that, there is a positive peak that corresponding with the direction change just when the step finishes. 
+
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/AP_AccX, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/AP_AccX, width=1\textwidth}
 	\caption{COP and acceleration in Antero-Posterior direction.}
 	\label{fig:AP_AccX}
 \end{figure}
+
+From a kinematic point of view, the trunk is moved anteriorly while the patient steps. Therefore, there will be a peak of acceleration in the X axis pointing forward, so we will find a ‘negative’ peak at this moment because the acceleration vector points in the opposite direction to the movement. After that, there is a positive peak that corresponds with the direction change just when the step finishes. 
 
 Also, we can observe a pattern due to all movements before stepping follows a only trace approximately. The pattern of the acceleration in the X-axis (anterior-posterior movement) is always the same, regardless of the leg which the patient starts to walk.
 
@@ -320,7 +321,7 @@ If the patient starts to step with the right foot, the center of mass is acceler
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/ML_AccY_right, width=18cm, height=12cm}
+	\epsfig{file=figures/APA_analysis/ML_AccY_right, width=1\textwidth}
 	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the right foot.}
 	\label{fig:ML_AccY_right}
 \end{figure}
@@ -329,7 +330,7 @@ If the patient starts to step with the left foot, the movements are the same tha
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/ML_AccY_left, width=18cm, height=12cm}
+	\epsfig{file=figures/APA_analysis/ML_AccY_left, width=1\textwidth}
 	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the left foot.}
 	\label{fig:ML_AccY_left}
 \end{figure}
@@ -340,14 +341,14 @@ Bearing in mind the same phases for the acceleration than in the above case, in 
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=16cm, height=9.5cm}
+	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=0.5\textwidth}
 	\caption{Trajectory of COP when patient steps with the right foot.}
 	\label{fig:trajectoryCOP}
 \end{figure} 
                  
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=16cm, height=9.5cm}
+	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=0.6\textwidth}
 	\caption{Trajectory of acceleration when patient steps with the right foot.}
 	\label{fig:trajectoryAcc}
 \end{figure} 
@@ -356,7 +357,7 @@ The behaviour of the gyroscope signals is very similar to the accelerometer sign
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/GyroTrunk, width=18cm, height=10cm}
+	\epsfig{file=figures/APA_analysis/GyroTrunk, width=1\textwidth}
 	\caption{Angular Velocity when patient steps with the right foot.}
 	\label{fig:GyroTrunk}
 \end{figure} 
