@@ -210,11 +210,11 @@ y= draw_dec_surf_svm(XS, NORMAL, DTA, 'linear');
 
 % Classification with PLS (kern = rbf)
 figure()
-y= draw_dec_surf_svm(XS, NORMAL, DTA, 'rbf');
+y= draw_dec_surf_svm(XS, NORMAL, DTA, 'polynomial');
 
 % Classification with PCA (pral comp=4, kern = lineal)
 figure()
-y= draw_dec_surf_svm(SCORE(1:3,:)', NORMAL, DTA, 'linear');
+y= draw_dec_surf_svm(SCORE(1:3,:)', NORMAL, DTA, 'rbf');
 
 % Apply ROC.
 % ROC curve for linear kernel and seven components.
@@ -233,4 +233,47 @@ figure()
 plot(X_PLS7,Y_PLS7,'b');
 hold on;
 plot(X_PCA,Y_PCA,'g');
+
+% -----------------------------------------------------------------------
+% Plot PCA, PLS and original mean signals.
+X = X';
+Y = labels';
+ncomp = 7;
+P= size(X,1);
+XS= zeros(P,ncomp);
+meanX = mean(X,1);
+X0 = bsxfun(@minus, X, meanX);
+
+for p=1:P
+%     disp(['PLS feature extraction for patient ' num2str(p) ]);
+    train = true(P,1);
+    train(p)= false;
+    [XL,yL,XSp,YS,BETA,PCTVAR,MSE,stats] = plsregress(X(train,:),Y(train),ncomp); 
+    W= stats.W;
+    XS(p,:)= X0(p,:)*W;
+end
+
+X_pls = XS*XL';
+X_pls_mean = sum(X_pls);
+
+X_pca_mean = sum(SCORE(:,4),2);
+
+X_mean = mean(X);
+
+% Replace the NaN values per 0s for PCA data.
+for i =1: length(X_pca_mean)
+       if( isnan(X_pca_mean (i,1))==1)
+            X_pca_mean (i,1)= 0;
+       end
+end
+
+figure;
+subplot(3,1,1)
+plot(X_mean)
+
+subplot (3,1,2)
+plot(X_pca_mean)
+
+subplot(3,1,3)
+plot(X_pls_mean)
 
