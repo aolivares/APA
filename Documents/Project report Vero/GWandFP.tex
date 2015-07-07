@@ -247,7 +247,7 @@ Finally, the result of the synchronisation can be seen in following figure:
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Synchronisation/sinchronisedSignals, width=18cm, height=10cm}
+	\epsfig{file=figures/Synchronisation/sinchronisedSignals, width=1\textwidth}
 	\caption{Synchronisation of the Force from the FP and Acceleration from the GW System .}
 	\label{fig:sinchronisedSignals}
 \end{figure}
@@ -334,33 +334,30 @@ If the patient starts to step with the left foot, the movements are the same tha
 	\caption{COP and acceleration in Medio-Lateral direction when patient steps with the left foot.}
 	\label{fig:ML_AccY_left}
 \end{figure}
-
 To sum up, we have to differentiate between the foot which the step is done (stepping foot) and the foot over the ground (stance foot) to understand the behaviour of the APAs. The center of mass (COM) is shifted toward the stance foot to maintain the equilibrium during the balance phase. The center of pressure (COP) is divided in differents phases. Firstly, the COP moves toward the stepping foot and backward to generate the momentum to step (S1 period). Hereafter, the COP is displaced toward the stance foot. This happens at time when the other foot is in the air (S2 period). Finally, the COP moves forward and under the stance foot (S3 period) \ref{fig:trajectoryCOP}.
-
-Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period) \ref{fig:trajectoryAcc}.  
-
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=0.5\textwidth}
+	\epsfig{file=figures/APA_analysis/trajectoryCOP, width=0.4\textwidth}
 	\caption{Trajectory of COP when patient steps with the right foot.}
 	\label{fig:trajectoryCOP}
-\end{figure} 
+\end{figure}
+
+Bearing in mind the same phases for the acceleration than in the above case, in the first period (S1 period) the body is accelerated forward while the momentum is generated to step. After, the trunk is slightly accelerated toward left (S2 period) and finally, in the last period the body is moved fordward anf toward rigth to complete the step (S3 period) \ref{fig:trajectoryAcc}.   
                  
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=0.6\textwidth}
+	\epsfig{file=figures/APA_analysis/trajectoryAcc, width=0.5\textwidth}
 	\caption{Trajectory of acceleration when patient steps with the right foot.}
 	\label{fig:trajectoryAcc}
 \end{figure} 
-
-The behaviour of the gyroscope signals is very similar to the accelerometer signals but this case we are measuring a turn forward or backward and toward right or left. 
-
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/APA_analysis/GyroTrunk, width=1\textwidth}
 	\caption{Angular Velocity when patient steps with the right foot.}
 	\label{fig:GyroTrunk}
 \end{figure} 
+
+The behaviour of the gyroscope signals is very similar to the accelerometer signals but this case we are measuring a turn forward or backward and toward right or left. 
 
 There are a negative peak when patient turns to backward before walking in the Antero-Posterior direction. Besides, it will be a negative peak when patient is shifted toward right and positive in the case that the turn was done to left in the Y axis.
 
@@ -378,7 +375,7 @@ $ x_{j}, j=1,...,M     x \in$ such that $ R_{N} $ and $ R=\sum_{k=1}^{M}x_{j}=0 
 Where M represents the number of gait samples and N is the number of input values. The $ x_{j} $ vectors are aligned in the data matrix X. Also, the data have to be center so it's necessary to extract the average of the each set.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=imagenes/PCA.jpg, width=10cm}
+	\epsfig{file=imagenes/PCA.jpg, width=0.6\textwidth}
 	\caption{Data matrix X with M rows and N colums.}
 	\label{fig:matrixPCA}
 \end{figure}
@@ -436,7 +433,7 @@ Thereupon, we apply a low pass filter to the  Gait Watch signals, i.e signals of
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/lowpassFilter, width=18cm, height=10cm}
+	\epsfig{file=figures/Feature_extraction/lowpassFilter,width=0.7\textwidth}
 	\caption{Lowpass Filter with a cutoff frequency of 2Hz}
 	\label{fig:lowpassFilter}
 \end{figure} 
@@ -459,21 +456,21 @@ We was analysing the Gait Watch and Forceplate signals in the above chapter and 
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/COP_features, width=18cm}
+	\epsfig{file=figures/Feature_extraction/COP_features, width=0.8\textwidth}
 	\caption{Peaks in the Center of Pressure signals .}
 	\label{fig:COP_features}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Acc_features, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Acc_features, width=1\textwidth}
 	\caption{Peaks in the Acceleration signals .}
 	\label{fig:Acc_features}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Gyro_features, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Gyro_features, width=1\textwidth}
 	\caption{Peaks in the Gyroscope signals.}
 	\label{fig:Gyro_features}
 \end{figure}
@@ -488,14 +485,14 @@ We applied PCA twice: in the signals of the Antero-posterior direction (AP-COP, 
 The two first eigenvalues of the covariance matrix accounts for 98\% of the variance. This indicates that we only need to take the two first eigenvector to have the significant information of the data. Also, if we see \ref{fig:PCA_AP} \ref{fig:PCA_ML}  we can determine that the important information, i.e the information with more variance is defined with the COP and Angular Velocity signals. This is because the acceleration and angular velocity signals are very similar and one of them is not necessary, i.e it does not give us added useful information.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_AP, width=18cm}
+	\epsfig{file=figures/Feature_extraction/PCA_AP, width=0.7\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction.}
 	\label{fig:PCA_AP}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_ML, width=18cm}
+	\epsfig{file=figures/Feature_extraction/PCA_ML, width=0.7\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Medio-Lateral direction.}
 	\label{fig:PCA_ML}
 \end{figure}
@@ -509,14 +506,14 @@ In the Medio-Lateral direction the data are more dispersed. This indicate that t
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_AP_patients, width=18cm}
+	\epsfig{file=figures/Feature_extraction/PCA_AP_patients, width=1\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction between patients.}
 	\label{fig:PCA_AP_patients}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_ML_patients, width=18cm}
+	\epsfig{file=figures/Feature_extraction/PCA_ML_patients, width=0.8\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Medio-Lateral direction between patients.}
 	\label{fig:PCA_ML_patients}
 \end{figure}
@@ -527,14 +524,14 @@ One the APA features have been calculated, we will do the correlation between th
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Corr_AP, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Corr_AP, width=0.7\textwidth}
 	\caption{Correlation between features in the AP direction.}
 	\label{fig:Corr_AP}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Corr_ML, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Corr_ML, width=0.8\textwidth}
 	\caption{Correlation between features in the ML direction.}
 	\label{fig:Corr_ML}
 \end{figure}
@@ -544,7 +541,7 @@ Then, we will compare these signals in the medio-lateral direction. In this case
 If we pay attention in the APA duration\ref{fig:Corr_duration}, the correlation between COP and Acceleration and COP and Angular Velocity is negative. This doesn't make sense because it should be positive. Thus, we determine that there is not correlation between them. Even so, there is correlation between the APA duration in accelerometers and gyroscopes.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Corr_duration, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Corr_duration, width=0.8\textwidth}
 	\caption{Correlation between APA duration.}
 	\label{fig:Corr_duration}
 \end{figure}
@@ -556,7 +553,7 @@ In the ML direction, we do the correlation between the APA peak of the first com
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/Corr_PCA, width=18cm}
+	\epsfig{file=figures/Feature_extraction/Corr_PCA, width=1\textwidth}
 	\caption{Correlation between features after applying PCA.}
 	\label{fig:Corr_PCA}
 \end{figure}

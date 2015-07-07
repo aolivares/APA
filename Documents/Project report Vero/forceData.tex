@@ -52,7 +52,7 @@ Once data have been gathered while subjects were walking during two minutes appr
 With these values, we can obtain the center of pressure Antero-Posterior and Medio-Lateral  as indicate the equation \ref*{COP}. To do this, we have to define the position of the sensors. When a person is comfortably standing with both legs parallel to each other, sensor locations inside the insole can be described (according to \cite{Instr6}) as lying approximately at the following (X,Y) coordinates, assuming that the origin (0,0) is just between the legs and the person is facing towards the positive side of the Y axis:
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/DistributionSensors, width=18cm}
+	\epsfig{file=figures/forceData/DistributionSensors, width=1\textwidth}
 	\caption{Distribution of the sensors underneath both feet.}
 	\label{fig:DistributionSensors}
 \end{figure}
@@ -62,7 +62,7 @@ The X and Y numbers are in an arbitrary coordinate system reflecting the relativ
 Hereafter, we separate the differents steps because the subjects carry out several steps during the experiment. We detect this when the COP signal has a strong fall in one of the feet. One we have delimited the intervals of the signals, we figure out the average of them using cross correlation to synchronise the cycles properly. We can see the result in the following figure:
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/COP, width=18cm}
+	\epsfig{file=figures/forceData/COP, width=1\textwidth}
 	\caption{Center of pressure in AP and ML direction.}
 	\label{fig:COP}
 \end{figure}
@@ -71,11 +71,11 @@ Thus, after this, we only have two signals ML and AP COP that represent one step
 
 We use these signals to apply PCA as in the previous experiment. We match ML-COP and AP COP in the same column corresponding to the same subject and rearrange both patients and healthy controls in the same data matrix to apply this algorithm.
 
-As we explained before, PCA is an unsupervised method\ ref{fig:PCA}, so we will use PLS algorithm to extract the relevant information and carry out other type of classification of the data. We calculated X-score of the all data for different numbers of components (latent variables). The results after the classification can be seen in the next section.
+As we explained before, PCA is an unsupervised method \ref{fig:PCA}, so we will use PLS algorithm to extract the relevant information and carry out other type of classification of the data. We calculated X-score of the all data for different numbers of components (latent variables). The results after the classification can be seen in the next section.
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/PCA, width=18cm}
+	\epsfig{file=figures/forceData/PCA, width=1\textwidth}
 	\caption{PCA applied for all subjects}
 	\label{fig:PCA}
 \end{figure}
@@ -83,15 +83,15 @@ As we explained before, PCA is an unsupervised method\ ref{fig:PCA}, so we will 
 We can represent the mean of the original data as well as the sum of the signal obtained after applying PCA and PLS algorithms.
 
 We calculate the sum of these components because it allows us to see the areas in the signal where there is more variance.
-
-Thus, comparing these signals we appreciate that we can obtain more robust information from them and, therefore the feature extraction will be better when carrying out the classification afterwards. The first peaks correspond exactly with the rise of the COP in the AP direction before doing the step and it is clear that, in PLS and PCA signals, these peaks are more pronounced. The same happens from the 170th sample (figure \ref{fig:OrigPCAPLS}), where the signals represent the ML-COP and every change in the original signal is shown clearer in the new component.
-
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/forceData/OrigPCAPLS, width=1\textwidth}
 	\caption{PCA applied for all subjects}
 	\label{fig:OrigPCAPLS}
 \end{figure}
+Thus, comparing these signals we appreciate that we can obtain more robust information from them and, therefore the feature extraction will be better when carrying out the classification afterwards. The first peaks correspond exactly with the rise of the COP in the AP direction before doing the step and it is clear that, in PLS and PCA signals, these peaks are more pronounced. The same happens from the 170th sample (figure \ref{fig:OrigPCAPLS}), where the signals represent the ML-COP and every change in the original signal is shown clearer in the new component.
+
+
 
 \section{Classification and Results discussion}
 
@@ -111,11 +111,11 @@ In our particular case, the testing was carried off with ‘Leave-One-Out’ tec
 
 Firstly, we use SVM over PLS data with differents components. As we said in the PLS chapter, the rank of latent variables depends on the input data. There is a number of components which the results is more accurate and the results after the classification is better. Thus, we represent the accuracy, sensibility and specificity as function of the number of components and in turn for differents kernel functions. This allows us determine the best number of components and  kernel that we can use.
 
-If we observe the figure \ref{fig:stadistics_PLS}, we can fix that, for our data, the \textit{‘linear’} and \textit{‘polinomial’} functions with seven and two components respectively are the best options to do the classification because the reparation in the space with them allows to classify these data with more precision.  In addition, the accuracy is 86.67\%, so we can conclude that the classification is precise and optimal and also one possible method to medical diagnostic.
+If we observe the figure \ref{fig:stadistics_PLS}, we can fix that, for our data, the \textit{‘linear’} and \textit{‘polynomial’} functions with seven and two components respectively are the best options to do the classification because the reparation in the space with them allows to classify these data with more precision.  In addition, the accuracy is 86.67\%, so we can conclude that the classification is precise and optimal and also one possible method to medical diagnostic.
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/stadistics_PLS, width=18cm}
+	\epsfig{file=figures/forceData/stadistics_PLS,width=1\textwidth}
 	\caption{Stadistics with PLS data after used SVM to classify.}
 	\label{fig:stadistics_PLS}
 \end{figure}
@@ -124,14 +124,14 @@ This can be seen in these 3D representations \ref{fig:Classification3D_PLS_linea
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/Classification3D_PLS_linear, width=18cm}
+	\epsfig{file=figures/forceData/Classification3D_PLS_linear, width=1\textwidth}
 	\caption{Classification of PLS data with the 'linear' kernel.}
 	\label{fig:Classification3D_PLS_linear}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/Classification3D_PLS_poly, width=18cm}
+	\epsfig{file=figures/forceData/Classification3D_PLS_poly, width=1\textwidth}
 	\caption{Classification of PLS data with the 'polynomial' kernel.}
 	\label{fig:Classification3D_PLS_poly}
 \end{figure}
@@ -140,29 +140,30 @@ Thereupon, we will do the classification from PCA data. To do this, firstly we s
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/variance_PCA, width=18cm}
+	\epsfig{file=figures/forceData/variance_PCA, width=1\textwidth}
 	\caption{Variance explained for PCA algorithm.}
 	\label{fig:variance_PCA}
 \end{figure} 
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/stadistics_PCA, width=18cm}
+	\epsfig{file=figures/forceData/stadistics_PCA, width=1\textwidth}
 	\caption{Stadistics with PCA data after used SVM to classify.}
 	\label{fig:stadistics_PCA}
 	\end{figure}
+	
 The scree plot \ref{fig:variance_PCA} only shows the first four (instead of the total forty-five) components that explain 95\% of the total variance. The only clear break in the amount of variance accounted for by each component is the first component, explaing about 85\% of the variance, so any more components might be needed, so it is  a reasonable way to reduce the dimensions.
-
-Then, we will apply SVM over data for the rank of components between one and four, achieving 91\% of accuracy for ‘rbf’ kernel function\ref{fig:stadistics_PCA}. Thus, we can obtain even more precision with this method. It makes sense because the four first components explain the majority of variance.
-
-Also, we can see the result of the classification in the following figure:
-
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/Classification3D_PCA_rbf, width=18cm}
+	\epsfig{file=figures/forceData/Classification3D_PCA_rbf, width=1\textwidth}
 	\caption{Classification of PCA data with the 'rbf' kernel.}
 	\label{fig:Classification3D_PCA_rbf}
 \end{figure}
+
+
+Then, we will apply SVM over data for the rank of components between one and four, achieving 91\% of accuracy for ‘rbf’ kernel function\ref{fig:stadistics_PCA}. Thus, we can obtain even more precision with this method. It makes sense because the four first components explain the majority of variance.
+
+Also, we can see the result of the classification in the following figure\ref{fig:Classification3D_PCA_rbf}
 
 Finally, we will draw the ROC curve (Receiver Operating Characteristic). It  is a graphical plot that illustrates the performance of a binary classifier system as its discrimination threshold is varied. The curve is created by plotting the true positive rate against the false positive rate\cite{ROC1}.
 
@@ -191,7 +192,7 @@ In a nutshell, from a accuracy viewpoint, PCA works better than PLS. Nevertheles
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/ROC, width=18cm}
+	\epsfig{file=figures/forceData/ROC, width=1\textwidth}
 	\caption{ROC Curve for PLS and PCA with SVM classifier.}
 	\label{fig:ROC}
 \end{figure}
