@@ -111,7 +111,7 @@ In our particular case, the testing was carried off with ‘Leave-One-Out’ tec
 
 Firstly, we use SVM over PLS data with differents components. As we said in the PLS chapter, the rank of latent variables depends on the input data. There is a number of components which the results is more accurate and the results after the classification is better. Thus, we represent the accuracy, sensibility and specificity as function of the number of components and in turn for differents kernel functions. This allows us determine the best number of components and  kernel that we can use.
 
-If we observe the figure \ref{fig:stadistics_PLS}, we can fix that, for our data, the \textit{‘linear’} and \textit{‘rbf’} functions with seven and two components respectively are the best options to do the classification because the reparation in the space with them allows to classify these data with more precision.  In addition, the accuracy is 86.67\%, so we can conclude that the classification is precise and optimal and also one possible method to medical diagnostic.
+If we observe the figure \ref{fig:stadistics_PLS}, we can fix that, for our data, the \textit{‘linear’} and \textit{‘polinomial’} functions with seven and two components respectively are the best options to do the classification because the reparation in the space with them allows to classify these data with more precision.  In addition, the accuracy is 86.67\%, so we can conclude that the classification is precise and optimal and also one possible method to medical diagnostic.
 
 \begin{figure}[H]
 	\centering
@@ -120,7 +120,7 @@ If we observe the figure \ref{fig:stadistics_PLS}, we can fix that, for our data
 	\label{fig:stadistics_PLS}
 \end{figure}
 
-This can be seen in these 3D representations \ref{fig:Classification3D_PLS_linear} \ref{fig:Classification3D_PLS_rbf} where it is shown the points used to the classification as well as the kernel function for the two best cases, i.e \textit{‘linear’} and \textit{‘rbf’} functions.
+This can be seen in these 3D representations \ref{fig:Classification3D_PLS_linear} \ref{fig:Classification3D_PLS_poly} where it is shown the points used to the classification as well as the kernel function for the two best cases, i.e \textit{‘linear’} and \textit{‘polinomial’} functions.
 
 \begin{figure}[H]
 	\centering
@@ -131,9 +131,9 @@ This can be seen in these 3D representations \ref{fig:Classification3D_PLS_linea
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/Classification3D_PLS_rbf, width=18cm}
-	\caption{Classification of PLS data with the 'rbf' kernel.}
-	\label{fig:Classification3D_PLS_rbf}
+	\epsfig{file=figures/forceData/Classification3D_PLS_poly, width=18cm}
+	\caption{Classification of PLS data with the 'polynomial' kernel.}
+	\label{fig:Classification3D_PLS_poly}
 \end{figure}
 
 Thereupon, we will do the classification from PCA data. To do this, firstly we select the components that explain the most of variability \ref{fig:variance_PCA}.
@@ -153,15 +153,15 @@ Thereupon, we will do the classification from PCA data. To do this, firstly we s
 	\end{figure}
 The scree plot \ref{fig:variance_PCA} only shows the first four (instead of the total forty-five) components that explain 95\% of the total variance. The only clear break in the amount of variance accounted for by each component is the first component, explaing about 85\% of the variance, so any more components might be needed, so it is  a reasonable way to reduce the dimensions.
 
-Then, we will apply SVM over data for the rank of components between one and four, achieving 91\% of accuracy for ‘linear’ kernel function\ref{fig:stadistics_PCA}. Thus, we can obtain even more precision with this method. It makes sense because the four first components explain the majority of variance.
+Then, we will apply SVM over data for the rank of components between one and four, achieving 91\% of accuracy for ‘rbf’ kernel function\ref{fig:stadistics_PCA}. Thus, we can obtain even more precision with this method. It makes sense because the four first components explain the majority of variance.
 
 Also, we can see the result of the classification in the following figure:
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/forceData/Classification3D_PCA, width=18cm}
-	\caption{Classification of PCA data with the 'linear' kernel.}
-	\label{fig:Classification3D_PCA}
+	\epsfig{file=figures/forceData/Classification3D_PCA_rbf, width=18cm}
+	\caption{Classification of PCA data with the 'rbf' kernel.}
+	\label{fig:Classification3D_PCA_rbf}
 \end{figure}
 
 Finally, we will draw the ROC curve (Receiver Operating Characteristic). It  is a graphical plot that illustrates the performance of a binary classifier system as its discrimination threshold is varied. The curve is created by plotting the true positive rate against the false positive rate\cite{ROC1}.
