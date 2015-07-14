@@ -49,9 +49,9 @@ This movement is characterised by the Gait Watch system and the Qualisys System.
 Once the data have been gathered, we process them before the applying the feature extraction. For the GW signals, the procedure is the same than in aforementioned cases. The first step is doing the calibration and correct the erroneous values in the signals due to a noise of the sensors.
 Then, we can figure out the angle of the different segments of the body. The program done in Matlab allows us to choose what segments we can use to calculate and compare between both systems. In this case, we can select: right shank, left shank, right thigh and left thigh.
 
-The angle of these segments are calculated for each point of time with a sample frequency of 200 samples/s for both systems so we don’t have to interpolate because these signals match perfectly. The pitch is filtered with a Kalman Filter in the GW signals because it is an algorithm that uses measurements observed over the time and produces estimates of unknown variables that tend to be more precise than others base on a single measurement. In other words, Kalman Filter operates recursively on stream of noisy inputs data to produce a statistically optimal state of the underlying system state\cite{Kalman Filter}.
+The angle of these segments are calculated for each point of time with a sample frequency of 200 samples/s for both systems so we do not have to interpolate because these signals match perfectly. The pitch is filtered with a Kalman Filter in the GW signals because it is an algorithm that uses measurements observed over the time and produces estimates of unknown variables that tend to be more precise than others based on a single measurement. In other words, Kalman Filter operates recursively on a stream of noisy inputs data to produce a statistically optimal state of the underlying system state\cite{Kalman Filter}.
 
-Hereafter, we calculate the pitch using the QS signals. To to this, we will apply the equations described in the prior chapter \ref{angleQS1}.
+Hereafter, we calculate the pitch using the QS signals. To do this, we will apply the equations described in the previous chapter \ref{angleQS1}.
 After this, we have to center all of these signals and we will be ready to compare all signals now.
 
 \begin{figure}[H]
@@ -61,14 +61,14 @@ After this, we have to center all of these signals and we will be ready to compa
 	\label{fig:signalGWQS}
 \end{figure}
 
-The next step is the feature extraction. We have to differentiate two comparison. Firstly, we are going to compare the pitch calculated with inertial sensors (GW) and infrared cameras (QS), so we will extract some specific characteristics to do this. After, we are going to compare the angle obtained in function of the speed.
+The next step is the feature extraction. We have to differentiate two comparisons. Firstly, we are going to compare the pitch calculated with inertial sensors (GW) and infrared cameras (QS), so we will extract some specific characteristics to do this. After that, we are going to compare the angle obtained in function of the speed with which the subjects walk on the treadmill.
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/QSvsGW/features_GWQS, width=1\textwidth}
 	\caption{Features for pitch angle in GW and QS signals.}
 	\label{fig:featuresGWQS}
 \end{figure}
-The first feature computed was the ‘stride time’ \ref{fig:featuresGWQS}. This is the time that a person needs to carry out a step, i.e the time since the foot is lifted from the treadmill until the moment when the same foot touches the ground and gains momentum to step again. In the pitch signal, we determine this detecting the distance between two negative value of the pitch because the negative values happen when the segment (shank or thigh) are behind the trunk, this is just before stepping.
+The first feature computed was the ‘stride time’ \ref{fig:featuresGWQS}. This is the time that a person needs to carry out a step, i.e the time since the foot is lifted from the treadmill until the moment when the same foot touches the ground and gains momentum to step again. In the pitch signal, we determine this by detecting the distance between two negative values of the pitch because the negative values happen when the segment (shank or thigh) are behind the trunk, this is just before stepping.
 
 Other important aspect is the difference of angle obtained in both systems. We calculate values positives as well as negatives and finally obtain the mean of the difference of all them \ref{fig:featuresGWQS}.
 
@@ -83,11 +83,11 @@ Once the features have been calculated, we proceeded with the comparison between
 	\label{fig:mean_stride_time}
 \end{figure}
 
-‘Stride time’ is a feature used in a lot of experiments to characterise the movement because it is a interesting aspect that represents the time that a specific person needs to step. Also, it can be used for a classification between patients and control subjects, like in others studies \cite{Hausdorff}.
-In our case, the difference between  the ‘stride time’ between both systems is very tiny. If we observe \ref{tab:Stride_time}, we can see that the greatest value of difference between systems is 0.1287 seconds.
+‘Stride time’ is a feature used in a lot of experiments to characterise the movement because it is an interesting aspect that represents the time that a specific person needs to step. Also, it can be used for a classification between patients and control subjects, like in others studies \cite{Hausdorff}.
+In our case, the difference between  the ‘stride time’ between both systems is very small. If we observe \ref{tab:Stride_time}, we can see that the greatest value of difference between systems is 0.1287 seconds.
 
 \begin{table}[h]
-	\caption{Comparation of the stride time and angle difference between GW and QS}	
+	\caption{Comparison of the stride time and angle difference between GW and QS}	
 	\centering
 	\begin{tabular}{|c|c|c|}\hline
 		
@@ -133,7 +133,7 @@ In our case, the difference between  the ‘stride time’ between both systems 
 
 In addition, it has been obtained the variations between the mean of the variance of the ‘stride time’. This parameter gives us information about the accuracy of both systems to calculate the pitch angle during the experiment.
 
-In the majority of the accomplishments of the experiments, the variance of the GW system is greater than QS \ref{fig:var_stride_time}. It is probably due to the noise of the inertial sensors and the accuracy to calculate the pitch. However, they are very low values so it is not a important aspect that determine the quality against each other. 
+In the majority of the accomplishments of the experiments, the variance of the GW system is greater than QS \ref{fig:var_stride_time}. It is probably due to the noise of the inertial sensors and the accuracy to calculate the pitch. However, they are very low values so it is not an important aspect that determines the quality against each other. 
 
 \begin{figure}[H]
 	\centering
@@ -142,7 +142,7 @@ In the majority of the accomplishments of the experiments, the variance of the G
 	\label{fig:var_stride_time}
 \end{figure}
 
-Now, we will compare the mean of the angle in each experiment. The result of this is possible to see in \ref{fig:mean_angle}. It is clear that the differences aren’t too high. The greatest value of difference between angles is 3.16 degrees\ref{tab:Stride_time}. If we calculate the percentage with respect to the total average, this is about 12\% of the angle. This precision might be important depending on the application. In general, it doesn’t a significant value to characterise the movement. Therefore, Gait Watch system may be used to substitute the Qualisys systems as a good alternative regarding the accuracy, price and portability.
+Now, we will compare the mean of the angle in each experiment. The result of this is depicted in \ref{fig:mean_angle}. It is clear that the differences are not large. The greatest value of difference between angles is 3.16 degrees\ref{tab:Stride_time}. If we calculate the percentage with respect to the total average, this is about 12\% of the angle. This precision might be important depending on the application. In general, it is not a significant value to characterise the movement. Therefore, Gait Watch system may be used to substitute the Qualisys systems as a good alternative regarding the accuracy, price and portability.
 
 \begin{figure}[H]
 	\centering
@@ -151,7 +151,7 @@ Now, we will compare the mean of the angle in each experiment. The result of thi
 	\label{fig:mean_angle}
 \end{figure}
 
-Then, we will see what happens when we analise the signals with regard to differents speeds. In \ref{fig:speed_stride_time}, we can see the mean of stride time for speeds of 2, 4 and 6 Km/h. If we have a look at the points represented in the picture, it seems that the ‘stride time’ is greater for low speeds than high speeds although it depends on the subject. In \ref{tab:speeds} it is shown the mean of all values for each velocity. The average ‘stride time’ is higer for 6Km/h than 4Km/h. However it does not happen in general. Therefore, we would need more measurements to stablish a final conclusion.
+Then, we will see what happens when we analyse the signals with regard to different speeds. In \ref{fig:speed_stride_time}, we can see the mean of stride time for speeds of 2, 4 and 6 Km/h. If we have a look at the points represented in the picture, it seems that the ‘stride time’ is greater for low speeds than high speeds although it depends on the subject. In \ref{tab:speeds} it is shown the mean of all values for each velocity. The average ‘stride time’ is higer for 6Km/h than 4Km/h. However it does not happen in general. Therefore, we would need more measurements to establish a final conclusion.
 
 \begin{figure}[H]
 	\centering
@@ -169,7 +169,7 @@ Then, we will see what happens when we analise the signals with regard to differ
 
 If we scan \ref{fig:speed_var_stride_time}, we can appreciate the differences between the variance of ‘stride time’. Also, the mean of the values for each speed are put in the table \ref{tab:speeds} and the variance increases as the speed does it as well.
 
-It is the same with the difference of the angle between systems \ref{fig:speed_angle}. The difference between angles increases with speed. So, it is an aspect that we have to consider for using the GW in place of QS.
+It is the same with the difference of the angle between systems \ref{fig:speed_angle}. The difference between angles increases with speed. So, it is an aspect that we have to consider to use the GW in place of QS.
 
 \begin{figure}[H]
 	\centering
