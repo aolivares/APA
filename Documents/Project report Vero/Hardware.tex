@@ -1,20 +1,18 @@
 \chapter{Hardware Description}
 \label{ch:Hardware}
-Along this chapter we will introduce a general description of all devices used to data gathering for the development of this project.
+Along this chapter we will introduce a general description of all devices used to gather data for the development of this project.
 
 
-It should be noted at this point that there are two clearly differentiated parts. In the first of them, we work with Force Plate and GaitWatch data, taking out their characteristic signals and synchronising them. In the second of them, we work jointly with Gait Watch and Qualisys System data for the purpose of comparing the accuracy in the calculated orientation angles.
+It should be noted at this point that there are two clearly differentiated parts. In the first one, we work with Force Plate and GaitWatch data, taking out their characteristic signals and synchronising them. In the second one, we work jointly with Gait Watch and Qualisys System data for the purpose of comparing the accuracy in the calculated orientation angles.
 
 
 \section{GaitWatch}
 
-GaitWatch is an Inertial Measurement Unit (IMU) designed for gait monitoring of patients. It was developed by Prof. Dr. Med. Kai Bötzel at the Department of Neurology of Ludwig-Maximilians University in Munich in conjunction with Dr. Alberto Olivares Vicente from the Department of Signal Theory, Telematics and Communications of the University of Granada \cite{OlivaresBotzel2013}.
+GaitWatch is an Inertial Measurement Unit (IMU) designed for gait monitoring of patients. It was developed by Prof. Dr. Med. Kai Bötzel at the Department of Neurology of Ludwig-Maximilians University in Munich in conjunction with Dr. Alberto Olivares Vicente from the Department of Signal Theory, Telematics and Communications of the University of Granada. \cite{OlivaresBotzel2013}.
 
-The system is composed of the central processing unit and
-a set of measuring units which are wired to it. The measuring units are 
-placed in the patients’ thighs, shanks, arms and trunk.
+The system is composed of the central processing unit and a set of measuring units which are wired to it. The measuring units are placed in the patients’ thighs, shanks, arms and trunk.
 
-The central processing unit has a microcontroller is in charge of gathering the data from the external measurement units and writing it to the memory card. So, this central unit is placed in the trunk inside a box and it contains an AL-XAVRB board with an AVRATxmega processor which contains the necessary embedded firmware to gather the data from all the measurement units and store it in a microSD card. Also, the trunk box contains some embedded magnetic and inertial sensors.
+The central processing unit has a microcontroller which is in charge of gathering the data from the external measurement units and writing them to the memory card. So, this central unit is placed on the trunk inside a box and it contains an AL-XAVRB board with an AVRATxmega processor which contains the necessary embedded firmware to gather the data from all the measurement units and store them in a microSD card. Also, the trunk box contains some embedded magnetic and inertial sensors.
 
 \begin{figure}[H]
 	\centering
@@ -22,8 +20,6 @@ The central processing unit has a microcontroller is in charge of gathering the 
 	\caption{General Diagram of the Gait Watch.}
 	\label{fig:diagram}
 \end{figure}
-
-
 
 \begin{figure}[H]
 	\centering
@@ -56,7 +52,7 @@ Force Plate (FDM-S Multifunction Force-measuring Plate, Zebris) is a System for 
 
 This platform consist of a large number of force sensors and enables the distribution of static and dynamic forces under the feet to be analyzed during stance and gait (65x40 cells of sensors). As a result, foot deformities, foot function and posture can be analysed and are available as an evaluation report \cite{forceplate}.
 
-Therefore, this gathered information can be used afterward to analyse the postural adjustments with the right software.
+Therefore, this gathered information can be used afterwards to analyse the postural adjustments with the right software.
 
 \begin{figure}[H]
 	\centering
@@ -69,9 +65,9 @@ Therefore, this gathered information can be used afterward to analyse the postur
 \section{Qualisys System}
 The Qualisys optical motion tracker is a system that uses high speed digital cameras to capture the motion of a measurement object with passive or active markers attached \cite{OlivaresBotzel2013}.
 
-This technology is used by researchers and clinicians to undertand the basic for human motion or improve treatment during a reabilitation process. Also, it used in industrial applications, for example, the interior design of a car can be improved by using this System to evaluate the confort and safety factors for the car driver \cite{Qualisys}.
+This technology is used by researchers and clinicians to understand the basics of human motion or improve treatment during a rehabilitation process. Also, it used in industrial applications, for example, interior design of a car can be improved by using this System to evaluate the comfort and safety factors for the car driver \cite{Qualisys}.
 
-The technology is precise and delivers high quality data to the observer in real-time. The core component of Qualisys System is one or more infrared optical cameras that emit a beam of infrared light. Also, there are small retro-reflective markers on a object or person. When the cameras emit infrared light onto the markers, these reflect the light back to the camera sensor and this information is used to calculate the position with high spatial resolution  \cite{Qualisys}. The used system has eight cameras which are distributed around a room.
+The technology is precise and delivers high quality data to the observer in real-time. The core component of the Qualisys System is one or more infrared optical cameras that emit a beam of infrared light. Also, there are small retro-reflective markers on a object or person. When the cameras emit infrared light onto the markers, these reflect the light back to the camera sensor and this information is used to calculate the position with high spatial resolution  \cite{Qualisys}. The used system has eight cameras which are distributed around a room.
 
 \begin{figure}[H]
 	\centering
@@ -80,6 +76,4 @@ The technology is precise and delivers high quality data to the observer in real
 	\label{fig:QS}
 \end{figure}
 
-The provided software tools allows to perform basic motion calculations,
-such as speed, acceleration, rotation and angle, as well as other more complex
-calculations. The precision of this system allows its use as a reference system to evaluate portable motion tracking systems such as the GaitWatch  \cite{OlivaresBotzel2013}.
+The provided software tools allows to perform basic motion calculations, such as speed, acceleration, rotation and angle, as well as other more complex calculations. The precision of this system allows its use as a reference system to evaluate portable motion tracking systems such as the GaitWatch  \cite{OlivaresBotzel2013}.

@@ -2,16 +2,16 @@
 \label{ch:GWandQS}
 
 \section{Introduction and chapter's structure}
-After explaining and comparing both systems Gait Watch and Force Plate, we proceed now to do analysis of te differences and similarities between Gait Watch and Qualisys Optical motion tracker.
+After explaining and comparing both Gait Watch and Force Plate systems, we proceed now to do an analysis of the differences and similarities between Gait Watch and the Qualisys Optical motion tracker.
 
-It has been demonstrated that Qualisys System is a accurate system to analyse the body movements and it can be used in several applications. However, this system has a lot of constraints like the possibility of application scope.
+It has been demonstrated that Qualisys System is an accurate system to analyse the body movements and it can be used in several applications. However, this system has a lot of constraints like the possibility of application scope.
 
-Thus, we are going to do a comparison with Gait Watch system, a system based in inertial sensors being more potable and cheaper.
-Along this chapter we will explain how the pitch has been calculated using Qualisys System. This will be what we will compare with the angles obtained through inertial sensors.
+Thus, we are going to do a comparison with the Gait Watch system, a system based on inertial sensors being more portable and cheaper.
+Along this chapter we will explain how the pitch angle has been calculated using the Qualisys System. That is, we will compare with the angles obtained through inertial sensors.
 
 
 \section{Computing Euler angles using Qualisys System}
-To compute the Euler angle, the subject is wearing two infrared markers per segment placed in both thighs and shanks. The infrared optical cameras emit infrared light and this reflects in the markers placed over the body allowing to know the position of the markers.
+To compute the Euler angle, the subject is wearing two infrared markers per segment placed on both thighs and shanks. The infrared optical cameras emit infrared light and this reflects in the markers placed over the body allowing to know the position of the markers.
 
 The pitch angle of such segment is computed between the vector defined by the upper and lower markers and the vector normal to the Earth’s surface. To be able to compute it we first have to define a third point which has the same X coordinate as the lower marker and the same Z coordinate as the upper marker. This will define a right triangle in which one of the contiguous cathetus is normal to the Earth’s surface and the hypotenuse is defined by the line between the upper and the lower point. Therefore, by calculating the arctangent we can easily find the angle of the right triangle, which is, in turn, the pitch angle\cite{OlivaresBotzel2013}. We can see this in \ref{fig:pitchQS}
 
@@ -42,12 +42,12 @@ Thus, the pitch angle is computed as follows:
 where $ [x_{lower}, z_{lower} ] $ and $ [x_{upper}, z_{upper} ] $ are the coordinates of the projections of the lower an upper markers in the XZ plane, respectively.
 
 \section{Feature extraction}
-In this experiment, prior to start of data gathering, we set up the protocol for procedure that people have to carry out while the data are recorded. Seven control subject have been involved. They had to walk during some minutes over a treadmill with differents speeds, specifically 2, 4 and 6 Km/h.
+In this experiment, prior to start the data gathering, we set up the protocol that people have to carry out while the data are recorded. Seven control subjects have been involved. They had to walk during some minutes over a treadmill with different speeds, specifically 2, 4 and 6 Km/h.
 
-This movements is characterised by the Gait Watch system and Qualisys System. To do this, the participants wear the inertial sensors over the body and the infrared markers, being these last one visibles by infrared cameras all the time. This experiment is carried out in a control environment where both systems can work properly.
+This movement is characterised by the Gait Watch system and the Qualisys System. To do this, the participants wear the inertial sensors over the body and the infrared markers, being these last ones visible by infrared cameras all the time. This experiment is carried out in a control environment where both systems can work properly.
 
-One the data have been gathered, we proceed to do a signal processing before the features extraction. For the GW signals, the procedure is the same than in above cases. The first step is doing the calibration and correct the erroneous values in the signals due to a noise of the sensors.
-Then, we can figure out the angle of the differents segments of the body. The program done in Matlab allows us choose what segments we can use to calculate and compare between both systems. In this case, we can select: right shank, left shank, right thigh and left thigh.
+Once the data have been gathered, we process them before the applying the feature extraction. For the GW signals, the procedure is the same than in aforementioned cases. The first step is doing the calibration and correct the erroneous values in the signals due to a noise of the sensors.
+Then, we can figure out the angle of the different segments of the body. The program done in Matlab allows us to choose what segments we can use to calculate and compare between both systems. In this case, we can select: right shank, left shank, right thigh and left thigh.
 
 The angle of these segments are calculated for each point of time with a sample frequency of 200 samples/s for both systems so we don’t have to interpolate because these signals match perfectly. The pitch is filtered with a Kalman Filter in the GW signals because it is an algorithm that uses measurements observed over the time and produces estimates of unknown variables that tend to be more precise than others base on a single measurement. In other words, Kalman Filter operates recursively on stream of noisy inputs data to produce a statistically optimal state of the underlying system state\cite{Kalman Filter}.
 
@@ -73,7 +73,7 @@ The first feature computed was the ‘stride time’ \ref{fig:featuresGWQS}. Thi
 Other important aspect is the difference of angle obtained in both systems. We calculate values positives as well as negatives and finally obtain the mean of the difference of all them \ref{fig:featuresGWQS}.
 
 
-\section{Results discurssion}
+\section{Results discussion}
 Once the features have been calculated, we proceeded with the comparison between them. Firstly we can see the differences between ‘stride time’ in GW and QS signals in \ref{fig:mean_stride_time}. This figure shows the differences between them are minor so we would use the GW in place of QS with regard to this variable.
 
 \begin{figure}[H]
@@ -169,7 +169,7 @@ Then, we will see what happens when we analise the signals with regard to differ
 
 If we scan \ref{fig:speed_var_stride_time}, we can appreciate the differences between the variance of ‘stride time’. Also, the mean of the values for each speed are put in the table \ref{tab:speeds} and the variance increases as the speed does it as well.
 
-It is the same with the difference of the angle between systems \ref{fig:speed_angle}. The difference between angles increases with speed. So, it is a aspect that we have to consider for using the GW in place of QS.
+It is the same with the difference of the angle between systems \ref{fig:speed_angle}. The difference between angles increases with speed. So, it is an aspect that we have to consider for using the GW in place of QS.
 
 \begin{figure}[H]
 	\centering
