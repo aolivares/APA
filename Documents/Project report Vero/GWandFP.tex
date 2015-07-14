@@ -275,7 +275,7 @@ Therefore, the first process to carry out is the analysis of the trunk accelerat
 The first step that needs to be carried out is to establish the axes in the platform to define the position over it. The X axis points forward, not existing negatives values because the range is between 0 and 510 mm, that is the platform’s dimension in this direction. The Y axis is pointing to the right of the patient, so the positive values indicate a movement toward right with regard to the midline. Comparably, the negatives values are found when the movement is toward the left \ref{fig:axesFP}.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/APA_analysis/axesFP.pdf,  width=0.6\textwidth}
+	\epsfig{file=figures/APA_analysis/axesFP.pdf,  width=1\textwidth}
 	\caption{Definition of the axes in the Platform.}
 	\label{fig:axesFP}
 \end{figure}
@@ -445,11 +445,7 @@ To align the signals, we use cross-correlation between them. The cross-correlati
 \end{equation}
 Where $ f^{*}$ denotes the complex conjugate of \textit{f} and \textit{n} is the lag.
 
-Using this method, we can determine the point where the signals are more similar. After this, we can interpolate them and carry out the average between them.
 
-At this point, we have six signals per patient: the center of pressure in the antero-posterior and medio-lateral direction, the acceleration in X and Y axis and the angular velocity in the same axes. Therefore, the next step is to extract the features of them. 
-
-We have analised the Gait Watch and Forceplate signals in the above chapter and determined the most interesting episodes in these signals. So, the first features that we will obtain are the peaks in COP, acceleration and angular velocity. We can see this in the following figures:
 
 \begin{figure}[H]
 	\centering
@@ -458,6 +454,11 @@ We have analised the Gait Watch and Forceplate signals in the above chapter and 
 	\label{fig:COP_features}
 \end{figure}
 
+Using this method, we can determine the point where the signals are more similar. After this, we can interpolate them and carry out the average between them.
+
+At this point, we have six signals per patient: the center of pressure in the antero-posterior and medio-lateral direction, the acceleration in X and Y axis and the angular velocity in the same axes. Therefore, the next step is to extract the features of them. 
+
+We have analised the Gait Watch and Forceplate signals in the above chapter and determined the most interesting episodes in these signals. So, the first features that we will obtain are the peaks in COP, acceleration and angular velocity. We can see this in figures \ref{fig:COP_features}-\ref{fig:Gyro_features}.
 \begin{figure}[H]
 	\centering
 	\epsfig{file=figures/Feature_extraction/Acc_features, width=1\textwidth}
@@ -473,16 +474,18 @@ We have analised the Gait Watch and Forceplate signals in the above chapter and 
 \end{figure}
 
 
-Hereafter, we will calculated the APA duration in each system because it would be able to be an appropiate parameter to compare. Also, the majority of these features have been used in others studies \cite{Mancini2009} so it can be a right way to measure the movement.
+Hereafter, we will calculate the APA duration in each system because it would be able to be an appropiate parameter to compare. Also, the majority of these features have been used in others studies \cite{Mancini2009} so it can be a right way to measure the movement.
 
 Now, we are going to apply PCA algorithms to obtain the most significant information about human movement. This method allows us to minimise the redundant information performing the dimensional reduction.
 
 We applied PCA twice: in the signals of the Antero-posterior direction (AP-COP, X-Acc and X-Velocity) and of the Medio-lateral direction (ML-COP, Y-Acc and Y-Velocity). So far, we have the projection in the orthogonal space, three eigenvectors and three eigenvalues. The corresponding eigenvectors are ranked in a descending order of eigenvalues and by choosing the two first eigenvectors PCA directly performs the dimensional reduction, that is, the class of three dimensional gait data is described by low-dimensional features containing only two principal components.
 
 The two first eigenvalues of the covariance matrix account for 98\% of the variance. This indicates that we only need to take the two first eigenvectors to have the significant information of the data. Also, if we see \ref{fig:PCA_AP} and \ref{fig:PCA_ML}  we can determine that the important information, i.e the information with more variance is defined with the COP and Angular Velocity signals. This is because the acceleration and angular velocity signals are very similar and one of them is not necessary, i.e it does not provide us with additional useful information.
+
+The next step is to obtain the same features of the new signals. Now, we have four signals per patient: two components for AP direction and two more for ML direction. The characteristics extracted in this case are the same than with the originals signals.
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_AP, width=0.7\textwidth}
+	\epsfig{file=figures/Feature_extraction/PCA_AP, width=1\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction.}
 	\label{fig:PCA_AP}
 \end{figure}
@@ -494,7 +497,7 @@ The two first eigenvalues of the covariance matrix account for 98\% of the varia
 	\label{fig:PCA_ML}
 \end{figure}
 
-The next step is to obtain the same features of the new signals. Now, we have four signals per patient: two components for AP direction and two more for ML direction. The characteristics extracted in this case are the same than with the originals signals.
+
 
 Finally, we apply PCA between patients. Our data base is reduced because we only have five patients. So, our matrix data has five columns where each one has the COP, Acceleration and Angular Velocity concatenated. As in the above study, the two first components account the most of variability and this representation in the space indicates us the movement relation between patients, i.e whether the movement is similar between them. This allows us to know if it is possible to do a classification afterwards and what components are appropriated to do it.
 In the Antero-Posterior direction, the projections are located in the right part of the orthogonal space. People analysed in this study are patients with different level of the disease. Therefore, the second component would be able to be useful to differentiate patients with parkinson’s disease. Also, it is possible that the first component can be used to differentiate between control subjects and do a classification \ref{fig:PCA_AP_patients}.
@@ -503,7 +506,7 @@ In the Medio-Lateral direction the data are more dispersed. This indicate that t
 
 \begin{figure}[H]
 	\centering
-	\epsfig{file=figures/Feature_extraction/PCA_AP_patients, width=1\textwidth}
+	\epsfig{file=figures/Feature_extraction/PCA_AP_patients, width=0.7\textwidth}
 	\caption{Projections in the orthogonal space after applying PCA and eigenvectors in Antero-posterior direction between patients.}
 	\label{fig:PCA_AP_patients}
 \end{figure}
