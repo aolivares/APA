@@ -1,0 +1,2998 @@
+-----------------------------------------------------------------------------
+///// 1. Results subject 01, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 12.9425
+  RMSE_left_shank: 12.3961
+  RMSE_left_sum:   25.3386
+
+Kalman filter:
+  RMSE_left_thigh: 2.1583
+  RMSE_left_shank: 3.8121
+  RMSE_left_sum:   5.9704
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.8064
+  RMSE_left_shank: 3.1723
+  RMSE_left_sum:   4.9788
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 16.6087 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 0.0411 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.5916
+ sigma_2:  2.3419
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 12.9362
+  RMSE_right_shank: 12.8687
+  RMSE_right_sum:   25.8050
+
+Kalman filter:
+  RMSE_right_thigh: 1.8315
+  RMSE_right_shank: 3.0579
+  RMSE_right_sum:   4.8894
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.5953
+  RMSE_right_shank: 2.4969
+  RMSE_right_sum:   4.0922
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 16.3032 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -4.4656 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.3640
+ sigma_2:  1.8961
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 25.8788
+  RMSE_both_shank: 25.2648
+  RMSE_both_sum:   51.1436
+
+Kalman filter:
+  RMSE_both_thigh: 3.9898
+  RMSE_both_shank: 6.8699
+  RMSE_both_sum:   10.8597
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.4017
+  RMSE_both_shank: 5.6693
+  RMSE_both_sum:   9.0710
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 16.4711 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -2.2544 %
+
+-----------------------------------------------------------------------------
+///// 2. Results subject 01, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 26.4287
+  RMSE_left_shank: 27.1170
+  RMSE_left_sum:   53.5457
+
+Kalman filter:
+  RMSE_left_thigh: 5.6253
+  RMSE_left_shank: 5.9517
+  RMSE_left_sum:   11.5769
+
+Extended Kalman filter:
+  RMSE_left_thigh: 5.1958
+  RMSE_left_shank: 4.2235
+  RMSE_left_sum:   9.4193
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 18.6373 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 16.7949 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.0288
+ sigma_2:  4.5214
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 27.0233
+  RMSE_right_shank: 26.5585
+  RMSE_right_sum:   53.5817
+
+Kalman filter:
+  RMSE_right_thigh: 3.9580
+  RMSE_right_shank: 5.1074
+  RMSE_right_sum:   9.0654
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.8194
+  RMSE_right_shank: 3.0897
+  RMSE_right_sum:   6.9091
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 23.7867 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 22.2578 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  3.1850
+ sigma_2:  3.6626
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 53.4520
+  RMSE_both_shank: 53.6755
+  RMSE_both_sum:   107.1274
+
+Kalman filter:
+  RMSE_both_thigh: 9.5833
+  RMSE_both_shank: 11.0590
+  RMSE_both_sum:   20.6424
+
+Extended Kalman filter:
+  RMSE_both_thigh: 9.0152
+  RMSE_both_shank: 7.3132
+  RMSE_both_sum:   16.3284
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 20.8987 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 19.4979 %
+
+-----------------------------------------------------------------------------
+///// 3. Results subject 01, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 35.3277
+  RMSE_left_shank: 33.4383
+  RMSE_left_sum:   68.7661
+
+Kalman filter:
+  RMSE_left_thigh: 8.6229
+  RMSE_left_shank: 4.8189
+  RMSE_left_sum:   13.4418
+
+Extended Kalman filter:
+  RMSE_left_thigh: 8.4062
+  RMSE_left_shank: 4.0686
+  RMSE_left_sum:   12.4749
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 7.1936 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 10.4659 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  12.3938
+ sigma_2:  20.4555
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 36.8063
+  RMSE_right_shank: 32.1555
+  RMSE_right_sum:   68.9617
+
+Kalman filter:
+  RMSE_right_thigh: 8.3696
+  RMSE_right_shank: 5.6472
+  RMSE_right_sum:   14.0168
+
+Extended Kalman filter:
+  RMSE_right_thigh: 8.2723
+  RMSE_right_shank: 3.6810
+  RMSE_right_sum:   11.9533
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 14.7219 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 21.2754 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  13.8882
+ sigma_2:  7.3549
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 72.1340
+  RMSE_both_shank: 65.5938
+  RMSE_both_sum:   137.7278
+
+Kalman filter:
+  RMSE_both_thigh: 16.9925
+  RMSE_both_shank: 10.4661
+  RMSE_both_sum:   27.4586
+
+Extended Kalman filter:
+  RMSE_both_thigh: 16.6785
+  RMSE_both_shank: 7.7496
+  RMSE_both_sum:   24.4281
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 11.0366 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 15.7649 %
+
+-----------------------------------------------------------------------------
+///// 4. Results subject 02, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.8830
+  RMSE_left_shank: 10.8900
+  RMSE_left_sum:   20.7730
+
+Kalman filter:
+  RMSE_left_thigh: 2.2055
+  RMSE_left_shank: 2.7205
+  RMSE_left_sum:   4.9260
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.7077
+  RMSE_left_shank: 2.3760
+  RMSE_left_sum:   4.0837
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 17.0996 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -4.7487 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.2632
+ sigma_2:  3.5762
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 8.6001
+  RMSE_right_shank: 8.4309
+  RMSE_right_sum:   17.0310
+
+Kalman filter:
+  RMSE_right_thigh: 1.7484
+  RMSE_right_shank: 2.3161
+  RMSE_right_sum:   4.0645
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.7468
+  RMSE_right_shank: 1.8983
+  RMSE_right_sum:   3.6451
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 10.3198 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -13.2510 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  7.4780
+ sigma_2:  1.9489
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 18.4831
+  RMSE_both_shank: 19.3209
+  RMSE_both_sum:   37.8040
+
+Kalman filter:
+  RMSE_both_thigh: 3.9539
+  RMSE_both_shank: 5.0366
+  RMSE_both_sum:   8.9905
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.4545
+  RMSE_both_shank: 4.2743
+  RMSE_both_sum:   7.7288
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 14.0345 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -8.4588 %
+
+-----------------------------------------------------------------------------
+///// 5. Results subject 02, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 21.6996
+  RMSE_left_shank: 22.4344
+  RMSE_left_sum:   44.1340
+
+Kalman filter:
+  RMSE_left_thigh: 3.5896
+  RMSE_left_shank: 3.7845
+  RMSE_left_sum:   7.3741
+
+Extended Kalman filter:
+  RMSE_left_thigh: 2.9316
+  RMSE_left_shank: 2.8266
+  RMSE_left_sum:   5.7582
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 21.9128 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 6.5768 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.1541
+ sigma_2:  2.2524
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 21.9589
+  RMSE_right_shank: 19.2974
+  RMSE_right_sum:   41.2563
+
+Kalman filter:
+  RMSE_right_thigh: 3.6705
+  RMSE_right_shank: 3.0199
+  RMSE_right_sum:   6.6905
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.6400
+  RMSE_right_shank: 1.7646
+  RMSE_right_sum:   5.4046
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 19.2192 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 10.5823 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  4.2529
+ sigma_2:  1.5625
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 43.6585
+  RMSE_both_shank: 41.7318
+  RMSE_both_sum:   85.3903
+
+Kalman filter:
+  RMSE_both_thigh: 7.2601
+  RMSE_both_shank: 6.8044
+  RMSE_both_sum:   14.0645
+
+Extended Kalman filter:
+  RMSE_both_thigh: 6.5716
+  RMSE_both_shank: 4.5912
+  RMSE_both_sum:   11.1628
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 20.6314 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 8.4290 %
+
+-----------------------------------------------------------------------------
+///// 6. Results subject 02, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 33.9246
+  RMSE_left_shank: 33.2404
+  RMSE_left_sum:   67.1650
+
+Kalman filter:
+  RMSE_left_thigh: 8.0480
+  RMSE_left_shank: 4.8016
+  RMSE_left_sum:   12.8496
+
+Extended Kalman filter:
+  RMSE_left_thigh: 7.5734
+  RMSE_left_shank: 3.5604
+  RMSE_left_sum:   11.1339
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 13.3522 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 10.5748 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.3041
+ sigma_2:  2.9309
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 34.0733
+  RMSE_right_shank: 30.3616
+  RMSE_right_sum:   64.4349
+
+Kalman filter:
+  RMSE_right_thigh: 7.1912
+  RMSE_right_shank: 5.4016
+  RMSE_right_sum:   12.5928
+
+Extended Kalman filter:
+  RMSE_right_thigh: 7.2228
+  RMSE_right_shank: 2.6227
+  RMSE_right_sum:   9.8455
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 21.8168 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 19.4491 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  3.7638
+ sigma_2:  1.2627
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 67.9979
+  RMSE_both_shank: 63.6020
+  RMSE_both_sum:   131.5999
+
+Kalman filter:
+  RMSE_both_thigh: 15.2392
+  RMSE_both_shank: 10.2032
+  RMSE_both_sum:   25.4424
+
+Extended Kalman filter:
+  RMSE_both_thigh: 14.7963
+  RMSE_both_shank: 6.1831
+  RMSE_both_sum:   20.9794
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 17.5418 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 14.8111 %
+
+-----------------------------------------------------------------------------
+///// 7. Results subject 03, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.9303
+  RMSE_left_shank: 14.9330
+  RMSE_left_sum:   24.8633
+
+Kalman filter:
+  RMSE_left_thigh: 2.8974
+  RMSE_left_shank: 2.3318
+  RMSE_left_sum:   5.2292
+
+Extended Kalman filter:
+  RMSE_left_thigh: 2.8712
+  RMSE_left_shank: 2.4778
+  RMSE_left_sum:   5.3491
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -2.2925 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -13.3641 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.3848
+ sigma_2:  1.5146
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 10.6758
+  RMSE_right_shank: 11.4254
+  RMSE_right_sum:   22.1012
+
+Kalman filter:
+  RMSE_right_thigh: 1.9107
+  RMSE_right_shank: 2.9084
+  RMSE_right_sum:   4.8191
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.8126
+  RMSE_right_shank: 3.1184
+  RMSE_right_sum:   4.9310
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -2.3221 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -28.7321 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.4010
+ sigma_2:  0.7597
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 20.6061
+  RMSE_both_shank: 26.3584
+  RMSE_both_sum:   46.9645
+
+Kalman filter:
+  RMSE_both_thigh: 4.8081
+  RMSE_both_shank: 5.2402
+  RMSE_both_sum:   10.0483
+
+Extended Kalman filter:
+  RMSE_both_thigh: 4.6839
+  RMSE_both_shank: 5.5962
+  RMSE_both_sum:   10.2801
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -2.3067 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -20.0255 %
+
+-----------------------------------------------------------------------------
+///// 8. Results subject 03, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 24.0833
+  RMSE_left_shank: 27.3387
+  RMSE_left_sum:   51.4220
+
+Kalman filter:
+  RMSE_left_thigh: 6.2206
+  RMSE_left_shank: 3.4779
+  RMSE_left_sum:   9.6985
+
+Extended Kalman filter:
+  RMSE_left_thigh: 5.8656
+  RMSE_left_shank: 4.2907
+  RMSE_left_sum:   10.1563
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -4.7202 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -3.8019 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6316
+ sigma_2:  1.5018
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 25.9160
+  RMSE_right_shank: 23.8317
+  RMSE_right_sum:   49.7478
+
+Kalman filter:
+  RMSE_right_thigh: 4.0925
+  RMSE_right_shank: 4.0478
+  RMSE_right_sum:   8.1403
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.9528
+  RMSE_right_shank: 3.8488
+  RMSE_right_sum:   7.8016
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 4.1609 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 1.4490 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.2600
+ sigma_2:  0.7117
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 49.9994
+  RMSE_both_shank: 51.1704
+  RMSE_both_sum:   101.1698
+
+Kalman filter:
+  RMSE_both_thigh: 10.3131
+  RMSE_both_shank: 7.5257
+  RMSE_both_sum:   17.8388
+
+Extended Kalman filter:
+  RMSE_both_thigh: 9.8185
+  RMSE_both_shank: 8.1394
+  RMSE_both_sum:   17.9579
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -0.6675 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -1.3564 %
+
+-----------------------------------------------------------------------------
+///// 9. Results subject 03, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 35.9823
+  RMSE_left_shank: 37.6448
+  RMSE_left_sum:   73.6271
+
+Kalman filter:
+  RMSE_left_thigh: 9.4663
+  RMSE_left_shank: 6.0774
+  RMSE_left_sum:   15.5437
+
+Extended Kalman filter:
+  RMSE_left_thigh: 9.0839
+  RMSE_left_shank: 6.7420
+  RMSE_left_sum:   15.8259
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -1.8155 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 2.4380 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6857
+ sigma_2:  1.9201
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 35.6888
+  RMSE_right_shank: 33.2489
+  RMSE_right_sum:   68.9377
+
+Kalman filter:
+  RMSE_right_thigh: 6.9308
+  RMSE_right_shank: 4.6708
+  RMSE_right_sum:   11.6015
+
+Extended Kalman filter:
+  RMSE_right_thigh: 6.9039
+  RMSE_right_shank: 5.4637
+  RMSE_right_sum:   12.3676
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -6.6029 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 7.1752 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.8742
+ sigma_2:  1.1010
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 71.6711
+  RMSE_both_shank: 70.8937
+  RMSE_both_sum:   142.5648
+
+Kalman filter:
+  RMSE_both_thigh: 16.3971
+  RMSE_both_shank: 10.7481
+  RMSE_both_sum:   27.1452
+
+Extended Kalman filter:
+  RMSE_both_thigh: 15.9878
+  RMSE_both_shank: 12.2057
+  RMSE_both_sum:   28.1935
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -3.8616 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 4.6597 %
+
+-----------------------------------------------------------------------------
+///// 10. Results subject 04, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.1439
+  RMSE_left_shank: 12.2112
+  RMSE_left_sum:   21.3551
+
+Kalman filter:
+  RMSE_left_thigh: 2.8405
+  RMSE_left_shank: 5.0969
+  RMSE_left_sum:   7.9373
+
+Extended Kalman filter:
+  RMSE_left_thigh: 2.1215
+  RMSE_left_shank: 4.0760
+  RMSE_left_sum:   6.1975
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 21.9197 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -9.2186 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.0281
+ sigma_2:  2.0432
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 9.5731
+  RMSE_right_shank: 7.8740
+  RMSE_right_sum:   17.4472
+
+Kalman filter:
+  RMSE_right_thigh: 2.1194
+  RMSE_right_shank: 2.2095
+  RMSE_right_sum:   4.3289
+
+Extended Kalman filter:
+  RMSE_right_thigh: 2.4921
+  RMSE_right_shank: 2.2303
+  RMSE_right_sum:   4.7224
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -9.0903 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -23.9010 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.7909
+ sigma_2:  1.7079
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 18.7170
+  RMSE_both_shank: 20.0853
+  RMSE_both_sum:   38.8023
+
+Kalman filter:
+  RMSE_both_thigh: 4.9598
+  RMSE_both_shank: 7.3064
+  RMSE_both_sum:   12.2662
+
+Extended Kalman filter:
+  RMSE_both_thigh: 4.6136
+  RMSE_both_shank: 6.3063
+  RMSE_both_sum:   10.9199
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 10.9759 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -14.9746 %
+
+-----------------------------------------------------------------------------
+///// 11. Results subject 04, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 26.0824
+  RMSE_left_shank: 23.3188
+  RMSE_left_sum:   49.4012
+
+Kalman filter:
+  RMSE_left_thigh: 5.3465
+  RMSE_left_shank: 3.8505
+  RMSE_left_sum:   9.1970
+
+Extended Kalman filter:
+  RMSE_left_thigh: 5.0439
+  RMSE_left_shank: 3.1001
+  RMSE_left_sum:   8.1439
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 11.4499 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 8.6331 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.3627
+ sigma_2:  2.3921
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 26.2748
+  RMSE_right_shank: 23.8288
+  RMSE_right_sum:   50.1036
+
+Kalman filter:
+  RMSE_right_thigh: 4.6008
+  RMSE_right_shank: 2.6604
+  RMSE_right_sum:   7.2612
+
+Extended Kalman filter:
+  RMSE_right_thigh: 4.5541
+  RMSE_right_shank: 2.5762
+  RMSE_right_sum:   7.1303
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 1.8030 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 2.8500 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.7846
+ sigma_2:  1.7735
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 52.3572
+  RMSE_both_shank: 47.1477
+  RMSE_both_sum:   99.5048
+
+Kalman filter:
+  RMSE_both_thigh: 9.9472
+  RMSE_both_shank: 6.5110
+  RMSE_both_sum:   16.4582
+
+Extended Kalman filter:
+  RMSE_both_thigh: 9.5980
+  RMSE_both_shank: 5.6762
+  RMSE_both_sum:   15.2742
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 7.1938 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 5.7102 %
+
+-----------------------------------------------------------------------------
+///// 12. Results subject 04, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 41.3808
+  RMSE_left_shank: 35.4615
+  RMSE_left_sum:   76.8423
+
+Kalman filter:
+  RMSE_left_thigh: 12.9636
+  RMSE_left_shank: 6.5374
+  RMSE_left_sum:   19.5010
+
+Extended Kalman filter:
+  RMSE_left_thigh: 12.9048
+  RMSE_left_shank: 3.1355
+  RMSE_left_sum:   16.0402
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 17.7467 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 26.0286 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.4319
+ sigma_2:  1.9347
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 39.2317
+  RMSE_right_shank: 36.9889
+  RMSE_right_sum:   76.2206
+
+Kalman filter:
+  RMSE_right_thigh: 9.6874
+  RMSE_right_shank: 5.9641
+  RMSE_right_sum:   15.6515
+
+Extended Kalman filter:
+  RMSE_right_thigh: 9.8541
+  RMSE_right_shank: 3.4999
+  RMSE_right_sum:   13.3540
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 14.6789 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 14.2578 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.8985
+ sigma_2:  1.4270
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 80.6125
+  RMSE_both_shank: 72.4503
+  RMSE_both_sum:   153.0628
+
+Kalman filter:
+  RMSE_both_thigh: 22.6510
+  RMSE_both_shank: 12.5015
+  RMSE_both_sum:   35.1525
+
+Extended Kalman filter:
+  RMSE_both_thigh: 22.7588
+  RMSE_both_shank: 6.6354
+  RMSE_both_sum:   29.3942
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 16.3808 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 20.0191 %
+
+-----------------------------------------------------------------------------
+///// 13. Results subject 05, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 8.7684
+  RMSE_left_shank: 8.8423
+  RMSE_left_sum:   17.6107
+
+Kalman filter:
+  RMSE_left_thigh: 2.0040
+  RMSE_left_shank: 4.1151
+  RMSE_left_sum:   6.1191
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.6957
+  RMSE_left_shank: 3.4664
+  RMSE_left_sum:   5.1621
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 15.6389 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -23.5683 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.1110
+ sigma_2:  4.1003
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 11.2206
+  RMSE_right_shank: 8.7270
+  RMSE_right_sum:   19.9475
+
+Kalman filter:
+  RMSE_right_thigh: 6.5261
+  RMSE_right_shank: 1.4928
+  RMSE_right_sum:   8.0189
+
+Extended Kalman filter:
+  RMSE_right_thigh: 6.5269
+  RMSE_right_shank: 1.6268
+  RMSE_right_sum:   8.1537
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -1.6809 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -20.1154 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.3167
+ sigma_2:  2.5526
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 19.9890
+  RMSE_both_shank: 17.5692
+  RMSE_both_sum:   37.5582
+
+Kalman filter:
+  RMSE_both_thigh: 8.5301
+  RMSE_both_shank: 5.6079
+  RMSE_both_sum:   14.1380
+
+Extended Kalman filter:
+  RMSE_both_thigh: 8.2226
+  RMSE_both_shank: 5.0932
+  RMSE_both_sum:   13.3158
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 5.8153 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -21.8532 %
+
+-----------------------------------------------------------------------------
+///// 14. Results subject 05, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.1809
+  RMSE_left_shank: 10.3159
+  RMSE_left_sum:   19.4968
+
+Kalman filter:
+  RMSE_left_thigh: 2.6198
+  RMSE_left_shank: 4.5852
+  RMSE_left_sum:   7.2050
+
+Extended Kalman filter:
+  RMSE_left_thigh: 2.4934
+  RMSE_left_shank: 4.0305
+  RMSE_left_sum:   6.5239
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 9.4525 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -17.4039 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.4102
+ sigma_2:  3.4901
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 8.3155
+  RMSE_right_shank: 9.9192
+  RMSE_right_sum:   18.2346
+
+Kalman filter:
+  RMSE_right_thigh: 1.1021
+  RMSE_right_shank: 1.5371
+  RMSE_right_sum:   2.6392
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.0381
+  RMSE_right_shank: 1.4043
+  RMSE_right_sum:   2.4424
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 7.4551 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -10.6987 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.1643
+ sigma_2:  2.8905
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 17.4964
+  RMSE_both_shank: 20.2351
+  RMSE_both_sum:   37.7315
+
+Kalman filter:
+  RMSE_both_thigh: 3.7218
+  RMSE_both_shank: 6.1223
+  RMSE_both_sum:   9.8442
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.5316
+  RMSE_both_shank: 5.4348
+  RMSE_both_sum:   8.9664
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 8.9170 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -14.1171 %
+
+-----------------------------------------------------------------------------
+///// 15. Results subject 05, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 19.3425
+  RMSE_left_shank: 20.2514
+  RMSE_left_sum:   39.5939
+
+Kalman filter:
+  RMSE_left_thigh: 5.5636
+  RMSE_left_shank: 5.5506
+  RMSE_left_sum:   11.1142
+
+Extended Kalman filter:
+  RMSE_left_thigh: 5.2377
+  RMSE_left_shank: 4.2749
+  RMSE_left_sum:   9.5126
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 14.4102 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 2.5998 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.5297
+ sigma_2:  3.0673
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 21.5079
+  RMSE_right_shank: 19.9063
+  RMSE_right_sum:   41.4142
+
+Kalman filter:
+  RMSE_right_thigh: 4.4814
+  RMSE_right_shank: 2.7355
+  RMSE_right_sum:   7.2169
+
+Extended Kalman filter:
+  RMSE_right_thigh: 4.3493
+  RMSE_right_shank: 1.8626
+  RMSE_right_sum:   6.2119
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 13.9255 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 14.7030 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  3.6104
+ sigma_2:  3.2268
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 40.8504
+  RMSE_both_shank: 40.1578
+  RMSE_both_sum:   81.0082
+
+Kalman filter:
+  RMSE_both_thigh: 10.0450
+  RMSE_both_shank: 8.2861
+  RMSE_both_sum:   18.3311
+
+Extended Kalman filter:
+  RMSE_both_thigh: 9.5870
+  RMSE_both_shank: 6.1375
+  RMSE_both_sum:   15.7245
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 14.2194 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 8.5994 %
+
+-----------------------------------------------------------------------------
+///// 16. Results subject 05, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 37.9430
+  RMSE_left_shank: 34.6341
+  RMSE_left_sum:   72.5771
+
+Kalman filter:
+  RMSE_left_thigh: 12.7807
+  RMSE_left_shank: 9.4517
+  RMSE_left_sum:   22.2324
+
+Extended Kalman filter:
+  RMSE_left_thigh: 12.4782
+  RMSE_left_shank: 5.1218
+  RMSE_left_sum:   17.6000
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 20.8363 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 24.1542 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.9474
+ sigma_2:  2.3593
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 40.2999
+  RMSE_right_shank: 31.7249
+  RMSE_right_sum:   72.0248
+
+Kalman filter:
+  RMSE_right_thigh: 11.0966
+  RMSE_right_shank: 5.1347
+  RMSE_right_sum:   16.2313
+
+Extended Kalman filter:
+  RMSE_right_thigh: 11.0217
+  RMSE_right_shank: 2.5914
+  RMSE_right_sum:   13.6131
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 16.1306 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 25.5979 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.5693
+ sigma_2:  2.0219
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 78.2429
+  RMSE_both_shank: 66.3589
+  RMSE_both_sum:   144.6018
+
+Kalman filter:
+  RMSE_both_thigh: 23.8773
+  RMSE_both_shank: 14.5864
+  RMSE_both_sum:   38.4637
+
+Extended Kalman filter:
+  RMSE_both_thigh: 23.4999
+  RMSE_both_shank: 7.7132
+  RMSE_both_sum:   31.2131
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 18.8505 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 24.8444 %
+
+-----------------------------------------------------------------------------
+///// 17. Results subject 06, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 6.5181
+  RMSE_left_shank: 11.5903
+  RMSE_left_sum:   18.1084
+
+Kalman filter:
+  RMSE_left_thigh: 1.9812
+  RMSE_left_shank: 3.7951
+  RMSE_left_sum:   5.7763
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.6445
+  RMSE_left_shank: 3.5699
+  RMSE_left_sum:   5.2145
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 9.7268 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -13.1190 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.7297
+ sigma_2:  1.8680
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 7.8178
+  RMSE_right_shank: 11.3141
+  RMSE_right_sum:   19.1319
+
+Kalman filter:
+  RMSE_right_thigh: 1.9340
+  RMSE_right_shank: 1.9864
+  RMSE_right_sum:   3.9204
+
+Extended Kalman filter:
+  RMSE_right_thigh: 2.0076
+  RMSE_right_shank: 1.7908
+  RMSE_right_sum:   3.7985
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 3.1102 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -10.1156 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.7176
+ sigma_2:  2.0928
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 14.3359
+  RMSE_both_shank: 22.9044
+  RMSE_both_sum:   37.2403
+
+Kalman filter:
+  RMSE_both_thigh: 3.9152
+  RMSE_both_shank: 5.7815
+  RMSE_both_sum:   9.6967
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.6522
+  RMSE_both_shank: 5.3608
+  RMSE_both_sum:   9.0129
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 7.0517 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -11.6354 %
+
+-----------------------------------------------------------------------------
+///// 18. Results subject 06, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 15.5745
+  RMSE_left_shank: 23.2416
+  RMSE_left_sum:   38.8161
+
+Kalman filter:
+  RMSE_left_thigh: 4.0356
+  RMSE_left_shank: 5.5060
+  RMSE_left_sum:   9.5416
+
+Extended Kalman filter:
+  RMSE_left_thigh: 3.6734
+  RMSE_left_shank: 4.0207
+  RMSE_left_sum:   7.6941
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 19.3629 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -0.5522 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.9075
+ sigma_2:  1.5675
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 18.6454
+  RMSE_right_shank: 22.2169
+  RMSE_right_sum:   40.8623
+
+Kalman filter:
+  RMSE_right_thigh: 3.5096
+  RMSE_right_shank: 4.2072
+  RMSE_right_sum:   7.7167
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.5274
+  RMSE_right_shank: 3.0190
+  RMSE_right_sum:   6.5463
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 15.1673 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -5.8944 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7363
+ sigma_2:  0.6219
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 34.2199
+  RMSE_both_shank: 45.4585
+  RMSE_both_sum:   79.6783
+
+Kalman filter:
+  RMSE_both_thigh: 7.5452
+  RMSE_both_shank: 9.7132
+  RMSE_both_sum:   17.2583
+
+Extended Kalman filter:
+  RMSE_both_thigh: 7.2008
+  RMSE_both_shank: 7.0396
+  RMSE_both_sum:   14.2404
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 17.4869 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -3.1631 %
+
+-----------------------------------------------------------------------------
+///// 19. Results subject 06, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 26.9995
+  RMSE_left_shank: 34.4593
+  RMSE_left_sum:   61.4589
+
+Kalman filter:
+  RMSE_left_thigh: 7.3576
+  RMSE_left_shank: 6.9263
+  RMSE_left_sum:   14.2840
+
+Extended Kalman filter:
+  RMSE_left_thigh: 7.0128
+  RMSE_left_shank: 4.1937
+  RMSE_left_sum:   11.2065
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 21.5453 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 8.0366 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6528
+ sigma_2:  1.6321
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 30.6708
+  RMSE_right_shank: 33.6935
+  RMSE_right_sum:   64.3643
+
+Kalman filter:
+  RMSE_right_thigh: 7.0587
+  RMSE_right_shank: 6.4034
+  RMSE_right_sum:   13.4622
+
+Extended Kalman filter:
+  RMSE_right_thigh: 7.1163
+  RMSE_right_shank: 3.3390
+  RMSE_right_sum:   10.4552
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 22.3363 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 7.8636 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.4691
+ sigma_2:  0.7424
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 57.6704
+  RMSE_both_shank: 68.1528
+  RMSE_both_sum:   125.8232
+
+Kalman filter:
+  RMSE_both_thigh: 14.4164
+  RMSE_both_shank: 13.3298
+  RMSE_both_sum:   27.7462
+
+Extended Kalman filter:
+  RMSE_both_thigh: 14.1290
+  RMSE_both_shank: 7.5326
+  RMSE_both_sum:   21.6617
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 21.9291 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 7.9511 %
+
+-----------------------------------------------------------------------------
+///// 20. Results subject 07, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 10.6772
+  RMSE_left_shank: 13.7296
+  RMSE_left_sum:   24.4067
+
+Kalman filter:
+  RMSE_left_thigh: 4.1253
+  RMSE_left_shank: 2.1608
+  RMSE_left_sum:   6.2861
+
+Extended Kalman filter:
+  RMSE_left_thigh: 3.9730
+  RMSE_left_shank: 2.3135
+  RMSE_left_sum:   6.2865
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -0.0071 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -1.7020 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6081
+ sigma_2:  1.2432
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 11.2535
+  RMSE_right_shank: 12.7039
+  RMSE_right_sum:   23.9574
+
+Kalman filter:
+  RMSE_right_thigh: 2.5204
+  RMSE_right_shank: 2.3008
+  RMSE_right_sum:   4.8211
+
+Extended Kalman filter:
+  RMSE_right_thigh: 2.5626
+  RMSE_right_shank: 3.3973
+  RMSE_right_sum:   5.9599
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -23.6197 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -16.3109 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.5189
+ sigma_2:  0.6262
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 21.9307
+  RMSE_both_shank: 26.4335
+  RMSE_both_sum:   48.3642
+
+Kalman filter:
+  RMSE_both_thigh: 6.6457
+  RMSE_both_shank: 4.4615
+  RMSE_both_sum:   11.1072
+
+Extended Kalman filter:
+  RMSE_both_thigh: 6.5356
+  RMSE_both_shank: 5.7108
+  RMSE_both_sum:   12.2464
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -10.2562 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -8.7230 %
+
+-----------------------------------------------------------------------------
+///// 21. Results subject 07, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.7407
+  RMSE_left_shank: 12.5583
+  RMSE_left_sum:   22.2989
+
+Kalman filter:
+  RMSE_left_thigh: 4.5219
+  RMSE_left_shank: 2.1378
+  RMSE_left_sum:   6.6597
+
+Extended Kalman filter:
+  RMSE_left_thigh: 4.4342
+  RMSE_left_shank: 2.3499
+  RMSE_left_sum:   6.7841
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -1.8678 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -5.4204 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7043
+ sigma_2:  2.1983
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 9.8539
+  RMSE_right_shank: 11.9199
+  RMSE_right_sum:   21.7738
+
+Kalman filter:
+  RMSE_right_thigh: 2.4303
+  RMSE_right_shank: 1.4582
+  RMSE_right_sum:   3.8885
+
+Extended Kalman filter:
+  RMSE_right_thigh: 2.4364
+  RMSE_right_shank: 1.4819
+  RMSE_right_sum:   3.9183
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -0.7683 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -14.9514 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.1549
+ sigma_2:  0.7917
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 19.5946
+  RMSE_both_shank: 24.4781
+  RMSE_both_sum:   44.0727
+
+Kalman filter:
+  RMSE_both_thigh: 6.9522
+  RMSE_both_shank: 3.5959
+  RMSE_both_sum:   10.5481
+
+Extended Kalman filter:
+  RMSE_both_thigh: 6.8706
+  RMSE_both_shank: 3.8318
+  RMSE_both_sum:   10.7024
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -1.4625 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -10.0616 %
+
+-----------------------------------------------------------------------------
+///// 22. Results subject 07, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 25.7552
+  RMSE_left_shank: 27.0933
+  RMSE_left_sum:   52.8485
+
+Kalman filter:
+  RMSE_left_thigh: 10.5885
+  RMSE_left_shank: 3.8449
+  RMSE_left_sum:   14.4334
+
+Extended Kalman filter:
+  RMSE_left_thigh: 10.3538
+  RMSE_left_shank: 2.8297
+  RMSE_left_sum:   13.1836
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 8.6593 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 13.4141 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7091
+ sigma_2:  1.5872
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 29.9632
+  RMSE_right_shank: 25.1092
+  RMSE_right_sum:   55.0724
+
+Kalman filter:
+  RMSE_right_thigh: 9.0782
+  RMSE_right_shank: 2.8570
+  RMSE_right_sum:   11.9353
+
+Extended Kalman filter:
+  RMSE_right_thigh: 9.1383
+  RMSE_right_shank: 2.1080
+  RMSE_right_sum:   11.2462
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 5.7730 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 14.5752 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7242
+ sigma_2:  1.0045
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 55.7184
+  RMSE_both_shank: 52.2026
+  RMSE_both_sum:   107.9209
+
+Kalman filter:
+  RMSE_both_thigh: 19.6667
+  RMSE_both_shank: 6.7020
+  RMSE_both_sum:   26.3687
+
+Extended Kalman filter:
+  RMSE_both_thigh: 19.4921
+  RMSE_both_shank: 4.9377
+  RMSE_both_sum:   24.4298
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 7.3529 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 13.9726 %
+
+-----------------------------------------------------------------------------
+///// 23. Results subject 07, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 18.2635
+  RMSE_left_shank: 19.7405
+  RMSE_left_sum:   38.0040
+
+Kalman filter:
+  RMSE_left_thigh: 7.6771
+  RMSE_left_shank: 3.5453
+  RMSE_left_sum:   11.2224
+
+Extended Kalman filter:
+  RMSE_left_thigh: 7.1227
+  RMSE_left_shank: 2.1586
+  RMSE_left_sum:   9.2813
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 17.2966 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 8.0989 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6410
+ sigma_2:  1.3240
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 20.9429
+  RMSE_right_shank: 18.3170
+  RMSE_right_sum:   39.2599
+
+Kalman filter:
+  RMSE_right_thigh: 5.9614
+  RMSE_right_shank: 2.3548
+  RMSE_right_sum:   8.3163
+
+Extended Kalman filter:
+  RMSE_right_thigh: 6.1331
+  RMSE_right_shank: 2.9129
+  RMSE_right_sum:   9.0461
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -8.7754 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 1.9776 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.4563
+ sigma_2:  0.5338
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 39.2064
+  RMSE_both_shank: 38.0576
+  RMSE_both_sum:   77.2639
+
+Kalman filter:
+  RMSE_both_thigh: 13.6385
+  RMSE_both_shank: 5.9002
+  RMSE_both_sum:   19.5387
+
+Extended Kalman filter:
+  RMSE_both_thigh: 13.2559
+  RMSE_both_shank: 5.0715
+  RMSE_both_sum:   18.3274
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 6.1995 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 5.1527 %
+
+-----------------------------------------------------------------------------
+///// 24. Results subject 08, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 9.8254
+  RMSE_left_shank: 9.6527
+  RMSE_left_sum:   19.4781
+
+Kalman filter:
+  RMSE_left_thigh: 2.3517
+  RMSE_left_shank: 3.1234
+  RMSE_left_sum:   5.4751
+
+Extended Kalman filter:
+  RMSE_left_thigh: 2.0708
+  RMSE_left_shank: 2.9239
+  RMSE_left_sum:   4.9947
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 8.7743 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -20.7253 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6199
+ sigma_2:  1.4156
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 9.6926
+  RMSE_right_shank: 9.2854
+  RMSE_right_sum:   18.9780
+
+Kalman filter:
+  RMSE_right_thigh: 1.5196
+  RMSE_right_shank: 1.9590
+  RMSE_right_sum:   3.4786
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.4224
+  RMSE_right_shank: 1.7893
+  RMSE_right_sum:   3.2117
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = 7.6738 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -42.7457 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6601
+ sigma_2:  0.4979
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 19.5181
+  RMSE_both_shank: 18.9381
+  RMSE_both_sum:   38.4562
+
+Kalman filter:
+  RMSE_both_thigh: 3.8713
+  RMSE_both_shank: 5.0824
+  RMSE_both_sum:   8.9538
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.4932
+  RMSE_both_shank: 4.7132
+  RMSE_both_sum:   8.2064
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 8.3467 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -31.5219 %
+
+-----------------------------------------------------------------------------
+///// 25. Results subject 11, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 7.4829
+  RMSE_left_shank: 11.2550
+  RMSE_left_sum:   18.7379
+
+Kalman filter:
+  RMSE_left_thigh: 1.9715
+  RMSE_left_shank: 3.1170
+  RMSE_left_sum:   5.0884
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.6624
+  RMSE_left_shank: 3.3608
+  RMSE_left_sum:   5.0231
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 1.2833 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -6.4409 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.5708
+ sigma_2:  1.5697
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 8.1280
+  RMSE_right_shank: 10.7391
+  RMSE_right_sum:   18.8672
+
+Kalman filter:
+  RMSE_right_thigh: 1.1525
+  RMSE_right_shank: 2.2572
+  RMSE_right_sum:   3.4097
+
+Extended Kalman filter:
+  RMSE_right_thigh: 1.5932
+  RMSE_right_shank: 2.6414
+  RMSE_right_sum:   4.2346
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -24.1909 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -12.6217 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.4271
+ sigma_2:  0.8199
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 15.6110
+  RMSE_both_shank: 21.9941
+  RMSE_both_sum:   37.6051
+
+Kalman filter:
+  RMSE_both_thigh: 3.1239
+  RMSE_both_shank: 5.3742
+  RMSE_both_sum:   8.4982
+
+Extended Kalman filter:
+  RMSE_both_thigh: 3.2556
+  RMSE_both_shank: 6.0021
+  RMSE_both_sum:   9.2577
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -8.9377 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -9.4588 %
+
+-----------------------------------------------------------------------------
+///// 26. Results subject 11, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 19.1868
+  RMSE_left_shank: 21.0545
+  RMSE_left_sum:   40.2413
+
+Kalman filter:
+  RMSE_left_thigh: 4.6548
+  RMSE_left_shank: 4.1217
+  RMSE_left_sum:   8.7765
+
+Extended Kalman filter:
+  RMSE_left_thigh: 4.3202
+  RMSE_left_shank: 3.5215
+  RMSE_left_sum:   7.8417
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 10.6508 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 0.4892 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6102
+ sigma_2:  1.5697
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 20.3128
+  RMSE_right_shank: 22.1670
+  RMSE_right_sum:   42.4798
+
+Kalman filter:
+  RMSE_right_thigh: 3.5383
+  RMSE_right_shank: 3.2515
+  RMSE_right_sum:   6.7898
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.6695
+  RMSE_right_shank: 4.0561
+  RMSE_right_sum:   7.7256
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -13.7821 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -5.4737 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7590
+ sigma_2:  0.4924
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 39.4996
+  RMSE_both_shank: 43.2215
+  RMSE_both_sum:   82.7211
+
+Kalman filter:
+  RMSE_both_thigh: 8.1931
+  RMSE_both_shank: 7.3732
+  RMSE_both_sum:   15.5663
+
+Extended Kalman filter:
+  RMSE_both_thigh: 7.9897
+  RMSE_both_shank: 7.5776
+  RMSE_both_sum:   15.5673
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -0.0065 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -2.5690 %
+
+-----------------------------------------------------------------------------
+///// 27. Results subject 12, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 8.7186
+  RMSE_left_shank: 10.9301
+  RMSE_left_sum:   19.6487
+
+Kalman filter:
+  RMSE_left_thigh: 1.6856
+  RMSE_left_shank: 2.4093
+  RMSE_left_sum:   4.0948
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.6702
+  RMSE_left_shank: 2.5910
+  RMSE_left_sum:   4.2612
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = -4.0643 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -15.3752 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6653
+ sigma_2:  2.4100
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 8.4108
+  RMSE_right_shank: 12.0068
+  RMSE_right_sum:   20.4176
+
+Kalman filter:
+  RMSE_right_thigh: 0.9751
+  RMSE_right_shank: 4.1668
+  RMSE_right_sum:   5.1418
+
+Extended Kalman filter:
+  RMSE_right_thigh: 0.9397
+  RMSE_right_shank: 4.4720
+  RMSE_right_sum:   5.4117
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -5.2476 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -22.3172 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.6343
+ sigma_2:  0.9110
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 17.1295
+  RMSE_both_shank: 22.9369
+  RMSE_both_sum:   40.0664
+
+Kalman filter:
+  RMSE_both_thigh: 2.6606
+  RMSE_both_shank: 6.5760
+  RMSE_both_sum:   9.2366
+
+Extended Kalman filter:
+  RMSE_both_thigh: 2.6099
+  RMSE_both_shank: 7.0630
+  RMSE_both_sum:   9.6729
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -4.7230 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -19.0091 %
+
+-----------------------------------------------------------------------------
+///// 28. Results subject 12, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 20.8546
+  RMSE_left_shank: 19.5037
+  RMSE_left_sum:   40.3584
+
+Kalman filter:
+  RMSE_left_thigh: 4.1829
+  RMSE_left_shank: 2.7373
+  RMSE_left_sum:   6.9202
+
+Extended Kalman filter:
+  RMSE_left_thigh: 4.1460
+  RMSE_left_shank: 2.5610
+  RMSE_left_sum:   6.7070
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 3.0805 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 10.2896 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  2.3622
+ sigma_2:  2.5995
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 20.8674
+  RMSE_right_shank: 21.9360
+  RMSE_right_sum:   42.8035
+
+Kalman filter:
+  RMSE_right_thigh: 3.5103
+  RMSE_right_shank: 4.1093
+  RMSE_right_sum:   7.6196
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.5702
+  RMSE_right_shank: 4.6544
+  RMSE_right_sum:   8.2245
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -7.9391 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 4.0563 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  1.2983
+ sigma_2:  2.2926
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 41.7221
+  RMSE_both_shank: 41.4398
+  RMSE_both_sum:   83.1618
+
+Kalman filter:
+  RMSE_both_thigh: 7.6933
+  RMSE_both_shank: 6.8465
+  RMSE_both_sum:   14.5398
+
+Extended Kalman filter:
+  RMSE_both_thigh: 7.7162
+  RMSE_both_shank: 7.2153
+  RMSE_both_sum:   14.9315
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -2.6944 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 6.9900 %
+
+-----------------------------------------------------------------------------
+///// 29. Results subject 13, walking speed 2 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 8.8136
+  RMSE_left_shank: 11.6989
+  RMSE_left_sum:   20.5126
+
+Kalman filter:
+  RMSE_left_thigh: 1.4907
+  RMSE_left_shank: 3.2461
+  RMSE_left_sum:   4.7367
+
+Extended Kalman filter:
+  RMSE_left_thigh: 1.2966
+  RMSE_left_shank: 2.8927
+  RMSE_left_sum:   4.1893
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 11.5568 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 10.5403 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  4.2577
+ sigma_2:  4.7102
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 10.8031
+  RMSE_right_shank: 12.1259
+  RMSE_right_sum:   22.9290
+
+Kalman filter:
+  RMSE_right_thigh: 2.8556
+  RMSE_right_shank: 4.3848
+  RMSE_right_sum:   7.2404
+
+Extended Kalman filter:
+  RMSE_right_thigh: 3.7901
+  RMSE_right_shank: 4.7814
+  RMSE_right_sum:   8.5715
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -18.3847 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 12.5727 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  82.8487
+ sigma_2:  45.1556
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 19.6167
+  RMSE_both_shank: 23.8248
+  RMSE_both_sum:   43.4416
+
+Kalman filter:
+  RMSE_both_thigh: 4.3463
+  RMSE_both_shank: 7.6308
+  RMSE_both_sum:   11.9771
+
+Extended Kalman filter:
+  RMSE_both_thigh: 5.0867
+  RMSE_both_shank: 7.6741
+  RMSE_both_sum:   12.7608
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = -6.5434 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 11.5747 %
+
+-----------------------------------------------------------------------------
+///// 30. Results subject 13, walking speed 4 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 18.0699
+  RMSE_left_shank: 18.9893
+  RMSE_left_sum:   37.0593
+
+Kalman filter:
+  RMSE_left_thigh: 3.5521
+  RMSE_left_shank: 3.7767
+  RMSE_left_sum:   7.3288
+
+Extended Kalman filter:
+  RMSE_left_thigh: 3.2489
+  RMSE_left_shank: 3.1125
+  RMSE_left_sum:   6.3614
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 13.2000 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = -1.5110 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.8281
+ sigma_2:  1.4549
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 15.9159
+  RMSE_right_shank: 18.5749
+  RMSE_right_sum:   34.4908
+
+Kalman filter:
+  RMSE_right_thigh: 2.3270
+  RMSE_right_shank: 3.7759
+  RMSE_right_sum:   6.1029
+
+Extended Kalman filter:
+  RMSE_right_thigh: 2.1706
+  RMSE_right_shank: 4.1918
+  RMSE_right_sum:   6.3625
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -4.2524 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = -7.1408 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.8471
+ sigma_2:  1.3668
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 33.9858
+  RMSE_both_shank: 37.5642
+  RMSE_both_sum:   71.5500
+
+Kalman filter:
+  RMSE_both_thigh: 5.8791
+  RMSE_both_shank: 7.5527
+  RMSE_both_sum:   13.4318
+
+Extended Kalman filter:
+  RMSE_both_thigh: 5.4196
+  RMSE_both_shank: 7.3043
+  RMSE_both_sum:   12.7239
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 5.2702 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = -4.2949 %
+
+-----------------------------------------------------------------------------
+///// 31. Results subject 13, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 30.1803
+  RMSE_left_shank: 26.3400
+  RMSE_left_sum:   56.5204
+
+Kalman filter:
+  RMSE_left_thigh: 8.0551
+  RMSE_left_shank: 5.1038
+  RMSE_left_sum:   13.1589
+
+Extended Kalman filter:
+  RMSE_left_thigh: 7.8568
+  RMSE_left_shank: 3.2399
+  RMSE_left_sum:   11.0967
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 15.6714 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 9.7646 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.5934
+ sigma_2:  1.7495
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 27.5350
+  RMSE_right_shank: 25.9044
+  RMSE_right_sum:   53.4395
+
+Kalman filter:
+  RMSE_right_thigh: 6.0645
+  RMSE_right_shank: 4.0831
+  RMSE_right_sum:   10.1476
+
+Extended Kalman filter:
+  RMSE_right_thigh: 6.0932
+  RMSE_right_shank: 4.3687
+  RMSE_right_sum:   10.4619
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -3.0973 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 3.5602 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7267
+ sigma_2:  0.6255
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 57.7154
+  RMSE_both_shank: 52.2445
+  RMSE_both_sum:   109.9598
+
+Kalman filter:
+  RMSE_both_thigh: 14.1196
+  RMSE_both_shank: 9.1869
+  RMSE_both_sum:   23.3065
+
+Extended Kalman filter:
+  RMSE_both_thigh: 13.9500
+  RMSE_both_shank: 7.6086
+  RMSE_both_sum:   21.5586
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 7.4995 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 6.6882 %
+
+-----------------------------------------------------------------------------
+///// 32. Results subject 13, walking speed 6 km/h /////
+-----------------------------------------------------------------------------
+
+----------------- Results left body side ---------------
+Acceleration-based:
+  RMSE_left_thigh: 30.8312
+  RMSE_left_shank: 27.1337
+  RMSE_left_sum:   57.9649
+
+Kalman filter:
+  RMSE_left_thigh: 8.3545
+  RMSE_left_shank: 5.4835
+  RMSE_left_sum:   13.8380
+
+Extended Kalman filter:
+  RMSE_left_thigh: 8.1472
+  RMSE_left_shank: 3.5244
+  RMSE_left_sum:   11.6716
+
+Improvement:
+  1 - RMSE_left_EKF / RMSE_left_KF = 15.6553 %
+
+  1 - RMSE_acc_corr_left_shank / RMSE_acc_left_shank = 9.1180 %
+
+EKF parameters left : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.5862
+ sigma_2:  1.3101
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results right body side ---------------
+Acceleration-based:
+  RMSE_right_thigh: 27.0818
+  RMSE_right_shank: 27.6243
+  RMSE_right_sum:   54.7061
+
+Kalman filter:
+  RMSE_right_thigh: 5.7814
+  RMSE_right_shank: 3.9190
+  RMSE_right_sum:   9.7004
+
+Extended Kalman filter:
+  RMSE_right_thigh: 5.7256
+  RMSE_right_shank: 4.5696
+  RMSE_right_sum:   10.2951
+
+Improvement:
+  1 - RMSE_right_EKF / RMSE_right_KF = -6.1308 %
+
+  1 - RMSE_acc_corr_right_shank / RMSE_acc_right_shank = 2.8541 %
+
+EKF parameters right : 
+ -sigma_d:  10.0000
+ sigma_t1: 0.0100
+ sigma_t2: 0.0100
+ sigma_b:  0.0000
+ sigma_1:  0.7816
+ sigma_2:  0.5821
+ sigma_s3: 10.0000
+ sigma_f3: 50.0000
+ sigma_s4: 10.0000
+ sigma_f4: 50.0000
+
+
+----------------- Results both body side ---------------
+Acceleration-based:
+  RMSE_both_thigh: 57.9130
+  RMSE_both_shank: 54.7580
+  RMSE_both_sum:   112.6710
+
+Kalman filter:
+  RMSE_both_thigh: 14.1360
+  RMSE_both_shank: 9.4025
+  RMSE_both_sum:   23.5385
+
+Extended Kalman filter:
+  RMSE_both_thigh: 13.8728
+  RMSE_both_shank: 8.0940
+  RMSE_both_sum:   21.9668
+
+Improvement:
+  1 - RMSE_both_EKF / RMSE_both_KF = 6.6770 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 5.9580 %
+
+
+
+
+-----------------------------------------------------------------------------
+//////// OVERALL RESULTS ////////
+-----------------------------------------------------------------------------
+
+Acceleration-based:
+ RMSE = 2573.7584
+
+Kalman filter:
+ RMSE = 558.4568
+
+Extended Kalman filter:
+ RMSE = 508.2050
+
+Improvement:
+  1 - RMSE_EKF / RMSE_KF = 8.9983 %
+
+  1 - RMSE_acc_corr_both_shank / RMSE_acc_both_shank = 5.9580 %
+
+>> 
